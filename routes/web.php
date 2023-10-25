@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +23,10 @@ Route::get('/login', function () {
     return view('pages.login');
 });
 
-Route::get('/dashboard', function () {
-    return view('admin.pages.main');
-});
+// Route::get('/dashboard', function () {
+//     return view('admin.pages.main');
+// });
+Route::get('/dashboard', [Controller::class, 'home'])->middleware('auth', 'role:admin');
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

@@ -65,25 +65,26 @@
                             <a href="/" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
-                            <form class="p-lg-5 p-md-4 p-sm-5">
+                            <form action="/login" method="POST" class="p-lg-5 p-md-4 p-sm-5">
+                                @csrf
                                 <h2 class="login-title">Login</h2>
                                 <small>Welcome, Please enter your email & password</small>
                                 <div class="form-input">
-                                    <label for="email">Email</label>
+                                    <label for="login">Email or Username</label>
                                     <div class="col">
-                                        <input type="email" class="form-control" id="email"
-                                            placeholder="example@gmail.com" />
+                                        <input type="text" class="form-control" name="login" id="login"
+                                            placeholder="input username or password" />
                                     </div>
                                 </div>
                                 <div class="form-input">
                                     <label for="password">Password</label>
                                     <div class="col">
-                                        <input type="password" class="form-control" id="password"
+                                        <input type="password" name="password" class="form-control" id="password"
                                             placeholder="**********" />
                                     </div>
                                 </div>
-                                <a type="button" href="/dashboard" class="btn btn-submit-login mt-4"><i
-                                        class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span></a>
+                                <button type="submit" class="btn btn-submit-login mt-4"><i
+                                        class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span></button>
                             </form>
                         </div>
                     </div>

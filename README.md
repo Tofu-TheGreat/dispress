@@ -71,7 +71,7 @@ Confess adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pembu
 -   PHP ^8.0 & Web Server (XAMPP, LAMPP, MAMPP, atau Laragon)
 -   Web Browser (Chrome, Firefox, Safari, Opera, atau Brave)
 
-<h2 id="download">💻 Install</h2>
+<h2 id="download">🔽 Install</h2>
 
 1. Clone repository
 
@@ -103,6 +103,27 @@ php artisan storage:link
 
 ```bash
 php artisan serve
+```
+
+<h2 id="download">💻 Start Coding</h2>
+
+1. Membuat branch baru
+
+```bash
+git branch nama_branch
+git checkout nama_branch
+
+Note : `nama_branch` disini biasanya adalah nama fitur yang ingin dibuat
+```
+
+2. Push ke github
+
+```bash
+git add .
+git commit -m "message_commit"
+git push -u origin nama_branch
+
+Melakukan/Membuat Pull Request di GitHub
 ```
 
 <h2 id="lisensi">📝 License</h2>

@@ -65,14 +65,15 @@
                             <a href="/" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
-                            <form class="p-lg-5 p-md-4 p-sm-5">
+                            <form action="/login" method="POST" enctype="multipart/form-data"
+                                class="p-lg-5 p-md-4 p-sm-5">
                                 <h2 class="login-title">Login</h2>
-                                <small>Welcome, Please enter your email & password</small>
+                                <small>Welcome, Please enter your credentials</small>
                                 <div class="form-input">
-                                    <label for="email">Email</label>
+                                    <label for="login">Username or Email</label>
                                     <div class="col">
-                                        <input type="email" class="form-control" id="email"
-                                            placeholder="example@gmail.com" />
+                                        <input type="login" class="form-control" id="login"
+                                            placeholder="Enter Username or Email" />
                                     </div>
                                 </div>
                                 <div class="form-input">
@@ -99,6 +100,10 @@
     <script src="{{ asset('/assets-landing-page/js/main.js') }}"></script>
     <!-- bootstrap bundle with popper -->
     <script src="{{ asset('/assets-landing-page/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- scrollit js -->
+    <script src="{{ asset('/assets-landing-page/js/scrollIt.min.js') }}"></script>
+    <!-- owl carousel js -->
+    <script src="{{ asset('/assets-landing-page/js/owl.carousel.min.js') }}"></script>
     <!-- aos js -->
     <script src="{{ asset('/assets-landing-page/js/aos.js') }}"></script>
 </body>

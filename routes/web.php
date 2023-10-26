@@ -24,7 +24,7 @@ Route::get('/login', function () {
     return view('pages.login');
 });
 
-Route::get('/dashboard', [Controller::class, 'home'])->middleware('auth', 'role:admin');
+Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', 'role:admin');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');

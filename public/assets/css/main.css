@@ -2,3 +2,13 @@
     font-size: 0.8rem;
     cursor: pointer;
 }
+
+.card-body form .input-group {
+    width: 40%;
+}
+
+@media screen and (max-width: 768px) {
+    .card-body form .input-group {
+        width: 70%;
+    }
+}

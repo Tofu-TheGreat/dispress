@@ -43,8 +43,8 @@
                         <!-- FORM PENCARIAN -->
                         <div class="">
                             <form class="" action="/administrator" method="get">
-                                <div class="input-group input-group mb-3 float-right" style="width: 350px;">
-                                    <input type="search" name="katakunci" class="form-control float-right"
+                                <div class="input-group input-group mb-3 float-right">
+                                    <input type="search" name="katakunci" class="form-control float-right search-data"
                                         placeholder="Masukkan Kata Kunci" value="{{ Request::get('katakunci') }}"
                                         aria-label="Search">
                                     <div class="input-group-append mr-1">

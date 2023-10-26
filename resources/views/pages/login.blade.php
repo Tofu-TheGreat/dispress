@@ -73,7 +73,7 @@
                                     <label for="login">Email or Username</label>
                                     <div class="col">
                                         <input type="text" class="form-control" name="login" id="login"
-                                            placeholder="Enter Username or Email" />
+                                            placeholder="Enter Username or Email" autofocus />
                                     </div>
                                 </div>
                                 <div class="form-input">

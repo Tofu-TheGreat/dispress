@@ -68,12 +68,12 @@
                             <form action="/login" method="POST" class="p-lg-5 p-md-4 p-sm-5">
                                 @csrf
                                 <h2 class="login-title">Login</h2>
-                                <small>Welcome, Please enter your email & password</small>
+                                <small>Welcome, Please enter your credentials</small>
                                 <div class="form-input">
                                     <label for="login">Email or Username</label>
                                     <div class="col">
                                         <input type="text" class="form-control" name="login" id="login"
-                                            placeholder="input username or password" />
+                                            placeholder="Enter Username or Email" autofocus />
                                     </div>
                                 </div>
                                 <div class="form-input">
@@ -84,7 +84,8 @@
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-submit-login mt-4"><i
-                                        class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span></button>
+                                        class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>
+                                </button>
                             </form>
                         </div>
                     </div>
@@ -100,6 +101,10 @@
     <script src="{{ asset('/assets-landing-page/js/main.js') }}"></script>
     <!-- bootstrap bundle with popper -->
     <script src="{{ asset('/assets-landing-page/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- scrollit js -->
+    <script src="{{ asset('/assets-landing-page/js/scrollIt.min.js') }}"></script>
+    <!-- owl carousel js -->
+    <script src="{{ asset('/assets-landing-page/js/owl.carousel.min.js') }}"></script>
     <!-- aos js -->
     <script src="{{ asset('/assets-landing-page/js/aos.js') }}"></script>
 </body>

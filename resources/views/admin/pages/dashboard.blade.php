@@ -1,8 +1,7 @@
 @extends('admin.pages.layout')
 
 
-@section('main')
-<div class="main-content">
+@section('content')
     <section class="section">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-12">
@@ -10,8 +9,8 @@
                     <div class="card-stats">
                         <div class="card-stats-title">Order Statistics -
                             <div class="dropdown d-inline">
-                                <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown"
-                                    href="#" id="orders-month">August</a>
+                                <a class="font-weight-600 dropdown-toggle" data-toggle="dropdown" href="#"
+                                    id="orders-month">August</a>
                                 <ul class="dropdown-menu dropdown-menu-sm">
                                     <li class="dropdown-title">Select Month</li>
                                     <li><a href="#" class="dropdown-item">January</a></li>
@@ -110,8 +109,7 @@
                     <div class="card-header">
                         <h4>Top 5 Products</h4>
                         <div class="card-header-action dropdown">
-                            <a href="#" data-toggle="dropdown"
-                                class="btn btn-danger dropdown-toggle">Month</a>
+                            <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Month</a>
                             <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
                                 <li class="dropdown-title">Select Period</li>
                                 <li><a href="#" class="dropdown-item">Today</a></li>
@@ -124,8 +122,8 @@
                     <div class="card-body" id="top-5-scroll">
                         <ul class="list-unstyled list-unstyled-border">
                             <li class="media">
-                                <img class="mr-3 rounded" width="55"
-                                    src="assets/img/products/product-3-50.png" alt="product">
+                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-3-50.png"
+                                    alt="product">
                                 <div class="media-body">
                                     <div class="float-right">
                                         <div class="font-weight-600 text-muted text-small">86 Sales</div>
@@ -146,8 +144,8 @@
                                 </div>
                             </li>
                             <li class="media">
-                                <img class="mr-3 rounded" width="55"
-                                    src="assets/img/products/product-4-50.png" alt="product">
+                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-4-50.png"
+                                    alt="product">
                                 <div class="media-body">
                                     <div class="float-right">
                                         <div class="font-weight-600 text-muted text-small">67 Sales</div>
@@ -168,8 +166,8 @@
                                 </div>
                             </li>
                             <li class="media">
-                                <img class="mr-3 rounded" width="55"
-                                    src="assets/img/products/product-1-50.png" alt="product">
+                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-1-50.png"
+                                    alt="product">
                                 <div class="media-body">
                                     <div class="float-right">
                                         <div class="font-weight-600 text-muted text-small">63 Sales</div>
@@ -190,8 +188,8 @@
                                 </div>
                             </li>
                             <li class="media">
-                                <img class="mr-3 rounded" width="55"
-                                    src="assets/img/products/product-3-50.png" alt="product">
+                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-3-50.png"
+                                    alt="product">
                                 <div class="media-body">
                                     <div class="float-right">
                                         <div class="font-weight-600 text-muted text-small">28 Sales</div>
@@ -212,8 +210,8 @@
                                 </div>
                             </li>
                             <li class="media">
-                                <img class="mr-3 rounded" width="55"
-                                    src="assets/img/products/product-5-50.png" alt="product">
+                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-5-50.png"
+                                    alt="product">
                                 <div class="media-body">
                                     <div class="float-right">
                                         <div class="font-weight-600 text-muted text-small">19 Sales</div>
@@ -259,8 +257,7 @@
                             <div>
                                 <div class="product-item pb-3">
                                     <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-4-50.png"
-                                            class="img-fluid">
+                                        <img alt="image" src="assets/img/products/product-4-50.png" class="img-fluid">
                                     </div>
                                     <div class="product-details">
                                         <div class="product-name">iBook Pro 2018</div>
@@ -281,8 +278,7 @@
                             <div>
                                 <div class="product-item">
                                     <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-3-50.png"
-                                            class="img-fluid">
+                                        <img alt="image" src="assets/img/products/product-3-50.png" class="img-fluid">
                                     </div>
                                     <div class="product-details">
                                         <div class="product-name">oPhone S9 Limited</div>
@@ -303,8 +299,7 @@
                             <div>
                                 <div class="product-item">
                                     <div class="product-image">
-                                        <img alt="image" src="assets/img/products/product-1-50.png"
-                                            class="img-fluid">
+                                        <img alt="image" src="assets/img/products/product-1-50.png" class="img-fluid">
                                     </div>
                                     <div class="product-details">
                                         <div class="product-name">Headphone Blitz</div>
@@ -338,8 +333,8 @@
                                 <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/id.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">Indonesia</div>
                                             <div class="text-small text-muted">3,282 <i
@@ -348,8 +343,8 @@
                                     </li>
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/my.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/my.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">Malaysia</div>
                                             <div class="text-small text-muted">2,976 <i
@@ -358,8 +353,8 @@
                                     </li>
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/us.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/us.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">United States</div>
                                             <div class="text-small text-muted">1,576 <i
@@ -373,8 +368,8 @@
                                 <ul class="list-unstyled list-unstyled-border list-unstyled-noborder mb-0">
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/id.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/id.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">Indonesia</div>
                                             <div class="text-small text-muted">3,486 <i
@@ -383,8 +378,8 @@
                                     </li>
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/ps.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/ps.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">Palestine</div>
                                             <div class="text-small text-muted">3,182 <i
@@ -393,8 +388,8 @@
                                     </li>
                                     <li class="media">
                                         <img class="img-fluid mt-1 img-shadow"
-                                            src="assets/modules/flag-icon-css/flags/4x3/de.svg"
-                                            alt="image" width="40">
+                                            src="assets/modules/flag-icon-css/flags/4x3/de.svg" alt="image"
+                                            width="40">
                                         <div class="media-body ml-3">
                                             <div class="media-title">Germany</div>
                                             <div class="text-small text-muted">2,317 <i
@@ -414,8 +409,7 @@
                     <div class="card-header">
                         <h4>Invoices</h4>
                         <div class="card-header-action">
-                            <a href="#" class="btn btn-danger">View More <i
-                                    class="fas fa-chevron-right"></i></a>
+                            <a href="#" class="btn btn-danger">View More <i class="fas fa-chevron-right"></i></a>
                         </div>
                     </div>
                     <div class="card-body p-0">
@@ -538,5 +532,4 @@
             </div>
         </div>
     </section>
-</div>
 @endsection

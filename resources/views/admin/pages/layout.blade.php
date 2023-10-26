@@ -13,7 +13,9 @@
             {{-- Sidebar --}}
             @include('admin.partials.sidebar')
             <!-- Main Content -->
-            @yield('main')
+            <div class="main-content">
+                @yield('content')
+            </div>
             {{-- Footer --}}
             @include('admin.partials.footer')
         </div>

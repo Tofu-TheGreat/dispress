@@ -10,8 +10,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    public function home()
+    public function dashboard()
     {
-        return view('admin.pages.main');
+        return view('admin.pages.dashboard', [
+            'title' => 'Dashboard',
+            'active' => 'dashboard',
+            'active1' => 'dashboard',
+        ]);
     }
 }

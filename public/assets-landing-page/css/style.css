@@ -590,7 +590,7 @@ Hero Section
 }
 
 .btn-hero:hover span {
-    left: 100%;
+    left: 110%;
 }
 
 .btn-hero::before {
@@ -1180,7 +1180,7 @@ Footer
 
 @media screen and (max-width: 991px) {
     .navbar-brand {
-        right: 3%;
+        right: 0%;
     }
     .navbar-nav {
         padding-top: 10px;

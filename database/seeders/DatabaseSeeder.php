@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,11 +13,39 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        User::factory()->create([
+            'nim' => '2137200781',
+            'nama' => 'Pasya Abinaya',
+            'level' => 'admin',
+            'jabatan' => '9',
+            'username' => 'pasya.nada',
+            'email' => 'pasya@gmail.com',
+            'nomor_telpon' => '089123456789',
+            'password' => bcrypt('password'),
+        ]);
+
+        User::factory()->create([
+            'nim' => '2137200799',
+            'nama' => 'Fadli Hifziansyah',
+            'level' => 'officer',
+            'jabatan' => '9',
+            'username' => 'fadli.god',
+            'email' => 'fadli@gmail.com',
+            'nomor_telpon' => '087827303328',
+            'password' => bcrypt('password'),
+        ]);
+
+        User::factory()->create([
+            'nim' => '2137208899',
+            'nama' => 'Yudis Tiro',
+            'level' => 'staff',
+            'jabatan' => '9',
+            'username' => 'naka',
+            'email' => 'yudis@gmail.com',
+            'nomor_telpon' => '089123456999',
+            'password' => bcrypt('password'),
+        ]);
     }
 }

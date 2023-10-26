@@ -106,7 +106,7 @@
                                 height="" alt="logo-hero" />
                             <h1>Disposisi Express</h1>
                             <p>Disposisi cepat tanpa ribet!</p>
-                            <a href="./login.html" type="button" class="btn btn-hero mt-3 px-4"><i
+                            <a href="/login" type="button" class="btn btn-hero mt-3 px-4"><i
                                     class="icon-btn-hero bi-box-arrow-in-right"></i> <span> Login </span></a>
                         </div>
                     </div>

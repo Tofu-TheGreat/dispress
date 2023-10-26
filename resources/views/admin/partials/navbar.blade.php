@@ -218,8 +218,8 @@
                 <div class="dropdown-divider"></div>
                 <form action="/logout" method="POST">
                     @csrf
-                    <button type="submit" class="dropdown-item has-icon text-danger">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                    <button type="submit" class="dropdown-item has-icon text-danger btn-logout-nav">
+                        <i class="fas fa-sign-out-alt d-inline-block py-2"></i>Logout
                     </button>
                 </form>
             </div>

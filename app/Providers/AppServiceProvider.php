@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Repository\Admin\AdminImplement;
+use App\Repository\Admin\AdminRepository;
+use App\Repository\Login\LoginImplement;
+use App\Repository\Login\LoginRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Pagination\Paginator;
@@ -16,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(LoginRepository::class, LoginImplement::class);
+        $this->app->bind(AdminRepository::class, AdminImplement::class);
     }
 
     /**

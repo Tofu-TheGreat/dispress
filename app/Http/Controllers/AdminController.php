@@ -3,17 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Repository\Admin\AdminRepository;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    private $adminRepository;
+
+    public function __construct(AdminRepository $adminRepository)
+    {
+        $this->adminRepository = $adminRepository;
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $usersList = User::where('level', 'admin')->paginate(6);
-
+        $usersList = $this->adminRepository->getUserbyAdmin();
         return view('admin.admin_data', [
             'title' => 'Admin',
             'active' => 'Admin',

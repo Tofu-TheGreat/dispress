@@ -71,7 +71,7 @@
                                             </div>
                                             <input type="number" class="form-control @error('nim') is-invalid @enderror"
                                                 placeholder="Masukkan NIM" value="{{ old('nim') }}" id="nim"
-                                                name="nim">
+                                                name="nim" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('nim')
@@ -111,7 +111,7 @@
                                                 </div>
                                             </div>
                                             <select class="form-control  @error('level') is-invalid @enderror "
-                                                id="level" name="level">
+                                                id="level" name="level" required>
                                                 <option selected disabled>Pilih Level User</option>
                                                 <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}
                                                     selected>
@@ -139,28 +139,28 @@
                                                 </div>
                                             </div>
                                             <select class="form-control  @error('jabatan') is-invalid @enderror "
-                                                id="jabatan" name="jabatan">
+                                                id="jabatan" name="jabatan" required>
                                                 <option selected disabled>Pilih Jabatan User</option>
                                                 <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                                    Admin</option>
+                                                    Kepala Sekolah</option>
                                                 <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                                    Officer</option>
+                                                    Wakil Kepala Sekolah</option>
                                                 <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Kurikulum</option>
                                                 <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Kesiswaan</option>
                                                 <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Sarana Prasarana</option>
                                                 <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Kepala Jurusan</option>
                                                 <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Hubin</option>
                                                 <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Bimbingan Konseling</option>
                                                 <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Guru Umum</option>
                                                 <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                                    Staff</option>
+                                                    Tata Usaha</option>
                                             </select>
                                         </div>
                                         <span class="text-danger">
@@ -182,7 +182,7 @@
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror"
                                                 placeholder="contoh@gmail.com" value="{{ old('email') }}"
-                                                id="email" name="email">
+                                                id="email" name="email" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('email')
@@ -203,7 +203,7 @@
                                             <input type="number"
                                                 class="form-control @error('no_telp') is-invalid @enderror"
                                                 placeholder="Masukkan Nomor Telepon" value="{{ old('no_telp') }}"
-                                                id="no_telp" name="no_telp">
+                                                id="no_telp" name="no_telp" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('no_telp')
@@ -224,7 +224,7 @@
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Masukkan Password" value="{{ old('password') }}"
-                                                id="password" name="password">
+                                                id="password" name="password" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('password')

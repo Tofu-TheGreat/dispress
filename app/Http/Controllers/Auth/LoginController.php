@@ -6,20 +6,17 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Repository\Login\LoginImplement;
+use App\Repository\Login\LoginRepository;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
-    public function username()
+    private $loginRepository;
+    public function __construct(LoginRepository $loginRepository)
     {
-        $login = request()->input('login');
-
-        // Mencari apakah input cocok dengan email
-        $field = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-        // Mencocokkan input dengan baik email maupun username
-        return $field;
+        $this->loginRepository = $loginRepository;
     }
-
 
     public function login(Request $request)
     {
@@ -28,14 +25,14 @@ class LoginController extends Controller
 
         // Cek apakah input mungkin adalah alamat email
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
-            $credentials = ['email' => $login, 'password' => $password];
+            $credentials = $this->loginRepository->getEmail($login);
         } else {
-            $credentials = ['username' => $login, 'password' => $password];
+            $credentials = $this->loginRepository->getUsername($login);
         }
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            if (auth()->user()->level === 'admin') {
+        if ($credentials && Hash::check($password, $credentials->password)) {
+            if ($credentials->level === 'admin') {
+                Auth::login($credentials);
                 return redirect()->intended('/dashboard');
             }
         } else {
@@ -45,10 +42,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
+        $this->loginRepository->logout($request);
         return redirect()->intended('/login');
     }
 }

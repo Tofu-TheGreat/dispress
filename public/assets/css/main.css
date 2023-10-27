@@ -3,12 +3,18 @@
     cursor: pointer;
 }
 
-.card-body form .input-group {
-    width: 40%;
+.card-body form .search-data {
+    width: 65%;
+}
+
+@media screen and (max-width: 570px) {
+    .judul-page {
+        text-align: center;
+    }
 }
 
 @media screen and (max-width: 768px) {
-    .card-body form .input-group {
-        width: 70%;
+    .card-body form .search-data {
+        width: 100%;
     }
 }

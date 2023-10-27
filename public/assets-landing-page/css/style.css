@@ -581,6 +581,11 @@ Hero Section
     transform: translateX(33px) scale(1.4);
 }
 
+.btn-hero:hover .dashboard-icon {
+    color: #eeee;
+    transform: translateX(55px) scale(1.4);
+}
+
 .btn-hero span {
     color: #f7f7f7;
     position: relative;
@@ -610,7 +615,7 @@ Hero Section
 }
 
 .btn-hero:hover::before {
-    width: 160px;
+    width: 260px;
 }
 
 .effect-wrap {

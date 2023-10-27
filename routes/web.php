@@ -16,17 +16,17 @@ use App\Http\Controllers\Controller;
 |
 */
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('pages.index');
 });
 
 Route::get('/login', function () {
     return view('pages.login');
-});
+})->middleware('guest');
 
 Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', 'role:admin');
 
-Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::resource('/admin', AdminController::class)->middleware('auth');

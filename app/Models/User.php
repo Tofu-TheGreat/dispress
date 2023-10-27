@@ -24,7 +24,9 @@ class User extends Authenticatable
         'nama',
         'level',
         'jabatan',
+        'foto_user',
         'username',
+        'nomor_telpon',
         'email',
         'password',
     ];

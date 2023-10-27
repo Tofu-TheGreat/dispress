@@ -46,7 +46,8 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->adminRepository->store($request);
+        return redirect()->intended('/admin');
     }
 
     /**

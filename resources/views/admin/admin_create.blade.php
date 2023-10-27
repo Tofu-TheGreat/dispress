@@ -201,12 +201,12 @@
                                                 </div>
                                             </div>
                                             <input type="number"
-                                                class="form-control @error('no_telp') is-invalid @enderror"
-                                                placeholder="Masukkan Nomor Telepon" value="{{ old('no_telp') }}"
-                                                id="no_telp" name="no_telp" required>
+                                                class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                                placeholder="Masukkan Nomor Telpon" value="{{ old('nomor_telpon') }}"
+                                                id="nomor_telpon" name="nomor_telpon" required>
                                         </div>
                                         <span class="text-danger">
-                                            @error('no_telp')
+                                            @error('nomor_telpon')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -246,15 +246,15 @@
                                     </div>
                                     <div class="custom-file">
                                         <input type="file"
-                                            class="custom-file-input @error('foto') is-invalid @enderror" id="foto"
-                                            name="foto" onchange="previewImage()">
-                                        <label class="custom-file-label" for="foto">Pilih Foto</label>
+                                            class="custom-file-input @error('foto_user') is-invalid @enderror"
+                                            id="foto_user" name="foto_user" onchange="previewImage()">
+                                        <label class="custom-file-label" for="foto_user">Pilih Foto</label>
                                     </div>
                                     <input type="file" class="custom-file-input ">
                                     <img class="img-preview img-preview-create img-fluid mt-2 col-sm-2">
                                 </div>
                                 <span class="text-danger">
-                                    @error('foto')
+                                    @error('foto_user')
                                         {{ $message }}
                                     @enderror
                                 </span>

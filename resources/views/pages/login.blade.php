@@ -62,7 +62,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 order-lg-first form-login">
-                            <a href="/" class="back-index">
+                            <a href="/home" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
                             <form action="/login" method="POST" class="p-lg-5 p-md-4 p-sm-5">

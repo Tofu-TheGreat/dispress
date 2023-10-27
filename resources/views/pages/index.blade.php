@@ -75,8 +75,14 @@
                     </li>
                 </ul>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <a href="/login" class="btn btn-1 px-4" type="button"> <span>Login</span> <i
-                            class="bi bi-lock-fill icon-btn-1 ms-2"></i></a>
+                    @guest
+                        <a href="/login" class="btn btn-1 px-4" type="button"> <span>Login</span> <i
+                                class="bi bi-lock-fill icon-btn-1 ms-2"></i></a>
+                    @endguest
+                    @auth
+                        <a href="/dashboard" class="btn btn-1 px-4" type="button"> <span>Dashboard</span> <i
+                                class="bi bi-unlock-fill icon-btn-1 ms-2"></i></a>
+                    @endauth
                 </div>
             </div>
         </div>
@@ -106,8 +112,15 @@
                                 height="" alt="logo-hero" />
                             <h1>Disposisi Express</h1>
                             <p>Disposisi cepat tanpa ribet!</p>
-                            <a href="/login" type="button" class="btn btn-hero mt-3 px-4"><i
-                                    class="icon-btn-hero bi-box-arrow-in-right"></i> <span> Login </span></a>
+                            @guest
+                                <a href="/login" type="button" class="btn btn-hero mt-3 px-4"><i
+                                        class="icon-btn-hero bi-box-arrow-in-right"></i> <span> Login </span></a>
+                            @endguest
+                            @auth
+                                <a href="/dashboard" type="button" class="btn btn-hero mt-3 px-4"><i
+                                        class="icon-btn-hero bi-box-arrow-in-right dashboard-icon"></i> <span> Dashboard
+                                    </span></a>
+                            @endauth
                         </div>
                     </div>
                 </div>

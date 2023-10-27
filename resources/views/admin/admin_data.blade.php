@@ -36,6 +36,22 @@
                                 </button>
                             </a>
                             {{-- Akhir Button Tambah Data --}}
+                            {{-- Button Export Data --}}
+                            <a href="/" class="text-white ml-2">
+                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
+                                    title="Export Data Excel" data-original-title="Export Data">
+                                    <i class="fa fa-file-excel btn-tambah-data "></i>
+                                </button>
+                            </a>
+                            {{-- Akhir Button Export Data --}}
+                            {{-- Button import Data --}}
+                            <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2"
+                                data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                data-original-title="Import Data">
+                                <i class="fa fa-file-excel btn-tambah-data "></i>
+                            </button>
+                            {{-- Akhir Button import Data --}}
                         </div>
                     </div>
 
@@ -133,4 +149,44 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Import -->
+    <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="importmodalLabel">Modal Import Users</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body py-5 px-4 mt-4 border border-1">
+                    <div class="input-group mb-3 ">
+                        <form action="/import-users" method="post" enctype="multipart/form-data">
+                            @csrf
+                            <label for="export">Masukkan File Yang Ingin di Export : </label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" type="file" name="file"
+                                        id="export" style="width: 420px" accept=".xlsx, .xls">
+                                    <label class="custom-file-label" for="export">Choose file</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close</button>
+                    <button type="submit" value="Import" class="btn btn-success text-white">
+                        Click Untuk
+                        import</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- End Modal Import --}}
 @endsection

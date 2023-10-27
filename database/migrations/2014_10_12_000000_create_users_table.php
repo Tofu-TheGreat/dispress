@@ -18,7 +18,8 @@ return new class extends Migration
             $table->enum('level', ['admin', 'officer', 'staff']);
             $table->enum('jabatan', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
             $table->string('username', 60);
-            $table->string('email')->unique();
+            $table->string('email', 225)->unique();
+            $table->string('foto_user', 225)->nullable();
             $table->string('nomor_telpon', 19)->unique();
             $table->string('password');
             $table->rememberToken();

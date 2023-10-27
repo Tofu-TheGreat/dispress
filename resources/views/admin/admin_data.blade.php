@@ -7,7 +7,7 @@
                 <div class="row d-flex">
                     {{-- judul Page --}}
                     <div class="col-md-9 col-sm-8">
-                        <h4 class="text-dark">Manajemen Users</h4>
+                        <h4 class="text-dark judul-page">Manajemen Users</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
@@ -24,12 +24,12 @@
             <div class="">
                 <div class="card">
                     <div class="card-header">
-                        <div class="col-lg-11 col-sm">
+                        <div class="col-lg-11 col-sm-8">
                             <h4 class="text-primary">List Administrator</h4>
                         </div>
-                        <div class="col-lg-1 col-sm d-flex justify-content-end">
+                        <div class="col-lg-1 col-sm-4 d-flex justify-content-end">
                             {{-- Button Tambah Data --}}
-                            <a href="/administrator/create" class="text-white">
+                            <a href="/admin/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                     title="Tambah Data" data-original-title="Tambah Data">
                                     <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -43,15 +43,18 @@
                         <!-- FORM PENCARIAN -->
                         <div class="">
                             <form class="" action="/administrator" method="get">
-                                <div class="input-group input-group mb-3 float-right">
-                                    <input type="search" name="katakunci" class="form-control float-right search-data"
-                                        placeholder="Masukkan Kata Kunci" value="{{ Request::get('katakunci') }}"
-                                        aria-label="Search">
-                                    <div class="input-group-append mr-1">
+                                <div class="input-group input-group mb-3 float-right search-data row">
+                                    <div class="col">
+                                        <input type="search" name="katakunci" class="form-control float-right search-data"
+                                            placeholder="Masukkan Kata Kunci" value="{{ Request::get('katakunci') }}"
+                                            aria-label="Search">
+                                    </div>
+
+                                    <div class="input-group-append mr-2">
                                         <button type="submit" title="Cari" class="btn btn-light"><i
                                                 class="fas fa-search"></i></button>
                                     </div>
-                                    <div class="input-group-append ">
+                                    <div class="input-group-append mr-3">
                                         <a href="" title="Refresh" class="btn btn-light"><i
                                                 class="fas fa-circle-notch"></i></a>
                                     </div>
@@ -66,6 +69,7 @@
                                         <th>#</th>
                                         <th>Nama</th>
                                         <th>Email</th>
+                                        <th>No Telp</th>
                                         <th>Akses</th>
                                         <th>Action</th>
                                     </tr>
@@ -76,11 +80,11 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td class="capitalize"><a class="text-dark"
-                                                        href="/administrator/{{ $data->id }}"
-                                                        title="klik Untuk Detailnya">
+                                                        href="/admin/{{ $data->id_user }}" title="klik Untuk Detailnya">
                                                         {{ $data->nama }}</a></td>
                                                 <td>{{ $data->email }}</td>
-                                                <td class="capitalize">{{ $data->level }}</td>
+                                                <td>{{ substr(chunk_split($data->nomor_telpon, 4, '-'), 0, -1) }}</td>
+                                                <td class="text-uppercase">{{ $data->level }}</td>
                                                 <td>
                                                     {{-- Tombol Action --}}
                                                     <div class="dropdown d-inline">

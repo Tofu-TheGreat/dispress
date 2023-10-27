@@ -27,7 +27,11 @@ class AdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.admin_create', [
+            'title' => 'Admin',
+            'active' => 'Admin',
+            'active1' => 'users',
+        ]);
     }
 
     /**

@@ -7,6 +7,18 @@
     width: 65%;
 }
 
+.custom-file-input {
+}
+
+.img-preview {
+    min-width: 150px;
+    max-width: 150px;
+    border: 1px solid black;
+    border-radius: 10px;
+    aspect-ratio: 1/1;
+    margin: auto;
+}
+
 @media screen and (max-width: 570px) {
     .judul-page {
         text-align: center;

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Repository\Admin\AdminRepository;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Repository\Admin\AdminRepository;
 
 class AdminController extends Controller
 {
@@ -47,6 +48,7 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         $this->adminRepository->store($request);
+        Alert::toast('Berhasil Menambah data Admin', 'success');
         return redirect()->intended('/admin');
     }
 

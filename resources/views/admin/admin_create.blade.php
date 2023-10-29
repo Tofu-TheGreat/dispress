@@ -241,7 +241,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="foto">Masukkan Foto : </label>
-                                <small class="d-block">Catatan : Masukkan Foto dengan Format(png, jpg, jpeg), maksimal 1
+                                <small class="d-block">Catatan : Masukkan Foto dengan Format(png, jpg, jpeg), maksimal 10
                                     mb</small>
                                 <input type="file"
                                     class="img-filepond-preview @error('foto_user') is-invalid @enderror" id="foto_user"

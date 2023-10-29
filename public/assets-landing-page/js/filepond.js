@@ -6,6 +6,7 @@ images.forEach((image) =>
     FilePond.create(image, {
         allowImagePreview: true,
         allowFileEncode: false,
+        allowImageCrop: true,
         maxFileSize: "10MB",
         acceptedFileTypes: [
             "image/png",

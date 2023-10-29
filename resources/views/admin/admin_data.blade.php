@@ -189,4 +189,26 @@
         </div>
     </div>
     {{-- End Modal Import --}}
+
+@section('script')
+    @if (Session::has('success'))
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": true,
+                "progressBar": true,
+                "timeOut": "12000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.error('I do not think that word means what you think it means.', 'Inconceivable!', {
+                timeOut: 12000
+            });
+        </script>
+    @endif
+@endsection
 @endsection

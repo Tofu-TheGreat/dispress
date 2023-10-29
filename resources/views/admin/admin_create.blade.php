@@ -247,11 +247,13 @@
                                     <div class="custom-file">
                                         <input type="file"
                                             class="custom-file-input @error('foto_user') is-invalid @enderror"
-                                            id="foto_user" name="foto_user" onchange="previewImage()">
+                                            id="foto_user" name="foto_user" onchange="previewImage()"
+                                            accept="jpg,jpeg,png,svg">
                                         <label class="custom-file-label" for="foto_user">Pilih Foto</label>
                                     </div>
                                     <input type="file" class="custom-file-input ">
-                                    <img class="img-preview img-preview-create img-fluid mt-2 col-sm-2">
+                                    <img id="preview" src="#" alt="your image" class="img-preview"
+                                        style="display:none;" />
                                 </div>
                                 <span class="text-danger">
                                     @error('foto_user')
@@ -262,20 +264,20 @@
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">
                                     <div class="ml-2 ">
-                                        <a href="/admin" class="btn btn-warning  "><i
-                                                class="bi bi-arrow-90deg-left fs-6 l-1"></i> <span
-                                                class="bi-text">Kembali</span>
+                                        <a href="/admin" class="btn btn-warning  ">
+                                            <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
+                                            <span class="bi-text">Kembali</span>
                                         </a>
                                     </div>
                                     <div class="ml-2">
-                                        <button type="submit" class="btn btn-primary mb-1 "><i
-                                                class="bi bi-clipboard-plus-fill fs-6 mr-1"></i>
+                                        <button type="submit" class="btn btn-primary mb-1">
+                                            <i class="bi bi-clipboard-plus-fill fs-6 mr-1"></i>
                                             <span class="bi-text">Tambah Data</span></button>
                                     </div>
                                     <div class="ml-2 ">
-                                        <button type="reset" class="btn btn-secondary"><i
-                                                class="bi bi-arrow-counterclockwise fs-6 mr-1"></i> <span
-                                                class="bi-text">Reset</span></button>
+                                        <button type="reset" class="btn btn-secondary">
+                                            <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
+                                            <span class="bi-text">Reset</span></button>
                                     </div>
                                 </div>
                             </div>
@@ -285,4 +287,40 @@
             </div>
         </div>
     </section>
+
+@section('script')
+    <script>
+        foto_user.onchange = evt => {
+            preview = document.getElementById('preview');
+            preview.style.display = 'block'
+            const [file] = foto_user.files
+            if (file) {
+                preview.src = URL.createObjectURL(file)
+            }
+        }
+    </script>
+
+    {{-- @if (Session::has('success'))
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "12000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            }
+            toastr.success('Are you the 6 fingered man?', 'Miracle Max Says')
+        </script>
+    @endif --}}
+@endsection
 @endsection

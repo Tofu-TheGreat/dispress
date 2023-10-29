@@ -75,6 +75,11 @@
                                         <input type="text" class="form-control" name="login" id="login"
                                             placeholder="Enter Username or Email" autofocus />
                                     </div>
+                                    <span class="text-danger">
+                                        @error('login')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <div class="form-input">
                                     <label for="password">Password</label>
@@ -82,6 +87,11 @@
                                         <input type="password" name="password" class="form-control" id="password"
                                             placeholder="**********" />
                                     </div>
+                                    <span class="text-danger">
+                                        @error('password')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                                 <button type="submit" class="btn btn-submit-login mt-4"><i
                                         class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>

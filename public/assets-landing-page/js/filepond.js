@@ -4,7 +4,6 @@ const images = document.querySelectorAll(".img-filepond-preview");
 
 images.forEach((image) =>
     FilePond.create(image, {
-        required: true,
         allowImagePreview: true,
         allowFileEncode: false,
         maxFileSize: "10MB",

@@ -92,6 +92,9 @@
                                             {{ $message }}
                                         @enderror
                                     </span>
+                                    @if (session()->has('error'))
+                                        <p>{{ session('error') }}</p>
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-submit-login mt-4"><i
                                         class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>

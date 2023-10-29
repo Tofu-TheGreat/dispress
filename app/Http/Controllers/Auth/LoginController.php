@@ -24,20 +24,23 @@ class LoginController extends Controller
         $login = $request->input('login');
         $password = $request->input('password');
 
-        // Cek apakah input mungkin adalah alamat email
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $credentials = $this->loginRepository->getEmail($login);
         } else {
             $credentials = $this->loginRepository->getUsername($login);
         }
 
-        if ($credentials && Hash::check($password, $credentials->password)) {
-            if ($credentials->level === 'admin') {
-                Auth::login($credentials);
-                return redirect()->intended('/dashboard');
+        if ($credentials) {
+            if (Hash::check($password, $credentials->password)) {
+                if ($credentials->level === 'admin') {
+                    Auth::login($credentials);
+                    return redirect()->intended('/dashboard');
+                }
+            } else {
+                return redirect()->back()->with('error', 'Password salah.');
             }
         } else {
-            return redirect()->back();
+            return redirect()->back()->with('error', 'Email atau Username salah.');
         }
     }
 

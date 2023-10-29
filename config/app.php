@@ -169,7 +169,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        // sweetalert2
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
+
+        // Datatables
+        Yajra\DataTables\DataTablesServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -185,7 +189,11 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
+        // sweetalert2
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+
+        // datatables
+        'DataTables' => Yajra\DataTables\Facades\DataTables::class,
     ])->toArray(),
 
 ];

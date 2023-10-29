@@ -1,5 +1,9 @@
 @extends('admin.pages.layout')
 
+@section('css')
+    <link href="{{ asset('assets-landing-page/extension/datatables/datatables.min.css') }}" rel="stylesheet">
+@endsection
+
 @section('content')
     <section class="section">
         <div class="card">
@@ -56,30 +60,8 @@
                     </div>
 
                     <div class="card-body">
-                        <!-- FORM PENCARIAN -->
-                        <div class="">
-                            <form class="" action="/administrator" method="get">
-                                <div class="input-group input-group mb-3 float-right search-data row">
-                                    <div class="col">
-                                        <input type="search" name="katakunci" class="form-control float-right search-data"
-                                            placeholder="Masukkan Kata Kunci" value="{{ Request::get('katakunci') }}"
-                                            aria-label="Search">
-                                    </div>
-
-                                    <div class="input-group-append mr-2">
-                                        <button type="submit" title="Cari" class="btn btn-light"><i
-                                                class="fas fa-search"></i></button>
-                                    </div>
-                                    <div class="input-group-append mr-3">
-                                        <a href="" title="Refresh" class="btn btn-light"><i
-                                                class="fas fa-circle-notch"></i></a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        {{-- Akhir Form Pencarian --}}
                         <div class="table-responsive">
-                            <table class="table table-bordered table-md">
+                            <table class="table table-bordered table-md rounded-5" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -140,9 +122,6 @@
                                     @endif
                                 </tbody>
                             </table>
-                            {{-- panigation --}}
-                            {{ $users->links() }}
-                            {{-- Akhir Pagination --}}
                         </div>
                     </div>
                 </div>
@@ -191,24 +170,11 @@
     {{-- End Modal Import --}}
 
 @section('script')
-    @if (Session::has('success'))
-        <script>
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": true,
-                "progressBar": true,
-                "timeOut": "12000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr.error('I do not think that word means what you think it means.', 'Inconceivable!', {
-                timeOut: 12000
-            });
-        </script>
-    @endif
+    <script src="{{ asset('assets-landing-page/extension/datatables/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dataTable').DataTable();
+        })
+    </script>
 @endsection
 @endsection

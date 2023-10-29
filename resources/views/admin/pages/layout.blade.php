@@ -6,6 +6,7 @@
 
 <body>
     <div id="app">
+        {{-- Alert --}}
         @include('sweetalert::alert')
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
@@ -22,8 +23,6 @@
         </div>
     </div>
     {{-- Script --}}
-    <x-notify::notify />
-    @notifyJs
     @include('admin.partials.script')
 </body>
 

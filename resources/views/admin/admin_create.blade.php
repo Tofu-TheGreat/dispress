@@ -1,5 +1,10 @@
 @extends('admin.pages.layout')
 
+@section('css')
+    <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
+@endsection
+
 @section('content')
     <section class="section">
         <div class="card">
@@ -238,23 +243,9 @@
                                 <label for="foto">Masukkan Foto : </label>
                                 <small class="d-block">Catatan : Masukkan Foto dengan Format(png, jpg, jpeg), maksimal 1
                                     mb</small>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="bi bi-file-earmark-image"></i>
-                                        </div>
-                                    </div>
-                                    <div class="custom-file">
-                                        <input type="file"
-                                            class="custom-file-input @error('foto_user') is-invalid @enderror"
-                                            id="foto_user" name="foto_user" onchange="previewImage()"
-                                            accept="jpg,jpeg,png,svg">
-                                        <label class="custom-file-label" for="foto_user">Pilih Foto</label>
-                                    </div>
-                                    <input type="file" class="custom-file-input ">
-                                    <img id="preview" src="#" alt="your image" class="img-preview"
-                                        style="display:none;" />
-                                </div>
+                                <input type="file"
+                                    class="img-filepond-preview @error('foto_user') is-invalid @enderror" id="foto_user"
+                                    name="foto_user" accept="jpg,jpeg,png,svg">
                                 <span class="text-danger">
                                     @error('foto_user')
                                         {{ $message }}
@@ -289,38 +280,8 @@
     </section>
 
 @section('script')
-    <script>
-        foto_user.onchange = evt => {
-            preview = document.getElementById('preview');
-            preview.style.display = 'block'
-            const [file] = foto_user.files
-            if (file) {
-                preview.src = URL.createObjectURL(file)
-            }
-        }
-    </script>
-
-    {{-- @if (Session::has('success'))
-        <script>
-            toastr.options = {
-                "closeButton": true,
-                "debug": false,
-                "newestOnTop": false,
-                "progressBar": true,
-                "positionClass": "toast-top-right",
-                "preventDuplicates": false,
-                "onclick": null,
-                "showDuration": "300",
-                "hideDuration": "1000",
-                "timeOut": "12000",
-                "extendedTimeOut": "1000",
-                "showEasing": "swing",
-                "hideEasing": "linear",
-                "showMethod": "fadeIn",
-                "hideMethod": "fadeOut"
-            }
-            toastr.success('Are you the 6 fingered man?', 'Miracle Max Says')
-        </script>
-    @endif --}}
+    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
 @endsection
 @endsection

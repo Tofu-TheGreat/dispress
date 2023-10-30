@@ -31,3 +31,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::resource('/admin', AdminController::class)->middleware('auth')->middleware('auth');
+Route::post("/admin-index", [AdminController::class, "indexAdmin"]);

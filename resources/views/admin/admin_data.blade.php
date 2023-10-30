@@ -72,7 +72,7 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                {{-- <tbody>
                                     @if ($users->count() > 0)
                                         @foreach ($users as $data)
                                             <tr>
@@ -84,35 +84,7 @@
                                                 <td>{{ substr(chunk_split($data->nomor_telpon, 4, '-'), 0, -1) }}</td>
                                                 <td class="text-uppercase">{{ $data->level }}</td>
                                                 <td>
-                                                    {{-- Tombol Action --}}
-                                                    <div class="dropdown d-inline">
-                                                        <button class="btn btn-primary dropdown-toggle" type="button"
-                                                            id="dropdownMenuButton2" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false" title="Tombol Aksi">
-                                                            <i class="bi bi-three-dots-vertical btn-tambah-data"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu ">
-                                                            <a class="dropdown-item has-icon text-info"
-                                                                href="/administrator/{{ $data->id }}"><i
-                                                                    class="far bi-eye"></i>
-                                                                Detail</a>
-                                                            <a class="dropdown-item has-icon text-warning"
-                                                                href="/administrator/{{ $data->id }}/edit"><i
-                                                                    class="far bi-pencil-square"></i>
-                                                                Edit</a>
-                                                            <form action="/administrator/{{ $data->id }}"
-                                                                method="post">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="submit"
-                                                                    class="confirm dropdown-item has-icon text-danger">
-                                                                    <input type="hidden" name="oldImage"
-                                                                        value="{{ $data->foto }}"><i
-                                                                        class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
-                                                            </form>
-                                                        </div>
-                                                    </div>
-                                                    {{-- Tombol Action --}}
+
                                                 </td>
                                         @endforeach
                                     @else
@@ -120,7 +92,7 @@
                                             Admin
                                         </td>
                                     @endif
-                                </tbody>
+                                </tbody> --}}
                             </table>
                         </div>
                     </div>
@@ -173,8 +145,51 @@
     <script src="{{ asset('assets-landing-page/extension/datatables/datatables.min.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('#dataTable').DataTable();
+            $('#dataTable').DataTable({
+                processing: true,
+                serverside: true,
+                responsive: true,
+                ajax: {
+                    url: "{{ url('/admin-index') }}",
+                    type: "post",
+                    data: {
+                        _token: "{{ csrf_token() }}"
+                    }
+                },
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: true,
+                        searchable: false
+                    }, {
+                        data: 'nama',
+                        name: 'Nama',
+                    }, {
+                        data: 'email',
+                        name: 'Email',
+                    }, {
+                        data: 'nomor_telpon',
+                        name: 'Nomor Telepon'
+                    },
+                    {
+                        data: 'level',
+                        name: 'Akses'
+                    },
+                    {
+                        data: 'action',
+                        name: 'Action',
+                    }
+                ]
+            });
         })
+        // $('.tombol-simpan').click(function() {
+        //     var id = $(this).data('id_user');
+        //     $.ajax({
+        //         url: 'admin/' + id,
+        //         type: 'GET',
+        //     })
+
+        // })
     </script>
 @endsection
 @endsection

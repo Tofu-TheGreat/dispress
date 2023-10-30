@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Repository\Admin\AdminRepository;
+use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
 {
@@ -31,6 +33,18 @@ class AdminController extends Controller
         ]);
     }
 
+    public function indexAdmin()
+    {
+        $usersList = $this->adminRepository->getUserbyAdmin();
+
+        return DataTables::of($usersList)
+            ->addIndexColumn()
+            ->addColumn('action', function ($usersList) {
+                return view('admin.elements.create_button')->with('usersList', $usersList);
+            })
+            ->toJson();
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -48,7 +62,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $this->adminRepository->store($request);
+        $data = $this->adminRepository->store($request);
         Alert::toast('Berhasil Menambah data Admin', 'success');
         return redirect()->intended('/admin');
     }
@@ -56,9 +70,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $data = $this->adminRepository->show($id);
+        dd($data);
     }
 
     /**
@@ -66,15 +81,16 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = $this->adminRepository->edit($id);
+        dd($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminRequest $request, string $id)
     {
-        //
+        $this->adminRepository->update($request->id_user, $request->all());
     }
 
     /**
@@ -82,6 +98,6 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->adminRepository->destroy($id);
     }
 }

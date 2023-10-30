@@ -22,20 +22,23 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nim' => 'required',
+            'nim' => 'required|max:11|min:11',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
             'username' => 'required',
             'email' => 'required|email',
-            'nomor_telpon' => 'required',
+            'nomor_telpon' => 'required|min:12|max:13',
             'password' => 'required',
+            'foto_user' => 'image|mimes:jpeg,png,jpg|max:10240'
         ];
     }
     public function messages()
     {
         return [
             'nim.required' => 'Harap masukkan NIM.',
+            'nim.min' => 'NIM tidak boleh kurang dari 11',
+            'nim.max' => 'NIM tidak boleh lebih dari 11',
             'nama.required' => 'Harap masukkan nama.',
             'level.required' => 'Harap pilih level.',
             'jabatan.required' => 'Harap pilih jabatan.',
@@ -43,7 +46,11 @@ class AdminRequest extends FormRequest
             'email.required' => 'Harap masukkan alamat email.',
             'email.email' => 'Harap masukkan alamat email yang valid.',
             'nomor_telpon.required' => 'Harap masukkan nomor telepon.',
+            'nomor_telpon.min' => 'Nomor telepon tidak boleh kurang dari 12',
+            'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
             'password.required' => 'Harap masukkan password.',
+            'foto_user.image' => 'Harap masukan foto',
+            'foto_user.mimes' => 'Harap masukan foto dengan format jpeg,png,jpg'
         ];
     }
 }

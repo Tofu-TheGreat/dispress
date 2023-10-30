@@ -14,7 +14,7 @@ class AdminImplement implements AdminRepository
     }
     public function getUserByAdmin()
     {
-        return $this->user->where('level', 'admin')->paginate(6);
+        return $this->user->where('level', 'admin')->get();
     }
     public function store($data)
     {

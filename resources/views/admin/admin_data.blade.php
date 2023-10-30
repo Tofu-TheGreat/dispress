@@ -29,9 +29,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary">List Administrator</h4>
+                            <h4 class="text-primary judul-page">List Administrator</h4>
                         </div>
-                        <div class="col-lg-1 col-sm-4 d-flex justify-content-end">
+                        <div class="col-lg-1 col-sm-4 btn-groub">
                             {{-- Button Tambah Data --}}
                             <a href="/admin/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"

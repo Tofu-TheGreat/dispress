@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -33,6 +34,7 @@ class LoginController extends Controller
         if ($credentials) {
             if (Hash::check($password, $credentials->password)) {
                 if ($credentials->level === 'admin') {
+                    Alert::toast('Berhasil Login Admin', 'success');
                     Auth::login($credentials);
                     return redirect()->intended('/dashboard');
                 }

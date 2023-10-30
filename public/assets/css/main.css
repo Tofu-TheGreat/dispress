@@ -3,7 +3,7 @@
     cursor: pointer;
 }
 
-.btn-groub {
+.btn-group {
     display: flex;
     justify-content: end;
 }
@@ -25,7 +25,7 @@
     .judul-page {
         text-align: center;
     }
-    .btn-groub {
+    .btn-group {
         margin-top: 10px;
         justify-content: center;
     }

@@ -7,7 +7,7 @@
 
 <h2 id="tentang">Mengenal Dispress 🤓</h2>
 
-Confess adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pembuatan SPPD (Surat Perintah Perjalanan Dinas) yang praktis
+Dispress adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pembuatan SPPD (Surat Perintah Perjalanan Dinas) yang praktis
 
 <h2 id="fitur">🤔 Fitur apa saja yang tersedia di Dispress?</h2>
 

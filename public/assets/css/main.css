@@ -12,6 +12,14 @@
     width: 65%;
 }
 
+.foto-user {
+    width: 230px;
+    height: 230px;
+    margin-top: 10px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+}
+
 .img-preview {
     min-width: 150px;
     max-width: 150px;
@@ -28,6 +36,11 @@
     .btn-group {
         margin-top: 10px;
         justify-content: center;
+    }
+    .foto-user {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
     }
 }
 

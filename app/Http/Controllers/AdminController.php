@@ -72,8 +72,13 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $data = $this->adminRepository->show($id);
-        dd($data);
+        $detailAdmin = $this->adminRepository->show($id);
+        return view('admin.admin_detail', [
+            'title' => 'Admin',
+            'active' => 'Admin',
+            'active1' => 'users',
+            'detailDataAdmin' => $detailAdmin
+        ]);
     }
 
     /**

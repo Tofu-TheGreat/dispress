@@ -3,11 +3,21 @@
     cursor: pointer;
 }
 
+.btn-group {
+    display: flex;
+    justify-content: end;
+}
+
 .card-body form .search-data {
     width: 65%;
 }
 
-.custom-file-input {
+.foto-user {
+    width: 230px;
+    height: 230px;
+    margin-top: 10px;
+    border-radius: 50%;
+    aspect-ratio: 1/1;
 }
 
 .img-preview {
@@ -22,6 +32,15 @@
 @media screen and (max-width: 570px) {
     .judul-page {
         text-align: center;
+    }
+    .btn-group {
+        margin-top: 10px;
+        justify-content: center;
+    }
+    .foto-user {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px;
     }
 }
 

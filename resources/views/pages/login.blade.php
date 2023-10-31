@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/owl.carousel.min.css') }}" />
     <!-- aos carousel -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/aos.css') }}" />
+
 </head>
 
 <body>
@@ -73,9 +74,9 @@
                                     <label for="login">Email or Username</label>
                                     <div class="col">
                                         <input type="text" class="form-control" name="login" id="login"
-                                            placeholder="Enter Username or Email" autofocus />
+                                            placeholder="Enter Username or Email" autofocus required />
                                     </div>
-                                    <span class="text-danger">
+                                    <span class="text-danger fs-6 text-center">
                                         @error('login')
                                             {{ $message }}
                                         @enderror
@@ -85,7 +86,7 @@
                                     <label for="password">Password</label>
                                     <div class="col">
                                         <input type="password" name="password" class="form-control" id="password"
-                                            placeholder="**********" />
+                                            placeholder="**********" required />
                                     </div>
                                     <span class="text-danger">
                                         @error('password')
@@ -93,7 +94,15 @@
                                         @enderror
                                     </span>
                                     @if (session()->has('error'))
-                                        <p>{{ session('error') }}</p>
+                                        <div class="alert alert-danger align-content-center d-flex justify-content-between"
+                                            role="alert" style="width: 110%;">
+                                            <small class="fs-6 text-danger">
+                                                <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
+                                                {{ session('error') }}
+                                            </small>
+                                            <button type="button" class="btn-close" style="width: 10px;height: 10px"
+                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
                                     @endif
                                 </div>
                                 <button type="submit" class="btn btn-submit-login mt-4"><i
@@ -107,7 +116,6 @@
         </section>
         <!-- Login Section End -->
     </div>
-
     <!-- jquery js -->
     <script src="{{ asset('/assets-landing-page/js/jquery.min.js') }}"></script>
     <!-- main js -->

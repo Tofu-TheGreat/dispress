@@ -22,7 +22,7 @@ class AdminImplement implements AdminRepository
             $nama_foto = time() . '.' . $data->foto_user->extension();
             $data->foto_user->move(public_path('image_save'), $nama_foto);
             $this->user->create([
-                'nim' => $data->nim,
+                'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
                 'jabatan' => $data->jabatan,
@@ -34,7 +34,7 @@ class AdminImplement implements AdminRepository
             ]);
         } else {
             $this->user->create([
-                'nim' => $data->nim,
+                'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
                 'jabatan' => $data->jabatan,
@@ -66,7 +66,7 @@ class AdminImplement implements AdminRepository
             $nama_foto = time() . '.' . $data->foto_user->extension();
             $data->foto_user->move(public_path('image_save'), $nama_foto);
             $this->user->where('id_user', $id)->update([
-                'nim' => $data->nim,
+                'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
                 'jabatan' => $data->jabatan,
@@ -78,7 +78,7 @@ class AdminImplement implements AdminRepository
             ]);
         } else {
             $this->user->where('id_user', $id)->update([
-                'nim' => $data->nim,
+                'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
                 'jabatan' => $data->jabatan,

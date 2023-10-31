@@ -1,7 +1,9 @@
 @extends('admin.pages.layout')
 
 @section('css')
-    <link href="{{ asset('assets-landing-page/extension/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/modules/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"
+        rel="stylesheet">
 @endsection
 
 @section('content')
@@ -29,9 +31,9 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary">List Administrator</h4>
+                            <h4 class="text-primary judul-page">List Administrator</h4>
                         </div>
-                        <div class="col-lg-1 col-sm-4 d-flex justify-content-end">
+                        <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
                             <a href="/admin/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -142,13 +144,13 @@
     {{-- End Modal Import --}}
 
 @section('script')
-    <script src="{{ asset('assets-landing-page/extension/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
                 processing: true,
                 serverside: true,
-                responsive: true,
                 ajax: {
                     url: "{{ url('/admin-index') }}",
                     type: "post",

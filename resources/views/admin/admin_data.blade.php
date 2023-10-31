@@ -1,7 +1,9 @@
 @extends('admin.pages.layout')
 
 @section('css')
-    <link href="{{ asset('assets-landing-page/extension/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/modules/datatables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"
+        rel="stylesheet">
 @endsection
 
 @section('content')
@@ -142,13 +144,13 @@
     {{-- End Modal Import --}}
 
 @section('script')
-    <script src="{{ asset('assets-landing-page/extension/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
                 processing: true,
                 serverside: true,
-                responsive: true,
                 ajax: {
                     url: "{{ url('/admin-index') }}",
                     type: "post",

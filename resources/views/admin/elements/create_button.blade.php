@@ -9,12 +9,12 @@
              href="{{ route('admin.show', $usersList->id_user) }}"><i class="far bi-eye"></i>
              Detail</a>
          <a class="dropdown-item has-icon text-warning tombol-edit" data-id="{{ $usersList->id_user }}"
-             href="#"><i class="far bi-pencil-square"></i>
+             href="{{ route('admin.edit', $usersList->id_user) }}"><i class="far bi-pencil-square"></i>
              Edit</a>
-         <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}">
+         <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}" class="delete-form">
              @csrf
              @method('DELETE')
-             <button type="submit" class="confirm dropdown-item has-icon text-danger tombol-hapus">
+             <button type="button" class="dropdown-item has-icon text-danger tombol-hapus">
                  <input type="hidden" name="oldImage" data-id="{{ $usersList->id_user }}"><i
                      class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
          </form>

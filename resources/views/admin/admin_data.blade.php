@@ -61,7 +61,6 @@
                             {{-- Akhir Button import Data --}}
                         </div>
                     </div>
-
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-md rounded-5" id="dataTable">
@@ -128,6 +127,7 @@
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     {{-- DataTables --}}
     <script>
         $(document).ready(function() {
@@ -180,5 +180,28 @@
             });
         </script>
     @endif
+
+    {{-- seweetalert confirmation --}}
+    <script>
+        $('body').on('click', '.tombol-hapus', function(e) {
+            swal({
+                    title: 'Apakah anda yakin?',
+                    text: 'ingin menghapus data Admin ini !',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal('Data Admin berhasil di hapus !', {
+                            icon: 'success',
+                        });
+                        e.target.closest('form').submit();
+                    } else {
+                        swal('Data Admin tidak jadi di hapus !');
+                    }
+                });
+        });
+    </script>
 @endsection
 @endsection

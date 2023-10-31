@@ -108,6 +108,7 @@
                                     <label class="custom-file-label" for="export">Choose file</label>
                                 </div>
                             </div>
+                            <a href="/file/Book1.xlsx" download="Admin_template">download template</a>
                         </div>
                     </div>
                     <div class="modal-footer">

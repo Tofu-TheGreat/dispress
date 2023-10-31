@@ -24,7 +24,7 @@ class AdminImport implements ToModel, WithHeadingRow
             'jabatan'     => $this->transformJabatan($row['jabatan']),
             'username'     => $row['username'],
             'email'    => $row['email'],
-            'nomor_telpon'     => $row['username'],
+            'nomor_telpon'     => $row['nomor_telpon'],
             'password' => Hash::make($row['password']),
         ]);
     }
@@ -33,25 +33,25 @@ class AdminImport implements ToModel, WithHeadingRow
     {
         switch ($data) {
             case 'Kepala Sekolah':
-                return 0;
+                return '0';
             case 'Wakil Kepala Sekolah':
-                return 1;
+                return '1';
             case 'Kurikulum':
-                return 2;
+                return '2';
             case 'Kesiswaan':
-                return 3;
+                return '3';
             case 'Sarana dan Prasarana':
-                return 4;
+                return '4';
             case 'Kepala Jurusan':
-                return 5;
+                return '5';
             case 'Hubin':
-                return 6;
+                return '6';
             case 'Bimbingan Konseling':
-                return 7;
+                return '7';
             case 'Guru Umum':
-                return 8;
+                return '8';
             case 'Tata Usaha':
-                return 9;
+                return '9';
             default:
                 return 'Tidak Diketahui';
         }

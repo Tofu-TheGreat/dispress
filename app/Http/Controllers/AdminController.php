@@ -62,9 +62,9 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
+        $request->uniqueId($request->id_user);
         $data = $this->adminRepository->store($request);
-        Alert::toast('Berhasil Menambah data Admin', 'success');
-        return redirect()->intended('/admin');
+        return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
     }
 
     /**

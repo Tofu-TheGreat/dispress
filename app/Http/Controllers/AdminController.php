@@ -86,8 +86,13 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        $data = $this->adminRepository->edit($id);
-        dd($data);
+        $editData = $this->adminRepository->edit($id);
+        return view('admin.admin_edit', [
+            'title' => 'Admin',
+            'active' => 'Admin',
+            'active1' => 'users',
+            'editDataAdmin' => $editData
+        ]);
     }
 
     /**

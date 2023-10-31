@@ -4,6 +4,7 @@
     <link href="{{ asset('assets/modules/datatables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"
         rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
 @endsection
 
 @section('content')
@@ -74,27 +75,6 @@
                                         <th>Action</th>
                                     </tr>
                                 </thead>
-                                {{-- <tbody>
-                                    @if ($users->count() > 0)
-                                        @foreach ($users as $data)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td class="capitalize"><a class="text-dark"
-                                                        href="/admin/{{ $data->id_user }}" title="klik Untuk Detailnya">
-                                                        {{ $data->nama }}</a></td>
-                                                <td>{{ $data->email }}</td>
-                                                <td>{{ substr(chunk_split($data->nomor_telpon, 4, '-'), 0, -1) }}</td>
-                                                <td class="text-uppercase">{{ $data->level }}</td>
-                                                <td>
-
-                                                </td>
-                                        @endforeach
-                                    @else
-                                        <td colspan="7" class="text-center bg-secondary">Belum ada Data
-                                            Admin
-                                        </td>
-                                    @endif
-                                </tbody> --}}
                             </table>
                         </div>
                     </div>
@@ -143,8 +123,11 @@
     {{-- End Modal Import --}}
 
 @section('script')
+    {{-- modules --}}
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    {{-- DataTables --}}
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable({
@@ -183,14 +166,18 @@
                 ]
             });
         })
-        // $('.tombol-simpan').click(function() {
-        //     var id = $(this).data('id_user');
-        //     $.ajax({
-        //         url: 'admin/' + id,
-        //         type: 'GET',
-        //     })
-
-        // })
     </script>
+    {{-- Toast --}}
+    @if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
 @endsection
 @endsection

@@ -30,9 +30,6 @@
 }
 
 @media screen and (max-width: 570px) {
-    .judul-page {
-        text-align: center;
-    }
     .btn-group {
         margin-top: 10px;
         justify-content: center;
@@ -47,5 +44,8 @@
 @media screen and (max-width: 768px) {
     .card-body form .search-data {
         width: 100%;
+    }
+    .judul-page {
+        text-align: center;
     }
 }

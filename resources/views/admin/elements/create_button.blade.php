@@ -11,11 +11,13 @@
          <a class="dropdown-item has-icon text-warning tombol-edit" data-id="{{ $usersList->id_user }}"
              href="#"><i class="far bi-pencil-square"></i>
              Edit</a>
-
-         <button type="submit" class="confirm dropdown-item has-icon text-danger tombol-hapus">
-             <input type="hidden" name="oldImage" data-id="{{ $usersList->id_user }}" href="#"><i
-                 class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
-
+         <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}">
+             @csrf
+             @method('DELETE')
+             <button type="submit" class="confirm dropdown-item has-icon text-danger tombol-hapus">
+                 <input type="hidden" name="oldImage" data-id="{{ $usersList->id_user }}"><i
+                     class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
+         </form>
      </div>
  </div>
  {{-- Tombol Action --}}

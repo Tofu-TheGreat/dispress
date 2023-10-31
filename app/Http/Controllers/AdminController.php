@@ -104,5 +104,6 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $this->adminRepository->destroy($id);
+        return back();
     }
 }

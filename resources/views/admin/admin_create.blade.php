@@ -67,19 +67,19 @@
                                 </div>
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="nim">Masukkan NIM : </label>
+                                        <label class="capitalize" for="nip">Masukkan NIP : </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="bi bi-key-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="number" class="form-control @error('nim') is-invalid @enderror"
-                                                placeholder="Masukkan NIM" value="{{ old('nim') }}" id="nim"
-                                                name="nim" required>
+                                            <input type="number" class="form-control @error('nip') is-invalid @enderror"
+                                                placeholder="Masukkan NIP" value="{{ old('nip') }}" id="nip"
+                                                name="nip" required>
                                         </div>
                                         <span class="text-danger">
-                                            @error('nim')
+                                            @error('nip')
                                                 {{ $message }}
                                             @enderror
                                         </span>

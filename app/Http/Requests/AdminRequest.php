@@ -22,7 +22,7 @@ class AdminRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nim' => 'required|max:11|min:11',
+            'nim' => 'required|max:18|min:18',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
@@ -37,8 +37,8 @@ class AdminRequest extends FormRequest
     {
         return [
             'nim.required' => 'Harap masukkan NIM.',
-            'nim.min' => 'NIM tidak boleh kurang dari 11',
-            'nim.max' => 'NIM tidak boleh lebih dari 11',
+            'nim.min' => 'NIM tidak boleh kurang dari 18',
+            'nim.max' => 'NIM tidak boleh lebih dari 18',
             'nama.required' => 'Harap masukkan nama.',
             'level.required' => 'Harap pilih level.',
             'jabatan.required' => 'Harap pilih jabatan.',

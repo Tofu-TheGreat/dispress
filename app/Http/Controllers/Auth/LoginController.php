@@ -34,7 +34,7 @@ class LoginController extends Controller
         if ($credentials) {
             if (Hash::check($password, $credentials->password)) {
                 if ($credentials->level === 'admin') {
-                    Alert::toast('Berhasil Login Admin', 'success');
+                    Alert::toast('Admin Berhasil Login', 'success');
                     Auth::login($credentials);
                     return redirect()->intended('/dashboard');
                 }

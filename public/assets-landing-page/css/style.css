@@ -837,7 +837,7 @@ Features Section
 .features .feature-item::before {
     height: 70px;
     width: 70px;
-    background-color: var(--color-4);
+    background-color: #1a5378;
     left: -30%;
     top: 20%;
 }
@@ -850,7 +850,7 @@ Features Section
 .features .feature-item::after {
     height: 50px;
     width: 50px;
-    background-color: var(--color-2);
+    background-color: #3bb3eb;
     right: -30px;
     top: 80%;
 }
@@ -979,7 +979,7 @@ superiority Section
 .superiority .superiority-item::before {
     height: 20px;
     width: 20px;
-    background-color: var(--color-4);
+    background-color: #ffffff;
     left: -20px;
     top: 40%;
 }
@@ -992,7 +992,7 @@ superiority Section
 .superiority .superiority-item::after {
     height: 30px;
     width: 30px;
-    background-color: var(--color-2);
+    background-color: #ad91f2;
     right: -30px;
     top: 80%;
 }

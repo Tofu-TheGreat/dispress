@@ -167,7 +167,7 @@
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center mx-4">
-                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #7a0707; --j: rgb(122, 120, 7)"
+                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #5349a5; --j: rgb(154,147,214)"
                         data-aos="fade-right" data-aos-duration="1400">
                         <div class="icon"><i class="bi bi-rocket-takeoff-fill"></i></div>
                     </div>
@@ -181,11 +181,11 @@
                         <p>jurusan yang mengkombinasikan dua bidang, yaitu bisnis daring atau e-commerce dan pemasaran
                             atau marketing.</p>
                     </div>
-                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #0a2f80; --j: #0a8053"
+                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #3559a7; --j: #f1f1f1"
                         data-aos="zoom-in" data-aos-duration="1400">
                         <div class="icon"><i class="bi bi-kanban"></i></div>
                     </div>
-                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #400980; --j: #091180"
+                    <div class="feature-item-icon col-lg-2 col-md-4" style="--i: #2161ac; --j: #5349a5"
                         data-aos="fade-right" data-aos-duration="1400">
                         <div class="icon"><i class="bi bi-pc-display-horizontal"></i></div>
                     </div>
@@ -214,34 +214,34 @@
                 <div class="row d-flex">
                     <div class="owl-carousel superiority-carousel">
                         <div class="superiority-item">
-                            <div class="icon" style="--i: rgb(33, 73, 28); --j: rgba(181, 255, 0, 1)"><img
+                            <div class="icon" style="--i: #362b82; --j: #7264d7;"><img
                                     src="{{ asset('/assets-landing-page/img/go-green.webp') }}" alt="paperles-img" />
                             </div>
-                            <h3>Paperless</h3>
+                            <h3 class="text-white">Paperless</h3>
                             <p>memungkinkan Satuan Kerja untuk beralih ke Dokumen Digital. Dengan begitu, kita dapat
                                 mencintai lingkungan sambil berhemat pengeluaran sekolah.</p>
                         </div>
                         <div class="superiority-item">
                             <div class="icon" style="--i: rgba(7, 55, 150, 1); --j: rgba(0, 198, 255, 1)"><img
                                     src="{{ asset('/assets-landing-page/img/mudah.webp') }}" alt="mudah-img" /></div>
-                            <h3>Mudah</h3>
+                            <h3 class="text-white">Mudah</h3>
                             <p>dilengkapi dengan Petunjuk Teknis, Anda menemukan kesulitan? Tim kami selalu siap
                                 menjawab dan memberikan solusinya.</p>
                         </div>
                         <div class="superiority-item">
-                            <div class="icon" style="--i: #b70505; --j: #ffb800"><img
+                            <div class="icon" style="--i: #081649; --j: #749cdc"><img
                                     src="{{ asset('/assets-landing-page/img/multi-platform.webp') }}"
                                     alt="multi-platform-img" />
                             </div>
-                            <h3>Multi Platform</h3>
+                            <h3 class="text-white">Multi Platform</h3>
                             <p>Anda dapat melakukannya baik itu melalui Desktop PC, Laptop, Tablet atau bahkan dari
                                 smartphone Anda.</p>
                         </div>
                         <div class="superiority-item">
-                            <div class="icon" style="--i: #8505b7; --j: #6200ff"><img
+                            <div class="icon" style="--i: #9c5bb6; --j: #081649"><img
                                     src="{{ asset('/assets-landing-page/img/dok-baik.webp') }}"
                                     alt="dokumentasi-img" /></div>
-                            <h3>Terdokumentasi dengan baik</h3>
+                            <h3 class="text-white">Terdokumentasi dengan baik</h3>
                             <p>terdokumentasi dengan baik. Kapanpun data dibutuhkan, para pengelola surat dapat
                                 mengunduhnya.</p>
                         </div>

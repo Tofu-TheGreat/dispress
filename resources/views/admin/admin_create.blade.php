@@ -11,12 +11,12 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-8 col-sm-12">
                         <h4 class="text-dark judul-page">Manajemen Users</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-4 col-sm-4 text-center items-center mt-2 ">
+                    <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/admin">Administrator</a></div>
                         <div class="breadcrumb-item d-inline">Tambah Data</div>

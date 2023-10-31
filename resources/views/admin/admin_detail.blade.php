@@ -6,12 +6,12 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-7 col-sm-8">
+                    <div class="col-md-7 col-sm-12">
                         <h4 class="text-dark judul-page">Manajemen Users</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-5 col-sm-4 text-center items-center mt-2 ">
+                    <div class="col-md-5 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/admin">Administrator</a></div>
                         <div class="breadcrumb-item d-inline">Profile Administrator</div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="col-2 d-flex justify-content-end btn-group">
-                            <a href="/admin/{{ $data->id }}/edit" class="text-white">
+                            <a href="/admin/{{ $data->id_user }}/edit" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                     title="Edit Data Administrator" data-original-title="Edit Data Administrator">
                                     <i class="bi bi-pencil btn-tambah-data"></i>
@@ -133,7 +133,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text"
-                                                        class="form-control phone @error('nip') is-invalid @enderror"
+                                                        class="form-control @error('nip') is-invalid @enderror"
                                                         value="{{ $data->nip }}" id="nip" name="nip"
                                                         readonly>
                                                 </div>
@@ -149,7 +149,7 @@
                                                         </div>
                                                     </div>
                                                     <input type="text"
-                                                        class="form-control phone @error('jabatan') is-invalid @enderror"
+                                                        class="form-control @error('jabatan') is-invalid @enderror"
                                                         value="{{ $data->jabatan }}" id="jabatan" name="jabatan"
                                                         readonly>
                                                 </div>

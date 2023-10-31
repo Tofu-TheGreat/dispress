@@ -25,3 +25,14 @@
 <!-- Template JS File -->
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/js/custom.js') }}"></script>
+
+{{-- Format Phone Number --}}
+
+<script>
+    $(document).ready(function() {
+        $(".phone").val(function(index, value) {
+            // Gunakan ekspresi reguler untuk memisahkan nomor telepon ke dalam format yang diinginkan
+            return value.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
+        });
+    });
+</script>

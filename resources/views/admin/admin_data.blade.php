@@ -43,7 +43,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="/" class="text-white ml-2">
+                            <a href="{{ route('admin.export') }}" class="text-white ml-2">
                                 <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
                                     title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data "></i>
@@ -113,9 +113,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body py-5 px-4 mt-4 border border-1">
-                    <div class="input-group mb-3 ">
-                        <form action="/import-users" method="post" enctype="multipart/form-data">
+                <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
+                    <div class="modal-body py-5 px-4 mt-4 border border-1">
+                        <div class="input-group mb-3 ">
                             @csrf
                             <label for="export">Masukkan File Yang Ingin di Export : </label>
                             <div class="input-group mb-3">
@@ -128,16 +128,15 @@
                                     <label class="custom-file-label" for="export">Choose file</label>
                                 </div>
                             </div>
-                        </form>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close</button>
-                    <button type="submit" value="Import" class="btn btn-success text-white">
-                        Click Untuk
-                        import</button>
-                    </form>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close</button>
+                        <button type="submit" value="Import" class="btn btn-success text-white">
+                            Click Untuk
+                            import</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

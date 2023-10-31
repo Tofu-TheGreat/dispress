@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,8 @@ Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', '
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('admin-export', [ExportController::class, 'export'])->name('admin.export');
+Route::post('admin-import', [ExportController::class, 'import'])->name('admin.import');
 
 Route::resource('/admin', AdminController::class)->middleware('auth')->middleware('auth');
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);

@@ -15,7 +15,8 @@ class ExportController extends Controller
     }
     public function import()
     {
-        Excel::import(new AdminImport, request()->file('file'));
+        $import = new AdminImport();
+        Excel::import($import, request()->file('file'));
 
         return back();
     }

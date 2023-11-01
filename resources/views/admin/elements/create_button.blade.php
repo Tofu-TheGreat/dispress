@@ -6,10 +6,11 @@
      </button>
      <div class="dropdown-menu ">
          <a class="dropdown-item has-icon text-info tombol-detail" data-id="{{ $usersList->id_user }}"
-             href="{{ route('admin.show', $usersList->id_user) }}"><i class="far bi-eye"></i>
+             href="{{ route('admin.show', Crypt::encryptString($usersList->id_user)) }}"><i class="far bi-eye"></i>
              Detail</a>
          <a class="dropdown-item has-icon text-warning tombol-edit" data-id="{{ $usersList->id_user }}"
-             href="{{ route('admin.edit', $usersList->id_user) }}"><i class="far bi-pencil-square"></i>
+             href="{{ route('admin.edit', Crypt::encryptString($usersList->id_user)) }}"><i
+                 class="far bi-pencil-square"></i>
              Edit</a>
          <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}" class="delete-form">
              @csrf

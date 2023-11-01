@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use App\Repository\Admin\AdminRepository;
 use Yajra\DataTables\Contracts\DataTable;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
@@ -72,7 +73,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $detailAdmin = $this->adminRepository->show($id);
+        $encryptId = Crypt::decryptString($id);
+        $detailAdmin = $this->adminRepository->show($encryptId);
         return view('admin.admin_detail', [
             'title' => 'Admin',
             'active' => 'Admin',
@@ -86,7 +88,8 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
-        $editData = $this->adminRepository->edit($id);
+        $encryptId = Crypt::decryptString($id);
+        $editData = $this->adminRepository->edit($encryptId);
         return view('admin.admin_edit', [
             'title' => 'Admin',
             'active' => 'Admin',

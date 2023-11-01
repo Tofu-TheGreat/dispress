@@ -36,6 +36,7 @@ class LoginController extends Controller
                 if ($credentials->level === 'admin') {
                     Alert::toast('Admin Berhasil Login', 'success');
                     Auth::login($credentials);
+                    $request->session()->regenerate();
                     return redirect()->intended('/dashboard');
                 }
             } else {

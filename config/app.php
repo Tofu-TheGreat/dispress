@@ -175,6 +175,9 @@ return [
         // Datatables
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+
+        // Maatwebsite
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -195,7 +198,6 @@ return [
 
         // datatables
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ])->toArray(),
 
 ];

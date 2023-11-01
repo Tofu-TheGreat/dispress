@@ -29,6 +29,67 @@
     margin: auto;
 }
 
+.btn-1 {
+    background-color: rgb(73, 165, 165);
+    padding: 5px;
+    border: none;
+    color: #eee;
+    border-radius: 30px;
+    font-size: 14px;
+    text-transform: capitalize;
+    transition: all 0.5s ease;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+
+.icon-btn-1 {
+    position: absolute;
+    left: -20%;
+    right: -20%;
+    top: 15%;
+    z-index: 2;
+    bottom: 0;
+    transition: all 0.2s ease-in-out;
+    font-size: 17px;
+    opacity: 0;
+    color: #eee;
+}
+
+.btn-1:hover .icon-btn-1 {
+    transform: scale(1.1);
+    opacity: 1;
+}
+
+.btn-1::before {
+    content: "";
+    background: teal;
+    position: absolute;
+    color: #eee;
+    z-index: 1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+}
+
+.btn-1:hover::before {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.btn-1 span {
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-1:hover span {
+    opacity: 0;
+    transform: scale(-1);
+}
+
 @media screen and (max-width: 570px) {
     .btn-group {
         margin-top: 10px;

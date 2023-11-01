@@ -11,12 +11,12 @@ class ExportController extends Controller
 {
     public function export()
     {
-        return Excel::download(new AdminExport, 'admin.xlsx');
+        return Excel::download(new AdminExport, 'Data-Admin.xlsx');
     }
     public function import()
     {
         Excel::import(new AdminImport, request()->file('file'));
 
-        return back();
+        return back()->with('success', 'Berhasil Export data Admin');
     }
 }

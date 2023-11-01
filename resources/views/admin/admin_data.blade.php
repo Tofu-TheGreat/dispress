@@ -5,6 +5,8 @@
     <link href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
 @endsection
 
 @section('content')
@@ -44,7 +46,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="{{ route('admin.export') }}" class="text-white ml-2">
+                            <a href="#" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
                                     title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data "></i>
@@ -85,7 +87,7 @@
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="importmodalLabel">Modal Import Users</h5>
@@ -94,28 +96,31 @@
                     </button>
                 </div>
                 <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
-                    <div class="modal-body py-5 px-4 mt-4 border border-1">
-                        <div class="input-group mb-3 ">
-                            @csrf
-                            <label for="export">Masukkan File Yang Ingin di Export : </label>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                                </div>
-                                <div class="custom-file">
-                                    <input type="file" class="custom-file-input" type="file" name="file"
-                                        id="export" style="width: 420px" accept=".xlsx, .xls">
-                                    <label class="custom-file-label" for="export">Choose file</label>
-                                </div>
-                            </div>
-                            <a href="/file/Book1.xlsx" download="Admin_template">download template</a>
+                    <div class="modal-body py-4 px-4 mt-3 border border-1">
+                        <span class="d-block">Unduh Template Import Admin : </span>
+                        <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
+                            download="Admin-template-import">
+                            <span>Login</span> <i class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
+                        @csrf
+                        <div class="form-group">
+                            <label for="import">Masukkan File Yang Ingin di Import : </label>
+                            <small class="d-block">Catatan : Masukkan File dengan Format(xlsx), maksimal 10
+                                mb</small>
+                            <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
+                                id="import" name="file" accept=".xlsx">
+                            <span class="text-danger">
+                                @error('file')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close</button>
-                        <button type="submit" value="Import" class="btn btn-success text-white">
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                class="bi bi-x-circle ml-3"></i></button>
+                        <button type="submit" value="Import" class="btn btn-primary text-white">
                             Click Untuk
-                            import</button>
+                            import <i class="bi bi-clipboard-check-fill ml-3"></i></button>
                     </div>
                 </form>
             </div>
@@ -129,6 +134,9 @@
     <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     {{-- DataTables --}}
     <script>
         $(document).ready(function() {
@@ -169,6 +177,7 @@
             });
         })
     </script>
+
     {{-- Toast --}}
     @if (Session::has('success'))
         <script>
@@ -200,6 +209,44 @@
                         e.target.closest('form').submit();
                     } else {
                         swal('Data Admin tidak jadi di hapus !');
+                    }
+                });
+        });
+    </script>
+
+    <script>
+        $('body').on('click', '.tombol-export', function(e) {
+            swal({
+                    title: 'Apakah anda yakin?',
+                    text: 'ingin export data Admin ini ?',
+                    icon: 'info', // Change the icon to a question mark
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willExport) => {
+                    if (willExport) {
+                        swal('Data Admin berhasil di export !', {
+                            icon: 'success',
+                        });
+
+                        // Make an AJAX request to trigger the export
+                        fetch('{{ route('admin.export') }}', {
+                                method: 'GET',
+                            })
+                            .then(response => {
+                                // Handle the response here (e.g., trigger the export)
+                                if (response.ok) {
+                                    // You can trigger the export here
+                                    // For example, you can open the exported file in a new tab
+                                    window.open(response.url);
+                                }
+                            })
+                            .catch(error => {
+                                // Handle any errors here
+                                console.error('Error:', error);
+                            });
+                    } else {
+                        swal('Data Admin tidak jadi di export !');
                     }
                 });
         });

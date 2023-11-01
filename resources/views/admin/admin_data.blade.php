@@ -52,12 +52,13 @@
                             </a>
                             {{-- Akhir Button Export Data --}}
                             {{-- Button import Data --}}
-                            <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2"
-                                data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                data-original-title="Import Data">
-                                <i class="fa fa-file-excel btn-tambah-data "></i>
-                            </button>
+                            <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                data-original-title="Import Data" disabled>
+                                <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                    data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
+                                    <i class="fa fa-file-excel btn-tambah-data "></i>
+                                </button>
+                            </span>
                             {{-- Akhir Button import Data --}}
                         </div>
                     </div>

@@ -17,7 +17,7 @@ use App\Http\Controllers\ExportController;
 |
 */
 
-Route::get('/home', function () {
+Route::get('/', function () {
     return view('pages.index');
 });
 
@@ -25,7 +25,7 @@ Route::get('/login', function () {
     return view('pages.login');
 })->middleware('guest');
 
-Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', 'role:admin')->middleware('auth');
+Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', 'role:admin');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
@@ -33,5 +33,5 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('admin-export', [ExportController::class, 'export'])->name('admin.export');
 Route::post('admin-import', [ExportController::class, 'import'])->name('admin.import');
 
-Route::resource('/admin', AdminController::class)->middleware('auth')->middleware('auth');
+Route::resource('/admin', AdminController::class)->middleware('auth');
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);

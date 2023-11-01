@@ -47,7 +47,7 @@
     position: absolute;
     left: -20%;
     right: -20%;
-    top: 15%;
+    top: 20%;
     z-index: 2;
     bottom: 0;
     transition: all 0.2s ease-in-out;
@@ -83,6 +83,7 @@
 
 .btn-1 span {
     transition: all 0.2s ease-in-out;
+    margin: auto;
 }
 
 .btn-1:hover span {

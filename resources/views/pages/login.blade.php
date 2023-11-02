@@ -8,7 +8,7 @@
         type="image/x-icon" />
 
     <!-- judul page -->
-    <title>Landing Page</title>
+    <title>Login | Dispress</title>
 
     <!-- Bootstarp CSS -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/bootstrap.min.css') }}" />

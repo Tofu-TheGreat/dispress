@@ -134,8 +134,15 @@
         </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown"
                 class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}" class="rounded-circle mr-1">
-                <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->nama }}</div>
+                @if (auth()->user()->foto_user)
+                    <img alt="image" src="{{ asset('image_save/' . auth()->user()->foto_user) }}"
+                        class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->nama }}</div>
+                @else
+                    <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                        class="rounded-circle mr-1">
+                    <div class="d-sm-none d-lg-inline-block">Hi, {{ Auth::user()->nama }}</div>
+                @endif
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">Logged in 5 min ago</div>

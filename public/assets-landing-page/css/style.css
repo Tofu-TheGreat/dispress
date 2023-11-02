@@ -367,14 +367,14 @@ Navbar
 .navbar {
     background-color: transparent;
     padding: 20px 0;
-    transition: all 0.5s ease;
+    transition: all 0.3s ease;
 }
 
 .navbar.navbar-shrink {
     box-shadow: 0 10px 10px rgba(255, 255, 255, 0.1);
     background-color: var(--main-to-dark-color);
     padding: 22px 0;
-    transition: all 0.7s ease;
+    transition: all 0.5s ease;
 }
 
 body.dark .navbar.navbar-shrink {
@@ -416,7 +416,7 @@ body.dark .navbar.navbar-shrink {
     right: 0;
     height: 2px;
     background-color: var(--tertiary-color);
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
     transform: scale(0);
 }
 

@@ -128,7 +128,7 @@ Melakukan/Membuat Pull Request di GitHub
 
 <h2 id="lisensi">📝 License</h2>
 
-<p>dispress is open-sourced software licensed under the MIT license.</p>
+dispress is open-sourced software licensed under the [MIT License](./LICENSE).
 
 <h2 id="pembuat">👯‍♂️ Author</h2>
 

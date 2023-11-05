@@ -95,6 +95,14 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+                @if (Session::has('import_success'))
+                    <p>{{ session('import_success') }}</p>
+                @elseif (Session::has('failed'))
+                    <p>{{ session('failed') }}</p>
+                @endif
+                @if ($errors->any())
+                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                @endif
                 <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
                         <span class="d-block">Unduh Template Import Admin : </span>

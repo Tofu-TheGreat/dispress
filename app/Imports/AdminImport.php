@@ -5,31 +5,51 @@ namespace App\Imports;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
 
-class AdminImport implements ToModel, WithHeadingRow
+class AdminImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
      * @param array $row
      *
      * @return \Illuminate\Database\Eloquent\Model|null
      */
-
     public function model(array $row)
     {
-        $validatedData = Validator::make($row, [
-            'nip' => 'required|max:18|min:18|unique:users,nip,' . $row['id_user'] . ',id_user',
+        return new User([
+            'nip' => $row['nip'],
+            'nama'     => $row['nama'],
+            'level'     => $row['level'],
+            'jabatan'     => $this->transformJabatan($row['jabatan']),
+            'username'     => $row['username'],
+            'email'    => $row['email'],
+            'nomor_telpon'     => $row['nomor_telpon'],
+            'password' => Hash::make($row['password']),
+        ]);
+    }
+
+    public function rules(): array
+    {
+        return [
+            'nip' => 'required|max:18|min:18|unique:users,nip,',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,email,' . $row['id_user'] . ',id_user',
-            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,' . $row['id_user'] . ',id_user',
+            'email' => 'required|email|unique:users,email,',
+            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,',
             'password' => 'required',
-        ], [
+
+        ];
+    }
+
+    public function customValidationMessages()
+    {
+        return [
             'nip.required' => 'Harap masukkan NIP.',
             'nip.min' => 'NIP tidak boleh kurang dari 18',
             'nip.max' => 'NIP tidak boleh lebih dari 18',
@@ -46,19 +66,7 @@ class AdminImport implements ToModel, WithHeadingRow
             'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
             'password.required' => 'Harap masukkan password.',
-        ]);
-
-
-        return new User([
-            'nip' => $row['nip'],
-            'nama'     => $row['nama'],
-            'level'     => $row['level'],
-            'jabatan'     => $this->transformJabatan($row['jabatan']),
-            'username'     => $row['username'],
-            'email'    => $row['email'],
-            'nomor_telpon'     => $row['nomor_telpon'],
-            'password' => Hash::make($row['password']),
-        ]);
+        ];
     }
 
     public function transformJabatan($data)

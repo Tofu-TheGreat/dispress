@@ -9,15 +9,8 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class ExportController extends Controller
 {
-    public function export()
+    public function export_admin()
     {
         return Excel::download(new AdminExport, 'Data-Admin.xlsx');
-    }
-    public function import()
-    {
-        $import = new AdminImport();
-        Excel::import($import, request()->file('file'));
-
-        return back()->with('success', 'Berhasil Export data Admin');
     }
 }

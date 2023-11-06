@@ -95,14 +95,6 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                @if (Session::has('import_success'))
-                    <p>{{ session('import_success') }}</p>
-                @elseif (Session::has('failed'))
-                    <p>{{ session('failed') }}</p>
-                @endif
-                @if ($errors->any())
-                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                @endif
                 <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
                         <span class="d-block">Unduh Template Import Admin : </span>
@@ -117,11 +109,14 @@
                                 mb</small>
                             <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
                                 id="import" name="file" accept=".xlsx">
-                            <span class="text-danger">
-                                @error('file')
-                                    {{ $message }}
-                                @enderror
-                            </span>
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
@@ -197,6 +192,30 @@
                 iziToast.success({
                     title: 'Success',
                     message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    @if ($errors->has('file'))
+        <script>
+            $(document).ready(function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: "{!! implode('', $errors->all('<div>:message</div>')) !!}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            $(document).ready(function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: "{{ Session::get('error') }} Import",
                     position: 'topRight'
                 })
             });

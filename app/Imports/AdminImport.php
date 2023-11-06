@@ -35,13 +35,13 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'nip' => 'required|max:18|min:18|unique:users,nip,id_user',
+            'nip' => 'required|max:18|min:18|unique:users,nip,' . request()->get('id_user') . ',id_user',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,email,id_user',
-            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,id_user',
+            'email' => 'required|email|unique:users,email,' . request()->get('id_user') . ',id_user',
+            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,' . request()->get('id_user') . ',id_user',
             'password' => 'required',
 
         ];
@@ -54,18 +54,18 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
             'nip.required' => 'Harap masukkan NIP.',
             'nip.min' => 'NIP tidak boleh kurang dari 18',
             'nip.max' => 'NIP tidak boleh lebih dari 18',
-            'nip.unique' => 'Harap Masukkan NIP yang berbeda',
+            'nip.unique' => 'NIP sudah ada, harap masukan NIP lain',
             'nama.required' => 'Harap masukkan nama.',
-            'level.required' => 'Harap pilih level.',
-            'jabatan.required' => 'Harap pilih jabatan.',
+            'level.required' => 'Harap masukan level.',
+            'jabatan.required' => 'Harap masukan jabatan.',
             'username.required' => 'Harap masukkan username.',
             'email.required' => 'Harap masukkan alamat email.',
             'email.email' => 'Harap masukkan alamat email yang valid.',
-            'email.unique' => 'Harap Masukkan email yang berbeda',
+            'email.unique' => 'Email sudah ada, harap masukan email lain',
             'nomor_telpon.required' => 'Harap masukkan nomor telepon.',
             'nomor_telpon.min' => 'Nomor telepon tidak boleh kurang dari 12',
             'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
-            'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
+            'nomor_telpon.unique' => 'Nomor telepon sudah ada, harap masukan Nomor telepon lain',
             'password.required' => 'Harap masukkan password.',
         ];
     }

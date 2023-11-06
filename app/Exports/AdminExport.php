@@ -6,6 +6,7 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Events\BeforeWriting;
 
 class AdminExport implements FromCollection, WithHeadings, WithMapping
 {
@@ -53,6 +54,11 @@ class AdminExport implements FromCollection, WithHeadings, WithMapping
             $row->created_at,
             $row->updated_at
         ];
+    }
+
+    public static function beforeWriting(BeforeWriting $event)
+    {
+        //
     }
 
     private function convertJabatan($data)

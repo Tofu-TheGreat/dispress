@@ -3,8 +3,6 @@ FilePond.registerPlugin(FilePondPluginImagePreview);
 const images = document.querySelectorAll(".img-filepond-preview");
 const files = document.querySelectorAll(".file-filepond-preview");
 
-console.log(files);
-
 images.forEach((image) =>
     FilePond.create(image, {
         allowImagePreview: true,

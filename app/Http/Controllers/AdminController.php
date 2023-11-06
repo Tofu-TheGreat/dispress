@@ -52,7 +52,7 @@ class AdminController extends Controller
     public function create()
     {
         return view('admin.admin_create', [
-            'title' => 'Admin',
+            'title' => 'Create Admin',
             'active' => 'Admin',
             'active1' => 'users',
         ]);
@@ -63,8 +63,7 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $request->uniqueId($request->id_user);
-        $data = $this->adminRepository->store($request);
+        $data = $this->adminRepository->store($request);;
         return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
     }
 
@@ -76,7 +75,7 @@ class AdminController extends Controller
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->adminRepository->show($encryptId);
         return view('admin.admin_detail', [
-            'title' => 'Admin',
+            'title' => 'Detail Admin',
             'active' => 'Admin',
             'active1' => 'users',
             'detailDataAdmin' => $detailAdmin
@@ -91,7 +90,7 @@ class AdminController extends Controller
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
         return view('admin.admin_edit', [
-            'title' => 'Admin',
+            'title' => 'Edit Admin',
             'active' => 'Admin',
             'active1' => 'users',
             'editDataAdmin' => $editData
@@ -101,9 +100,10 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminRequest $request, string $id)
+    public function update(AdminRequest $request, $id)
     {
-        $this->adminRepository->update($request->id_user, $request->all());
+        $this->adminRepository->update($request->id_user, $request);
+        return redirect()->intended('/admin')->with('success', 'Berhasil Mengedit data Admin');
     }
 
     /**

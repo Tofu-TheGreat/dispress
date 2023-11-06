@@ -156,13 +156,16 @@
                         name: 'DT_RowIndex',
                         orderable: true,
                         searchable: false
-                    }, {
+                    },
+                    {
                         data: 'nama',
                         name: 'Nama',
-                    }, {
+                    },
+                    {
                         data: 'email',
                         name: 'Email',
-                    }, {
+                    },
+                    {
                         data: 'nomor_telpon',
                         name: 'Nomor Telepon'
                     },
@@ -194,29 +197,32 @@
 
     {{-- seweetalert confirmation --}}
     <script>
-        $('body').on('click', '.tombol-hapus', function(e) {
-            swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'ingin menghapus data Admin ini !',
-                    icon: 'warning',
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal('Data Admin berhasil di hapus !', {
-                            icon: 'success',
-                        });
-                        e.target.closest('form').submit();
-                    } else {
-                        swal('Data Admin tidak jadi di hapus !');
-                    }
-                });
-        });
+        $(document).ready(function() {
+            $("body").on("click", "#tombol-hapus", function(e) {
+                console.log("hapus");
+                swal({
+                        title: 'Apakah anda yakin?',
+                        text: 'ingin menghapus data Admin ini !',
+                        icon: 'warning',
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal('Data Admin berhasil di hapus !', {
+                                icon: 'success',
+                            });
+                            e.target.closest('form').submit();
+                        } else {
+                            swal('Data Admin tidak jadi di hapus !');
+                        }
+                    });
+            });
+        })
     </script>
 
     <script>
-        $('body').on('click', '.tombol-export', function(e) {
+        $(".tombol-export").click(function(e) {
             swal({
                     title: 'Apakah anda yakin?',
                     text: 'ingin export data Admin ini ?',

@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Imports\AdminImport;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Validator;
 
 class ImportController extends Controller
 {
-    public function import_admin()
+    public function import_admin(Request $request)
     {
         if (request()->has('file')) {
+            $request->validate([
+                'file' => 'mimes:xlsx',
+            ], [
+                'file.mimes' => 'Tipe file import harus .xlsx'
+            ]);
+
             $import = new AdminImport();
             Excel::import($import, request()->file('file'));
-
-            return back()->with('import_success', 'Berhasil Import data Admin');
+            return back()->with('success', 'Berhasil Import data Admin');
         } else {
-            return back()->with('failed', 'Tolong masukan file');
+            return back()->with('error', 'Tolong masukan file');
         }
     }
 }

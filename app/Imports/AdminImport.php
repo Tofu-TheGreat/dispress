@@ -35,13 +35,13 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
     public function rules(): array
     {
         return [
-            'nip' => 'required|max:18|min:18|unique:users,nip,',
+            'nip' => 'required|max:18|min:18|unique:users,nip,id_user',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
             'username' => 'required',
-            'email' => 'required|email|unique:users,email,',
-            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,',
+            'email' => 'required|email|unique:users,email,id_user',
+            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,id_user',
             'password' => 'required',
 
         ];
@@ -50,6 +50,7 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
     public function customValidationMessages()
     {
         return [
+            'file.mimes' => 'Harap masukan format xlsx',
             'nip.required' => 'Harap masukkan NIP.',
             'nip.min' => 'NIP tidak boleh kurang dari 18',
             'nip.max' => 'NIP tidak boleh lebih dari 18',

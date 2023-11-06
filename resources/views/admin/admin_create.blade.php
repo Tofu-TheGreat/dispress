@@ -140,7 +140,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="fa fa-layer-group"></i>
+                                                    <i class="fa fa-user-plus"></i>
                                                 </div>
                                             </div>
                                             <select class="form-control  @error('jabatan') is-invalid @enderror "

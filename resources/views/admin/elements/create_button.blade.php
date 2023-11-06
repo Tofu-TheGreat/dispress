@@ -12,10 +12,11 @@
              href="{{ route('admin.edit', Crypt::encryptString($usersList->id_user)) }}"><i
                  class="far bi-pencil-square"></i>
              Edit</a>
-         <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}" class="delete-form">
+         <form method="POST" action="{{ route('admin.destroy', $usersList->id_user) }}" class="tombol-hapus"
+             id="tombol-hapus">
              @csrf
              @method('DELETE')
-             <button type="button" class="dropdown-item has-icon text-danger tombol-hapus">
+             <button type="button" class="dropdown-item has-icon text-danger tombol-hapus" id="tombol-hapus">
                  <input type="hidden" name="oldImage" data-id="{{ $usersList->id_user }}"><i
                      class="far bi-trash-fill mt-2"></i><small>Hapus</small></button>
          </form>

@@ -120,8 +120,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                    value="{{ $detailDataAdmin->nomor_telpon }}" id="nomor_telpon"
-                                                    name="nomor_telpon" readonly>
+                                                    value="{{ currencyPhone($detailDataAdmin->nomor_telpon) }}"
+                                                    id="nomor_telpon" name="nomor_telpon" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -170,9 +170,17 @@
                                         </div>
                                         <input type="text"
                                             class="form-control capitalize @error('level') is-invalid @enderror"
-                                            value="{{ $detailDataAdmin->level }}" id="level" name="level"
-                                            readonly>
+                                            value="{{ $detailDataAdmin->level === 'admin' ? 'Administrator' : $detailDataAdmin->level }}"
+                                            id="level" name="level" readonly>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <div class=" ">
+                                    <a href="/admin" class="btn btn-warning  ">
+                                        <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
+                                        <span class="bi-text">Kembali</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>

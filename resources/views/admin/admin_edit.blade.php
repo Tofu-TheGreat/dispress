@@ -45,9 +45,10 @@
                             </div>
                         </div>
                         <div class="card-body ">
-                            <form action="/admin/{{ $data->id }}" method="post" enctype="multipart/form-data">
+                            <form action="/admin/{{ $data->id_user }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
+                                <input type="text" name="id_user" value="{{ $data->id_user }}" id="" hidden>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -55,19 +56,40 @@
                                             @if ($data->foto_user)
                                                 <div class="d-flex justify-content-center">
                                                     <img src="{{ asset('image_save/' . $data->foto_user) }}"
-                                                        alt="foto  img-preview {{ $data->username }}" class="foto-user">
+                                                        alt="foto img-preview {{ $data->username }}" class="foto-user">
                                                 </div>
                                             @else
                                                 <div class="d-flex justify-content-center">
                                                     <img src="{{ asset('assets/img/avatar/avatar-1.png') }}"
-                                                        alt="foto img-preview {{ $data->username }}" class="foto-user">
+                                                        alt="foto {{ $data->username }}" class="foto-user">
                                                 </div>
                                             @endif
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="row">
-                                            <div class="col">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="nip">NIP : </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text bg-secondary">
+                                                                <i class="bi bi-key-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="text"
+                                                            class="form-control capitalize @error('nip') is-invalid @enderror"
+                                                            placeholder="Masukkan Nip Lengkap" value="{{ $data->nip }}"
+                                                            id="nip" name="nip">
+                                                    </div>
+                                                    <span class="text-danger">
+                                                        @error('nip')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label for="nama">Nama : </label>
                                                     <div class="input-group">
@@ -87,6 +109,8 @@
                                                         @enderror
                                                     </span>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label for="username">Username : </label>
                                                     <div class="input-group">
@@ -107,7 +131,7 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                            <div class="col">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label for="email">Email : </label>
                                                     <div class="input-group">
@@ -127,6 +151,8 @@
                                                         @enderror
                                                     </span>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                     <label for="nomor_telpon">Nomor Telepon : </label>
                                                     <div class="input-group">
@@ -148,62 +174,121 @@
                                                     </span>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="level">Pilih Level : </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text  bg-secondary">
+                                                                <i class="bi bi-layers-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                        <select class="form-control" id="level" name="level">
+                                                            <option selected disabled>Pilih Level</option>
+                                                            <option value="admin" selected>Admin</option>
+                                                            <option value="petugas">Petugas</option>
+                                                            <option value="wali">wali</option>
+                                                        </select>
+                                                    </div>
+                                                    <span class="text-danger">
+                                                        @error('level')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label for="level">Pilih Level : </label>
+                                            <label for="jabatan">Pilih Jabatan : </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text  bg-secondary">
-                                                        <i class="bi bi-layers-fill"></i>
+                                                        <i class="fa fa-user-plus"></i>
                                                     </div>
                                                 </div>
-                                                <select class="form-control" id="level" name="level">
-                                                    <option selected disabled>Pilih Level</option>
-                                                    <option value="admin" selected>Admin</option>
-                                                    <option value="petugas">Petugas</option>
-                                                    <option value="wali">wali</option>
+                                                <select class="form-control" id="jabatan" name="jabatan">
+                                                    <option selected disabled>Pilih Jabatan</option>
+                                                    @foreach ($editDataAdmin as $item)
+                                                        <option value="0"
+                                                            {{ $data->jabatan === '0' ? 'selected' : '' }}>
+                                                            Kepala Sekolah</option>
+                                                        <option value="1"
+                                                            {{ $data->jabatan === '1' ? 'selected' : '' }}>
+                                                            Wakil Kepala Sekolah</option>
+                                                        <option value="2"
+                                                            {{ $data->jabatan == '2' ? 'selected' : '' }}>
+                                                            Kurikulum</option>
+                                                        <option value="3"
+                                                            {{ $data->jabatan == '3' ? 'selected' : '' }}>
+                                                            Kesiswaan</option>
+                                                        <option value="4"
+                                                            {{ $data->jabatan == '4' ? 'selected' : '' }}>
+                                                            Sarana Prasarana</option>
+                                                        <option value="5"
+                                                            {{ $data->jabatan == '5' ? 'selected' : '' }}>
+                                                            Kepala Jurusan</option>
+                                                        <option value="6"
+                                                            {{ $data->jabatan == '6' ? 'selected' : '' }}>
+                                                            Hubin</option>
+                                                        <option value="7"
+                                                            {{ $data->jabatan == '7' ? 'selected' : '' }}>
+                                                            Bimbingan Konseling</option>
+                                                        <option value="8"
+                                                            {{ $data->jabatan == '8' ? 'selected' : '' }}>
+                                                            Guru Umum</option>
+                                                        <option value="9"
+                                                            {{ $data->jabatan == '9' ? 'selected' : '' }}>
+                                                            Tata Usaha</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <span class="text-danger">
-                                                @error('level')
+                                                @error('jabatan')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="form-group">
-                                        <label for="foto">Masukkan Foto : </label>
-                                        <small class="d-block">Catatan : Masukkan Foto dengan Format(jpeg,png,jpg),
-                                            maksimal 10
-                                            mb</small>
-                                        <input type="file"
-                                            class="img-filepond-preview @error('foto_user') is-invalid @enderror"
-                                            id="foto_user" name="foto_user" accept="jpg,jpeg,png,svg">
-                                        <span class="text-danger">
-                                            @error('foto_user')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <div class="form-group">
+                                                <label for="foto">Masukkan Foto : </label>
+                                                <small class="d-block">Catatan : Masukkan Foto dengan Format(jpeg,png,jpg),
+                                                    maksimal 10
+                                                    mb</small>
+                                                <input type="file"
+                                                    class="img-filepond-preview @error('foto_user') is-invalid @enderror"
+                                                    id="foto_user" name="foto_user" accept="jpg,jpeg,png">
+                                                <span class="text-danger">
+                                                    @error('foto_user')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
+
                                 <div class="col-12 d-flex justify-content-end">
-                                    <div class="mr-2">
-                                        <a href="/administrator" class="btn btn-warning pe-2 mb-1"><i
-                                                class="bi bi-arrow-90deg-left fs-6 mr-1"></i> <span
-                                                class="bi-text">Kembali</span>
-                                        </a>
-                                    </div>
-                                    <div class="mr-2">
-                                        <button type="submit" class="btn btn-primary mb-1 "><i
-                                                class="bi bi-clipboard-plus-fill fs-6 mr-1"></i>
-                                            <span class="bi-text">Edit Data</span></button>
-                                    </div>
-                                    <div class="">
-                                        <button type="reset" class="btn btn-secondary"><i
-                                                class="bi bi-arrow-counterclockwise fs-6 mr-1"></i> <span
-                                                class="bi-text">Reset</span></button>
+                                    <div class="row d-flex justify-content-end">
+                                        <div class="ml-2 ">
+                                            <a href="/admin" class="btn btn-warning  ">
+                                                <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
+                                                <span class="bi-text">Kembali</span>
+                                            </a>
+                                        </div>
+                                        <div class="ml-2">
+                                            <button type="submit" class="btn btn-primary mb-1">
+                                                <i class="bi bi-clipboard-check-fill fs-6 mr-1"></i>
+                                                <span class="bi-text">Edit Data</span></button>
+                                        </div>
+                                        <div class="ml-2 ">
+                                            <button type="reset" class="btn btn-secondary">
+                                                <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
+                                                <span class="bi-text">Reset</span></button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>

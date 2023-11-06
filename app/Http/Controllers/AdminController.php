@@ -26,7 +26,7 @@ class AdminController extends Controller
     public function index()
     {
         $usersList = $this->adminRepository->getUserbyAdmin();
-        return view('admin.admin_data', [
+        return view('admin.admin-data', [
             'title' => 'Admin',
             'active' => 'Admin',
             'active1' => 'users',
@@ -51,7 +51,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.admin_create', [
+        return view('admin.admin-create', [
             'title' => 'Create Admin',
             'active' => 'Admin',
             'active1' => 'users',
@@ -74,7 +74,7 @@ class AdminController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->adminRepository->show($encryptId);
-        return view('admin.admin_detail', [
+        return view('admin.admin-detail', [
             'title' => 'Detail Admin',
             'active' => 'Admin',
             'active1' => 'users',
@@ -89,7 +89,7 @@ class AdminController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
-        return view('admin.admin_edit', [
+        return view('admin.admin-edit', [
             'title' => 'Edit Admin',
             'active' => 'Admin',
             'active1' => 'users',

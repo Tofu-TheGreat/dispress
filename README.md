@@ -1,20 +1,20 @@
 <h1 align="center">Selamat datang di Dispress! 👋</h1>
 
-[![All Contributors](https://img.shields.io/github/contributors/Tofu-TheGreat/dispress_project)](https://github.com/Tofu-TheGreat/dispress_project/graphs/contributors)
-![GitHub last commit](https://img.shields.io/github/last-commit/Tofu-TheGreat/dispress_project)
+[![All Contributors](https://img.shields.io/github/contributors/Tofu-TheGreat/dispress)](https://github.com/Tofu-TheGreat/dispress/graphs/contributors)
+![GitHub last commit](https://img.shields.io/github/last-commit/Tofu-TheGreat/dispress)
 
 ---
 
 <h2 id="tentang">Mengenal Dispress 🤓</h2>
 
-Dispress adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pembuatan SPPD (Surat Perintah Perjalanan Dinas) yang praktis
+Dispress adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pembuatan SPPD (Surat Perintah Perjalanan Dinas) yang praktis.
 
 <h2 id="fitur">🤔 Fitur apa saja yang tersedia di Dispress?</h2>
 
 -   [Stisla Bootstrap Template](https://github.com/stisla/stisla)
     -   <i>Dashboard UI</i>
 -   Landing Page
-    -   <i>Beranda</i>
+    -   Beranda
     -   Fitur
     -   Keunggulan
     -   Petunjuk Teknis
@@ -55,7 +55,7 @@ Dispress adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pemb
 -   Username: fadli.god
 -   Password: password
 
-#### staff
+#### Staff
 
 -   Username: naka
 -   Password: password
@@ -76,10 +76,12 @@ Dispress adalah aplikasi yang digunakan untuk melakukan disposisi surat dan pemb
 1. Clone repository
 
 ```bash
-git clone https://github.com/Tofu-TheGreat/dispress_project.git
-cd dispress_project
+git clone https://github.com/Tofu-TheGreat/dispress.git
+cd dispress
 composer install
 copy .env.example .env
+# OR
+cp .env.example .env
 ```
 
 2. Konfigurasi database melalui `.env`
@@ -128,8 +130,11 @@ Melakukan/Membuat Pull Request di GitHub
 
 <h2 id="lisensi">📝 License</h2>
 
+
 dispress is open-sourced software licensed under the [MIT License](./LICENSE).
+=======
+
 
 <h2 id="pembuat">👯‍♂️ Author</h2>
 
-<p>Confess dibuat oleh <a href="https://instagram.com/fadli.890">Fadli</a>, <a href="https://instagram.com/syapsya_">Pasya</a> dan <a href="https://instagram.com/valdss._">Yudis naka</a>.</p>
+<p>Dispress dibuat oleh <a href="https://instagram.com/fadli.890">Fadli</a>, <a href="https://instagram.com/syapsya_">Pasya</a> dan <a href="https://instagram.com/valdss._">Yudis Naka</a>.</p>

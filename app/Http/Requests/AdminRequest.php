@@ -19,21 +19,32 @@ class AdminRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    protected function prepareForValidation()
+    {
+        // Convert nomor_telpon to a numeric format
+        $this->merge([
+            'nomor_telpon' => currencyPhoneToNumeric($this->input('nomor_telpon')),
+        ]);
+    }
     public function rules(): array
     {
-        return [
-            'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->data . ',id_user',
+        $rules = [
+            'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->input('id_user') . ',id_user',
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',
             'username' => 'required',
-            'email' =>
-            'required|email|unique:users,email,' . $this->data . ',id_user',
-            'nomor_telpon' =>
-            'required|min:12|max:13|unique:users,nomor_telpon,' . $this->data . ',id_user',
-            'password' => 'required',
-            'foto_user' => 'image|mimes:jpeg,png,jpg|max:10240'
+            'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,' . $this->input('id_user') . ',id_user',
+            'email' => 'required|email|unique:users,email,' . $this->input('id_user') . ',id_user',
+            'foto_user' => 'image|mimes:jpeg,png,jpg|max:10240',
         ];
+
+        // Check if this is a create request (not an update request)
+        if ($this->isMethod('post')) {
+            $rules['password'] = 'required';
+        }
+
+        return $rules;
     }
     public function messages()
     {
@@ -57,11 +68,5 @@ class AdminRequest extends FormRequest
             'foto_user.image' => 'Harap masukan foto',
             'foto_user.mimes' => 'Harap masukan foto dengan format jpeg,png,jpg'
         ];
-    }
-
-    public $data;
-    public function uniqueId($data)
-    {
-        $this->data = $data;
     }
 }

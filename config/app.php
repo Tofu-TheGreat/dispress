@@ -178,6 +178,7 @@ return [
 
         // Maatwebsite
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Intervention\Image\ImageServiceProviderLaravelRecent::class,
     ])->toArray(),
 
     /*
@@ -198,6 +199,7 @@ return [
 
         // datatables
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 
 ];

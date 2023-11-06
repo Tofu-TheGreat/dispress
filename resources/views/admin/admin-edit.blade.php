@@ -282,7 +282,7 @@
                                         <div class="ml-2">
                                             <button type="submit" class="btn btn-primary mb-1">
                                                 <i class="bi bi-clipboard-check-fill fs-6 mr-1"></i>
-                                                <span class="bi-text">Edit Data</span></button>
+                                                <span class="bi-text">Save Data</span></button>
                                         </div>
                                         <div class="ml-2 ">
                                             <button type="reset" class="btn btn-secondary">

@@ -221,32 +221,7 @@
             });
         </script>
     @endif
-
     {{-- seweetalert confirmation --}}
-    {{-- <script>
-
-
-        $(".tombol-hapus").click(function(e) {
-            console.log("hapus");
-            swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'ingin menghapus data Admin ini !',
-                    icon: 'warning',
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willDelete) => {
-                    if (willDelete) {
-                        swal('Data Admin berhasil di hapus !', {
-                            icon: 'success',
-                        });
-                        e.target.closest('form').submit();
-                    } else {
-                        swal('Data Admin tidak jadi di hapus !');
-                    }
-                });
-        });
-    </script> --}}
 
     <script>
         // jquery dajal

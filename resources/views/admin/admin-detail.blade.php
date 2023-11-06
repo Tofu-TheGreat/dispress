@@ -46,7 +46,7 @@
                     <form action="/administrator" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-4 position-relative">
                                 @if ($detailDataAdmin->foto_user)
                                     <div class="d-flex justify-content-center">
                                         <img src="{{ asset('image_save/' . $detailDataAdmin->foto_user) }}"

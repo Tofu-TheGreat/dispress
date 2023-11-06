@@ -4,6 +4,7 @@ namespace App\Repository\Admin;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Facades\Image;
 
 class AdminImplement implements AdminRepository
 {
@@ -19,7 +20,13 @@ class AdminImplement implements AdminRepository
     public function store($data)
     {
         if ($data->hasFile('foto_user')) {
-            $nama_foto = time() . '.' . $data->foto_user->extension();
+            $image = $data->foto_user;
+            $nama_foto = time() . '.' . $image->extension();
+            $destinationPath = public_path('/thumbnail');
+            $imgFile = Image::make($image->getRealPath());
+            $imgFile->resize(1200, 1200, function ($constraint) {
+                $constraint->upsize();
+            })->save($destinationPath . '/' . $nama_foto);
             $data->foto_user->move(public_path('image_save'), $nama_foto);
             $this->user->create([
                 'nip' => $data->nip,
@@ -99,8 +106,13 @@ class AdminImplement implements AdminRepository
                     unlink($fotoPath);
                 }
             }
-            $nama_foto = time() . '.' . $data->foto_user->extension();
-            $data->foto_user->move(public_path('image_save'), $nama_foto);
+            $image = $data->foto_user;
+            $nama_foto = time() . '.' . $image->extension();
+            $destinationPath = public_path('/image_save');
+            $imgFile = Image::make($image->getRealPath());
+            $imgFile->fit(1200, 1200, function ($constraint) {
+                $constraint->upsize();
+            })->save($destinationPath . '/' . $nama_foto);
             $this->user->where('id_user', $id)->update([
                 'nip' => $data->nip,
                 'nama' => $data->nama,

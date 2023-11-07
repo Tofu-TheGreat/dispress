@@ -5,14 +5,22 @@ namespace App\Exports;
 use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
+use Maatwebsite\Excel\Concerns\WithColumnFormatting;
 use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Events\BeforeWriting;
 
-class AdminExport implements FromCollection, WithHeadings, WithMapping
+class AdminExport implements WithColumnFormatting, FromCollection, WithHeadings, WithMapping
 {
     /**
      * @return \Illuminate\Support\Collection
      */
+    public function columnFormats(): array
+    {
+        return [
+            'B:B' => NumberFormat::FORMAT_TEXT,
+        ];
+    }
+
     public function collection()
     {
         return User::where('level', 'admin')->get();
@@ -42,9 +50,11 @@ class AdminExport implements FromCollection, WithHeadings, WithMapping
     public function map($row): array
     {
         // Manipulasi data sebelum ditampilkan di Excel
+        $nip = '="' . $row->nip . '"'; // Memaksa teks dengan tanda "="
+
         return [
             $row->id_user,
-            $row->nip,
+            $nip,
             $row->nama,
             $row->level,
             $this->convertJabatan($row->jabatan),
@@ -54,11 +64,6 @@ class AdminExport implements FromCollection, WithHeadings, WithMapping
             $row->created_at,
             $row->updated_at
         ];
-    }
-
-    public static function beforeWriting(BeforeWriting $event)
-    {
-        //
     }
 
     private function convertJabatan($data)

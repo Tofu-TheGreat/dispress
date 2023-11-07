@@ -22,7 +22,7 @@ class AdminImplement implements AdminRepository
         if ($data->hasFile('foto_user')) {
             $image = $data->foto_user;
             $nama_foto = time() . '.' . $image->extension();
-            $destinationPath = public_path('/thumbnail');
+            $destinationPath = public_path('/image_save');
             $imgFile = Image::make($image->getRealPath());
             $imgFile->resize(1200, 1200, function ($constraint) {
                 $constraint->upsize();

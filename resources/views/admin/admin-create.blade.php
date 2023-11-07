@@ -144,8 +144,7 @@
                                                     <i class="fa fa-user-plus"></i>
                                                 </div>
                                             </div>
-                                            <select
-                                                class="form-control select2 @error('jabatan') is-invalid select2 @enderror "
+                                            <select class="form-control select2 @error('jabatan') is-invalid  @enderror "
                                                 id="jabatan" name="jabatan" required>
                                                 <option selected disabled>Pilih Jabatan User</option>
                                                 <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
@@ -222,7 +221,7 @@
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="password">Masukkan Password : </label>
-                                        <div class="input-group">
+                                        <div class="input-group position-relative">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="bi bi-lock-fill"></i>
@@ -232,6 +231,7 @@
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Masukkan Password" value="{{ old('password') }}"
                                                 id="password" name="password" required>
+                                            <i class="bi bi-eye view-password-icon"></i>
                                         </div>
                                         <span class="text-danger">
                                             @error('password')
@@ -291,6 +291,18 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('.view-password-icon').on('click', function() {
+                if ($(this).hasClass('bi-eye')) {
+                    $(this).removeClass('bi-eye');
+                    $(this).addClass('bi-eye-slash');
+                    $('#password').attr('type', 'text');
+                } else {
+                    $(this).removeClass('bi-eye-slash');
+                    $(this).addClass('bi-eye');
+                    $('#password').attr('type', 'password');
+                }
+            });
         });
     </script>
 @endsection

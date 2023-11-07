@@ -29,6 +29,84 @@
             </div>
         </div>
 
+        {{-- Filter --}}
+        <div class="card">
+            <div class="card-header">
+                <div class="col-lg-11 col-sm">
+                    <h5 class="text-info">Filter</h5>
+                </div>
+                <div class="col-lg-1 col-sm d-flex justify-content-end">
+                    {{-- Button Triger Filter --}}
+                    <span data-toggle="tooltip" data-placement="top" title="klik untuk Menu filter data"
+                        data-original-title="Filter Data" disabled>
+                        <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                            title="Tombol Filter">
+                            <i class="bi bi-funnel-fill"></i>
+                        </button>
+                    </span>
+                    {{-- Akhir Button Triger Filter --}}
+                </div>
+            </div>
+            <div class="collapse" id="collapseExample" style="">
+                <div class="p-4">
+                    <form class="" action="/admin" method="get">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
+                                <div class="form-group">
+                                    <label class="capitalize" for="jabatan">Pilih Jabatan : </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fa fa-user-plus"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control  @error('jabatan') is-invalid  @enderror "
+                                            id="jabatan" name="jabatan" required>
+                                            <option selected disabled>Pilih Jabatan User</option>
+                                            <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
+                                                Kepala Sekolah</option>
+                                            <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
+                                                Wakil Kepala Sekolah</option>
+                                            <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
+                                                Kurikulum</option>
+                                            <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
+                                                Kesiswaan</option>
+                                            <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
+                                                Sarana Prasarana</option>
+                                            <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
+                                                Kepala Jurusan</option>
+                                            <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
+                                                Hubin</option>
+                                            <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
+                                                Bimbingan Konseling</option>
+                                            <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
+                                                Guru Umum</option>
+                                            <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
+                                                Tata Usaha</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mr-2 mb-1 " title="Filter">
+                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                            <a type="reset" href="/admin" class="btn btn-secondary mb-1" title="Reset">
+                                <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
+                                    Filter</span></a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- Filter --}}
+
         <div class="section-body">
             <div class="">
                 <div class="card">
@@ -141,6 +219,8 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
     {{-- DataTables --}}
     <script>
         $(document).ready(function() {
@@ -173,7 +253,7 @@
                         name: 'Nomor Telepon'
                     },
                     {
-                        data: 'level',
+                        data: 'akses',
                         name: 'Akses'
                     },
                     {
@@ -184,6 +264,13 @@
             });
         })
     </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+        });
+    </script>
+
 
     {{-- Toast --}}
     @if (Session::has('success'))

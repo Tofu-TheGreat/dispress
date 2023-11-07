@@ -37,12 +37,21 @@ class AdminController extends Controller
     public function indexAdmin()
     {
         $usersList = $this->adminRepository->getUserbyAdmin();
-
         return DataTables::of($usersList)
             ->addIndexColumn()
+            ->addColumn('nama', function ($usersList) {
+                return '<span class="capitalize">' . $usersList->nama . '</span>';
+            })
+            ->addColumn('nomor_telpon', function ($usersList) {
+                return currencyPhone($usersList->nomor_telpon);
+            })
+            ->addColumn('akses', function ($usersList) {
+                return '<span class="capitalize badge badge-success text-center ">' . $usersList->level . '</span>';
+            })
             ->addColumn('action', function ($usersList) {
                 return view('admin.elements.create_button')->with('usersList', $usersList);
             })
+            ->rawColumns(['akses', 'nama', 'phone'])
             ->toJson();
     }
 

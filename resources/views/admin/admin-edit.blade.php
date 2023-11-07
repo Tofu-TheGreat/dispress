@@ -3,6 +3,7 @@
 @section('css')
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -50,13 +51,21 @@
                                 @method('PUT')
                                 <input type="text" name="id_user" value="{{ $data->id_user }}" id="" hidden>
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 position-relative">
                                         <div class="form-group">
                                             <input type="hidden" name="oldImage" value="{{ $data->foto }}">
                                             @if ($data->foto_user)
                                                 <div class="d-flex justify-content-center">
                                                     <img src="{{ asset('image_save/' . $data->foto_user) }}"
                                                         alt="foto img-preview {{ $data->username }}" class="foto-user">
+                                                </div>
+                                                <div
+                                                    class=" d-flex justify-content-center  p-2 position-absolute btn-hapus-foto">
+                                                    <a href="#" data-toggle="tooltip" data-placement="top"
+                                                        title="Hapus Foto Profile" data-original-title="Hapus Foto Profile"
+                                                        class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1"><i
+                                                            class="fas fa-trash"></i>Hapus
+                                                    </a>
                                                 </div>
                                             @else
                                                 <div class="d-flex justify-content-center">
@@ -183,7 +192,8 @@
                                                                 <i class="bi bi-layers-fill"></i>
                                                             </div>
                                                         </div>
-                                                        <select class="form-control" id="level" name="level">
+                                                        <select class="form-control select2" id="level"
+                                                            name="level">
                                                             <option selected disabled>Pilih Level</option>
                                                             <option value="admin" selected>Admin</option>
                                                             <option value="petugas">Petugas</option>
@@ -208,7 +218,7 @@
                                                         <i class="fa fa-user-plus"></i>
                                                     </div>
                                                 </div>
-                                                <select class="form-control" id="jabatan" name="jabatan">
+                                                <select class="form-control select2" id="jabatan" name="jabatan">
                                                     <option selected disabled>Pilih Jabatan</option>
                                                     @foreach ($editDataAdmin as $item)
                                                         <option value="0"
@@ -302,6 +312,7 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
+    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 
     {{-- Preview Image --}}
     <script>

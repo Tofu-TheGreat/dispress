@@ -3,6 +3,7 @@
 @section('css')
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
 @endsection
 
 @section('content')
@@ -115,7 +116,7 @@
                                                     <i class="fa fa-layer-group"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control  @error('level') is-invalid @enderror "
+                                            <select class="form-control select2  @error('level') is-invalid @enderror "
                                                 id="level" name="level" required>
                                                 <option selected disabled>Pilih Level User</option>
                                                 <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}
@@ -143,7 +144,8 @@
                                                     <i class="fa fa-user-plus"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control  @error('jabatan') is-invalid @enderror "
+                                            <select
+                                                class="form-control select2 @error('jabatan') is-invalid select2 @enderror "
                                                 id="jabatan" name="jabatan" required>
                                                 <option selected disabled>Pilih Jabatan User</option>
                                                 <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
@@ -283,5 +285,6 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
+    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
 @endsection
 @endsection

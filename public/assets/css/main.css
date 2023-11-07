@@ -1,3 +1,7 @@
+.capitalize {
+    text-transform: capitalize;
+}
+
 .navbar-foto {
     aspect-ratio: 1/1;
 }
@@ -101,6 +105,14 @@
     right: 55%;
     left: 48%;
     margin-left: 1px;
+}
+
+.view-password-icon {
+    position: absolute;
+    right: 3%;
+    top: 22%;
+    font-size: 1.2rem;
+    z-index: 999;
 }
 
 @media screen and (max-width: 570px) {

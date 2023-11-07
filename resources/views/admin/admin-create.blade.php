@@ -144,8 +144,7 @@
                                                     <i class="fa fa-user-plus"></i>
                                                 </div>
                                             </div>
-                                            <select
-                                                class="form-control select2 @error('jabatan') is-invalid select2 @enderror "
+                                            <select class="form-control select2 @error('jabatan') is-invalid  @enderror "
                                                 id="jabatan" name="jabatan" required>
                                                 <option selected disabled>Pilih Jabatan User</option>
                                                 <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
@@ -207,8 +206,8 @@
                                                     <i class="bi bi-telephone-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="number"
-                                                class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                            <input type="text"
+                                                class="form-control phone @error('nomor_telpon') is-invalid @enderror"
                                                 placeholder="Masukkan Nomor Telpon" value="{{ old('nomor_telpon') }}"
                                                 id="nomor_telpon" name="nomor_telpon" required>
                                         </div>
@@ -222,7 +221,7 @@
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="password">Masukkan Password : </label>
-                                        <div class="input-group">
+                                        <div class="input-group position-relative">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="bi bi-lock-fill"></i>
@@ -232,6 +231,7 @@
                                                 class="form-control @error('password') is-invalid @enderror"
                                                 placeholder="Masukkan Password" value="{{ old('password') }}"
                                                 id="password" name="password" required>
+                                            <i class="bi bi-eye view-password-icon"></i>
                                         </div>
                                         <span class="text-danger">
                                             @error('password')
@@ -286,5 +286,24 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+
+            $('.view-password-icon').on('click', function() {
+                if ($(this).hasClass('bi-eye')) {
+                    $(this).removeClass('bi-eye');
+                    $(this).addClass('bi-eye-slash');
+                    $('#password').attr('type', 'text');
+                } else {
+                    $(this).removeClass('bi-eye-slash');
+                    $(this).addClass('bi-eye');
+                    $('#password').attr('type', 'password');
+                }
+            });
+        });
+    </script>
 @endsection
 @endsection

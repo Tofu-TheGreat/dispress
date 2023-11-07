@@ -33,6 +33,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login')->middlew
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFromUser'])->name('deleteImageFromUser');
+Route::post('/filter', [AdminController::class, 'filterDataAdmin'])->name('filterDataAdmin');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 

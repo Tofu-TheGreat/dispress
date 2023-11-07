@@ -61,9 +61,9 @@
                                                 <i class="fa fa-user-plus"></i>
                                             </div>
                                         </div>
-                                        <select class="form-control  @error('jabatan') is-invalid  @enderror "
+                                        <select class="filter form-control  @error('jabatan') is-invalid  @enderror "
                                             id="jabatan" name="jabatan" required>
-                                            <option selected disabled>Pilih Jabatan User</option>
+                                            <option value = "" selected disabled>Pilih Jabatan User</option>
                                             <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
                                                 Kepala Sekolah</option>
                                             <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
@@ -95,11 +95,12 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success mr-2 mb-1 " title="Filter">
+                            <button type="button" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                                 <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <a type="reset" href="/admin" class="btn btn-secondary mb-1" title="Reset">
+                            <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
+                                title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                    Filter</span></a>
+                                    Filter</span></button>
                         </div>
                     </form>
                 </div>
@@ -223,15 +224,18 @@
 
     {{-- DataTables --}}
     <script>
+        let jabatan = $("#jabatan").val();
         $(document).ready(function() {
-            $('#dataTable').DataTable({
+            var table = $('#dataTable').DataTable({
                 processing: true,
                 serverside: true,
                 ajax: {
                     url: "{{ url('/admin-index') }}",
                     type: "post",
-                    data: {
-                        _token: "{{ csrf_token() }}"
+                    data: function(d) {
+                        d._token = "{{ csrf_token() }}";
+                        d.jabatan = jabatan;
+                        return d
                     }
                 },
                 columns: [{
@@ -261,6 +265,20 @@
                         name: 'Action',
                     }
                 ]
+            });
+            // Handle perubahan pilihan pada select box jabatan
+            $(".filter").change(function() {
+                jabatan = $(this).val(); // Perbarui variabel jabatan
+            });
+            $('#filtering').on('click', function() {
+                table.ajax.reload();
+                console.log('Loaded');
+            });
+            $('#reset').on('click', function() {
+                $("#jabatan").val(null).trigger('change');
+                jabatan = ""; // Reset variabel jabatan
+                table.ajax.reload();
+                console.log('Loaded');
             });
         })
     </script>

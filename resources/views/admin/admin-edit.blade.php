@@ -2,6 +2,7 @@
 
 @section('css')
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
 @endsection
@@ -60,12 +61,12 @@
                                                         alt="foto img-preview {{ $data->username }}" class="foto-user">
                                                 </div>
                                                 <div
-                                                    class=" d-flex justify-content-center  p-2 position-absolute btn-hapus-foto">
-                                                    <a href="/deleteImageFromUser/{{ $data->id_user }}" data-toggle="tooltip" data-placement="top"
+                                                    class=" d-flex justify-content-center  p-2 position-absolute btn-hapus-foto tombol-hapus-profile">
+                                                    <button type="button" data-toggle="tooltip" data-placement="top"
                                                         title="Hapus Foto Profile" data-original-title="Hapus Foto Profile"
-                                                        class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1"><i
+                                                        class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1 tombol-hapus-profile"><i
                                                             class="fas fa-trash"></i>Hapus
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             @else
                                                 <div class="d-flex justify-content-center">
@@ -312,8 +313,10 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -340,5 +343,45 @@
         }
     </script>
     {{-- Akhir Preview Image --}}
+    {{-- seweetalert confirmation --}}
+
+    <script>
+        document.body.addEventListener("click", function(event) {
+            const element = event.target;
+
+            if (element.classList.contains("tombol-hapus-profile")) {
+                swal({
+                    title: 'Apakah anda yakin?',
+                    text: 'Ingin menghapus foto profile Admin ini!',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        swal('Foto Profile Admin berhasil di delete !', {
+                            icon: 'success',
+                        });
+                        // Make an AJAX request to trigger the delete
+                        fetch('{{ route('deleteImageFromUser', $data->id_user) }}', {
+                                method: 'GET',
+                            })
+                            .then(response => {
+                                // Handle the response here (e.g., trigger the delete)
+                                if (response.ok) {
+
+                                    window.location.reload();
+                                }
+                            })
+                            .catch(error => {
+                                // Handle any errors here
+                                console.error('Error:', error);
+                            });
+                    } else {
+                        swal('Foto profile Admin tidak jadi di hapus !');
+                    }
+                });
+            }
+        });
+    </script>
 @endsection
 @endsection

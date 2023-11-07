@@ -311,14 +311,13 @@
     {{-- seweetalert confirmation --}}
 
     <script>
-        // jquery dajal
         document.body.addEventListener("click", function(event) {
             const element = event.target;
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'ingin menghapus data Admin ini !',
+                        text: 'Ingin menghapus data Admin ini !',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
@@ -338,7 +337,7 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'ingin export data Admin ini ?',
+                        text: 'Ingin export data Admin ini ?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,

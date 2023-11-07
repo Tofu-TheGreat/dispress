@@ -121,12 +121,12 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $this->adminRepository->destroy($id);
-        return back();
+        return back()->with('success', 'Berhasil Menghapus data Admin');
     }
 
     public function deleteImageFromUser($id)
     {
         $this->adminRepository->deleteImageFromUser($id);
-        return back();
+        return back()->with('success', 'Berhasil Menghapus foto profil Admin');
     }
 }

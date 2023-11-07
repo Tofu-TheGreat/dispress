@@ -47,9 +47,9 @@
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
                             <a href="#" class="text-white ml-2 tombol-export">
-                                <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
-                                    title="Export Data Excel" data-original-title="Export Data">
-                                    <i class="fa fa-file-excel btn-tambah-data "></i>
+                                <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
+                                    data-placement="top" title="Export Data Excel" data-original-title="Export Data">
+                                    <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
                                 </button>
                             </a>
                             {{-- Akhir Button Export Data --}}
@@ -223,10 +223,37 @@
     @endif
 
     {{-- seweetalert confirmation --}}
+    {{-- <script>
+
+
+        $(".tombol-hapus").click(function(e) {
+            console.log("hapus");
+            swal({
+                    title: 'Apakah anda yakin?',
+                    text: 'ingin menghapus data Admin ini !',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal('Data Admin berhasil di hapus !', {
+                            icon: 'success',
+                        });
+                        e.target.closest('form').submit();
+                    } else {
+                        swal('Data Admin tidak jadi di hapus !');
+                    }
+                });
+        });
+    </script> --}}
+
     <script>
-        $(document).ready(function() {
-            $("body").on("click", "#tombol-hapus", function(e) {
-                console.log("hapus");
+        // jquery dajal
+        document.body.addEventListener("click", function(event) {
+            const element = event.target;
+
+            if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
                         text: 'ingin menghapus data Admin ini !',
@@ -239,51 +266,49 @@
                             swal('Data Admin berhasil di hapus !', {
                                 icon: 'success',
                             });
-                            e.target.closest('form').submit();
+                            element.closest('form').submit();
                         } else {
                             swal('Data Admin tidak jadi di hapus !');
                         }
                     });
-            });
-        })
-    </script>
+            }
 
-    <script>
-        $(".tombol-export").click(function(e) {
-            swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'ingin export data Admin ini ?',
-                    icon: 'info', // Change the icon to a question mark
-                    buttons: true,
-                    dangerMode: true,
-                })
-                .then((willExport) => {
-                    if (willExport) {
-                        swal('Data Admin berhasil di export !', {
-                            icon: 'success',
-                        });
-
-                        // Make an AJAX request to trigger the export
-                        fetch('{{ route('admin.export') }}', {
-                                method: 'GET',
-                            })
-                            .then(response => {
-                                // Handle the response here (e.g., trigger the export)
-                                if (response.ok) {
-                                    // You can trigger the export here
-                                    // For example, you can open the exported file in a new tab
-                                    window.open(response.url);
-                                }
-                            })
-                            .catch(error => {
-                                // Handle any errors here
-                                console.error('Error:', error);
+            if (element.classList.contains("tombol-export")) {
+                swal({
+                        title: 'Apakah anda yakin?',
+                        text: 'ingin export data Admin ini ?',
+                        icon: 'info', // Change the icon to a question mark
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willExport) => {
+                        if (willExport) {
+                            swal('Data Admin berhasil di export !', {
+                                icon: 'success',
                             });
-                    } else {
-                        swal('Data Admin tidak jadi di export !');
-                    }
-                });
-        });
+
+                            // Make an AJAX request to trigger the export
+                            fetch('{{ route('admin.export') }}', {
+                                    method: 'GET',
+                                })
+                                .then(response => {
+                                    // Handle the response here (e.g., trigger the export)
+                                    if (response.ok) {
+                                        // You can trigger the export here
+                                        // For example, you can open the exported file in a new tab
+                                        window.open(response.url);
+                                    }
+                                })
+                                .catch(error => {
+                                    // Handle any errors here
+                                    console.error('Error:', error);
+                                });
+                        } else {
+                            swal('Data Admin tidak jadi di export !');
+                        }
+                    });
+            }
+        })
     </script>
 @endsection
 @endsection

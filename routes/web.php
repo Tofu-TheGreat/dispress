@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', '
 
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('admin-export', [ExportController::class, 'export_admin'])->name('admin.export');
 Route::post('admin-import', [ImportController::class, 'import_admin'])->name('admin.import');

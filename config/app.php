@@ -199,6 +199,8 @@ return [
 
         // datatables
         'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+
+        // images
         'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 

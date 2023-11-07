@@ -10,4 +10,5 @@ interface AdminRepository
     public function edit($id);
     public function update($id, $data);
     public function destroy($id);
+    public function deleteImageFromUser($id);
 }

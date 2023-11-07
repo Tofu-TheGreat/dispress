@@ -32,6 +32,8 @@ Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', '
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFromUser'])->name('deleteImageFromUser');
+
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('admin-export', [ExportController::class, 'export_admin'])->name('admin.export');

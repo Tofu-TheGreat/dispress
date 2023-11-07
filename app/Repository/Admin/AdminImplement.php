@@ -5,6 +5,7 @@ namespace App\Repository\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class AdminImplement implements AdminRepository
 {
@@ -138,6 +139,26 @@ class AdminImplement implements AdminRepository
     }
     public function destroy($id)
     {
-        $this->user->where('id_user', $id)->delete();
+        $user = $this->user->find($id);
+        if ($user->foto_user != null) {
+            $fotoPath = public_path('image_save/') . $user->foto_user;
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+        $user->where('id_user', $id)->delete();
+    }
+
+    public function deleteImageFromUser($id)
+    {
+        $user = $this->user->find($id);
+        if ($user->foto_user != null) {
+            $fotoPath = public_path('image_save/') . $user->foto_user;
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+        $user->foto_user = null;
+        $user->save();
     }
 }

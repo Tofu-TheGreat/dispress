@@ -61,7 +61,7 @@
                                                 </div>
                                                 <div
                                                     class=" d-flex justify-content-center  p-2 position-absolute btn-hapus-foto">
-                                                    <a href="#" data-toggle="tooltip" data-placement="top"
+                                                    <a href="/deleteImageFromUser/{{ $data->id_user }}" data-toggle="tooltip" data-placement="top"
                                                         title="Hapus Foto Profile" data-original-title="Hapus Foto Profile"
                                                         class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1"><i
                                                             class="fas fa-trash"></i>Hapus

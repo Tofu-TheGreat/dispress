@@ -114,4 +114,10 @@ class AdminController extends Controller
         $this->adminRepository->destroy($id);
         return back();
     }
+
+    public function deleteImageFromUser($id)
+    {
+        $this->adminRepository->deleteImageFromUser($id);
+        return back();
+    }
 }

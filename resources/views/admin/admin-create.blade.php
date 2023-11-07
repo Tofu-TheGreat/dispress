@@ -207,8 +207,8 @@
                                                     <i class="bi bi-telephone-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="number"
-                                                class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                            <input type="text"
+                                                class="form-control phone @error('nomor_telpon') is-invalid @enderror"
                                                 placeholder="Masukkan Nomor Telpon" value="{{ old('nomor_telpon') }}"
                                                 id="nomor_telpon" name="nomor_telpon" required>
                                         </div>
@@ -286,5 +286,12 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+        });
+    </script>
 @endsection
 @endsection

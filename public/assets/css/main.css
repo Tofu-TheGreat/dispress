@@ -1,10 +1,15 @@
-input:placeholder-shown {
-    opacity: 0.6;
-    text-transform: none;
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+body {
+    font-family: "Inter", sans-serif;
 }
 
 .capitalize {
     text-transform: capitalize;
+}
+
+.select2 {
+    width: 100%;
 }
 
 .navbar-foto {

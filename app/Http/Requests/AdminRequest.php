@@ -24,6 +24,7 @@ class AdminRequest extends FormRequest
         // Convert nomor_telpon to a numeric format
         $this->merge([
             'nomor_telpon' => currencyPhoneToNumeric($this->input('nomor_telpon')),
+            'nip' => currencyPhoneToNumeric($this->input('nip')),
         ]);
     }
     public function rules(): array

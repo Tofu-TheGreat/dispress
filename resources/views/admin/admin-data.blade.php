@@ -375,7 +375,7 @@
                                     if (response.ok) {
                                         // You can trigger the export here
                                         // For example, you can open the exported file in a new tab
-                                        window.open(response.url);
+                                        window.location.reload();
                                     }
                                 })
                                 .catch(error => {

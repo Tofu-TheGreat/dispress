@@ -31,11 +31,11 @@
 
         {{-- Filter --}}
         <div class="card">
-            <div class="card-header">
-                <div class="col-lg-11 col-sm">
-                    <h5 class="text-info">Filter</h5>
+            <div class="card-header d-flex justify-content-between">
+                <div class="col">
+                    <h4 class="text-primary">Filter</h4>
                 </div>
-                <div class="col-lg-1 col-sm d-flex justify-content-end">
+                <div class="col d-flex justify-content-end">
                     {{-- Button Triger Filter --}}
                     <span data-toggle="tooltip" data-placement="top" title="klik untuk Menu filter data"
                         data-original-title="Filter Data" disabled>

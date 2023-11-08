@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repository\Officer\OfficerRepository;
@@ -92,7 +92,7 @@ class OfficerController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AdminRequest $request)
+    public function store(UserRequest $request)
     {
         $this->officerRepository->store($request);;
         return redirect()->intended('/officer')->with('success', 'Berhasil menambah data Officer.');

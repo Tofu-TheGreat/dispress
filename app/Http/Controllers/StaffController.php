@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repository\Staff\StaffRepository;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
@@ -90,7 +91,7 @@ class StaffController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
         $data = $this->staffRepository->store($request);;
         // return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
@@ -129,7 +130,7 @@ class StaffController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
         $this->staffRepository->update($request->id_user, $request);
         // return redirect()->intended('/admin')->with('success', 'Berhasil Mengedit data Admin');

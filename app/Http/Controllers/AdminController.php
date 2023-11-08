@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AdminRequest;
+use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Admin\AdminRepository;
@@ -92,7 +92,7 @@ class AdminController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AdminRequest $request)
+    public function store(UserRequest $request)
     {
         $this->adminRepository->store($request);;
         return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin!');
@@ -131,7 +131,7 @@ class AdminController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminRequest $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $this->adminRepository->update($request->id_user, $request);
         return redirect()->intended('/admin')->with('success', 'Berhasil meng-edit data Admin.');

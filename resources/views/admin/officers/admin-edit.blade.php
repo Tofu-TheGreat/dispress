@@ -321,8 +321,6 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
-
-            $('#nip').inputmask('999999999999999999');
         });
     </script>
 

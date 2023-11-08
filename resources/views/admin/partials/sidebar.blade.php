@@ -20,8 +20,10 @@
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>Users</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link {{ $active == 'admin' ? 'active' : '' }}" href="/admin">Admin</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Officer</a></li>
+                    <li><a class="nav-link {{ $active == 'Admin' ? 'active text-info' : '' }}" href="/admin">Admin</a>
+                    </li>
+                    <li><a class="nav-link {{ $active == 'Officer' ? 'active text-info' : '' }}"
+                            href="/officer">Officer</a></li>
                     <li><a class="nav-link" href="layout-top-navigation.html">Staff</a></li>
                 </ul>
             </li>

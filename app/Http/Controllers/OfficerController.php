@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repository\Officer\OfficerRepository;
@@ -23,12 +24,12 @@ class OfficerController extends Controller
     public function index()
     {
         $usersList = $this->officerRepository->getUserbyOfficer();
-        // return view('admin.admin-data', [
-        //     'title' => 'Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        //     'users' => $usersList,
-        // ]);
+        return view('admin.officers.officer-data', [
+            'title' => 'Officer',
+            'active' => 'Officer',
+            'active1' => 'users',
+            'users' => $usersList,
+        ]);
     }
 
     public function indexAdmin(Request $request)
@@ -81,20 +82,20 @@ class OfficerController extends Controller
      */
     public function create()
     {
-        // return view('admin.admin-create', [
-        //     'title' => 'Create Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        // ]);
+        return view('admin.officers.officer-create', [
+            'title' => 'Create Officer',
+            'active' => 'Officer',
+            'active1' => 'users',
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        $data = $this->officerRepository->store($request);;
-        // return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
+        $this->officerRepository->store($request);;
+        return redirect()->intended('/officer')->with('success', 'Berhasil menambah data Officer.');
     }
 
     /**
@@ -104,12 +105,12 @@ class OfficerController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->officerRepository->show($encryptId);
-        // return view('admin.admin-detail', [
-        //     'title' => 'Detail Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        //     'detailDataAdmin' => $detailAdmin
-        // ]);
+        return view('admin.officers.officer-detail', [
+            'title' => 'Detail Admin',
+            'active' => 'Officer',
+            'active1' => 'users',
+            'detailDataAdmin' => $detailAdmin
+        ]);
     }
 
     /**

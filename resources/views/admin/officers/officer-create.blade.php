@@ -19,7 +19,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/admin">Administrator</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/officer">Officer</a></div>
                         <div class="breadcrumb-item d-inline">Tambah Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -33,17 +33,17 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 mr-3">
-                                <a href="/admin">
+                                <a href="/officer">
                                     <i class="bi bi-arrow-left"></i>
                                 </a>
                             </div>
                             <div class="col-">
-                                <h4 class="text-primary">Tambah Data Administrator</h4>
+                                <h4 class="text-primary">Tambah Data Officer</h4>
                             </div>
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form action="/admin" method="post" enctype="multipart/form-data">
+                        <form action="/officer" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -75,7 +75,8 @@
                                                     <i class="bi bi-key-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text" class="form-control @error('nip') is-invalid @enderror"
+                                            <input type="text"
+                                                class="form-control nip @error('nip') is-invalid @enderror"
                                                 placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
                                                 id="nip" name="nip" required>
                                         </div>
@@ -120,10 +121,10 @@
                                                 id="level" name="level" required>
                                                 <option selected disabled>Pilih Level User</option>
                                                 <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}
-                                                    selected>
+                                                    disabled>
                                                     Admin</option>
                                                 <option value="officer" {{ old('level') == 'officer' ? 'selected' : '' }}
-                                                    disabled>
+                                                    selected>
                                                     Officer</option>
                                                 <option value="staff" {{ old('level') == 'staff' ? 'selected' : '' }}
                                                     disabled>
@@ -261,7 +262,7 @@
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">
                                     <div class="ml-2 ">
-                                        <a href="/admin" class="btn btn-warning  ">
+                                        <a href="/officer" class="btn btn-warning  ">
                                             <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                             <span class="bi-text">Kembali</span>
                                         </a>
@@ -294,7 +295,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
+            $('.phone').inputmask('9999-9999-99999');
 
             $('#nip').inputmask('999999999999999999');
 

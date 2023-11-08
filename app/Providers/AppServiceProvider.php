@@ -7,12 +7,6 @@ use App\Repository\Admin\AdminImplement;
 use App\Repository\Admin\AdminRepository;
 use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
-use App\Repository\Officer\OfficerImplement;
-use App\Repository\Officer\OfficerRepository;
-use App\Repository\Staff\StaffImplement;
-use App\Repository\Staff\StaffRepository;
-use App\Repository\Surat\SuratImplement;
-use App\Repository\Surat\SuratRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
@@ -29,9 +23,6 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(LoginRepository::class, LoginImplement::class);
         $this->app->bind(AdminRepository::class, AdminImplement::class);
-        $this->app->bind(OfficerRepository::class, OfficerImplement::class);
-        $this->app->bind(StaffRepository::class, StaffImplement::class);
-        $this->app->bind(SuratRepository::class, SuratImplement::class);
     }
 
     /**

@@ -1,12 +1,14 @@
 @extends('admin.pages.layout')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link href="{{ asset('assets/modules/datatables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/modules/datatables/DataTables-1.10.16/css/dataTables.bootstrap4.min.css') }}"
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
 @endsection
 
 @section('content')
@@ -55,12 +57,10 @@
                             <div class="form-group">
                                 <label class="capitalize" for="jabatan">Pilih Jabatan : </label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-user-plus"></i>
-                                        </div>
+                                    <div class="input-group-text">
+                                        <i class="fa fa-user-plus"></i>
                                     </div>
-                                    <select class="filter form-control  @error('jabatan') is-invalid  @enderror "
+                                    <select class="filter form-control select2 @error('jabatan') is-invalid  @enderror "
                                         id="jabatan" name="jabatan" required>
                                         <option value="">Pilih Jabatan User</option>
                                         <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
@@ -210,6 +210,7 @@
 
 @section('script')
     {{-- modules --}}
+    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>

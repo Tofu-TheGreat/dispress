@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\OfficerController;
+use App\Http\Controllers\StaffController;
 
 /*
 |--------------------------------------------------------------------------

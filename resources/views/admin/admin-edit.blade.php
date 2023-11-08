@@ -78,7 +78,7 @@
                                         <div class="row">
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="nip">NIP : </label>
+                                                    <label for="nip">NIP: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -87,8 +87,8 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control capitalize @error('nip') is-invalid @enderror"
-                                                            placeholder="Masukkan Nip Lengkap" value="{{ $data->nip }}"
-                                                            id="nip" name="nip">
+                                                            placeholder="ex: 213720078171677275"
+                                                            value="{{ $data->nip }}" id="nip" name="nip">
                                                     </div>
                                                     <span class="text-danger">
                                                         @error('nip')
@@ -99,7 +99,7 @@
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="nama">Nama : </label>
+                                                    <label for="nama">Nama: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -108,8 +108,8 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control capitalize @error('nama') is-invalid @enderror"
-                                                            placeholder="Masukkan Nama Lengkap" value="{{ $data->nama }}"
-                                                            id="nama" name="nama">
+                                                            placeholder="ex: Pasya Nada Abinaya"
+                                                            value="{{ $data->nama }}" id="nama" name="nama">
                                                     </div>
                                                     <span class="text-danger">
                                                         @error('nama')
@@ -120,7 +120,7 @@
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="username">Username : </label>
+                                                    <label for="username">Username: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -129,7 +129,7 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control @error('username') is-invalid @enderror"
-                                                            placeholder="Masukkan Username" value="{{ $data->username }}"
+                                                            placeholder="ex: pasyaNada" value="{{ $data->username }}"
                                                             id="username" name="username">
                                                     </div>
                                                     <span class="text-danger">
@@ -141,7 +141,7 @@
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="email">Email : </label>
+                                                    <label for="email">Email: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -150,8 +150,8 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control @error('email') is-invalid @enderror"
-                                                            placeholder="contoh154@gmail.com" value="{{ $data->email }}"
-                                                            id="email" name="email">
+                                                            placeholder="ex: contoh@gmail.com"
+                                                            value="{{ $data->email }}" id="email" name="email">
                                                     </div>
                                                     <span class="text-danger">
                                                         @error('email')
@@ -162,7 +162,7 @@
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="nomor_telpon">Nomor Telepon : </label>
+                                                    <label for="nomor_telpon">Nomor Telepon: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -171,7 +171,7 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                            placeholder="Masukkan Nomor Telepon"
+                                                            placeholder="ex: 0878-2730-3388"
                                                             value="{{ $data->nomor_telpon }}" id="nomor_telpon"
                                                             name="nomor_telpon">
                                                     </div>
@@ -184,7 +184,7 @@
                                             </div>
                                             <div class="col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
-                                                    <label for="level">Pilih Level : </label>
+                                                    <label for="level">Pilih Level: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text  bg-secondary">
@@ -210,7 +210,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="jabatan">Pilih Jabatan : </label>
+                                            <label for="jabatan">Pilih Jabatan: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text  bg-secondary">
@@ -263,10 +263,11 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <div class="form-group">
-                                                <label for="foto">Masukkan Foto : </label>
-                                                <small class="d-block">Catatan : Masukkan Foto dengan Format(jpeg,png,jpg),
+                                                <label for="foto">Masukkan Foto: </label>
+                                                <small class="d-block">Catatan: masukkan foto dengan format (JPEG, PNG,
+                                                    JPG),
                                                     maksimal 10
-                                                    mb</small>
+                                                    MB.</small>
                                                 <input type="file"
                                                     class="img-filepond-preview @error('foto_user') is-invalid @enderror"
                                                     id="foto_user" name="foto_user" accept="jpg,jpeg,png">
@@ -307,6 +308,7 @@
             </div>
         @endforeach
     </section>
+@endsection
 @section('script')
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
@@ -350,13 +352,13 @@
             if (element.classList.contains("tombol-hapus-profile")) {
                 swal({
                     title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini!',
+                    text: 'Ingin menghapus foto profile Admin ini?',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        swal('Foto Profile Admin berhasil di delete !', {
+                        swal('Foto profile Admin berhasil dihapus!', {
                             icon: 'success',
                         });
                         // Make an AJAX request to trigger the delete
@@ -375,11 +377,10 @@
                                 console.error('Error:', error);
                             });
                     } else {
-                        swal('Foto profile Admin tidak jadi di hapus !');
+                        swal('Foto profile Admin tidak jadi dihapus!');
                     }
                 });
             }
         });
     </script>
-@endsection
 @endsection

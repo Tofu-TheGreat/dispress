@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 use App\Repository\Admin\AdminRepository;
-use Yajra\DataTables\Contracts\DataTable;
 use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -96,8 +94,8 @@ class AdminController extends Controller
      */
     public function store(AdminRequest $request)
     {
-        $data = $this->adminRepository->store($request);;
-        return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
+        $this->adminRepository->store($request);;
+        return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin!');
     }
 
     /**
@@ -136,7 +134,7 @@ class AdminController extends Controller
     public function update(AdminRequest $request, $id)
     {
         $this->adminRepository->update($request->id_user, $request);
-        return redirect()->intended('/admin')->with('success', 'Berhasil Mengedit data Admin');
+        return redirect()->intended('/admin')->with('success', 'Berhasil meng-edit data Admin.');
     }
 
     /**
@@ -145,12 +143,12 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $this->adminRepository->destroy($id);
-        return back()->with('success', 'Berhasil Menghapus data Admin');
+        return back()->with('success', 'Berhasil menghapus data Admin.');
     }
 
     public function deleteImageFromUser($id)
     {
         $this->adminRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil Menghapus foto profil Admin');
+        return back()->with('success', 'Berhasil menghapus foto profil Admin.');
     }
 }

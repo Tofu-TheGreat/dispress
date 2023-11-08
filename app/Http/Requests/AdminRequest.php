@@ -66,7 +66,7 @@ class AdminRequest extends FormRequest
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
             'password.required' => 'Harap masukkan password.',
             'foto_user.image' => 'Harap masukan foto',
-            'foto_user.mimes' => 'Harap masukan foto dengan format jpeg,png,jpg'
+            'foto_user.mimes' => 'Harap masukan foto dengan format :values.'
         ];
     }
 }

@@ -37,7 +37,7 @@
                 </div>
                 <div class="col d-flex justify-content-end">
                     {{-- Button Triger Filter --}}
-                    <span data-toggle="tooltip" data-placement="top" title="klik untuk Menu filter data"
+                    <span data-toggle="tooltip" data-placement="top" title="Klik untuk menu filter data."
                         data-original-title="Filter Data" disabled>
                         <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
                             data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12">
                             <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Jabatan : </label>
+                                <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -166,23 +166,23 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Modal Import Users</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Users</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Admin : </span>
+                        <span class="d-block">Unduh Template Import Admin: </span>
                         <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
                             download="Admin-template-import">
                             <span>Template Import Admin</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">
-                            <label for="import">Masukkan File Yang Ingin di Import : </label>
-                            <small class="d-block">Catatan : Masukkan File dengan Format(xlsx), maksimal 10
-                                mb</small>
+                            <label for="import">Masukkan file Yang Ingin di-import: </label>
+                            <small class="d-block">Catatan: masukkan file dengan format (XLSX), maksimal 10
+                                MB.</small>
                             <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
                                 id="import" name="file" accept=".xlsx">
                             @if ($errors->any())
@@ -199,7 +199,7 @@
                         <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
                                 class="bi bi-x-circle ml-3"></i></button>
                         <button type="submit" value="Import" class="btn btn-primary text-white">
-                            Click Untuk
+                            Click untuk
                             import <i class="bi bi-clipboard-check-fill ml-3"></i></button>
                     </div>
                 </form>
@@ -207,7 +207,7 @@
         </div>
     </div>
     {{-- End Modal Import --}}
-
+@endsection
 @section('script')
     {{-- modules --}}
     <script src="{{ asset('assets/modules/datatables/datatables.min.js') }}"></script>
@@ -330,19 +330,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Admin ini !',
+                        text: 'Ingin menghapus data Admin ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Admin berhasil di hapus !', {
+                            swal('Data Admin berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Admin tidak jadi di hapus !');
+                            swal('Data Admin tidak jadi dihapus!');
                         }
                     });
             }
@@ -350,14 +350,14 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Admin ini ?',
+                        text: 'Ingin export data Admin ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Admin berhasil di export !', {
+                            swal('Data Admin berhasil diexport!', {
                                 icon: 'success',
                             });
 
@@ -378,11 +378,10 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Admin tidak jadi di export !');
+                            swal('Data Admin tidak jadi diexport!');
                         }
                     });
             }
         })
     </script>
-@endsection
 @endsection

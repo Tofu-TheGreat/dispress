@@ -63,7 +63,7 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="nama">Nama : </label>
+                                            <label for="nama">Nama: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -79,7 +79,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="username">Username : </label>
+                                            <label for="username">Username: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="nomor_telpon">Nomor Telepon : </label>
+                                            <label for="nomor_telpon">Nomor Telepon: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -127,7 +127,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="nip">Nomor Induk Pegawai : </label>
+                                            <label for="nip">Nomor Induk Pegawai: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -143,7 +143,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="jabatan">Jabatan : </label>
+                                            <label for="jabatan">Jabatan: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -161,7 +161,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="level">Akses : </label>
+                                    <label for="level">Akses: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text bg-secondary">

@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Models\User;
-use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\{Auth, Hash};
 use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
@@ -34,7 +31,7 @@ class LoginController extends Controller
         if ($credentials) {
             if (Hash::check($password, $credentials->password)) {
                 if ($credentials->level === 'admin') {
-                    Alert::toast('Admin Berhasil Login', 'success');
+                    Alert::toast('Admin berhasil login.', 'success');
                     Auth::login($credentials);
                     $request->session()->regenerate();
                     return redirect()->intended('/dashboard');
@@ -43,7 +40,7 @@ class LoginController extends Controller
                 return redirect()->back()->with('error', 'Password salah.');
             }
         } else {
-            return redirect()->back()->with('error', 'Email atau Username salah.');
+            return redirect()->back()->with('error', 'Email atau username salah.');
         }
     }
 

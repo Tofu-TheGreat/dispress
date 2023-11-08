@@ -1,3 +1,8 @@
+input:placeholder-shown {
+    opacity: 0.6;
+    text-transform: none;
+}
+
 .capitalize {
     text-transform: capitalize;
 }

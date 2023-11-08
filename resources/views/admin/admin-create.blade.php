@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
-                                        <label for="nama">Masukkan Nama : </label>
+                                        <label for="nama">Masukkan Nama: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -56,7 +56,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                                placeholder="Masukkan Nama Lengkap" value="{{ old('nama') }}"
+                                                placeholder="ex: Pasya Nada Abinaya" value="{{ old('nama') }}"
                                                 id="nama" name="nama" required autofocus>
                                         </div>
                                         <span class="text-danger">
@@ -68,7 +68,7 @@
                                 </div>
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="nip">Masukkan NIP : </label>
+                                        <label class="capitalize" for="nip">Masukkan NIP: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -76,8 +76,8 @@
                                                 </div>
                                             </div>
                                             <input type="number" class="form-control @error('nip') is-invalid @enderror"
-                                                placeholder="Masukkan NIP" value="{{ old('nip') }}" id="nip"
-                                                name="nip" required>
+                                                placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
+                                                id="nip" name="nip" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('nip')
@@ -88,7 +88,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="username">Masukkan Username : </label>
+                                        <label for="username">Masukkan Username: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -97,7 +97,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('username') is-invalid @enderror"
-                                                placeholder="Masukkan Username" value="{{ old('username') }}" id="username"
+                                                placeholder="ex: pasyaNada" value="{{ old('username') }}" id="username"
                                                 name="username" required>
                                         </div>
                                         <span class="text-danger">
@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="level">Pilih Level : </label>
+                                        <label class="capitalize" for="level">Pilih Level: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="jabatan">Pilih Jabatan : </label>
+                                        <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -178,7 +178,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="email">Masukkan Email : </label>
+                                        <label for="email">Masukkan Email: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -187,7 +187,7 @@
                                             </div>
                                             <input type="email"
                                                 class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="contoh@gmail.com" value="{{ old('email') }}"
+                                                placeholder="ex: contoh@gmail.com" value="{{ old('email') }}"
                                                 id="email" name="email" required>
                                         </div>
                                         <span class="text-danger">
@@ -199,7 +199,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="no_telp">Masukkan Nomor Telepon : </label>
+                                        <label for="no_telp">Masukkan Nomor Telepon: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -208,7 +208,7 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                placeholder="Masukkan Nomor Telpon" value="{{ old('nomor_telpon') }}"
+                                                placeholder="ex: 0878-2730-3388" value="{{ old('nomor_telpon') }}"
                                                 id="nomor_telpon" name="nomor_telpon" required>
                                         </div>
                                         <span class="text-danger">
@@ -220,7 +220,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="password">Masukkan Password : </label>
+                                        <label for="password">Masukkan Password: </label>
                                         <div class="input-group position-relative">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -229,7 +229,7 @@
                                             </div>
                                             <input type="password"
                                                 class="form-control @error('password') is-invalid @enderror"
-                                                placeholder="Masukkan Password" value="{{ old('password') }}"
+                                                placeholder="ex: psyanda153" value="{{ old('password') }}"
                                                 id="password" name="password" required>
                                             <i class="bi bi-eye view-password-icon"></i>
                                         </div>
@@ -242,9 +242,11 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="foto">Masukkan Foto : </label>
-                                <small class="d-block">Catatan : Masukkan Foto dengan Format(jpeg,png,jpg), maksimal 10
-                                    mb</small>
+                                <label for="foto">Masukkan foto: </label>
+                                <small class="d-block">Catatan: masukkan foto dengan format (JPEG, PNG,
+                                    JPG),
+                                    maksimal 10
+                                    MB.</small>
                                 <input type="file"
                                     class="img-filepond-preview @error('foto_user') is-invalid @enderror" id="foto_user"
                                     name="foto_user" accept="jpg,jpeg,png,svg">
@@ -280,7 +282,7 @@
             </div>
         </div>
     </section>
-
+@endsection
 @section('script')
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
@@ -305,5 +307,4 @@
             });
         });
     </script>
-@endsection
 @endsection

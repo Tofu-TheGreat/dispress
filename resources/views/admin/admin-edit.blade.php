@@ -33,16 +33,14 @@
                 <div class="">
                     <div class="card">
                         <div class="card-header">
-                            <div class="col-8">
-                                <div class="row">
-                                    <div class="col-1 mr-1">
-                                        <a href="/admin">
-                                            <i class="bi bi-arrow-left"></i>
-                                        </a>
-                                    </div>
-                                    <div class="col-">
-                                        <h4 class="text-primary">Edit Data Administrator</h4>
-                                    </div>
+                            <div class="row">
+                                <div class="col-1 mr-3">
+                                    <a href="/admin">
+                                        <i class="bi bi-arrow-left"></i>
+                                    </a>
+                                </div>
+                                <div class="col-">
+                                    <h4 class="text-primary">Edit Data Administrator</h4>
                                 </div>
                             </div>
                         </div>

@@ -37,7 +37,11 @@ class AdminController extends Controller
     public function indexAdmin(Request $request)
     {
         if ($request->jabatan) {
-            $usersList = User::where('jabatan', $request->jabatan)->get();
+            if ($request->jabatan == "kp") {
+                $usersList = User::where('jabatan', '0')->where('level', 'admin')->get();
+            } else {
+                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'admin')->get();
+            }
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {

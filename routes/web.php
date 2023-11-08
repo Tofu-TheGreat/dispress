@@ -41,4 +41,6 @@ Route::get('admin-export', [ExportController::class, 'export_admin'])->name('adm
 Route::post('admin-import', [ImportController::class, 'import_admin'])->name('admin.import');
 
 Route::resource('/admin', AdminController::class)->middleware('auth');
+Route::resource('/officer', OfficerController::class)->middleware('auth');
+Route::resource('/staff', StaffController::class)->middleware('auth');
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);

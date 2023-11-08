@@ -57,9 +57,6 @@
                             <div class="form-group">
                                 <label class="capitalize" for="jabatan">Pilih Jabatan : </label>
                                 <div class="input-group">
-                                    <div class="input-group-text">
-                                        <i class="fa fa-user-plus"></i>
-                                    </div>
                                     <select class="filter form-control select2 @error('jabatan') is-invalid  @enderror "
                                         id="jabatan" name="jabatan" required>
                                         <option value="">Pilih Jabatan User</option>

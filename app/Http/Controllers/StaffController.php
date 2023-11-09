@@ -15,6 +15,8 @@ class StaffController extends Controller
 
     public function __construct(StaffRepository $staffRepository)
     {
+        // Menetapkan objek StaffRepository yang diberikan ke properti $staffRepository
+        //Semua function yang dipakai berada di App/Repository/Admin/AdminImplement.php
         $this->staffRepository = $staffRepository;
     }
     /**
@@ -117,6 +119,7 @@ class StaffController extends Controller
      */
     public function edit(string $id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->staffRepository->edit($encryptId);
         // return view('admin.admin-edit', [
@@ -132,6 +135,7 @@ class StaffController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $this->staffRepository->update($request->id_user, $request);
         // return redirect()->intended('/admin')->with('success', 'Berhasil Mengedit data Admin');
     }

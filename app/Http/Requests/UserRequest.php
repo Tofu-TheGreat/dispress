@@ -30,7 +30,7 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->input('id_user') . ',id_user',
+            'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->input('id_user') . ',id_user', //melakukan validasi berdasarkan id yang dikirimkan
             'nama' => 'required',
             'level' => 'required',
             'jabatan' => 'required',

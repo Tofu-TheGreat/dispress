@@ -15,6 +15,8 @@ class AdminController extends Controller
 
     public function __construct(AdminRepository $adminRepository)
     {
+        // Menetapkan objek AdminRepository yang diberikan ke properti $adminRepository
+        //Semua function yang dipakai berada di App/Repository/Admin/AdminImplement.php
         $this->adminRepository = $adminRepository;
     }
 
@@ -23,6 +25,7 @@ class AdminController extends Controller
      */
     public function index()
     {
+        // Mengambil daftar pengguna dari AdminRepository
         $usersList = $this->adminRepository->getUserbyAdmin();
         return view('admin.admin-data', [
             'title' => 'Admin',
@@ -35,6 +38,7 @@ class AdminController extends Controller
     public function indexAdmin(Request $request)
     {
         if ($request->jabatan) {
+            // Memeriksa nilai 'jabatan' dan menyesuaikan query yang dikirimkan ajax
             if ($request->jabatan == "kp") {
                 $usersList = User::where('jabatan', '0')->where('level', 'admin')->get();
             } else {
@@ -103,6 +107,7 @@ class AdminController extends Controller
      */
     public function show($id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->adminRepository->show($encryptId);
         return view('admin.admin-detail', [
@@ -118,6 +123,7 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
         return view('admin.admin-edit', [

@@ -16,6 +16,8 @@ class OfficerController extends Controller
 
     public function __construct(OfficerRepository $officerRepository)
     {
+        // Menetapkan objek OfficerRepository yang diberikan ke properti $officerRepository
+        //Semua function yang dipakai berada di App/Repository/Admin/AdminImplement.php
         $this->officerRepository = $officerRepository;
     }
     /**
@@ -103,6 +105,7 @@ class OfficerController extends Controller
      */
     public function show(string $id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->officerRepository->show($encryptId);
         return view('admin.officers.officer-detail', [
@@ -118,6 +121,7 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
+        //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->officerRepository->edit($encryptId);
         // return view('admin.admin-edit', [

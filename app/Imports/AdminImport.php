@@ -25,7 +25,7 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
             'nip' => $row['nip'],
             'nama'     => $row['nama'],
             'level'     => $row['level'],
-            'jabatan'     => $this->transformJabatan(Str::title($row['jabatan'])),
+            'jabatan'     => $this->transformJabatan(Str::title($row['jabatan'])), //Mengubah value jabatan serta mengubah letter case dari value yang dikirim
             'username'     => $row['username'],
             'email'    => $row['email'],
             'nomor_telpon'     => $row['nomor_telpon'],
@@ -73,6 +73,7 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
 
     public function transformJabatan($data)
     {
+        //Mengubah value jabatan agar sesuai dengan nilai di database
         switch ($data) {
             case 'Kepala Sekolah':
                 return '0';

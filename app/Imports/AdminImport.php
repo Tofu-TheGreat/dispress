@@ -9,6 +9,7 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 
 class AdminImport implements ToModel, WithHeadingRow, WithValidation
@@ -24,7 +25,7 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
             'nip' => $row['nip'],
             'nama'     => $row['nama'],
             'level'     => $row['level'],
-            'jabatan'     => $this->transformJabatan($row['jabatan']),
+            'jabatan'     => $this->transformJabatan(Str::title($row['jabatan'])),
             'username'     => $row['username'],
             'email'    => $row['email'],
             'nomor_telpon'     => $row['nomor_telpon'],
@@ -81,7 +82,7 @@ class AdminImport implements ToModel, WithHeadingRow, WithValidation
                 return '2';
             case 'Kesiswaan':
                 return '3';
-            case 'Sarana dan Prasarana':
+            case 'Sarana Dan Prasarana':
                 return '4';
             case 'Kepala Jurusan':
                 return '5';

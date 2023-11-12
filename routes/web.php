@@ -29,20 +29,25 @@ Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', '
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+
+Route::resource('/admin', AdminController::class)->middleware('auth');
+
 Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFromUser'])->name('deleteImageFromUser');
 Route::post('/filter', [AdminController::class, 'filterDataAdmin'])->name('filterDataAdmin');
-
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::get('admin-export', [ExportController::class, 'export_admin'])->name('admin.export');
 Route::post('admin-import', [ImportController::class, 'import_admin'])->name('admin.import');
 
+Route::resource('/officer', OfficerController::class)->middleware('auth');
+
 Route::get('officer-export', [ExportController::class, 'export_officer'])->name('officer.export');
 Route::post('officer-import', [ImportController::class, 'import_officer'])->name('officer.import');
 
-Route::resource('/admin', AdminController::class)->middleware('auth');
-Route::resource('/officer', OfficerController::class)->middleware('auth');
 Route::resource('/staff', StaffController::class)->middleware('auth');
+
+Route::get('staff-export', [ExportController::class, 'export_staff'])->name('staff.export');
+Route::post('staff-import', [ImportController::class, 'import_staff'])->name('staff.import');
 
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);

@@ -13,8 +13,8 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-5 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/officer">Officer</a></div>
-                        <div class="breadcrumb-item d-inline">Profile Officer</div>
+                        <div class="breadcrumb-item d-inline active"><a href="/staff">Staff</a></div>
+                        <div class="breadcrumb-item d-inline">Profile Staff</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -27,35 +27,35 @@
                 <div class="row card-header">
                     <div class="col-10">
                         <div class="row">
-                            <a href="/officer" title="Kembali">
+                            <a href="/staff" title="Kembali">
                                 <i class="bi bi-arrow-left mr-3"></i>
                             </a>
-                            <h4 class="text-primary ">Profile Officer</h4>
+                            <h4 class="text-primary ">Profile Staff</h4>
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-end btn-group">
-                        <a href="/officer/{{ Crypt::encryptString($detailDataOfficer->id_user) }}/edit" class="text-white">
+                        <a href="/staff/{{ Crypt::encryptString($detailDataStaff->id_user) }}/edit" class="text-white">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                title="Edit Data Officer" data-original-title="Edit Data Officer">
+                                title="Edit Data Staff" data-original-title="Edit Data Staff">
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
                     </div>
                 </div>
                 <div class="card-body ">
-                    <form action="/officer" method="post" enctype="multipart/form-data">
+                    <form action="/staffistrator" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-md-4 position-relative">
-                                @if ($detailDataOfficer->foto_user)
+                                @if ($detailDataStaff->foto_user)
                                     <div class="d-flex justify-content-center">
-                                        <img src="{{ asset('image_save/' . $detailDataOfficer->foto_user) }}"
-                                            alt="foto {{ $detailDataOfficer->username }}" class="foto-user">
+                                        <img src="{{ asset('image_save/' . $detailDataStaff->foto_user) }}"
+                                            alt="foto {{ $detailDataStaff->username }}" class="foto-user">
                                     </div>
                                 @else
                                     <div class="d-flex justify-content-center">
                                         <img src="{{ asset('assets/img/avatar/avatar-1.png') }}"
-                                            alt="foto {{ $detailDataOfficer->username }}" class="foto-user">
+                                            alt="foto {{ $detailDataStaff->username }}" class="foto-user">
                                     </div>
                                 @endif
                             </div>
@@ -72,7 +72,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control capitalize @error('nama') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->nama }}" id="nama" name="nama"
+                                                    value="{{ $detailDataStaff->nama }}" id="nama" name="nama"
                                                     readonly>
                                             </div>
                                         </div>
@@ -88,8 +88,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('username') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->username }}" id="username"
-                                                    name="username" readonly>
+                                                    value="{{ $detailDataStaff->username }}" id="username" name="username"
+                                                    readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +104,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('email') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->email }}" id="email" name="email"
+                                                    value="{{ $detailDataStaff->email }}" id="email" name="email"
                                                     readonly>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                    value="{{ currencyPhone($detailDataOfficer->nomor_telpon) }}"
+                                                    value="{{ currencyPhone($detailDataStaff->nomor_telpon) }}"
                                                     id="nomor_telpon" name="nomor_telpon" readonly>
                                             </div>
                                         </div>
@@ -136,7 +136,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('nip') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->nip }}" id="nip" name="nip"
+                                                    value="{{ $detailDataStaff->nip }}" id="nip" name="nip"
                                                     readonly>
                                             </div>
                                         </div>
@@ -152,7 +152,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('jabatan') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->jabatan }}" id="jabatan"
+                                                    value="{{ $detailDataStaff->jabatan }}" id="jabatan"
                                                     name="jabatan" readonly>
                                             </div>
                                         </div>
@@ -170,14 +170,14 @@
                                         </div>
                                         <input type="text"
                                             class="form-control capitalize @error('level') is-invalid @enderror"
-                                            value="{{ $detailDataOfficer->level === 'admin' ? 'Officer' : $detailDataOfficer->level }}"
+                                            value="{{ $detailDataStaff->level === 'admin' ? 'Staff' : $detailDataStaff->level }}"
                                             id="level" name="level" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class=" ">
-                                    <a href="/officer" class="btn btn-warning  ">
+                                    <a href="/staff" class="btn btn-warning  ">
                                         <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                         <span class="bi-text">Kembali</span>
                                     </a>

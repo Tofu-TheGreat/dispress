@@ -107,12 +107,12 @@ class OfficerController extends Controller
     {
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
-        $detailAdmin = $this->officerRepository->show($encryptId);
+        $detailOfficer = $this->officerRepository->show($encryptId);
         return view('admin.officers.officer-detail', [
-            'title' => 'Detail Admin',
+            'title' => 'Detail Officer',
             'active' => 'Officer',
             'active1' => 'users',
-            'detailDataAdmin' => $detailAdmin
+            'detailDataOfficer' => $detailOfficer
         ]);
     }
 
@@ -125,10 +125,10 @@ class OfficerController extends Controller
         $encryptId = Crypt::decryptString($id);
         $editData = $this->officerRepository->edit($encryptId);
         return view('admin.officers.officer-edit', [
-            'title' => 'Edit Admin',
-            'active' => 'Admin',
+            'title' => 'Edit Officer',
+            'active' => 'Officer',
             'active1' => 'users',
-            'editDataAdmin' => $editData
+            'editDataOfficer' => $editData
         ]);
     }
 
@@ -138,7 +138,7 @@ class OfficerController extends Controller
     public function update(UserRequest $request, string $id)
     {
         $this->officerRepository->update($request->id_user, $request);
-        return redirect()->intended('/officer')->with('success', 'Berhasil Mengedit data Officer');
+        return redirect()->intended('/officer')->with('success', 'Berhasil meng-edit data Officer');
     }
 
     /**
@@ -147,12 +147,12 @@ class OfficerController extends Controller
     public function destroy(string $id)
     {
         $this->officerRepository->destroy($id);
-        return back()->with('success', 'Berhasil Menghapus data officer');
+        return back()->with('success', 'Berhasil menghapus data officer');
     }
 
     public function deleteImageFromUser($id)
     {
         $this->officerRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil Menghapus foto profil Officer');
+        return back()->with('success', 'Berhasil menghapus foto profil Officer');
     }
 }

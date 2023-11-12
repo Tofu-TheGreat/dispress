@@ -20,7 +20,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/officer">Officer</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/staff">Staff</a></div>
                         <div class="breadcrumb-item d-inline">Edit Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -28,24 +28,24 @@
             </div>
         </div>
 
-        @foreach ($editDataOfficer as $data)
+        @foreach ($editDataStaff as $data)
             <div class="section-body">
                 <div class="">
                     <div class="card">
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-1 mr-3">
-                                    <a href="/officer">
+                                    <a href="/staff">
                                         <i class="bi bi-arrow-left"></i>
                                     </a>
                                 </div>
                                 <div class="col-">
-                                    <h4 class="text-primary">Edit Data Officer</h4>
+                                    <h4 class="text-primary">Edit Data Staff</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body ">
-                            <form action="/officer/{{ $data->id_user }}" method="post" enctype="multipart/form-data">
+                            <form action="/staff/{{ $data->id_user }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <input type="text" name="id_user" value="{{ $data->id_user }}" id="" hidden>
@@ -195,8 +195,8 @@
                                                             name="level">
                                                             <option selected disabled>Pilih Level</option>
                                                             <option value="admin">Admin</option>
-                                                            <option value="officer" selected>Officer</option>
-                                                            <option value="staff">staff</option>
+                                                            <option value="officer">officer</option>
+                                                            <option value="staff" selected>staff</option>
                                                         </select>
                                                     </div>
                                                     <span class="text-danger">
@@ -219,7 +219,7 @@
                                                 </div>
                                                 <select class="form-control select2" id="jabatan" name="jabatan">
                                                     <option selected disabled>Pilih Jabatan</option>
-                                                    @foreach ($editDataOfficer as $item)
+                                                    @foreach ($editDataStaff as $item)
                                                         <option value="0"
                                                             {{ $data->jabatan === '0' ? 'selected' : '' }}>
                                                             Kepala Sekolah</option>
@@ -284,7 +284,7 @@
                                 <div class="col-12 d-flex justify-content-end">
                                     <div class="row d-flex justify-content-end">
                                         <div class="ml-2 ">
-                                            <a href="/officer" class="btn btn-warning  ">
+                                            <a href="/staff" class="btn btn-warning  ">
                                                 <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                                 <span class="bi-text">Kembali</span>
                                             </a>

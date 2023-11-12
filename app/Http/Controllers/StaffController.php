@@ -25,12 +25,12 @@ class StaffController extends Controller
     public function index()
     {
         $usersList = $this->staffRepository->getUserbyStaff();
-        // return view('admin.admin-data', [
-        //     'title' => 'Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        //     'users' => $usersList,
-        // ]);
+        return view('admin.staff.staff-data', [
+            'title' => 'Staff',
+            'active' => 'Staff',
+            'active1' => 'users',
+            'users' => $usersList,
+        ]);
     }
 
     public function indexAdmin(Request $request)
@@ -53,7 +53,7 @@ class StaffController extends Controller
                     return '<span class="capitalize badge badge-success text-center ">' . $usersList->level . '</span>';
                 })
                 ->addColumn('action', function ($usersList) {
-                    return view('admin.elements.create_button')->with('usersList', $usersList);
+                    return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
                 ->rawColumns(['akses', 'nama', 'phone'])
                 ->toJson();
@@ -71,7 +71,7 @@ class StaffController extends Controller
                     return '<span class="capitalize badge badge-success text-center ">' . $usersList->level . '</span>';
                 })
                 ->addColumn('action', function ($usersList) {
-                    return view('admin.elements.create_button')->with('usersList', $usersList);
+                    return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
                 ->rawColumns(['akses', 'nama', 'phone'])
                 ->toJson();
@@ -83,11 +83,11 @@ class StaffController extends Controller
      */
     public function create()
     {
-        // return view('admin.admin-create', [
-        //     'title' => 'Create Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        // ]);
+        return view('admin.staff.staff-create', [
+            'title' => 'Create Staff',
+            'active' => 'Staff',
+            'active1' => 'users',
+        ]);
     }
 
     /**
@@ -95,8 +95,8 @@ class StaffController extends Controller
      */
     public function store(UserRequest $request)
     {
-        $data = $this->staffRepository->store($request);;
-        // return redirect()->intended('/admin')->with('success', 'Berhasil Menambah data Admin');
+        $this->staffRepository->store($request);;
+        return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff');
     }
 
     /**
@@ -105,13 +105,13 @@ class StaffController extends Controller
     public function show(string $id)
     {
         $encryptId = Crypt::decryptString($id);
-        $detailAdmin = $this->staffRepository->show($encryptId);
-        // return view('admin.admin-detail', [
-        //     'title' => 'Detail Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        //     'detailDataAdmin' => $detailAdmin
-        // ]);
+        $detailStaff = $this->staffRepository->show($encryptId);
+        return view('admin.staff.staff-detail', [
+            'title' => 'Detail Staff',
+            'active' => 'Staff',
+            'active1' => 'users',
+            'detailDataStaff' => $detailStaff
+        ]);
     }
 
     /**
@@ -122,12 +122,12 @@ class StaffController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->staffRepository->edit($encryptId);
-        // return view('admin.admin-edit', [
-        //     'title' => 'Edit Admin',
-        //     'active' => 'Admin',
-        //     'active1' => 'users',
-        //     'editDataAdmin' => $editData
-        // ]);
+        return view('admin.staff.staff-edit', [
+            'title' => 'Edit Staff',
+            'active' => 'Staff',
+            'active1' => 'users',
+            'editDataStaff' => $editData
+        ]);
     }
 
     /**
@@ -137,7 +137,7 @@ class StaffController extends Controller
     {
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $this->staffRepository->update($request->id_user, $request);
-        // return redirect()->intended('/admin')->with('success', 'Berhasil Mengedit data Admin');
+        return redirect()->intended('/staff')->with('success', 'Berhasil meng-edit data Staff');
     }
 
     /**
@@ -146,12 +146,12 @@ class StaffController extends Controller
     public function destroy(string $id)
     {
         $this->staffRepository->destroy($id);
-        // return back()->with('success', 'Berhasil Menghapus data Admin');
+        return back()->with('success', 'Berhasil menghapus data Staff');
     }
 
     public function deleteImageFromUser($id)
     {
         $this->staffRepository->deleteImageFromUser($id);
-        // return back()->with('success', 'Berhasil Menghapus foto profil Admin');
+        return back()->with('success', 'Berhasil menghapus foto profil Staff');
     }
 }

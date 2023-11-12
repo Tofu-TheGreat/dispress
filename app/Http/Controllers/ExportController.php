@@ -13,4 +13,9 @@ class ExportController extends Controller
     {
         return Excel::download(new AdminExport, 'Data-Admin.xlsx');
     }
+
+    public function export_officer()
+    {
+        return Excel::download(new AdminExport, 'Data-Admin.xlsx');
+    }
 }

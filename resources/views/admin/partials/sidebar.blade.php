@@ -24,7 +24,8 @@
                     </li>
                     <li><a class="nav-link {{ $active == 'Officer' ? 'active text-info' : '' }}"
                             href="/officer">Officer</a></li>
-                    <li><a class="nav-link" href="layout-top-navigation.html">Staff</a></li>
+                    <li><a class="nav-link {{ $active == 'Staff' ? 'active text-info' : '' }}" href="/staff">Staff</a>
+                    </li>
                 </ul>
             </li>
             <li class="dropdown {{ $active1 == 'surat' ? 'active' : '' }}">

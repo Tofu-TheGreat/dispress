@@ -20,7 +20,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/admin">Administrator</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/officer">Officer</a></div>
                         <div class="breadcrumb-item d-inline">Edit Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -35,17 +35,17 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-1 mr-3">
-                                    <a href="/admin">
+                                    <a href="/officer">
                                         <i class="bi bi-arrow-left"></i>
                                     </a>
                                 </div>
                                 <div class="col-">
-                                    <h4 class="text-primary">Edit Data Administrator</h4>
+                                    <h4 class="text-primary">Edit Data Officer</h4>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body ">
-                            <form action="/admin/{{ $data->id_user }}" method="post" enctype="multipart/form-data">
+                            <form action="/officer/{{ $data->id_user }}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 @method('PUT')
                                 <input type="text" name="id_user" value="{{ $data->id_user }}" id="" hidden>
@@ -194,9 +194,9 @@
                                                         <select class="form-control select2" id="level"
                                                             name="level">
                                                             <option selected disabled>Pilih Level</option>
-                                                            <option value="admin" selected>Admin</option>
-                                                            <option value="petugas">Petugas</option>
-                                                            <option value="wali">wali</option>
+                                                            <option value="admin">Admin</option>
+                                                            <option value="officer" selected>Officer</option>
+                                                            <option value="staff">staff</option>
                                                         </select>
                                                     </div>
                                                     <span class="text-danger">
@@ -284,7 +284,7 @@
                                 <div class="col-12 d-flex justify-content-end">
                                     <div class="row d-flex justify-content-end">
                                         <div class="ml-2 ">
-                                            <a href="/admin" class="btn btn-warning  ">
+                                            <a href="/officer" class="btn btn-warning  ">
                                                 <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                                 <span class="bi-text">Kembali</span>
                                             </a>
@@ -321,6 +321,8 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('#nip').inputmask('999999999999999999');
         });
     </script>
 

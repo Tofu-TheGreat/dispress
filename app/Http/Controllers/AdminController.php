@@ -74,7 +74,7 @@ class AdminController extends Controller
                     return '<span class="capitalize badge badge-success text-center ">' . $usersList->level . '</span>';
                 })
                 ->addColumn('action', function ($usersList) {
-                    return view('admin.elements.create_button')->with('usersList', $usersList);
+                    return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
                 ->rawColumns(['akses', 'nama', 'phone'])
                 ->toJson();

@@ -195,8 +195,8 @@
                                                             name="level">
                                                             <option selected disabled>Pilih Level</option>
                                                             <option value="admin" selected>Admin</option>
-                                                            <option value="petugas">Petugas</option>
-                                                            <option value="wali">wali</option>
+                                                            <option value="officer">officer</option>
+                                                            <option value="staff">staff</option>
                                                         </select>
                                                     </div>
                                                     <span class="text-danger">

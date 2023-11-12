@@ -37,17 +37,17 @@ Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFro
 Route::post('/filter', [AdminController::class, 'filterDataAdmin'])->name('filterDataAdmin');
 
 Route::get('admin-export', [ExportController::class, 'export_admin'])->name('admin.export');
-Route::post('admin-import', [ImportController::class, 'import_admin'])->name('admin.import');
+Route::post('admin-import', [ImportController::class, 'import_user'])->name('admin.import');
 
 Route::resource('/officer', OfficerController::class)->middleware('auth');
 
 Route::get('officer-export', [ExportController::class, 'export_officer'])->name('officer.export');
-Route::post('officer-import', [ImportController::class, 'import_officer'])->name('officer.import');
+Route::post('officer-import', [ImportController::class, 'import_user'])->name('officer.import');
 
 Route::resource('/staff', StaffController::class)->middleware('auth');
 
 Route::get('staff-export', [ExportController::class, 'export_staff'])->name('staff.export');
-Route::post('staff-import', [ImportController::class, 'import_staff'])->name('staff.import');
+Route::post('staff-import', [ImportController::class, 'import_user'])->name('staff.import');
 
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);

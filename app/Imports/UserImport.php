@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 
-class AdminImport implements ToModel, WithHeadingRow, WithValidation
+class UserImport implements ToModel, WithHeadingRow, WithValidation
 {
     /**
      * @param array $row

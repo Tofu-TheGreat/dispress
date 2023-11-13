@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'nip' => '213720078171677275',
-            'nama' => 'Pasya Abinaya',
+            'nama' => 'Pasya Abinaya Nada Albana',
             'level' => 'admin',
             'jabatan' => '9',
             'username' => 'pasya.nada',
@@ -39,7 +39,7 @@ class DatabaseSeeder extends Seeder
 
         User::factory()->create([
             'nip' => '213720078171677277',
-            'nama' => 'Yudis Tiro',
+            'nama' => 'Yudis Tiro Naka Albantoro',
             'level' => 'staff',
             'jabatan' => '9',
             'username' => 'naka',

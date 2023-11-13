@@ -146,7 +146,7 @@ class StaffController extends Controller
     public function destroy(string $id)
     {
         $this->staffRepository->destroy($id);
-        return back()->with('success', 'Berhasil menghapus data Staff');
+        return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff');
     }
 
     public function deleteImageFromUser($id)

@@ -350,7 +350,7 @@ Togle To Top
     padding: 10px;
     border: 1px solid rgba(255, 255, 255, 0.445);
     background-color: var(--main-color);
-    z-index: 9999;
+    z-index: 99;
     transition: all 0.4s ease-in-out;
     animation: bounceTop_03 2s linear infinite;
 }

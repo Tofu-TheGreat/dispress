@@ -6,12 +6,12 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-7 col-sm-12">
+                    <div class="col-md-8 col-sm-12">
                         <h4 class="text-dark judul-page">Manajemen Users</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-5 col-sm-12 text-center items-center mt-2 ">
+                    <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/staff">Staff</a></div>
                         <div class="breadcrumb-item d-inline">Profile Staff</div>
@@ -40,6 +40,17 @@
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
+                        <form method="POST" action="{{ route('staff.destroy', $detailDataStaff->id_user) }}"
+                            class="tombol-hapus">
+                            @csrf
+                            @method('DELETE')
+                            <a href="#" class="text-white ml-2 tombol-hapus">
+                                <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
+                                    data-placement="top" title="Hapus Data Staff" data-original-title="Hapus Data Staff">
+                                    <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                                </button>
+                            </a>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body ">
@@ -189,4 +200,36 @@
             </div>
         </div>
     </section>
+@endsection
+@section('script')
+    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+
+    <script>
+        document.body.addEventListener("click", function(event) {
+            const element = event.target;
+
+            if (element.classList.contains("tombol-hapus")) {
+                swal({
+                        title: 'Apakah anda yakin?',
+                        text: 'Ingin menghapus data Staff ini?',
+                        icon: 'warning',
+                        buttons: true,
+                        dangerMode: true,
+                    }).then((willDelete) => {
+                        if (willDelete) {
+                            swal('Data Staff berhasil dihapus!', {
+                                icon: 'success',
+                            });
+                            element.closest('form').submit();
+                        } else {
+                            swal('Data Staff tidak jadi dihapus!');
+                        }
+                    })
+                    .catch(error => {
+                        // Handle any errors here
+                        console.error('Error:', error);
+                    });
+            }
+        });
+    </script>
 @endsection

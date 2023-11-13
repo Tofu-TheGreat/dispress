@@ -104,6 +104,17 @@
                                                 data-bs-dismiss="alert" aria-label="Close"></button>
                                         </div>
                                     @endif
+                                    @if (session()->has('success'))
+                                        <div class="alert alert-success align-content-center d-flex justify-content-between"
+                                            role="alert" style="width: 110%;">
+                                            <small class="fs-6 text-success">
+                                                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                                {{ session('success') }}
+                                            </small>
+                                            <button type="button" class="btn-close" style="width: 10px;height: 10px"
+                                                data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
                                 </div>
                                 <button type="submit" class="btn btn-submit-login mt-4"><i
                                         class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>

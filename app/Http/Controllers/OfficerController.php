@@ -147,7 +147,7 @@ class OfficerController extends Controller
     public function destroy(string $id)
     {
         $this->officerRepository->destroy($id);
-        return back()->with('success', 'Berhasil menghapus data officer');
+        return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer');
     }
 
     public function deleteImageFromUser($id)

@@ -50,11 +50,19 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         Surat::factory()->create([
-            'nomor_surat' => '1231/TU/2023',
+            'nomor_surat' => '091/1228-TU/2023',
             'tanggal_surat' => '2023-11-9',
             'isi_surat' => 'Perihal Rapat ',
             'pengirim_surat' => 'PT.Mencari Cinta Sejati',
             'id_user' => '5',
+            'scan_dokumen' => 'scan.pdf',
+        ]);
+        Surat::factory()->create([
+            'nomor_surat' => '090/1928-TU/2023',
+            'tanggal_surat' => '2028-11-9',
+            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
+            'pengirim_surat' => 'PT.Mencari Cinta Pasya',
+            'id_user' => '1',
             'scan_dokumen' => 'scan.pdf',
         ]);
     }

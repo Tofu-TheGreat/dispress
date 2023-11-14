@@ -149,7 +149,7 @@ class AdminController extends Controller
     public function destroy(string $id)
     {
         $this->adminRepository->destroy($id);
-        return back()->with('success', 'Berhasil menghapus data Admin.');
+        return redirect()->intended('/admin')->with('success', 'Berhasil menghapus data Admin.');
     }
 
     public function deleteImageFromUser($id)

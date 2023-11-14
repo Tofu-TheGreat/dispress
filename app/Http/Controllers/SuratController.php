@@ -32,7 +32,11 @@ class SuratController extends Controller
      */
     public function create()
     {
-        //
+        return view('manajemen-surat.surat-masuk.surat-masuk-create', [
+            'title' => 'Create Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk'
+        ]);
     }
 
     /**

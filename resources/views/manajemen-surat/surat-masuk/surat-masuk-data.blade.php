@@ -143,21 +143,24 @@
                                 <div class="row">
                                     @foreach ($suratList as $data)
                                         <div class="col-sm-12 col-md-12 col-lg-6">
-                                            <div class="card border shadow">
+                                            <div class="card card-primary shadow-sm">
                                                 <div class="card-header d-flex justify-content-between">
                                                     <div class="position-relative">
                                                         <h4>{{ $data->nomor_surat }}</h4>
-                                                        <small style="position: absolute; top: 50%;">Dari
+                                                        <small
+                                                            style="position: absolute; top: 50%;width: max-content;">Dari
                                                             {{ $data->pengirim_surat }}
                                                         </small>
                                                     </div>
                                                     <div class="card-header-action">
-                                                        <a data-collapse="#mycard-collapse1" class="btn btn-icon btn-info"
-                                                            href="#"><i class="fas fa-minus"></i></a>
+                                                        <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
+                                                            class="btn btn-icon btn-info" href="#"><i
+                                                                class="fas fa-minus"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="collapse show" id="mycard-collapse1">
-                                                    <div class="card-body card-body-surat position-relative">
+                                                <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
+                                                    <div class="card-body card-body-surat position-relative "
+                                                        style="min-height: 130px">
                                                         <p class="w-75"> {{ $data->isi_surat }}</p>
                                                         <div class="d-flex flex-column btn-group-action">
                                                             <a type="button" data-toggle="tooltip" data-placement="top"

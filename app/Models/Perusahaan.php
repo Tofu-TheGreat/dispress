@@ -15,4 +15,9 @@ class Perusahaan extends Model
         'alamat_perusahaan',
         'nomor_telepon',
     ];
+
+    public function surat()
+    {
+        return $this->belongsTo(Surat::class, 'id_perusahaan');
+    }
 }

@@ -34,7 +34,7 @@ class PerusahaanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->perusahaanRepository->store($request);
     }
 
     /**
@@ -42,7 +42,7 @@ class PerusahaanController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $this->perusahaanRepository->show($id);
     }
 
     /**
@@ -50,7 +50,7 @@ class PerusahaanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $this->perusahaanRepository->edit($id);
     }
 
     /**
@@ -58,7 +58,7 @@ class PerusahaanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->perusahaanRepository->update($request, $id);
     }
 
     /**
@@ -66,6 +66,6 @@ class PerusahaanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->perusahaanRepository->destroy($id);
     }
 }

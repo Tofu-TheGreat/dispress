@@ -9,6 +9,8 @@ use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
 use App\Repository\Officer\OfficerRepository;
 use App\Repository\Officer\OfficerImplement;
+use App\Repository\Perusahaan\PerusahaanImplement;
+use App\Repository\Perusahaan\PerusahaanRepository;
 use App\Repository\Staff\StaffRepository;
 use App\Repository\Staff\StaffImplement;
 use App\Repository\Surat\SuratRepository;
@@ -32,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(OfficerRepository::class, OfficerImplement::class);
         $this->app->bind(StaffRepository::class, StaffImplement::class);
         $this->app->bind(SuratRepository::class, SuratImplement::class);
+        $this->app->bind(PerusahaanRepository::class, PerusahaanImplement::class);
     }
 
     /**

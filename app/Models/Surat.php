@@ -16,8 +16,13 @@ class Surat extends Model
         'nomor_surat',
         'tanggal_surat',
         'isi_surat',
-        'pengirim_surat',
+        'id_perusahaan',
         'id_user',
         'scan_dokumen',
     ];
+
+    public function perusahaan()
+    {
+        return $this->hasOne(Perusahaan::class, 'id_perusahaan');
+    }
 }

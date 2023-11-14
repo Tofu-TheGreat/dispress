@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nomor_surat', 50);
             $table->date('tanggal_surat');
             $table->string('isi_surat', 100);
-            $table->string('pengirim_surat', 100);
+            $table->unsignedBigInteger('id_perusahaan');
+            $table->foreign('id_perusahaan')->references('id_perusahaan')->on('perusahaan')->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->string('scan_dokumen', 225);

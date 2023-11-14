@@ -149,7 +149,7 @@
                                                         <h4>{{ $data->nomor_surat }}</h4>
                                                         <small
                                                             style="position: absolute; top: 50%;width: max-content;">Dari
-                                                            {{ $data->pengirim_surat }}
+                                                            {{ $data->perusahaan->nama_perusahaan }}
                                                         </small>
                                                     </div>
                                                     <div class="card-header-action">
@@ -194,9 +194,12 @@
                                                                 class="mr-2">
                                                             <div>
                                                                 <div class="user-detail-name">
-                                                                    <a href="#">{{ $data->pengirim_surat }}</a>
+                                                                    <a
+                                                                        href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
                                                                 </div>
-                                                                <div class="text-job">Kesiswaan</div>
+                                                                <div class="text-job">
+                                                                    {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="text-center"

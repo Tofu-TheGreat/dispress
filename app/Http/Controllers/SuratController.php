@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SuratRequest;
+use App\Models\Perusahaan;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
 
@@ -32,10 +33,12 @@ class SuratController extends Controller
      */
     public function create()
     {
+        $perusahaanList = Perusahaan::get();
         return view('manajemen-surat.surat-masuk.surat-masuk-create', [
             'title' => 'Create Surat Masuk',
             'active1' => 'manajemen-surat',
-            'active' => 'Surat-masuk'
+            'active' => 'Surat-masuk',
+            'perusahaanList' => $perusahaanList
         ]);
     }
 

@@ -113,7 +113,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="pengirim_surat">Pengirim Surat: </label>
+                                        <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -121,18 +121,14 @@
                                                 </div>
                                             </div>
                                             <select
-                                                class="form-control select2  @error('pengirim_surat') is-invalid @enderror "
-                                                id="pengirim_surat" name="pengirim_surat" required>
+                                                class="form-control select2  @error('id_perusahaan') is-invalid @enderror "
+                                                id="id_perusahaan" name="id_perusahaan" required>
                                                 <option selected disabled>Pilih Pengirim Surat</option>
-                                                <option value="admin"
-                                                    {{ old('pengirim_surat') == 'admin' ? 'selected' : '' }} disabled>
-                                                    Admin</option>
-                                                <option value="officer"
-                                                    {{ old('pengirim_surat') == 'officer' ? 'selected' : '' }} selected>
-                                                    Officer</option>
-                                                <option value="staff"
-                                                    {{ old('pengirim_surat') == 'staff' ? 'selected' : '' }} disabled>
-                                                    Staff</option>
+                                                @foreach ($perusahaanList as $data)
+                                                    <option value="{{ $data->id_perusahaan }}"
+                                                        {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
+                                                        {{ $data->nama_perusahaan }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <span class="text-danger">

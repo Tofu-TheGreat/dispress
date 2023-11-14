@@ -35,6 +35,17 @@ class LoginController extends Controller
                     Auth::login($credentials);
                     $request->session()->regenerate();
                     return redirect()->intended('/dashboard');
+                } elseif ($credentials->level === 'officer') {
+                    // Alert::toast('Officer berhasil login.', 'success');
+                    // Auth::login($credentials);
+                    // $request->session()->regenerate();
+                    // return redirect()->intended('/dashboard');
+                    // return response()->json("Officer Berhasil Login");
+                } elseif ($credentials->level === 'staff') {
+                    // Alert::toast('Staff berhasil login.', 'success');
+                    // Auth::login($credentials);
+                    // $request->session()->regenerate();
+                    // return redirect()->intended('/dashboard');
                 }
             } else {
                 return redirect()->back()->with('error', 'Password salah.');

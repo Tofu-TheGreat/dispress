@@ -33,6 +33,7 @@ return new class extends Migration
             $table->dropForeign('id_user');
             $table->dropIndex('id_user');
             $table->dropColumn('id_user');
+            $table->softDeletes();
         });
     }
 };

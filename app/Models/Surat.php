@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Surat extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
     protected $table = 'surat';
     protected $primaryKey = 'id_surat';
     protected $fillable = [

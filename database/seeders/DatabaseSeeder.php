@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Surat;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory(10)->create();
-        \App\Models\Surat::factory(10)->create();
+        // \App\Models\Surat::factory(10)->create();
 
         User::factory()->create([
             'nip' => '213720078171677275',
@@ -47,6 +48,14 @@ class DatabaseSeeder extends Seeder
             'email' => 'yudis@gmail.com',
             'nomor_telpon' => '089123456999',
             'password' => bcrypt('password'),
+        ]);
+        Surat::factory()->create([
+            'nomor_surat' => '1231/TU/2023',
+            'tanggal_surat' => '2023-11-9',
+            'isi_surat' => 'Perihal Rapat ',
+            'pengirim_surat' => 'PT.Mencari Cinta Sejati',
+            'id_user' => '5',
+            'scan_dokumen' => 'scan.pdf',
         ]);
     }
 }

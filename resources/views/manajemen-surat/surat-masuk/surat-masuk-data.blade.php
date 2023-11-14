@@ -141,70 +141,71 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <div class="card border shadow">
-                                            <div class="card-header d-flex justify-content-between">
-                                                <div class="position-relative">
-                                                    <h4>000801028202800</h4>
-                                                    <small style="position: absolute; top: 50%;">Dari Nada untuk pasya
-                                                    </small>
-                                                </div>
-                                                <div class="card-header-action">
-                                                    <a data-collapse="#mycard-collapse1" class="btn btn-icon btn-info"
-                                                        href="#"><i class="fas fa-minus"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="collapse show" id="mycard-collapse1">
-                                                <div class="card-body card-body-surat position-relative">
-                                                    <p class="w-75"> Ini adalah isi surat Lorem ipsum dolor sit amet
-                                                        consectetur
-                                                        adipisicing
-                                                        elit. Consequuntur nesciunt</p>
-                                                    <div class="d-flex flex-column btn-group-action">
-                                                        <a type="button" data-toggle="tooltip" data-placement="top"
-                                                            title="Detail data surat"
-                                                            data-original-title="Detail data surat"
-                                                            class="btn btn-info has-icon text-white tombol-detail-surat"
-                                                            href=""><i class="pl-1  bi bi-eye "></i>
-                                                        </a>
-                                                        <a type="button" data-toggle="tooltip" data-placement="left"
-                                                            title="Edit data surat" data-original-title="Edit data surat"
-                                                            class="btn btn-warning has-icon text-white tombol-edit-surat"
-                                                            href=""><i class="pl-1  bi bi-pencil-square "></i>
-                                                        </a>
-                                                        <form method="POST" action="" class="tombol-hapus">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" data-toggle="tooltip"
-                                                                data-placement="bottom" title="Hapus data surat"
-                                                                data-original-title="Hapus data surat"
-                                                                class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
-                                                                href=""><i class="pl-1  bi bi-trash "></i>
-                                                            </button>
-                                                        </form>
+                                    @foreach ($suratList as $data)
+                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                            <div class="card border shadow">
+                                                <div class="card-header d-flex justify-content-between">
+                                                    <div class="position-relative">
+                                                        <h4>{{ $data->nomor_surat }}</h4>
+                                                        <small style="position: absolute; top: 50%;">Dari
+                                                            {{ $data->pengirim_surat }}
+                                                        </small>
+                                                    </div>
+                                                    <div class="card-header-action">
+                                                        <a data-collapse="#mycard-collapse1" class="btn btn-icon btn-info"
+                                                            href="#"><i class="fas fa-minus"></i></a>
                                                     </div>
                                                 </div>
-                                                <div class="card-footer d-flex justify-content-between">
-                                                    <div class="d-flex flex-row ">
-                                                        <img alt="image" src="assets/img/avatar/avatar-1.png"
-                                                            style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                            class="mr-2">
-                                                        <div>
-                                                            <div class="user-detail-name">
-                                                                <a href="#">Hasan Basri</a>
-                                                            </div>
-                                                            <div class="text-job">Kesiswaan</div>
+                                                <div class="collapse show" id="mycard-collapse1">
+                                                    <div class="card-body card-body-surat position-relative">
+                                                        <p class="w-75"> {{ $data->isi_surat }}</p>
+                                                        <div class="d-flex flex-column btn-group-action">
+                                                            <a type="button" data-toggle="tooltip" data-placement="top"
+                                                                title="Detail data surat"
+                                                                data-original-title="Detail data surat"
+                                                                class="btn btn-info has-icon text-white tombol-detail-surat"
+                                                                href=""><i class="pl-1  bi bi-eye "></i>
+                                                            </a>
+                                                            <a type="button" data-toggle="tooltip" data-placement="left"
+                                                                title="Edit data surat"
+                                                                data-original-title="Edit data surat"
+                                                                class="btn btn-warning has-icon text-white tombol-edit-surat"
+                                                                href=""><i class="pl-1  bi bi-pencil-square "></i>
+                                                            </a>
+                                                            <form method="POST" action="" class="tombol-hapus">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" data-toggle="tooltip"
+                                                                    data-placement="bottom" title="Hapus data surat"
+                                                                    data-original-title="Hapus data surat"
+                                                                    class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
+                                                                    href=""><i class="pl-1  bi bi-trash "></i>
+                                                                </button>
+                                                            </form>
                                                         </div>
                                                     </div>
-                                                    <div class="text-center" style="margin-left: 15%;margin-top: 10px">
-                                                        22-December-2028
+                                                    <div class="card-footer d-flex justify-content-between">
+                                                        <div class="d-flex flex-row ">
+                                                            <img alt="image" src="assets/img/avatar/avatar-1.png"
+                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                class="mr-2">
+                                                            <div>
+                                                                <div class="user-detail-name">
+                                                                    <a href="#">{{ $data->pengirim_surat }}</a>
+                                                                </div>
+                                                                <div class="text-job">Kesiswaan</div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="text-center"
+                                                            style="margin-left: 15%;margin-top: 10px">
+                                                            {{ $data->tanggal_surat }}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
-
                             </div>
                         </div>
                     </div>

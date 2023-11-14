@@ -18,7 +18,13 @@ class SuratController extends Controller
      */
     public function index()
     {
-        $this->suratRepository->index();
+        $suratList = $this->suratRepository->index();
+        return view('manajemen-surat.surat-masuk.surat-masuk-data', [
+            'title' => 'Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk',
+            'suratList' => $suratList
+        ]);
     }
 
     /**

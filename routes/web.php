@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, StaffController, SuratMasukController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, StaffController, SuratController, SuratMasukController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -55,4 +55,4 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
 // Manajemen Surat
 
-Route::resource('/surat-masuk', SuratMasukController::class)->middleware('auth');
+Route::resource('/surat-masuk', SuratController::class)->middleware('auth');

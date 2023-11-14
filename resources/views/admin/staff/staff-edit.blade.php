@@ -354,13 +354,13 @@
             if (element.classList.contains("tombol-hapus-profile")) {
                 swal({
                     title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
+                    text: 'Ingin menghapus foto profile Staff ini?',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
+                        swal('Foto profile Staff berhasil dihapus!', {
                             icon: 'success',
                         });
                         // Make an AJAX request to trigger the delete
@@ -379,7 +379,7 @@
                                 console.error('Error:', error);
                             });
                     } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
+                        swal('Foto profile Staff tidak jadi dihapus!');
                     }
                 });
             }

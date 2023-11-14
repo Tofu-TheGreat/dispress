@@ -25,7 +25,7 @@ class SuratImplement implements SuratRepository
             'nomor_surat' => $data->nomor_surat,
             'tanggal_surat' => $data->tanggal_surat,
             'isi_surat' => $data->isi_surat,
-            'pengirim_surat' => $data->pengirim_surat,
+            'id_perusahaan' => $data->id_perusahaan,
             'id_user' => $data->id_user,
             'scan_dokumen' => $nama_dokumen,
         ]);

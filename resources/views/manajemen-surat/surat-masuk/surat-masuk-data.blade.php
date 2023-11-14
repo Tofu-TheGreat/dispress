@@ -111,7 +111,7 @@
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
-                            <a href="/surat-masuk/create" class="text-white">
+                            <a href="/surat/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                     title="Tambah Data" data-original-title="Tambah Data">
                                     <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -175,7 +175,9 @@
                                                                 class="btn btn-warning has-icon text-white tombol-edit-surat"
                                                                 href=""><i class="pl-1  bi bi-pencil-square "></i>
                                                             </a>
-                                                            <form method="POST" action="" class="tombol-hapus">
+                                                            <form method="POST"
+                                                                action="{{ route('surat.destroy', $data->id_surat) }}"
+                                                                class="tombol-hapus">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="button" data-toggle="tooltip"
@@ -206,6 +208,8 @@
                                                             style="margin-left: 15%;margin-top: 10px">
                                                             {{ $data->tanggal_surat }}
                                                         </div>
+                                                        <a href="document_save/{{ $data->scan_dokumen }}" target="_blank"
+                                                            title="Read PDF">Preview PDF</a>
                                                     </div>
                                                 </div>
                                             </div>

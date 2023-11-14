@@ -48,6 +48,7 @@ class SuratController extends Controller
     public function store(SuratRequest $request)
     {
         $this->suratRepository->store($request);
+        return redirect()->intended('/surat');
     }
 
     /**
@@ -80,5 +81,6 @@ class SuratController extends Controller
     public function destroy(string $id)
     {
         $this->suratRepository->destroy($id);
+        return back();
     }
 }

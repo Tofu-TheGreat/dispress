@@ -55,4 +55,4 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
 // Manajemen Surat
 
-Route::resource('/surat-masuk', SuratController::class)->middleware('auth');
+Route::resource('/surat', SuratController::class)->middleware('auth');

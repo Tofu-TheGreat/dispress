@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, StaffController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, StaffController, SuratMasukController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -52,3 +52,7 @@ Route::post('staff-import', [ImportController::class, 'import_user'])->name('sta
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);
 Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
+
+// Manajemen Surat
+
+Route::resource('/surat-masuk', SuratMasukController::class)->middleware('auth');

@@ -28,11 +28,12 @@
                     </li>
                 </ul>
             </li>
-            <li class="dropdown {{ $active1 == 'surat' ? 'active' : '' }}">
+            <li class="dropdown {{ $active1 == 'manajemen-surat' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-envelope"></i>
                     <span>Manajeman Surat</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link " href="/admin">Surat Masuk</a></li>
+                    <li><a class="nav-link {{ $active == 'Surat-masuk' ? 'active text-info' : '' }}"
+                            href="/surat-masuk">Surat Masuk</a></li>
                     <li><a class="nav-link" href="layout-transparent.html">Surat Keluar</a></li>
                     <li><a class="nav-link" href="layout-transparent.html">SPPD</a></li>
                 </ul>

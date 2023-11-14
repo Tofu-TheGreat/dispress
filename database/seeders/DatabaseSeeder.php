@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         \App\Models\User::factory(10)->create();
+        \App\Models\Surat::factory(10)->create();
 
         User::factory()->create([
             'nip' => '213720078171677275',

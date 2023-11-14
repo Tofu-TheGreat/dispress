@@ -3,9 +3,21 @@
 if (!function_exists('currencyPhone')) {
     function currencyPhone($phone)
     {
-        $ac = substr($phone, 0, 4);
-        $prefix = substr($phone, 4, 4);
-        $suffix = substr($phone, 7);
+        $phone = preg_replace('/[^\d]/', '', $phone);
+
+        // Mengecek panjang nomor telepon
+        if (strlen($phone) === 12) {
+            $ac = substr($phone, 0, 4);
+            $prefix = substr($phone, 4, 4);
+            $suffix = substr($phone, 8);
+        } elseif (strlen($phone) === 13) {
+            $ac = substr($phone, 0, 4);
+            $prefix = substr($phone, 4, 4);
+            $suffix = substr($phone, 8);
+        } else {
+            // Panjang nomor telepon tidak valid
+            return 'Invalid phone number';
+        }
 
         $formatted = "{$ac}-{$prefix}-{$suffix}";
         return $formatted;

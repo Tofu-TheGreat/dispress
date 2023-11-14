@@ -74,6 +74,11 @@ li {
     z-index: 99;
 }
 
+.tombol-detail-surat i {
+    position: relative;
+    left: 10%;
+}
+
 .tombol-edit-surat {
     position: absolute;
     border-radius: 100% 0% 100% 0% / 0% 100% 0% 100%;
@@ -88,6 +93,11 @@ li {
     right: 0;
     top: 115%;
     z-index: 99;
+}
+
+.tombol-hapus-surat i {
+    position: relative;
+    left: 10%;
 }
 
 .foto-user {

@@ -152,7 +152,16 @@
                                                             {{ $data->perusahaan->nama_perusahaan }}
                                                         </small>
                                                     </div>
-                                                    <div class="card-header-action">
+                                                    <div class="card-header-action btn-group">
+                                                        <a href="#" class="text-white mr-2 tombol-disposisi">
+                                                            <button type="button"
+                                                                class="btn btn-success tombol-disposisi"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Disposisi Surat"
+                                                                data-original-title="Disposisi Surat">
+                                                                Disposisi
+                                                            </button>
+                                                        </a>
                                                         <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
                                                             class="btn btn-icon btn-info" href="#"><i
                                                                 class="fas fa-minus"></i></a>
@@ -162,6 +171,8 @@
                                                     <div class="card-body card-body-surat position-relative "
                                                         style="min-height: 130px">
                                                         <p class="w-75"> {{ $data->isi_surat }}</p>
+                                                        <p class="mt-3" style="font-size: .7rem;">--
+                                                            {{ $data->tanggal_surat }} --</p>
                                                         <div class="d-flex flex-column btn-group-action">
                                                             <a type="button" data-toggle="tooltip" data-placement="top"
                                                                 title="Detail data surat"
@@ -189,7 +200,8 @@
                                                             </form>
                                                         </div>
                                                     </div>
-                                                    <div class="card-footer d-flex justify-content-between">
+                                                    <div
+                                                        class="card-footer d-flex justify-content-between position-relative">
                                                         <div class="d-flex flex-row ">
                                                             <img alt="image" src="assets/img/avatar/avatar-1.png"
                                                                 style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
@@ -200,16 +212,21 @@
                                                                         href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
                                                                 </div>
                                                                 <div class="text-job">
-                                                                    {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                    <small style="max-width: max-content">
+                                                                        {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                    </small>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="text-center"
-                                                            style="margin-left: 15%;margin-top: 10px">
-                                                            {{ $data->tanggal_surat }}
+                                                        <div class="text-center " style="margin-left: 15%;">
+                                                            <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Preview PDF" data-original-title="Preview PDF"
+                                                                href="document_save/{{ $data->scan_dokumen }}"
+                                                                target="_blank" title="Read PDF"><i
+                                                                    class="bi bi-file-pdf"
+                                                                    style="font-size: 1.1rem;"></i></a>
                                                         </div>
-                                                        <a href="document_save/{{ $data->scan_dokumen }}" target="_blank"
-                                                            title="Read PDF">Preview PDF</a>
                                                     </div>
                                                 </div>
                                             </div>

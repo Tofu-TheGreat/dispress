@@ -33,11 +33,11 @@ class SuratImplement implements SuratRepository
 
     public function show($id)
     {
-        $this->surat->where('id_surat', $id)->first();
+        return $this->surat->with('user')->where('id_surat', $id)->first();
     }
     public function edit($id)
     {
-        $this->surat->where('id_surat', $id)->first();
+        return $this->surat->where('id_surat', $id)->first();
     }
 
     public function update($id, $data)

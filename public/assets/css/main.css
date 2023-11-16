@@ -50,7 +50,11 @@ li {
     cursor: pointer;
 }
 
-.btn-group {
+.judul-page {
+    text-align: start;
+}
+
+.btn-group:has(a) {
     display: flex;
     justify-content: end;
 }
@@ -319,9 +323,12 @@ Footer
 }
 
 @media screen and (max-width: 570px) {
-    .btn-group {
+    .btn-group:has(a) {
         margin-top: 10px;
         justify-content: center;
+    }
+    .judul-page {
+        text-align: center;
     }
     .card-header-action {
         margin-top: 10px !important;
@@ -337,9 +344,6 @@ Footer
 @media screen and (max-width: 768px) {
     .card-body form .search-data {
         width: 100%;
-    }
-    .judul-page {
-        text-align: center;
     }
     .social-pages {
         display: none;

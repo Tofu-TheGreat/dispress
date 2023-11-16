@@ -149,7 +149,11 @@
                                                         <h4>{{ $data->nomor_surat }}</h4>
                                                         <small
                                                             style="position: absolute; top: 50%;width: max-content;">Dari
-                                                            {{ $data->perusahaan->nama_perusahaan }}
+                                                            @foreach ($perusahaanList as $item)
+                                                                @if ($item->id_perusahaan == $data->id_perusahaan)
+                                                                    {{ $item->nama_perusahaan }}
+                                                                @endif
+                                                            @endforeach
                                                         </small>
                                                     </div>
                                                     <div class="card-header-action btn-group">
@@ -157,9 +161,9 @@
                                                             <button type="button"
                                                                 class="btn btn-success tombol-disposisi"
                                                                 data-toggle="tooltip" data-placement="top"
-                                                                title="Disposisi Surat"
-                                                                data-original-title="Disposisi Surat">
-                                                                Disposisi
+                                                                title="Ajukan untuk Disposisi"
+                                                                data-original-title="Ajukan untuk Disposisi">
+                                                                Ajukan
                                                             </button>
                                                         </a>
                                                         <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
@@ -171,10 +175,11 @@
                                                     <div class="card-body card-body-surat position-relative "
                                                         style="min-height: 130px">
                                                         <p class="w-75"> {{ $data->isi_surat }}</p>
-                                                        <p class="mt-3" style="font-size: .7rem;">--
-                                                            {{ $data->tanggal_surat }} --</p>
+                                                        <p class="mt-3" style="font-size: .7rem;">
+                                                            -- {{ $data->tanggal_surat }} --</p>
                                                         <div class="d-flex flex-column btn-group-action">
-                                                            <a type="button" data-toggle="tooltip" data-placement="top"
+                                                            <a href="{{ route('surat.show', $data->id_surat) }}"
+                                                                data-toggle="tooltip" data-placement="top"
                                                                 title="Detail data surat"
                                                                 data-original-title="Detail data surat"
                                                                 class="btn btn-info has-icon text-white tombol-detail-surat"
@@ -195,7 +200,8 @@
                                                                     data-placement="bottom" title="Hapus data surat"
                                                                     data-original-title="Hapus data surat"
                                                                     class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
-                                                                    href=""><i class="pl-1  bi bi-trash "></i>
+                                                                    href=""><i
+                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
                                                                 </button>
                                                             </form>
                                                         </div>
@@ -208,8 +214,12 @@
                                                                 class="mr-2">
                                                             <div>
                                                                 <div class="user-detail-name">
-                                                                    <a
-                                                                        href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
+                                                                    @foreach ($perusahaanList as $item)
+                                                                        @if ($item->id_perusahaan == $data->id_perusahaan)
+                                                                            <a
+                                                                                href="#">{{ $item->nama_perusahaan }}</a>
+                                                                        @endif
+                                                                    @endforeach
                                                                 </div>
                                                                 <div class="text-job">
                                                                     <small style="max-width: max-content">
@@ -221,7 +231,8 @@
                                                         <div class="text-center " style="margin-left: 15%;">
                                                             <a type="button" class="btn btn-danger btn-scan-pdf"
                                                                 data-toggle="tooltip" data-placement="top"
-                                                                title="Preview PDF" data-original-title="Preview PDF"
+                                                                title="Preview surat (PDF)"
+                                                                data-original-title="Preview surat (PDF)"
                                                                 href="document_save/{{ $data->scan_dokumen }}"
                                                                 target="_blank" title="Read PDF"><i
                                                                     class="bi bi-file-pdf"

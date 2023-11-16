@@ -4,7 +4,7 @@
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
 
@@ -21,7 +21,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/surat-masuk">Surat Masuk</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/surat">Surat Masuk</a></div>
                         <div class="breadcrumb-item d-inline">Tambah Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -35,7 +35,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 mr-3">
-                                <a href="/surat-masuk">
+                                <a href="/surat">
                                     <i class="bi bi-arrow-left"></i>
                                 </a>
                             </div>
@@ -90,20 +90,11 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="col-12">
                                     <div class="form-group">
-                                        <label for="isi_surat">Masukkan Isi Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-envelope-paper-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('isi_surat') is-invalid @enderror"
-                                                placeholder="ex: Perihal rapat paripurna" value="{{ old('isi_surat') }}"
-                                                id="isi_surat" name="isi_surat" required>
-                                        </div>
+                                        <label for="isi_surat">Masukkan Ringkasan Surat: </label>
+                                        <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')
                                                 {{ $message }}
@@ -111,7 +102,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="col-12">
                                     <div class="form-group">
                                         <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                         <div class="input-group">
@@ -132,7 +123,7 @@
                                             </select>
                                         </div>
                                         <span class="text-danger">
-                                            @error('level')
+                                            @error('id_perusahaan')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -159,7 +150,7 @@
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">
                                     <div class="ml-2 ">
-                                        <a href="/surat-masuk" class="btn btn-warning  ">
+                                        <a href="/surat" class="btn btn-warning  ">
                                             <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                             <span class="bi-text">Kembali</span>
                                         </a>
@@ -185,6 +176,7 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
+    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>

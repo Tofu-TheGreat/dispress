@@ -50,7 +50,11 @@ li {
     cursor: pointer;
 }
 
-.btn-group {
+.judul-page {
+    text-align: start;
+}
+
+.btn-group:has(a) {
     display: flex;
     justify-content: end;
 }
@@ -180,6 +184,32 @@ li {
     transform: scale(-1);
 }
 
+.btn-scan-pdf {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 100% 0% 0% 100% / 100% 48% 52% 0%;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-scan-pdf:hover {
+    width: 60px;
+    height: 60px;
+}
+
+.btn-scan-pdf:hover i {
+    transform: scale(1.1);
+}
+
+.btn-scan-pdf i {
+    position: absolute;
+    bottom: 20%;
+    right: 20%;
+    transition: all 0.2s ease-in-out;
+}
+
 .btn-hapus-foto {
     bottom: 12.5%;
     right: 55%;
@@ -293,9 +323,16 @@ Footer
 }
 
 @media screen and (max-width: 570px) {
-    .btn-group {
+    .btn-group:has(a) {
         margin-top: 10px;
         justify-content: center;
+    }
+    .judul-page {
+        text-align: center;
+    }
+    .card-header-action {
+        margin-top: 10px !important;
+        margin: auto;
     }
     .foto-user {
         width: 150px;
@@ -307,9 +344,6 @@ Footer
 @media screen and (max-width: 768px) {
     .card-body form .search-data {
         width: 100%;
-    }
-    .judul-page {
-        text-align: center;
     }
     .social-pages {
         display: none;

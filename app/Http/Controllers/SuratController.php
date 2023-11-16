@@ -20,11 +20,13 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
+        $perusahaanList = Perusahaan::get();
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
-            'suratList' => $suratList
+            'suratList' => $suratList,
+            'perusahaanList' => $perusahaanList
         ]);
     }
 
@@ -56,7 +58,16 @@ class SuratController extends Controller
      */
     public function show(string $id)
     {
-        $this->suratRepository->show($id);
+        $detailDataSurat = $this->suratRepository->show($id);
+        $perusahaanList = Perusahaan::where('id_perusahaan', $detailDataSurat->id_perusahaan)->get();
+
+        return view('manajemen-surat.surat-masuk.surat-masuk-detail', [
+            'title' => 'Detail Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk',
+            'detailDataSurat' => $detailDataSurat,
+            'perusahaanList' => $perusahaanList[0]
+        ]);
     }
 
     /**

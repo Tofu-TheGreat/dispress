@@ -137,8 +137,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('id_user') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->id_user }}" id="id_user" name="id_user"
-                                                    readonly>
+                                                    value="{{ $userget->nama }}" id="id_user" name="id_user" readonly>
                                             </div>
                                         </div>
                                     </div>

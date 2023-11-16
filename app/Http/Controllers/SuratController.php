@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SuratRequest;
 use App\Models\Perusahaan;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
+
+use function Laravel\Prompts\select;
 
 class SuratController extends Controller
 {
@@ -20,7 +23,15 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
-        $perusahaanList = Perusahaan::get();
+        foreach ($suratList as $surat) {
+            $perusahaanId = $surat->id_perusahaan;
+            $perusahaan = Perusahaan::find($perusahaanId);
+
+
+            if ($perusahaan) {
+                $perusahaanList[] = $perusahaan;
+            }
+        };
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
@@ -59,6 +70,7 @@ class SuratController extends Controller
     public function show(string $id)
     {
         $detailDataSurat = $this->suratRepository->show($id);
+        $userget = User::where('id_user', $detailDataSurat->id_user)->first();
         $perusahaanList = Perusahaan::where('id_perusahaan', $detailDataSurat->id_perusahaan)->get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-detail', [
@@ -66,6 +78,7 @@ class SuratController extends Controller
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
             'detailDataSurat' => $detailDataSurat,
+            'userget' => $userget,
             'perusahaanList' => $perusahaanList[0]
         ]);
     }

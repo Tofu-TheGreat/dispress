@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Disposisi;
 use App\Models\User;
 use App\Repository\Admin\AdminImplement;
 use App\Repository\Admin\AdminRepository;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Contracts\Pagination\Paginator;
+use app\Repository\Disposisi\DisposisiImplement;
+use App\Repository\Disposisi\DisposisiRepository;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 
 
@@ -35,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(StaffRepository::class, StaffImplement::class);
         $this->app->bind(SuratRepository::class, SuratImplement::class);
         $this->app->bind(PerusahaanRepository::class, PerusahaanImplement::class);
+        $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
     }
 
     /**

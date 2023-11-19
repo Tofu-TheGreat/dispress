@@ -214,12 +214,14 @@
                                                                 class="mr-2">
                                                             <div>
                                                                 <div class="user-detail-name">
-                                                                    @foreach ($perusahaanList as $item)
+                                                                    {{-- @foreach ($perusahaanList as $item)
                                                                         @if ($item->id_perusahaan == $data->id_perusahaan)
                                                                             <a
                                                                                 href="#">{{ $item->nama_perusahaan }}</a>
-                                                                        @endif
-                                                                    @endforeach
+                                                                                @endif
+                                                                                @endforeach --}}
+                                                                    <a
+                                                                        href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
                                                                 </div>
                                                                 <div class="text-job">
                                                                     <small style="max-width: max-content">

@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\Surat;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Disposisi;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -61,6 +62,11 @@ class User extends Authenticatable
     public function setPhoneAttribute($value)
     {
         $this->attributes['phone'] = preg_replace("/[^0-9]/", "", $value);
+    }
+
+    public function disposisi()
+    {
+        return $this->hasMany(Disposisi::class, 'id_user');
     }
 
     public function surat()

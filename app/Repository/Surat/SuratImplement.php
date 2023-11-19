@@ -14,7 +14,7 @@ class SuratImplement implements SuratRepository
 
     public function index()
     {
-        return $this->surat->get();
+        return $this->surat->with('perusahaan')->get();
     }
 
     public function store($data)
@@ -33,7 +33,7 @@ class SuratImplement implements SuratRepository
 
     public function show($id)
     {
-        return $this->surat->where('id_surat', $id)->first();
+        return $this->surat->with('user')->where('id_surat', $id)->first();
     }
     public function edit($id)
     {

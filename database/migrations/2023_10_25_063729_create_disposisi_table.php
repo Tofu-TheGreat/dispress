@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id('id_disposisi');
             $table->unsignedBigInteger('id_surat');
             $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
-            $table->date('tanggal_disposisi');
-            $table->string('catatan_disposisi', 225);
-            $table->enum('status_disposisi', ['0', '1', '3', '4']); //Belum ditindak, Diajukan, Diterima, Dikembalikan
-            $table->enum('sifat_disposisi', ['0', '1', '3']); //Segera, Prioritas, Biasa
+            $table->date('tanggal_disposisi')->nullable();
+            $table->string('catatan_disposisi', 225)->nullable();
+            $table->enum('status_disposisi', ['0', '1', '3', '4'])->nullable(); //Belum ditindak, Diajukan, Diterima, Dikembalikan
+            $table->enum('sifat_disposisi', ['0', '1', '3'])->nullable(); //Segera, Prioritas, Biasa
             $table->unsignedBigInteger('id_user'); //Pengirim 
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']); //Penerima 
+            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->nullable(); //Penerima 
             // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
             $table->timestamps();
         });

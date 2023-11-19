@@ -25,11 +25,16 @@ class Surat extends Model
 
     public function perusahaan()
     {
-        return $this->hasOne(Perusahaan::class, 'id_perusahaan');
+        return $this->belongsTo(Perusahaan::class, 'id_perusahaan');
     }
 
     public function user()
     {
-        return $this->hasMany(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function disposisi()
+    {
+        return $this->hasOne(Disposisi::class, 'id_surat');
     }
 }

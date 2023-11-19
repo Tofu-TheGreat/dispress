@@ -18,6 +18,6 @@ class Perusahaan extends Model
 
     public function surat()
     {
-        return $this->belongsTo(Surat::class, 'id_perusahaan');
+        return $this->hasOne(Surat::class, 'id_perusahaan');
     }
 }

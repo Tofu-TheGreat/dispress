@@ -174,7 +174,7 @@
                                                 <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
                                                     <div class="card-body card-body-surat position-relative "
                                                         style="min-height: 130px">
-                                                        <p class="w-75"> {{ $data->isi_surat }}</p>
+                                                        <p class="w-75"> {!! $data->isi_surat !!}</p>
                                                         <p class="mt-3" style="font-size: .7rem;">
                                                             -- {{ $data->tanggal_surat }} --</p>
                                                         <div class="d-flex flex-column btn-group-action">

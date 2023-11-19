@@ -1,5 +1,9 @@
 @extends('admin.pages.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+@endsection
+
 @section('content')
     <section class="section">
         <div class="card">
@@ -102,12 +106,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="isi_surat">Isi Surat: </label>
-                                            <div class="input-group">
-                                                <input type="text" style="height: 100px"
-                                                    class="form-control @error('isi_surat') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->isi_surat }}" id="isi_surat"
-                                                    name="isi_surat" readonly>
-                                            </div>
+                                            <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                                id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -145,6 +145,10 @@
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class=" ">
+                                    <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                        title="Preview surat (PDF)" data-original-title="Preview surat (PDF)"
+                                        href="document_save/{{ $detailDataSurat->scan_dokumen }}" target="_blank"
+                                        title="Read PDF"><i class="bi bi-file-pdf" style="font-size: 1.1rem;"></i></a>
                                     <a href="/surat" class="btn btn-warning  ">
                                         <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                         <span class="bi-text">Kembali</span>
@@ -160,8 +164,12 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
 
     <script>
+        $(document).ready(function() {
+            $('.summernote-simple').summernote('disable');
+        })
         document.body.addEventListener("click", function(event) {
             const element = event.target;
 

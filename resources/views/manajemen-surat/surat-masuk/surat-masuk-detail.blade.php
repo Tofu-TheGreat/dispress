@@ -128,7 +128,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="id_user">Pengirim Surat: </label>
+                                            <label for="id_user">Penerima Surat: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">

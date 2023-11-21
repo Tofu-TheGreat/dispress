@@ -56,3 +56,6 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 // Manajemen Surat
 
 Route::resource('/surat', SuratController::class)->middleware('auth');
+
+Route::get('surat-export', [ExportController::class, 'export_surat'])->name('surat.export');
+Route::post('surat-import', [ImportController::class, 'import_user'])->name('staff.import');

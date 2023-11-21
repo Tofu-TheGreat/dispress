@@ -7,6 +7,7 @@ use App\Models\Perusahaan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
+use Mockery\Undefined;
 
 use function Laravel\Prompts\select;
 
@@ -23,15 +24,21 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
-        foreach ($suratList as $surat) {
-            $perusahaanId = $surat->id_perusahaan;
-            $perusahaan = Perusahaan::find($perusahaanId);
+
+        if (empty($suratList)) {
+            foreach ($suratList as $surat) {
+                $perusahaanId = $surat->id_perusahaan;
+                $perusahaan = Perusahaan::find($perusahaanId);
 
 
-            if ($perusahaan) {
-                $perusahaanList[] = $perusahaan;
-            }
-        };
+                if ($perusahaan) {
+                    $perusahaanList[] = $perusahaan;
+                }
+            };
+        } else {
+            $perusahaanList[] = 0;
+        }
+
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
@@ -88,7 +95,16 @@ class SuratController extends Controller
      */
     public function edit(string $id)
     {
-        $this->suratRepository->show($id);
+        $editDataSurat = $this->suratRepository->show($id);
+        $perusahaanList = Perusahaan::get();
+        // dd($editDataSurat->id_surat);
+        return view('manajemen-surat.surat-masuk.surat-masuk-edit', [
+            'title' => 'Edit Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk',
+            'editDataSurat' => $editDataSurat,
+            'perusahaanList' => $perusahaanList,
+        ]);
     }
 
     /**

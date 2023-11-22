@@ -297,6 +297,17 @@
             });
         </script>
     @endif
+    @if (Session::has('warning'))
+        <script>
+            $(document).ready(function() {
+                iziToast.warning({
+                    title: 'warning',
+                    message: "{{ Session::get('warning') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
 
     @if ($errors->has('file'))
         <script>
@@ -337,9 +348,6 @@
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Admin berhasil dihapus!', {
-                                icon: 'success',
-                            });
                             element.closest('form').submit();
                         } else {
                             swal('Data Admin tidak jadi dihapus!');

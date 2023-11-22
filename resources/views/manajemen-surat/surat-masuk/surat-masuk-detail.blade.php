@@ -44,14 +44,15 @@
                                 Ajukan
                             </button>
                         </a>
-                        <a href="/surat/{{ Crypt::encryptString($detailDataSurat->id_surat) }}/edit"
+                        <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
                                 title="Edit Data Surat Masuk" data-original-title="Edit Data Surat Masuk">
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
-                        <form method="POST" action="{{ route('admin.destroy', $detailDataSurat->id_surat) }}"
+                        <form method="POST"
+                            action="{{ route('surat.destroy', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="tombol-hapus">
                             @csrf
                             @method('DELETE')
@@ -148,8 +149,9 @@
                                 <div class=" ">
                                     <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
                                         title="Preview surat (PDF)" data-original-title="Preview surat (PDF)"
-                                        href="document_save/{{ $detailDataSurat->scan_dokumen }}" target="_blank"
-                                        title="Read PDF"><i class="bi bi-file-pdf" style="font-size: 1.1rem;"></i></a>
+                                        href="{{ asset('document_save/' . $detailDataSurat->scan_dokumen) }}"
+                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
+                                            style="font-size: 1.1rem;"></i></a>
                                     <a href="/surat" class="btn btn-warning  ">
                                         <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                         <span class="bi-text">Kembali</span>
@@ -177,18 +179,18 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Admin ini?',
+                        text: 'Ingin menghapus data surat ini?',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     }).then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Admin berhasil dihapus!', {
+                            swal('Data surat berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Admin tidak jadi dihapus!');
+                            swal('Data surat tidak jadi dihapus!');
                         }
                     })
                     .catch(error => {

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repository\Officer\OfficerRepository;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 
@@ -146,8 +147,13 @@ class OfficerController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->officerRepository->destroy($id);
-        return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer');
+        $encryptId = Crypt::decryptString($id);
+        if (Auth::user()->id_user != $encryptId) {
+            $this->officerRepository->destroy($encryptId);
+            return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer');
+        } else {
+            return redirect()->intended('/officer')->with('warning', 'Tidak bisa menghapus data Officer ini.');
+        }
     }
 
     public function deleteImageFromUser($id)

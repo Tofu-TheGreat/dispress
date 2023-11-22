@@ -13,7 +13,8 @@
              href="{{ route($usersList->level . '.edit', Crypt::encryptString($usersList->id_user)) }}"><i
                  class="far bi-pencil-square"></i>
              Edit</a>
-         <form method="POST" action="{{ route($usersList->level . '.destroy', $usersList->id_user) }}"
+         <form method="POST"
+             action="{{ route($usersList->level . '.destroy', Crypt::encryptString($usersList->id_user)) }}"
              class="tombol-hapus">
              @csrf
              @method('DELETE')

@@ -40,7 +40,8 @@
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
-                        <form method="POST" action="{{ route('officer.destroy', $detailDataOfficer->id_user) }}"
+                        <form method="POST"
+                            action="{{ route('officer.destroy', Crypt::encryptString($detailDataOfficer->id_user)) }}"
                             class="tombol-hapus">
                             @csrf
                             @method('DELETE')

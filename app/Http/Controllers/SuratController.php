@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
 use Mockery\Undefined;
+use Illuminate\Support\Facades\Crypt;
 
 use function Laravel\Prompts\select;
 
@@ -76,7 +77,8 @@ class SuratController extends Controller
      */
     public function show(string $id)
     {
-        $detailDataSurat = $this->suratRepository->show($id);
+        $encryptId = Crypt::decryptString($id);
+        $detailDataSurat = $this->suratRepository->show($encryptId);
         $userget = User::where('id_user', $detailDataSurat->id_user)->first();
         $perusahaanList = Perusahaan::where('id_perusahaan', $detailDataSurat->id_perusahaan)->get();
 
@@ -95,7 +97,8 @@ class SuratController extends Controller
      */
     public function edit(string $id)
     {
-        $editDataSurat = $this->suratRepository->show($id);
+        $encryptId = Crypt::decryptString($id);
+        $editDataSurat = $this->suratRepository->show($encryptId);
         $perusahaanList = Perusahaan::get();
         // dd($editDataSurat->id_surat);
         return view('manajemen-surat.surat-masuk.surat-masuk-edit', [
@@ -113,6 +116,7 @@ class SuratController extends Controller
     public function update(SuratRequest $request, string $id)
     {
         $this->suratRepository->update($id, $request);
+        return redirect()->intended('/surat')->with('success', 'Berhasil meng-update data surat.');
     }
 
     /**
@@ -120,7 +124,8 @@ class SuratController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->suratRepository->destroy($id);
-        return back();
+        $encryptId = Crypt::decryptString($id);
+        $this->suratRepository->destroy($encryptId);
+        return redirect()->intended('/surat')->with('success', 'Berhasil menghapus data surat.');
     }
 }

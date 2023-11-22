@@ -59,3 +59,5 @@ Route::resource('/surat', SuratController::class)->middleware('auth');
 
 Route::get('surat-export', [ExportController::class, 'export_surat'])->name('surat.export');
 Route::post('surat-import', [ImportController::class, 'import_user'])->name('staff.import');
+
+Route::get('/get-perusahaan-names', [ExportController::class, 'getPerusahaanNames']);

@@ -19,7 +19,7 @@ class SuratImplement implements SuratRepository
 
     public function store($data)
     {
-        $nama_dokumen = time() . '.' . $data->scan_dokumen->extension();
+        $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
         $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
         $this->surat->create([
             'nomor_surat' => $data->nomor_surat,
@@ -42,23 +42,33 @@ class SuratImplement implements SuratRepository
 
     public function update($id, $data)
     {
-        $surat = $this->surat->where('id_surat', $data->id_surat)->first();
-        if ($surat->scan_dokumen != null) {
-            $documentPath = public_path('document_save/') . $surat->scan_dokumen;
-            if (file_exists($documentPath)) {
-                unlink($documentPath);
+        if ($data->hasFile('scan_dokumen')) {
+            $surat = $this->surat->where('id_surat', $data->id_surat)->first();
+            if ($surat->scan_dokumen != null) {
+                $documentPath = public_path('document_save/') . $surat->scan_dokumen;
+                if (file_exists($documentPath)) {
+                    unlink($documentPath);
+                }
             }
+            $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
+            $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
+            $this->surat->where('id_surat', $id)->update([
+                'nomor_surat' => $data->nomor_surat,
+                'tanggal_surat' => $data->tanggal_surat,
+                'isi_surat' => $data->isi_surat,
+                'id_perusahaan' => $data->id_perusahaan,
+                'id_user' => $data->id_user,
+                'scan_dokumen' => $nama_dokumen,
+            ]);
+        } else {
+            $this->surat->where('id_surat', $id)->update([
+                'nomor_surat' => $data->nomor_surat,
+                'tanggal_surat' => $data->tanggal_surat,
+                'isi_surat' => $data->isi_surat,
+                'id_perusahaan' => $data->id_perusahaan,
+                'id_user' => $data->id_user,
+            ]);
         }
-        $nama_dokumen = time() . '.' . $data->scan_dokumen->extension();
-        $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
-        $this->surat->update([
-            'nomor_surat' => $data->nomor_surat,
-            'tanggal_surat' => $data->tanggal_surat,
-            'isi_surat' => $data->isi_surat,
-            'pengirim_surat' => $data->pengirim_surat,
-            'id_user' => $data->id_user,
-            'scan_dokumen' => $nama_dokumen,
-        ]);
     }
 
     public function destroy($id)

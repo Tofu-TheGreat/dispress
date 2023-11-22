@@ -40,7 +40,8 @@
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
-                        <form method="POST" action="{{ route('admin.destroy', $detailDataAdmin->id_user) }}"
+                        <form method="POST"
+                            action="{{ route('admin.destroy', Crypt::encryptString($detailDataAdmin->id_user)) }}"
                             class="tombol-hapus">
                             @csrf
                             @method('DELETE')
@@ -217,9 +218,6 @@
                         dangerMode: true,
                     }).then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Admin berhasil dihapus!', {
-                                icon: 'success',
-                            });
                             element.closest('form').submit();
                         } else {
                             swal('Data Admin tidak jadi dihapus!');

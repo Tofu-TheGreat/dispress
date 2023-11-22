@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class StaffController extends Controller
@@ -145,8 +146,13 @@ class StaffController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->staffRepository->destroy($id);
-        return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff');
+        $encryptId = Crypt::decryptString($id);
+        if (Auth::user()->id_user != $encryptId) {
+            $this->staffRepository->destroy($encryptId);
+            return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff');
+        } else {
+            return redirect()->intended('/staff')->with('warning', 'Tidak bisa menghapus data Staff ini.');
+        }
     }
 
     public function deleteImageFromUser($id)

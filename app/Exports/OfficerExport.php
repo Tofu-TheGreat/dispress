@@ -30,6 +30,7 @@ class OfficerExport implements WithColumnFormatting, FromCollection, WithHeading
     public function headings(): array
     {
         return [
+            "No",
             "id_user",
             "nip",
             "nama",
@@ -50,10 +51,14 @@ class OfficerExport implements WithColumnFormatting, FromCollection, WithHeading
 
     public function map($row): array
     {
+        static $rowNumber = 0;
+        $rowNumber++;
         // Manipulasi data sebelum ditampilkan di Excel
         $nip = '="' . $row->nip . '"'; // Memaksa teks dengan tanda "="
+        $nomor_telepon = '="' . $row->nomor_telpon . '"'; // Memaksa teks dengan tanda "="
 
         return [
+            $rowNumber,
             $row->id_user,
             $nip,
             $row->nama,
@@ -61,11 +66,12 @@ class OfficerExport implements WithColumnFormatting, FromCollection, WithHeading
             $this->convertJabatan($row->jabatan), //Value jabatan akan diubah menjadi kata kata
             $row->username,
             $row->email,
-            $row->nomor_telpon,
+            $nomor_telepon,
             $row->created_at,
             $row->updated_at
         ];
     }
+
 
     private function convertJabatan($data)
     {

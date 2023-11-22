@@ -19,6 +19,7 @@ class SuratExport implements FromCollection, WithMapping, WithHeadings
     public function headings(): array
     {
         return [
+            'No',
             'id_surat',
             'nomor_surat',
             'tanggal_surat',
@@ -37,7 +38,10 @@ class SuratExport implements FromCollection, WithMapping, WithHeadings
 
     public function map($row): array
     {
+        static $rowNumber = 0;
+        $rowNumber++;
         return [
+            $rowNumber,
             $row->id_surat,
             $row->nomor_surat,
             $row->tanggal_surat,

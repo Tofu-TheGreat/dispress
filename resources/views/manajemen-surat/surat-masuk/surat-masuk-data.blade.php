@@ -180,7 +180,7 @@
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 -- {{ $data->tanggal_surat }} --</p>
                                                             <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('surat.show', $data->id_surat) }}"
+                                                                <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Detail data surat"
                                                                     data-original-title="Detail data surat"
@@ -191,11 +191,11 @@
                                                                     data-placement="left" title="Edit data surat"
                                                                     data-original-title="Edit data surat"
                                                                     class="btn btn-warning has-icon text-white tombol-edit-surat"
-                                                                    href="{{ route('surat.edit', $data->id_surat) }}"><i
+                                                                    href="{{ route('surat.edit', Crypt::encryptString($data->id_surat)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
                                                                 <form method="POST"
-                                                                    action="{{ route('surat.destroy', $data->id_surat) }}"
+                                                                    action="{{ route('surat.destroy', Crypt::encryptString($data->id_surat)) }}"
                                                                     class="tombol-hapus">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -238,7 +238,7 @@
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Preview surat (PDF)"
                                                                     data-original-title="Preview surat (PDF)"
-                                                                    href="document_save/{{ $data->scan_dokumen }}"
+                                                                    href="{{ asset('document_save/' . $data->scan_dokumen) }}"
                                                                     target="_blank" title="Read PDF"><i
                                                                         class="bi bi-file-pdf"
                                                                         style="font-size: 1.1rem;"></i></a>

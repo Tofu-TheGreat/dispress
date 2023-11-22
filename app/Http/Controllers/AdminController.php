@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Admin\AdminRepository;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class AdminController extends Controller
@@ -148,8 +149,13 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->adminRepository->destroy($id);
-        return redirect()->intended('/admin')->with('success', 'Berhasil menghapus data Admin.');
+        $encryptId = Crypt::decryptString($id);
+        if (Auth::user()->id_user != $encryptId) {
+            $this->adminRepository->destroy($encryptId);
+            return redirect()->intended('/admin')->with('success', 'Berhasil menghapus data Admin.');
+        } else {
+            return redirect()->intended('/admin')->with('warning', 'Tidak bisa menghapus data Admin ini.');
+        }
     }
 
     public function deleteImageFromUser($id)

@@ -26,7 +26,7 @@ class SuratRequest extends FormRequest
             'tanggal_surat' => 'required|date',
             'isi_surat' => 'required|max:100',
             'id_perusahaan' => 'required',
-            'scan_dokumen' => 'required|mimes:pdf, docx|file',
+            'scan_dokumen' => 'mimes:pdf, docx|file',
         ];
     }
     public function messages()
@@ -38,7 +38,6 @@ class SuratRequest extends FormRequest
             'isi_surat.required' => 'Isi surat harus diisi',
             'isi_surat.max' => 'Isi surat tidak boleh lebih dari 100 karakter',
             'id_perusahaan.required' => 'Pengirim surat harus diisi',
-            'scan_dokumen.required' => 'Harus menyertakan scan surat!',
             'scan_dokumen.mimes' => 'Tipe file harus pdf, docx',
             'scan_dokumen.file' => 'Harus berupa file!',
         ];

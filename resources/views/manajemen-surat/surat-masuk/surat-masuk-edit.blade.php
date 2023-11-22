@@ -51,6 +51,8 @@
                             @method('PUT')
                             <input type="text" name="id_surat" value="{{ $editDataSurat->id_surat }}" id=""
                                 hidden>
+                            <input type="text" name="id_user" value="{{ $editDataSurat->id_user }}" id=""
+                                hidden>
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
@@ -139,10 +141,21 @@
                                         </div>
                                         <div class="col">
                                             <div class="form-group">
-                                                <label for="foto">Masukkan Scan Dokumen Surat: </label>
-                                                <small class="d-block">Catatan: masukkan dokumen dengan format (PDF),
-                                                    maksimal 10
-                                                    MB.</small>
+                                                <div class="d-flex justify-content-between">
+                                                    <div class="">
+                                                        <label for="foto">Masukkan Scan Dokumen Surat: </label>
+                                                        <small class="d-block">Catatan: masukkan dokumen dengan format
+                                                            (PDF),
+                                                            maksimal 10
+                                                            MB.</small>
+                                                    </div>
+                                                    <a type="button" class="btn btn-danger mb-2" data-toggle="tooltip"
+                                                        data-placement="top" title="Preview surat (PDF)"
+                                                        data-original-title="Preview surat (PDF)"
+                                                        href="{{ asset('document_save/' . $editDataSurat->scan_dokumen) }}"
+                                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
+                                                            style="font-size: 1.1rem;"></i></a>
+                                                </div>
                                                 <input type="file"
                                                     class="img-filepond-preview @error('scan_dokumen') is-invalid @enderror"
                                                     id="scan_dokumen" name="scan_dokumen" accept="pdf"

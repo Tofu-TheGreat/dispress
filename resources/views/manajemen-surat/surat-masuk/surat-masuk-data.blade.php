@@ -141,110 +141,114 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    @foreach ($suratList as $data)
-                                        <div class="col-sm-12 col-md-12 col-lg-6">
-                                            <div class="card card-primary shadow-sm">
-                                                <div class="card-header d-flex justify-content-between">
-                                                    <div class="position-relative">
-                                                        <h4>{{ $data->nomor_surat }}</h4>
-                                                        <small
-                                                            style="position: absolute; top: 50%;width: max-content;">Dari
-                                                            @foreach ($perusahaanList as $item)
-                                                                @if ($item->id_perusahaan == $data->id_perusahaan)
-                                                                    {{ $item->nama_perusahaan }}
-                                                                @endif
-                                                            @endforeach
-                                                        </small>
-                                                    </div>
-                                                    <div class="card-header-action btn-group">
-                                                        <a href="#" class="text-white mr-2 tombol-disposisi">
-                                                            <button type="button"
-                                                                class="btn btn-success tombol-disposisi"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Ajukan untuk Disposisi"
-                                                                data-original-title="Ajukan untuk Disposisi">
-                                                                Ajukan
-                                                            </button>
-                                                        </a>
-                                                        <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
-                                                            class="btn btn-icon btn-info" href="#"><i
-                                                                class="fas fa-minus"></i></a>
-                                                    </div>
-                                                </div>
-                                                <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
-                                                    <div class="card-body card-body-surat position-relative "
-                                                        style="min-height: 130px">
-                                                        <p class="w-75"> {!! $data->isi_surat !!}</p>
-                                                        <p class="mt-3" style="font-size: .7rem;">
-                                                            -- {{ $data->tanggal_surat }} --</p>
-                                                        <div class="d-flex flex-column btn-group-action">
-                                                            <a href="{{ route('surat.show', $data->id_surat) }}"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Detail data surat"
-                                                                data-original-title="Detail data surat"
-                                                                class="btn btn-info has-icon text-white tombol-detail-surat"
-                                                                href=""><i class="pl-1  bi bi-eye "></i>
-                                                            </a>
-                                                            <a type="button" data-toggle="tooltip" data-placement="left"
-                                                                title="Edit data surat"
-                                                                data-original-title="Edit data surat"
-                                                                class="btn btn-warning has-icon text-white tombol-edit-surat"
-                                                                href=""><i class="pl-1  bi bi-pencil-square "></i>
-                                                            </a>
-                                                            <form method="POST"
-                                                                action="{{ route('surat.destroy', $data->id_surat) }}"
-                                                                class="tombol-hapus">
-                                                                @csrf
-                                                                @method('DELETE')
-                                                                <button type="button" data-toggle="tooltip"
-                                                                    data-placement="bottom" title="Hapus data surat"
-                                                                    data-original-title="Hapus data surat"
-                                                                    class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
-                                                                    href=""><i
-                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
+                                    @if ($suratList->isEmpty())
+                                        <div class="d-flex justify-content-center align-content-center">
+                                            <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                class="w-50">
+                                        </div>
+                                    @else
+                                        @foreach ($suratList as $data)
+                                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                                <div class="card card-primary shadow-sm">
+                                                    <div class="card-header d-flex justify-content-between">
+                                                        <div class="position-relative">
+                                                            <h4>{{ $data->nomor_surat }}</h4>
+                                                            <small
+                                                                style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                {{ $data->perusahaan->nama_perusahaan }}
+                                                            </small>
+                                                        </div>
+                                                        <div class="card-header-action btn-group">
+                                                            <a href="#" class="text-white mr-2 tombol-disposisi">
+                                                                <button type="button"
+                                                                    class="btn btn-success tombol-disposisi"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Ajukan untuk Disposisi"
+                                                                    data-original-title="Ajukan untuk Disposisi">
+                                                                    Ajukan
                                                                 </button>
-                                                            </form>
+                                                            </a>
+                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
+                                                                class="btn btn-icon btn-info" href="#"><i
+                                                                    class="fas fa-minus"></i></a>
                                                         </div>
                                                     </div>
-                                                    <div
-                                                        class="card-footer d-flex justify-content-between position-relative">
-                                                        <div class="d-flex flex-row ">
-                                                            <img alt="image" src="assets/img/avatar/avatar-1.png"
-                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                class="mr-2">
-                                                            <div>
-                                                                <div class="user-detail-name">
-                                                                    {{-- @foreach ($perusahaanList as $item)
+                                                    <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
+                                                        <div class="card-body card-body-surat position-relative "
+                                                            style="min-height: 130px">
+                                                            <p class="w-75"> {!! $data->isi_surat !!}</p>
+                                                            <p class="mt-3" style="font-size: .7rem;">
+                                                                -- {{ $data->tanggal_surat }} --</p>
+                                                            <div class="d-flex flex-column btn-group-action">
+                                                                <a href="{{ route('surat.show', $data->id_surat) }}"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Detail data surat"
+                                                                    data-original-title="Detail data surat"
+                                                                    class="btn btn-info has-icon text-white tombol-detail-surat"
+                                                                    href=""><i class="pl-1  bi bi-eye "></i>
+                                                                </a>
+                                                                <a type="button" data-toggle="tooltip"
+                                                                    data-placement="left" title="Edit data surat"
+                                                                    data-original-title="Edit data surat"
+                                                                    class="btn btn-warning has-icon text-white tombol-edit-surat"
+                                                                    href="{{ route('surat.edit', $data->id_surat) }}"><i
+                                                                        class="pl-1  bi bi-pencil-square "></i>
+                                                                </a>
+                                                                <form method="POST"
+                                                                    action="{{ route('surat.destroy', $data->id_surat) }}"
+                                                                    class="tombol-hapus">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="button" data-toggle="tooltip"
+                                                                        data-placement="bottom" title="Hapus data surat"
+                                                                        data-original-title="Hapus data surat"
+                                                                        class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
+                                                                        href=""><i
+                                                                            class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                        <div
+                                                            class="card-footer d-flex justify-content-between position-relative">
+                                                            <div class="d-flex flex-row ">
+                                                                <img alt="image" src="assets/img/avatar/avatar-1.png"
+                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                    class="mr-2">
+                                                                <div>
+                                                                    <div class="user-detail-name">
+                                                                        {{-- @foreach ($perusahaanList as $item)
                                                                         @if ($item->id_perusahaan == $data->id_perusahaan)
                                                                             <a
                                                                                 href="#">{{ $item->nama_perusahaan }}</a>
                                                                                 @endif
                                                                                 @endforeach --}}
-                                                                    <a
-                                                                        href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
-                                                                </div>
-                                                                <div class="text-job">
-                                                                    <small style="max-width: max-content">
-                                                                        {{ currencyPhone($data->perusahaan->nomor_telepon) }}
-                                                                    </small>
+                                                                        <a
+                                                                            href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
+                                                                    </div>
+                                                                    <div class="text-job">
+                                                                        <small style="max-width: max-content">
+                                                                            {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                        </small>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="text-center " style="margin-left: 15%;">
-                                                            <a type="button" class="btn btn-danger btn-scan-pdf"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Preview surat (PDF)"
-                                                                data-original-title="Preview surat (PDF)"
-                                                                href="document_save/{{ $data->scan_dokumen }}"
-                                                                target="_blank" title="Read PDF"><i
-                                                                    class="bi bi-file-pdf"
-                                                                    style="font-size: 1.1rem;"></i></a>
+                                                            <div class="text-center " style="margin-left: 15%;">
+                                                                <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Preview surat (PDF)"
+                                                                    data-original-title="Preview surat (PDF)"
+                                                                    href="document_save/{{ $data->scan_dokumen }}"
+                                                                    target="_blank" title="Read PDF"><i
+                                                                        class="bi bi-file-pdf"
+                                                                        style="font-size: 1.1rem;"></i></a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    @endforeach
+                                        @endforeach
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -362,19 +366,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Admin ini!',
+                        text: 'Ingin menghapus data Surat ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Admin berhasil dihapus!', {
+                            swal('Data Surat berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Admin tidak jadi dihapus!');
+                            swal('Data Surat tidak jadi dihapus!');
                         }
                     });
             }
@@ -382,19 +386,19 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Admin ini?',
+                        text: 'Ingin export data Surat ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Admin berhasil diexport!', {
+                            swal('Data Surat berhasil diexport!', {
                                 icon: 'success',
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('admin.export') }}', {
+                            fetch('{{ route('surat.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -410,7 +414,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Admin tidak jadi diexport!');
+                            swal('Data Surat tidak jadi diexport!');
                         }
                     });
             }

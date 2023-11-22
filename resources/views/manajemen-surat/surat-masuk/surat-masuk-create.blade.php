@@ -135,7 +135,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="foto">Masukkan Scan Dokumen Surat: </label>
-                                <small class="d-block">Catatan: masukkan foto dengan format (PDF),
+                                <small class="d-block">Catatan: masukkan dokumen dengan format (PDF),
                                     maksimal 10
                                     MB.</small>
                                 <input type="file"

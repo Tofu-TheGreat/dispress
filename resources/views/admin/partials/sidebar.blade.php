@@ -28,6 +28,10 @@
                     </li>
                 </ul>
             </li>
+            <li class="{{ $active == 'perusahaan' ? 'active' : '' }}">
+                <a class="nav-link" href="/perusahaan"><i class="fas fa-building"></i> <span>Manajemen Perusahaan</span>
+                </a>
+            </li>
             <li class="dropdown {{ $active1 == 'manajemen-surat' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-envelope"></i>
                     <span>Manajeman Surat</span></a>

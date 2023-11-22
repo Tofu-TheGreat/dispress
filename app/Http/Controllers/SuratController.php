@@ -25,27 +25,16 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
-
-        if (empty($suratList)) {
-            foreach ($suratList as $surat) {
-                $perusahaanId = $surat->id_perusahaan;
-                $perusahaan = Perusahaan::find($perusahaanId);
-
-
-                if ($perusahaan) {
-                    $perusahaanList[] = $perusahaan;
-                }
-            };
-        } else {
-            $perusahaanList[] = 0;
-        }
+        $perusahaanList = Perusahaan::get();
+        $userList = User::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
-            'perusahaanList' => $perusahaanList
+            'perusahaanList' => $perusahaanList,
+            'userList' => $userList,
         ]);
     }
 

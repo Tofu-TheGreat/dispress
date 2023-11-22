@@ -2,8 +2,10 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
 
 @section('content')
@@ -48,38 +50,18 @@
             <div class="collapse" id="collapseExample" style="">
                 <div class="p-4">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
+                                <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="fa fa-user-plus"></i>
-                                        </div>
-                                    </div>
-                                    <select class="filter form-control  @error('jabatan') is-invalid  @enderror "
-                                        id="jabatan" name="jabatan" required>
-                                        <option value="">Pilih Jabatan User</option>
-                                        <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
+                                    <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
+                                        id="id_perusahaan" name="id_perusahaan" required style="width: 100%;">
+                                        <option value="">Pilih Perusahaan Pengirim</option>
+                                        @foreach ($perusahaanList as $data)
+                                            <option value="{{ $data->id_perusahaan }}"
+                                                {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
+                                                {{ $data->nama_perusahaan }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <span class="text-danger">
@@ -89,11 +71,82 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="id_user">Pilih Penerima: </label>
+                                <div class="input-group">
+                                    <select class="filter select2 @error('id_user') is-invalid  @enderror " id="id_user"
+                                        name="id_user" required style="width: 100%;">
+                                        <option value="">Pilih Penerima</option>
+                                        @foreach ($userList as $data)
+                                            <option value="{{ $data->id_user }}"
+                                                {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                {{ $data->nama }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12 ">
+                            <h6 class="text-primary text-center mb-2">Sortir berdasarkan Tanggal Pembuatan Surat
+                            </h6>
+                        </div>
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
+                                </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-calendar3"></i>
+                                        </div>
+                                    </div>
+                                    <input type="date"
+                                        class="filter form-control datepicker tanggal_surat_awal @error('tanggal_surat_awal') is-invalid @enderror"
+                                        placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_awal') }}"
+                                        id="tanggal_surat_awal" name="tanggal_surat_awal" required style="width: 80%;">
+                                </div>
+                                <span class="text-danger">
+                                    @error('tanggal_surat_awal')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir Pembuatan
+                                    Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-calendar3"></i>
+                                        </div>
+                                    </div>
+                                    <input type="date"
+                                        class="form-control datepicker tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
+                                        placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
+                                        id="tanggal_surat_terakhir" name="tanggal_surat_terakhir" required
+                                        style="width: 80%;">
+                                </div>
+                                <span class="text-danger">
+                                    @error('tanggal_surat_terakhir')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                             <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                        <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1" title="Reset">
+                        <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
+                            title="Reset">
                             <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
                                 Filter</span></button>
                     </div>
@@ -112,8 +165,8 @@
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
                             <a href="/surat/create" class="text-white">
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                    title="Tambah Data" data-original-title="Tambah Data">
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                                    data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
                                     <i class="fa fa-plus-circle btn-tambah-data"></i>
                                 </button>
                             </a>
@@ -308,6 +361,8 @@
 @section('script')
     {{-- modules --}}
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
+    <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>

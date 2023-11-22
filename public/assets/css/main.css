@@ -325,7 +325,8 @@ Footer
 @media screen and (max-width: 570px) {
     .btn-group:not(.note-btn-group) {
         display: flex;
-        justify-content: end;
+        justify-content: center;
+        margin-top: 10px;
     }
 
     .judul-page {

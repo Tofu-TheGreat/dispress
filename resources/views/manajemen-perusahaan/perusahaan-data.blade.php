@@ -29,58 +29,6 @@
             </div>
         </div>
 
-        {{-- Filter --}}
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <div class="col">
-                    <h4 class="text-primary">Filter</h4>
-                </div>
-                <div class="col d-flex justify-content-end">
-                    {{-- Button Triger Filter --}}
-                    <span data-toggle="tooltip" data-placement="top" title="Klik untuk menu filter data."
-                        data-original-title="Filter Data" disabled>
-                        <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-                            title="Tombol Filter">
-                            <i class="bi bi-funnel-fill"></i>
-                        </button>
-                    </span>
-                    {{-- Akhir Button Triger Filter --}}
-                </div>
-            </div>
-            <div class="collapse" id="collapseExample" style="">
-                <div class="p-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="id_user">Pilih Penerima: </label>
-                                <div class="input-group">
-                                    <select class="filter select2 @error('id_user') is-invalid  @enderror " id="id_user"
-                                        name="id_user" required style="width: 100%;">
-                                        <option value="">Pilih Penerima</option>
-
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('jabatan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
-                            <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                        <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1" title="Reset">
-                            <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                Filter</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Filter --}}
-
         <div class="section-body">
             <div class="">
                 <div class="card">
@@ -290,17 +238,17 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Users</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Perusahaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('perusahaan.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Admin: </span>
-                        <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="Admin-template-import">
-                            <span>Template Import Admin</span> <i
+                        <span class="d-block">Unduh Template Import Perusahaan: </span>
+                        <a href="/file/Book2.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
+                            download="Perusahaan-template-import">
+                            <span>Template Import Perusahaan</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">
@@ -416,7 +364,7 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Surat ini?',
+                        text: 'Ingin export data Perusahaan ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
@@ -428,7 +376,7 @@
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('surat.export') }}', {
+                            fetch('{{ route('perusahaan.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -444,7 +392,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Surat tidak jadi diexport!');
+                            swal('Data Perusahaan tidak jadi diexport!');
                         }
                     });
             }

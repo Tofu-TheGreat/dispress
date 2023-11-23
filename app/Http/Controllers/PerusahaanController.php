@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\PerusahaanRequest;
 use App\Repository\Perusahaan\PerusahaanRepository;
-use Illuminate\Http\Request;
 
 class PerusahaanController extends Controller
 {
@@ -65,7 +65,7 @@ class PerusahaanController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PerusahaanRequest $request, string $id)
     {
         $this->perusahaanRepository->update($request, $id);
     }
@@ -75,6 +75,8 @@ class PerusahaanController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->perusahaanRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->perusahaanRepository->destroy($encryptId);
+        return redirect()->intended('/perusahaan')->with('success', 'Berhasil menghapus data perusahaan.');
     }
 }

@@ -173,6 +173,7 @@
         $(document).ready(function() {
             $('.summernote-simple').summernote('disable');
         })
+
         document.body.addEventListener("click", function(event) {
             const element = event.target;
 

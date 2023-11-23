@@ -75,10 +75,10 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="row row-cols-1 row-cols-md-3 g-4">
+                                        <div class="row row-cols-2 row-cols-md-3 g-3 ">
                                             @foreach ($perusahaanList as $data)
-                                                <div class="col">
-                                                    <div class="card ">
+                                                <div class="col mx-1">
+                                                    <div class="card shadow shadow-sm" style="max-width: 360px;">
                                                         <div class="position-relative">
                                                             <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
                                                                 class="card-img-top bg-primary img-perusahaan"
@@ -86,23 +86,29 @@
                                                             <div
                                                                 class="d-flex flex-row justify-content-center align-content-center btn-group-action-perusahaan ">
                                                                 <div class="mr-2">
-                                                                    <a href="{{ route('perusahaan.show', Crypt::encryptString($data->id_perusahaan)) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Detail data perusahaan"
+                                                                    <span data-toggle="tooltip" data-placement="top"
+                                                                        title="Detail Data Perusahaan"
                                                                         data-original-title="Detail data perusahaan"
-                                                                        class="rounded-circle btn btn-info tombol-detail-perusahaan"
-                                                                        type="button" href=""><i
-                                                                            class="bi bi-eye "></i>
-                                                                    </a>
+                                                                        disabled>
+                                                                        <button type="button" data-toggle="modal"
+                                                                            data-target="#detail-modal{{ $data->id_perusahaan }}"
+                                                                            type="button"
+                                                                            class="rounded-circle btn btn-info tombol-detail-perusahaan">
+                                                                            <i class="bi bi-eye "></i>
+                                                                        </button>
+                                                                    </span>
                                                                 </div>
                                                                 <div class="mr-2">
-                                                                    <a type="button" data-toggle="tooltip"
-                                                                        data-placement="top" title="Edit data perusahaan"
-                                                                        data-original-title="Edit data perusahaan"
-                                                                        class="rounded-circle btn btn-warning has-icon text-white tombol-edit-perusahaan"
-                                                                        href="{{ route('perusahaan.edit', Crypt::encryptString($data->id_perusahaan)) }}"><i
-                                                                            class="bi bi-pencil-square "></i>
-                                                                    </a>
+                                                                    <span data-toggle="tooltip" data-placement="top"
+                                                                        title="Edit Data Perusahaan"
+                                                                        data-original-title="Edit data perusahaan" disabled>
+                                                                        <button type="button" data-toggle="modal"
+                                                                            data-target="#edit-modal{{ $data->id_perusahaan }}"
+                                                                            type="button"
+                                                                            class="rounded-circle btn btn-warning tombol-edit-perusahaan">
+                                                                            <i class="bi bi-pencil-square "></i>
+                                                                        </button>
+                                                                    </span>
                                                                 </div>
                                                                 <form method="POST"
                                                                     action="{{ route('perusahaan.destroy', Crypt::encryptString($data->id_perusahaan)) }}"
@@ -137,6 +143,204 @@
             </div>
         </div>
     </section>
+
+    @foreach ($perusahaanList as $item)
+        <!-- Modal Detail Perusahaan -->
+        <div class="modal fade" id="detail-modal{{ $item->id_perusahaan }}" aria-labelledby="detail-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="detail-modal">Detail Data Perusahaan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="row px-4 pt-4">
+                        <div class="col-12">
+                            @if ($item->foto_perusahaan)
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset('image_save/' . $item->foto_perusahaan) }}"
+                                        alt="foto {{ $item->perusahaan }}" class="foto-perusahaan">
+                                </div>
+                            @else
+                                <div class="d-flex justify-content-center">
+                                    <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
+                                        alt="foto {{ $item->perusahaan }}" class="foto-perusahaan bg-primary">
+                                </div>
+                            @endif
+                        </div>
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group ">
+                                <label for="nama_perusahaan">Nama Perusahaan: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend ">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control @error('nama_perusahaan') is-invalid @enderror"
+                                        placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
+                                        id="nama_perusahaan" name="nama_perusahaan" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('nama_perusahaan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="nomor_telpon">Nomor Telepon Perusahaan: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-telephone-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control phone @error('nomor_telpon') is-invalid @enderror"
+                                        placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
+                                        id="nomor_telpon" name="nomor_telpon" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('nomor_telpon')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class=" col-12">
+                            <div class="form-group ">
+                                <label for="alamat_perusahaan">Alamat Perusahaan: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend ">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-geo-alt-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control @error('alamat_perusahaan') is-invalid @enderror"
+                                        placeholder="ex: PT Gayuh Net" value="{{ $item->alamat_perusahaan }}"
+                                        id="alamat_perusahaan" name="alamat_perusahaan" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('alamat_perusahaan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-end border-top pt-3">
+                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                class="bi bi-x-circle ml-3"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- End Detail Perusahaan --}}
+    @endforeach
+
+    @foreach ($perusahaanList as $item)
+        <!-- Modal Edit Perusahaan -->
+        <div class="modal fade" id="edit-modal{{ $item->id_perusahaan }}" aria-labelledby="edit-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="edit-modal">Edit Data Perusahaan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('perusahaan.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row px-4 pt-4">
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="nama_perusahaan">Nama Perusahaan: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="fas fa-building"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('nama_perusahaan') is-invalid @enderror"
+                                            placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
+                                            id="nama_perusahaan" name="nama_perusahaan" required autofocus>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('nama_perusahaan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="nomor_telpon">Nomor Telepon Perusahaan: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-telephone-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control phone @error('nomor_telpon') is-invalid @enderror"
+                                            placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
+                                            id="nomor_telpon" name="nomor_telpon" required>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('nomor_telpon')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
+                                    <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
+                                        name="alamat_perusahaan" required> {{ $item->alamat_perusahaan }} </textarea>
+                                    <span class="text-danger">
+                                        @error('alamat_perusahaan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group px-4">
+                            <label for="foto_perusahaan ">Masukkan foto Perusahaan: </label>
+                            <small class="d-block">Catatan: masukkan foto dengan format (JPEG, PNG,
+                                JPG),
+                                maksimal 10
+                                MB.</small>
+                            <input type="file"
+                                class="img-filepond-preview @error('foto_perusahaan') is-invalid @enderror"
+                                id="foto_perusahaan" name="foto_perusahaan" accept="jpg,jpeg,png,svg">
+                            <span class="text-danger">
+                                @error('foto_perusahaan')
+                                    {{ $message }}
+                                @enderror
+                            </span>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                    class="bi bi-x-circle ml-3"></i></button>
+                            <button type="submit" value="Import" class="btn btn-primary text-white">
+                                Save Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{-- End Edit Perusahaan --}}
+    @endforeach
 
     <!-- Modal Tambah Perusahaan -->
     <div class="modal fade" id="tambah-modal" aria-labelledby="tambah-modal" aria-hidden="true">
@@ -196,9 +400,8 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
-                                <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror"
-                                    placeholder="ex: Gg. Dipatiukur No. 848, Tarakan 96303, Kepri" id="alamat_perusahaan" name="alamat_perusahaan"
-                                    required> {{ old('alamat_perusahaan') }} </textarea>
+                                <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
+                                    name="alamat_perusahaan" required> {{ old('alamat_perusahaan') }} </textarea>
                                 <span class="text-danger">
                                     @error('alamat_perusahaan')
                                         {{ $message }}
@@ -344,19 +547,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Surat ini!',
+                        text: 'Ingin menghapus data Perusahaan ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Surat berhasil dihapus!', {
+                            swal('Data Perusahaan berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Surat tidak jadi dihapus!');
+                            swal('Data Perusahaan tidak jadi dihapus!');
                         }
                     });
             }
@@ -371,7 +574,7 @@
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Surat berhasil diexport!', {
+                            swal('Data Perusahaan berhasil diexport!', {
                                 icon: 'success',
                             });
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\AdminExport;
 use App\Exports\OfficerExport;
+use App\Exports\PerusahaanExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
 use App\Imports\AdminImport;
@@ -29,6 +30,10 @@ class ExportController extends Controller
     public function export_surat()
     {
         return Excel::download(new SuratExport, 'Data-Surat.xlsx');
+    }
+    public function export_perusahaan()
+    {
+        return Excel::download(new PerusahaanExport, 'Data-Perusahaan.xlsx');
     }
     public function getPerusahaanNames()
     {

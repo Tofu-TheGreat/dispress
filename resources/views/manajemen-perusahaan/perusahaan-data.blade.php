@@ -441,17 +441,17 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Users</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Perusahaan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('perusahaan.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Admin: </span>
-                        <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="Admin-template-import">
-                            <span>Template Import Admin</span> <i
+                        <span class="d-block">Unduh Template Import Perusahaan: </span>
+                        <a href="/file/Book2.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
+                            download="Perusahaan-template-import">
+                            <span>Template Import Perusahaan</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">

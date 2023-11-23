@@ -56,6 +56,8 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 // Manajemen Perusahaan
 
 Route::resource('/perusahaan', PerusahaanController::class)->middleware('auth');
+Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
+Route::post('perusahaan-import', [ImportController::class, 'import_perusahaan'])->name('perusahaan.import');
 
 Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
 Route::post('perusahaan-import', [ImportController::class, 'import_user'])->name('perusahaan.import');

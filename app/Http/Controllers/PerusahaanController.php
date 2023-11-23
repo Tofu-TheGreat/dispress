@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\PerusahaanRequest;
 use App\Repository\Perusahaan\PerusahaanRepository;
 
 class PerusahaanController extends Controller
@@ -40,9 +40,10 @@ class PerusahaanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PerusahaanRequest $request)
     {
         $this->perusahaanRepository->store($request);
+        return back();
     }
 
     /**

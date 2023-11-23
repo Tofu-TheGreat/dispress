@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="{{ $active == 'perusahaan' ? 'active' : '' }}">
+            <li class="{{ $active == 'Perusahaan' ? 'active' : '' }}">
                 <a class="nav-link" href="/perusahaan"><i class="fas fa-building"></i> <span>Manajemen Perusahaan</span>
                 </a>
             </li>

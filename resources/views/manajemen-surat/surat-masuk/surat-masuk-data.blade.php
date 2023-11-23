@@ -93,7 +93,7 @@
                             </div>
                         </div>
                         <div class="col-12 ">
-                            <h6 class="text-primary text-center mb-2">Sortir berdasarkan Tanggal Pembuatan Surat
+                            <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                             </h6>
                         </div>
                         <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -281,7 +281,7 @@
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                            {{ currencyPhone($data->perusahaan->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>

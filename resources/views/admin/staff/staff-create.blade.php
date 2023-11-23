@@ -201,7 +201,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="no_telp">Masukkan Nomor Telepon: </label>
+                                        <label for="no_telpon">Masukkan Nomor Telepon: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">

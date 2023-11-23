@@ -126,9 +126,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="card-body">
-                                                            <h6 class="card-title pt-3">{{ $data->nama_perusahaan }}</h6>
-                                                            <small
-                                                                class="card-text">{{ $data->alamat_perusahaan }}</small>
+                                                            <b class="card-title pt-3 d-block">
+                                                                {{ $data->nama_perusahaan }}</b>
+                                                            <small class="card-text">{!! $data->alamat_perusahaan !!}</small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -212,20 +212,11 @@
                                 </span>
                             </div>
                         </div>
-                        <div class=" col-12">
-                            <div class="form-group ">
-                                <label for="alamat_perusahaan">Alamat Perusahaan: </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend ">
-                                        <div class="input-group-text bg-secondary">
-                                            <i class="bi bi-geo-alt-fill"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control @error('alamat_perusahaan') is-invalid @enderror"
-                                        placeholder="ex: PT Gayuh Net" value="{{ $item->alamat_perusahaan }}"
-                                        id="alamat_perusahaan" name="alamat_perusahaan" readonly>
-                                </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
+                                <textarea class="summernote-simple summernote-disable @error('alamat_perusahaan') is-invalid @enderror"
+                                    id="alamat_perusahaan" name="alamat_perusahaan" readonly> {{ $item->alamat_perusahaan }} </textarea>
                                 <span class="text-danger">
                                     @error('alamat_perusahaan')
                                         {{ $message }}
@@ -256,8 +247,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('perusahaan.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="/perusahaan/{{ $item->id_perusahaan }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
+                        <input type="text" name="id_perusahaan" value="{{ $item->id_perusahaan }}" hidden>
                         <div class="row px-4 pt-4">
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
@@ -498,6 +491,18 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('.summernote-simple').summernote({
+                dialogsInBody: true,
+                minHeight: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['paragraph']]
+                ]
+            });
+
+            $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
         });
     </script>
 

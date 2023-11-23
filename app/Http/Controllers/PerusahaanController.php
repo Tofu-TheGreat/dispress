@@ -43,7 +43,7 @@ class PerusahaanController extends Controller
     public function store(PerusahaanRequest $request)
     {
         $this->perusahaanRepository->store($request);
-        return back();
+        return back()->with('success', 'Berhasil menambah data perusahaan');
     }
 
     /**
@@ -68,6 +68,7 @@ class PerusahaanController extends Controller
     public function update(PerusahaanRequest $request, string $id)
     {
         $this->perusahaanRepository->update($request, $id);
+        return back()->with('success', 'Berhasil meng-edit data perusahaan');
     }
 
     /**

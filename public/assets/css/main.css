@@ -94,6 +94,15 @@ li {
     border: 3px solid rgba(179, 97, 97, 0.39);
 }
 
+.note-toolbar {
+    position: relative;
+}
+
+.note-editing-area {
+    position: relative;
+    top: 20%;
+}
+
 /* surat */
 .btn-group-action {
     position: absolute;

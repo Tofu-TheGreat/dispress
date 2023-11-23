@@ -171,7 +171,17 @@
 
     <script>
         $(document).ready(function() {
-            $('.summernote-simple').summernote('disable');
+            $('.summernote-simple').summernote({
+                dialogsInBody: true,
+                minHeight: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['paragraph']]
+                ]
+            });
+
+            $('.summernote-simple').next().find(".note-editable").attr("contenteditable", false);
         })
 
         document.body.addEventListener("click", function(event) {

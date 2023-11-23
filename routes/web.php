@@ -57,11 +57,15 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
 Route::resource('/perusahaan', PerusahaanController::class)->middleware('auth');
 
+Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
+Route::post('perusahaan-import', [ImportController::class, 'import_user'])->name('perusahaan.import');
+
+
 // Manajemen Surat
 
 Route::resource('/surat', SuratController::class)->middleware('auth');
 
 Route::get('surat-export', [ExportController::class, 'export_surat'])->name('surat.export');
-Route::post('surat-import', [ImportController::class, 'import_user'])->name('staff.import');
+Route::post('surat-import', [ImportController::class, 'import_user'])->name('surat.import');
 
 Route::get('/surat-filter', [SuratController::class, 'filterData'])->name('filter.surat');

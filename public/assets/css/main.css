@@ -85,6 +85,15 @@ li {
     transform: scale(1.1);
 }
 
+.foto-perusahaan {
+    width: 230px;
+    height: 230px;
+    margin: 10px;
+    border-radius: 10%;
+    aspect-ratio: 1/1;
+    border: 3px solid rgba(179, 97, 97, 0.39);
+}
+
 /* surat */
 .btn-group-action {
     position: absolute;

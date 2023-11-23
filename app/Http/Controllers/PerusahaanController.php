@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\Perusahaan\PerusahaanRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use App\Repository\Perusahaan\PerusahaanRepository;
 
 class PerusahaanController extends Controller
 {
@@ -73,6 +74,8 @@ class PerusahaanController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->perusahaanRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->perusahaanRepository->destroy($encryptId);
+        return redirect()->intended('/perusahaan')->with('success', 'Berhasil menghapus data perusahaan.');
     }
 }

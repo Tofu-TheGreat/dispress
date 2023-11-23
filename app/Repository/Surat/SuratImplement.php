@@ -82,4 +82,27 @@ class SuratImplement implements SuratRepository
         }
         $this->surat->where('id_surat', $id)->delete();
     }
+
+    public function filterData($data)
+    {
+        $query = $this->surat->query();
+
+        if (isset($data->id_perusahaan) && ($data->id_perusahaan != null)) {
+            $query->where('id_perusahaan', $data->id_perusahaan);
+        }
+        if (isset($data->id_user) && ($data->id_user != null)) {
+            $query->where('id_user', $data->id_user);
+        }
+        if (
+            isset($data->tanggal_surat_awal) &&
+            ($data->tanggal_surat_awal != null) &&
+            isset($data->tanggal_surat_terakhir) &&
+            ($data->tanggal_surat_terakhir != null)
+        ) {
+            $query->whereBetween('tanggal_surat', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
+        }
+
+
+        return $query->get();
+    }
 }

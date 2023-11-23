@@ -63,6 +63,28 @@ li {
     width: 65%;
 }
 
+/* perusahaan */
+.btn-group-action-perusahaan {
+    position: absolute;
+    bottom: -7%;
+    right: 50%;
+    left: 50%;
+}
+
+.img-perusahaan {
+    border-bottom: 2px solid #3649e3;
+}
+
+.btn-group-action-perusahaan .btn {
+    border: 2px solid #3649e3;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-group-action-perusahaan .btn:hover {
+    border: 2px solid #3649e3 !important;
+    transform: scale(1.1);
+}
+
 /* surat */
 .btn-group-action {
     position: absolute;

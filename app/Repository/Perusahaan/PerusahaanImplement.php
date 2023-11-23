@@ -11,12 +11,16 @@ class PerusahaanImplement implements PerusahaanRepository
     {
         $this->perusahaan = $perusahaan;
     }
+    public function index()
+    {
+        return $this->perusahaan->get();
+    }
     public function store($data)
     {
         $this->perusahaan->create([
             'nama_perusahaan' => $data->nama_perusahaan,
             'alamat_perusahaan' => $data->alamat_perusahaan,
-            'nomor_telepon' => $data->nomor_telepon,
+            'nomor_telpon' => $data->nomor_telpon,
         ]);
     }
     public function show(string $id)
@@ -32,7 +36,7 @@ class PerusahaanImplement implements PerusahaanRepository
         $this->perusahaan->where('id_perusahaan', $id)->update([
             'nama_perusahaan' => $data->nama_perusahaan,
             'alamat_perusahaan' => $data->alamat_perusahaan,
-            'nomor_telepon' => $data->nomor_telepon,
+            'nomor_telpon' => $data->nomor_telpon,
         ]);
     }
     public function destroy(string $id)

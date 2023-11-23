@@ -283,7 +283,7 @@
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->perusahaan->nomor_telepon) }}
+                                                                            {{ currencyPhone($data->perusahaan->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>

@@ -22,7 +22,7 @@ class PerusahaanFactory extends Factory
         return [
             'nama_perusahaan' => $this->faker->company(),
             'alamat_perusahaan' => $this->faker->address(),
-            'nomor_telepon' => $this->faker->numerify('#############'),
+            'nomor_telpon' => $this->faker->numerify('#############'),
         ];
     }
 }

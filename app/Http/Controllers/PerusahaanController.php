@@ -18,7 +18,14 @@ class PerusahaanController extends Controller
      */
     public function index()
     {
-        //
+        $perusahaanList = $this->perusahaanRepository->index();
+
+        return view('manajemen-perusahaan.perusahaan-data', [
+            'title' => 'Perusahaan',
+            'active' => 'Perusahaan',
+            'active1' => 'Perusahaan',
+            'perusahaanList' => $perusahaanList,
+        ]);
     }
 
     /**

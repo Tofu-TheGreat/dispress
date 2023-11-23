@@ -13,7 +13,7 @@ class Perusahaan extends Model
     protected $fillable = [
         'nama_perusahaan',
         'alamat_perusahaan',
-        'nomor_telepon',
+        'nomor_telpon',
     ];
 
     public function surat()

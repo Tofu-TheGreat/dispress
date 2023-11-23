@@ -47,111 +47,113 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <div class="collapse" id="collapseExample" style="">
-                <div class="p-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
-                                <div class="input-group">
-                                    <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
-                                        id="id_perusahaan" name="id_perusahaan" required style="width: 100%;">
-                                        <option value="">Pilih Perusahaan Pengirim</option>
-                                        @foreach ($perusahaanList as $data)
-                                            <option value="{{ $data->id_perusahaan }}"
-                                                {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
-                                                {{ $data->nama_perusahaan }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('jabatan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="id_user">Pilih Penerima: </label>
-                                <div class="input-group">
-                                    <select class="filter select2 @error('id_user') is-invalid  @enderror " id="id_user"
-                                        name="id_user" required style="width: 100%;">
-                                        <option value="">Pilih Penerima</option>
-                                        @foreach ($userList as $data)
-                                            <option value="{{ $data->id_user }}"
-                                                {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                {{ $data->nama }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('jabatan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-12 ">
-                            <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
-                            </h6>
-                        </div>
-                        <div class=" col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
-                                </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="bi bi-calendar3"></i>
-                                        </div>
+            <form action="/surat-filter" method="get">
+                @csrf
+                <div class="collapse" id="collapseExample" style="">
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
+                                            id="id_perusahaan" name="id_perusahaan" style="width: 100%;">
+                                            <option value="">Pilih Perusahaan Pengirim</option>
+                                            @foreach ($perusahaanList as $data)
+                                                <option value="{{ $data->id_perusahaan }}"
+                                                    {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
+                                                    {{ $data->nama_perusahaan }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <input type="date"
-                                        class="filter form-control datepicker tanggal_surat_awal @error('tanggal_surat_awal') is-invalid @enderror"
-                                        placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_awal') }}"
-                                        id="tanggal_surat_awal" name="tanggal_surat_awal" required style="width: 80%;">
+                                    <span class="text-danger">
+                                        @error('jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
-                                <span class="text-danger">
-                                    @error('tanggal_surat_awal')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
-                        </div>
-                        <div class=" col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir Pembuatan
-                                    Surat: </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="bi bi-calendar3"></i>
-                                        </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pilih Penerima: </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('id_user') is-invalid  @enderror "
+                                            id="id_user" name="id_user" style="width: 100%;">
+                                            <option value="">Pilih Penerima</option>
+                                            @foreach ($userList as $data)
+                                                <option value="{{ $data->id_user }}"
+                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
-                                    <input type="date"
-                                        class="form-control datepicker tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
-                                        placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
-                                        id="tanggal_surat_terakhir" name="tanggal_surat_terakhir" required
-                                        style="width: 80%;">
+                                    <span class="text-danger">
+                                        @error('jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
-                                <span class="text-danger">
-                                    @error('tanggal_surat_terakhir')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+                            </div>
+                            <div class="col-12 ">
+                                <h6 class="text-primary text-center mb-5">Sortir berdasarkan Tanggal Pembuatan Surat
+                                </h6>
+                            </div>
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="filter form-control tanggal_surat_awal @error('tanggal_surat_awal') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_awal') }}"
+                                            id="tanggal_surat_awal" name="tanggal_surat_awal" style="width: 80%;">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat_awal')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir Pembuatan
+                                        Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
+                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir" style="width: 80%;">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat_terakhir')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
-                            <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                        <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
-                            title="Reset">
-                            <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                Filter</span></button>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
+                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                            <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
+                                title="Reset">
+                                <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
+                                    Filter</span></button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
         {{-- Filter --}}
 

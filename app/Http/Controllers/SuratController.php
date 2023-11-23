@@ -117,4 +117,20 @@ class SuratController extends Controller
         $this->suratRepository->destroy($encryptId);
         return redirect()->intended('/surat')->with('success', 'Berhasil menghapus data surat.');
     }
+
+    public function filterData(Request $request)
+    {
+        $suratList =  $this->suratRepository->filterData($request);
+        $perusahaanList = Perusahaan::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.surat-masuk.surat-masuk-data', [
+            'title' => 'Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk',
+            'suratList' => $suratList,
+            'perusahaanList' => $perusahaanList,
+            'userList' => $userList,
+        ]);
+    }
 }

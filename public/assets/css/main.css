@@ -94,22 +94,26 @@ li {
     border: 3px solid rgba(179, 97, 97, 0.39);
 }
 
-.note-toolbar {
-    position: relative;
+.note-editable .card-block {
+    display: block !important;
 }
-
-.note-editing-area {
-    position: relative;
-    top: 20%;
-}
-
 /* surat */
+.card-surat {
+    overflow: hidden;
+}
+
 .btn-group-action {
     position: absolute;
     height: 60px;
-    right: 0;
+    right: -10%;
     top: 10%;
+    transition: 0.3s ease-in-out;
 }
+
+.card-surat:hover .btn-group-action {
+    right: 0;
+}
+
 .tombol-detail-surat {
     position: absolute;
     border-radius: 100% 0% 0% 100% / 100% 48% 52% 0%;

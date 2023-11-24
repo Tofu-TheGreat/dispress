@@ -39,10 +39,11 @@
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
                             <span data-toggle="tooltip" data-placement="top" title="Tambah Data Perusahaan"
-                                data-original-title="Import Data" disabled>
+                                data-original-title="Import Data" class="tombol-tambah" disabled>
                                 <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
-                                    data-target="#tambah-modal" type="button" class="btn btn-primary text-white ml-2">
-                                    <i class="fa fa-plus-circle btn-tambah-data"></i>
+                                    data-target="#tambah-modal" type="button"
+                                    class="btn btn-primary text-white tombol-tambah ml-2">
+                                    <i class="fa fa-plus-circle btn-tambah-data tombol=tambah"></i>
                                 </button>
                             </span>
                             {{-- Akhir Button Tambah Data --}}
@@ -98,15 +99,16 @@
                                                                         </button>
                                                                     </span>
                                                                 </div>
-                                                                <div class="mr-2">
+                                                                <div class="mr-2 tombol-edit">
                                                                     <span data-toggle="tooltip" data-placement="top"
                                                                         title="Edit Data Perusahaan"
-                                                                        data-original-title="Edit data perusahaan" disabled>
+                                                                        data-original-title="Edit data perusahaan"
+                                                                        class="tombol-edit" disabled>
                                                                         <button type="button" data-toggle="modal"
                                                                             data-target="#edit-modal{{ $data->id_perusahaan }}"
                                                                             type="button"
-                                                                            class="rounded-circle btn btn-warning tombol-edit-perusahaan">
-                                                                            <i class="bi bi-pencil-square "></i>
+                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-perusahaan">
+                                                                            <i class="bi bi-pencil-square tombol-edit"></i>
                                                                         </button>
                                                                     </span>
                                                                 </div>
@@ -492,6 +494,27 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
+            $(document).on("show.bs.modal", '.modal', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                $(this).css("z-index", zIndex);
+                setTimeout(function() {
+                    $(".modal-backdrop").not(".modal-stack").first().css("z-index", zIndex - 1)
+                        .addClass("modal-stack");
+                }, 0);
+            }).on("hidden.bs.modal", '.modal', function(event) {
+                $(".modal:visible").length && $("body").addClass("modal-open");
+            });
+            $(document).on('inserted.bs.tooltip', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                var tooltipId = $(event.target).attr("aria-describedby");
+                $("#" + tooltipId).css("z-index", zIndex);
+            });
+            $(document).on('inserted.bs.popover', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                var popoverId = $(event.target).attr("aria-describedby");
+                $("#" + popoverId).css("z-index", zIndex);
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
                 minHeight: 150,
@@ -548,6 +571,14 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
+            const noteEditable = document.body.querySelectorAll(".note-editing-area");
+            const noteToolbar = document.body.querySelectorAll(".note-toolbar-wrapper");
+
+            if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah")) {
+                noteEditable.forEach((e) => {
+                    e.classList.add('mt-4');
+                })
+            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

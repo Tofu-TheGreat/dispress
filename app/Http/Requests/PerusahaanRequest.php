@@ -31,7 +31,7 @@ class PerusahaanRequest extends FormRequest
         $rules = [
             'nama_perusahaan' => 'required',
             'nomor_telpon' => 'required|min:12|max:13|unique:perusahaan,nomor_telpon,' . $this->input('id_perusahaan') . ',id_perusahaan',
-            'alamat_perusahaan' => 'required|min:5|max:50|'
+            'alamat_perusahaan' => 'required|min:5|max:75|'
         ];
 
         return $rules;
@@ -46,7 +46,7 @@ class PerusahaanRequest extends FormRequest
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
             'alamat_perusahaan.required' => 'Alamat Perusahaan tidak boleh kosong!',
             'alamat_perusahaan.min' => 'Alamat perusahaan tidak boleh kurang dari 5',
-            'alamat_perusahaan.max' => 'Alamat perusahaan tidak boleh lebih dari 50',
+            'alamat_perusahaan.max' => 'Alamat perusahaan tidak boleh lebih dari 75',
         ];
     }
 }

@@ -39,10 +39,11 @@
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
                             <span data-toggle="tooltip" data-placement="top" title="Tambah Data Perusahaan"
-                                data-original-title="Import Data" disabled>
+                                data-original-title="Import Data" class="tombol-tambah" disabled>
                                 <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
-                                    data-target="#tambah-modal" type="button" class="btn btn-primary text-white ml-2">
-                                    <i class="fa fa-plus-circle btn-tambah-data"></i>
+                                    data-target="#tambah-modal" type="button"
+                                    class="btn btn-primary text-white tombol-tambah ml-2">
+                                    <i class="fa fa-plus-circle btn-tambah-data tombol=tambah"></i>
                                 </button>
                             </span>
                             {{-- Akhir Button Tambah Data --}}
@@ -573,9 +574,9 @@
             const noteEditable = document.body.querySelectorAll(".note-editing-area");
             const noteToolbar = document.body.querySelectorAll(".note-toolbar-wrapper");
 
-            if (element.classList.contains("tombol-edit")) {
+            if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah")) {
                 noteEditable.forEach((e) => {
-                    e.classList.add('mt-5');
+                    e.classList.add('mt-4');
                 })
             }
 

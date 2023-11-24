@@ -13,7 +13,7 @@ class PerusahaanImplement implements PerusahaanRepository
     }
     public function index()
     {
-        return $this->perusahaan->get();
+        return $this->perusahaan->paginate(8);
     }
     public function store($data)
     {

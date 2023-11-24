@@ -135,6 +135,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
+                                            {{ $perusahaanList->onEachSide(1)->links() }}
                                         </div>
                                     @endif
                                 </div>
@@ -186,11 +187,7 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
                                         id="nama_perusahaan" name="nama_perusahaan" readonly>
                                 </div>
-                                <span class="text-danger">
-                                    @error('nama_perusahaan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -207,11 +204,7 @@
                                         placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
                                         id="nomor_telpon" name="nomor_telpon" readonly>
                                 </div>
-                                <span class="text-danger">
-                                    @error('nomor_telpon')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -219,11 +212,7 @@
                                 <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
                                 <textarea class="summernote-simple summernote-disable @error('alamat_perusahaan') is-invalid @enderror"
                                     id="alamat_perusahaan" name="alamat_perusahaan" readonly> {{ $item->alamat_perusahaan }} </textarea>
-                                <span class="text-danger">
-                                    @error('alamat_perusahaan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -268,11 +257,7 @@
                                             placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
                                             id="nama_perusahaan" name="nama_perusahaan" required autofocus>
                                     </div>
-                                    <span class="text-danger">
-                                        @error('nama_perusahaan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -289,11 +274,7 @@
                                             placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
                                             id="nomor_telpon" name="nomor_telpon" required>
                                     </div>
-                                    <span class="text-danger">
-                                        @error('nomor_telpon')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+
                                 </div>
                             </div>
                             <div class="col-12">
@@ -318,11 +299,7 @@
                             <input type="file"
                                 class="img-filepond-preview @error('foto_perusahaan') is-invalid @enderror"
                                 id="foto_perusahaan" name="foto_perusahaan" accept="jpg,jpeg,png,svg">
-                            <span class="text-danger">
-                                @error('foto_perusahaan')
-                                    {{ $message }}
-                                @enderror
-                            </span>
+
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-top pt-3">
                             <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -364,11 +341,7 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ old('nama_perusahaan') }}"
                                         id="nama_perusahaan" name="nama_perusahaan" required autofocus>
                                 </div>
-                                <span class="text-danger">
-                                    @error('nama_perusahaan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -385,11 +358,7 @@
                                         placeholder="ex: 0878-2730-3388" value="{{ old('nomor_telpon') }}"
                                         id="nomor_telpon" name="nomor_telpon" required>
                                 </div>
-                                <span class="text-danger">
-                                    @error('nomor_telpon')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                         <div class="col-12">
@@ -397,11 +366,7 @@
                                 <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
                                 <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
                                     name="alamat_perusahaan" required> {{ old('alamat_perusahaan') }} </textarea>
-                                <span class="text-danger">
-                                    @error('alamat_perusahaan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -413,11 +378,7 @@
                             MB.</small>
                         <input type="file" class="img-filepond-preview @error('foto_perusahaan') is-invalid @enderror"
                             id="foto_perusahaan" name="foto_perusahaan" accept="jpg,jpeg,png,svg">
-                        <span class="text-danger">
-                            @error('foto_perusahaan')
-                                {{ $message }}
-                            @enderror
-                        </span>
+
                     </div>
                     <div class="modal-footer d-flex justify-content-between border-top pt-3">
                         <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -455,14 +416,7 @@
                                 MB.</small>
                             <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
                                 id="import" name="file" accept=".xlsx">
-                            @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
+
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
@@ -539,6 +493,19 @@
                     message: "{{ Session::get('success') }}",
                     position: 'topRight'
                 })
+            });
+        </script>
+    @endif
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif

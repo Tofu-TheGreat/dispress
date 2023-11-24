@@ -42,6 +42,19 @@
                     <li><a class="nav-link" href="layout-transparent.html">SPPD</a></li>
                 </ul>
             </li>
+            <li class="dropdown {{ $active1 == 'setting' ? 'active' : '' }} ">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa bi bi-gear-fill"></i>
+                    <span>Manajeman Setting</span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <form action="/logout" method="POST" id="logout">
+                            @csrf
+                            <a class="nav-link text-danger submit-btn" style="cursor: pointer;">Logout</a>
+                        </form>
+                    </li>
+                </ul>
+            </li>
         </ul>
     </aside>
 </div>

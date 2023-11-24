@@ -417,6 +417,10 @@ Login Section
     animation: bounceTop_01 3s ease infinite;
 }
 
+.alert-login {
+    width: 110%;
+}
+
 .btn-submit-login {
     background-color: var(--secondary-color);
     padding: 8px;
@@ -562,6 +566,9 @@ Login Section
     .login .form-input input {
         width: 100%;
         margin-bottom: 25px;
+    }
+    .alert-login {
+        width: 100%;
     }
     .btn-submit-login {
         width: 100%;

@@ -98,15 +98,16 @@
                                                                         </button>
                                                                     </span>
                                                                 </div>
-                                                                <div class="mr-2">
+                                                                <div class="mr-2 tombol-edit">
                                                                     <span data-toggle="tooltip" data-placement="top"
                                                                         title="Edit Data Perusahaan"
-                                                                        data-original-title="Edit data perusahaan" disabled>
+                                                                        data-original-title="Edit data perusahaan"
+                                                                        class="tombol-edit" disabled>
                                                                         <button type="button" data-toggle="modal"
                                                                             data-target="#edit-modal{{ $data->id_perusahaan }}"
                                                                             type="button"
-                                                                            class="rounded-circle btn btn-warning tombol-edit-perusahaan">
-                                                                            <i class="bi bi-pencil-square "></i>
+                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-perusahaan">
+                                                                            <i class="bi bi-pencil-square tombol-edit"></i>
                                                                         </button>
                                                                     </span>
                                                                 </div>
@@ -569,9 +570,13 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
+            const noteEditable = document.body.querySelectorAll(".note-editing-area");
+            const noteToolbar = document.body.querySelectorAll(".note-toolbar-wrapper");
 
-            if (element.classList.contains("note-editable")) {
-                element.classList.add("d-block");
+            if (element.classList.contains("tombol-edit")) {
+                noteEditable.forEach((e) => {
+                    e.classList.add('mt-5');
+                })
             }
 
             if (element.classList.contains("tombol-hapus")) {

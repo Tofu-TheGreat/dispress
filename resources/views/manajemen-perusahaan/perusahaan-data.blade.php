@@ -76,7 +76,7 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="row row-cols-2 row-cols-md-3 g-3 ">
+                                        <div class="row px-3">
                                             @foreach ($perusahaanList as $data)
                                                 <div class="col mx-1">
                                                     <div class="card shadow shadow-sm" style="max-width: 360px;">
@@ -127,15 +127,26 @@
                                                                 </form>
                                                             </div>
                                                         </div>
-                                                        <div class="card-body">
-                                                            <b class="card-title pt-3 d-block">
-                                                                {{ $data->nama_perusahaan }}</b>
-                                                            <small class="card-text">{!! $data->alamat_perusahaan !!}</small>
+                                                        <div class="card-body position-relative">
+                                                            <div class="position-relative">
+                                                                <b class="card-title pt-3 d-block"
+                                                                    style="max-width: max-content;">
+                                                                    {{ strlen($data->nama_perusahaan) > 15 ? substr($data->nama_perusahaan, 0, 15) . '...' : $data->nama_perusahaan }}
+                                                                </b>
+                                                            </div>
+                                                            <div
+                                                                class="nomor_perusahaan d-flex justify-content-center align-content-center px-2">
+                                                                <small class="text-center phone">
+                                                                    {{ $data->nomor_telpon }}
+                                                                </small>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            {{ $perusahaanList->onEachSide(1)->links() }}
+                                            <div class="col-12 m-auto">
+                                                {{ $perusahaanList->onEachSide(1)->links() }}
+                                            </div>
                                         </div>
                                     @endif
                                 </div>
@@ -543,7 +554,7 @@
             if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah") || element
                 .classList.contains("tombol-detail")) {
                 noteEditable.forEach((e) => {
-                    e.classList.add('mt-4');
+                    e.classList.add('mt-5');
                 })
             }
 

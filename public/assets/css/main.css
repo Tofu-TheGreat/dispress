@@ -64,9 +64,12 @@ li {
 }
 
 /* perusahaan */
+.card-perusahaan {
+    position: relative;
+}
 .btn-group-action-perusahaan {
     position: absolute;
-    bottom: -7%;
+    bottom: -17px;
     right: 50%;
     left: 50%;
 }
@@ -96,6 +99,20 @@ li {
 
 .note-editable .card-block {
     display: block !important;
+}
+
+.nomor_perusahaan {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 120px; /* Need a specific value to work */
+    color: #eee;
+    background-color: #6777ef;
 }
 /* surat */
 .card-surat {

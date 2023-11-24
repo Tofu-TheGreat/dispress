@@ -303,7 +303,9 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        {{ $suratList->onEachSide(1)->links() }}
+                                        <div class="col-12 m-auto">
+                                            {{ $suratList->onEachSide(1)->links() }}
+                                        </div>
                                     @endif
                                 </div>
                             </div>

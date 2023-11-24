@@ -492,6 +492,27 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
+            $(document).on("show.bs.modal", '.modal', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                $(this).css("z-index", zIndex);
+                setTimeout(function() {
+                    $(".modal-backdrop").not(".modal-stack").first().css("z-index", zIndex - 1)
+                        .addClass("modal-stack");
+                }, 0);
+            }).on("hidden.bs.modal", '.modal', function(event) {
+                $(".modal:visible").length && $("body").addClass("modal-open");
+            });
+            $(document).on('inserted.bs.tooltip', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                var tooltipId = $(event.target).attr("aria-describedby");
+                $("#" + tooltipId).css("z-index", zIndex);
+            });
+            $(document).on('inserted.bs.popover', function(event) {
+                var zIndex = 100000 + (10 * $(".modal:visible").length);
+                var popoverId = $(event.target).attr("aria-describedby");
+                $("#" + popoverId).css("z-index", zIndex);
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
                 minHeight: 150,
@@ -548,6 +569,10 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
+
+            if (element.classList.contains("note-editable")) {
+                element.classList.add("d-block");
+            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

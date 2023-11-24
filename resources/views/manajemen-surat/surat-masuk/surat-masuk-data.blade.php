@@ -204,7 +204,7 @@
                                     @else
                                         @foreach ($suratList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
-                                                <div class="card card-primary shadow-sm">
+                                                <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
                                                             <h4>{{ $data->nomor_surat }}</h4>
@@ -278,8 +278,8 @@
                                                                                 href="#">{{ $item->nama_perusahaan }}</a>
                                                                                 @endif
                                                                                 @endforeach --}}
-                                                                        <a
-                                                                            href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
+                                                                        <span class="text-primary" href="#">
+                                                                            {{ $data->perusahaan->nama_perusahaan }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">

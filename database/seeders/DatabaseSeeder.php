@@ -66,5 +66,29 @@ class DatabaseSeeder extends Seeder
             'id_user' => '1',
             'scan_dokumen' => 'scan.pdf',
         ]);
+        Surat::factory()->create([
+            'nomor_surat' => '090/1958-TU/2023',
+            'tanggal_surat' => '2028-11-9',
+            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
+            'id_perusahaan' => '4',
+            'id_user' => '4',
+            'scan_dokumen' => 'scan.pdf',
+        ]);
+        Surat::factory()->create([
+            'nomor_surat' => '090/1998-TU/2023',
+            'tanggal_surat' => '2028-11-9',
+            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
+            'id_perusahaan' => '4',
+            'id_user' => '4',
+            'scan_dokumen' => 'scan.pdf',
+        ]);
+        Surat::factory()->create([
+            'nomor_surat' => '050/1928-TU/2023',
+            'tanggal_surat' => '2028-11-9',
+            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
+            'id_perusahaan' => '4',
+            'id_user' => '5',
+            'scan_dokumen' => 'scan.pdf',
+        ]);
     }
 }

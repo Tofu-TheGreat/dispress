@@ -303,6 +303,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        {{ $suratList->onEachSide(1)->links() }}
                                     @endif
                                 </div>
                             </div>

@@ -14,7 +14,7 @@ class SuratImplement implements SuratRepository
 
     public function index()
     {
-        return $this->surat->with('perusahaan')->get();
+        return $this->surat->with('perusahaan')->paginate(4);
     }
 
     public function store($data)

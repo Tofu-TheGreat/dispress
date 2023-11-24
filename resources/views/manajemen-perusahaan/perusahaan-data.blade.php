@@ -22,7 +22,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">perusahaan Masuk</div>
+                        <div class="breadcrumb-item d-inline">perusahaan</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -87,15 +87,15 @@
                                                             <div
                                                                 class="d-flex flex-row justify-content-center align-content-center btn-group-action-perusahaan ">
                                                                 <div class="mr-2">
-                                                                    <span data-toggle="tooltip" data-placement="top"
-                                                                        title="Detail Data Perusahaan"
+                                                                    <span class="tombol-detail" data-toggle="tooltip"
+                                                                        data-placement="top" title="Detail Data Perusahaan"
                                                                         data-original-title="Detail data perusahaan"
                                                                         disabled>
                                                                         <button type="button" data-toggle="modal"
                                                                             data-target="#detail-modal{{ $data->id_perusahaan }}"
                                                                             type="button"
-                                                                            class="rounded-circle btn btn-info tombol-detail-perusahaan">
-                                                                            <i class="bi bi-eye "></i>
+                                                                            class="rounded-circle btn btn-info tombol-detail tombol-detail-perusahaan">
+                                                                            <i class="bi bi-eye tombol-detail"></i>
                                                                         </button>
                                                                     </span>
                                                                 </div>
@@ -572,9 +572,9 @@
         document.body.addEventListener("click", function(event) {
             const element = event.target;
             const noteEditable = document.body.querySelectorAll(".note-editing-area");
-            const noteToolbar = document.body.querySelectorAll(".note-toolbar-wrapper");
 
-            if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah")) {
+            if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah") || element
+                .classList.contains("tombol-detail")) {
                 noteEditable.forEach((e) => {
                     e.classList.add('mt-4');
                 })

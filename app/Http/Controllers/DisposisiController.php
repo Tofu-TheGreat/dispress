@@ -100,6 +100,7 @@ class DisposisiController extends Controller
     public function update(DisposisiRequest $request, string $id)
     {
         $this->disposisiRepository->update($request, $id);
+        return redirect()->intended('/disposisi')->with('success', 'Berhasil meng-update data Disposisi.');
     }
 
     /**
@@ -107,6 +108,8 @@ class DisposisiController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->disposisiRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->disposisiRepository->destroy($encryptId);
+        return redirect()->intended('/disposisi')->with('success', 'Berhasil menghapus data Disposisi.');
     }
 }

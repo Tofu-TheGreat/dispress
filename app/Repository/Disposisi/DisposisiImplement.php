@@ -33,8 +33,77 @@ class DisposisiImplement implements DisposisiRepository
     }
     public function show($id)
     {
-        return $this->disposisi->where('id_disposisi', $id)->first();
+        $data = $this->disposisi->where('id_disposisi', $id)->first();
+
+        switch ($data->sifat_disposisi) {
+            case 0:
+                $data->sifat_disposisi = 'Segera';
+                break;
+            case 1:
+                $data->sifat_disposisi = 'Prioritas';
+                break;
+            case 2:
+                $data->sifat_disposisi = 'Biasa';
+                break;
+            default:
+                $data->sifat_disposisi = 'Tidak Diketahui';
+        }
+
+        switch ($data->status_disposisi) {
+            case 0:
+                $data->status_disposisi = 'Belum ditindak';
+                break;
+            case 1:
+                $data->status_disposisi = 'Diajukan';
+                break;
+            case 2:
+                $data->status_disposisi = 'Diterima';
+                break;
+            case 3:
+                $data->status_disposisi = 'Dikembalikan';
+                break;
+            default:
+                $data->status_disposisi = 'Tidak Diketahui';
+        }
+
+        switch ($data->tujuan_disposisi) {
+            case 0:
+                $data->tujuan_disposisi = 'Kepala Sekolah';
+                break;
+            case 1:
+                $data->tujuan_disposisi = 'Wakil Kepala Sekolah';
+                break;
+            case 2:
+                $data->tujuan_disposisi = 'Kurikulum';
+                break;
+            case 3:
+                $data->tujuan_disposisi = 'Kesiswaan';
+                break;
+            case 4:
+                $data->tujuan_disposisi = 'Sarana dan Prasarana';
+                break;
+            case 5:
+                $data->tujuan_disposisi = 'Kepala Jurusan';
+                break;
+            case 6:
+                $data->tujuan_disposisi = 'Hubin';
+                break;
+            case 7:
+                $data->tujuan_disposisi = 'Bimbingan Konseling';
+                break;
+            case 8:
+                $data->tujuan_disposisi = 'Guru Umum';
+                break;
+            case 9:
+                $data->tujuan_disposisi = 'Tata Usaha';
+                break;
+            default:
+                $data->tujuan_disposisi = 'Tidak Diketahui';
+        }
+
+        return $data;
     }
+
     public function edit($id)
     {
         return $this->disposisi->where('id_disposisi', $id)->first();

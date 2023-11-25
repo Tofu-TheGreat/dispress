@@ -17,8 +17,8 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/surat">Surat Masuk</a></div>
-                        <div class="breadcrumb-item d-inline">Detail Surat</div>
+                        <div class="breadcrumb-item d-inline active"><a href="/disposisi">Disposisi</a></div>
+                        <div class="breadcrumb-item d-inline">Detail Disposisi</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -30,36 +30,29 @@
                 <div class="row card-header">
                     <div class="col-10">
                         <div class="row">
-                            <a href="/surat" title="Kembali">
+                            <a href="/disposisi" title="Kembali">
                                 <i class="bi bi-arrow-left mr-3"></i>
                             </a>
-                            <h4 class="text-primary ">Detail Surat Masuk</h4>
+                            <h4 class="text-primary ">Detail Disposisi</h4>
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-end btn-group">
-                        <a href="/surat/{{ Crypt::encryptString($detailDataSurat->id_surat) }}/edit" class="text-white">
-                            <button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="top"
-                                title="Ajukan untuk Disposisi Surat Masuk"
-                                data-original-title="Ajukan untuk Disposisi Surat Masuk">
-                                Ajukan
-                            </button>
-                        </a>
-                        <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
+                        <a href="{{ route('disposisi.edit', Crypt::encryptString($detailDataDisposisi->id_disposisi)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                title="Edit Data Surat Masuk" data-original-title="Edit Data Surat Masuk">
+                                title="Edit Data Disposisi" data-original-title="Edit Data Disposisi">
                                 <i class="bi bi-pencil btn-tambah-data"></i>
                             </button>
                         </a>
                         <form method="POST"
-                            action="{{ route('surat.destroy', Crypt::encryptString($detailDataSurat->id_surat)) }}"
+                            action="{{ route('disposisi.destroy', Crypt::encryptString($detailDataDisposisi->id_disposisi)) }}"
                             class="tombol-hapus">
                             @csrf
                             @method('DELETE')
                             <a href="#" class="text-white ml-2 tombol-hapus">
                                 <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
-                                    data-placement="top" title="Hapus Data Surat Masuk"
-                                    data-original-title="Hapus Data Surat Masuk">
+                                    data-placement="top" title="Hapus Data Disposisi"
+                                    data-original-title="Hapus Data Disposisi">
                                     <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
                                 </button>
                             </a>
@@ -67,14 +60,14 @@
                     </div>
                 </div>
                 <div class="card-body ">
-                    <form action="/surat" method="post" enctype="multipart/form-data">
+                    <form action="/disposisi" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col">
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="nomor_surat">Nomor Surat: </label>
+                                            <label for="id_surat">Nomor Surat Disposisi: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -82,15 +75,15 @@
                                                     </div>
                                                 </div>
                                                 <input type="text"
-                                                    class="form-control capitalize @error('nomor_surat') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->nomor_surat }}" id="nomor_surat"
-                                                    name="nomor_surat" readonly>
+                                                    class="form-control capitalize @error('id_surat') is-invalid @enderror"
+                                                    value="{{ $detailDataDisposisi->surat->nomor_surat }}" id="id_surat"
+                                                    name="id_surat" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="tanggal_surat">Tanggal Surat: </label>
+                                            <label for="tanggal_disposisi">Tanggal Disposisi: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -98,38 +91,54 @@
                                                     </div>
                                                 </div>
                                                 <input type="text"
-                                                    class="form-control @error('tanggal_surat') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->tanggal_surat }}" id="tanggal_surat"
-                                                    name="tanggal_surat" readonly>
+                                                    class="form-control @error('tanggal_disposisi') is-invalid @enderror"
+                                                    value="{{ $detailDataDisposisi->tanggal_disposisi }}"
+                                                    id="tanggal_disposisi" name="tanggal_disposisi" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="isi_surat">Isi Surat: </label>
-                                            <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
-                                                id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
+                                            <label for="catatan_disposisi">Catatan Disposisi: </label>
+                                            <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
+                                                placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" readonly> {{ $detailDataDisposisi->catatan_disposisi }} </textarea>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="id_perusahaan">Pengirim Surat: </label>
+                                            <label for="sifat_disposisi">Sifat Disposisi: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
-                                                        <i class="bi bi-person-rolodex"></i>
+                                                        <i class="bi  bi-envelope-exclamation"></i>
                                                     </div>
                                                 </div>
                                                 <input type="text"
-                                                    class="form-control @error('id_perusahaan') is-invalid @enderror"
-                                                    value="{{ $perusahaanList->nama_perusahaan }}" id="id_perusahaan"
-                                                    name="id_perusahaan" readonly>
+                                                    class="form-control @error('sifat_disposisi') is-invalid @enderror"
+                                                    value="{{ $detailDataDisposisi->sifat_disposisi }}" id="sifat_disposisi"
+                                                    name="sifat_disposisi" readonly>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="id_user">Penerima Surat: </label>
+                                            <label for="status_disposisi">Status Surat: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi  bi-envelope-exclamation-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('status_disposisi') is-invalid @enderror"
+                                                    value="{{ $detailDataDisposisi->status_disposisi }}"
+                                                    id="status_disposisi" name="status_disposisi" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="id_user">Pengirim Disposisi: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -138,8 +147,24 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('id_user') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->user->nama }}" id="id_user"
+                                                    value="{{ $detailDataDisposisi->user->nama }}" id="id_user"
                                                     name="id_user" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="tujuan_disposisi">Tujuan Disposisi: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-person-rolodex"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('tujuan_disposisi') is-invalid @enderror"
+                                                    value="{{ $detailDataDisposisi->tujuan_disposisi }}"
+                                                    id="tujuan_disposisi" name="tujuan_disposisi" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -149,10 +174,10 @@
                                 <div class=" ">
                                     <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
                                         title="Preview surat (PDF)" data-original-title="Preview surat (PDF)"
-                                        href="{{ asset('document_save/' . $detailDataSurat->scan_dokumen) }}"
+                                        href="{{ asset('document_save/' . $detailDataDisposisi->scan_dokumen) }}"
                                         target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
                                             style="font-size: 1.1rem;"></i></a>
-                                    <a href="/surat" class="btn btn-warning  ">
+                                    <a href="/disposisi" class="btn btn-warning  ">
                                         <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                         <span class="bi-text">Kembali</span>
                                     </a>
@@ -190,18 +215,18 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data surat ini?',
+                        text: 'Ingin menghapus data disposisi ini?',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     }).then((willDelete) => {
                         if (willDelete) {
-                            swal('Data surat berhasil dihapus!', {
+                            swal('Data disposisi berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data surat tidak jadi dihapus!');
+                            swal('Data disposisi tidak jadi dihapus!');
                         }
                     })
                     .catch(error => {

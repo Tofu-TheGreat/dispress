@@ -131,7 +131,7 @@ li {
     right: 0;
 }
 
-.tombol-detail-surat {
+.tombol-detail-card {
     position: absolute;
     border-radius: 100% 0% 0% 100% / 100% 48% 52% 0%;
     right: 0;
@@ -139,12 +139,21 @@ li {
     z-index: 99;
 }
 
-.tombol-detail-surat i {
+.tombol-detail-card i {
     position: relative;
-    left: 10%;
+    left: 20%;
 }
 
-.tombol-edit-surat {
+.tombol-edit-card i {
+    position: relative;
+}
+
+.tombol-hapus-card i {
+    position: relative;
+    left: 20%;
+}
+
+.tombol-edit-card {
     position: absolute;
     border-radius: 100% 0% 100% 0% / 0% 100% 0% 100%;
     right: 0;
@@ -152,7 +161,7 @@ li {
     z-index: 99;
 }
 
-.tombol-hapus-surat {
+.tombol-hapus-card {
     position: absolute;
     border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%;
     right: 0;

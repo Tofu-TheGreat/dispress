@@ -112,19 +112,22 @@
                                                                         </button>
                                                                     </span>
                                                                 </div>
-                                                                <form method="POST"
-                                                                    action="{{ route('perusahaan.destroy', Crypt::encryptString($data->id_perusahaan)) }}"
-                                                                    class="tombol-hapus">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="button" data-toggle="tooltip"
-                                                                        data-placement="top" title="Hapus data perusahaan"
-                                                                        data-original-title="Hapus data perusahaan"
-                                                                        class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-perusahaan tombol-hapus"
-                                                                        href=""><i
-                                                                            class="bi bi-trash tombol-hapus"></i>
-                                                                    </button>
-                                                                </form>
+                                                                <div>
+                                                                    <form method="POST"
+                                                                        action="{{ route('perusahaan.destroy', Crypt::encryptString($data->id_perusahaan)) }}"
+                                                                        class="tombol-hapus">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="button" data-toggle="tooltip"
+                                                                            data-placement="top"
+                                                                            title="Hapus data perusahaan"
+                                                                            data-original-title="Hapus data perusahaan"
+                                                                            class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-perusahaan tombol-hapus"
+                                                                            href=""><i
+                                                                                class="bi bi-trash tombol-hapus"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="card-body position-relative">

@@ -115,7 +115,8 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
+                                                <label class="capitalize" for="sifat_disposisi">Sifat Disposisi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend ">
                                                         <div class="input-group-text bg-secondary">
@@ -128,13 +129,13 @@
                                                         <option selected disabled>Pilih Sifat Surat</option>
                                                         <option value="0"
                                                             {{ $editDataDisposisi->sifat_disposisi === '0' ? 'selected' : '' }}>
-                                                            Segera</option>
+                                                            Biasa</option>
                                                         <option value="1"
                                                             {{ $editDataDisposisi->sifat_disposisi === '1' ? 'selected' : '' }}>
                                                             Prioritas</option>
                                                         <option value="2"
-                                                            {{ $editDataDisposisi->sifat_disposisi == '2' ? 'selected' : '' }}>
-                                                            Biasa</option>
+                                                            {{ $editDataDisposisi->sifat_disposisi === '2' ? 'selected' : '' }}>
+                                                            Rahasia</option>
                                                     </select>
                                                 </div>
                                                 <span class="text-danger">
@@ -157,7 +158,7 @@
                                                     <select
                                                         class="form-control select2  @error('status_disposisi') is-invalid @enderror "
                                                         id="status_disposisi" name="status_disposisi" required>
-                                                        <option selected disabled>Pilih Sifat Surat</option>
+                                                        <option selected disabled>Pilih Status Surat</option>
                                                         <option value="0"
                                                             {{ $editDataDisposisi->status_disposisi === '0' ? 'selected' : '' }}>
                                                             Belum ditindak</option>
@@ -165,10 +166,10 @@
                                                             {{ $editDataDisposisi->status_disposisi === '1' ? 'selected' : '' }}>
                                                             Diajukan</option>
                                                         <option value="2"
-                                                            {{ $editDataDisposisi->status_disposisi == '2' ? 'selected' : '' }}>
+                                                            {{ $editDataDisposisi->status_disposisi === '2' ? 'selected' : '' }}>
                                                             Diterima</option>
                                                         <option value="3"
-                                                            {{ $editDataDisposisi->status_disposisi == '3' ? 'selected' : '' }}>
+                                                            {{ $editDataDisposisi->status_disposisi === '3' ? 'selected' : '' }}>
                                                             Dikembalikan</option>
                                                     </select>
                                                 </div>
@@ -259,34 +260,6 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="">
-                                                        <label for="foto">Masukkan Scan Dokumen Surat: </label>
-                                                        <small class="d-block">Catatan: masukkan dokumen dengan format
-                                                            (PDF),
-                                                            maksimal 10
-                                                            MB.</small>
-                                                    </div>
-                                                    <a type="button" class="btn btn-danger mb-2" data-toggle="tooltip"
-                                                        data-placement="top" title="Preview surat (PDF)"
-                                                        data-original-title="Preview surat (PDF)"
-                                                        href="{{ asset('document_save/' . $editDataDisposisi->scan_dokumen) }}"
-                                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
-                                                            style="font-size: 1.1rem;"></i></a>
-                                                </div>
-                                                <input type="file"
-                                                    class="img-filepond-preview @error('scan_dokumen') is-invalid @enderror"
-                                                    id="scan_dokumen" disabled accept="pdf"
-                                                    value="{{ $editDataDisposisi->scan_dokumen }}">
-                                                <span class="text-danger">
-                                                    @error('scan_dokumen')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -304,11 +277,16 @@
                                             <i class="bi bi-clipboard-check-fill fs-6 mr-1"></i>
                                             <span class="bi-text">Save Data</span></button>
                                     </div>
-                                    <div class="ml-2 ">
+                                    <div class="ml-2">
                                         <button type="reset" class="btn btn-secondary">
                                             <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
                                             <span class="bi-text">Reset</span></button>
                                     </div>
+                                    <a type="button" class="btn btn-danger mb-2 ml-2" data-toggle="tooltip"
+                                        data-placement="top" title="Preview surat (PDF)"
+                                        data-original-title="Preview surat (PDF)"
+                                        href="{{ asset('document_save/' . $editDataDisposisi->surat->scan_dokumen) }}"
+                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"></i></a>
                                 </div>
                             </div>
                         </form>

@@ -20,13 +20,13 @@ class DisposisiImplement implements DisposisiRepository
         $paginatedData->getCollection()->transform(function ($data) {
             switch ($data->sifat_disposisi) {
                 case 0:
-                    $data->sifat_disposisi = 'Segera';
+                    $data->sifat_disposisi = 'Biasa';
                     break;
                 case 1:
                     $data->sifat_disposisi = 'Prioritas';
                     break;
                 case 2:
-                    $data->sifat_disposisi = 'Biasa';
+                    $data->sifat_disposisi = 'Rahasia';
                     break;
                 default:
                     $data->sifat_disposisi = 'Tidak Diketahui';
@@ -106,13 +106,13 @@ class DisposisiImplement implements DisposisiRepository
 
         switch ($data->sifat_disposisi) {
             case 0:
-                $data->sifat_disposisi = 'Segera';
+                $data->sifat_disposisi = 'Biasa';
                 break;
             case 1:
                 $data->sifat_disposisi = 'Prioritas';
                 break;
             case 2:
-                $data->sifat_disposisi = 'Biasa';
+                $data->sifat_disposisi = 'Rahasia';
                 break;
             default:
                 $data->sifat_disposisi = 'Tidak Diketahui';

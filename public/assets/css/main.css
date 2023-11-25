@@ -83,7 +83,7 @@ li {
     transition: 0.3s ease-in-out;
 }
 
-.btn-group-action-perusahaan .btn:hover {
+.btn-group-action-perusahaan div:hover .btn {
     border: 2px solid #3649e3 !important;
     transform: scale(1.1);
 }
@@ -122,7 +122,7 @@ li {
 .btn-group-action {
     position: absolute;
     height: 60px;
-    right: -10%;
+    right: -17%;
     top: 10%;
     transition: 0.3s ease-in-out;
 }

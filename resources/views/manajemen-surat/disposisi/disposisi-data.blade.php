@@ -54,27 +54,6 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
-                                            id="id_perusahaan" name="id_perusahaan" style="width: 100%;">
-                                            <option value="">Pilih Perusahaan Pengirim</option>
-                                            @foreach ($perusahaanList as $data)
-                                                <option value="{{ $data->id_perusahaan }}"
-                                                    {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
-                                                    {{ $data->nama_perusahaan }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('jabatan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
                                     <label class="capitalize" for="id_user">Pilih Penerima: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "

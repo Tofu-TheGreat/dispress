@@ -81,5 +81,15 @@ class DatabaseSeeder extends Seeder
             'id_user' => '1',
             'tujuan_disposisi' => '1',
         ]);
+
+        Disposisi::factory()->create([
+            'id_surat' => '1',
+            'tanggal_disposisi' => '2028-11-9',
+            'catatan_disposisi' => 'Approve Disposisi nada',
+            'status_disposisi' => '2',
+            'sifat_disposisi' => '0',
+            'id_user' => '2',
+            'tujuan_disposisi' => '2',
+        ]);
     }
 }

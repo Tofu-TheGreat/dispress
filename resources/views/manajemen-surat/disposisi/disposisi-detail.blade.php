@@ -172,15 +172,15 @@
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class=" ">
-                                    <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
-                                        title="Preview surat (PDF)" data-original-title="Preview surat (PDF)"
-                                        href="{{ asset('document_save/' . $detailDataDisposisi->scan_dokumen) }}"
-                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
-                                            style="font-size: 1.1rem;"></i></a>
                                     <a href="/disposisi" class="btn btn-warning  ">
                                         <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                         <span class="bi-text">Kembali</span>
                                     </a>
+                                    <a type="button" class="btn btn-danger" data-toggle="tooltip" data-placement="top"
+                                        title="Preview surat (PDF)" data-original-title="Preview surat (PDF)"
+                                        href="{{ asset('document_save/' . $detailDataDisposisi->surat->scan_dokumen) }}"
+                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
+                                            style="font-size: 1.1rem;"></i></a>
                                 </div>
                             </div>
                         </div>

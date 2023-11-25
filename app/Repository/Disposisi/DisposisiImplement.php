@@ -16,8 +16,9 @@ class DisposisiImplement implements DisposisiRepository
 
     public function index()
     {
-        return $this->disposisi->get();
+        return $this->disposisi->paginate(6);
     }
+
     public function store($data)
     {
         $this->disposisi->create([

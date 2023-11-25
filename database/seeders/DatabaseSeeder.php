@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Surat;
+use App\Models\Disposisi;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Perusahaan::factory(15)->create();
         // \App\Models\Surat::factory(10)->create();
 
+        // Seed User
         User::factory()->create([
             'nip' => '213720078171677275',
             'nama' => 'Pasya Abinaya Nada Albana',
@@ -50,6 +52,8 @@ class DatabaseSeeder extends Seeder
             'nomor_telpon' => '089123456999',
             'password' => bcrypt('password'),
         ]);
+
+        // Seed Surat
         Surat::factory()->create([
             'nomor_surat' => '091/1228-TU/2023',
             'tanggal_surat' => '2023-11-9',
@@ -66,29 +70,16 @@ class DatabaseSeeder extends Seeder
             'id_user' => '1',
             'scan_dokumen' => 'scan.pdf',
         ]);
-        Surat::factory()->create([
-            'nomor_surat' => '090/1958-TU/2023',
-            'tanggal_surat' => '2028-11-9',
-            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
-            'id_perusahaan' => '4',
-            'id_user' => '4',
-            'scan_dokumen' => 'scan.pdf',
-        ]);
-        Surat::factory()->create([
-            'nomor_surat' => '090/1998-TU/2023',
-            'tanggal_surat' => '2028-11-9',
-            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
-            'id_perusahaan' => '4',
-            'id_user' => '4',
-            'scan_dokumen' => 'scan.pdf',
-        ]);
-        Surat::factory()->create([
-            'nomor_surat' => '050/1928-TU/2023',
-            'tanggal_surat' => '2028-11-9',
-            'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
-            'id_perusahaan' => '4',
-            'id_user' => '5',
-            'scan_dokumen' => 'scan.pdf',
+
+        // Seed Disposisi
+        Disposisi::factory()->create([
+            'id_surat' => '2',
+            'tanggal_disposisi' => '2028-11-9',
+            'catatan_disposisi' => 'Approve Disposisi',
+            'status_disposisi' => '1',
+            'sifat_disposisi' => '1',
+            'id_user' => '1',
+            'tujuan_disposisi' => '1',
         ]);
     }
 }

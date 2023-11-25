@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, SuratMasukController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, DisposisiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -71,3 +71,12 @@ Route::get('surat-export', [ExportController::class, 'export_surat'])->name('sur
 Route::post('surat-import', [ImportController::class, 'import_user'])->name('surat.import');
 
 Route::get('/surat-filter', [SuratController::class, 'filterData'])->name('filter.surat');
+
+// Manajemen Surat
+
+Route::resource('/disposisi', DisposisiController::class)->middleware('auth');
+
+Route::get('disposisi-export', [ExportController::class, 'export_disposisi'])->name('disposisi.export');
+Route::post('disposisi-import', [ImportController::class, 'import_user'])->name('disposisi.import');
+
+Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi');

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Contracts\Pagination\Paginator;
-use app\Repository\Disposisi\DisposisiImplement;
+use App\Repository\Disposisi\DisposisiImplement;
 use App\Repository\Disposisi\DisposisiRepository;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 

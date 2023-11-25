@@ -21,7 +21,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">Surat Masuk</div>
+                        <div class="breadcrumb-item d-inline">Disposisi</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -162,11 +162,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Surat Masuk</h4>
+                            <h4 class="text-primary judul-page">List Disposisi</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
-                            <a href="/surat/create" class="text-white">
+                            <a href="/disposisi/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip"
                                     data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
                                     <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -196,33 +196,33 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    @if ($suratList->isEmpty())
+                                    @if ($disposisiList->isEmpty())
                                         <div class="d-flex justify-content-center align-content-center">
                                             <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                 class="w-50">
                                         </div>
                                     @else
-                                        @foreach ($suratList as $data)
+                                        @foreach ($disposisiList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
                                                 <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
-                                                            <h4>{{ $data->nomor_surat }}</h4>
+                                                            <h4>{{ $data->surat->nomor_surat }}</h4>
                                                             <small
                                                                 style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->perusahaan->nama_perusahaan }}
+                                                                {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
-                                                            <a href="#" class="text-white mr-2 tombol-disposisi">
-                                                                <button type="button"
-                                                                    class="btn btn-success tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Ajukan untuk Disposisi"
-                                                                    data-original-title="Ajukan untuk Disposisi">
-                                                                    Ajukan
-                                                                </button>
-                                                            </a>
+                                                            <button type="button"
+                                                                class="btn btn-primary tombol-disposisi mr-2"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="bersifat {{ $data->status_disposisi }}"
+                                                                data-original-title="bersifat {{ $data->status_disposisi }}">
+                                                                <span
+                                                                    class="badge badge-transparent d-flex justify-content-center m-0">{{ $data->status_disposisi }}</span>
+                                                            </button>
+
                                                             <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
@@ -231,10 +231,9 @@
                                                     <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->isi_surat !!}</p>
+                                                            <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_surat)) }}
-                                                                --</p>
+                                                                -- {{ $data->status_disposisi }} --</p>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
@@ -273,39 +272,35 @@
                                                                     class="mr-2">
                                                                 <div>
                                                                     <div class="user-detail-name">
-                                                                        {{-- @foreach ($perusahaanList as $item)
-                                                                        @if ($item->id_perusahaan == $data->id_perusahaan)
-                                                                            <a
-                                                                                href="#">{{ $item->nama_perusahaan }}</a>
-                                                                                @endif
-                                                                                @endforeach --}}
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->perusahaan->nama_perusahaan }}</span>
+                                                                            {{ $data->user->nama }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->perusahaan->nomor_telpon) }}
+                                                                            {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="text-center " style="margin-left: 15%;">
-                                                                <a type="button" class="btn btn-danger btn-scan-pdf"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Preview surat (PDF)"
-                                                                    data-original-title="Preview surat (PDF)"
-                                                                    href="{{ asset('document_save/' . $data->scan_dokumen) }}"
-                                                                    target="_blank" title="Read PDF"><i
-                                                                        class="bi bi-file-pdf"
-                                                                        style="font-size: 1.1rem;"></i></a>
+                                                            <div class="text-center mt-2">
+                                                                <a class="text-white mr-2 tombol-disposisi">
+                                                                    <button type="button"
+                                                                        class="btn btn-success tombol-disposisi"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="4 kali di dispoisisi kan"
+                                                                        data-original-title="4 kali di dispoisisi kan">
+                                                                        Disposisi<span
+                                                                            class="badge badge-transparent">4</span>
+                                                                    </button>
+                                                                </a>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endforeach
-                                        <div class="col-12 m-auto">
-                                            {{ $suratList->onEachSide(1)->links() }}
+                                        <div class="col-12 m-auto d-flex justify-content-center">
+                                            {{ $disposisiList->onEachSide(1)->links() }}
                                         </div>
                                     @endif
                                 </div>
@@ -427,19 +422,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Surat ini!',
+                        text: 'Ingin menghapus data Disposisi ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Surat berhasil dihapus!', {
+                            swal('Data Disposisi berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Surat tidak jadi dihapus!');
+                            swal('Data Disposisi tidak jadi dihapus!');
                         }
                     });
             }
@@ -447,19 +442,19 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Surat ini?',
+                        text: 'Ingin export data Disposisi ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Surat berhasil diexport!', {
+                            swal('Data Disposisi berhasil diexport!', {
                                 icon: 'success',
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('surat.export') }}', {
+                            fetch('{{ route('disposisi.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -475,7 +470,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Surat tidak jadi diexport!');
+                            swal('Data Disposisi tidak jadi diexport!');
                         }
                     });
             }

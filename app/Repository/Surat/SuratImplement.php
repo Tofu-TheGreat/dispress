@@ -103,6 +103,6 @@ class SuratImplement implements SuratRepository
         }
 
 
-        return $query->get();
+        return $query->paginate(6);
     }
 }

@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form action="/disposisi/{{ $editDataDisposisi->id_surat }}" method="post"
+                        <form action="/disposisi/{{ $editDataDisposisi->id_disposisi }}" method="post"
                             enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
@@ -70,7 +70,7 @@
                                                         class="form-control capitalize @error('id_surat') is-invalid @enderror"
                                                         placeholder="ex: 090/1928-TU/2023"
                                                         value="{{ $editDataDisposisi->surat->nomor_surat }}" id="id_surat"
-                                                        name="id_surat">
+                                                        disabled>
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('id_surat')
@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="capitalize" for="sifat_disposisi">Sifat Surat: </label>
+                                                <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend ">
                                                         <div class="input-group-text bg-secondary">
@@ -146,7 +146,8 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="capitalize" for="status_disposisi">Status Surat: </label>
+                                                <label class="capitalize" for="status_disposisi">Status Disposisi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend ">
                                                         <div class="input-group-text bg-secondary">
@@ -277,7 +278,7 @@
                                                 </div>
                                                 <input type="file"
                                                     class="img-filepond-preview @error('scan_dokumen') is-invalid @enderror"
-                                                    id="scan_dokumen" name="scan_dokumen" accept="pdf"
+                                                    id="scan_dokumen" disabled accept="pdf"
                                                     value="{{ $editDataDisposisi->scan_dokumen }}">
                                                 <span class="text-danger">
                                                     @error('scan_dokumen')

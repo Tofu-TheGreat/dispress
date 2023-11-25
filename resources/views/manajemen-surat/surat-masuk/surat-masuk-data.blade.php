@@ -146,10 +146,10 @@
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                                 <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
-                                title="Reset">
+                            <a type="button" id="reset" href="{{ route('surat.index') }}"
+                                class="btn btn-secondary mb-1" title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                    Filter</span></button>
+                                    Filter</span></a>
                         </div>
                     </div>
                 </div>

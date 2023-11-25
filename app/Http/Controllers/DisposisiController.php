@@ -99,7 +99,7 @@ class DisposisiController extends Controller
      */
     public function update(DisposisiRequest $request, string $id)
     {
-        $this->disposisiRepository->update($request, $id);
+        $this->disposisiRepository->update($id, $request);
         return redirect()->intended('/disposisi')->with('success', 'Berhasil meng-update data Disposisi.');
     }
 

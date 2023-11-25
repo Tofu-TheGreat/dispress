@@ -223,41 +223,43 @@
                                                                     class="badge badge-transparent d-flex justify-content-center m-0">{{ $data->status_disposisi }}</span>
                                                             </button>
 
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
+                                                            <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
                                                         </div>
                                                     </div>
-                                                    <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
+                                                    <div class="collapse show"
+                                                        id="mycard-collapse{{ $data->id_disposisi }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 -- {{ $data->status_disposisi }} --</p>
                                                             <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
+                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data surat"
-                                                                    data-original-title="Detail data surat"
-                                                                    class="btn btn-info has-icon text-white tombol-detail-surat"
+                                                                    title="Detail data disposisi"
+                                                                    data-original-title="Detail data disposisi"
+                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
                                                                     href=""><i class="pl-1  bi bi-eye "></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
-                                                                    data-placement="left" title="Edit data surat"
-                                                                    data-original-title="Edit data surat"
-                                                                    class="btn btn-warning has-icon text-white tombol-edit-surat"
-                                                                    href="{{ route('surat.edit', Crypt::encryptString($data->id_surat)) }}"><i
+                                                                    data-placement="left" title="Edit data disposisi"
+                                                                    data-original-title="Edit data disposisi"
+                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
                                                                 <form method="POST"
-                                                                    action="{{ route('surat.destroy', Crypt::encryptString($data->id_surat)) }}"
+                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     class="tombol-hapus">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="button" data-toggle="tooltip"
-                                                                        data-placement="bottom" title="Hapus data surat"
-                                                                        data-original-title="Hapus data surat"
-                                                                        class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
+                                                                        data-placement="bottom"
+                                                                        title="Hapus data disposisi"
+                                                                        data-original-title="Hapus data disposisi"
+                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>
                                                                     </button>

@@ -240,13 +240,13 @@
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Detail data surat"
                                                                     data-original-title="Detail data surat"
-                                                                    class="btn btn-info has-icon text-white tombol-detail-surat"
+                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
                                                                     href=""><i class="pl-1  bi bi-eye "></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
                                                                     data-placement="left" title="Edit data surat"
                                                                     data-original-title="Edit data surat"
-                                                                    class="btn btn-warning has-icon text-white tombol-edit-surat"
+                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
                                                                     href="{{ route('surat.edit', Crypt::encryptString($data->id_surat)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
@@ -258,7 +258,7 @@
                                                                     <button type="button" data-toggle="tooltip"
                                                                         data-placement="bottom" title="Hapus data surat"
                                                                         data-original-title="Hapus data surat"
-                                                                        class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
+                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>
                                                                     </button>

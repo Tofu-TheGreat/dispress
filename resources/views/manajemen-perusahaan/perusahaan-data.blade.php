@@ -295,7 +295,7 @@
                                 <div class="form-group">
                                     <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
                                     <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
-                                        name="alamat_perusahaan" required> {{ $item->alamat_perusahaan }} </textarea>
+                                        name="alamat_perusahaan"> {{ $item->alamat_perusahaan }} </textarea>
                                     <span class="text-danger">
                                         @error('alamat_perusahaan')
                                             {{ $message }}

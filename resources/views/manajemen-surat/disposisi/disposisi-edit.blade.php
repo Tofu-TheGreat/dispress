@@ -208,15 +208,11 @@
                                                 <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
                                                 </label>
                                                 <div class="input-group">
-                                                    <div class="input-group-prepend ">
-                                                        <div class="input-group-text bg-secondary">
-                                                            <i class="bi bi-person-rolodex "></i>
-                                                        </div>
-                                                    </div>
                                                     <select
                                                         class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                                        id="tujuan_disposisi" name="tujuan_disposisi" required>
-                                                        <option selected disabled>Pilih Tujuan Disposisi</option>
+                                                        id="tujuan_disposisi" name="tujuan_disposisi" multiple=""
+                                                        required>
+                                                        <option disabled>Pilih Tujuan Disposisi</option>
                                                         <option value="0"
                                                             {{ $editDataDisposisi->tujuan_disposisi === '0' ? 'selected' : '' }}>
                                                             Kepala Sekolah</option>

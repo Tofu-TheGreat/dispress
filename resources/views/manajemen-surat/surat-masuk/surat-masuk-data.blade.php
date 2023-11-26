@@ -439,8 +439,9 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
-                                            <option selected disabled>Pilih Tujuan Disposisi</option>
+                                            id="tujuan_disposisi" name="tujuan_disposisi" multiple="" required
+                                            style="width: 100%;">
+                                            <option disabled>Pilih Tujuan Disposisi</option>
                                             <option value="0"
                                                 {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
                                                 Kepala Sekolah</option>
@@ -578,6 +579,20 @@
                     message: "{{ Session::get('success') }}",
                     position: 'topRight'
                 })
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif

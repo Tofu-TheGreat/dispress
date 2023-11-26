@@ -1,6 +1,7 @@
 @extends('admin.pages.layout')
 
 @section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
@@ -290,8 +291,9 @@
                                 </label>
                                 <div class="input-group">
                                     <select class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                        id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
-                                        <option selected disabled>Pilih Tujuan Disposisi</option>
+                                        id="tujuan_disposisi" name="tujuan_disposisi" multiple="" required
+                                        style="width: 100%;">
+                                        <option disabled>Pilih Tujuan Disposisi</option>
                                         <option value="0" {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
                                             Kepala Sekolah</option>
                                         <option value="1" {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
@@ -360,6 +362,20 @@
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
+            });
+        </script>
+    @endif
 
     @if (Session::has('success'))
         <script>

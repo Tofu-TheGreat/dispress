@@ -332,6 +332,8 @@
                     </div>
                     <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
                         <div class="row px-4 pt-4">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">

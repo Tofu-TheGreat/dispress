@@ -57,6 +57,7 @@ class DisposisiController extends Controller
     public function store(DisposisiRequest $request)
     {
         $this->disposisiRepository->store($request);
+        return redirect()->back()->with('success', 'Surat telah dikirimkan kepada yang terkait');
     }
 
     /**
@@ -111,5 +112,19 @@ class DisposisiController extends Controller
         $encryptId = Crypt::decryptString($id);
         $this->disposisiRepository->destroy($encryptId);
         return redirect()->intended('/disposisi')->with('success', 'Berhasil menghapus data Disposisi.');
+    }
+
+    public function filterData(Request $request)
+    {
+        $disposisiList = $this->disposisiRepository->filterData($request);
+        $userList = User::get();
+
+        return view('manajemen-surat.disposisi.disposisi-data', [
+            'title' => 'Disposisi',
+            'active1' => 'manajemen-surat',
+            'active' => 'Disposisi',
+            'disposisiList' => $disposisiList,
+            'userList' => $userList,
+        ]);
     }
 }

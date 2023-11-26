@@ -180,6 +180,8 @@
                 </div>
                 <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
+                    <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
+                        id="">
                     <div class="row px-4 pt-4">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
@@ -321,10 +323,10 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label class="capitalize" for="id_user">Pengirim Surat: </label>
+                                <label class="capitalize" for="id_user">Pengirim Ajuan: </label>
                                 <div class="input-group">
                                     <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                        id="id_user" name="id_user" required disabled style="width: 100%;">
+                                        id="id_user" name="id_user" required readonly style="width: 100%;">
                                         <option selected disabled>Pilih Pengirim Surat</option>
                                         <option selected value="{{ auth()->user()->id_user }}">
                                             {{ auth()->user()->nama }}</option>
@@ -353,10 +355,23 @@
 
 
 @section('script')
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    @if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
 
     <script>
         $(document).ready(function() {

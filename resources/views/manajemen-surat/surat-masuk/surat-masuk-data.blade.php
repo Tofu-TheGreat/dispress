@@ -474,10 +474,10 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pengirim Surat: </label>
+                                    <label class="capitalize" for="id_user">Pengirim Ajuan: </label>
                                     <div class="input-group">
                                         <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                            id="id_user" name="id_user" required disabled style="width: 100%;">
+                                            id="id_user" name="id_user" required readonly style="width: 100%;">
                                             <option selected disabled>Pilih Pengirim Surat</option>
                                             <option selected value="{{ auth()->user()->id_user }}">
                                                 {{ auth()->user()->nama }}</option>

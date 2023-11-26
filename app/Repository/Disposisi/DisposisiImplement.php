@@ -92,7 +92,7 @@ class DisposisiImplement implements DisposisiRepository
             isset($data->tanggal_surat_terakhir) &&
             ($data->tanggal_surat_terakhir != null)
         ) {
-            $query->whereBetween('tanggal_surat', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
+            $query->whereBetween('tanggal_disposisi', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
         }
 
         $result = $query->paginate(6);

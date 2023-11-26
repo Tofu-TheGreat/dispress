@@ -1,9 +1,6 @@
 @extends('admin.pages.layout')
 
 @section('css')
-    <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
@@ -128,13 +125,13 @@
                                                         <option selected disabled>Pilih Sifat Surat</option>
                                                         <option value="0"
                                                             {{ $editDataDisposisi->sifat_disposisi === '0' ? 'selected' : '' }}>
-                                                            Segera</option>
+                                                            Biasa</option>
                                                         <option value="1"
                                                             {{ $editDataDisposisi->sifat_disposisi === '1' ? 'selected' : '' }}>
                                                             Prioritas</option>
                                                         <option value="2"
                                                             {{ $editDataDisposisi->sifat_disposisi == '2' ? 'selected' : '' }}>
-                                                            Biasa</option>
+                                                            Rahasia</option>
                                                     </select>
                                                 </div>
                                                 <span class="text-danger">
@@ -259,34 +256,6 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="">
-                                                        <label for="foto">Masukkan Scan Dokumen Surat: </label>
-                                                        <small class="d-block">Catatan: masukkan dokumen dengan format
-                                                            (PDF),
-                                                            maksimal 10
-                                                            MB.</small>
-                                                    </div>
-                                                    <a type="button" class="btn btn-danger mb-2" data-toggle="tooltip"
-                                                        data-placement="top" title="Preview surat (PDF)"
-                                                        data-original-title="Preview surat (PDF)"
-                                                        href="{{ asset('document_save/' . $editDataDisposisi->scan_dokumen) }}"
-                                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
-                                                            style="font-size: 1.1rem;"></i></a>
-                                                </div>
-                                                <input type="file"
-                                                    class="img-filepond-preview @error('scan_dokumen') is-invalid @enderror"
-                                                    id="scan_dokumen" disabled accept="pdf"
-                                                    value="{{ $editDataDisposisi->scan_dokumen }}">
-                                                <span class="text-danger">
-                                                    @error('scan_dokumen')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </span>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -309,6 +278,11 @@
                                             <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
                                             <span class="bi-text">Reset</span></button>
                                     </div>
+                                    <a type="button" class="btn btn-danger mb-2 ml-2" data-toggle="tooltip"
+                                        data-placement="top" title="Preview surat (PDF)"
+                                        data-original-title="Preview surat (PDF)"
+                                        href="{{ asset('document_save/' . $editDataDisposisi->surat->scan_dokumen) }}"
+                                        target="_blank" title="Read PDF"><i class="bi bi-file-pdf"></i></a>
                                 </div>
                             </div>
                         </form>
@@ -320,80 +294,7 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
-
-            $('#nip').inputmask('999999999999999999');
-        });
-    </script>
-
-    {{-- Preview Image --}}
-    <script>
-        function previewImage() {
-            const image = document.querySelector('#foto_user')
-            const imgPreview = document.querySelector('.img-preview')
-
-            const blob = URL.createObjectURL(image.files[0]);
-            imgPreview.src = blob;
-            imgPreview.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onLoad = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-    </script>
-    {{-- Akhir Preview Image --}}
-    {{-- seweetalert confirmation --}}
-
-    <script>
-        document.body.addEventListener("click", function(event) {
-            const element = event.target;
-
-            if (element.classList.contains("tombol-hapus-profile")) {
-                swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
-                    icon: 'warning',
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
-                            icon: 'success',
-                        });
-                        // Make an AJAX request to trigger the delete
-                        fetch('{{ route('deleteImageFromUser', $editDataDisposisi->id_surat) }}', {
-                                method: 'GET',
-                            })
-                            .then(response => {
-                                // Handle the response here (e.g., trigger the delete)
-                                if (response.ok) {
-
-                                    window.location.reload();
-                                }
-                            })
-                            .catch(error => {
-                                // Handle any errors here
-                                console.error('Error:', error);
-                            });
-                    } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
-                    }
-                });
-            }
-        });
-    </script>
 @endsection

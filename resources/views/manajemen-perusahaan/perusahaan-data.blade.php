@@ -39,7 +39,7 @@
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
                             <span data-toggle="tooltip" data-placement="top" title="Tambah Data Perusahaan"
-                                data-original-title="Import Data" class="tombol-tambah" disabled>
+                                data-original-title="Tambah Data" class="tombol-tambah" disabled>
                                 <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
                                     data-target="#tambah-modal" type="button"
                                     class="btn btn-primary text-white tombol-tambah ml-2">

@@ -480,14 +480,6 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
-        });
-    </script>
-
 
     {{-- Toast --}}
     @if (Session::has('success'))

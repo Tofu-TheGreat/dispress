@@ -213,11 +213,12 @@
                                                                 {{ $data->perusahaan->nama_perusahaan }}
                                                             </small>
                                                         </div>
-                                                        <div class="card-header-action btn-group">
-                                                            <span data-toggle="tooltip" data-placement="top"
-                                                                title="Ajukan untuk Disposisi"
+                                                        <div class="card-header-action btn-group tombol-ajukan">
+                                                            <span class="tombol-ajukan" data-toggle="tooltip"
+                                                                data-placement="top" title="Ajukan untuk Disposisi"
                                                                 data-original-title="Ajukan untuk Disposisi" disabled>
-                                                                <button type="button" class="btn btn-success mr-2"
+                                                                <button type="button"
+                                                                    class="btn btn-success mr-2 tombol-ajukan"
                                                                     data-toggle="modal"
                                                                     data-target="#ajukan-modal{{ $data->id_surat }}"
                                                                     type="button">
@@ -318,8 +319,8 @@
         </div>
     </section>
 
+    <!-- Modal Ajukan Perusahaan -->
     @foreach ($suratList as $data)
-        <!-- Modal Ajukan Perusahaan -->
         <div class="modal fade ajukan-modal" id="ajukan-modal{{ $data->id_surat }}" aria-labelledby="ajukan-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
@@ -560,7 +561,7 @@
 @section('script')
     {{-- modules --}}
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
+    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
@@ -616,6 +617,13 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
+            const noteEditable = document.body.querySelectorAll(".note-editing-area");
+
+            if (element.classList.contains("tombol-ajukan")) {
+                noteEditable.forEach((e) => {
+                    e.classList.add('mt-4');
+                })
+            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

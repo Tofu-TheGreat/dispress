@@ -35,40 +35,7 @@ class SuratImplement implements SuratRepository
     {
         $data = $this->surat->with('user')->where('id_surat', $id)->first();
 
-        switch ($data->user->jabatan) {
-            case 0:
-                $data->user->jabatan = 'Kepala Sekolah';
-                break;
-            case 1:
-                $data->user->jabatan = 'Wakil Kepala Sekolah';
-                break;
-            case 2:
-                $data->user->jabatan = 'Kurikulum';
-                break;
-            case 3:
-                $data->user->jabatan = 'Kesiswaan';
-                break;
-            case 4:
-                $data->user->jabatan = 'Sarana dan Prasarana';
-                break;
-            case 5:
-                $data->user->jabatan = 'Kepala Jurusan';
-                break;
-            case 6:
-                $data->user->jabatan = 'Hubin';
-                break;
-            case 7:
-                $data->user->jabatan = 'Bimbingan Konseling';
-                break;
-            case 8:
-                $data->user->jabatan = 'Guru Umum';
-                break;
-            case 9:
-                $data->user->jabatan = 'Tata Usaha';
-                break;
-            default:
-                $data->user->jabatan = 'Tidak Diketahui';
-        }
+        $data->user->jabatan = jabatanConvert($data->user->jabatan, 'jabatan');
         return $data;
     }
     public function edit($id)

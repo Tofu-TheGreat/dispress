@@ -439,7 +439,7 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi" multiple="" required
+                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
                                             style="width: 100%;">
                                             <option disabled>Pilih Tujuan Disposisi</option>
                                             <option value="0"

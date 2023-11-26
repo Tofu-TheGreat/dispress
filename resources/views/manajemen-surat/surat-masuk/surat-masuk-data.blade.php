@@ -270,17 +270,8 @@
                                                         <div
                                                             class="card-footer d-flex justify-content-between position-relative">
                                                             <div class="d-flex flex-row ">
-                                                                <img alt="image" src="assets/img/avatar/avatar-1.png"
-                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                    class="mr-2">
                                                                 <div>
                                                                     <div class="user-detail-name">
-                                                                        {{-- @foreach ($perusahaanList as $item)
-                                                                        @if ($item->id_perusahaan == $data->id_perusahaan)
-                                                                            <a
-                                                                                href="#">{{ $item->nama_perusahaan }}</a>
-                                                                                @endif
-                                                                                @endforeach --}}
                                                                         <span class="text-primary" href="#">
                                                                             {{ $data->perusahaan->nama_perusahaan }}</span>
                                                                     </div>

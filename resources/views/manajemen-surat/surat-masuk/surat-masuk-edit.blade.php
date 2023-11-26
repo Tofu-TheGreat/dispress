@@ -203,77 +203,13 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
-    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
-
-            $('#nip').inputmask('999999999999999999');
-        });
-    </script>
-
-    {{-- Preview Image --}}
-    <script>
-        function previewImage() {
-            const image = document.querySelector('#foto_user')
-            const imgPreview = document.querySelector('.img-preview')
-
-            const blob = URL.createObjectURL(image.files[0]);
-            imgPreview.src = blob;
-            imgPreview.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onLoad = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-    </script>
-    {{-- Akhir Preview Image --}}
-    {{-- seweetalert confirmation --}}
-
-    <script>
-        document.body.addEventListener("click", function(event) {
-            const element = event.target;
-
-            if (element.classList.contains("tombol-hapus-profile")) {
-                swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
-                    icon: 'warning',
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
-                            icon: 'success',
-                        });
-                        // Make an AJAX request to trigger the delete
-                        fetch('{{ route('deleteImageFromUser', $editDataSurat->id_surat) }}', {
-                                method: 'GET',
-                            })
-                            .then(response => {
-                                // Handle the response here (e.g., trigger the delete)
-                                if (response.ok) {
-
-                                    window.location.reload();
-                                }
-                            })
-                            .catch(error => {
-                                // Handle any errors here
-                                console.error('Error:', error);
-                            });
-                    } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
-                    }
-                });
-            }
         });
     </script>
 @endsection

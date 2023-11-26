@@ -295,8 +295,8 @@
                                                         <div class="position-relative">
                                                             <h4>{{ $data->surat->nomor_surat }}</h4>
                                                             <small
-                                                                style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->user->nama }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Berstatus
+                                                                {{ $data->status_disposisi }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
@@ -338,7 +338,10 @@
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
-                                                            <div class="mt-1">
+                                                            <p class="mt-3" style="font-size: .7rem;">
+                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                --</p>
+                                                            <div class="mt-1 mb-1">
                                                                 <a class="text-white mr-2 tombol-disposisi rounded-pill">
                                                                     <button type="button"
                                                                         class="btn btn-success tombol-disposisi"
@@ -382,16 +385,27 @@
                                                             </div>
                                                         </div>
                                                         <div
-                                                            class="card-footer d-flex justify-content-between position-relative">
+                                                            class="card-footer  d-flex justify-content-between position-relative">
                                                             <div class="d-flex flex-row ">
+                                                                @if ($data->user->foto_user)
+                                                                    <img alt="image"
+                                                                        src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                        class="mr-2 border border-primary">
+                                                                @else
+                                                                    <img alt="image"
+                                                                        src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                        class="mr-2">
+                                                                @endif
                                                                 <div>
                                                                     <div class="user-detail-name">
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->status_disposisi }}</span>
+                                                                            {{ $data->user->nama }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                            {{ currencyPhone($data->user->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>
@@ -480,14 +494,6 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
-
-    <script>
-        $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
-        });
-    </script>
-
 
     {{-- Toast --}}
     @if (Session::has('success'))

@@ -138,8 +138,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('id_user') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->user->nama }}" id="id_user"
-                                                    name="id_user" readonly>
+                                                    value="{{ $detailDataSurat->user->nama }} | {{ $detailDataSurat->user->jabatan }}"
+                                                    id="id_user" name="id_user" readonly>
                                             </div>
                                         </div>
                                     </div>

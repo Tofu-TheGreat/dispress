@@ -214,15 +214,16 @@
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
-                                                            <a href="#" class="text-white mr-2 tombol-disposisi">
-                                                                <button type="button"
-                                                                    class="btn btn-success tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Ajukan untuk Disposisi"
-                                                                    data-original-title="Ajukan untuk Disposisi">
+                                                            <span data-toggle="tooltip" data-placement="top"
+                                                                title="Ajukan untuk Disposisi"
+                                                                data-original-title="Ajukan untuk Disposisi" disabled>
+                                                                <button type="button" class="btn btn-success mr-2"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ajukan-modal{{ $data->id_surat }}"
+                                                                    type="button">
                                                                     Ajukan
                                                                 </button>
-                                                            </a>
+                                                            </span>
                                                             <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
@@ -316,6 +317,198 @@
             </div>
         </div>
     </section>
+
+    @foreach ($suratList as $data)
+        <!-- Modal Ajukan Perusahaan -->
+        <div class="modal fade ajukan-modal" id="ajukan-modal{{ $data->id_surat }}" aria-labelledby="ajukan-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk di Disposisikan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row px-4 pt-4">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_surat">Nomor Surat Disposisi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('id_surat') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
+                                            id="id_surat" disabled>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="tanggal_disposisi">Tanggal Disposisi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control datepicker capitalize @error('tanggal_disposisi') is-invalid @enderror"
+                                            placeholder="ex:  11/14/2023" value="{{ old('tanggal_disposisi') }}"
+                                            id="tanggal_disposisi" name="tanggal_disposisi">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="catatan_disposisi">Catatan Disposisi: </label>
+                                    <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
+                                    <span class="text-danger">
+                                        @error('catatan_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
+                                            id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
+                                                Biasa</option>
+                                            <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
+                                                Prioritas</option>
+                                            <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
+                                                Rahasia</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('sifat_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="status_disposisi">Status Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('status_disposisi') is-invalid @enderror "
+                                            id="status_disposisi" name="status_disposisi" required style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option value="0"
+                                                {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                                Belum ditindak</option>
+                                            <option value="1"
+                                                {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                                Diajukan</option>
+                                            <option value="2" {{ old('status_disposisi') == '2' ? 'selected' : '' }}>
+                                                Diterima</option>
+                                            <option value="3" {{ old('status_disposisi') == '3' ? 'selected' : '' }}>
+                                                Dikembalikan</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
+                                            id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
+                                            <option selected disabled>Pilih Tujuan Disposisi</option>
+                                            <option value="0"
+                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                                Kepala Sekolah</option>
+                                            <option value="1"
+                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                                Wakil Kepala Sekolah</option>
+                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                                Kurikulum</option>
+                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                                Kesiswaan</option>
+                                            <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                                Sarana Prasarana</option>
+                                            <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                                Kepala Jurusan</option>
+                                            <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                                Hubin</option>
+                                            <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                                Bimbingan Konseling</option>
+                                            <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                                Guru Umum</option>
+                                            <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                                Tata Usaha</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tujuan_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pengirim Surat: </label>
+                                    <div class="input-group">
+                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
+                                            id="id_user" name="id_user" required disabled style="width: 100%;">
+                                            <option selected disabled>Pilih Pengirim Surat</option>
+                                            <option selected value="{{ auth()->user()->id_user }}">
+                                                {{ auth()->user()->nama }}</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                    class="bi bi-x-circle ml-3"></i></button>
+                            <button type="submit" value="Import" class="btn btn-primary text-white">
+                                Ajukan Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- End Ajukan Perusahaan --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">

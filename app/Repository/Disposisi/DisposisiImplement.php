@@ -4,6 +4,7 @@ namespace app\Repository\Disposisi;
 
 use App\Models\Disposisi;
 use App\Repository\Disposisi\DisposisiRepository;
+use Illuminate\Support\Facades\Auth;
 
 class DisposisiImplement implements DisposisiRepository
 {
@@ -16,7 +17,13 @@ class DisposisiImplement implements DisposisiRepository
 
     public function index()
     {
-        $paginatedData = $this->disposisi->paginate(6);
+        if (Auth::check() && Auth::user()->level != 'admin') {
+            $paginatedData = $this->disposisi->whereNot(function ($query) {
+                $query->where('status_disposisi', '0');
+            })->where('tujuan_disposisi', Auth::user()->jabatan)->paginate(6);
+        } else {
+            $paginatedData = $this->disposisi->paginate(6);
+        }
         $paginatedData->getCollection()->transform(function ($data) {
             $data->sifat_disposisi = convertDisposisiField($data->sifat_disposisi, 'sifat');
             $data->status_disposisi = convertDisposisiField($data->status_disposisi, 'status');

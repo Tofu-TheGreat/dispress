@@ -147,7 +147,7 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <div class="col-12 m-auto">
+                                            <div class="col-12">
                                                 {{ $perusahaanList->onEachSide(1)->links() }}
                                             </div>
                                         </div>

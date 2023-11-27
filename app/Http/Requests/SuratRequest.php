@@ -22,7 +22,7 @@ class SuratRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nomor_surat' => 'required',
+            'nomor_surat' => 'required|unique:surat,nomor_surat,' . $this->input('id_surat') . ',id_surat',
             'tanggal_surat' => 'required|date',
             'isi_surat' => 'required|max:100',
             'id_perusahaan' => 'required',
@@ -33,6 +33,7 @@ class SuratRequest extends FormRequest
     {
         return [
             'nomor_surat.required' => 'Nomor surat harus diisi',
+            'nomor_surat.unique' => 'Nomor surat sudah terpakai',
             'tanggal_surat.required' => 'Tanggal surat harus diisi',
             'tanggal_surat.date' => 'Tanggal surat salah',
             'isi_surat.required' => 'Isi surat harus diisi',

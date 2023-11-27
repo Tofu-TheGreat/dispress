@@ -1,7 +1,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-    <title>{{ $title }} | Dipress</title>
+    <title>{{ $title }} | Dispress</title>
     <link rel="shortcut icon" href="{{ asset('assets-landing-page/img/kamen-rider-dispress.png') }}" type="image/x-icon">
 
     <!-- General CSS Files -->

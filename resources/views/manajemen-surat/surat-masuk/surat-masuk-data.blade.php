@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="col-12 ">
-                                <h6 class="text-primary text-center mb-5">Sortir berdasarkan Tanggal Pembuatan Surat
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -297,7 +297,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        <div class="col-12 m-auto">
+                                        <div class="col-12">
                                             {{ $suratList->onEachSide(1)->links() }}
                                         </div>
                                     @endif
@@ -310,7 +310,7 @@
         </div>
     </section>
 
-    <!-- Modal Ajukan Perusahaan -->
+    <!-- Modal Ajukan Disposisi -->
     @foreach ($suratList as $data)
         <div class="modal fade ajukan-modal" id="ajukan-modal{{ $data->id_surat }}" aria-labelledby="ajukan-modal"
             aria-hidden="true">
@@ -411,17 +411,15 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2  @error('status_disposisi') is-invalid @enderror "
-                                            id="status_disposisi" name="status_disposisi" required style="width: 100%;">
-                                            <option selected disabled>Pilih Sifat Surat</option>
-                                            <option value="0"
-                                                {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                            id="status_disposisi" name="status_disposisi" readonly style="width: 100%;">
+                                            <option disabled>Pilih Sifat Surat</option>
+                                            <option value="0" selected>
                                                 Belum ditindak</option>
-                                            <option value="1"
-                                                {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                            <option value="1" disabled>
                                                 Diajukan</option>
-                                            <option value="2" {{ old('status_disposisi') == '2' ? 'selected' : '' }}>
+                                            <option value="2" disabled>
                                                 Diterima</option>
-                                            <option value="3" {{ old('status_disposisi') == '3' ? 'selected' : '' }}>
+                                            <option value="3" disabled>
                                                 Dikembalikan</option>
                                         </select>
                                     </div>
@@ -503,7 +501,7 @@
             </div>
         </div>
     @endforeach
-    {{-- End Ajukan Perusahaan --}}
+    {{-- End Ajukan Disposisi --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">

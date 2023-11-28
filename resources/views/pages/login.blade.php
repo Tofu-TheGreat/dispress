@@ -84,9 +84,10 @@
                                 </div>
                                 <div class="form-input">
                                     <label for="password">Password</label>
-                                    <div class="col">
+                                    <div class="col position-relative">
                                         <input type="password" name="password" class="form-control" id="password"
                                             placeholder="**********" required />
+                                        <i class="bi bi-eye view-password-icon"></i>
                                     </div>
                                     <span class="text-danger">
                                         @error('password')

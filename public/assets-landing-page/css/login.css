@@ -417,6 +417,14 @@ Login Section
     animation: bounceTop_01 3s ease infinite;
 }
 
+.view-password-icon {
+    position: absolute;
+    right: -5%;
+    top: 22%;
+    font-size: 1.2rem;
+    z-index: 999;
+}
+
 .alert-login {
     width: 110%;
 }
@@ -575,6 +583,9 @@ Login Section
     }
     .logo-login {
         display: none;
+    }
+    .view-password-icon {
+        right: 3%;
     }
 }
 

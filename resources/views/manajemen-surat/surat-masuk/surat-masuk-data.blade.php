@@ -480,7 +480,7 @@
                                                 {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
                                                 Terverifikasi</option>
                                             <option value="2"
-                                                {{ $data->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
                                                 Dikembalikan</option>
                                         </select>
                                     </div>

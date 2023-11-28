@@ -60,6 +60,7 @@ class DatabaseSeeder extends Seeder
             'isi_surat' => 'Perihal Rapat ',
             'id_perusahaan' => '2',
             'id_user' => '5',
+            'catatan' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
         Surat::factory()->create([
@@ -68,6 +69,7 @@ class DatabaseSeeder extends Seeder
             'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
             'id_perusahaan' => '1',
             'id_user' => '1',
+            'catatan' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
 
@@ -76,7 +78,7 @@ class DatabaseSeeder extends Seeder
             'id_surat' => '2',
             'tanggal_disposisi' => '2028-11-9',
             'catatan_disposisi' => 'Approve Disposisi',
-            'status_disposisi' => '1',
+            'status_disposisi' => '0',
             'sifat_disposisi' => '1',
             'id_user' => '1',
             'tujuan_disposisi' => '1',
@@ -86,7 +88,7 @@ class DatabaseSeeder extends Seeder
             'id_surat' => '1',
             'tanggal_disposisi' => '2028-11-9',
             'catatan_disposisi' => 'Approve Disposisi nada',
-            'status_disposisi' => '2',
+            'status_disposisi' => '0',
             'sifat_disposisi' => '0',
             'id_user' => '2',
             'tujuan_disposisi' => '2',
@@ -96,7 +98,7 @@ class DatabaseSeeder extends Seeder
             'id_surat' => '1',
             'tanggal_disposisi' => '2028-11-9',
             'catatan_disposisi' => 'Approve Disposisi iyah bang',
-            'status_disposisi' => '3',
+            'status_disposisi' => '0',
             'sifat_disposisi' => '2',
             'id_user' => '2',
             'tujuan_disposisi' => '5',

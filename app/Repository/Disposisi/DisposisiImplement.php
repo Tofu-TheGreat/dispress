@@ -4,6 +4,7 @@ namespace app\Repository\Disposisi;
 
 use App\Models\Disposisi;
 use App\Repository\Disposisi\DisposisiRepository;
+use Illuminate\Support\Facades\Auth;
 
 class DisposisiImplement implements DisposisiRepository
 {
@@ -16,7 +17,13 @@ class DisposisiImplement implements DisposisiRepository
 
     public function index()
     {
-        $paginatedData = $this->disposisi->paginate(6);
+        if (Auth::check() && Auth::user()->level != 'admin') {
+            $paginatedData = $this->disposisi->whereNot(function ($query) {
+                $query->where('status_disposisi', '0');
+            })->where('tujuan_disposisi', Auth::user()->jabatan)->paginate(6);
+        } else {
+            $paginatedData = $this->disposisi->paginate(6);
+        }
         $paginatedData->getCollection()->transform(function ($data) {
             $data->sifat_disposisi = convertDisposisiField($data->sifat_disposisi, 'sifat');
             $data->status_disposisi = convertDisposisiField($data->status_disposisi, 'status');
@@ -60,15 +67,19 @@ class DisposisiImplement implements DisposisiRepository
     }
     public function update($id, $data)
     {
-        $this->disposisi->where('id_disposisi', $id)->update([
-            'id_surat' => $data->id_surat,
-            'tanggal_disposisi' => $data->tanggal_disposisi,
-            'catatan_disposisi' => $data->catatan_disposisi,
-            'status_disposisi' => $data->status_disposisi,
-            'sifat_disposisi' => $data->sifat_disposisi,
-            'id_user' => $data->id_user,
-            'tujuan_disposisi' => $data->tujuan_disposisi,
-        ]);
+        $tujuanDisposisi = is_array($data->tujuan_disposisi) ? $data->tujuan_disposisi : [$data->tujuan_disposisi];
+
+        foreach ($tujuanDisposisi as $jabatan) {
+            $this->disposisi->where('id_disposisi', $id)->update([
+                'id_surat' => $data->id_surat,
+                'tanggal_disposisi' => $data->tanggal_disposisi,
+                'catatan_disposisi' => $data->catatan_disposisi,
+                'status_disposisi' => $data->status_disposisi,
+                'sifat_disposisi' => $data->sifat_disposisi,
+                'id_user' => $data->id_user,
+                'tujuan_disposisi' => $jabatan,
+            ]);
+        }
     }
     public function destroy($id)
     {

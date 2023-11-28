@@ -27,7 +27,7 @@ class SuratImplement implements SuratRepository
             'isi_surat' => $data->isi_surat,
             'id_perusahaan' => $data->id_perusahaan,
             'id_user' => $data->id_user,
-            'catatan' => $data->catatan,
+            'catatan_verifikasi' => $data->catatan_verifikasi,
             'scan_dokumen' => $nama_dokumen,
         ]);
     }
@@ -63,7 +63,7 @@ class SuratImplement implements SuratRepository
                 'id_perusahaan' => $data->id_perusahaan,
                 'id_user' => $data->id_user,
                 'status_verifikasi' => $data->status_verifikasi,
-                'catatan' => $data->catatan,
+                'catatan_verifikasi' => $data->catatan_verifikasi,
                 'scan_dokumen' => $nama_dokumen,
             ]);
         } else {
@@ -74,7 +74,7 @@ class SuratImplement implements SuratRepository
                 'id_perusahaan' => $data->id_perusahaan,
                 'id_user' => $data->id_user,
                 'status_verifikasi' => $data->status_verifikasi,
-                'catatan' => $data->catatan,
+                'catatan_verifikasi' => $data->catatan_verifikasi,
             ]);
         }
     }

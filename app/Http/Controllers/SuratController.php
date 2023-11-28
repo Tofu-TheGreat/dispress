@@ -133,4 +133,9 @@ class SuratController extends Controller
             'userList' => $userList,
         ]);
     }
+    public function verifikasi_surat(SuratRequest $request, string $id)
+    {
+        $this->suratRepository->update($id, $request);
+        return back()->with('success', 'Perubahan akan dikirimkan ke yang terkait.');
+    }
 }

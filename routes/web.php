@@ -71,6 +71,7 @@ Route::get('surat-export', [ExportController::class, 'export_surat'])->name('sur
 Route::post('surat-import', [ImportController::class, 'import_user'])->name('surat.import');
 
 Route::get('/surat-filter', [SuratController::class, 'filterData'])->name('filter.surat');
+Route::post('/surat-verifikasi/{id}', [SuratController::class, 'verifikasi_surat'])->name('verifikasi.surat');
 
 // Manajemen Surat
 

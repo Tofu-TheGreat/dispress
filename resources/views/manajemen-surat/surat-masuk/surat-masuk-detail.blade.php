@@ -233,9 +233,9 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="/surat/{{ $detailDataSurat->id_surat }}" method="post" enctype="multipart/form-data">
+                <form action="/surat-verifikasi/{{ $detailDataSurat->id_surat }}" method="post"
+                    enctype="multipart/form-data">
                     @csrf
-                    @method('PUT')
                     <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
                         id="">
                     <div class="row px-4 pt-4">

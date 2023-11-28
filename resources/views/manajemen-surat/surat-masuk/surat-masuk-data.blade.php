@@ -480,7 +480,7 @@
                                                 {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
                                                 Terverifikasi</option>
                                             <option value="2"
-                                                {{ $data->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
                                                 Dikembalikan</option>
                                         </select>
                                     </div>
@@ -846,7 +846,7 @@
 
             if (element.classList.contains("tombol-ajukan") || element.classList.contains("tombol-verifikasi")) {
                 noteEditable.forEach((e) => {
-                    e.classList.add('mt-4');
+                    e.classList.add('mt-5');
                 })
             }
 

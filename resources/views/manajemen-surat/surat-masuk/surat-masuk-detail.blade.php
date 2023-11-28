@@ -31,22 +31,38 @@
         <div class="section-body">
             <div class="card">
                 <div class="row card-header">
-                    <div class="col-10">
+                    <div class="col-lg-11 col-sm-8">
                         <div class="row">
                             <a href="/surat" title="Kembali">
                                 <i class="bi bi-arrow-left mr-3"></i>
                             </a>
-                            <h4 class="text-primary ">Detail Surat Masuk</h4>
+                            <h4 class="text-primary judul-page">Detail Surat Masuk</h4>
                         </div>
                     </div>
-                    <div class="col-2 d-flex justify-content-end btn-group tombol-ajukan">
-                        <span data-toggle="tooltip" data-placement="top" title="Ajukan untuk Disposisi"
-                            data-original-title="Ajukan untuk Disposisi" disabled class="tombol-ajukan">
-                            <button type="button" class="btn btn-success tombol-ajukan" data-toggle="modal"
-                                data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
-                                Ajukan
-                            </button>
-                        </span>
+                    <div class="col-lg-1 col-sm-4 btn-group">
+                        <a class="tombol-verifikasi" data-toggle="tooltip" data-placement="top"
+                            title="klik Untuk Mengatur verifikasikan"
+                            data-original-title="klik Untuk Mengatur verifikasikan" disabled>
+                            @if ($detailDataSurat->status_verifikasi == 0)
+                                <button type="button" class="btn btn-primary tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-minus-fill tombol-verifikasi" style="font-size: .8rem;"> Belum
+                                        Terverifikasi</i>
+                                </button>
+                            @elseif ($detailDataSurat->status_verifikasi == 1)
+                                <button type="button" class="btn btn-success tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-plus-fill tombol-verifikasi" style="font-size: .8rem;">
+                                        Terverifikasi</i>
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-danger tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-exclamation-fill tombol-verifikasi" style="font-size: .8rem;">
+                                        Dikembalikan</i>
+                                </button>
+                            @endif
+                        </a>
                         <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -115,8 +131,39 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group ">
+                                            <label for="status_verifikasi">Verifikasi Surat: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-patch-question-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <select
+                                                    class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                                    id="status_verifikasi" name="status_verifikasi" disabled>
+                                                    <option selected disabled>Pilih Sifat Surat</option>
+                                                    <option value="0"
+                                                        {{ $detailDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                        Belum Terverifikasi</option>
+                                                    <option value="1"
+                                                        {{ $detailDataSurat->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                        Terverifikasi</option>
+                                                    <option value="2"
+                                                        {{ $detailDataSurat->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                        Dikembalikan</option>
+                                                </select>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('status_verifikasi')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                            <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
                                             <textarea class="summernote-simple summernote-disable @error('catatan_verifikasi') is-invalid @enderror"
                                                 placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
                                         </div>
@@ -174,6 +221,173 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Verifikasi Surat -->
+    <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $detailDataSurat->id_surat }}"
+        aria-labelledby="verifikasi-modal{{ $detailDataSurat->id_surat }}" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered ">
+            <div class="modal-content">
+                <div class="modal-header border-bottom pb-4">
+                    <h5 class="modal-title" id="verifikasi-modal">Verifikasi Data surat untuk di Disposisikan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/surat/{{ $detailDataSurat->id_surat }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
+                        id="">
+                    <div class="row px-4 pt-4">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="id_surat">Nomor Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-list-ol"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control capitalize @error('nomor_surat') is-invalid @enderror"
+                                        placeholder="ex: 090/1928-TU/2023" value="{{ $detailDataSurat->nomor_surat }}"
+                                        id="nomor_surat" name="nomor_surat" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('nomor_surat')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_surat">Tanggal Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-calendar3"></i>
+                                        </div>
+                                    </div>
+                                    <input type="date"
+                                        class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
+                                        placeholder="ex:  11/14/2023" value="{{ $detailDataSurat->tanggal_surat }}"
+                                        id="tanggal_surat" name="tanggal_surat" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('tanggal_surat')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="isi_surat">Ringkasa Surat: </label>
+                                <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                    placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
+                                <span class="text-danger">
+                                    @error('isi_surat')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="id_perusahaan">Pengirim Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-person-rolodex"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control @error('id_perusahaan') is-invalid @enderror"
+                                        value="{{ $detailDataSurat->perusahaan->nama_perusahaan }}" id="id_perusahaan"
+                                        readonly>
+                                    <input type="text" name="id_perusahaan"
+                                        value="{{ $detailDataSurat->id_perusahaan }}" hidden id="">
+                                </div>
+                                <span class="text-danger">
+                                    @error('id_perusahaan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="id_user">Penerima Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-person-rolodex"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="form-control @error('id_user') is-invalid @enderror"
+                                        value="{{ $detailDataSurat->user->nama }}" id="id_user" readonly>
+                                    <input type="text" name="id_user" value="{{ $detailDataSurat->id_user }}" hidden
+                                        id="">
+
+                                </div>
+                                <span class="text-danger">
+                                    @error('id_user')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="status_verifikasi">Verifikasi Surat: </label>
+                                <div class="input-group">
+                                    <select
+                                        class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                        id="status_verifikasi" name="status_verifikasi" required style="width: 100%;">
+                                        <option selected disabled>Pilih Sifat Surat</option>
+                                        <option value="0"
+                                            {{ $detailDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
+                                            Belum Terverifikasi</option>
+                                        <option value="1"
+                                            {{ $detailDataSurat->status_verifikasi === '1' ? 'selected' : '' }}>
+                                            Terverifikasi</option>
+                                        <option value="2"
+                                            {{ $detailDataSurat->status_verifikasi == '2' ? 'selected' : '' }}>
+                                            Dikembalikan</option>
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('status_verifikasi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
+                                <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                    placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" readonly> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
+                                <span class="text-danger">
+                                    @error('catatan_verifikasi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                class="bi bi-x-circle ml-3"></i></button>
+                        <button type="submit" value="Import" class="btn btn-primary text-white">
+                            Save Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{-- End Verifikasi Surat --}}
 
     <!-- Modal Ajukan Perusahaan -->
     <div class="modal fade ajukan-modal" id="ajukan-modal{{ $detailDataSurat->id_surat }}"

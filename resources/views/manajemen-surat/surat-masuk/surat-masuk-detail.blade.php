@@ -31,22 +31,38 @@
         <div class="section-body">
             <div class="card">
                 <div class="row card-header">
-                    <div class="col-10">
+                    <div class="col-lg-11 col-sm-8">
                         <div class="row">
                             <a href="/surat" title="Kembali">
                                 <i class="bi bi-arrow-left mr-3"></i>
                             </a>
-                            <h4 class="text-primary ">Detail Surat Masuk</h4>
+                            <h4 class="text-primary judul-page">Detail Surat Masuk</h4>
                         </div>
                     </div>
-                    <div class="col-2 d-flex justify-content-end btn-group tombol-ajukan">
-                        <span data-toggle="tooltip" data-placement="top" title="Ajukan untuk Disposisi"
-                            data-original-title="Ajukan untuk Disposisi" disabled class="tombol-ajukan">
-                            <button type="button" class="btn btn-success tombol-ajukan" data-toggle="modal"
-                                data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
-                                Ajukan
-                            </button>
-                        </span>
+                    <div class="col-lg-1 col-sm-4 btn-group">
+                        <a class="tombol-verifikasi" data-toggle="tooltip" data-placement="top"
+                            title="klik Untuk Mengatur verifikasikan"
+                            data-original-title="klik Untuk Mengatur verifikasikan" disabled>
+                            @if ($detailDataSurat->verifikasi == 0)
+                                <button type="button" class="btn btn-primary tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-minus-fill tombol-verifikasi" style="font-size: .8rem;"> Belum
+                                        Terverifikasi</i>
+                                </button>
+                            @elseif ($detailDataSurat->verifikasi == 1)
+                                <button type="button" class="btn btn-success tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-plus-fill tombol-verifikasi" style="font-size: .8rem;">
+                                        Terverifikasi</i>
+                                </button>
+                            @else
+                                <button type="button" class="btn btn-danger tombol-verifikasi" data-toggle="modal"
+                                    data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    <i class="bi bi-patch-exclamation-fill tombol-verifikasi" style="font-size: .8rem;">
+                                        Dikembalikan</i>
+                                </button>
+                            @endif
+                        </a>
                         <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -115,8 +131,39 @@
                                         </div>
                                     </div>
                                     <div class="col-12">
+                                        <div class="form-group ">
+                                            <label for="status_verifikasi">Verifikasi Surat: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend ">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-patch-question-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <select
+                                                    class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                                    id="status_verifikasi" name="status_verifikasi" disabled>
+                                                    <option selected disabled>Pilih Sifat Surat</option>
+                                                    <option value="0"
+                                                        {{ $detailDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                        Belum Terverifikasi</option>
+                                                    <option value="1"
+                                                        {{ $detailDataSurat->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                        Terverifikasi</option>
+                                                    <option value="2"
+                                                        {{ $detailDataSurat->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                        Dikembalikan</option>
+                                                </select>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('status_verifikasi')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                            <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
                                             <textarea class="summernote-simple summernote-disable @error('catatan_verifikasi') is-invalid @enderror"
                                                 placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
                                         </div>

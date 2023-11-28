@@ -842,7 +842,7 @@
 
             if (element.classList.contains("tombol-ajukan") || element.classList.contains("tombol-verifikasi")) {
                 noteEditable.forEach((e) => {
-                    e.classList.add('mt-4');
+                    e.classList.add('mt-5');
                 })
             }
 

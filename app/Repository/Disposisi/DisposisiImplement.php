@@ -67,15 +67,19 @@ class DisposisiImplement implements DisposisiRepository
     }
     public function update($id, $data)
     {
-        $this->disposisi->where('id_disposisi', $id)->update([
-            'id_surat' => $data->id_surat,
-            'tanggal_disposisi' => $data->tanggal_disposisi,
-            'catatan_disposisi' => $data->catatan_disposisi,
-            'status_disposisi' => $data->status_disposisi,
-            'sifat_disposisi' => $data->sifat_disposisi,
-            'id_user' => $data->id_user,
-            'tujuan_disposisi' => $data->tujuan_disposisi,
-        ]);
+        $tujuanDisposisi = is_array($data->tujuan_disposisi) ? $data->tujuan_disposisi : [$data->tujuan_disposisi];
+
+        foreach ($tujuanDisposisi as $jabatan) {
+            $this->disposisi->where('id_disposisi', $id)->update([
+                'id_surat' => $data->id_surat,
+                'tanggal_disposisi' => $data->tanggal_disposisi,
+                'catatan_disposisi' => $data->catatan_disposisi,
+                'status_disposisi' => $data->status_disposisi,
+                'sifat_disposisi' => $data->sifat_disposisi,
+                'id_user' => $data->id_user,
+                'tujuan_disposisi' => $jabatan,
+            ]);
+        }
     }
     public function destroy($id)
     {

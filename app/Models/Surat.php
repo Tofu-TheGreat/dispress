@@ -20,6 +20,8 @@ class Surat extends Model
         'isi_surat',
         'id_perusahaan',
         'id_user',
+        'status_verifikasi',
+        'catatan',
         'scan_dokumen',
     ];
 

@@ -453,8 +453,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="/disposisi/{{ $data->id_disposisi }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
                         <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
                         <div class="row px-4 pt-4">
@@ -520,13 +521,13 @@
                                             class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
                                             id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
                                             <option disabled>Pilih Sifat Surat</option>
-                                            <option value="Biasa"
+                                            <option value="0"
                                                 {{ $data->sifat_disposisi == 'Biasa' ? 'selected' : '' }}>
                                                 Biasa</option>
-                                            <option value="Prioritas"
+                                            <option value="1"
                                                 {{ $data->sifat_disposisi == 'Prioritas' ? 'selected' : '' }}>
                                                 Prioritas</option>
-                                            <option value="Rahasia"
+                                            <option value="2"
                                                 {{ $data->sifat_disposisi == 'Rahasia' ? 'selected' : '' }}>
                                                 Rahasia</option>
                                         </select>

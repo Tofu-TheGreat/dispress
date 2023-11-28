@@ -16,13 +16,13 @@
                 <div class="row d-flex">
                     {{-- judul Page --}}
                     <div class="col-md-9 col-sm-8">
-                        <h4 class="text-dark judul-page">Manajemen perusahaan</h4>
+                        <h4 class="text-dark judul-page">Manajemen Perusahaan</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">perusahaan</div>
+                        <div class="breadcrumb-item d-inline">Perusahaan</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -86,9 +86,10 @@
                                                                 alt="foto perusahaan" style="min-width: 200px">
                                                             <div
                                                                 class="d-flex flex-row justify-content-center align-content-center btn-group-action-perusahaan ">
-                                                                <div class="mr-2">
-                                                                    <span class="tombol-detail" data-toggle="tooltip"
-                                                                        data-placement="top" title="Detail Data Perusahaan"
+                                                                <div class="mr-2 tombol-edit tombol-hover">
+                                                                    <span class="tombol-detail  tombol-hover"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Detail Data Perusahaan"
                                                                         data-original-title="Detail data perusahaan"
                                                                         disabled>
                                                                         <button type="button" data-toggle="modal"
@@ -99,11 +100,11 @@
                                                                         </button>
                                                                     </span>
                                                                 </div>
-                                                                <div class="mr-2 tombol-edit">
+                                                                <div class="mr-2 tombol-edit  tombol-hover">
                                                                     <span data-toggle="tooltip" data-placement="top"
                                                                         title="Edit Data Perusahaan"
                                                                         data-original-title="Edit data perusahaan"
-                                                                        class="tombol-edit" disabled>
+                                                                        class="tombol-edit  tombol-hover" disabled>
                                                                         <button type="button" data-toggle="modal"
                                                                             data-target="#edit-modal{{ $data->id_perusahaan }}"
                                                                             type="button"
@@ -112,10 +113,10 @@
                                                                         </button>
                                                                     </span>
                                                                 </div>
-                                                                <div>
+                                                                <div class=" tombol-hover">
                                                                     <form method="POST"
                                                                         action="{{ route('perusahaan.destroy', Crypt::encryptString($data->id_perusahaan)) }}"
-                                                                        class="tombol-hapus">
+                                                                        class="tombol-hapus  tombol-hover">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="button" data-toggle="tooltip"
@@ -494,6 +495,8 @@
             });
 
             $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
+
+            $('.note-editor').addClass('d-flex flex-column');
         });
     </script>
 
@@ -553,13 +556,6 @@
         document.body.addEventListener("click", function(event) {
             const element = event.target;
             const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-            if (element.classList.contains("tombol-edit") || element.classList.contains("tombol-tambah") || element
-                .classList.contains("tombol-detail")) {
-                noteEditable.forEach((e) => {
-                    e.classList.add('mt-5');
-                })
-            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreign('id_perusahaan')->references('id_perusahaan')->on('perusahaan')->onDelete('cascade');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum("status_verifikasi", ['0', '1', '3'])->default('0'); //belum diverifikasi, terverifikasi, dikembalikan
+            $table->enum("status_verifikasi", ['0', '1', '2'])->default('0'); //belum diverifikasi, terverifikasi, dikembalikan
             $table->string('catatan_verifikasi', 100); //untuk memberi pesan kepada yang akan memverifikasi atau saat dikembalikan
             $table->string('scan_dokumen', 225);
             $table->timestamps();

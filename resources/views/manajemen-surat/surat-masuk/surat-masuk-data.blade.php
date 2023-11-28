@@ -243,7 +243,7 @@
                                                                     title="klik Untuk Mengatur verifikasikan"
                                                                     data-original-title="klik Untuk Mengatur verifikasikan"
                                                                     disabled>
-                                                                    @if ($data->verifikasi == 0)
+                                                                    @if ($data->status_verifikasi == 0)
                                                                         <button type="button"
                                                                             class="btn btn-primary mr-2 tombol-verifikasi"
                                                                             data-toggle="modal"
@@ -253,7 +253,7 @@
                                                                                 style="font-size: .8rem;"> Belum
                                                                                 Terverifikasi</i>
                                                                         </button>
-                                                                    @elseif ($data->verifikasi == 1)
+                                                                    @elseif ($data->status_verifikasi == 1)
                                                                         <button type="button"
                                                                             class="btn btn-success mr-2 tombol-verifikasi"
                                                                             data-toggle="modal"
@@ -363,8 +363,8 @@
                     </div>
                     <form action="/surat/{{ $data->id_surat }}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                         <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
-                        <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
                         <div class="row px-4 pt-4">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
@@ -376,12 +376,12 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control capitalize @error('id_surat') is-invalid @enderror"
+                                            class="form-control capitalize @error('nomor_surat') is-invalid @enderror"
                                             placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
-                                            id="id_surat" disabled>
+                                            id="nomor_surat" name="nomor_surat" readonly>
                                     </div>
                                     <span class="text-danger">
-                                        @error('id_surat')
+                                        @error('nomor_surat')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -431,8 +431,9 @@
                                         </div>
                                         <input type="text"
                                             class="form-control @error('id_perusahaan') is-invalid @enderror"
-                                            value="{{ $data->perusahaan->nama_perusahaan }}" id="id_perusahaan"
-                                            name="id_perusahaan" readonly>
+                                            value="{{ $data->perusahaan->nama_perusahaan }}" id="id_perusahaan" readonly>
+                                        <input type="text" name="id_perusahaan" value="{{ $data->id_perusahaan }}"
+                                            hidden id="">
                                     </div>
                                     <span class="text-danger">
                                         @error('id_perusahaan')
@@ -451,7 +452,10 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control @error('id_user') is-invalid @enderror"
-                                            value="{{ $data->user->nama }}" id="id_user" name="id_user" readonly>
+                                            value="{{ $data->user->nama }}" id="id_user" readonly>
+                                        <input type="text" name="id_user" value="{{ $data->id_user }}" hidden
+                                            id="">
+
                                     </div>
                                     <span class="text-danger">
                                         @error('id_user')

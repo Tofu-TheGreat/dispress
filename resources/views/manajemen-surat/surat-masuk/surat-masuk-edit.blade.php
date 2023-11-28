@@ -116,10 +116,14 @@
                                             <div class="form-group ">
                                                 <label for="status_verifikasi">Verifikasi Surat: </label>
                                                 <div class="input-group">
+                                                    <div class="input-group-prepend ">
+                                                        <div class="input-group-text bg-secondary">
+                                                            <i class="bi bi-patch-question-fill"></i>
+                                                        </div>
+                                                    </div>
                                                     <select
                                                         class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
-                                                        id="status_verifikasi" name="status_verifikasi" required
-                                                        style="width: 100%;">
+                                                        id="status_verifikasi" name="status_verifikasi" required>
                                                         <option selected disabled>Pilih Sifat Surat</option>
                                                         <option value="0"
                                                             {{ $editDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>

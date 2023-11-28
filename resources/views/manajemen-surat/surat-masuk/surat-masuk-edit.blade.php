@@ -112,7 +112,38 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-group ">
+                                                <label for="status_verifikasi">Verifikasi Surat: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend ">
+                                                        <div class="input-group-text bg-secondary">
+                                                            <i class="bi bi-patch-question-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <select
+                                                        class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                                        id="status_verifikasi" name="status_verifikasi" required>
+                                                        <option selected disabled>Pilih Sifat Surat</option>
+                                                        <option value="0"
+                                                            {{ $editDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                            Belum Terverifikasi</option>
+                                                        <option value="1"
+                                                            {{ $editDataSurat->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                            Terverifikasi</option>
+                                                        <option value="2"
+                                                            {{ $editDataSurat->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                            Dikembalikan</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('status_verifikasi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                                 <div class="input-group">
@@ -134,6 +165,18 @@
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('id_perusahaan')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                                <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                                    placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $editDataSurat->catatan_verifikasi }} </textarea>
+                                                <span class="text-danger">
+                                                    @error('catatan_verifikasi')
                                                         {{ $message }}
                                                     @enderror
                                                 </span>

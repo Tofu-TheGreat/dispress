@@ -237,6 +237,45 @@
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 -- {{ date('d-F-Y', strtotime($data->tanggal_surat)) }}
                                                                 --</p>
+                                                            <div class="mt-1 mb-1 tombol-verifikasi">
+                                                                <span class="tombol-verifikasi" data-toggle="tooltip"
+                                                                    data-placement="right"
+                                                                    title="klik Untuk Mengatur verifikasikan"
+                                                                    data-original-title="klik Untuk Mengatur verifikasikan"
+                                                                    disabled>
+                                                                    @if ($data->verifikasi == 0)
+                                                                        <button type="button"
+                                                                            class="btn btn-primary mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-minus-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;"> Belum
+                                                                                Terverifikasi</i>
+                                                                        </button>
+                                                                    @elseif ($data->verifikasi == 1)
+                                                                        <button type="button"
+                                                                            class="btn btn-success mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-plus-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;">
+                                                                                Terverifikasi</i>
+                                                                        </button>
+                                                                    @else
+                                                                        <button type="button"
+                                                                            class="btn btn-danger mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-exclamation-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;">
+                                                                                Dikembalikan</i>
+                                                                        </button>
+                                                                    @endif
+                                                                </span>
+                                                            </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
@@ -309,6 +348,170 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Verifikasi Surat -->
+    @foreach ($suratList as $data)
+        <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $data->id_surat }}"
+            aria-labelledby="verifikasi-modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="verifikasi-modal">Verifikasi Data surat untuk di Disposisikan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/surat/{{ $data->id_surat }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
+                        <div class="row px-4 pt-4">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_surat">Nomor Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('id_surat') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
+                                            id="id_surat" disabled>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="tanggal_surat">Tanggal Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
+                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            id="tanggal_surat" name="tanggal_surat" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="isi_surat">Ringkasa Surat: </label>
+                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $data->isi_surat }} </textarea>
+                                    <span class="text-danger">
+                                        @error('isi_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_perusahaan">Pengirim Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-person-rolodex"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('id_perusahaan') is-invalid @enderror"
+                                            value="{{ $data->perusahaan->nama_perusahaan }}" id="id_perusahaan"
+                                            name="id_perusahaan" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_perusahaan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_user">Penerima Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-person-rolodex"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control @error('id_user') is-invalid @enderror"
+                                            value="{{ $data->user->nama }}" id="id_user" name="id_user" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="status_verifikasi">Verifikasi Surat: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                            id="status_verifikasi" name="status_verifikasi" required
+                                            style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option value="0"
+                                                {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                Belum Terverifikasi</option>
+                                            <option value="1"
+                                                {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                Terverifikasi</option>
+                                            <option value="2"
+                                                {{ $data->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                Dikembalikan</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_verifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
+                                    <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" readonly> {{ $data->catatan_verifikasi }} </textarea>
+                                    <span class="text-danger">
+                                        @error('catatan_verifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                    class="bi bi-x-circle ml-3"></i></button>
+                            <button type="submit" value="Import" class="btn btn-primary text-white">
+                                Save Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- End Verifikasi Surat --}}
 
     <!-- Modal Ajukan Disposisi -->
     @foreach ($suratList as $data)
@@ -564,6 +767,18 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('.summernote-simple').summernote({
+                dialogsInBody: true,
+                minHeight: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['paragraph']]
+                ]
+            });
+
+            $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
         });
     </script>
 
@@ -625,7 +840,7 @@
             const element = event.target;
             const noteEditable = document.body.querySelectorAll(".note-editing-area");
 
-            if (element.classList.contains("tombol-ajukan")) {
+            if (element.classList.contains("tombol-ajukan") || element.classList.contains("tombol-verifikasi")) {
                 noteEditable.forEach((e) => {
                     e.classList.add('mt-4');
                 })

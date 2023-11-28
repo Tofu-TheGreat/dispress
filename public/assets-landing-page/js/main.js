@@ -23,6 +23,19 @@ $(document).ready(function () {
         }
     });
 
+    // password icon view
+    $(".view-password-icon").on("click", function () {
+        if ($(this).hasClass("bi-eye")) {
+            $(this).removeClass("bi-eye");
+            $(this).addClass("bi-eye-slash");
+            $("#password").attr("type", "text");
+        } else {
+            $(this).removeClass("bi-eye-slash");
+            $(this).addClass("bi-eye");
+            $("#password").attr("type", "password");
+        }
+    });
+
     /*----- Togle Button -----*/
     $(document).ready(function () {
         if (localStorage.getItem("mode") === "dark") {

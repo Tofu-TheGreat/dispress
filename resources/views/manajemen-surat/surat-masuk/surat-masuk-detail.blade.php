@@ -114,6 +114,13 @@
                                                 placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                            <textarea class="summernote-simple summernote-disable @error('catatan_verifikasi') is-invalid @enderror"
+                                                placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label for="id_perusahaan">Pengirim Surat: </label>

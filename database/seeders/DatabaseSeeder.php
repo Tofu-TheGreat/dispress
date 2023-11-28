@@ -60,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'isi_surat' => 'Perihal Rapat ',
             'id_perusahaan' => '2',
             'id_user' => '5',
-            'catatan' => 'Tolong segera di verifikasi ya pak/bu',
+            'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
         Surat::factory()->create([
@@ -69,7 +69,7 @@ class DatabaseSeeder extends Seeder
             'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
             'id_perusahaan' => '1',
             'id_user' => '1',
-            'catatan' => 'Tolong segera di verifikasi ya pak/bu',
+            'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
 

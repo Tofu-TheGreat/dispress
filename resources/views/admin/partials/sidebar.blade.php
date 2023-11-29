@@ -15,7 +15,7 @@
                 <a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span>
                 </a>
             </li>
-            <li class="menu-header">Main Menu</li>
+            <li class="menu-header">Manajemen Users</li>
             <li class="dropdown {{ $active1 == 'users' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>Users</span></a>
@@ -28,13 +28,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="menu-header">Manajemen Surat</li>
             <li class="{{ $active == 'Perusahaan' ? 'active' : '' }}">
-                <a class="nav-link" href="/perusahaan"><i class="fas fa-building"></i> <span>Manajemen Perusahaan</span>
+                <a class="nav-link" href="/perusahaan"><i class="fas fa-building"></i> <span>Perusahaan</span>
                 </a>
             </li>
             <li class="dropdown {{ $active1 == 'manajemen-surat' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-envelope"></i>
-                    <span>Manajeman Surat</span></a>
+                    <span>Surat</span></a>
                 <ul class="dropdown-menu">
                     <li><a class="nav-link {{ $active == 'Surat-masuk' ? 'active text-info' : '' }}"
                             href="/surat">Surat Masuk</a></li>
@@ -44,10 +45,11 @@
                     <li><a class="nav-link" href="layout-transparent.html">SPPD</a></li>
                 </ul>
             </li>
+            <li class="menu-header">Manajemen Setting</li>
             <li class="dropdown {{ $active1 == 'setting' ? 'active' : '' }} ">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa bi bi-gear-fill"></i>
-                    <span>Manajeman Setting</span></a>
+                    <span>Setting</span></a>
                 <ul class="dropdown-menu">
                     <li>
                         <form action="/logout" method="POST" id="logout">

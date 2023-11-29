@@ -782,6 +782,8 @@
             });
 
             $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
+
+            $('.note-editor').addClass('d-flex flex-column');
         });
     </script>
 
@@ -842,12 +844,6 @@
         document.body.addEventListener("click", function(event) {
             const element = event.target;
             const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-            if (element.classList.contains("tombol-ajukan") || element.classList.contains("tombol-verifikasi")) {
-                noteEditable.forEach((e) => {
-                    e.classList.add('mt-5');
-                })
-            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

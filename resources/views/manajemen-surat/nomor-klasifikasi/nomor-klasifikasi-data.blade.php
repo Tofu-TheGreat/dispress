@@ -472,7 +472,7 @@
                 processing: true,
                 serverside: true,
                 ajax: {
-                    url: "{{ url('/officer-index') }}",
+                    url: "{{ url('/klasifikasi-index') }}",
                     type: "post",
                     data: function(d) {
                         d._token = "{{ csrf_token() }}";
@@ -487,20 +487,12 @@
                         searchable: false
                     },
                     {
-                        data: 'nama',
-                        name: 'Nama',
+                        data: 'nomor_klasifikasi',
+                        name: 'Nomor Klasifikasi',
                     },
                     {
-                        data: 'email',
-                        name: 'Email',
-                    },
-                    {
-                        data: 'nomor_telpon',
-                        name: 'Nomor Telepon'
-                    },
-                    {
-                        data: 'akses',
-                        name: 'Akses'
+                        data: 'nama_klasifikasi',
+                        name: 'Nama Klasifikasi',
                     },
                     {
                         data: 'action',

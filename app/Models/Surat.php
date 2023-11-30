@@ -40,4 +40,8 @@ class Surat extends Model
     {
         return $this->hasOne(Disposisi::class, 'id_surat');
     }
+    public function klasifikasi()
+    {
+        return $this->belongsTo(Klasifikasi::class, 'id_klasifikasi');
+    }
 }

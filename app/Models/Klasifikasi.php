@@ -15,4 +15,9 @@ class Klasifikasi extends Model
         'nomor_klasifikasi',
         'nama_klasifikasi',
     ];
+
+    public function surat()
+    {
+        return $this->hasOne(Surat::class, 'id_instansi');
+    }
 }

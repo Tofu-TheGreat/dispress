@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Klasifikasi;
+use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
+use Illuminate\Support\Facades\Crypt;
 use App\Repository\Klasifikasi\KlasifikasiRepository;
 
 class KlasifikasiController extends Controller
@@ -31,30 +32,6 @@ class KlasifikasiController extends Controller
 
     public function indexKlasifikasi(Request $request)
     {
-        // if ($request->jabatan) {
-        //     // Memeriksa nilai 'jabatan' dan menyesuaikan query yang dikirimkan ajax
-        //     if ($request->jabatan == "kp") {
-        //         $usersList = User::where('jabatan', '0')->where('level', 'admin')->get();
-        //     } else {
-        //         $usersList = User::where('jabatan', $request->jabatan)->where('level', 'admin')->get();
-        //     }
-        //     return DataTables::of($usersList)
-        //         ->addIndexColumn()
-        //         ->addColumn('nama', function ($usersList) {
-        //             return '<span class="capitalize">' . $usersList->nama . '</span>';
-        //         })
-        //         ->addColumn('nomor_telpon', function ($usersList) {
-        //             return currencyPhone($usersList->nomor_telpon);
-        //         })
-        //         ->addColumn('akses', function ($usersList) {
-        //             return '<span class="capitalize badge badge-success text-center ">' . $usersList->level . '</span>';
-        //         })
-        //         ->addColumn('action', function ($usersList) {
-        //             return view('admin.elements.create-button')->with('usersList', $usersList);
-        //         })
-        //         ->rawColumns(['akses', 'nama', 'phone'])
-        //         ->toJson();
-        // } else {
         $klasifikasiList = $this->klasifikasiRepository->index();
         return DataTables::of($klasifikasiList)
             ->addIndexColumn()
@@ -119,7 +96,8 @@ class KlasifikasiController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->klasifikasiRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->klasifikasiRepository->destroy($encryptId);
         return back()->with('success', 'Berhasil Menghapus Klasfikasi');
     }
 }

@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('disposisi', function (Blueprint $table) {
             $table->id('id_disposisi');
+            $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
+            $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
             $table->string('nomor_agenda', 100);
             $table->unsignedBigInteger('id_surat');
             $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
@@ -24,6 +26,8 @@ return new class extends Migration
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->nullable(); //Penerima
             // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
+            $table->unsignedBigInteger('id_penerima'); //Penerima
+            $table->foreign('id_penerima')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

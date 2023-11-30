@@ -54,15 +54,15 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
+                                    <label class="capitalize" for="id_instansi">Pilih Instansi: </label>
                                     <div class="input-group">
-                                        <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
-                                            id="id_perusahaan" name="id_perusahaan" style="width: 100%;">
-                                            <option value="">Pilih Perusahaan Pengirim</option>
-                                            @foreach ($perusahaanList as $data)
-                                                <option value="{{ $data->id_perusahaan }}"
-                                                    {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
-                                                    {{ $data->nama_perusahaan }}</option>
+                                        <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
+                                            id="id_instansi" name="id_instansi" style="width: 100%;">
+                                            <option value="">Pilih Instansi Pengirim</option>
+                                            @foreach ($instansiList as $data)
+                                                <option value="{{ $data->id_instansi }}"
+                                                    {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
+                                                    {{ $data->nama_instansi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -210,7 +210,7 @@
                                                             <h4>{{ $data->nomor_surat }}</h4>
                                                             <small
                                                                 style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->perusahaan->nama_perusahaan }}
+                                                                {{ $data->instansi->nama_instansi }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
@@ -312,11 +312,11 @@
                                                                 <div>
                                                                     <div class="user-detail-name">
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->perusahaan->nama_perusahaan }}</span>
+                                                                            {{ $data->instansi->nama_instansi }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->perusahaan->nomor_telpon) }}
+                                                                            {{ currencyPhone($data->instansi->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>
@@ -421,7 +421,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="id_perusahaan">Pengirim Surat: </label>
+                                    <label for="id_instansi">Pengirim Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text bg-secondary">
@@ -429,13 +429,13 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control @error('id_perusahaan') is-invalid @enderror"
-                                            value="{{ $data->perusahaan->nama_perusahaan }}" id="id_perusahaan" readonly>
-                                        <input type="text" name="id_perusahaan" value="{{ $data->id_perusahaan }}"
-                                            hidden id="">
+                                            class="form-control @error('id_instansi') is-invalid @enderror"
+                                            value="{{ $data->instansi->nama_instansi }}" id="id_instansi" readonly>
+                                        <input type="text" name="id_instansi" value="{{ $data->id_instansi }}" hidden
+                                            id="">
                                     </div>
                                     <span class="text-danger">
-                                        @error('id_perusahaan')
+                                        @error('id_instansi')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -577,7 +577,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="id_perusahaan">Dari: </label>
+                                    <label for="id_instansi">Dari: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text bg-secondary">
@@ -585,12 +585,12 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control capitalize @error('id_perusahaan') is-invalid @enderror"
+                                            class="form-control capitalize @error('id_instansi') is-invalid @enderror"
                                             placeholder="ex: 090/1928-TU/2023"
-                                            value="{{ $data->perusahaan->nama_perusahaan }}" id="id_perusahaan" disabled>
+                                            value="{{ $data->instansi->nama_instansi }}" id="id_instansi" disabled>
                                     </div>
                                     <span class="text-danger">
-                                        @error('id_perusahaan')
+                                        @error('id_instansi')
                                             {{ $message }}
                                         @enderror
                                     </span>

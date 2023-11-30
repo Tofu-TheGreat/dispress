@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Surat;
 use App\Models\Disposisi;
+use App\Models\Klasifikasi;
 
 class DatabaseSeeder extends Seeder
 {
@@ -51,6 +52,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'yudis@gmail.com',
             'nomor_telpon' => '089123456999',
             'password' => bcrypt('password'),
+        ]);
+
+        // Seed klasifikasi
+        Klasifikasi::factory()->create([
+            'nomor_klasifikasi' => '005',
+            'nama_klasifikasi' => 'Undangan',
         ]);
 
         // Seed Surat

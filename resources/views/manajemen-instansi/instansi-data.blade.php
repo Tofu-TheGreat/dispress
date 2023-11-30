@@ -16,13 +16,13 @@
                 <div class="row d-flex">
                     {{-- judul Page --}}
                     <div class="col-md-9 col-sm-8">
-                        <h4 class="text-dark judul-page">Manajemen Perusahaan</h4>
+                        <h4 class="text-dark judul-page">Manajemen Instansi</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">Perusahaan</div>
+                        <div class="breadcrumb-item d-inline">Instansi</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -34,11 +34,11 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Perusahaan</h4>
+                            <h4 class="text-primary judul-page">List Instansi</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Tambah Data Perusahaan"
+                            <span data-toggle="tooltip" data-placement="top" title="Tambah Data Instansi"
                                 data-original-title="Tambah Data" class="tombol-tambah" disabled>
                                 <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
                                     data-target="#tambah-modal" type="button"
@@ -70,60 +70,59 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
-                                    @if ($perusahaanList->isEmpty())
+                                    @if ($instansiList->isEmpty())
                                         <div class="d-flex justify-content-center align-content-center">
                                             <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                 class="w-50">
                                         </div>
                                     @else
                                         <div class="row px-3">
-                                            @foreach ($perusahaanList as $data)
+                                            @foreach ($instansiList as $data)
                                                 <div class="col mx-1">
                                                     <div class="card shadow shadow-sm" style="max-width: 360px;">
                                                         <div class="position-relative">
                                                             <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
-                                                                class="card-img-top bg-primary img-perusahaan"
-                                                                alt="foto perusahaan" style="min-width: 200px">
+                                                                class="card-img-top bg-primary img-instansi"
+                                                                alt="foto instansi" style="min-width: 200px">
                                                             <div
-                                                                class="d-flex flex-row justify-content-center align-content-center btn-group-action-perusahaan ">
+                                                                class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
                                                                 <div class="mr-2 tombol-edit tombol-hover">
                                                                     <span class="tombol-detail  tombol-hover"
                                                                         data-toggle="tooltip" data-placement="top"
-                                                                        title="Detail Data Perusahaan"
-                                                                        data-original-title="Detail data perusahaan"
-                                                                        disabled>
+                                                                        title="Detail Data Instansi"
+                                                                        data-original-title="Detail data instansi" disabled>
                                                                         <button type="button" data-toggle="modal"
-                                                                            data-target="#detail-modal{{ $data->id_perusahaan }}"
+                                                                            data-target="#detail-modal{{ $data->id_instansi }}"
                                                                             type="button"
-                                                                            class="rounded-circle btn btn-info tombol-detail tombol-detail-perusahaan">
+                                                                            class="rounded-circle btn btn-info tombol-detail tombol-detail-instansi">
                                                                             <i class="bi bi-eye tombol-detail"></i>
                                                                         </button>
                                                                     </span>
                                                                 </div>
                                                                 <div class="mr-2 tombol-edit  tombol-hover">
                                                                     <span data-toggle="tooltip" data-placement="top"
-                                                                        title="Edit Data Perusahaan"
-                                                                        data-original-title="Edit data perusahaan"
+                                                                        title="Edit Data Instansi"
+                                                                        data-original-title="Edit data instansi"
                                                                         class="tombol-edit  tombol-hover" disabled>
                                                                         <button type="button" data-toggle="modal"
-                                                                            data-target="#edit-modal{{ $data->id_perusahaan }}"
+                                                                            data-target="#edit-modal{{ $data->id_instansi }}"
                                                                             type="button"
-                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-perusahaan">
+                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-instansi">
                                                                             <i class="bi bi-pencil-square tombol-edit"></i>
                                                                         </button>
                                                                     </span>
                                                                 </div>
                                                                 <div class=" tombol-hover">
                                                                     <form method="POST"
-                                                                        action="{{ route('perusahaan.destroy', Crypt::encryptString($data->id_perusahaan)) }}"
+                                                                        action="{{ route('instansi.destroy', Crypt::encryptString($data->id_instansi)) }}"
                                                                         class="tombol-hapus  tombol-hover">
                                                                         @csrf
                                                                         @method('DELETE')
                                                                         <button type="button" data-toggle="tooltip"
                                                                             data-placement="top"
-                                                                            title="Hapus data perusahaan"
-                                                                            data-original-title="Hapus data perusahaan"
-                                                                            class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-perusahaan tombol-hapus"
+                                                                            title="Hapus data instansi"
+                                                                            data-original-title="Hapus data instansi"
+                                                                            class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-instansi tombol-hapus"
                                                                             href=""><i
                                                                                 class="bi bi-trash tombol-hapus"></i>
                                                                         </button>
@@ -135,11 +134,11 @@
                                                             <div class="position-relative">
                                                                 <b class="card-title pt-3 d-block"
                                                                     style="max-width: max-content;">
-                                                                    {{ strlen($data->nama_perusahaan) > 15 ? substr($data->nama_perusahaan, 0, 15) . '...' : $data->nama_perusahaan }}
+                                                                    {{ strlen($data->nama_instansi) > 15 ? substr($data->nama_instansi, 0, 15) . '...' : $data->nama_instansi }}
                                                                 </b>
                                                             </div>
                                                             <div
-                                                                class="nomor_perusahaan d-flex justify-content-center align-content-center px-2">
+                                                                class="nomor_instansi d-flex justify-content-center align-content-center px-2">
                                                                 <small class="text-center phone">
                                                                     {{ $data->nomor_telpon }}
                                                                 </small>
@@ -149,7 +148,7 @@
                                                 </div>
                                             @endforeach
                                             <div class="col-12">
-                                                {{ $perusahaanList->onEachSide(1)->links() }}
+                                                {{ $instansiList->onEachSide(1)->links() }}
                                             </div>
                                         </div>
                                     @endif
@@ -162,35 +161,35 @@
         </div>
     </section>
 
-    @foreach ($perusahaanList as $item)
-        <!-- Modal Detail Perusahaan -->
-        <div class="modal fade" id="detail-modal{{ $item->id_perusahaan }}" aria-labelledby="detail-modal"
+    @foreach ($instansiList as $item)
+        <!-- Modal Detail Instansi -->
+        <div class="modal fade" id="detail-modal{{ $item->id_instansi }}" aria-labelledby="detail-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="detail-modal">Detail Data Perusahaan</h5>
+                        <h5 class="modal-title" id="detail-modal">Detail Data Instansi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="row px-4 pt-4">
                         <div class="col-12">
-                            @if ($item->foto_perusahaan)
+                            @if ($item->foto_instansi)
                                 <div class="d-flex justify-content-center">
-                                    <img src="{{ asset('image_save/' . $item->foto_perusahaan) }}"
-                                        alt="foto {{ $item->perusahaan }}" class="foto-perusahaan">
+                                    <img src="{{ asset('image_save/' . $item->foto_instansi) }}"
+                                        alt="foto {{ $item->instansi }}" class="foto-instansi">
                                 </div>
                             @else
                                 <div class="d-flex justify-content-center">
                                     <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
-                                        alt="foto {{ $item->perusahaan }}" class="foto-perusahaan bg-primary">
+                                        alt="foto {{ $item->instansi }}" class="foto-instansi bg-primary">
                                 </div>
                             @endif
                         </div>
                         <div class=" col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group ">
-                                <label for="nama_perusahaan">Nama Perusahaan: </label>
+                                <label for="nama_instansi">Nama Instansi: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <div class="input-group-text bg-secondary">
@@ -198,16 +197,16 @@
                                         </div>
                                     </div>
                                     <input type="text"
-                                        class="form-control @error('nama_perusahaan') is-invalid @enderror"
-                                        placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
-                                        id="nama_perusahaan" name="nama_perusahaan" readonly>
+                                        class="form-control @error('nama_instansi') is-invalid @enderror"
+                                        placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
+                                        id="nama_instansi" name="nama_instansi" readonly>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="nomor_telpon">Nomor Telepon Perusahaan: </label>
+                                <label for="nomor_telpon">Nomor Telepon Instansi: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
@@ -224,9 +223,9 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
-                                <textarea class="summernote-simple summernote-disable @error('alamat_perusahaan') is-invalid @enderror"
-                                    id="alamat_perusahaan" name="alamat_perusahaan" readonly> {{ $item->alamat_perusahaan }} </textarea>
+                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                <textarea class="summernote-simple summernote-disable @error('alamat_instansi') is-invalid @enderror"
+                                    id="alamat_instansi" name="alamat_instansi" readonly> {{ $item->alamat_instansi }} </textarea>
 
                             </div>
                         </div>
@@ -238,29 +237,29 @@
                 </div>
             </div>
         </div>
-        {{-- End Detail Perusahaan --}}
+        {{-- End Detail Instansi --}}
     @endforeach
 
-    @foreach ($perusahaanList as $item)
-        <!-- Modal Edit Perusahaan -->
-        <div class="modal fade" id="edit-modal{{ $item->id_perusahaan }}" aria-labelledby="edit-modal"
+    @foreach ($instansiList as $item)
+        <!-- Modal Edit Instansi -->
+        <div class="modal fade" id="edit-modal{{ $item->id_instansi }}" aria-labelledby="edit-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="edit-modal">Edit Data Perusahaan</h5>
+                        <h5 class="modal-title" id="edit-modal">Edit Data Instansi</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="/perusahaan/{{ $item->id_perusahaan }}" method="post" enctype="multipart/form-data">
+                    <form action="/instansi/{{ $item->id_instansi }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <input type="text" name="id_perusahaan" value="{{ $item->id_perusahaan }}" hidden>
+                        <input type="text" name="id_instansi" value="{{ $item->id_instansi }}" hidden>
                         <div class="row px-4 pt-4">
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="nama_perusahaan">Nama Perusahaan: </label>
+                                    <label for="nama_instansi">Nama Instansi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -268,16 +267,16 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control @error('nama_perusahaan') is-invalid @enderror"
-                                            placeholder="ex: PT Gayuh Net" value="{{ $item->nama_perusahaan }}"
-                                            id="nama_perusahaan" name="nama_perusahaan" required autofocus>
+                                            class="form-control @error('nama_instansi') is-invalid @enderror"
+                                            placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
+                                            id="nama_instansi" name="nama_instansi" required autofocus>
                                     </div>
 
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="nomor_telpon">Nomor Telepon Perusahaan: </label>
+                                    <label for="nomor_telpon">Nomor Telepon Instansi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -294,11 +293,11 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
-                                    <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
-                                        name="alamat_perusahaan"> {{ $item->alamat_perusahaan }} </textarea>
+                                    <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                    <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
+                                        name="alamat_instansi"> {{ $item->alamat_instansi }} </textarea>
                                     <span class="text-danger">
-                                        @error('alamat_perusahaan')
+                                        @error('alamat_instansi')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -306,14 +305,14 @@
                             </div>
                         </div>
                         <div class="form-group px-4">
-                            <label for="foto_perusahaan ">Masukkan foto Perusahaan: </label>
+                            <label for="foto_instansi ">Masukkan foto Instansi: </label>
                             <small class="d-block">Catatan: masukkan foto dengan format (JPEG, PNG,
                                 JPG),
                                 maksimal 10
                                 MB.</small>
                             <input type="file"
-                                class="img-filepond-preview @error('foto_perusahaan') is-invalid @enderror"
-                                id="foto_perusahaan" name="foto_perusahaan" accept="jpg,jpeg,png,svg">
+                                class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
+                                id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
 
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-top pt-3">
@@ -326,25 +325,25 @@
                 </div>
             </div>
         </div>
-        {{-- End Edit Perusahaan --}}
+        {{-- End Edit Instansi --}}
     @endforeach
 
-    <!-- Modal Tambah Perusahaan -->
+    <!-- Modal Tambah Instansi -->
     <div class="modal fade" id="tambah-modal" aria-labelledby="tambah-modal" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header border-bottom pb-4">
-                    <h5 class="modal-title" id="tambah-modal">Tambah Data Perusahaan</h5>
+                    <h5 class="modal-title" id="tambah-modal">Tambah Data Instansi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('perusahaan.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('instansi.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row px-4 pt-4">
                         <div class=" col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group ">
-                                <label for="nama_perusahaan">Masukkan Nama Perusahaan: </label>
+                                <label for="nama_instansi">Masukkan Nama Instansi: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -352,16 +351,16 @@
                                         </div>
                                     </div>
                                     <input type="text"
-                                        class="form-control @error('nama_perusahaan') is-invalid @enderror"
-                                        placeholder="ex: PT Gayuh Net" value="{{ old('nama_perusahaan') }}"
-                                        id="nama_perusahaan" name="nama_perusahaan" required autofocus>
+                                        class="form-control @error('nama_instansi') is-invalid @enderror"
+                                        placeholder="ex: PT Gayuh Net" value="{{ old('nama_instansi') }}"
+                                        id="nama_instansi" name="nama_instansi" required autofocus>
                                 </div>
 
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="nomor_telpon">Masukkan Nomor Telepon Perusahaan: </label>
+                                <label for="nomor_telpon">Masukkan Nomor Telepon Instansi: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -378,21 +377,21 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="alamat_perusahaan">Masukkan Alamat Perusahaan: </label>
-                                <textarea class="summernote-simple @error('alamat_perusahaan') is-invalid @enderror" id="alamat_perusahaan"
-                                    name="alamat_perusahaan" required> {{ old('alamat_perusahaan') }} </textarea>
+                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
+                                    name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
 
                             </div>
                         </div>
                     </div>
                     <div class="form-group px-4">
-                        <label for="foto_perusahaan ">Masukkan foto Perusahaan: </label>
+                        <label for="foto_instansi ">Masukkan foto Instansi: </label>
                         <small class="d-block">Catatan: masukkan foto dengan format (JPEG, PNG,
                             JPG),
                             maksimal 10
                             MB.</small>
-                        <input type="file" class="img-filepond-preview @error('foto_perusahaan') is-invalid @enderror"
-                            id="foto_perusahaan" name="foto_perusahaan" accept="jpg,jpeg,png,svg">
+                        <input type="file" class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
+                            id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
 
                     </div>
                     <div class="modal-footer d-flex justify-content-between border-top pt-3">
@@ -405,24 +404,24 @@
             </div>
         </div>
     </div>
-    {{-- End Tambah Perusahaan --}}
+    {{-- End Tambah Instansi --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Perusahaan</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Instansi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('perusahaan.import') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('instansi.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Perusahaan: </span>
+                        <span class="d-block">Unduh Template Import Instansi: </span>
                         <a href="/file/Book2.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="Perusahaan-template-import">
-                            <span>Template Import Perusahaan</span> <i
+                            download="Instansi-template-import">
+                            <span>Template Import Instansi</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">
@@ -560,19 +559,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Perusahaan ini!',
+                        text: 'Ingin menghapus data Instansi ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Perusahaan berhasil dihapus!', {
+                            swal('Data Instansi berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Perusahaan tidak jadi dihapus!');
+                            swal('Data Instansi tidak jadi dihapus!');
                         }
                     });
             }
@@ -580,19 +579,19 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Perusahaan ini?',
+                        text: 'Ingin export data Instansi ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Perusahaan berhasil diexport!', {
+                            swal('Data Instansi berhasil diexport!', {
                                 icon: 'success',
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('perusahaan.export') }}', {
+                            fetch('{{ route('instansi.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -608,7 +607,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Perusahaan tidak jadi diexport!');
+                            swal('Data Instansi tidak jadi diexport!');
                         }
                     });
             }

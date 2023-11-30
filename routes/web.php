@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, DisposisiController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, DisposisiController, KlasifikasiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -62,6 +62,12 @@ Route::post('perusahaan-import', [ImportController::class, 'import_perusahaan'])
 Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
 Route::post('perusahaan-import', [ImportController::class, 'import_user'])->name('perusahaan.import');
 
+// Manajemen Nomor Klasifikasi
+
+Route::resource('/nomor-klasifikasi', KlasifikasiController::class)->middleware('auth');
+
+Route::get('nomor-klasifikasi-export', [ExportController::class, 'export_nomor-klasifikasi'])->name('nomor-klasifikasi.export');
+Route::post('nomor-klasifikasi-import', [ImportController::class, 'import_user'])->name('nomor-klasifikasi.import');
 
 // Manajemen Surat
 

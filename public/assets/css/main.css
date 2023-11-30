@@ -63,32 +63,32 @@ li {
     width: 65%;
 }
 
-/* perusahaan */
-.card-perusahaan {
+/* instansi */
+.card-instansi {
     position: relative;
 }
-.btn-group-action-perusahaan {
+.btn-group-action-instansi {
     position: absolute;
     bottom: -17px;
     right: 50%;
     left: 50%;
 }
 
-.img-perusahaan {
+.img-instansi {
     border-bottom: 2px solid #3649e3;
 }
 
-.btn-group-action-perusahaan .btn {
+.btn-group-action-instansi .btn {
     border: 2px solid #3649e3;
     transition: 0.3s ease-in-out;
 }
 
-.btn-group-action-perusahaan div:hover .btn {
+.btn-group-action-instansi div:hover .btn {
     border: 2px solid #3649e3 !important;
     transform: scale(1.1);
 }
 
-.foto-perusahaan {
+.foto-instansi {
     width: 230px;
     height: 230px;
     margin: 10px;
@@ -101,7 +101,7 @@ li {
     display: block !important;
 }
 
-.nomor_perusahaan {
+.nomor_instansi {
     position: absolute;
     left: 0;
     right: 0;

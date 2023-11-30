@@ -56,11 +56,9 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 // Manajemen instansi
 
 Route::resource('/instansi', InstansiController::class)->middleware('auth');
-Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
-Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
 
 Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
-Route::post('instansi-import', [ImportController::class, 'import_user'])->name('instansi.import');
+Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
 
 // Manajemen Nomor Klasifikasi
 

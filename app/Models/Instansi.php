@@ -5,20 +5,20 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Perusahaan extends Model
+class Instansi extends Model
 {
     use HasFactory;
-    protected $table = 'perusahaan';
-    protected $primaryKey = 'id_perusahaan';
+    protected $table = 'instansi';
+    protected $primaryKey = 'id_instansi';
     protected $fillable = [
-        'nama_perusahaan',
-        'alamat_perusahaan',
+        'nama_instansi',
+        'alamat_instansi',
         'nomor_telpon',
     ];
 
     public function surat()
     {
-        return $this->hasOne(Surat::class, 'id_perusahaan');
+        return $this->hasOne(Surat::class, 'id_instansi');
     }
 
     public function getPhoneAttribute()

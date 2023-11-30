@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(OfficerRepository::class, OfficerImplement::class);
         $this->app->bind(StaffRepository::class, StaffImplement::class);
         $this->app->bind(SuratRepository::class, SuratImplement::class);
-        $this->app->bind(PerusahaanRepository::class, PerusahaanImplement::class);
+        $this->app->bind(InstansiRepository::class, InstansiImplement::class);
         $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
     }
 

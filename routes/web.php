@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, DisposisiController, KlasifikasiController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -53,14 +53,14 @@ Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);
 Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
-// Manajemen Perusahaan
+// Manajemen instansi
 
-Route::resource('/perusahaan', PerusahaanController::class)->middleware('auth');
-Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
-Route::post('perusahaan-import', [ImportController::class, 'import_perusahaan'])->name('perusahaan.import');
+Route::resource('/instansi', InstansiController::class)->middleware('auth');
+Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
+Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
 
-Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
-Route::post('perusahaan-import', [ImportController::class, 'import_user'])->name('perusahaan.import');
+Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
+Route::post('instansi-import', [ImportController::class, 'import_user'])->name('instansi.import');
 
 // Manajemen Nomor Klasifikasi
 

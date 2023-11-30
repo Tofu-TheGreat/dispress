@@ -45,6 +45,12 @@ li {
     aspect-ratio: 1/1;
 }
 
+.dropdown-menu button:hover {
+    background-color: #f3f3f3;
+    color: var(--black-000);
+    cursor: pointer;
+}
+
 .btn-logout-nav {
     font-size: 0.8rem;
     cursor: pointer;
@@ -61,6 +67,43 @@ li {
 
 .card-body form .search-data {
     width: 65%;
+}
+
+/* search card */
+
+.container-input {
+    position: relative;
+}
+
+.search {
+    width: 200px;
+    padding: 10px 0px 10px 40px;
+    border-radius: 9999px;
+    border: solid 1px #333;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+}
+
+.container-input .search-icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translate(0, -50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.search:focus {
+    width: 250px;
+    border: 1px solid #769bb8;
+}
+
+.search:focus ~ .search-icon {
+    color: red;
+}
+
+.container-input:hover > .search-icon {
+    animation: anim 1s linear infinite;
 }
 
 /* instansi */

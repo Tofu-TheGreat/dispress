@@ -63,7 +63,7 @@ class KlasifikasiController extends Controller
     public function store(Request $request)
     {
         $this->klasifikasiRepository->store($request);
-        return back()->with('success', 'Berhasil Menambah Klasfikasi Baru');
+        return back()->with('success', 'Berhasil menambah data nomor klasfikasi baru.');
     }
 
     /**
@@ -88,7 +88,7 @@ class KlasifikasiController extends Controller
     public function update(Request $request, string $id)
     {
         $this->klasifikasiRepository->update($request, $id);
-        return back()->with('success', 'Berhasil Mengubah Klasfikasi');
+        return back()->with('success', 'Berhasil mengubah data nomor klasfikasi.');
     }
 
     /**
@@ -98,6 +98,6 @@ class KlasifikasiController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $this->klasifikasiRepository->destroy($encryptId);
-        return back()->with('success', 'Berhasil Menghapus Klasfikasi');
+        return back()->with('success', 'Berhasil menghapus data nomor klasfikasi.');
     }
 }

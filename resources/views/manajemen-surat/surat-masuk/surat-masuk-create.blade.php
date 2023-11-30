@@ -50,6 +50,34 @@
                             <div class="row">
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
+                                        <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <select
+                                                class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                                id="id_klasifikasi" name="id_klasifikasi" required>
+                                                <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                                @foreach ($klasifikasiList as $data)
+                                                    <option value="{{ $data->id_klasifikasi }}"
+                                                        {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                        {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('id_klasifikasi')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class=" col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
                                         <label for="nomor_surat">Masukkan Nomor Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -69,7 +97,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="col-12">
                                     <div class="form-group">
                                         <label class="capitalize" for="tanggal_surat">Masukkan Tanggal Surat: </label>
                                         <div class="input-group">
@@ -104,7 +132,34 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                        <label class="capitalize" for="id_instansi">Pengirim Surat: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-person-rolodex"></i>
+                                                </div>
+                                            </div>
+                                            <select
+                                                class="form-control select2  @error('id_instansi') is-invalid @enderror "
+                                                id="id_instansi" name="id_instansi" required>
+                                                <option selected disabled>Pilih Pengirim Surat</option>
+                                                @foreach ($instansiList as $data)
+                                                    <option value="{{ $data->id_instansi }}"
+                                                        {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
+                                                        {{ $data->nama_instansi }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('id_instansi')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="catatan_verifikasi">Masukkan Verifikasi Surat: </label>
                                         <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
                                             placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ old('catatan_verifikasi') }} </textarea>
                                         <span class="text-danger">
@@ -114,36 +169,9 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-rolodex"></i>
-                                                </div>
-                                            </div>
-                                            <select
-                                                class="form-control select2  @error('id_perusahaan') is-invalid @enderror "
-                                                id="id_perusahaan" name="id_perusahaan" required>
-                                                <option selected disabled>Pilih Pengirim Surat</option>
-                                                @foreach ($perusahaanList as $data)
-                                                    <option value="{{ $data->id_perusahaan }}"
-                                                        {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
-                                                        {{ $data->nama_perusahaan }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_perusahaan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
                                 <input type="id_user" class="form-control @error('id_user') is-invalid @enderror"
-                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}" id="id_user"
-                                    name="id_user" hidden>
+                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}"
+                                    id="id_user" name="id_user" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="foto">Masukkan Scan Dokumen Surat: </label>

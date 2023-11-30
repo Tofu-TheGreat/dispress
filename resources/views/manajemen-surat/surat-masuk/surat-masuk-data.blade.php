@@ -194,13 +194,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12 d-flex justify-content-end mb-3">
-                                <div class="container-input">
-                                    <input type="text" placeholder="Search" name="text" class="search"
-                                        id="searchInput">
-                                    <i class="bi bi-search-heart search-icon"></i>
-                                </div>
-                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($suratList->isEmpty())
@@ -209,6 +202,13 @@
                                                 class="w-50">
                                         </div>
                                     @else
+                                        <div class="col-12 d-flex justify-content-end mb-3">
+                                            <div class="container-input">
+                                                <input type="text" placeholder="Search" name="text" class="search"
+                                                    id="searchInput">
+                                                <i class="bi bi-search-heart search-icon"></i>
+                                            </div>
+                                        </div>
                                         @foreach ($suratList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
                                                 <div class="card card-primary card-surat shadow-sm">

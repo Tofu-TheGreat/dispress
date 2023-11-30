@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PerusahaanRequest extends FormRequest
+class InstansiRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,9 +29,9 @@ class PerusahaanRequest extends FormRequest
     public function rules(): array
     {
         $rules = [
-            'nama_perusahaan' => 'required',
-            'nomor_telpon' => 'required|min:12|max:13|unique:perusahaan,nomor_telpon,' . $this->input('id_perusahaan') . ',id_perusahaan',
-            'alamat_perusahaan' => 'required|min:5|max:150|'
+            'nama_instansi' => 'required',
+            'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
+            'alamat_instansi' => 'required|min:5|max:150|'
         ];
 
         return $rules;
@@ -39,14 +39,14 @@ class PerusahaanRequest extends FormRequest
     public function messages()
     {
         return [
-            'nama_perusahaan.required' => 'Nama Perusahaan tidak boleh kosong!',
+            'nama_instansi.required' => 'Nama instansi tidak boleh kosong!',
             'nomor_telpon.required' => 'Harap masukkan nomor telepon.',
             'nomor_telpon.min' => 'Nomor telepon tidak boleh kurang dari 12',
             'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
-            'alamat_perusahaan.required' => 'Alamat Perusahaan tidak boleh kosong!',
-            'alamat_perusahaan.min' => 'Alamat perusahaan tidak boleh kurang dari 5',
-            'alamat_perusahaan.max' => 'Alamat perusahaan tidak boleh lebih dari 150',
+            'alamat_instansi.required' => 'Alamat instansi tidak boleh kosong!',
+            'alamat_instansi.min' => 'Alamat instansi tidak boleh kurang dari 5',
+            'alamat_instansi.max' => 'Alamat instansi tidak boleh lebih dari 150',
         ];
     }
 }

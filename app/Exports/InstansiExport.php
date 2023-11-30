@@ -2,27 +2,27 @@
 
 namespace App\Exports;
 
-use App\Models\Perusahaan;
+use App\Models\Instansi;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class PerusahaanExport implements FromCollection, WithHeadings, WithMapping
+class InstansiExport implements FromCollection, WithHeadings, WithMapping
 {
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return Perusahaan::get();
+        return Instansi::get();
     }
     public function headings(): array
     {
         return [
             "No",
-            "id_perusahaan",
+            "id_instansi",
             "nomor_telpon",
-            "alamat_perusahaan",
+            "alamat_instansi",
             "created_at",
             "updated_at",
         ];
@@ -30,7 +30,7 @@ class PerusahaanExport implements FromCollection, WithHeadings, WithMapping
 
     public function query()
     {
-        return Perusahaan::query();
+        return Instansi::query();
     }
 
     public function map($row): array
@@ -43,9 +43,9 @@ class PerusahaanExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $rowNumber,
-            $row->id_perusahaan,
+            $row->id_instansi,
             $nomor_telepon,
-            $row->alamat_perusahaan,
+            $row->alamat_instansi,
             $row->created_at,
             $row->updated_at
         ];

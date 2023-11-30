@@ -62,19 +62,21 @@ class DatabaseSeeder extends Seeder
 
         // Seed Surat
         Surat::factory()->create([
-            'nomor_surat' => '091/1228-TU/2023',
+            'nomor_surat' => '091/1228-SMK3/2023',
             'tanggal_surat' => '2023-11-9',
             'isi_surat' => 'Perihal Rapat ',
-            'id_perusahaan' => '2',
+            'id_instansi' => '2',
+            'id_klasifikasi' => '1',
             'id_user' => '5',
             'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
         Surat::factory()->create([
-            'nomor_surat' => '090/1928-TU/2023',
+            'nomor_surat' => '090/1928-SMK2/2023',
             'tanggal_surat' => '2028-11-9',
             'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
-            'id_perusahaan' => '1',
+            'id_instansi' => '1',
+            'id_klasifikasi' => '1',
             'id_user' => '1',
             'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
@@ -83,32 +85,15 @@ class DatabaseSeeder extends Seeder
         // Seed Disposisi
         Disposisi::factory()->create([
             'id_surat' => '2',
+            'nomor_agenda' => '090/1928-TU/2023',
             'tanggal_disposisi' => '2028-11-9',
             'catatan_disposisi' => 'Approve Disposisi',
             'status_disposisi' => '0',
             'sifat_disposisi' => '1',
+            'id_klasifikasi' => '1',
             'id_user' => '1',
+            'id_penerima' => '1',
             'tujuan_disposisi' => '1',
-        ]);
-
-        Disposisi::factory()->create([
-            'id_surat' => '1',
-            'tanggal_disposisi' => '2028-11-9',
-            'catatan_disposisi' => 'Approve Disposisi nada',
-            'status_disposisi' => '0',
-            'sifat_disposisi' => '0',
-            'id_user' => '2',
-            'tujuan_disposisi' => '2',
-        ]);
-
-        Disposisi::factory()->create([
-            'id_surat' => '1',
-            'tanggal_disposisi' => '2028-11-9',
-            'catatan_disposisi' => 'Approve Disposisi iyah bang',
-            'status_disposisi' => '0',
-            'sifat_disposisi' => '2',
-            'id_user' => '2',
-            'tujuan_disposisi' => '5',
         ]);
     }
 }

@@ -417,13 +417,13 @@
                     </button>
                 </div>
                 <form action="{{ route('instansi.import') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
                         <span class="d-block">Unduh Template Import Instansi: </span>
                         <a href="/file/Book2.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
                             download="Instansi-template-import">
                             <span>Template Import Instansi</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
-                        @csrf
                         <div class="form-group">
                             <label for="import">Masukkan file Yang Ingin di-import: </label>
                             <small class="d-block">Catatan: masukkan file dengan format (XLSX), maksimal 10

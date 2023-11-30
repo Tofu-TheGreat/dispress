@@ -93,6 +93,7 @@ class SuratController extends Controller
         $encryptId = Crypt::decryptString($id);
         $editDataSurat = $this->suratRepository->show($encryptId);
         $instansiList = Instansi::get();
+        $klasifikasiList = Klasifikasi::get();
         // dd($editDataSurat->id_surat);
         return view('manajemen-surat.surat-masuk.surat-masuk-edit', [
             'title' => 'Edit Surat Masuk',
@@ -100,6 +101,7 @@ class SuratController extends Controller
             'active' => 'Surat-masuk',
             'editDataSurat' => $editDataSurat,
             'instansiList' => $instansiList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 

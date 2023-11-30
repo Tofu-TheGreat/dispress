@@ -63,6 +63,13 @@
                                 </button>
                             @endif
                         </a>
+                        <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
+                            title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
+                            <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
+                                data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                Ajukan
+                            </button>
+                        </span>
                         <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -91,6 +98,32 @@
                         <div class="row">
                             <div class="col">
                                 <div class="row">
+                                    <div class=" col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group ">
+                                            <label for="id_klasifikasi">Nomor Klasifikasi: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-list-ol"></i>
+                                                    </div>
+                                                </div>
+                                                <select
+                                                    class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                                    id="id_klasifikasi" name="id_klasifikasi" disabled>
+                                                    <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                                    <option value="{{ $detailDataSurat->id_klasifikasi }}" selected>
+                                                        {{ $detailDataSurat->klasifikasi->nama_klasifikasi }} |
+                                                        {{ $detailDataSurat->klasifikasi->nomor_klasifikasi }}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('id_klasifikasi')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label for="nomor_surat">Nomor Surat: </label>
@@ -107,7 +140,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="col-12">
                                         <div class="form-group">
                                             <label for="tanggal_surat">Tanggal Surat: </label>
                                             <div class="input-group">
@@ -170,7 +203,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <label for="id_perusahaan">Pengirim Surat: </label>
+                                            <label for="id_instansi">Pengirim Surat: </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <div class="input-group-text bg-secondary">
@@ -178,9 +211,9 @@
                                                     </div>
                                                 </div>
                                                 <input type="text"
-                                                    class="form-control @error('id_perusahaan') is-invalid @enderror"
-                                                    value="{{ $perusahaanList->nama_perusahaan }}" id="id_perusahaan"
-                                                    name="id_perusahaan" readonly>
+                                                    class="form-control @error('id_instansi') is-invalid @enderror"
+                                                    value="{{ $instansiList->nama_instansi }}" id="id_instansi"
+                                                    name="id_instansi" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -283,7 +316,7 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="isi_surat">Ringkasa Surat: </label>
+                                <label for="isi_surat">Ringkasan Surat: </label>
                                 <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
                                     placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                 <span class="text-danger">
@@ -295,22 +328,21 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="id_perusahaan">Pengirim Surat: </label>
+                                <label for="id_instansi">Pengirim Surat: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
                                             <i class="bi bi-person-rolodex"></i>
                                         </div>
                                     </div>
-                                    <input type="text"
-                                        class="form-control @error('id_perusahaan') is-invalid @enderror"
-                                        value="{{ $detailDataSurat->perusahaan->nama_perusahaan }}" id="id_perusahaan"
+                                    <input type="text" class="form-control @error('id_instansi') is-invalid @enderror"
+                                        value="{{ $detailDataSurat->instansi->nama_instansi }}" id="id_instansi"
                                         readonly>
-                                    <input type="text" name="id_perusahaan"
-                                        value="{{ $detailDataSurat->id_perusahaan }}" hidden id="">
+                                    <input type="text" name="id_instansi" value="{{ $detailDataSurat->id_instansi }}"
+                                        hidden id="">
                                 </div>
                                 <span class="text-danger">
-                                    @error('id_perusahaan')
+                                    @error('id_instansi')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -389,7 +421,7 @@
     </div>
     {{-- End Verifikasi Surat --}}
 
-    <!-- Modal Ajukan Perusahaan -->
+    <!-- Modal Ajukan Instansi -->
     <div class="modal fade ajukan-modal" id="ajukan-modal{{ $detailDataSurat->id_surat }}"
         aria-labelledby="ajukan-modal" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered ">
@@ -404,6 +436,7 @@
                     @csrf
                     <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
                         id="">
+                    <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
                     <div class="row px-4 pt-4">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
@@ -428,7 +461,50 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tanggal_disposisi">Tanggal Disposisi: </label>
+                                <label for="nomor_agenda">Nomor Agenda: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-list-ol"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control capitalize @error('nomor_agenda') is-invalid @enderror"
+                                        placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_agenda') }}"
+                                        id="nomor_agenda">
+                                </div>
+                                <span class="text-danger">
+                                    @error('nomor_agenda')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="id_instansi">Dari: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-list-ol"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control capitalize @error('id_instansi') is-invalid @enderror"
+                                        placeholder="ex: 090/1928-TU/2023"
+                                        value="{{ $detailDataSurat->instansi->nama_instansi }}" id="id_instansi"
+                                        disabled>
+                                </div>
+                                <span class="text-danger">
+                                    @error('id_instansi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_terima">Tanggal Diterima: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
@@ -436,9 +512,30 @@
                                         </div>
                                     </div>
                                     <input type="date"
-                                        class="form-control datepicker capitalize @error('tanggal_disposisi') is-invalid @enderror"
-                                        placeholder="ex:  11/14/2023" value="{{ old('tanggal_disposisi') }}"
-                                        id="tanggal_disposisi" name="tanggal_disposisi">
+                                        class="form-control datepicker capitalize @error('tanggal_terima') is-invalid @enderror"
+                                        placeholder="ex:  11/14/2023" value="{{ old('tanggal_terima') }}"
+                                        id="tanggal_terima" name="tanggal_terima">
+                                </div>
+                                <span class="text-danger">
+                                    @error('tanggal_terima')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_disposisi">Tanggal Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-calendar3"></i>
+                                        </div>
+                                    </div>
+                                    <input type="date"
+                                        class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
+                                        placeholder="ex:  11/14/2023" value="{{ $detailDataSurat->tanggal_surat }}"
+                                        id="tanggal_disposisi" name="tanggal_disposisi" disabled>
                                 </div>
                                 <span class="text-danger">
                                     @error('tanggal_disposisi')
@@ -447,13 +544,79 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="tujuan_disposisi">Kepada:
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
+                                        id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
+                                        <option disabled>Pilih Tujuan Disposisi</option>
+                                        <option value="0" {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                            Kepala Sekolah</option>
+                                        <option value="1" {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                            Wakil Kepala Sekolah</option>
+                                        <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                            Kurikulum</option>
+                                        <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                            Kesiswaan</option>
+                                        <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                            Sarana Prasarana</option>
+                                        <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                            Kepala Jurusan</option>
+                                        <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                            Hubin</option>
+                                        <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                            Bimbingan Konseling</option>
+                                        <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                            Guru Umum</option>
+                                        <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                            Tata Usaha</option>
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('tujuan_disposisi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="catatan_disposisi">Catatan Disposisi: </label>
-                                <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
-                                    placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
+                                <label for="isi_surat">Perihal Surat: </label>
+                                <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                    placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                 <span class="text-danger">
-                                    @error('catatan_disposisi')
+                                    @error('isi_surat')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="status_disposisi">Status Disposisi:
+                                </label>
+                                <div class="input-group">
+                                    <select class="form-control select2  @error('status_disposisi') is-invalid @enderror "
+                                        id="status_disposisi" name="status_disposisi" readonly style="width: 100%;">
+                                        <option selected disabled>Pilih Status Surat</option>
+                                        <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                            Arsipkan</option>
+                                        <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                            Jabarkan</option>
+                                        <option value="2" {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
+                                            Umumkan</option>
+                                        <option value="3" {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
+                                            Laksanakan</option>
+                                        <option value="4" {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
+                                            Persiapkan</option>
+                                        <option value="5" {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
+                                            Ikuti</option>
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('status_disposisi')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -467,10 +630,14 @@
                                         id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
                                         <option selected disabled>Pilih Sifat Surat</option>
                                         <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
-                                            Biasa</option>
+                                            Tindaklanjuti</option>
                                         <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
-                                            Prioritas</option>
+                                            Biasa</option>
                                         <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
+                                            Segera</option>
+                                        <option value="3" {{ old('sifat_disposisi') == '3' ? 'selected' : '' }}>
+                                            Penting</option>
+                                        <option value="4" {{ old('sifat_disposisi') == '4' ? 'selected' : '' }}>
                                             Rahasia</option>
                                     </select>
                                 </div>
@@ -483,36 +650,11 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label class="capitalize" for="status_disposisi">Status Disposisi:
-                                </label>
-                                <div class="input-group">
-                                    <select class="form-control select2  @error('status_disposisi') is-invalid @enderror "
-                                        id="status_disposisi" name="status_disposisi" required style="width: 100%;">
-                                        <option selected disabled>Pilih Sifat Surat</option>
-                                        <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
-                                            Belum ditindak</option>
-                                        <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
-                                            Diajukan</option>
-                                        <option value="2" {{ old('status_disposisi') == '2' ? 'selected' : '' }}>
-                                            Diterima</option>
-                                        <option value="3" {{ old('status_disposisi') == '3' ? 'selected' : '' }}>
-                                            Dikembalikan</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('status_disposisi')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
                                 <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
                                 </label>
                                 <div class="input-group">
                                     <select class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                        id="tujuan_disposisi" name="tujuan_disposisi" multiple="" required
+                                        id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
                                         style="width: 100%;">
                                         <option disabled>Pilih Tujuan Disposisi</option>
                                         <option value="0" {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
@@ -562,6 +704,18 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="catatan_disposisi">Catatan Disposisi: </label>
+                                <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
+                                    placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
+                                <span class="text-danger">
+                                    @error('catatan_disposisi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between border-top pt-3">
                         <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -573,7 +727,7 @@
             </div>
         </div>
     </div>
-    {{-- End Ajukan Perusahaan --}}
+    {{-- End Ajukan Instansi --}}
 @endsection
 
 

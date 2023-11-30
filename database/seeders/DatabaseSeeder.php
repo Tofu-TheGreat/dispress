@@ -59,6 +59,10 @@ class DatabaseSeeder extends Seeder
             'nomor_klasifikasi' => '005',
             'nama_klasifikasi' => 'Undangan',
         ]);
+        Klasifikasi::factory()->create([
+            'nomor_klasifikasi' => '020',
+            'nama_klasifikasi' => 'Peralatan',
+        ]);
 
         // Seed Surat
         Surat::factory()->create([
@@ -76,7 +80,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_surat' => '2028-11-9',
             'isi_surat' => 'Datangnya kedutaan dari jogja sama Nada',
             'id_instansi' => '1',
-            'id_klasifikasi' => '1',
+            'id_klasifikasi' => '2',
             'id_user' => '1',
             'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',

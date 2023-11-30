@@ -419,7 +419,7 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
-                                    <label for="isi_surat">Ringkasa Surat: </label>
+                                    <label for="isi_surat">Ringkasan Surat: </label>
                                     <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
                                         placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $data->isi_surat }} </textarea>
                                     <span class="text-danger">

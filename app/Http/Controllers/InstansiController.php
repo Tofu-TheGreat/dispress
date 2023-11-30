@@ -43,7 +43,7 @@ class InstansiController extends Controller
     public function store(InstansiRequest $request)
     {
         $this->instansiRepository->store($request);
-        return back()->with('success', 'Berhasil menambah data perusahaan');
+        return back()->with('success', 'Berhasil menambah data perusahaan.');
     }
 
     /**
@@ -68,7 +68,7 @@ class InstansiController extends Controller
     public function update(InstansiRequest $request, string $id)
     {
         $this->instansiRepository->update($request, $id);
-        return back()->with('success', 'Berhasil meng-edit data instansi');
+        return back()->with('success', 'Berhasil meng-edit data instansi.');
     }
 
     /**

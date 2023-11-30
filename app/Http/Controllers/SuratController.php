@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SuratRequest;
 use App\Models\Instansi;
+use App\Models\Klasifikasi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
@@ -44,11 +45,14 @@ class SuratController extends Controller
     public function create()
     {
         $instansiList = Instansi::get();
+        $klasifikasiList = Klasifikasi::get();
+
         return view('manajemen-surat.surat-masuk.surat-masuk-create', [
             'title' => 'Create Surat Masuk',
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
-            'perusahaanList' => $instansiList
+            'instansiList' => $instansiList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 

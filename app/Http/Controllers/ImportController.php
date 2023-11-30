@@ -40,7 +40,7 @@ class ImportController extends Controller
             Excel::import($import, request()->file('file'));
             return back()->with('success', 'Berhasil import data Admin.');
         } else {
-            return back()->with('error', 'Tolong masukan file');
+            return back()->with('error', 'Tolong masukan file.');
         }
     }
 }

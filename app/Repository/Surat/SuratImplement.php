@@ -113,4 +113,24 @@ class SuratImplement implements SuratRepository
 
         return $query->paginate(6);
     }
+
+    public function search($data)
+    {
+        $search = $this->surat->where('nomor_surat', 'like', "%" . $data->search . "%")
+            ->orWhere(function ($query) use ($data) {
+                $query->where('tanggal_surat', 'like', "%" . $data->search . "%")
+                    ->orWhereRaw("DATE_FORMAT(tanggal_surat, '%M') LIKE ?", ["%" . $data->search . "%"]);
+            })
+            ->orWhereHas('instansi', function ($query) use ($data) {
+                $query->where('nama_instansi', 'like', "%" . $data->search . "%");
+            })
+            ->orWhereHas('instansi', function ($query) use ($data) {
+                $query->where('nomor_telpon', 'like', "%" . $data->search . "%");
+            })
+            ->orWhereHas('user', function ($query) use ($data) {
+                $query->where('nama', 'like', "%" . $data->search . "%");
+            })
+            ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
+        return $search->paginate(6);
+    }
 }

@@ -203,11 +203,14 @@
                                         </div>
                                     @else
                                         <div class="col-12 d-flex justify-content-end mb-3">
-                                            <div class="container-input">
-                                                <input type="text" placeholder="Search" name="text" class="search"
-                                                    id="searchInput">
-                                                <i class="bi bi-search-heart search-icon"></i>
-                                            </div>
+                                            <form action="{{ route('search.surat') }}" method="post">
+                                                @csrf
+                                                <div class="container-input">
+                                                    <input type="text" placeholder="Search" name="search"
+                                                        class="search" id="searchInput">
+                                                    <i class="bi bi-search-heart search-icon"></i>
+                                                </div>
+                                            </form>
                                         </div>
                                         @foreach ($suratList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
@@ -778,7 +781,8 @@
                                                 Wakil Kepala Sekolah</option>
                                             <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
                                                 Kurikulum</option>
-                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                            <option value="3"
+                                                {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
                                                 Kesiswaan</option>
                                             <option value="4"
                                                 {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>

@@ -142,4 +142,19 @@ class SuratController extends Controller
         $this->suratRepository->update($id, $request);
         return back()->with('success', 'Perubahan akan dikirimkan ke yang terkait.');
     }
+
+    public function search(Request $request)
+    {
+        $suratList = $this->suratRepository->search($request);
+        $instansiList = Instansi::get();
+        $userList = User::get();
+        return view('manajemen-surat.surat-masuk.surat-masuk-data', [
+            'title' => 'Surat Masuk',
+            'active1' => 'manajemen-surat',
+            'active' => 'Surat-masuk',
+            'suratList' => $suratList,
+            'instansiList' => $instansiList,
+            'userList' => $userList,
+        ]);
+    }
 }

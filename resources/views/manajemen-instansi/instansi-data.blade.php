@@ -68,6 +68,13 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <div class="container-input">
+                                    <input type="text" placeholder="Search" name="text" class="search"
+                                        id="searchInput">
+                                    <i class="bi bi-search-heart search-icon"></i>
+                                </div>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($instansiList->isEmpty())
@@ -271,7 +278,11 @@
                                             placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
                                             id="nama_instansi" name="nama_instansi" required autofocus>
                                     </div>
-
+                                    <span class="text-danger">
+                                        @error('nama_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -288,7 +299,11 @@
                                             placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
                                             id="nomor_telpon" name="nomor_telpon" required>
                                     </div>
-
+                                    <span class="text-danger">
+                                        @error('nomor_telpon')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -296,6 +311,11 @@
                                     <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
                                     <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                         name="alamat_instansi"> {{ $item->alamat_instansi }} </textarea>
+                                    <span class="text-danger">
+                                        @error('alamat_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                     <span class="text-danger">
                                         @error('alamat_instansi')
                                             {{ $message }}
@@ -313,7 +333,11 @@
                             <input type="file"
                                 class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
                                 id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
-
+                            <span class="text-danger">
+                                @error('foto_instansi')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-top pt-3">
                             <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -355,7 +379,11 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ old('nama_instansi') }}"
                                         id="nama_instansi" name="nama_instansi" required autofocus>
                                 </div>
-
+                                <span class="text-danger">
+                                    @error('nama_instansi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -372,7 +400,11 @@
                                         placeholder="ex: 0878-2730-3388" value="{{ old('nomor_telpon') }}"
                                         id="nomor_telpon" name="nomor_telpon" required>
                                 </div>
-
+                                <span class="text-danger">
+                                    @error('nomor_telpon')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-12">
@@ -380,7 +412,11 @@
                                 <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
                                 <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                     name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
-
+                                <span class="text-danger">
+                                    @error('alamat_instansi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -392,7 +428,11 @@
                             MB.</small>
                         <input type="file" class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
                             id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
-
+                        <span class="text-danger">
+                            @error('foto_instansi')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="modal-footer d-flex justify-content-between border-top pt-3">
                         <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i

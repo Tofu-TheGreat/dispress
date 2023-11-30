@@ -146,10 +146,8 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nama</th>
-                                        <th>Email</th>
-                                        <th>No Telp</th>
-                                        <th>Akses</th>
+                                        <th>Nomor Klasifikasi</th>
+                                        <th>Nama Klasifikasi</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

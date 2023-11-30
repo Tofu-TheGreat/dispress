@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Contracts\Pagination\Paginator;
 use App\Repository\Disposisi\DisposisiImplement;
 use App\Repository\Disposisi\DisposisiRepository;
+use App\Repository\Klasifikasi\KlasifikasiImplement;
+use App\Repository\Klasifikasi\KlasifikasiRepository;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 
 

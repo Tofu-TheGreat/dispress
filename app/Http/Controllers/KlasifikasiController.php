@@ -62,12 +62,12 @@ class KlasifikasiController extends Controller
                 return '<span class="capitalize">' . $klasifikasiList->nomor_klasifikasi . '</span>';
             })
             ->addColumn('nama_klasifikasi', function ($klasifikasiList) {
-                return '<span class="capitalize">' . $klasifikasiList->nomor_klasifikasi . '</span>';
+                return '<span class="capitalize">' . $klasifikasiList->nama_klasifikasi . '</span>';
             })
             ->addColumn('action', function ($klasifikasiList) {
-                return view('admin.elements.create-button')->with('klasifikasiList', $klasifikasiList);
+                return view('manajemen-surat.nomor-klasifikasi.elements.create-button')->with('klasifikasiList', $klasifikasiList);
             })
-            ->rawColumns(['akses', 'nama', 'phone'])
+            ->rawColumns(['nomor_klasifikasi', 'nama_klasifikasi', 'phone'])
             ->toJson();
         // }
     }

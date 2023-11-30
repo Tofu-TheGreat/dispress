@@ -66,6 +66,8 @@ Route::post('instansi-import', [ImportController::class, 'import_user'])->name('
 
 Route::resource('/nomor-klasifikasi', KlasifikasiController::class)->middleware('auth');
 
+Route::post("/admin-index", [KlasifikasiController::class, "indexKlasifikasi"]);
+
 Route::get('nomor-klasifikasi-export', [ExportController::class, 'export_nomor-klasifikasi'])->name('nomor-klasifikasi.export');
 Route::post('nomor-klasifikasi-import', [ImportController::class, 'import_user'])->name('nomor-klasifikasi.import');
 

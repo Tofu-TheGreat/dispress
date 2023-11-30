@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Repository\Perusahaan;
+namespace App\Repository\Instansi;
 
-interface PerusahaanRepository
+interface InstansiRepository
 {
     public function index();
     public function store($data);

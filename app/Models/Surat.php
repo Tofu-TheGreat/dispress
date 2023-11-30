@@ -15,17 +15,20 @@ class Surat extends Model
     protected $primaryKey = 'id_surat';
     protected $fillable = [
         'id_surat',
+        'id_klasifikasi',
         'nomor_surat',
         'tanggal_surat',
         'isi_surat',
-        'id_perusahaan',
+        'id_instansi',
         'id_user',
+        'status_verifikasi',
+        'catatan',
         'scan_dokumen',
     ];
 
-    public function perusahaan()
+    public function instansi()
     {
-        return $this->belongsTo(Perusahaan::class, 'id_perusahaan');
+        return $this->belongsTo(Instansi::class, 'id_instansi');
     }
 
     public function user()

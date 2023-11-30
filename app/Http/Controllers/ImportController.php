@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Imports\AdminImport;
-use App\Imports\PerusahaanImport;
+use App\Imports\InstansiImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -27,7 +27,7 @@ class ImportController extends Controller
             return back()->with('error', 'Tolong masukan file');
         }
     }
-    public function import_perusahaan(Request $request)
+    public function import_instansi(Request $request)
     {
         if (request()->has('file')) {
             $request->validate([
@@ -36,7 +36,7 @@ class ImportController extends Controller
                 'file.mimes' => 'Tipe file import harus :values.'
             ]);
 
-            $import = new PerusahaanImport();
+            $import = new InstansiImport();
             Excel::import($import, request()->file('file'));
             return back()->with('success', 'Berhasil import data Admin.');
         } else {

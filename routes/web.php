@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, PerusahaanController, StaffController, SuratController, SuratMasukController};
+use App\Http\Controllers\{AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -53,15 +53,21 @@ Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);
 Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
-// Manajemen Perusahaan
+// Manajemen instansi
 
-Route::resource('/perusahaan', PerusahaanController::class)->middleware('auth');
-Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
-Route::post('perusahaan-import', [ImportController::class, 'import_perusahaan'])->name('perusahaan.import');
+Route::resource('/instansi', InstansiController::class)->middleware('auth');
 
-Route::get('perusahaan-export', [ExportController::class, 'export_perusahaan'])->name('perusahaan.export');
-Route::post('perusahaan-import', [ImportController::class, 'import_user'])->name('perusahaan.import');
+Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
+Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
 
+// Manajemen Nomor Klasifikasi
+
+Route::resource('/nomor-klasifikasi', KlasifikasiController::class)->middleware('auth');
+
+Route::post("/admin-index", [KlasifikasiController::class, "indexKlasifikasi"]);
+
+Route::get('nomor-klasifikasi-export', [ExportController::class, 'export_nomor-klasifikasi'])->name('nomor-klasifikasi.export');
+Route::post('nomor-klasifikasi-import', [ImportController::class, 'import_user'])->name('nomor-klasifikasi.import');
 
 // Manajemen Surat
 
@@ -71,3 +77,13 @@ Route::get('surat-export', [ExportController::class, 'export_surat'])->name('sur
 Route::post('surat-import', [ImportController::class, 'import_user'])->name('surat.import');
 
 Route::get('/surat-filter', [SuratController::class, 'filterData'])->name('filter.surat');
+Route::post('/surat-verifikasi/{id}', [SuratController::class, 'verifikasi_surat'])->name('verifikasi.surat');
+
+// Manajemen Surat
+
+Route::resource('/disposisi', DisposisiController::class)->middleware('auth');
+
+Route::get('disposisi-export', [ExportController::class, 'export_disposisi'])->name('disposisi.export');
+Route::post('disposisi-import', [ImportController::class, 'import_user'])->name('disposisi.import');
+
+Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi');

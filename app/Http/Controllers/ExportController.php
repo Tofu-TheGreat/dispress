@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Exports\AdminExport;
 use App\Exports\OfficerExport;
-use App\Exports\PerusahaanExport;
+use App\Exports\InstansiExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
 use App\Imports\AdminImport;
-use Illuminate\Http\Request;
 use App\Models\Perusahaan;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -31,14 +30,14 @@ class ExportController extends Controller
     {
         return Excel::download(new SuratExport, 'Data-Surat.xlsx');
     }
-    public function export_perusahaan()
+    public function export_Instansi()
     {
-        return Excel::download(new PerusahaanExport, 'Data-Perusahaan.xlsx');
+        return Excel::download(new InstansiExport, 'Data-Instansi.xlsx');
     }
-    public function getPerusahaanNames()
-    {
-        $perusahaanNames = Perusahaan::pluck('nama_perusahaan')->toArray();
+    // public function getPerusahaanNames()
+    // {
+    //     $perusahaanNames = ::pluck('nama_perusahaan')->toArray();
 
-        return response()->json($perusahaanNames);
-    }
+    //     return response()->json($perusahaanNames);
+    // }
 }

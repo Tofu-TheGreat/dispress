@@ -21,7 +21,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/surat">Surat Masuk</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/disposisi">Disposisi</a></div>
                         <div class="breadcrumb-item d-inline">Tambah Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -35,12 +35,12 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 mr-3">
-                                <a href="/surat">
+                                <a href="/disposisi">
                                     <i class="bi bi-arrow-left"></i>
                                 </a>
                             </div>
                             <div class="col-">
-                                <h4 class="text-primary">Tambah Data Surat Masuk</h4>
+                                <h4 class="text-primary">Tambah Data Disposisi</h4>
                             </div>
                         </div>
                     </div>
@@ -104,18 +104,6 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
-                                        <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
-                                            placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ old('catatan_verifikasi') }} </textarea>
-                                        <span class="text-danger">
-                                            @error('catatan_verifikasi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
                                         <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -162,7 +150,7 @@
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">
                                     <div class="ml-2 ">
-                                        <a href="/surat" class="btn btn-warning  ">
+                                        <a href="/disposisi" class="btn btn-warning  ">
                                             <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                             <span class="bi-text">Kembali</span>
                                         </a>

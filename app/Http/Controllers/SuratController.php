@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SuratRequest;
-use App\Models\Perusahaan;
+use App\Models\Instansi;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Surat\SuratRepository;
@@ -25,7 +25,7 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
-        $perusahaanList = Perusahaan::get();
+        $instansiList = Instansi::get();
         $userList = User::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
@@ -33,7 +33,7 @@ class SuratController extends Controller
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
-            'perusahaanList' => $perusahaanList,
+            'instansiList' => $instansiList,
             'userList' => $userList,
         ]);
     }
@@ -43,12 +43,12 @@ class SuratController extends Controller
      */
     public function create()
     {
-        $perusahaanList = Perusahaan::get();
+        $instansiList = Instansi::get();
         return view('manajemen-surat.surat-masuk.surat-masuk-create', [
             'title' => 'Create Surat Masuk',
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
-            'perusahaanList' => $perusahaanList
+            'perusahaanList' => $instansiList
         ]);
     }
 
@@ -69,7 +69,7 @@ class SuratController extends Controller
         $encryptId = Crypt::decryptString($id);
         $detailDataSurat = $this->suratRepository->show($encryptId);
         $userget = User::where('id_user', $detailDataSurat->id_user)->first();
-        $perusahaanList = Perusahaan::where('id_perusahaan', $detailDataSurat->id_perusahaan)->get();
+        $instansiList = Instansi::where('id_instansi', $detailDataSurat->id_instansi)->get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-detail', [
             'title' => 'Detail Surat Masuk',
@@ -77,7 +77,7 @@ class SuratController extends Controller
             'active' => 'Surat-masuk',
             'detailDataSurat' => $detailDataSurat,
             'userget' => $userget,
-            'perusahaanList' => $perusahaanList[0]
+            'instansiList' => $instansiList[0]
         ]);
     }
 
@@ -88,14 +88,14 @@ class SuratController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $editDataSurat = $this->suratRepository->show($encryptId);
-        $perusahaanList = Perusahaan::get();
+        $instansiList = Instansi::get();
         // dd($editDataSurat->id_surat);
         return view('manajemen-surat.surat-masuk.surat-masuk-edit', [
             'title' => 'Edit Surat Masuk',
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
             'editDataSurat' => $editDataSurat,
-            'perusahaanList' => $perusahaanList,
+            'instansiList' => $instansiList,
         ]);
     }
 
@@ -121,7 +121,7 @@ class SuratController extends Controller
     public function filterData(Request $request)
     {
         $suratList =  $this->suratRepository->filterData($request);
-        $perusahaanList = Perusahaan::get();
+        $instansiList = Instansi::get();
         $userList = User::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
@@ -129,8 +129,13 @@ class SuratController extends Controller
             'active1' => 'manajemen-surat',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
-            'perusahaanList' => $perusahaanList,
+            'instansiList' => $instansiList,
             'userList' => $userList,
         ]);
+    }
+    public function verifikasi_surat(SuratRequest $request, string $id)
+    {
+        $this->suratRepository->update($id, $request);
+        return back()->with('success', 'Perubahan akan dikirimkan ke yang terkait.');
     }
 }

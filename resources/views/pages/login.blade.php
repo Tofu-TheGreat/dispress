@@ -84,9 +84,10 @@
                                 </div>
                                 <div class="form-input">
                                     <label for="password">Password</label>
-                                    <div class="col">
+                                    <div class="col position-relative">
                                         <input type="password" name="password" class="form-control" id="password"
                                             placeholder="**********" required />
+                                        <i class="bi bi-eye view-password-icon"></i>
                                     </div>
                                     <span class="text-danger">
                                         @error('password')
@@ -94,8 +95,8 @@
                                         @enderror
                                     </span>
                                     @if (session()->has('error'))
-                                        <div class="alert alert-danger align-content-center d-flex justify-content-between"
-                                            role="alert" style="width: 110%;">
+                                        <div class="alert alert-danger alert-login align-content-center d-flex justify-content-between"
+                                            role="alert">
                                             <small class="fs-6 text-danger">
                                                 <i class="bi bi-exclamation-triangle-fill text-danger me-2"></i>
                                                 {{ session('error') }}
@@ -105,8 +106,8 @@
                                         </div>
                                     @endif
                                     @if (session()->has('success'))
-                                        <div class="alert alert-success align-content-center d-flex justify-content-between"
-                                            role="alert" style="width: 110%;">
+                                        <div class="alert alert-success alert-login align-content-center d-flex justify-content-between"
+                                            role="alert">
                                             <small class="fs-6 text-success">
                                                 <i class="bi bi-check-circle-fill text-success me-2"></i>
                                                 {{ session('success') }}

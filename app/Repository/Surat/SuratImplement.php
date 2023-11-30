@@ -14,7 +14,7 @@ class SuratImplement implements SuratRepository
 
     public function index()
     {
-        return $this->surat->with('perusahaan')->get();
+        return $this->surat->with('instansi')->paginate(6);
     }
 
     public function store($data)
@@ -25,15 +25,19 @@ class SuratImplement implements SuratRepository
             'nomor_surat' => $data->nomor_surat,
             'tanggal_surat' => $data->tanggal_surat,
             'isi_surat' => $data->isi_surat,
-            'id_perusahaan' => $data->id_perusahaan,
+            'id_instansi' => $data->id_instansi,
             'id_user' => $data->id_user,
+            'catatan_verifikasi' => $data->catatan_verifikasi,
             'scan_dokumen' => $nama_dokumen,
         ]);
     }
 
     public function show($id)
     {
-        return $this->surat->with('user')->where('id_surat', $id)->first();
+        $data = $this->surat->with('user')->where('id_surat', $id)->first();
+
+        $data->user->jabatan = jabatanConvert($data->user->jabatan, 'jabatan');
+        return $data;
     }
     public function edit($id)
     {
@@ -56,8 +60,10 @@ class SuratImplement implements SuratRepository
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,
-                'id_perusahaan' => $data->id_perusahaan,
+                'id_instansi' => $data->id_instansi,
                 'id_user' => $data->id_user,
+                'status_verifikasi' => $data->status_verifikasi,
+                'catatan_verifikasi' => $data->catatan_verifikasi,
                 'scan_dokumen' => $nama_dokumen,
             ]);
         } else {
@@ -65,8 +71,10 @@ class SuratImplement implements SuratRepository
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,
-                'id_perusahaan' => $data->id_perusahaan,
+                'id_instansi' => $data->id_instansi,
                 'id_user' => $data->id_user,
+                'status_verifikasi' => $data->status_verifikasi,
+                'catatan_verifikasi' => $data->catatan_verifikasi,
             ]);
         }
     }
@@ -87,8 +95,8 @@ class SuratImplement implements SuratRepository
     {
         $query = $this->surat->query();
 
-        if (isset($data->id_perusahaan) && ($data->id_perusahaan != null)) {
-            $query->where('id_perusahaan', $data->id_perusahaan);
+        if (isset($data->id_instansi) && ($data->id_instansi != null)) {
+            $query->where('id_instansi', $data->id_instansi);
         }
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
@@ -103,6 +111,6 @@ class SuratImplement implements SuratRepository
         }
 
 
-        return $query->get();
+        return $query->paginate(6);
     }
 }

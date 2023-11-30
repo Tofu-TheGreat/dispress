@@ -54,15 +54,15 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_perusahaan">Pilih Perusahaan: </label>
+                                    <label class="capitalize" for="id_instansi">Pilih Instansi: </label>
                                     <div class="input-group">
-                                        <select class="filter select2 @error('id_perusahaan') is-invalid  @enderror "
-                                            id="id_perusahaan" name="id_perusahaan" style="width: 100%;">
-                                            <option value="">Pilih Perusahaan Pengirim</option>
-                                            @foreach ($perusahaanList as $data)
-                                                <option value="{{ $data->id_perusahaan }}"
-                                                    {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
-                                                    {{ $data->nama_perusahaan }}</option>
+                                        <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
+                                            id="id_instansi" name="id_instansi" style="width: 100%;">
+                                            <option value="">Pilih Instansi Pengirim</option>
+                                            @foreach ($instansiList as $data)
+                                                <option value="{{ $data->id_instansi }}"
+                                                    {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
+                                                    {{ $data->nama_instansi }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -95,7 +95,7 @@
                                 </div>
                             </div>
                             <div class="col-12 ">
-                                <h6 class="text-primary text-center mb-5">Sortir berdasarkan Tanggal Pembuatan Surat
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -146,10 +146,10 @@
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                                 <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <button type="button" id="reset" href="/admin" class="btn btn-secondary mb-1"
-                                title="Reset">
+                            <a type="button" id="reset" href="{{ route('surat.index') }}"
+                                class="btn btn-secondary mb-1" title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                    Filter</span></button>
+                                    Filter</span></a>
                         </div>
                     </div>
                 </div>
@@ -204,25 +204,27 @@
                                     @else
                                         @foreach ($suratList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
-                                                <div class="card card-primary shadow-sm">
+                                                <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
                                                             <h4>{{ $data->nomor_surat }}</h4>
                                                             <small
                                                                 style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->perusahaan->nama_perusahaan }}
+                                                                {{ $data->instansi->nama_instansi }}
                                                             </small>
                                                         </div>
-                                                        <div class="card-header-action btn-group">
-                                                            <a href="#" class="text-white mr-2 tombol-disposisi">
+                                                        <div class="card-header-action btn-group tombol-ajukan">
+                                                            <span class="tombol-ajukan" data-toggle="tooltip"
+                                                                data-placement="top" title="Ajukan untuk Disposisi"
+                                                                data-original-title="Ajukan untuk Disposisi" disabled>
                                                                 <button type="button"
-                                                                    class="btn btn-success tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Ajukan untuk Disposisi"
-                                                                    data-original-title="Ajukan untuk Disposisi">
+                                                                    class="btn btn-success mr-2 tombol-ajukan"
+                                                                    data-toggle="modal"
+                                                                    data-target="#ajukan-modal{{ $data->id_surat }}"
+                                                                    type="button">
                                                                     Ajukan
                                                                 </button>
-                                                            </a>
+                                                            </span>
                                                             <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
@@ -233,19 +235,59 @@
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->isi_surat !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ $data->tanggal_surat }} --</p>
+                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_surat)) }}
+                                                                --</p>
+                                                            <div class="mt-1 mb-1 tombol-verifikasi">
+                                                                <span class="tombol-verifikasi" data-toggle="tooltip"
+                                                                    data-placement="right"
+                                                                    title="klik Untuk Mengatur verifikasikan"
+                                                                    data-original-title="klik Untuk Mengatur verifikasikan"
+                                                                    disabled>
+                                                                    @if ($data->status_verifikasi == 0)
+                                                                        <button type="button"
+                                                                            class="btn btn-primary mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-minus-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;"> Belum
+                                                                                Terverifikasi</i>
+                                                                        </button>
+                                                                    @elseif ($data->status_verifikasi == 1)
+                                                                        <button type="button"
+                                                                            class="btn btn-success mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-plus-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;">
+                                                                                Terverifikasi</i>
+                                                                        </button>
+                                                                    @else
+                                                                        <button type="button"
+                                                                            class="btn btn-danger mr-2 tombol-verifikasi"
+                                                                            data-toggle="modal"
+                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
+                                                                            type="button">
+                                                                            <i class="bi bi-patch-exclamation-fill tombol-verifikasi"
+                                                                                style="font-size: .8rem;">
+                                                                                Dikembalikan</i>
+                                                                        </button>
+                                                                    @endif
+                                                                </span>
+                                                            </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Detail data surat"
                                                                     data-original-title="Detail data surat"
-                                                                    class="btn btn-info has-icon text-white tombol-detail-surat"
+                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
                                                                     href=""><i class="pl-1  bi bi-eye "></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
                                                                     data-placement="left" title="Edit data surat"
                                                                     data-original-title="Edit data surat"
-                                                                    class="btn btn-warning has-icon text-white tombol-edit-surat"
+                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
                                                                     href="{{ route('surat.edit', Crypt::encryptString($data->id_surat)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
@@ -257,7 +299,7 @@
                                                                     <button type="button" data-toggle="tooltip"
                                                                         data-placement="bottom" title="Hapus data surat"
                                                                         data-original-title="Hapus data surat"
-                                                                        class="btn btn-danger has-icon text-white tombol-hapus-surat tombol-hapus"
+                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>
                                                                     </button>
@@ -267,23 +309,14 @@
                                                         <div
                                                             class="card-footer d-flex justify-content-between position-relative">
                                                             <div class="d-flex flex-row ">
-                                                                <img alt="image" src="assets/img/avatar/avatar-1.png"
-                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                    class="mr-2">
                                                                 <div>
                                                                     <div class="user-detail-name">
-                                                                        {{-- @foreach ($perusahaanList as $item)
-                                                                        @if ($item->id_perusahaan == $data->id_perusahaan)
-                                                                            <a
-                                                                                href="#">{{ $item->nama_perusahaan }}</a>
-                                                                                @endif
-                                                                                @endforeach --}}
-                                                                        <a
-                                                                            href="#">{{ $data->perusahaan->nama_perusahaan }}</a>
+                                                                        <span class="text-primary" href="#">
+                                                                            {{ $data->instansi->nama_instansi }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->perusahaan->nomor_telpon) }}
+                                                                            {{ currencyPhone($data->instansi->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>
@@ -303,6 +336,9 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        <div class="col-12">
+                                            {{ $suratList->onEachSide(1)->links() }}
+                                        </div>
                                     @endif
                                 </div>
                             </div>
@@ -312,6 +348,501 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Verifikasi Surat -->
+    @foreach ($suratList as $data)
+        <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $data->id_surat }}"
+            aria-labelledby="verifikasi-modal" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="verifikasi-modal">Verifikasi Data surat untuk di Disposisikan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="/surat-verifikasi/{{ $data->id_surat }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <div class="row px-4 pt-4">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_surat">Nomor Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('nomor_surat') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
+                                            id="nomor_surat" name="nomor_surat" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('nomor_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="tanggal_surat">Tanggal Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
+                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            id="tanggal_surat" name="tanggal_surat" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="isi_surat">Ringkasa Surat: </label>
+                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $data->isi_surat }} </textarea>
+                                    <span class="text-danger">
+                                        @error('isi_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_instansi">Pengirim Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-person-rolodex"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('id_instansi') is-invalid @enderror"
+                                            value="{{ $data->instansi->nama_instansi }}" id="id_instansi" readonly>
+                                        <input type="text" name="id_instansi" value="{{ $data->id_instansi }}" hidden
+                                            id="">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_user">Penerima Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-person-rolodex"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control @error('id_user') is-invalid @enderror"
+                                            value="{{ $data->user->nama }}" id="id_user" readonly>
+                                        <input type="text" name="id_user" value="{{ $data->id_user }}" hidden
+                                            id="">
+
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="status_verifikasi">Verifikasi Surat: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                            id="status_verifikasi" name="status_verifikasi" required
+                                            style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option value="0"
+                                                {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                Belum Terverifikasi</option>
+                                            <option value="1"
+                                                {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                Terverifikasi</option>
+                                            <option value="2"
+                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
+                                                Dikembalikan</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_verifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
+                                    <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" readonly> {{ $data->catatan_verifikasi }} </textarea>
+                                    <span class="text-danger">
+                                        @error('catatan_verifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                    class="bi bi-x-circle ml-3"></i></button>
+                            <button type="submit" value="Import" class="btn btn-primary text-white">
+                                Save Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- End Verifikasi Surat --}}
+
+    <!-- Modal Ajukan Disposisi -->
+    @foreach ($suratList as $data)
+        <div class="modal fade ajukan-modal" id="ajukan-modal{{ $data->id_surat }}" aria-labelledby="ajukan-modal"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered ">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom pb-4">
+                        <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk di Disposisikan</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
+                        <div class="row px-4 pt-4">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_surat">Nomor Surat Disposisi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('id_surat') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
+                                            id="id_surat" disabled>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="nomor_agenda">Nomor Agenda: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('nomor_agenda') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_agenda') }}"
+                                            id="nomor_agenda">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('nomor_agenda')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="id_instansi">Dari: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control capitalize @error('id_instansi') is-invalid @enderror"
+                                            placeholder="ex: 090/1928-TU/2023"
+                                            value="{{ $data->instansi->nama_instansi }}" id="id_instansi" disabled>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="tanggal_terima">Tanggal Diterima: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control datepicker capitalize @error('tanggal_terima') is-invalid @enderror"
+                                            placeholder="ex:  11/14/2023" value="{{ old('tanggal_terima') }}"
+                                            id="tanggal_terima" name="tanggal_terima">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_terima')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label for="tanggal_disposisi">Tanggal Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text bg-secondary">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
+                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            id="tanggal_disposisi" name="tanggal_disposisi" disabled>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tujuan_disposisi">Kepada:
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
+                                            id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
+                                            <option disabled>Pilih Tujuan Disposisi</option>
+                                            <option value="0"
+                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                                Kepala Sekolah</option>
+                                            <option value="1"
+                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                                Wakil Kepala Sekolah</option>
+                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                                Kurikulum</option>
+                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                                Kesiswaan</option>
+                                            <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                                Sarana Prasarana</option>
+                                            <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                                Kepala Jurusan</option>
+                                            <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                                Hubin</option>
+                                            <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                                Bimbingan Konseling</option>
+                                            <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                                Guru Umum</option>
+                                            <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                                Tata Usaha</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tujuan_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="isi_surat">Perihal Surat: </label>
+                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $data->isi_surat }} </textarea>
+                                    <span class="text-danger">
+                                        @error('isi_surat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="status_disposisi">Status Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('status_disposisi') is-invalid @enderror "
+                                            id="status_disposisi" name="status_disposisi" readonly style="width: 100%;">
+                                            <option selected disabled>Pilih Status Surat</option>
+                                            <option value="0"
+                                                {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                                Arsipkan</option>
+                                            <option value="1"
+                                                {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                                Jabarkan</option>
+                                            <option value="2"
+                                                {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
+                                                Umumkan</option>
+                                            <option value="3"
+                                                {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
+                                                Laksanakan</option>
+                                            <option value="4"
+                                                {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
+                                                Persiapkan</option>
+                                            <option value="5"
+                                                {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
+                                                Ikuti</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
+                                            id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
+                                                Tindaklanjuti</option>
+                                            <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
+                                                Biasa</option>
+                                            <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
+                                                Segera</option>
+                                            <option value="3" {{ old('sifat_disposisi') == '3' ? 'selected' : '' }}>
+                                                Penting</option>
+                                            <option value="4" {{ old('sifat_disposisi') == '4' ? 'selected' : '' }}>
+                                                Rahasia</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('sifat_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
+                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
+                                            style="width: 100%;">
+                                            <option disabled>Pilih Tujuan Disposisi</option>
+                                            <option value="0"
+                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                                Kepala Sekolah</option>
+                                            <option value="1"
+                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                                Wakil Kepala Sekolah</option>
+                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                                Kurikulum</option>
+                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                                Kesiswaan</option>
+                                            <option value="4"
+                                                {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                                Sarana Prasarana</option>
+                                            <option value="5"
+                                                {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                                Kepala Jurusan</option>
+                                            <option value="6"
+                                                {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                                Hubin</option>
+                                            <option value="7"
+                                                {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                                Bimbingan Konseling</option>
+                                            <option value="8"
+                                                {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                                Guru Umum</option>
+                                            <option value="9"
+                                                {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                                Tata Usaha</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tujuan_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pengirim Ajuan: </label>
+                                    <div class="input-group">
+                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
+                                            id="id_user" name="id_user" required readonly style="width: 100%;">
+                                            <option selected disabled>Pilih Pengirim Surat</option>
+                                            <option selected value="{{ auth()->user()->id_user }}">
+                                                {{ auth()->user()->nama }}</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="catatan_disposisi">Catatan Disposisi: </label>
+                                    <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
+                                    <span class="text-danger">
+                                        @error('catatan_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
+                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
+                                    class="bi bi-x-circle ml-3"></i></button>
+                            <button type="submit" value="Import" class="btn btn-primary text-white">
+                                Ajukan Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    {{-- End Ajukan Disposisi --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
@@ -363,7 +894,7 @@
 @section('script')
     {{-- modules --}}
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
+    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
@@ -374,6 +905,20 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('.summernote-simple').summernote({
+                dialogsInBody: true,
+                minHeight: 150,
+                toolbar: [
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    ['font', ['strikethrough']],
+                    ['para', ['paragraph']]
+                ]
+            });
+
+            $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
+
+            $('.note-editor').addClass('d-flex flex-column');
         });
     </script>
 
@@ -387,6 +932,20 @@
                     message: "{{ Session::get('success') }}",
                     position: 'topRight'
                 })
+            });
+        </script>
+    @endif
+
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif
@@ -419,6 +978,7 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
+            const noteEditable = document.body.querySelectorAll(".note-editing-area");
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

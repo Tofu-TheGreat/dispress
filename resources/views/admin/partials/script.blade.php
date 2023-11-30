@@ -36,3 +36,13 @@
         });
     });
 </script>
+
+<script>
+    document.body.addEventListener("click", function(event) {
+        const element = event.target;
+
+        if (element.classList.contains("submit-btn")) {
+            document.getElementById("logout").submit();
+        }
+    })
+</script>

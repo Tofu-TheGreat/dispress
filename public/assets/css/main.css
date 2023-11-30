@@ -63,29 +63,32 @@ li {
     width: 65%;
 }
 
-/* perusahaan */
-.btn-group-action-perusahaan {
+/* instansi */
+.card-instansi {
+    position: relative;
+}
+.btn-group-action-instansi {
     position: absolute;
-    bottom: -7%;
+    bottom: -17px;
     right: 50%;
     left: 50%;
 }
 
-.img-perusahaan {
+.img-instansi {
     border-bottom: 2px solid #3649e3;
 }
 
-.btn-group-action-perusahaan .btn {
+.btn-group-action-instansi .btn {
     border: 2px solid #3649e3;
     transition: 0.3s ease-in-out;
 }
 
-.btn-group-action-perusahaan .btn:hover {
+.btn-group-action-instansi div:hover .btn {
     border: 2px solid #3649e3 !important;
     transform: scale(1.1);
 }
 
-.foto-perusahaan {
+.foto-instansi {
     width: 230px;
     height: 230px;
     margin: 10px;
@@ -94,14 +97,41 @@ li {
     border: 3px solid rgba(179, 97, 97, 0.39);
 }
 
+.note-editable .card-block {
+    display: block !important;
+}
+
+.nomor_instansi {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    width: 120px; /* Need a specific value to work */
+    color: #eee;
+    background-color: #6777ef;
+}
 /* surat */
+.card-surat {
+    overflow: hidden;
+}
+
 .btn-group-action {
     position: absolute;
     height: 60px;
-    right: 0;
+    right: -17%;
     top: 10%;
+    transition: 0.3s ease-in-out;
 }
-.tombol-detail-surat {
+
+.card-surat:hover .btn-group-action {
+    right: 0;
+}
+
+.tombol-detail-card {
     position: absolute;
     border-radius: 100% 0% 0% 100% / 100% 48% 52% 0%;
     right: 0;
@@ -109,12 +139,21 @@ li {
     z-index: 99;
 }
 
-.tombol-detail-surat i {
+.tombol-detail-card i {
     position: relative;
-    left: 10%;
+    left: 20%;
 }
 
-.tombol-edit-surat {
+.tombol-edit-card i {
+    position: relative;
+}
+
+.tombol-hapus-card i {
+    position: relative;
+    left: 20%;
+}
+
+.tombol-edit-card {
     position: absolute;
     border-radius: 100% 0% 100% 0% / 0% 100% 0% 100%;
     right: 0;
@@ -122,7 +161,7 @@ li {
     z-index: 99;
 }
 
-.tombol-hapus-surat {
+.tombol-hapus-card {
     position: absolute;
     border-radius: 100% 0% 0% 100% / 0% 100% 0% 100%;
     right: 0;

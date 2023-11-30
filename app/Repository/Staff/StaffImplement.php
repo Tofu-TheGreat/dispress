@@ -57,40 +57,7 @@ class StaffImplement implements StaffRepository
     {
         $data =  $this->user->where('id_user', $id)->first();
 
-        switch ($data->jabatan) {
-            case 0:
-                $data->jabatan = 'Kepala Sekolah';
-                break;
-            case 1:
-                $data->jabatan = 'Wakil Kepala Sekolah';
-                break;
-            case 2:
-                $data->jabatan = 'Kurikulum';
-                break;
-            case 3:
-                $data->jabatan = 'Kesiswaan';
-                break;
-            case 4:
-                $data->jabatan = 'Sarana dan Prasarana';
-                break;
-            case 5:
-                $data->jabatan = 'Kepala Jurusan';
-                break;
-            case 6:
-                $data->jabatan = 'Hubin';
-                break;
-            case 7:
-                $data->jabatan = 'Bimbingan Konseling';
-                break;
-            case 8:
-                $data->jabatan = 'Guru Umum';
-                break;
-            case 9:
-                $data->jabatan = 'Tata Usaha';
-                break;
-            default:
-                $data->jabatan = 'Tidak Diketahui';
-        }
+        $data->jabatan = jabatanConvert($data->jabatan, 'jabatan');
         return $data;
     }
     public function edit($id)

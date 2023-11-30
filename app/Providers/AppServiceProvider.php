@@ -10,8 +10,8 @@ use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
 use App\Repository\Officer\OfficerRepository;
 use App\Repository\Officer\OfficerImplement;
-use App\Repository\Perusahaan\PerusahaanImplement;
-use App\Repository\Perusahaan\PerusahaanRepository;
+use App\Repository\Instansi\InstansiImplement;
+use App\Repository\Instansi\InstansiRepository;
 use App\Repository\Staff\StaffRepository;
 use App\Repository\Staff\StaffImplement;
 use App\Repository\Surat\SuratRepository;
@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Contracts\Pagination\Paginator;
-use app\Repository\Disposisi\DisposisiImplement;
+use App\Repository\Disposisi\DisposisiImplement;
 use App\Repository\Disposisi\DisposisiRepository;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 
@@ -37,8 +37,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(OfficerRepository::class, OfficerImplement::class);
         $this->app->bind(StaffRepository::class, StaffImplement::class);
         $this->app->bind(SuratRepository::class, SuratImplement::class);
-        $this->app->bind(PerusahaanRepository::class, PerusahaanImplement::class);
+        $this->app->bind(InstansiRepository::class, InstansiImplement::class);
         $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
+        $this->app->bind(KlasifikasiRepository::class, KlasifikasiImplement::class);
     }
 
     /**

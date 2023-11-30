@@ -112,7 +112,38 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-group ">
+                                                <label for="status_verifikasi">Verifikasi Surat: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend ">
+                                                        <div class="input-group-text bg-secondary">
+                                                            <i class="bi bi-patch-question-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <select
+                                                        class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                                        id="status_verifikasi" name="status_verifikasi" required>
+                                                        <option selected disabled>Pilih Sifat Surat</option>
+                                                        <option value="0"
+                                                            {{ $editDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                            Belum Terverifikasi</option>
+                                                        <option value="1"
+                                                            {{ $editDataSurat->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                            Terverifikasi</option>
+                                                        <option value="2"
+                                                            {{ $editDataSurat->status_verifikasi == '2' ? 'selected' : '' }}>
+                                                            Dikembalikan</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('status_verifikasi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                                 <div class="input-group">
@@ -134,6 +165,18 @@
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('id_perusahaan')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
+                                                <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                                    placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $editDataSurat->catatan_verifikasi }} </textarea>
+                                                <span class="text-danger">
+                                                    @error('catatan_verifikasi')
                                                         {{ $message }}
                                                     @enderror
                                                 </span>
@@ -203,77 +246,13 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
-    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
-
-            $('#nip').inputmask('999999999999999999');
-        });
-    </script>
-
-    {{-- Preview Image --}}
-    <script>
-        function previewImage() {
-            const image = document.querySelector('#foto_user')
-            const imgPreview = document.querySelector('.img-preview')
-
-            const blob = URL.createObjectURL(image.files[0]);
-            imgPreview.src = blob;
-            imgPreview.style.display = 'block';
-
-            const oFReader = new FileReader();
-            oFReader.readAsDataURL(image.files[0]);
-
-            oFReader.onLoad = function(oFREvent) {
-                imgPreview.src = oFREvent.target.result;
-            }
-        }
-    </script>
-    {{-- Akhir Preview Image --}}
-    {{-- seweetalert confirmation --}}
-
-    <script>
-        document.body.addEventListener("click", function(event) {
-            const element = event.target;
-
-            if (element.classList.contains("tombol-hapus-profile")) {
-                swal({
-                    title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
-                    icon: 'warning',
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
-                            icon: 'success',
-                        });
-                        // Make an AJAX request to trigger the delete
-                        fetch('{{ route('deleteImageFromUser', $editDataSurat->id_surat) }}', {
-                                method: 'GET',
-                            })
-                            .then(response => {
-                                // Handle the response here (e.g., trigger the delete)
-                                if (response.ok) {
-
-                                    window.location.reload();
-                                }
-                            })
-                            .catch(error => {
-                                // Handle any errors here
-                                console.error('Error:', error);
-                            });
-                    } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
-                    }
-                });
-            }
         });
     </script>
 @endsection

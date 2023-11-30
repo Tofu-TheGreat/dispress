@@ -3,13 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
-use App\Models\Surat;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Surat>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\instansi>
  */
-class PerusahaanFactory extends Factory
+class instansiFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,10 +16,9 @@ class PerusahaanFactory extends Factory
      */
     public function definition(): array
     {
-        // $user = \App\Models\Surat::pluck('id_user');
         return [
-            'nama_perusahaan' => $this->faker->company(),
-            'alamat_perusahaan' => $this->faker->address(),
+            'nama_instansi' => $this->faker->company(),
+            'alamat_instansi' => $this->faker->address(),
             'nomor_telpon' => $this->faker->numerify('#############'),
         ];
     }

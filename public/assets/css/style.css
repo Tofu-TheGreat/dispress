@@ -3350,7 +3350,8 @@ body.sidebar-mini
     > ul.dropdown-menu
     li:hover
     > a {
-    background-color: #fcfcfd;
+    background-color: #f3f3f3;
+    padding-left: 30px;
 }
 body.sidebar-mini
     .main-sidebar
@@ -3694,15 +3695,17 @@ body.layout-3 .main-footer {
     width: 100%;
 }
 .main-sidebar .sidebar-menu li a:hover {
-    background-color: #fcfcfd;
+    background-color: #f3f3f3;
+    padding-left: 25px;
+    color: #6777ef;
 }
 .main-sidebar .sidebar-menu li.active a {
     color: #6777ef;
     font-weight: 600;
-    background-color: #fcfcfd;
+    background-color: #f3f3f3;
 }
 .main-sidebar .sidebar-menu li.active ul.dropdown-menu {
-    background-color: #fcfcfd;
+    background-color: #f3f3f3;
 }
 .main-sidebar .sidebar-menu li a.has-dropdown:after {
     content: "";
@@ -3740,6 +3743,7 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li ul.dropdown-menu li a:hover {
     color: #6777ef;
     background-color: inherit;
+    padding-left: 70px;
 }
 .main-sidebar .sidebar-menu li ul.dropdown-menu li.active > a {
     color: #6777ef;

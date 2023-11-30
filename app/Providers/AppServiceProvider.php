@@ -39,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(SuratRepository::class, SuratImplement::class);
         $this->app->bind(InstansiRepository::class, InstansiImplement::class);
         $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
+        $this->app->bind(KlasifikasiRepository::class, KlasifikasiImplement::class);
     }
 
     /**

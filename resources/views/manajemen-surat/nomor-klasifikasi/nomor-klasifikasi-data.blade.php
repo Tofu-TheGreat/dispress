@@ -420,8 +420,8 @@
                 </div>
                 <form action="{{ route('nomor-klasifikasi.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import nomor_klasifikasi: </span>
-                        <a href="/file/Book2.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
+                        <span class="d-block">Unduh Template Import Nomor Klasifikasi: </span>
+                        <a href="/file/Book3.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
                             download="nomor_klasifikasi-template-import">
                             <span>Template Import nomor_klasifikasi</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>

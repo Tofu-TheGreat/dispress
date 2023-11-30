@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Imports\AdminImport;
 use App\Imports\InstansiImport;
+use App\Imports\KlasifikasiImport;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
@@ -38,7 +39,23 @@ class ImportController extends Controller
 
             $import = new InstansiImport();
             Excel::import($import, request()->file('file'));
-            return back()->with('success', 'Berhasil import data Admin.');
+            return back()->with('success', 'Berhasil import data Instansi.');
+        } else {
+            return back()->with('error', 'Tolong masukan file');
+        }
+    }
+    public function import_nomorklasifikasi(Request $request)
+    {
+        if (request()->has('file')) {
+            $request->validate([
+                'file' => 'mimes:xlsx',
+            ], [
+                'file.mimes' => 'Tipe file import harus :values.'
+            ]);
+
+            $import = new KlasifikasiImport();
+            Excel::import($import, request()->file('file'));
+            return back()->with('success', 'Berhasil import data Nomor Klasifikasi.');
         } else {
             return back()->with('error', 'Tolong masukan file');
         }

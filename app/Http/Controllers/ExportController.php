@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\AdminExport;
 use App\Exports\OfficerExport;
 use App\Exports\InstansiExport;
+use App\Exports\KlasifikasiExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
 use App\Imports\AdminImport;
@@ -33,6 +34,10 @@ class ExportController extends Controller
     public function export_Instansi()
     {
         return Excel::download(new InstansiExport, 'Data-Instansi.xlsx');
+    }
+    public function export_nomorklasifikasi()
+    {
+        return Excel::download(new KlasifikasiExport, 'Data-Nomor-Klasifikasi.xlsx');
     }
     // public function getPerusahaanNames()
     // {

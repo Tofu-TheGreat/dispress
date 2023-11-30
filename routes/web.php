@@ -66,8 +66,8 @@ Route::resource('/nomor-klasifikasi', KlasifikasiController::class)->middleware(
 
 Route::post("/klasifikasi-index", [KlasifikasiController::class, "indexKlasifikasi"]);
 
-Route::get('nomor-klasifikasi-export', [ExportController::class, 'export_nomor-klasifikasi'])->name('nomor-klasifikasi.export');
-Route::post('nomor-klasifikasi-import', [ImportController::class, 'import_user'])->name('nomor-klasifikasi.import');
+Route::get('nomor-klasifikasi-export', [ExportController::class, 'export_nomorklasifikasi'])->name('nomor-klasifikasi.export');
+Route::post('nomor-klasifikasi-import', [ImportController::class, 'import_nomorklasifikasi'])->name('nomor-klasifikasi.import');
 
 // Manajemen Surat
 

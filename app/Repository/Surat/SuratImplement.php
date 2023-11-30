@@ -3,6 +3,7 @@
 namespace App\Repository\Surat;
 
 use App\Models\Surat;
+use App\Models\Klasifikasi;
 
 class SuratImplement implements SuratRepository
 {
@@ -22,6 +23,7 @@ class SuratImplement implements SuratRepository
         $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
         $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
         $this->surat->create([
+            'id_klasifikasi' => $data->id_klasifikasi,
             'nomor_surat' => $data->nomor_surat,
             'tanggal_surat' => $data->tanggal_surat,
             'isi_surat' => $data->isi_surat,
@@ -57,6 +59,7 @@ class SuratImplement implements SuratRepository
             $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
             $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
             $this->surat->where('id_surat', $id)->update([
+                'id_klasifikasi' => $data->id_klasifikasi,
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,
@@ -68,6 +71,7 @@ class SuratImplement implements SuratRepository
             ]);
         } else {
             $this->surat->where('id_surat', $id)->update([
+                'id_klasifikasi' => $data->id_klasifikasi,
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,

@@ -77,6 +77,7 @@ li {
 
 .search {
     width: 200px;
+    height: 40px;
     padding: 10px 0px 10px 40px;
     border-radius: 9999px;
     border: solid 1px #333;
@@ -104,6 +105,15 @@ li {
 
 .container-input:hover > .search-icon {
     animation: anim 1s linear infinite;
+}
+
+.button-submit-search {
+    height: 40px;
+    border-radius: 9999px;
+}
+.button-reset-search {
+    height: 40px;
+    border-radius: 9999px;
 }
 
 /* instansi */

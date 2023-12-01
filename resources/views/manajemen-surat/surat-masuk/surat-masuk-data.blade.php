@@ -194,6 +194,20 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.surat') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <button type="submit"
+                                            class="btn btn-primary button-submit-search">Search</button>
+                                        <button type="reset"
+                                            class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($suratList->isEmpty())
@@ -202,16 +216,6 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="col-12 d-flex justify-content-end mb-3">
-                                            <form action="{{ route('search.surat') }}" method="post">
-                                                @csrf
-                                                <div class="container-input">
-                                                    <input type="text" placeholder="Search" name="search"
-                                                        class="search" id="searchInput">
-                                                    <i class="bi bi-search-heart search-icon"></i>
-                                                </div>
-                                            </form>
-                                        </div>
                                         @foreach ($suratList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
                                                 <div class="card card-primary card-surat shadow-sm">

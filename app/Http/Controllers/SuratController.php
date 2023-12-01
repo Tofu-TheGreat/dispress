@@ -156,6 +156,8 @@ class SuratController extends Controller
         $suratList = $this->suratRepository->search($request);
         $instansiList = Instansi::get();
         $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
+
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
@@ -163,6 +165,7 @@ class SuratController extends Controller
             'suratList' => $suratList,
             'instansiList' => $instansiList,
             'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 }

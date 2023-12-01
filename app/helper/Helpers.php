@@ -57,6 +57,33 @@ if (!function_exists('jabatanConvert')) {
         return $map[$value] ?? 'Tidak Diketahui';
     }
 }
+if (!function_exists('reverseJabatanConvert')) {
+    function reverseJabatanConvert($value, $type)
+    {
+        switch ($type) {
+            case 'jabatan':
+                $map = [
+                    'Kepala Sekolah' => 0,
+                    'Wakil Kepala Sekolah' => 1,
+                    'Kurikulum' => 2,
+                    'Kesiswaan' => 3,
+                    'Sarana dan Prasarana' => 4,
+                    'Kepala Jurusan' => 5,
+                    'Hubin' => 6,
+                    'Bimbingan Konseling' => 7,
+                    'Guru Umum' => 8,
+                    'Tata Usaha' => 9,
+                ];
+                break;
+            default:
+                $map = ['Tidak Diketahui' => null];
+                break;
+        }
+
+        return $map[$value] ?? $map['Tidak Diketahui'];
+    }
+}
+
 
 if (!function_exists('convertDisposisiField')) {
     function convertDisposisiField($value, $type)

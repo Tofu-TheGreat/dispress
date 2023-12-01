@@ -56,6 +56,34 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="row">
+                                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                                            <div class="form-group ">
+                                                <label for="id_klasifikasi">Nomor Klasifikasi: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text bg-secondary">
+                                                            <i class="bi bi-list-ol"></i>
+                                                        </div>
+                                                    </div>
+                                                    <select
+                                                        class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                                        id="id_klasifikasi" name="id_klasifikasi" required>
+                                                        <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                                        @foreach ($klasifikasiList as $data)
+                                                            <option value="{{ $data->id_klasifikasi }}"
+                                                                {{ $editDataSurat->id_klasifikasi == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                                {{ $data->nama_klasifikasi }} |
+                                                                {{ $data->nomor_klasifikasi }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('id_klasifikasi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label for="nomor_surat">Nomor Surat: </label>
@@ -78,7 +106,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label for="tanggal_surat">Tanggal Surat: </label>
                                                 <div class="input-group">
@@ -145,7 +173,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
+                                                <label class="capitalize" for="id_instansi">Pengirim Surat: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend ">
                                                         <div class="input-group-text bg-secondary">
@@ -153,18 +181,18 @@
                                                         </div>
                                                     </div>
                                                     <select
-                                                        class="form-control select2  @error('id_perusahaan') is-invalid @enderror "
-                                                        id="id_perusahaan" name="id_perusahaan" required>
+                                                        class="form-control select2  @error('id_instansi') is-invalid @enderror "
+                                                        id="id_instansi" name="id_instansi" required>
                                                         <option selected disabled>Pilih Pengirim Surat</option>
-                                                        @foreach ($perusahaanList as $data)
-                                                            <option value="{{ $data->id_perusahaan }}"
-                                                                {{ $editDataSurat->id_perusahaan == $data->id_perusahaan ? 'selected' : '' }}>
-                                                                {{ $data->nama_perusahaan }}</option>
+                                                        @foreach ($instansiList as $data)
+                                                            <option value="{{ $data->id_instansi }}"
+                                                                {{ $editDataSurat->id_instansi == $data->id_instansi ? 'selected' : '' }}>
+                                                                {{ $data->nama_instansi }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
                                                 <span class="text-danger">
-                                                    @error('id_perusahaan')
+                                                    @error('id_instansi')
                                                         {{ $message }}
                                                     @enderror
                                                 </span>

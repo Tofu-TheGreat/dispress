@@ -440,6 +440,50 @@
                     <div class="row px-4 pt-4">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
+                                <label for="id_klasifikasi">Nomor Klasifikasi Surat: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-list-ol"></i>
+                                        </div>
+                                    </div>
+                                    <input type="text"
+                                        class="form-control capitalize @error('id_klasifikasi') is-invalid @enderror"
+                                        placeholder="ex: 090/1928-TU/2023"
+                                        value="{{ $detailDataSurat->klasifikasi->nomor_klasifikasi }} | {{ $detailDataSurat->klasifikasi->nama_klasifikasi }} "
+                                        id="id_klasifikasi" disabled>
+                                </div>
+                                <span class="text-danger">
+                                    @error('id_klasifikasi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class=" col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group ">
+                                <label for="id_klasifikasi">Nomor Klasifikasi Agenda: </label>
+                                <div class="input-group">
+                                    <select class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                        id="id_klasifikasi" name="id_klasifikasi" style="width: 100%">
+                                        <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                        @foreach ($klasifikasiList as $item)
+                                            <option value="{{ $item->id_klasifikasi }}"
+                                                {{ old('id_klasifikasi') == $item->id_klasifikasi ? 'selected' : '' }}>
+                                                {{ $item->nama_klasifikasi }} |
+                                                {{ $item->nomor_klasifikasi }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('id_klasifikasi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
                                 <label for="id_surat">Nomor Surat Disposisi: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">

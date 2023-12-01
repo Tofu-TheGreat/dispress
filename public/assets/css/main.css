@@ -84,11 +84,12 @@ li {
     transition: all 0.3s ease-in-out;
     outline: none;
     opacity: 0.8;
+    position: relative;
 }
 
 .container-input .search-icon {
     position: absolute;
-    top: 50%;
+    top: 47%;
     left: 10px;
     transform: translate(0, -50%);
     transition: all 0.3s ease-in-out;
@@ -105,6 +106,10 @@ li {
 
 .container-input:hover > .search-icon {
     animation: anim 1s linear infinite;
+}
+
+.button-search {
+    display: inline-block;
 }
 
 .button-submit-search {
@@ -463,6 +468,16 @@ Footer
         width: 150px;
         height: 150px;
         margin-bottom: 20px;
+    }
+
+    .container-input .search-icon {
+        top: 22%;
+    }
+
+    .button-search {
+        display: flex;
+        margin-top: 10px;
+        justify-content: end;
     }
 }
 

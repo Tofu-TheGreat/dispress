@@ -201,10 +201,12 @@
                                         <input type="text" placeholder="Search" name="search" class="search"
                                             id="searchInput">
                                         <i class="bi bi-search-heart search-icon"></i>
-                                        <button type="submit"
-                                            class="btn btn-primary button-submit-search">Search</button>
-                                        <button type="reset"
-                                            class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <button type="reset"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

@@ -59,6 +59,7 @@ Route::resource('/instansi', InstansiController::class)->middleware('auth');
 
 Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
 Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
+Route::post('instansi-search', [InstansiController::class, 'search'])->name('instansi.search');
 
 // Manajemen Nomor Klasifikasi
 

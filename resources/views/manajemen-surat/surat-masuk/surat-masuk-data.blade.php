@@ -374,6 +374,8 @@
                     <form action="/surat-verifikasi/{{ $data->id_surat }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <input type="text" name="id_klasifikasi" value="{{ $data->id_klasifikasi }}" hidden
+                            id="">
                         <div class="row px-4 pt-4">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
@@ -779,7 +781,8 @@
                                             <option value="1"
                                                 {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
                                                 Wakil Kepala Sekolah</option>
-                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                            <option value="2"
+                                                {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
                                                 Kurikulum</option>
                                             <option value="3"
                                                 {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>

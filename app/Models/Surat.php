@@ -22,7 +22,7 @@ class Surat extends Model
         'id_instansi',
         'id_user',
         'status_verifikasi',
-        'catatan',
+        'catatan_verifikasi',
         'scan_dokumen',
     ];
 

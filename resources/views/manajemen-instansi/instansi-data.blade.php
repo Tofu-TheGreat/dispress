@@ -78,9 +78,12 @@
                                     @else
                                         <div class="col-12 d-flex justify-content-end mb-3">
                                             <div class="container-input">
-                                                <input type="text" placeholder="Search" name="text" class="search"
-                                                    id="searchInput">
-                                                <i class="bi bi-search-heart search-icon"></i>
+                                                <form action="{{ route('instansi.search') }}" method="post">
+                                                    @csrf
+                                                    <input type="text" placeholder="Search" name="search" class="search"
+                                                        id="searchInput">
+                                                    <i class="bi bi-search-heart search-icon"></i>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="row px-3">

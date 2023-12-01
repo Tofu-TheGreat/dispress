@@ -44,4 +44,13 @@ class InstansiImplement implements InstansiRepository
     {
         $this->instansi->where('id_instansi', $id)->delete();
     }
+
+    public function search($data)
+    {
+        $search = $this->instansi->where('nama_instansi', 'like', "%" . $data->search . "%")
+            ->orWhere('alamat_instansi', 'like', "%" . $data->search . "%")
+            ->orWhere('nomor_telpon', 'like', "%" . $data->search . "%");
+
+        return $search->paginate(6);
+    }
 }

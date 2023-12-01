@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\InstansiRequest;
 use App\Repository\Instansi\InstansiRepository;
+use Illuminate\Http\Request;
 
 class InstansiController extends Controller
 {
@@ -79,5 +80,17 @@ class InstansiController extends Controller
         $encryptId = Crypt::decryptString($id);
         $this->instansiRepository->destroy($encryptId);
         return redirect()->intended('/instansi')->with('success', 'Berhasil menghapus data instansi.');
+    }
+
+    public function search(Request $request)
+    {
+        $instansiList = $this->instansiRepository->search($request);
+
+        return view('manajemen-instansi.instansi-data', [
+            'title' => 'Instansi',
+            'active' => 'Instansi',
+            'active1' => 'Instansi',
+            'instansiList' => $instansiList,
+        ]);
     }
 }

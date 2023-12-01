@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\KlasifikasiRequest;
 use App\Models\Klasifikasi;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
@@ -60,7 +61,7 @@ class KlasifikasiController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(KlasifikasiRequest $request)
     {
         $this->klasifikasiRepository->store($request);
         return back()->with('success', 'Berhasil menambah data nomor klasfikasi baru.');
@@ -85,7 +86,7 @@ class KlasifikasiController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(KlasifikasiRequest $request, string $id)
     {
         $this->klasifikasiRepository->update($request, $id);
         return back()->with('success', 'Berhasil mengubah data nomor klasfikasi.');

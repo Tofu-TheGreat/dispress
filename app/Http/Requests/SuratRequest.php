@@ -23,9 +23,10 @@ class SuratRequest extends FormRequest
     {
         return [
             'nomor_surat' => 'required|unique:surat,nomor_surat,' . $this->input('id_surat') . ',id_surat',
+            'id_klasifikasi' => 'required',
             'tanggal_surat' => 'required|date',
             'isi_surat' => 'required|max:100',
-            'id_perusahaan' => 'required',
+            'id_instansi' => 'required',
             'catatan_verifikasi' => 'required',
             'scan_dokumen' => 'mimes:pdf, docx|file',
         ];
@@ -34,13 +35,14 @@ class SuratRequest extends FormRequest
     {
         return [
             'nomor_surat.required' => 'Nomor surat harus diisi',
+            'id_klasifikasi.required' => 'Harap pilih nomor Klasifikasi',
             'nomor_surat.unique' => 'Nomor surat sudah terpakai',
             'tanggal_surat.required' => 'Tanggal surat harus diisi',
             'tanggal_surat.date' => 'Tanggal surat salah',
             'isi_surat.required' => 'Isi surat harus diisi',
             'isi_surat.max' => 'Isi surat tidak boleh lebih dari 100 karakter',
             'catatan_verifikasi.required' => 'Catatan surat harus diisi',
-            'id_perusahaan.required' => 'Pengirim surat harus diisi',
+            'id_instansi.required' => 'Pengirim surat harus diisi',
             'scan_dokumen.mimes' => 'Tipe file harus pdf, docx',
             'scan_dokumen.file' => 'Harus berupa file!',
         ];

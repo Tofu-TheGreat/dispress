@@ -28,6 +28,7 @@ class SuratController extends Controller
         $suratList = $this->suratRepository->index();
         $instansiList = Instansi::get();
         $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
@@ -36,6 +37,7 @@ class SuratController extends Controller
             'suratList' => $suratList,
             'instansiList' => $instansiList,
             'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 
@@ -74,6 +76,8 @@ class SuratController extends Controller
         $detailDataSurat = $this->suratRepository->show($encryptId);
         $userget = User::where('id_user', $detailDataSurat->id_user)->first();
         $instansiList = Instansi::where('id_instansi', $detailDataSurat->id_instansi)->get();
+        $klasifikasiList = Klasifikasi::get();
+
 
         return view('manajemen-surat.surat-masuk.surat-masuk-detail', [
             'title' => 'Detail Surat Masuk',
@@ -81,7 +85,9 @@ class SuratController extends Controller
             'active' => 'Surat-masuk',
             'detailDataSurat' => $detailDataSurat,
             'userget' => $userget,
-            'instansiList' => $instansiList[0]
+            'instansiList' => $instansiList[0],
+            'klasifikasiList' => $klasifikasiList,
+
         ]);
     }
 
@@ -150,6 +156,8 @@ class SuratController extends Controller
         $suratList = $this->suratRepository->search($request);
         $instansiList = Instansi::get();
         $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
+
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
             'active1' => 'manajemen-surat',
@@ -157,6 +165,7 @@ class SuratController extends Controller
             'suratList' => $suratList,
             'instansiList' => $instansiList,
             'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 }

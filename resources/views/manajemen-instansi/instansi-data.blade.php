@@ -68,6 +68,22 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.surat') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <button type="reset"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($instansiList->isEmpty())
@@ -76,16 +92,6 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="col-12 d-flex justify-content-end mb-3">
-                                            <div class="container-input">
-                                                <form action="{{ route('instansi.search') }}" method="post">
-                                                    @csrf
-                                                    <input type="text" placeholder="Search" name="search" class="search"
-                                                        id="searchInput">
-                                                    <i class="bi bi-search-heart search-icon"></i>
-                                                </form>
-                                            </div>
-                                        </div>
                                         <div class="row px-3">
                                             @foreach ($instansiList as $data)
                                                 <div class="col mx-1">

@@ -20,4 +20,8 @@ class Klasifikasi extends Model
     {
         return $this->hasOne(Surat::class, 'id_klasifikasi');
     }
+    public function ajukan()
+    {
+        return $this->hasOne(Ajukan::class, 'id_klasifikasi');
+    }
 }

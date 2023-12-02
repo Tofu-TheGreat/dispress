@@ -6,6 +6,8 @@ use App\Models\Disposisi;
 use App\Models\User;
 use App\Repository\Admin\AdminImplement;
 use App\Repository\Admin\AdminRepository;
+use App\Repository\Ajukan\AjukanImplement;
+use App\Repository\Ajukan\AjukanRepository;
 use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
 use App\Repository\Officer\OfficerRepository;
@@ -42,6 +44,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(InstansiRepository::class, InstansiImplement::class);
         $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
         $this->app->bind(KlasifikasiRepository::class, KlasifikasiImplement::class);
+        $this->app->bind(AjukanRepository::class, AjukanImplement::class);
     }
 
     /**

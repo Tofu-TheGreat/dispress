@@ -40,10 +40,7 @@ class DisposisiImplement implements DisposisiRepository
 
         foreach ($tujuanDisposisi as $jabatan) {
             $this->disposisi->create([
-                'id_klasifikasi' => $data->id_klasifikasi,
-                'id_surat' => $data->id_surat,
-                'nomor_agenda' => $data->nomor_agenda,
-                'tanggal_disposisi' => $data->tanggal_disposisi,
+                'id_ajukan' => $data->id_ajukan,
                 'catatan_disposisi' => $data->catatan_disposisi,
                 'status_disposisi' => $data->status_disposisi,
                 'sifat_disposisi' => $data->sifat_disposisi,
@@ -74,10 +71,7 @@ class DisposisiImplement implements DisposisiRepository
 
         foreach ($tujuanDisposisi as $jabatan) {
             $this->disposisi->where('id_disposisi', $id)->update([
-                'id_klasifikasi' => $data->id_klasifikasi,
-                'id_surat' => $data->id_surat,
-                'nomor_agenda' => $data->nomor_agenda,
-                'tanggal_disposisi' => $data->tanggal_disposisi,
+                'id_ajukan' => $data->id_ajukan,
                 'catatan_disposisi' => $data->catatan_disposisi,
                 'status_disposisi' => $data->status_disposisi,
                 'sifat_disposisi' => $data->sifat_disposisi,

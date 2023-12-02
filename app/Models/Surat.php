@@ -31,15 +31,16 @@ class Surat extends Model
         return $this->belongsTo(Instansi::class, 'id_instansi');
     }
 
+    public function ajukan()
+    {
+        return $this->hasMany(Ajukan::class, 'id_surat');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function disposisi()
-    {
-        return $this->hasOne(Disposisi::class, 'id_surat');
-    }
     public function klasifikasi()
     {
         return $this->belongsTo(Klasifikasi::class, 'id_klasifikasi');

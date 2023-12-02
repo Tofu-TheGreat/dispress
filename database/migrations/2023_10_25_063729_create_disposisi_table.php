@@ -13,12 +13,8 @@ return new class extends Migration
     {
         Schema::create('disposisi', function (Blueprint $table) {
             $table->id('id_disposisi');
-            $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
-            $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
-            $table->string('nomor_agenda', 100);
-            $table->unsignedBigInteger('id_surat');
-            $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
-            $table->date('tanggal_disposisi');
+            $table->unsignedBigInteger('id_ajukan');
+            $table->foreign('id_ajukan')->references('id_ajukan')->on('ajukan')->onDelete('cascade');
             $table->string('catatan_disposisi', 225);
             $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Diajukan, Diterima
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Biasa, Prioritas, Rahasia
@@ -38,9 +34,12 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('disposisi', function (Blueprint $table) {
-            $table->dropForeign('id_surat');
-            $table->dropIndex('id_surat');
-            $table->dropColumn('id_surat');
+            $table->dropForeign('id_ajukan');
+            $table->dropIndex('id_ajukan');
+            $table->dropColumn('id_ajukan');
+            $table->dropForeign('id_user');
+            $table->dropIndex('id_user');
+            $table->dropColumn('id_user');
         });
     }
 };

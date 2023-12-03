@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, AjukanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -81,7 +81,12 @@ Route::get('/surat-filter', [SuratController::class, 'filterData'])->name('filte
 Route::post('/surat-verifikasi/{id}', [SuratController::class, 'verifikasi_surat'])->name('verifikasi.surat');
 Route::post('/search-surat', [SuratController::class, 'search'])->name('search.surat');
 
-// Manajemen Surat
+// Manajemen Pengajuan Disposisi
+
+Route::resource('/pengajuan-disposisi', AjukanController::class)->middleware('auth');
+
+
+// Manajemen Disposisi
 
 Route::resource('/disposisi', DisposisiController::class)->middleware('auth');
 

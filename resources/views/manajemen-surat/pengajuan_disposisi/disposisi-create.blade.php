@@ -21,7 +21,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a href="/surat">Surat Masuk</a></div>
+                        <div class="breadcrumb-item d-inline active"><a href="/disposisi">Disposisi</a></div>
                         <div class="breadcrumb-item d-inline">Tambah Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -35,12 +35,12 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 mr-3">
-                                <a href="/surat">
+                                <a href="/disposisi">
                                     <i class="bi bi-arrow-left"></i>
                                 </a>
                             </div>
                             <div class="col-">
-                                <h4 class="text-primary">Tambah Data Surat Masuk</h4>
+                                <h4 class="text-primary">Tambah Data Disposisi</h4>
                             </div>
                         </div>
                     </div>
@@ -48,34 +48,6 @@
                         <form action="{{ route('surat.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-list-ol"></i>
-                                                </div>
-                                            </div>
-                                            <select
-                                                class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
-                                                id="id_klasifikasi" name="id_klasifikasi" required>
-                                                <option selected disabled>Pilih Nomor Klasifikasi</option>
-                                                @foreach ($klasifikasiList as $data)
-                                                    <option value="{{ $data->id_klasifikasi }}"
-                                                        {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
-                                                        {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_klasifikasi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
                                         <label for="nomor_surat">Masukkan Nomor Surat: </label>
@@ -97,7 +69,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="tanggal_surat">Masukkan Tanggal Surat: </label>
                                         <div class="input-group">
@@ -132,7 +104,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label class="capitalize" for="id_instansi">Pengirim Surat: </label>
+                                        <label class="capitalize" for="id_perusahaan">Pengirim Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -140,38 +112,26 @@
                                                 </div>
                                             </div>
                                             <select
-                                                class="form-control select2  @error('id_instansi') is-invalid @enderror "
-                                                id="id_instansi" name="id_instansi" required>
+                                                class="form-control select2  @error('id_perusahaan') is-invalid @enderror "
+                                                id="id_perusahaan" name="id_perusahaan" required>
                                                 <option selected disabled>Pilih Pengirim Surat</option>
-                                                @foreach ($instansiList as $data)
-                                                    <option value="{{ $data->id_instansi }}"
-                                                        {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
-                                                        {{ $data->nama_instansi }}</option>
+                                                @foreach ($perusahaanList as $data)
+                                                    <option value="{{ $data->id_perusahaan }}"
+                                                        {{ old('id_perusahaan') == $data->id_perusahaan ? 'selected' : '' }}>
+                                                        {{ $data->nama_perusahaan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <span class="text-danger">
-                                            @error('id_instansi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="catatan_verifikasi">Masukkan Verifikasi Surat: </label>
-                                        <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
-                                            placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ old('catatan_verifikasi') }} </textarea>
-                                        <span class="text-danger">
-                                            @error('catatan_verifikasi')
+                                            @error('id_perusahaan')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
                                 <input type="id_user" class="form-control @error('id_user') is-invalid @enderror"
-                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}"
-                                    id="id_user" name="id_user" hidden>
+                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}" id="id_user"
+                                    name="id_user" hidden>
                             </div>
                             <div class="form-group">
                                 <label for="foto">Masukkan Scan Dokumen Surat: </label>
@@ -190,7 +150,7 @@
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">
                                     <div class="ml-2 ">
-                                        <a href="/surat" class="btn btn-warning  ">
+                                        <a href="/disposisi" class="btn btn-warning  ">
                                             <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                             <span class="bi-text">Kembali</span>
                                         </a>
@@ -222,27 +182,6 @@
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
-
-    <script>
-        // Mengambil data klasifikasiList dari PHP
-        const klasifikasiList = {!! json_encode($klasifikasiList) !!};
-
-        $(document).ready(function() {
-            // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
-            $(document).on('change', '#id_klasifikasi', function() {
-                const selectedValue = $(this).val();
-
-                // Menggunakan klasifikasiList di sini
-                // Contoh: Menampilkan data terkait dengan nilai terpilih
-                const selectedKlasifikasi = klasifikasiList.find(function(item) {
-                    return item.id_klasifikasi == selectedValue;
-                });
-
-                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
-                $('#nomor_surat').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
-            });
-        });
-    </script>
 
     <script>
         $(document).ready(function() {

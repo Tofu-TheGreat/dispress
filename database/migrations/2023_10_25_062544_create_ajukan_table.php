@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('ajukan', function (Blueprint $table) {
             $table->id('id_ajukan');
+            $table->unsignedBigInteger('id_surat');
+            $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
             $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
             $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
             $table->string('nomor_agenda', 100);
-            $table->unsignedBigInteger('id_surat');
-            $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
             $table->date('tanggal_terima');
             $table->enum('tujuan_ajuan', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->default('0'); //Penerima
             $table->timestamps();

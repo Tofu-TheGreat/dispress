@@ -87,17 +87,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Seed Disposisi
-        Disposisi::factory()->create([
-            'id_surat' => '2',
-            'nomor_agenda' => '090/1928-TU/2023',
-            'tanggal_disposisi' => '2028-11-9',
-            'catatan_disposisi' => 'Approve Disposisi',
-            'status_disposisi' => '0',
-            'sifat_disposisi' => '1',
-            'id_klasifikasi' => '1',
-            'id_user' => '1',
-            'id_penerima' => '1',
-            'tujuan_disposisi' => '1',
-        ]);
+        // Disposisi::factory()->create([
+        //     'id_surat' => '2',
+        //     'nomor_agenda' => '090/1928-TU/2023',
+        //     'tanggal_disposisi' => '2028-11-9',
+        //     'catatan_disposisi' => 'Approve Disposisi',
+        //     'status_disposisi' => '0',
+        //     'sifat_disposisi' => '1',
+        //     'id_klasifikasi' => '1',
+        //     'id_user' => '1',
+        //     'id_penerima' => '1',
+        //     'tujuan_disposisi' => '1',
+        // ]);
     }
 }

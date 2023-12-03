@@ -55,11 +55,11 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
+                                <label class="capitalize" for="jabatan">Pilih Berdasarkan Jabatan: </label>
                                 <div class="input-group ">
                                     <select class="filter select2 @error('jabatan') is-invalid  @enderror " id="jabatan"
                                         name="jabatan" required style="width: 100%">
-                                        <option value="">Pilih Jabatan User</option>
+                                        <option selected disabled>Pilih Jabatan User</option>
                                         <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
                                             Kepala Sekolah</option>
                                         <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>

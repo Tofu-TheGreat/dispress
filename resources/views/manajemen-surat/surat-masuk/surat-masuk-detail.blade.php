@@ -427,12 +427,12 @@
         <div class="modal-dialog modal-lg modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header border-bottom pb-4">
-                    <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk di Disposisikan</h5>
+                    <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk Didisposisikan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('pengajuan-disposisi.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
                         id="">
@@ -508,14 +508,14 @@
                                 <label for="nomor_agenda">Nomor Agenda: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text bg-secondary">
+                                        <div class="input-group-text ">
                                             <i class="bi bi-list-ol"></i>
                                         </div>
                                     </div>
                                     <input type="text"
                                         class="form-control capitalize @error('nomor_agenda') is-invalid @enderror"
-                                        placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_agenda') }}"
-                                        id="nomor_agenda">
+                                        placeholder="ex: 090/1928-TU/2023" name="nomor_agenda"
+                                        value="{{ old('nomor_agenda') }}" id="nomor_agenda">
                                 </div>
                                 <span class="text-danger">
                                     @error('nomor_agenda')
@@ -551,7 +551,7 @@
                                 <label for="tanggal_terima">Tanggal Diterima: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <div class="input-group-text bg-secondary">
+                                        <div class="input-group-text ">
                                             <i class="bi bi-calendar3"></i>
                                         </div>
                                     </div>
@@ -569,7 +569,7 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tanggal_disposisi">Tanggal Surat: </label>
+                                <label for="tanggal_pengajuan">Tanggal Surat: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
@@ -577,12 +577,12 @@
                                         </div>
                                     </div>
                                     <input type="date"
-                                        class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
+                                        class="form-control capitalize @error('tanggal_pengajuan') is-invalid @enderror"
                                         placeholder="ex:  11/14/2023" value="{{ $detailDataSurat->tanggal_surat }}"
-                                        id="tanggal_disposisi" name="tanggal_disposisi" disabled>
+                                        id="tanggal_pengajuan" name="tanggal_pengajuan" disabled>
                                 </div>
                                 <span class="text-danger">
-                                    @error('tanggal_disposisi')
+                                    @error('tanggal_pengajuan')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -590,36 +590,36 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label class="capitalize" for="tujuan_disposisi">Kepada:
+                                <label class="capitalize" for="tujuan_pengajuan">Kepada:
                                 </label>
                                 <div class="input-group">
-                                    <select class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                        id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
-                                        <option disabled>Pilih Tujuan Disposisi</option>
-                                        <option value="0" {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                    <select class="form-control select2  @error('tujuan_pengajuan') is-invalid @enderror "
+                                        id="tujuan_pengajuan" name="tujuan_pengajuan" required style="width: 100%;">
+                                        <option disabled>Pilih Tujuan Pengajuan</option>
+                                        <option value="0" {{ old('tujuan_pengajuan') === '0' ? 'selected' : '' }}>
                                             Kepala Sekolah</option>
-                                        <option value="1" {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                        <option value="1" {{ old('tujuan_pengajuan') === '1' ? 'selected' : '' }}>
                                             Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                        <option value="2" {{ old('tujuan_pengajuan') == '2' ? 'selected' : '' }}>
                                             Kurikulum</option>
-                                        <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                        <option value="3" {{ old('tujuan_pengajuan') == '3' ? 'selected' : '' }}>
                                             Kesiswaan</option>
-                                        <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                        <option value="4" {{ old('tujuan_pengajuan') == '4' ? 'selected' : '' }}>
                                             Sarana Prasarana</option>
-                                        <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                        <option value="5" {{ old('tujuan_pengajuan') == '5' ? 'selected' : '' }}>
                                             Kepala Jurusan</option>
-                                        <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                        <option value="6" {{ old('tujuan_pengajuan') == '6' ? 'selected' : '' }}>
                                             Hubin</option>
-                                        <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                        <option value="7" {{ old('tujuan_pengajuan') == '7' ? 'selected' : '' }}>
                                             Bimbingan Konseling</option>
-                                        <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                        <option value="8" {{ old('tujuan_pengajuan') == '8' ? 'selected' : '' }}>
                                             Guru Umum</option>
-                                        <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                        <option value="9" {{ old('tujuan_pengajuan') == '9' ? 'selected' : '' }}>
                                             Tata Usaha</option>
                                     </select>
                                 </div>
                                 <span class="text-danger">
-                                    @error('tujuan_disposisi')
+                                    @error('tujuan_pengajuan')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -637,105 +637,12 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="status_disposisi">Status Disposisi:
-                                </label>
-                                <div class="input-group">
-                                    <select class="form-control select2  @error('status_disposisi') is-invalid @enderror "
-                                        id="status_disposisi" name="status_disposisi" readonly style="width: 100%;">
-                                        <option selected disabled>Pilih Status Surat</option>
-                                        <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
-                                            Arsipkan</option>
-                                        <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
-                                            Jabarkan</option>
-                                        <option value="2" {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
-                                            Umumkan</option>
-                                        <option value="3" {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
-                                            Laksanakan</option>
-                                        <option value="4" {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
-                                            Persiapkan</option>
-                                        <option value="5" {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
-                                            Ikuti</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('status_disposisi')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
-                                <div class="input-group">
-                                    <select class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
-                                        id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
-                                        <option selected disabled>Pilih Sifat Surat</option>
-                                        <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
-                                            Tindaklanjuti</option>
-                                        <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
-                                            Biasa</option>
-                                        <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
-                                            Segera</option>
-                                        <option value="3" {{ old('sifat_disposisi') == '3' ? 'selected' : '' }}>
-                                            Penting</option>
-                                        <option value="4" {{ old('sifat_disposisi') == '4' ? 'selected' : '' }}>
-                                            Rahasia</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('sifat_disposisi')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
-                                </label>
-                                <div class="input-group">
-                                    <select class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                        id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
-                                        style="width: 100%;">
-                                        <option disabled>Pilih Tujuan Disposisi</option>
-                                        <option value="0" {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('tujuan_disposisi')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label class="capitalize" for="id_user">Pengirim Ajuan: </label>
                                 <div class="input-group">
                                     <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                        id="id_user" name="id_user" required readonly style="width: 100%;">
+                                        id="id_user" name="id_user" required disabled style="width: 100%;">
                                         <option selected disabled>Pilih Pengirim Surat</option>
                                         <option selected value="{{ auth()->user()->id_user }}">
                                             {{ auth()->user()->nama }}</option>
@@ -750,11 +657,11 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="catatan_disposisi">Catatan Disposisi: </label>
-                                <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
-                                    placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
+                                <label for="catatan_pengajuan">Catatan Pengajuan: </label>
+                                <textarea class="summernote-simple @error('catatan_pengajuan') is-invalid @enderror"
+                                    placeholder="ex: Perihal rapat paripurna" id="catatan_pengajuan" name="catatan_pengajuan" required> {{ old('catatan_pengajuan') }} </textarea>
                                 <span class="text-danger">
-                                    @error('catatan_disposisi')
+                                    @error('catatan_pengajuan')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -781,6 +688,27 @@
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    <script>
+        // Mengambil data klasifikasiList dari PHP
+        const klasifikasiList = {!! json_encode($klasifikasiList) !!};
+
+        $(document).ready(function() {
+            // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
+            $(document).on('change', '#id_klasifikasi', function() {
+                const selectedValue = $(this).val();
+
+                // Menggunakan klasifikasiList di sini
+                // Contoh: Menampilkan data terkait dengan nilai terpilih
+                const selectedKlasifikasi = klasifikasiList.find(function(item) {
+                    return item.id_klasifikasi == selectedValue;
+                });
+
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
+                $('#nomor_agenda').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
+            });
+        });
+    </script>
 
     @if ($errors->any())
         <script>

@@ -21,6 +21,10 @@ class Pengajuan extends Model
         'tujuan_pengajuan'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
     public function surat()
     {
         return $this->belongsTo(Surat::class, 'id_surat');

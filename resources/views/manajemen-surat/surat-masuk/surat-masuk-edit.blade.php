@@ -279,6 +279,40 @@
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <script>
+        // Mengambil data klasifikasiList dari PHP
+        const klasifikasiList = {!! json_encode($klasifikasiList) !!};
+
+        $(document).ready(function() {
+            // Simpan nilai awal nomor_surat
+            const nomorSuratInput = $('#nomor_surat').val();
+
+            // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
+            $(document).on('change', '#id_klasifikasi', function() {
+                const selectedValue = $(this).val();
+
+                // Menggunakan klasifikasiList di sini
+                // Contoh: Menampilkan data terkait dengan nilai terpilih
+                const selectedKlasifikasi = klasifikasiList.find(function(item) {
+                    return item.id_klasifikasi == selectedValue;
+                });
+
+                // Ambil tiga angka pertama dari nomor_klasifikasi
+                const tigaAngkaPertama = selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi.slice(
+                    0, 3) : '';
+
+                // Ganti tiga angka pertama di nomorSuratInput
+                const nomorSuratBaru = tigaAngkaPertama + nomorSuratInput.slice(3);
+
+                console.log(nomorSuratBaru);
+
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat'
+                $('#nomor_surat').val(selectedKlasifikasi ? nomorSuratBaru : '');
+            });
+        });
+    </script>
+
+
+    <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
         });

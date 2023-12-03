@@ -541,7 +541,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk di Disposisikan</h5>
+                        <h5 class="modal-title" id="ajukan-modal">Ajukan Data surat untuk diDisposisikan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -561,7 +561,7 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control capitalize @error('id_klasifikasi') is-invalid @enderror"
+                                            class="form-control id_klasifikasi capitalize @error('id_klasifikasi') is-invalid @enderror"
                                             placeholder="ex: 090/1928-TU/2023"
                                             value="{{ $data->klasifikasi->nomor_klasifikasi }} | {{ $data->klasifikasi->nama_klasifikasi }} "
                                             id="id_klasifikasi" disabled>
@@ -753,7 +753,19 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="catatan_pengajuan">Catatan Pengajuan: </label>
+                                    <textarea class="summernote-simple  @error('catatan_pengajuan') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="catatan_pengajuan" name="catatan_pengajuan"> {{ $data->catatan_pengajuan }} </textarea>
+                                    <span class="text-danger">
+                                        @error('catatan_pengajuan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            {{-- <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label class="capitalize" for="status_disposisi">Status Disposisi:
                                     </label>
@@ -896,7 +908,7 @@
                                         @enderror
                                     </span>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-top pt-3">
                             <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -968,6 +980,28 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script>
+        // Mengambil data klasifikasiList dari PHP
+        const klasifikasiList = {!! json_encode($klasifikasiList) !!};
+
+        $(document).ready(function() {
+            // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
+            $(document).on('change', '#id_klasifikasi', function() {
+                const selectedValue = $(this).val();
+
+                // Menggunakan klasifikasiList di sini
+                // Contoh: Menampilkan data terkait dengan nilai terpilih
+                const selectedKlasifikasi = klasifikasiList.find(function(item) {
+                    return item.id_klasifikasi == selectedValue;
+                });
+
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
+                $('#nomor_agenda').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
+            });
+        });
+    </script>
+
 
     <script>
         $(document).ready(function() {

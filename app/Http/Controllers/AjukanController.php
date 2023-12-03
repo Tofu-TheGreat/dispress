@@ -21,6 +21,12 @@ class AjukanController extends Controller
     public function index()
     {
         $ajukanList = $this->ajukanRepository->index();
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
+            'title' => 'Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'ajukanList' => $ajukanList,
+        ]);
     }
 
     /**

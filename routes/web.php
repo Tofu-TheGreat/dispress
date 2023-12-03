@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, AjukanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -83,7 +83,7 @@ Route::post('/search-surat', [SuratController::class, 'search'])->name('search.s
 
 // Manajemen Pengajuan Disposisi
 
-Route::resource('/pengajuan-disposisi', AjukanController::class)->middleware('auth');
+Route::resource('/pengajuan-disposisi', PengajuanController::class)->middleware('auth');
 
 
 // Manajemen Disposisi

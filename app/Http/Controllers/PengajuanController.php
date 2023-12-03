@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\AjukanRequest;
-use App\Repository\Ajukan\AjukanRepository;
+use App\Http\Requests\PengajuanRequest;
+use App\Repository\Ajukan\PengajuanRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
-class AjukanController extends Controller
+class PengajuanController extends Controller
 {
-    private $ajukanRepository;
+    private $pengajuanRepository;
 
-    public function __construct(AjukanRepository $ajukanRepository)
+    public function __construct(PengajuanRepository $pengajuanRepository)
     {
-        $this->ajukanRepository = $ajukanRepository;
+        $this->pengajuanRepository = $pengajuanRepository;
     }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $ajukanList = $this->ajukanRepository->index();
+        $ajukanList = $this->pengajuanRepository->index();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
@@ -40,9 +40,10 @@ class AjukanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(AjukanRequest $request)
+    public function store(PengajuanRequest $request)
     {
-        $this->ajukanRepository->store($request);
+        $this->pengajuanRepository->store($request);
+        return back()->with('success', 'Berhasil Mengajukan Surat');
     }
 
     /**
@@ -51,7 +52,7 @@ class AjukanController extends Controller
     public function show(string $id)
     {
         $encryptId = Crypt::decryptString($id);
-        $detailDataAjukan = $this->ajukanRepository->show($encryptId);
+        $detailDataAjukan = $this->pengajuanRepository->show($encryptId);
     }
 
     /**
@@ -60,15 +61,15 @@ class AjukanController extends Controller
     public function edit(string $id)
     {
         $encryptId = Crypt::decryptString($id);
-        $detailDataAjukan = $this->ajukanRepository->edit($encryptId);
+        $detailDataAjukan = $this->pengajuanRepository->edit($encryptId);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(AjukanRequest $request, string $id)
+    public function update(PengajuanRequest $request, string $id)
     {
-        $this->ajukanRepository->update($id, $request);
+        $this->pengajuanRepository->update($id, $request);
     }
 
     /**
@@ -76,17 +77,17 @@ class AjukanController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->ajukanRepository->destroy($id);
+        $this->pengajuanRepository->destroy($id);
     }
 
     public function filterData(Request $request)
     {
-        $ajukanList =  $this->ajukanRepository->filterData($request);
+        $ajukanList =  $this->pengajuanRepository->filterData($request);
     }
 
 
     public function search(Request $request)
     {
-        $ajukanList = $this->ajukanRepository->search($request);
+        $ajukanList = $this->pengajuanRepository->search($request);
     }
 }

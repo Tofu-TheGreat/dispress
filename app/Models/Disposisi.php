@@ -13,7 +13,7 @@ class Disposisi extends Model
     protected $table = 'disposisi';
     protected $primaryKey = 'id_disposisi';
     protected $fillable = [
-        'id_ajukan',
+        'id_pengajuan',
         'catatan_disposisi',
         'status_disposisi',
         'sifat_disposisi',
@@ -22,9 +22,9 @@ class Disposisi extends Model
         'id_penerima',
     ];
 
-    public function ajukan()
+    public function pengajuan()
     {
-        return $this->belongsTo(Ajukan::class, 'id_ajukan');
+        return $this->belongsTo(Pengajuan::class, 'id_pengajuan');
     }
     public function user()
     {

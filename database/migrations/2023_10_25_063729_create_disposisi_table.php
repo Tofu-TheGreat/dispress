@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('disposisi', function (Blueprint $table) {
             $table->id('id_disposisi');
-            $table->unsignedBigInteger('id_ajukan');
-            $table->foreign('id_ajukan')->references('id_ajukan')->on('ajukan')->onDelete('cascade');
+            $table->unsignedBigInteger('id_pengajuan');
+            $table->foreign('id_pengajuan')->references('id_pengajuan')->on('pengajuan')->onDelete('cascade');
             $table->string('catatan_disposisi', 225);
             $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Diajukan, Diterima
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Biasa, Prioritas, Rahasia

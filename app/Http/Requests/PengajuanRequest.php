@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AjukanRequest extends FormRequest
+class PengajuanRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,18 +26,18 @@ class AjukanRequest extends FormRequest
             'nomor_agenda' => 'required',
             'id_surat' => 'required',
             'tanggal_terima' => 'required|date',
-            'tujuan_ajuan' => 'required'
+            'tujuan_pengajuan' => 'required'
         ];
     }
     public function messages()
     {
         return [
-            'id_klasifikasi.required' => 'Harap isi Nomor Klasifikasi disposisi',
-            'nomor_agenda.required' => 'Harap Isi Nomor Agenda disposisi',
-            'id_surat.required' => 'Harap pilih surat disposisi',
+            'id_klasifikasi.required' => 'Harap pilih Nomor Klasifikasi Disposisi',
+            'nomor_agenda.required' => 'Harap isi Nomor Agenda Disposisi',
+            'id_surat.required' => 'Harap pilih surat Disposisi',
             'tanggal_terima.required' => 'Harap tentukan tanggal terima diposisi',
             'tanggal_terima.date' => 'Tanggal terima harus dalam format tanggal',
-            'tujuan_ajuan.date' => 'Tanggal terima harus dalam format tanggal',
+            'tujuan_pengajuan.required' => 'Harap pilih Tujuan Pengajuan Disposisi',
         ];
     }
 }

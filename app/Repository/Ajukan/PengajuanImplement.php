@@ -2,55 +2,60 @@
 
 namespace App\Repository\Ajukan;
 
-use App\Models\Ajukan;
+use App\Models\Pengajuan;
 
-class AjukanImplement implements AjukanRepository
+class PengajuanImplement implements PengajuanRepository
 {
-    private $ajukan;
-    public function __construct(Ajukan $ajukan)
+    private $pengajuan;
+    public function __construct(Pengajuan $pengajuan)
     {
-        $this->ajukan = $ajukan;
+        $this->pengajuan = $pengajuan;
     }
 
     public function index()
     {
-        return $this->ajukan->paginate(6);
+        return $this->pengajuan->paginate(6);
     }
     public function store($data)
     {
-        $this->ajukan->create([
+        $this->pengajuan->create([
             'id_klasifikasi' => $data->id_klasifikasi,
             'nomor_agenda' => $data->nomor_agenda,
             'id_surat' => $data->id_surat,
             'tanggal_terima' => $data->tanggal_terima,
-            'tujuan_ajuan' => $data->tujuan_ajuan,
+            'catatan_pengajuan' => $data->catatan_pengajuan,
+            'id_user' => $data->id_user,
+            'tujuan_pengajuan' => $data->tujuan_pengajuan,
         ]);
     }
     public function show($id)
     {
-        return $this->ajukan->where('id_ajukan', $id)->first();
+        return $this->pengajuan->where('id_pengajuan', $id)->first();
     }
     public function edit($id)
     {
-        return $this->ajukan->where('id_ajukan', $id)->first();
+        return $this->pengajuan->where('id_pengajuan', $id)->first();
     }
     public function update($id, $data)
     {
-        $this->ajukan->where('id_ajukan', $id)->update([
+        $this->pengajuan->where('id_pengajuan', $id)->update([
             'id_klasifikasi' => $data->id_klasifikasi,
             'nomor_agenda' => $data->nomor_agenda,
             'id_surat' => $data->id_surat,
             'tanggal_terima' => $data->tanggal_terima,
-            'tujuan_ajuan' => $data->tujuan_ajuan,
+            'status_pengajuan' => $data->status_pengajuan,
+            'catatan_pengajuan' => $data->catatan_pengajuan,
+            'id_user' => $data->id_user,
+            'tujuan_pengajuan' => $data->tujuan_pengajuan,
         ]);
     }
     public function destroy($id)
     {
-        $this->ajukan->where('id_ajukan', $id)->delete();
+        $this->pengajuan->where('id_pengajuan', $id)->delete();
     }
     public function filterData($data)
     {
-        $query = $this->ajukan->query();
+        $query = $this->pengajuan->query();
 
         if (isset($data->id_klasifikasi) && ($data->id_klasifikasi != null)) {
             $query->where('id_klasifikasi', $data->id_klasifikasi);
@@ -72,7 +77,7 @@ class AjukanImplement implements AjukanRepository
     }
     public function search($data)
     {
-        $search = $this->ajukan->where('nomor_agenda', 'like', "%" . $data->search . "%")
+        $search = $this->pengajuan->where('nomor_agenda', 'like', "%" . $data->search . "%")
             ->orWhere(function ($query) use ($data) {
                 $query->where('tanggal_terima', 'like', "%" . $data->search . "%")
                     ->orWhereRaw("DATE_FORMAT(tanggal_terima, '%M') LIKE ?", ["%" . $data->search . "%"]);

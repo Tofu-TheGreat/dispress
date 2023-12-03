@@ -2,7 +2,7 @@
 
 namespace App\Repository\Ajukan;
 
-interface AjukanRepository
+interface PengajuanRepository
 {
     public function index();
     public function store($data);

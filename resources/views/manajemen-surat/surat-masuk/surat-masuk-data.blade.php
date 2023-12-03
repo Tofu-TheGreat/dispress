@@ -546,7 +546,8 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('pengajuan-disposisi.store') }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
                         <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
@@ -628,8 +629,8 @@
                                         </div>
                                         <input type="text"
                                             class="form-control capitalize @error('nomor_agenda') is-invalid @enderror"
-                                            placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_agenda') }}"
-                                            id="nomor_agenda">
+                                            placeholder="ex: 090/1928-TU/2023" name="nomor_agenda"
+                                            value="{{ old('nomor_agenda') }}" id="nomor_agenda">
                                     </div>
                                     <span class="text-danger">
                                         @error('nomor_agenda')
@@ -703,39 +704,39 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tujuan_disposisi">Kepada:
+                                    <label class="capitalize" for="tujuan_pengajuan">Kepada:
                                     </label>
                                     <div class="input-group">
                                         <select
-                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi" required style="width: 100%;">
+                                            class="form-control select2  @error('tujuan_pengajuan') is-invalid @enderror "
+                                            id="tujuan_pengajuan" name="tujuan_pengajuan" required style="width: 100%;">
                                             <option disabled>Pilih Tujuan Disposisi</option>
                                             <option value="0"
-                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
+                                                {{ old('tujuan_pengajuan') === '0' ? 'selected' : '' }}>
                                                 Kepala Sekolah</option>
                                             <option value="1"
-                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
+                                                {{ old('tujuan_pengajuan') === '1' ? 'selected' : '' }}>
                                                 Wakil Kepala Sekolah</option>
-                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                            <option value="2" {{ old('tujuan_pengajuan') == '2' ? 'selected' : '' }}>
                                                 Kurikulum</option>
-                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                            <option value="3" {{ old('tujuan_pengajuan') == '3' ? 'selected' : '' }}>
                                                 Kesiswaan</option>
-                                            <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                            <option value="4" {{ old('tujuan_pengajuan') == '4' ? 'selected' : '' }}>
                                                 Sarana Prasarana</option>
-                                            <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                            <option value="5" {{ old('tujuan_pengajuan') == '5' ? 'selected' : '' }}>
                                                 Kepala Jurusan</option>
-                                            <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                            <option value="6" {{ old('tujuan_pengajuan') == '6' ? 'selected' : '' }}>
                                                 Hubin</option>
-                                            <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                            <option value="7" {{ old('tujuan_pengajuan') == '7' ? 'selected' : '' }}>
                                                 Bimbingan Konseling</option>
-                                            <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                            <option value="8" {{ old('tujuan_pengajuan') == '8' ? 'selected' : '' }}>
                                                 Guru Umum</option>
-                                            <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                            <option value="9" {{ old('tujuan_pengajuan') == '9' ? 'selected' : '' }}>
                                                 Tata Usaha</option>
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('tujuan_disposisi')
+                                        @error('tujuan_pengajuan')
                                             {{ $message }}
                                         @enderror
                                     </span>

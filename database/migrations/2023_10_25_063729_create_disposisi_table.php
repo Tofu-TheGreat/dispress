@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_pengajuan');
             $table->foreign('id_pengajuan')->references('id_pengajuan')->on('pengajuan')->onDelete('cascade');
             $table->string('catatan_disposisi', 225);
+            $table->date('tanggal_disposisi');
             $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Diajukan, Diterima
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Biasa, Prioritas, Rahasia
             $table->unsignedBigInteger('id_user'); //Pengirim

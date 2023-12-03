@@ -61,16 +61,23 @@ class PengajuanController extends Controller
     public function store(PengajuanRequest $request)
     {
         $this->pengajuanRepository->store($request);
-        return back()->with('success', 'Berhasil Mengajukan Surat');
+        return back()->with('success', 'Berhasil membuat pengajuan surat untuk Didisposisikan.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
         $encryptId = Crypt::decryptString($id);
-        $detailDataAjukan = $this->pengajuanRepository->show($encryptId);
+        $detailDataPengajuan = $this->pengajuanRepository->show($encryptId);
+
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-detail', [
+            'title' => 'Detail Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'detailDataPengajuan' => $detailDataPengajuan,
+        ]);
     }
 
     /**

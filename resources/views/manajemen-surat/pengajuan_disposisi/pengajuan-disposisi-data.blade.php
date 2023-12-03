@@ -309,13 +309,13 @@
                                                                             class="bi bi bi-patch-check"></i></span>
                                                                 </button>
                                                             @endif
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
+                                                            <a data-collapse="#mycard-collapse{{ $data->id_pengajuan }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="collapse show"
-                                                        id="mycard-collapse{{ $data->id_disposisi }}">
+                                                        id="mycard-collapse{{ $data->id_pengajuan }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->catatan_pengajuan !!}</p>
@@ -331,29 +331,29 @@
                                                                     <button type="button"
                                                                         class="btn btn-success mr-2 tombol-disposisi"
                                                                         data-toggle="modal"
-                                                                        data-target="#disposisi-modal{{ $data->id_disposisi }}"
+                                                                        data-target="#disposisi-modal{{ $data->id_pengajuan }}"
                                                                         type="button">
                                                                         Disposisi
                                                                     </button>
                                                                 </span>
                                                             </div>
                                                             <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($data->id_pengajuan)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data disposisi"
-                                                                    data-original-title="Detail data disposisi"
+                                                                    title="Detail data pengajuan disposisi"
+                                                                    data-original-title="Detail data pengajuan disposisi"
                                                                     class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                    href=""><i class="pl-1  bi bi-eye "></i>
+                                                                    href=""><i class="pl-1 bi bi-eye"></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
                                                                     data-placement="left" title="Edit data disposisi"
                                                                     data-original-title="Edit data disposisi"
                                                                     class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
                                                                 <form method="POST"
-                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
                                                                     class="tombol-hapus">
                                                                     @csrf
                                                                     @method('DELETE')
@@ -424,7 +424,7 @@
 
     <!-- Modal Ajukan Disposisi -->
     @foreach ($pengajuanList as $data)
-        <div class="modal fade ajukan-modal" id="disposisi-modal{{ $data->id_disposisi }}"
+        <div class="modal fade ajukan-modal" id="disposisi-modal{{ $data->id_pengajuan }}"
             aria-labelledby="ajukan-modal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
@@ -434,7 +434,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="/disposisi/{{ $data->id_disposisi }}" method="post" enctype="multipart/form-data">
+                    <form action="/disposisi/{{ $data->id_pengajuan }}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">

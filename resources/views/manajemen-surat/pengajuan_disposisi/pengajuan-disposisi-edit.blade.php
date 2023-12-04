@@ -292,7 +292,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend ">
                                                             <div class="input-group-text bg-secondary">
-                                                                <i class="bi bi-person-rolodex "></i>
+                                                                <i class="bi bi-person-fill "></i>
                                                             </div>
                                                         </div>
                                                         <select
@@ -320,7 +320,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
-                                                                <i class="bi bi-person"></i>
+                                                                <i class="bi bi-person-rolodex"></i>
                                                             </div>
                                                         </div>
                                                         <select

@@ -171,6 +171,8 @@
                                     id="" hidden>
                                 <input type="text" name="id_user" value="{{ $editDataPengajuan->id_user }}"
                                     id="" hidden>
+                                <input type="text" name="id_surat" value="{{ $editDataPengajuan->id_surat }}"
+                                    id="" hidden>
                                 <div class="row">
                                     <div class="col">
                                         <div class="row">
@@ -399,6 +401,7 @@
     </section>
 @endsection
 @section('script')
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
@@ -457,4 +460,17 @@
             $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
         })
     </script>
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
+            });
+        </script>
+    @endif
 @endsection

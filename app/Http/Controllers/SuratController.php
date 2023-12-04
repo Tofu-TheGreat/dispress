@@ -135,6 +135,7 @@ class SuratController extends Controller
         $suratList =  $this->suratRepository->filterData($request);
         $instansiList = Instansi::get();
         $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
@@ -143,7 +144,8 @@ class SuratController extends Controller
             'suratList' => $suratList,
             'instansiList' => $instansiList,
             'userList' => $userList,
-        ]);
+            'klasifikasiList' => $klasifikasiList,
+        ]);;
     }
     public function verifikasi_surat(SuratRequest $request, string $id)
     {

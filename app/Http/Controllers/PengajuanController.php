@@ -106,7 +106,7 @@ class PengajuanController extends Controller
     public function update(PengajuanRequest $request, string $id)
     {
         $this->pengajuanRepository->update($id, $request);
-        return back()->with('success', 'Berhasil meng-update data Pengajuan.');
+        return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil meng-update data Pengajuan.');
     }
 
     /**

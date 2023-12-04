@@ -105,6 +105,12 @@ class SuratImplement implements SuratRepository
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
         }
+        if (isset($data->status_verifikasi) && ($data->status_verifikasi != null)) {
+            $query->where('status_verifikasi', $data->status_verifikasi);
+        }
+        if (isset($data->id_klasifikasi) && ($data->id_klasifikasi != null)) {
+            $query->where('id_klasifikasi', $data->id_klasifikasi);
+        }
         if (
             isset($data->tanggal_surat_awal) &&
             ($data->tanggal_surat_awal != null) &&

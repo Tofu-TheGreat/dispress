@@ -273,6 +273,8 @@
                     @csrf
                     <input type="text" name="id_surat" value="{{ $detailDataSurat->id_surat }}" hidden
                         id="">
+                    <input type="text" name="id_klasifikasi" value="{{ $detailDataSurat->id_klasifikasi }}" hidden
+                        id="">
                     <div class="row px-4 pt-4">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
@@ -306,8 +308,8 @@
                                     </div>
                                     <input type="text"
                                         class="form-control @error('tanggal_surat') is-invalid @enderror"
-                                        value="{{ date('d-F-Y', strtotime($detailDataSurat->tanggal_surat)) }}"
-                                        id="tanggal_surat" name="tanggal_surat" readonly>
+                                        value="{{ $detailDataSurat->tanggal_surat }}" id="tanggal_surat"
+                                        name="tanggal_surat" readonly>
                                 </div>
                                 <span class="text-danger">
                                     @error('tanggal_surat')

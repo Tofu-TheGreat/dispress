@@ -404,6 +404,14 @@
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
 
     <script>
+        // Mendapatkan elemen dengan class tertentu
+        const mycardCollapse = document.querySelector(".collapse");
+
+        // Menghapus kelas 'show' jika lebar layar kurang dari atau sama dengan 991px
+        if (window.innerWidth <= 991) {
+            mycardCollapse.classList.toggle("show");
+        }
+
         // Mengambil data klasifikasiList dari PHP
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 

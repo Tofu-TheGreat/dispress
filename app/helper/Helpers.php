@@ -63,7 +63,7 @@ if (!function_exists('statusPengajuanConvert')) {
         switch ($type) {
             case 'status_pengajuan':
                 $map = [
-                    0 => 'Belum Terdisposisi',
+                    0 => 'Belum Terdisposisikan',
                     1 => 'Terdisposisikan',
                 ];
                 break;

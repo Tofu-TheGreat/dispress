@@ -23,7 +23,7 @@ class PengajuanRequest extends FormRequest
     {
         return [
             'id_klasifikasi' => 'required',
-            'nomor_agenda' => 'required',
+            'nomor_agenda' => 'required|unique:pengajuan,nomor_agenda,' . $this->input('id_pengajuan') . ',id_pengajuan',
             'id_surat' => 'required',
             'tanggal_terima' => 'required|date',
             'tujuan_pengajuan' => 'required'
@@ -34,6 +34,7 @@ class PengajuanRequest extends FormRequest
         return [
             'id_klasifikasi.required' => 'Harap pilih Nomor Klasifikasi Disposisi',
             'nomor_agenda.required' => 'Harap isi Nomor Agenda Disposisi',
+            'nomor_agenda.unique' => 'Nomor Agenda sudah terpakai',
             'id_surat.required' => 'Harap pilih surat Disposisi',
             'tanggal_terima.required' => 'Harap tentukan tanggal terima diposisi',
             'tanggal_terima.date' => 'Tanggal terima harus dalam format tanggal',

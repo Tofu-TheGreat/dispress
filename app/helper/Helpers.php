@@ -57,6 +57,23 @@ if (!function_exists('jabatanConvert')) {
         return $map[$value] ?? 'Tidak Diketahui';
     }
 }
+if (!function_exists('statusPengajuanConvert')) {
+    function statusPengajuanConvert($value, $type)
+    {
+        switch ($type) {
+            case 'status_pengajuan':
+                $map = [
+                    0 => 'Belum Terdisposisi',
+                    1 => 'Terdisposisikan',
+                ];
+                break;
+            default:
+                $map = ['Tidak Diketahui'];
+                break;
+        }
+        return $map[$value] ?? 'Tidak Diketahui';
+    }
+}
 if (!function_exists('reverseJabatanConvert')) {
     function reverseJabatanConvert($value, $type)
     {

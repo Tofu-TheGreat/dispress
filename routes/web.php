@@ -84,6 +84,9 @@ Route::post('/search-surat', [SuratController::class, 'search'])->name('search.s
 // Manajemen Pengajuan Disposisi
 
 Route::resource('/pengajuan-disposisi', PengajuanController::class)->middleware('auth');
+Route::get('/pengajuan-filter', [PengajuanController::class, 'filterData'])->middleware('auth');
+Route::post('/search-pengajuan', [PengajuanController::class, 'search'])->name('search.pengajuan');
+Route::get('pengajuan-export', [ExportController::class, 'export_pengajuan'])->name('pengajuan.export');
 
 
 // Manajemen Disposisi

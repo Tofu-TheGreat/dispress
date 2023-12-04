@@ -30,11 +30,21 @@ class PengajuanImplement implements PengajuanRepository
     }
     public function show($id)
     {
-        return $this->pengajuan->where('id_pengajuan', $id)->first();
+        $data = $this->pengajuan->where('id_pengajuan', $id)->first();
+
+        $data->tujuan_pengajuan = jabatanConvert($data->tujuan_pengajuan, 'jabatan');
+        $data->status_pengajuan = statusPengajuanConvert($data->status_pengajuan, 'status_pengajuan');
+
+        return $data;
     }
     public function edit($id)
     {
-        return $this->pengajuan->where('id_pengajuan', $id)->first();
+        $data = $this->pengajuan->where('id_pengajuan', $id)->first();
+
+        $data->tujuan_pengajuan = jabatanConvert($data->tujuan_pengajuan, 'jabatan');
+        $data->status_pengajuan = statusPengajuanConvert($data->status_pengajuan, 'status_pengajuan');
+
+        return $data;
     }
     public function update($id, $data)
     {
@@ -63,13 +73,22 @@ class PengajuanImplement implements PengajuanRepository
         if (isset($data->id_surat) && ($data->id_surat != null)) {
             $query->where('id_surat', $data->id_surat);
         }
+        if (isset($data->status_pengajuan) && ($data->status_pengajuan != null)) {
+            $query->where('status_pengajuan', $data->status_pengajuan);
+        }
+        if (isset($data->id_user) && ($data->id_user != null)) {
+            $query->where('id_user', $data->id_user);
+        }
+        if (isset($data->tujuan_pengajuan) && ($data->tujuan_pengajuan != null)) {
+            $query->where('tujuan_pengajuan', $data->tujuan_pengajuan);
+        }
         if (
-            isset($data->tanggal_surat_awal) &&
-            ($data->tanggal_surat_awal != null) &&
-            isset($data->tanggal_surat_terakhir) &&
-            ($data->tanggal_surat_terakhir != null)
+            isset($data->tanggal_pengajuan_awal) &&
+            ($data->tanggal_pengajuan_awal != null) &&
+            isset($data->tanggal_pengajuan_terakhir) &&
+            ($data->tanggal_pengajuan_terakhir != null)
         ) {
-            $query->whereBetween('tanggal_terima', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
+            $query->whereBetween('tanggal_terima', [$data->tanggal_pengajuan_awal, $data->tanggal_pengajuan_terakhir]);
         }
 
 

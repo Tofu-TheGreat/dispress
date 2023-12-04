@@ -63,13 +63,15 @@
                                 </button>
                             @endif
                         </a>
-                        <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
-                            title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
-                            <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
-                                data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
-                                Ajukan
-                            </button>
-                        </span>
+                        @if ($detailDataSurat->status_verifikasi == 1)
+                            <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
+                                title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
+                                <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
+                                    data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    Ajukan
+                                </button>
+                            </span>
+                        @endif
                         <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"

@@ -281,17 +281,19 @@
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
-                                                            <span class="tombol-ajukan" data-toggle="tooltip"
-                                                                data-placement="top" title="Ajukan untuk Disposisi"
-                                                                data-original-title="Ajukan untuk Disposisi" disabled>
-                                                                <button type="button"
-                                                                    class="btn btn-success mr-2 tombol-ajukan"
-                                                                    data-toggle="modal"
-                                                                    data-target="#ajukan-modal{{ $data->id_surat }}"
-                                                                    type="button">
-                                                                    Ajukan
-                                                                </button>
-                                                            </span>
+                                                            @if ($data->status_verifikasi == 1)
+                                                                <span class="tombol-ajukan" data-toggle="tooltip"
+                                                                    data-placement="top" title="Ajukan untuk Disposisi"
+                                                                    data-original-title="Ajukan untuk Disposisi" disabled>
+                                                                    <button type="button"
+                                                                        class="btn btn-success mr-2 tombol-ajukan"
+                                                                        data-toggle="modal"
+                                                                        data-target="#ajukan-modal{{ $data->id_surat }}"
+                                                                        type="button">
+                                                                        Ajukan
+                                                                    </button>
+                                                                </span>
+                                                            @endif
                                                             <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
@@ -465,9 +467,9 @@
                                             </div>
                                         </div>
                                         <input type="date"
-                                            class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
-                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
-                                            id="tanggal_surat" name="tanggal_surat" readonly>
+                                            class="form-control @error('tanggal_surat') is-invalid @enderror"
+                                            value="{{ $data->tanggal_surat }}" id="tanggal_surat" name="tanggal_surat"
+                                            readonly>
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_surat')
@@ -743,7 +745,8 @@
                                         </div>
                                         <input type="date"
                                             class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
-                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            placeholder="ex:  11/14/2023"
+                                            value="{{ date('d-F-Y', strtotime($data->tanggal_surat)) }}"
                                             id="tanggal_disposisi" name="tanggal_disposisi" disabled>
                                     </div>
                                     <span class="text-danger">

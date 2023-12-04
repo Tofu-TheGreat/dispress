@@ -422,14 +422,14 @@
         </div>
     </section>
 
-    <!-- Modal Ajukan Disposisi -->
+    <!-- Modal Disposisi -->
     @foreach ($pengajuanList as $data)
-        <div class="modal fade ajukan-modal" id="disposisi-modal{{ $data->id_pengajuan }}"
-            aria-labelledby="ajukan-modal" aria-hidden="true">
+        <div class="modal fade disposisi-modal" id="disposisi-modal{{ $data->id_pengajuan }}"
+            aria-labelledby="disposisi-modal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="ajukan-modal">Disposisikan Data Surat</h5>
+                        <h5 class="modal-title" id="disposisi-modal">Disposisikan Data Surat</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -621,7 +621,7 @@
             </div>
         </div>
     @endforeach
-    {{-- End Ajukan Disposisi --}}
+    {{-- End Disposisi --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
@@ -721,13 +721,6 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
-            const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-            if (element.classList.contains("tombol-disposisi")) {
-                noteEditable.forEach((e) => {
-                    e.classList.add('mt-5');
-                })
-            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

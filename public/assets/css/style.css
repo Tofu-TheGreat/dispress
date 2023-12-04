@@ -3721,6 +3721,17 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li.active > ul.dropdown-menu li a:hover {
     background-color: #fcfcfd;
 }
+
+body:not(.sidebar-mini)
+    .sidebar-style-2
+    .sidebar-menu
+    li.active
+    ul.dropdown-menu
+    li
+    a:hover {
+    padding-left: 70px;
+}
+
 .main-sidebar .sidebar-menu li ul.dropdown-menu {
     padding: 0;
     margin: 0;

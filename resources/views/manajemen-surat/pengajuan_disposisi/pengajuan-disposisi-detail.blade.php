@@ -344,18 +344,18 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data disposisi ini?',
+                        text: 'Ingin menghapus data pengajuan ini?',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     }).then((willDelete) => {
                         if (willDelete) {
-                            swal('Data disposisi berhasil dihapus!', {
+                            swal('Data pengajuan berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data disposisi tidak jadi dihapus!');
+                            swal('Data pengajuan tidak jadi dihapus!');
                         }
                     })
                     .catch(error => {

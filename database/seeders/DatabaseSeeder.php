@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         // Seed Surat
         Surat::factory()->create([
             'nomor_surat' => '005/1228-SMKN3/2023',
-            'tanggal_surat' => '2023-11-9',
+            'tanggal_surat' => '2023-11-1',
             'isi_surat' => 'Perihal undangan rapat ',
             'id_instansi' => '1',
             'id_klasifikasi' => '1',

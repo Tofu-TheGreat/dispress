@@ -86,7 +86,18 @@ class PengajuanController extends Controller
     public function edit(string $id)
     {
         $encryptId = Crypt::decryptString($id);
-        $detailDataAjukan = $this->pengajuanRepository->edit($encryptId);
+        $editDataPengajuan = $this->pengajuanRepository->edit($encryptId);
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-edit', [
+            'title' => 'Edit Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'editDataPengajuan' => $editDataPengajuan,
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+        ]);
     }
 
     /**
@@ -95,6 +106,7 @@ class PengajuanController extends Controller
     public function update(PengajuanRequest $request, string $id)
     {
         $this->pengajuanRepository->update($id, $request);
+        return back()->with('success', 'Berhasil meng-update data Pengajuan.');
     }
 
     /**
@@ -104,7 +116,7 @@ class PengajuanController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $this->pengajuanRepository->destroy($encryptId);
-        return back()->with('success', 'Berhasil menghapus data Pengajuan');
+        return redirect()->intended('/pengajuan-disposisi')->with('success', 'Berhasil menghapus data Pengajuan.');
     }
 
     public function filterData(Request $request)

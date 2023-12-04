@@ -63,13 +63,15 @@
                                 </button>
                             @endif
                         </a>
-                        <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
-                            title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
-                            <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
-                                data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
-                                Ajukan
-                            </button>
-                        </span>
+                        @if ($detailDataSurat->status_verifikasi == 1)
+                            <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
+                                title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
+                                <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
+                                    data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                    Ajukan
+                                </button>
+                            </span>
+                        @endif
                         <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
                             class="text-white ml-2">
                             <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -151,8 +153,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('tanggal_surat') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->tanggal_surat }}" id="tanggal_surat"
-                                                    name="tanggal_surat" readonly>
+                                                    value="{{ date('d-F-Y', strtotime($detailDataSurat->tanggal_surat)) }}"
+                                                    id="tanggal_surat" name="tanggal_surat" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -302,9 +304,9 @@
                                             <i class="bi bi-calendar3"></i>
                                         </div>
                                     </div>
-                                    <input type="date"
-                                        class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
-                                        placeholder="ex:  11/14/2023" value="{{ $detailDataSurat->tanggal_surat }}"
+                                    <input type="text"
+                                        class="form-control @error('tanggal_surat') is-invalid @enderror"
+                                        value="{{ date('d-F-Y', strtotime($detailDataSurat->tanggal_surat)) }}"
                                         id="tanggal_surat" name="tanggal_surat" readonly>
                                 </div>
                                 <span class="text-danger">
@@ -569,20 +571,20 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tanggal_pengajuan">Tanggal Surat: </label>
+                                <label for="tanggal_surat">Tanggal Surat: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
                                             <i class="bi bi-calendar3"></i>
                                         </div>
                                     </div>
-                                    <input type="date"
-                                        class="form-control capitalize @error('tanggal_pengajuan') is-invalid @enderror"
-                                        placeholder="ex:  11/14/2023" value="{{ $detailDataSurat->tanggal_surat }}"
-                                        id="tanggal_pengajuan" name="tanggal_pengajuan" disabled>
+                                    <input type="text"
+                                        class="form-control @error('tanggal_surat') is-invalid @enderror"
+                                        value="{{ date('d-F-Y', strtotime($detailDataSurat->tanggal_surat)) }}"
+                                        id="tanggal_surat" name="tanggal_surat" readonly>
                                 </div>
                                 <span class="text-danger">
-                                    @error('tanggal_pengajuan')
+                                    @error('tanggal_surat')
                                         {{ $message }}
                                     @enderror
                                 </span>

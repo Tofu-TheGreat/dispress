@@ -152,7 +152,7 @@
                                                     <select
                                                         class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
                                                         id="status_verifikasi" name="status_verifikasi" required>
-                                                        <option selected disabled>Pilih Sifat Surat</option>
+                                                        <option selected disabled>Pilih Status Verifikasi Surat</option>
                                                         <option value="0"
                                                             {{ $editDataSurat->status_verifikasi === '0' ? 'selected' : '' }}>
                                                             Belum Terverifikasi</option>

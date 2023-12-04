@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PengajuanRequest;
-use App\Repository\Ajukan\PengajuanRepository;
+use App\Models\User;
+use App\Models\Klasifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\PengajuanRequest;
+use App\Models\Surat;
+use App\Repository\Ajukan\PengajuanRepository;
 
 class PengajuanController extends Controller
 {
@@ -20,12 +23,16 @@ class PengajuanController extends Controller
      */
     public function index()
     {
-        $ajukanList = $this->pengajuanRepository->index();
+        $pengajuanList = $this->pengajuanRepository->index();
+        $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
             'active1' => 'manajemen-surat',
-            'ajukanList' => $ajukanList,
+            'pengajuanList' => $pengajuanList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 
@@ -34,7 +41,18 @@ class PengajuanController extends Controller
      */
     public function create()
     {
-        //
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+        $suratList = Surat::get();
+
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-create', [
+            'title' => 'Create Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'suratList' => $suratList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 
     /**

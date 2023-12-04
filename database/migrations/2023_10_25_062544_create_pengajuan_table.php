@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
             $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
             $table->string('nomor_agenda', 100);
-            $table->enum('status_pengajuan', ['0', '1'])->default('0'); //Belum selesai, Selesai
+            $table->enum('status_pengajuan', ['0', '1'])->default('0'); //Belum Didisposisikan, Sudah Didisposisikan
             $table->date('tanggal_terima');
             $table->string('catatan_pengajuan', 100);
             $table->unsignedBigInteger('id_user');

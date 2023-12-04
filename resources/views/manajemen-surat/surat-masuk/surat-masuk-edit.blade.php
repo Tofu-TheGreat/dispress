@@ -303,8 +303,6 @@
                 // Ganti tiga angka pertama di nomorSuratInput
                 const nomorSuratBaru = tigaAngkaPertama + nomorSuratInput.slice(3);
 
-                console.log(nomorSuratBaru);
-
                 // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat'
                 $('#nomor_surat').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });

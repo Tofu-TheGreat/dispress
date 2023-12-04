@@ -14,12 +14,12 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-9 col-sm-8">
+                    <div class="col-md-8 col-sm-7">
                         <h4 class="text-dark judul-page">Manajemen Surat</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
+                    <div class="col-md-4 col-sm-5 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline">Pengajuan Disposisi</div>
                     </div>
@@ -47,18 +47,62 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/disposisi-filter" method="get">
+            <form action="/surat-filter" method="get">
                 @csrf
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="filter form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                            id="id_klasifikasi" name="id_klasifikasi" style="width: 100%;" required>
+                                            <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                            @foreach ($klasifikasiList as $data)
+                                                <option value="{{ $data->id_klasifikasi }}"
+                                                    {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                    {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_klasifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pilih Pengirim: </label>
+                                    <label class="capitalize" for="status_pengajuan">Pilih Berdasarkan Status Pengajuan:
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('status_pengajuan') is-invalid  @enderror "
+                                            id="status_pengajuan" name="status_pengajuan" style="width: 100%;">
+                                            <option selected disabled>Pilih Status Pengajuan</option>
+                                            <option value="0" {{ $data->status_pengajuan === '0' ? 'selected' : '' }}>
+                                                Belum Didisposisi</option>
+                                            <option value="1" {{ $data->status_pengajuan === '1' ? 'selected' : '' }}>
+                                                Sudah Didisposisi</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_pengajuan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pengirim: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                             id="id_user" name="id_user" style="width: 100%;">
-                                            <option value="">Pilih Pengirim</option>
+                                            <option selected disabled>Pilih Penerima</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
@@ -75,104 +119,36 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi: </label>
+                                    <label class="capitalize" for="tujuan_pengajuan">Pilih Berdasarkan Tujuan Pengajuan:
+                                    </label>
                                     <div class="input-group">
-                                        <select class="filter select2 @error('tujuan_disposisi') is-invalid  @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi" style="width: 100%;">
-                                            <option value="">Pilih Tujuan Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->tujuan_disposisi == '0' ? 'selected' : '' }}>
-                                                    Kepala Sekolah</option>
-                                                <option value="1"
-                                                    {{ $item->tujuan_disposisi == '1' ? 'selected' : '' }}>
-                                                    Wakil Kepala Sekolah</option>
-                                                <option value="2"
-                                                    {{ $item->tujuan_disposisi == '2' ? 'selected' : '' }}>
-                                                    Kurikulum</option>
-                                                <option value="3"
-                                                    {{ $item->tujuan_disposisi == '3' ? 'selected' : '' }}>
-                                                    Kesiswaan</option>
-                                                <option value="4"
-                                                    {{ $item->tujuan_disposisi == '4' ? 'selected' : '' }}>
-                                                    Sarana Prasarana</option>
-                                                <option value="5"
-                                                    {{ $item->tujuan_disposisi == '5' ? 'selected' : '' }}>
-                                                    Kepala Jurusan</option>
-                                                <option value="6"
-                                                    {{ $item->tujuan_disposisi == '6' ? 'selected' : '' }}>
-                                                    Hubin</option>
-                                                <option value="7"
-                                                    {{ $item->tujuan_disposisi == '7' ? 'selected' : '' }}>
-                                                    Bimbingan Konseling</option>
-                                                <option value="8"
-                                                    {{ $item->tujuan_disposisi == '8' ? 'selected' : '' }}>
-                                                    Guru Umum</option>
-                                                <option value="9"
-                                                    {{ $item->tujuan_disposisi == '9' ? 'selected' : '' }}>
-                                                    Tata Usaha</option>
-                                            @endforeach
+                                        <select class="filter select2 @error('tujuan_pengajuan') is-invalid  @enderror "
+                                            id="tujuan_pengajuan" name="tujuan_pengajuan" style="width: 100%;">
+                                            <option selected disabled>Pilih Tujuan Pengajuan</option>
+                                            <option value="0" {{ old('tujuan_pengajuan') === '0' ? 'selected' : '' }}>
+                                                Kepala Sekolah</option>
+                                            <option value="1" {{ old('tujuan_pengajuan') === '1' ? 'selected' : '' }}>
+                                                Wakil Kepala Sekolah</option>
+                                            <option value="2" {{ old('tujuan_pengajuan') == '2' ? 'selected' : '' }}>
+                                                Kurikulum</option>
+                                            <option value="3" {{ old('tujuan_pengajuan') == '3' ? 'selected' : '' }}>
+                                                Kesiswaan</option>
+                                            <option value="4" {{ old('tujuan_pengajuan') == '4' ? 'selected' : '' }}>
+                                                Sarana Prasarana</option>
+                                            <option value="5" {{ old('tujuan_pengajuan') == '5' ? 'selected' : '' }}>
+                                                Kepala Jurusan</option>
+                                            <option value="6" {{ old('tujuan_pengajuan') == '6' ? 'selected' : '' }}>
+                                                Hubin</option>
+                                            <option value="7" {{ old('tujuan_pengajuan') == '7' ? 'selected' : '' }}>
+                                                Bimbingan Konseling</option>
+                                            <option value="8" {{ old('tujuan_pengajuan') == '8' ? 'selected' : '' }}>
+                                                Guru Umum</option>
+                                            <option value="9" {{ old('tujuan_pengajuan') == '9' ? 'selected' : '' }}>
+                                                Tata Usaha</option>
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('tujuan_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="sifat_disposisi">Pilih Sifat Disposisi: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('sifat_disposisi') is-invalid  @enderror "
-                                            id="sifat_disposisi" name="sifat_disposisi" style="width: 100%;">
-                                            <option value="">Pilih Sifat Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->sifat_disposisi === '0' ? 'selected' : '' }}>
-                                                    Biasa</option>
-                                                <option value="1"
-                                                    {{ $item->sifat_disposisi === '1' ? 'selected' : '' }}>
-                                                    Prioritas</option>
-                                                <option value="2"
-                                                    {{ $item->sifat_disposisi === '2' ? 'selected' : '' }}>
-                                                    Rahasia</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('sifat_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="status_disposisi">Pilih Status Disposisi: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('status_disposisi') is-invalid  @enderror "
-                                            id="status_disposisi" name="status_disposisi" style="width: 100%;">
-                                            <option value="">Pilih Status Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->status_disposisi === '0' ? 'selected' : '' }}>
-                                                    Belum ditindak</option>
-                                                <option value="1"
-                                                    {{ $item->status_disposisi === '1' ? 'selected' : '' }}>
-                                                    Diajukan</option>
-                                                <option value="2"
-                                                    {{ $item->status_disposisi === '2' ? 'selected' : '' }}>
-                                                    Diterima</option>
-                                                <option value="3"
-                                                    {{ $item->status_disposisi === '3' ? 'selected' : '' }}>
-                                                    Dikembalikan</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('status_disposisi')
+                                        @error('tujuan_pengajuan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -184,7 +160,8 @@
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
+                                    <label class="capitalize" for="tanggal_pengajuan_awal">Dari Tanggal Awal Pengajuan
+                                        Disposisi:
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -193,12 +170,13 @@
                                             </div>
                                         </div>
                                         <input type="date"
-                                            class="filter form-control tanggal_surat_awal @error('tanggal_surat_awal') is-invalid @enderror"
-                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_awal') }}"
-                                            id="tanggal_surat_awal" name="tanggal_surat_awal" style="width: 80%;">
+                                            class="filter form-control tanggal_pengajuan_awal @error('tanggal_pengajuan_awal') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_pengajuan_awal') }}"
+                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal"
+                                            style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
-                                        @error('tanggal_surat_awal')
+                                        @error('tanggal_pengajuan_awal')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -206,9 +184,8 @@
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir
-                                        Pembuatan
-                                        Surat: </label>
+                                    <label class="capitalize" for="tanggal_pengajuan_terakhir">Sampai Tanggal Terakhir
+                                        Pengajuan Disposisi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -216,13 +193,13 @@
                                             </div>
                                         </div>
                                         <input type="date"
-                                            class="form-control tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
-                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
-                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir"
+                                            class="form-control tanggal_pengajuan_terakhir @error('tanggal_pengajuan_terakhir') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_pengajuan_terakhir') }}"
+                                            id="tanggal_pengajuan_terakhir" name="tanggal_pengajuan_terakhir"
                                             style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
-                                        @error('tanggal_surat_terakhir')
+                                        @error('tanggal_pengajuan_terakhir')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -232,8 +209,8 @@
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                                 <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <a type="button" id="reset" href="/disposisi" class="btn btn-secondary mb-1"
-                                title="Reset">
+                            <a type="button" id="reset" href="{{ route('surat.index') }}"
+                                class="btn btn-secondary mb-1" title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
                                     Filter</span></a>
                         </div>
@@ -242,17 +219,16 @@
             </form>
         </div>
         {{-- Filter --}}
-
         <div class="section-body">
             <div class="">
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Disposisi</h4>
+                            <h4 class="text-primary judul-page">List Pengajuan Disposisi</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
-                            <a href="/disposisi/create" class="text-white">
+                            <a href="/pengajuan-disposisi/create" class="text-white">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip"
                                     data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
                                     <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -280,52 +256,57 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.surat') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <button type="reset"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
-                                    @if ($disposisiList->isEmpty())
+                                    @if ($pengajuanList->isEmpty())
                                         <div class="d-flex justify-content-center align-content-center">
                                             <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                 class="w-50">
                                         </div>
                                     @else
-                                        @foreach ($disposisiList as $data)
+                                        @foreach ($pengajuanList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
                                                 <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
                                                             <h4>{{ $data->surat->nomor_surat }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Berstatus
-                                                                {{ $data->status_disposisi }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
-                                                            @if ($data->sifat_disposisi == 'Biasa')
-                                                                <button class="btn btn-primary tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Prioritas')
-                                                                <button class="btn btn-warning tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Rahasia')
+                                                            @if ($data->status_pengajuan == '0')
                                                                 <button class="btn btn-danger tombol-disposisi mr-2"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
+                                                                    title="Belum Didisposisikan"
+                                                                    data-original-title="Belum Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-minus"></i></span>
+                                                                </button>
+                                                            @elseif ($data->status_pengajuan == '1')
+                                                                <button class="btn btn-success tombol-disposisi mr-2"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Sudah Didisposisikan"
+                                                                    data-original-title="Sudah Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-check"></i></span>
                                                                 </button>
                                                             @endif
                                                             <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
@@ -337,9 +318,9 @@
                                                         id="mycard-collapse{{ $data->id_disposisi }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
+                                                            <p class="w-75"> {!! $data->catatan_pengajuan !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
                                                                 --</p>
                                                             <div class="mt-1 mb-1 tombol-disposisi">
                                                                 <span class="tombol-disposisi" data-toggle="tooltip"
@@ -429,7 +410,7 @@
                                             </div>
                                         @endforeach
                                         <div class="col-12">
-                                            {{ $disposisiList->onEachSide(1)->links() }}
+                                            {{ $pengajuanList->onEachSide(1)->links() }}
                                         </div>
                                     @endif
                                 </div>
@@ -442,7 +423,7 @@
     </section>
 
     <!-- Modal Ajukan Disposisi -->
-    @foreach ($disposisiList as $data)
+    @foreach ($pengajuanList as $data)
         <div class="modal fade ajukan-modal" id="disposisi-modal{{ $data->id_disposisi }}"
             aria-labelledby="ajukan-modal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">

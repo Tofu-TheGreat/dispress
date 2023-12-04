@@ -33,78 +33,6 @@
             </div>
         </div>
 
-        {{-- Filter --}}
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <div class="col">
-                    <h4 class="text-primary">Filter</h4>
-                </div>
-                <div class="col d-flex justify-content-end">
-                    {{-- Button Triger Filter --}}
-                    <span data-toggle="tooltip" data-placement="top" title="Klik untuk menu filter data."
-                        data-original-title="Filter Data" disabled>
-                        <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
-                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
-                            title="Tombol Filter">
-                            <i class="bi bi-funnel-fill"></i>
-                        </button>
-                    </span>
-                    {{-- Akhir Button Triger Filter --}}
-                </div>
-            </div>
-            <div class="collapse" id="collapseExample" style="">
-                <div class="p-4">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
-                            <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
-                                <div class="input-group">
-                                    <select class="filter select2 @error('jabatan') is-invalid  @enderror " id="jabatan"
-                                        name="jabatan" required style="width: 100%">
-                                        <option value="">Pilih Jabatan User</option>
-                                        <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('jabatan')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-end">
-                        <button type="button" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
-                            <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                        <button type="button" id="reset" href="/nomor-klasifikasi" class="btn btn-secondary mb-1"
-                            title="Reset">
-                            <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                Filter</span></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- Filter --}}
-
         <div class="section-body">
             <div class="">
                 <div class="card">
@@ -364,7 +292,7 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import nomor_klasifikasi</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Nomor Klasifikasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -374,7 +302,7 @@
                         <span class="d-block">Unduh Template Import Nomor Klasifikasi: </span>
                         <a href="/file/Book3.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
                             download="nomor_klasifikasi-template-import">
-                            <span>Template Import nomor_klasifikasi</span> <i
+                            <span>Template Import Nomor Klasifikasi</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">
@@ -565,19 +493,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data nomor klasifikasi lasifikasi ini!',
+                        text: 'Ingin menghapus data nomor klasifikasi ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data nomor klasifikasi lasifikasi berhasil dihapus!', {
+                            swal('Data nomor klasifikasi berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data nomor klasifikasi lasifikasi tidak jadi dihapus!');
+                            swal('Data nomor klasifikasi tidak jadi dihapus!');
                         }
                     });
             }
@@ -585,14 +513,14 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data nomor klasifikasi lasifikasi ini?',
+                        text: 'Ingin export data nomor klasifikasi ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data nomor klasifikasi lasifikasi berhasil diexport!', {
+                            swal('Data nomor klasifikasi berhasil diexport!', {
                                 icon: 'success',
                             });
 
@@ -613,7 +541,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data nomor klasifikasi lasifikasi tidak jadi diexport!');
+                            swal('Data nomor klasifikasi tidak jadi diexport!');
                         }
                     });
             }

@@ -28,7 +28,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-header">Manajemen Surat</li>
+            <li class="menu-header">Menu Utama</li>
             <li class="{{ $active == 'Instansi' ? 'active' : '' }}">
                 <a class="nav-link" href="/instansi"><i class="fas fa-building"></i> <span>Instansi</span>
                 </a>

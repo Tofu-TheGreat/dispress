@@ -47,7 +47,7 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/surat-filter" method="get">
+            <form action="/pengajuan-filter" method="get">
                 @csrf
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
@@ -209,7 +209,7 @@
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                                 <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <a type="button" id="reset" href="{{ route('surat.index') }}"
+                            <a type="button" id="reset" href="{{ route('pengajuan-disposisi.index') }}"
                                 class="btn btn-secondary mb-1" title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
                                     Filter</span></a>
@@ -236,7 +236,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="#" class="text-white ml-2 tombol-export">
+                            <a href="{{ route('pengajuan.export') }}" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
                                     data-placement="top" title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
@@ -257,7 +257,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.surat') }}" method="post">
+                                <form action="{{ route('search.pengajuan') }}" method="post">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -266,8 +266,8 @@
                                         <div class="button-search">
                                             <button type="submit"
                                                 class="btn btn-primary button-submit-search">Search</button>
-                                            <button type="reset"
-                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                            <a type="button" href="{{ route('pengajuan-disposisi.index') }}"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</a>
                                         </div>
                                     </div>
                                 </form>
@@ -349,18 +349,18 @@
                                                                     data-placement="left" title="Edit data disposisi"
                                                                     data-original-title="Edit data disposisi"
                                                                     class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
+                                                                    href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
                                                                 <form method="POST"
-                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
+                                                                    action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
                                                                     class="tombol-hapus">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="button" data-toggle="tooltip"
                                                                         data-placement="bottom"
-                                                                        title="Hapus data disposisi"
-                                                                        data-original-title="Hapus data disposisi"
+                                                                        title="Hapus data Pengajuan"
+                                                                        data-original-title="Hapus data Pengajuan"
                                                                         class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>
@@ -732,19 +732,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Disposisi ini!',
+                        text: 'Ingin menghapus data Pengajuan ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Disposisi berhasil dihapus!', {
+                            swal('Data Pengajuan berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Disposisi tidak jadi dihapus!');
+                            swal('Data Pengajuan tidak jadi dihapus!');
                         }
                     });
             }

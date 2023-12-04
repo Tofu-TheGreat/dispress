@@ -255,8 +255,8 @@
                                         <div class="button-search">
                                             <button type="submit"
                                                 class="btn btn-primary button-submit-search">Search</button>
-                                            <button type="reset"
-                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</button>
+                                            <a type="button" href="{{ route('surat.index') }}"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</a>
                                         </div>
                                     </div>
                                 </form>

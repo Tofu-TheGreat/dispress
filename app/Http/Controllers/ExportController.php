@@ -6,6 +6,7 @@ use App\Exports\AdminExport;
 use App\Exports\OfficerExport;
 use App\Exports\InstansiExport;
 use App\Exports\KlasifikasiExport;
+use App\Exports\PengajuanExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
 use App\Imports\AdminImport;
@@ -38,6 +39,10 @@ class ExportController extends Controller
     public function export_nomorklasifikasi()
     {
         return Excel::download(new KlasifikasiExport, 'Data-Nomor-Klasifikasi.xlsx');
+    }
+    public function export_pengajuan()
+    {
+        return Excel::download(new PengajuanExport, 'Data-Nomor-Pengajuan.xlsx');
     }
     // public function getPerusahaanNames()
     // {

@@ -61,7 +61,7 @@ class PengajuanController extends Controller
     public function store(PengajuanRequest $request)
     {
         $this->pengajuanRepository->store($request);
-        return back()->with('success', 'Berhasil membuat pengajuan surat untuk Didisposisikan.');
+        return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil membuat pengajuan surat untuk Didisposisikan.');
     }
 
     /**
@@ -102,17 +102,39 @@ class PengajuanController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->pengajuanRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->pengajuanRepository->destroy($encryptId);
+        return back()->with('success', 'Berhasil menghapus data Pengajuan');
     }
 
     public function filterData(Request $request)
     {
-        $ajukanList =  $this->pengajuanRepository->filterData($request);
+        $pengajuanList =  $this->pengajuanRepository->filterData($request);
+        $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
+            'title' => 'Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'pengajuanList' => $pengajuanList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 
 
     public function search(Request $request)
     {
-        $ajukanList = $this->pengajuanRepository->search($request);
+        $pengajuanList = $this->pengajuanRepository->search($request);
+        $userList = User::get();
+        $klasifikasiList = Klasifikasi::get();
+        return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
+            'title' => 'Pengajuan Disposisi',
+            'active' => 'Pengajuan-disposisi',
+            'active1' => 'manajemen-surat',
+            'pengajuanList' => $pengajuanList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 }

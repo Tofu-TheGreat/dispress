@@ -466,7 +466,8 @@
                                         </div>
                                         <input type="date"
                                             class="form-control capitalize @error('tanggal_surat') is-invalid @enderror"
-                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            placeholder="ex:  11/14/2023"
+                                            value="{{ date('d-F-Y', strtotime($data->tanggal_surat)) }}"
                                             id="tanggal_surat" name="tanggal_surat" readonly>
                                     </div>
                                     <span class="text-danger">
@@ -743,7 +744,8 @@
                                         </div>
                                         <input type="date"
                                             class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
-                                            placeholder="ex:  11/14/2023" value="{{ $data->tanggal_surat }}"
+                                            placeholder="ex:  11/14/2023"
+                                            value="{{ date('d-F-Y', strtotime($data->tanggal_surat)) }}"
                                             id="tanggal_disposisi" name="tanggal_disposisi" disabled>
                                     </div>
                                     <span class="text-danger">

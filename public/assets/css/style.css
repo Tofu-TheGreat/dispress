@@ -3666,9 +3666,6 @@ body.layout-3 .main-footer {
     letter-spacing: 1.3px;
     font-weight: 600;
 }
-.main-sidebar .sidebar-menu li.menu-header:not(:first-child) {
-    margin-top: 10px;
-}
 .main-sidebar .sidebar-menu li a {
     position: relative;
     display: flex;

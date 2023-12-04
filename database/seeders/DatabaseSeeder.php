@@ -87,6 +87,7 @@ class DatabaseSeeder extends Seeder
             'id_instansi' => '1',
             'id_klasifikasi' => '1',
             'id_user' => '5',
+            'status_verifikasi' => '1',
             'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);
@@ -97,6 +98,7 @@ class DatabaseSeeder extends Seeder
             'id_instansi' => '2',
             'id_klasifikasi' => '2',
             'id_user' => '1',
+            'status_verifikasi' => '0',
             'catatan_verifikasi' => 'Tolong segera di verifikasi ya pak/bu',
             'scan_dokumen' => 'scan.pdf',
         ]);

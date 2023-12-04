@@ -14,12 +14,12 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-8 col-sm-12">
+                    <div class="col-md-7 col-sm-12">
                         <h4 class="text-dark judul-page">Manajemen Surat Masuk</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
+                    <div class="col-md-5 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/pengajuan-disposisi">Pengajuan Disposisi</a>
                         </div>
@@ -109,7 +109,7 @@
                                         <select
                                             class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
                                             id="status_verifikasi" name="status_verifikasi" disabled>
-                                            <option selected disabled>Pilih Sifat Surat</option>
+                                            <option selected disabled></option>
                                             <option value="0">
                                                 Belum Terverifikasi</option>
                                             <option value="1">
@@ -394,7 +394,13 @@
 
                 // Mengisi nilai pada elemen dengan ID 'nomor_surat' dan 'tanggal_surat'
                 $('#nomor_surat').val(selectedSurat ? selectedSurat.nomor_surat : '');
-                $('#tanggal_surat').val(selectedSurat ? selectedSurat.tanggal_surat : '');
+                var tanggalSuratValue = selectedSurat ? selectedSurat.tanggal_surat : '';
+
+                // Format the date using moment.js
+                var formattedTanggalSurat = moment(tanggalSuratValue).format('DD-MMMM-YYYY');
+
+                // Set the formatted date to the textarea
+                $('#tanggal_surat').val(formattedTanggalSurat);
 
                 // Menetapkan nilai pada elemen dengan ID 'isi_surat', 'status_verifikasi', dan 'id_instansi'
                 const isiSuratValue = selectedSurat ? selectedSurat.isi_surat : '';
@@ -416,6 +422,14 @@
     </script>
 
     <script>
+        // Mendapatkan elemen dengan class tertentu
+        const mycardCollapse = document.querySelector(".collapse");
+
+        // Menghapus kelas 'show' jika lebar layar kurang dari atau sama dengan 991px
+        if (window.innerWidth <= 991) {
+            mycardCollapse.classList.toggle("show");
+        }
+
         // Mengambil data klasifikasiList dari PHP
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 

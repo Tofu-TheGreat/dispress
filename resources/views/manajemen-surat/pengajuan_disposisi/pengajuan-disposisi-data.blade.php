@@ -626,7 +626,7 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-center row">
-                                <div class="col-12 d-flex justify-content-center">Pilih Salah Satu</div>
+                                <div class="col-12 d-flex justify-content-center text-primary">Pilih Salah Satu</div>
                                 <div class="mt-2">
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="jabatan" name="jenis_disposisi"

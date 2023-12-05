@@ -266,7 +266,7 @@
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
-                                                                <i class="bi  bi-envelope-exclamation-fill"></i>
+                                                                <i class="bi  bi-person-fill"></i>
                                                             </div>
                                                         </div>
                                                         <input type="text"

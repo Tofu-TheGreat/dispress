@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="col-12 ">
-                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pengajuan Disposisi
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi Disposisi
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -260,7 +260,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="#" class="text-white ml-2 tombol-export">
+                            <a href="{{ route('disposisi.export') }}" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
                                     data-placement="top" title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
@@ -280,6 +280,22 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.disposisi') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <a type="button" href="{{ route('disposisi.index') }}"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($disposisiList->isEmpty())
@@ -295,37 +311,26 @@
                                                         <div class="position-relative">
                                                             <h4>{{ $data->surat->nomor_surat }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Berstatus
-                                                                {{ $data->status_disposisi }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
-                                                            @if ($data->sifat_disposisi == 'Biasa')
-                                                                <button class="btn btn-primary tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Prioritas')
-                                                                <button class="btn btn-warning tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Rahasia')
+                                                            @if ($data->status_disposisi == '0')
                                                                 <button class="btn btn-danger tombol-disposisi mr-2"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
+                                                                    title="Belum Didisposisikan"
+                                                                    data-original-title="Belum Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-minus"></i></span>
+                                                                </button>
+                                                            @elseif ($data->status_disposisi == '1')
+                                                                <button class="btn btn-success tombol-disposisi mr-2"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Sudah Didisposisikan"
+                                                                    data-original-title="Sudah Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-check"></i></span>
                                                                 </button>
                                                             @endif
                                                             <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
@@ -339,7 +344,7 @@
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
                                                                 --</p>
                                                             <div class="mt-1 mb-1 tombol-disposisi">
                                                                 <span class="tombol-disposisi" data-toggle="tooltip"
@@ -357,29 +362,29 @@
                                                                 </span>
                                                             </div>
                                                             <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                <a href="{{ route('disposisi-disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data disposisi"
-                                                                    data-original-title="Detail data disposisi"
+                                                                    title="Detail data disposisi disposisi"
+                                                                    data-original-title="Detail data disposisi disposisi"
                                                                     class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                    href=""><i class="pl-1  bi bi-eye "></i>
+                                                                    href=""><i class="pl-1 bi bi-eye"></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
                                                                     data-placement="left" title="Edit data disposisi"
                                                                     data-original-title="Edit data disposisi"
                                                                     class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                    href="{{ route('disposisi-disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
                                                                         class="pl-1  bi bi-pencil-square "></i>
                                                                 </a>
                                                                 <form method="POST"
-                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                    action="{{ route('disposisi-disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     class="tombol-hapus">
                                                                     @csrf
                                                                     @method('DELETE')
                                                                     <button type="button" data-toggle="tooltip"
                                                                         data-placement="bottom"
-                                                                        title="Hapus data disposisi"
-                                                                        data-original-title="Hapus data disposisi"
+                                                                        title="Hapus data Disposisi"
+                                                                        data-original-title="Hapus data Disposisi"
                                                                         class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>

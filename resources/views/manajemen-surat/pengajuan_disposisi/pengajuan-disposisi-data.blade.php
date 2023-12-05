@@ -630,19 +630,24 @@
                                     Satu</div>
                                 <div class="mt-2">
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="jabatan" name="jenis_disposisi"
-                                            class="custom-control-input" onclick="toggleSelects()">
-                                        <label class="custom-control-label" for="jabatan">Kirim Sesuai Jabatan</label>
+                                        <input type="radio" id="jabatan{{ $data->id_pengajuan }}"
+                                            name="jenis_disposisi" class="custom-control-input jabatan"
+                                            onclick="toggleSelects({{ $data->id_pengajuan }})">
+                                        <label class="custom-control-label" for="jabatan{{ $data->id_pengajuan }}">Kirim
+                                            Sesuai Jabatan</label>
                                     </div>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="personal" name="jenis_disposisi"
-                                            class="custom-control-input" onclick="toggleSelects()">
-                                        <label class="custom-control-label" for="personal">Kirim Sesuai Personal</label>
+                                        <input type="radio" id="personal{{ $data->id_pengajuan }}"
+                                            name="jenis_disposisi" class="custom-control-input personal"
+                                            onclick="toggleSelects({{ $data->id_pengajuan }})">
+                                        <label class="custom-control-label" for="personal{{ $data->id_pengajuan }}">Kirim
+                                            Sesuai Personal</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-12 mt-2">
-                                <div class="form-group" id="tujuan_disposisi_div">
+                                <div class="form-group tujuan_disposisi_div"
+                                    id="tujuan_disposisi_div{{ $data->id_pengajuan }}">
                                     <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi (Jabatan):
                                     </label>
                                     <div class="input-group">
@@ -683,7 +688,7 @@
                                 </div>
                             </div>
                             <div class="col-12">
-                                <div class="form-group" id="id_user_div" style="display:none;">
+                                <div class="form-group id_user_div d-none" id="id_user_div{{ $data->id_pengajuan }}">
                                     <label class="capitalize" for="id_user">Pilih Tujuan Disposisi (Personal): </label>
                                     <div class="input-group">
                                         <select class="form-control select2  @error('id_user') is-invalid @enderror "
@@ -811,19 +816,19 @@
 
     {{-- script mengatur tujuan disposisi --}}
     <script>
-        function toggleSelects() {
-            const jabatanChecked = document.getElementById('jabatan').checked;
-            const personalChecked = document.getElementById('personal').checked;
+        function toggleSelects(id) {
+            const jabatanChecked = document.getElementById('jabatan' + id).checked;
+            const personalChecked = document.getElementById('personal' + id).checked;
 
-            const tujuanDisposisiDiv = document.getElementById('tujuan_disposisi_div');
-            const idUserDiv = document.getElementById('id_user_div');
+            const tujuanDisposisiDiv = document.getElementById('tujuan_disposisi_div' + id);
+            const idUserDiv = document.getElementById('id_user_div' + id);
 
             if (jabatanChecked) {
-                tujuanDisposisiDiv.style.display = 'block';
-                idUserDiv.style.display = 'none';
+                tujuanDisposisiDiv.classList.remove('d-none');
+                idUserDiv.classList.add('d-none');
             } else if (personalChecked) {
-                tujuanDisposisiDiv.style.display = 'none';
-                idUserDiv.style.display = 'block';
+                tujuanDisposisiDiv.classList.add('d-none');
+                idUserDiv.classList.remove('d-none');
             }
         }
     </script>

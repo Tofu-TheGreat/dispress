@@ -626,7 +626,8 @@
                                 </div>
                             </div>
                             <div class="col-12 d-flex justify-content-center row">
-                                <div class="col-12 d-flex justify-content-center text-primary">Pilih Salah Satu</div>
+                                <div class="col-12 d-flex justify-content-center text-primary section-title">Pilih Salah
+                                    Satu</div>
                                 <div class="mt-2">
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="jabatan" name="jenis_disposisi"
@@ -640,7 +641,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12">
+                            <div class="col-12 mt-2">
                                 <div class="form-group" id="tujuan_disposisi_div">
                                     <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi (Jabatan):
                                     </label>
@@ -692,12 +693,34 @@
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                    {{ $data->nama }}</option>
+                                                    {{ $data->nama }} | {{ $data->jabatan }}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
                                         @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tanggal_disposisi">Masukkan Tanggal Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control datepicker tanggal_disposisi @error('tanggal_disposisi') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_disposisi') }}"
+                                            id="tanggal_disposisi" name="tanggal_disposisi" required>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_disposisi')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -789,11 +812,11 @@
     {{-- script mengatur tujuan disposisi --}}
     <script>
         function toggleSelects() {
-            var jabatanChecked = document.getElementById('jabatan').checked;
-            var personalChecked = document.getElementById('personal').checked;
+            const jabatanChecked = document.getElementById('jabatan').checked;
+            const personalChecked = document.getElementById('personal').checked;
 
-            var tujuanDisposisiDiv = document.getElementById('tujuan_disposisi_div');
-            var idUserDiv = document.getElementById('id_user_div');
+            const tujuanDisposisiDiv = document.getElementById('tujuan_disposisi_div');
+            const idUserDiv = document.getElementById('id_user_div');
 
             if (jabatanChecked) {
                 tujuanDisposisiDiv.style.display = 'block';

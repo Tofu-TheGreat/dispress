@@ -27,20 +27,21 @@ class DisposisiRequest extends FormRequest
             'catatan_disposisi' => 'required|min:5|max:100',
             'sifat_disposisi' => 'required',
             'status_disposisi' => 'required',
-            'tujuan_disposisi' => 'required',
+            'tanggal_disposisi' => 'required|date',
+            // 'tujuan_disposisi' => 'required',
             'id_user' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            // 'tanggal_disposisi.required' => 'Harap masukkan tanggal disposisi',
-            // 'tanggal_disposisi.date' => 'Tanggal disposisi harus berupa tanggal',
             'catatan_disposisi.required' => 'Harap isi catatan disposisi',
+            'catatan_disposisi.min' => 'Catatan disposisi tidak boleh kurang dari 5 karakter',
             'catatan_disposisi.max' => 'Catatan disposisi tidak boleh lebih dari 100 karakter',
             'sifat_disposisi.required' => 'Harap pilih sifat disposisi',
             'status_disposisi.required' => 'Harap pilih status disposisi',
-            'tujuan_disposisi.required' => 'Harap tentukan tujuan diposisi',
+            'tanggal_disposisi.date' => 'Tanggal Disposisi harus dalam format tanggal',
+            // 'tujuan_disposisi.required' => 'Harap tentukan tujuan diposisi',
             'id_user.required' => 'Harap tentukan penerima diposisi',
         ];
     }

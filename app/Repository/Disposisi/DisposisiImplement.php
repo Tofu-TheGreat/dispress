@@ -3,6 +3,7 @@
 namespace app\Repository\Disposisi;
 
 use App\Models\Disposisi;
+use App\Models\Pengajuan;
 use App\Repository\Disposisi\DisposisiRepository;
 use Illuminate\Support\Facades\Auth;
 
@@ -37,16 +38,37 @@ class DisposisiImplement implements DisposisiRepository
     public function store($data)
     {
         $tujuanDisposisi = is_array($data->tujuan_disposisi) ? $data->tujuan_disposisi : [$data->tujuan_disposisi];
+        $personalDisposisi = is_array($data->id_penerima) ? $data->id_penerima : [$data->id_penerima];
 
-        foreach ($tujuanDisposisi as $jabatan) {
-            $this->disposisi->create([
-                'id_pengajuan' => $data->id_pengajuan,
-                'catatan_disposisi' => $data->catatan_disposisi,
-                'status_disposisi' => $data->status_disposisi,
-                'sifat_disposisi' => $data->sifat_disposisi,
-                'id_user' => $data->id_user,
-                'tujuan_disposisi' => $jabatan,
-                'id_penerima' => $data->id_penerima,
+        if ($data->has('tujuan_disposisi')) {
+            foreach ($tujuanDisposisi as $jabatan) {
+                $this->disposisi->create([
+                    'id_pengajuan' => $data->id_pengajuan,
+                    'catatan_disposisi' => $data->catatan_disposisi,
+                    'status_disposisi' => $data->status_disposisi,
+                    'sifat_disposisi' => $data->sifat_disposisi,
+                    'id_user' => $data->id_user,
+                    'tanggal_disposisi' => $data->tanggal_disposisi,
+                    'tujuan_disposisi' => $jabatan,
+                ]);
+            }
+            Pengajuan::where('id_pengajuan', $data->id_pengajuan)->update([
+                'status_pengajuan' => '1'
+            ]);
+        } elseif ($data->has('id_penerima')) {
+            foreach ($personalDisposisi as $penerima) {
+                $this->disposisi->create([
+                    'id_pengajuan' => $data->id_pengajuan,
+                    'catatan_disposisi' => $data->catatan_disposisi,
+                    'status_disposisi' => $data->status_disposisi,
+                    'sifat_disposisi' => $data->sifat_disposisi,
+                    'id_user' => $data->id_user,
+                    'tanggal_disposisi' => $data->tanggal_disposisi,
+                    'id_penerima' => $penerima,
+                ]);
+            }
+            Pengajuan::where('id_pengajuan', $data->id_pengajuan)->update([
+                'status_pengajuan' => '1'
             ]);
         }
     }
@@ -77,6 +99,7 @@ class DisposisiImplement implements DisposisiRepository
                 'sifat_disposisi' => $data->sifat_disposisi,
                 'id_user' => $data->id_user,
                 'tujuan_disposisi' => $jabatan,
+                'tanggal_disposisi' => $data->tanggal_disposisi,
                 'id_penerima' => $data->id_penerima,
             ]);
         }

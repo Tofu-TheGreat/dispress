@@ -73,4 +73,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Surat::class, 'id_user');
     }
+    public function penerimaDisposisi()
+    {
+        return $this->hasMany(Disposisi::class, 'id_penerima');
+    }
 }

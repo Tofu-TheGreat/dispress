@@ -434,10 +434,10 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="/disposisi/{{ $data->id_pengajuan }}" method="post" enctype="multipart/form-data">
+                    <form action="/disposisi" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                        <input type="text" name="id_pengajuan" value="{{ $data->id_pengajuan }}" hidden
+                            id="">
                         <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
                         <div class="row px-4 pt-4">
                             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -542,8 +542,8 @@
                                         </div>
                                         <input type="text"
                                             class="form-control @error('tujuan_pengajuan') is-invalid @enderror"
-                                            value="{{ $data->tujuan_pengajuan }}" id="tujuan_pengajuan"
-                                            name="tujuan_pengajuan" readonly>
+                                            value="{{ jabatanConvert($data->tujuan_pengajuan, 'jabatan') }}"
+                                            id="tujuan_pengajuan" name="tujuan_pengajuan" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -648,7 +648,7 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
+                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
                                             style="width: 100%;">
                                             <option disabled>Pilih Tujuan Disposisi</option>
                                             <option value="0"
@@ -687,18 +687,18 @@
                                     <label class="capitalize" for="id_user">Pilih Tujuan Disposisi (Personal): </label>
                                     <div class="input-group">
                                         <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                            id="id_user" name="id_user[]" multiple="" required
-                                            style="width: 100%;">
+                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%;">
                                             <option disabled>Pilih Tujuan Disposisi</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                    {{ $data->nama }} | {{ $data->jabatan }}</option>
+                                                    {{ $data->nama }} | {{ jabatanConvert($data->jabatan, 'jabatan') }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('id_user')
+                                        @error('id_penerima')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -856,6 +856,19 @@
                     message: "{{ Session::get('success') }}",
                     position: 'topRight'
                 })
+            });
+        </script>
+    @endif
+    @if ($errors->any())
+        <script>
+            $(document).ready(function() {
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif

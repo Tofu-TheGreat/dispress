@@ -18,6 +18,7 @@ class Disposisi extends Model
         'status_disposisi',
         'sifat_disposisi',
         'id_user',
+        'tanggal_disposisi',
         'tujuan_disposisi',
         'id_penerima',
     ];
@@ -29,5 +30,9 @@ class Disposisi extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+    public function penerima()
+    {
+        return $this->belongsTo(User::class, 'id_penerima');
     }
 }

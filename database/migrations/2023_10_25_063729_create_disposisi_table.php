@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Biasa, Prioritas, Rahasia
             $table->unsignedBigInteger('id_user'); //Pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->nullable(); //Penerima
+            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '999'])->default('999'); //Penerima
             // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
             $table->unsignedBigInteger('id_penerima'); //Penerima
             $table->foreign('id_penerima')->references('id_user')->on('users')->onDelete('cascade');

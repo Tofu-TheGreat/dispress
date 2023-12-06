@@ -207,13 +207,15 @@
                             <a class="nav-link active" id="belum-terdisposisikan-tab3" data-toggle="tab"
                                 href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
                                 aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
-                                Didisposisikan</a>
+                                Didisposisikan<span
+                                    class="badge badge-transparent">{{ $pengajuanList0->count() }}</span></a>
                         </li>
                         <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
                                 role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
                                     class="bi bi-patch-check text-success"></i> Sudah
-                                Didisposisikan</a>
+                                Didisposisikan<span
+                                    class="badge badge-transparent">{{ $pengajuanList1->count() }}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -594,7 +596,7 @@
     </section>
 
     <!-- Modal Disposisi -->
-    @foreach ($pengajuanList1 as $data)
+    @foreach ($pengajuanList0 as $data)
         <div class="modal fade disposisi-modal" id="disposisi-modal{{ $data->id_pengajuan }}"
             aria-labelledby="disposisi-modal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">

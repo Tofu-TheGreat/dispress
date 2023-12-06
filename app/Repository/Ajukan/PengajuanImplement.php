@@ -63,7 +63,7 @@ class PengajuanImplement implements PengajuanRepository
     {
         $this->pengajuan->where('id_pengajuan', $id)->delete();
     }
-    public function filterData($data)
+    public function filterData($data, $status)
     {
         $query = $this->pengajuan->query();
 
@@ -92,20 +92,20 @@ class PengajuanImplement implements PengajuanRepository
         }
 
 
-        return $query->paginate(6);
+        return $query->where('status_pengajuan', $status)->paginate(6);
     }
-    public function search($data)
+    public function search($data, $status)
     {
-        $search = $this->pengajuan->where('nomor_agenda', 'like', "%" . $data->search . "%")
-            ->orWhere(function ($query) use ($data) {
-                $query->where('tanggal_terima', 'like', "%" . $data->search . "%")
+        $search = $this->pengajuan->where('status_pengajuan', $status)->where('nomor_agenda', 'like', "%" . $data->search . "%")
+            ->orWhere(function ($query) use ($data, $status) {
+                $query->where('status_pengajuan', $status)->where('tanggal_terima', 'like', "%" . $data->search . "%")
                     ->orWhereRaw("DATE_FORMAT(tanggal_terima, '%M') LIKE ?", ["%" . $data->search . "%"]);
             })
-            ->orWhereHas('surat', function ($query) use ($data) {
-                $query->where('nomor_surat', 'like', "%" . $data->search . "%");
+            ->orWhereHas('surat', function ($query) use ($data, $status) {
+                $query->where('status_pengajuan', $status)->where('nomor_surat', 'like', "%" . $data->search . "%");
             })
-            ->orWhereHas('klasifikasi', function ($query) use ($data) {
-                $query->where('nomor_klasifikasi', 'like', "%" . $data->search . "%");
+            ->orWhereHas('klasifikasi', function ($query) use ($data, $status) {
+                $query->where('status_pengajuan', $status)->where('nomor_klasifikasi', 'like', "%" . $data->search . "%");
             });
         // ->orWhereHas('user', function ($query) use ($data) {
         //     $query->where('nama', 'like', "%" . $data->search . "%");

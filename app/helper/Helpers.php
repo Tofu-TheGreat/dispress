@@ -112,7 +112,7 @@ if (!function_exists('convertDisposisiField')) {
                     1 => 'Biasa',
                     2 => 'Segera',
                     3 => 'Penting',
-                    3 => 'Rahasia',
+                    4 => 'Rahasia',
                 ];
                 break;
             case 'status':
@@ -120,7 +120,7 @@ if (!function_exists('convertDisposisiField')) {
                     0 => 'Arsipkan',
                     1 => 'Jabarkan',
                     2 => 'Umumkan',
-                    3 => 'laksanakan',
+                    3 => 'Laksanakan',
                     4 => 'Persiapkan',
                     5 => 'Ikuti',
                 ];

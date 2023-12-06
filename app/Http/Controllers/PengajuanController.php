@@ -125,14 +125,17 @@ class PengajuanController extends Controller
 
     public function filterData(Request $request)
     {
-        $pengajuanList =  $this->pengajuanRepository->filterData($request);
+        $pengajuanList0 =  $this->pengajuanRepository->filterData($request, '0');
+        $pengajuanList1 =  $this->pengajuanRepository->filterData($request, '1');
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
             'active1' => 'manajemen-surat',
-            'pengajuanList' => $pengajuanList,
+            // 'pengajuanList' => $pengajuanList,
+            'pengajuanList0' => $pengajuanList0,
+            'pengajuanList1' => $pengajuanList1,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
         ]);
@@ -141,14 +144,17 @@ class PengajuanController extends Controller
 
     public function search(Request $request)
     {
-        $pengajuanList = $this->pengajuanRepository->search($request);
+        $pengajuanList0 = $this->pengajuanRepository->search($request, '0');
+        $pengajuanList1 = $this->pengajuanRepository->search($request, '1');
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
             'active1' => 'manajemen-surat',
-            'pengajuanList' => $pengajuanList,
+            // 'pengajuanList' => $pengajuanList,
+            'pengajuanList0' => $pengajuanList0,
+            'pengajuanList1' => $pengajuanList1,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
         ]);

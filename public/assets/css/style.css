@@ -1529,7 +1529,7 @@ h6 .badge {
     margin-left: 5px;
     padding: 4px 7px;
 }
-.btn .badge.badge-transparent {
+.badge.badge-transparent {
     background-color: rgba(255, 255, 255, 0.25);
     color: #fff;
 }

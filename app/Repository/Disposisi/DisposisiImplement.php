@@ -144,4 +144,23 @@ class DisposisiImplement implements DisposisiRepository
 
         return $result;
     }
+    public function search($data, $status)
+    {
+        $search = $this->disposisi->where('nomor_agenda', 'like', "%" . $data->search . "%")
+            ->orWhere(function ($query) use ($data, $status) {
+                $query->where('tanggal_terima', 'like', "%" . $data->search . "%")
+                    ->orWhereRaw("DATE_FORMAT(tanggal_terima, '%M') LIKE ?", ["%" . $data->search . "%"]);
+            })
+            ->orWhereHas('surat', function ($query) use ($data, $status) {
+                $query->where('nomor_surat', 'like', "%" . $data->search . "%");
+            })
+            ->orWhereHas('klasifikasi', function ($query) use ($data, $status) {
+                $query->where('nomor_klasifikasi', 'like', "%" . $data->search . "%");
+            });
+        // ->orWhereHas('user', function ($query) use ($data) {
+        //     $query->where('nama', 'like', "%" . $data->search . "%");
+        // })
+        // ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
+        return $search->paginate(6);
+    }
 }

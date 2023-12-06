@@ -12,9 +12,9 @@ class PengajuanImplement implements PengajuanRepository
         $this->pengajuan = $pengajuan;
     }
 
-    public function index()
+    public function index($status)
     {
-        return $this->pengajuan->paginate(6);
+        return $this->pengajuan->where('status_pengajuan', $status)->paginate(6);
     }
     public function store($data)
     {

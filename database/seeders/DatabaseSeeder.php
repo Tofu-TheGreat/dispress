@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
         // Seed Posisi Jabatan
         PosisiJabatan::factory()->create([
             'nama_posisi_jabatan' => 'Kepala Sekolah',
-            'deskripsi' => 'Pengurus utama sekolah',
-            'tingkat' => '1',
+            'deskripsi_jabatan' => 'Pengurus utama sekolah',
+            'tingkat_jabatan' => '1',
         ]);
 
         // Seed User

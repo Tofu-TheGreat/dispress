@@ -13,7 +13,7 @@ class PosisiJabatan extends Model
     protected $primaryKey = 'id_posisi_jabatan';
     protected $fillable = [
         'nama_posisi_jabatan',
-        'deskripsi',
-        'tingkat',
+        'deskripsi_jabatan',
+        'tingkat_jabatan',
     ];
 }

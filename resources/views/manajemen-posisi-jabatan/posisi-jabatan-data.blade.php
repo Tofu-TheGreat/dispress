@@ -91,7 +91,7 @@
 
     @foreach ($posisiJabatanList as $item)
         <!-- Modal Detail nomor_klasifikasi -->
-        <div class="modal fade" id="detail-modal{{ $item->posisi_jabatan }}" aria-labelledby="detail-modal"
+        <div class="modal fade" id="detail-modal{{ $item->id_posisi_jabatan }}" aria-labelledby="detail-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
@@ -104,23 +104,23 @@
                     <div class="row px-4 pt-4">
                         <div class=" col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group ">
-                                <label for="nomor_klasifikasi">Nomor Klasifikasi: </label>
+                                <label for="nama_posisi_jabatan">Nama Posisi Jabatan: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend ">
                                         <div class="input-group-text bg-secondary">
-                                            <i class="bi bi-list-ol"></i>
+                                            <i class="bi bi-tag-fill"></i>
                                         </div>
                                     </div>
                                     <input type="text"
-                                        class="form-control @error('nomor_klasifikasi') is-invalid @enderror"
-                                        placeholder="ex: PT Gayuh Net" value="{{ $item->nomor_klasifikasi }}"
-                                        id="nomor_klasifikasi" name="nomor_klasifikasi" readonly>
+                                        class="form-control @error('nama_posisi_jabatan') is-invalid @enderror"
+                                        placeholder="ex: Kepala Sekolah" value="{{ $item->nama_posisi_jabatan }}"
+                                        id="nama_posisi_jabatan" name="nama_posisi_jabatan" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="nama_klasifikasi">Nama Klasifikasi: </label>
+                                <label for="tingkat_jabatan">Tingkat Jabatan: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text bg-secondary">
@@ -128,10 +128,22 @@
                                         </div>
                                     </div>
                                     <input type="text"
-                                        class="form-control @error('nama_klasifikasi') is-invalid @enderror"
-                                        placeholder="ex: 0878-2730-3388" value="{{ $item->nama_klasifikasi }}"
-                                        id="nama_klasifikasi" name="nama_klasifikasi" readonly>
+                                        class="form-control @error('tingkat_jabatan') is-invalid @enderror"
+                                        placeholder="ex: 0878-2730-3388" value="{{ $item->tingkat_jabatan }}"
+                                        id="tingkat_jabatan" name="tingkat_jabatan" readonly>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="deskripsi_jabatan">Masukkan Deskripsi Jabatan: </label>
+                                <textarea class="summernote-simple summernote-disable @error('deskripsi_jabatan') is-invalid @enderror"
+                                    id="deskripsi_jabatan" name="deskripsi" required> {{ $item->deskripsi_jabatan }} </textarea>
+                                <span class="text-danger">
+                                    @error('deskripsi_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -146,8 +158,8 @@
     @endforeach
 
     @foreach ($posisiJabatanList as $item)
-        <!-- Modal Edit nomor_klasifikasi -->
-        <div class="modal fade" id="edit-modal{{ $item->posisi_jabatan }}" aria-labelledby="edit-modal"
+        <!-- Modal Edit Posisi Jabatan -->
+        <div class="modal fade" id="edit-modal{{ $item->id_posisi_jabatan }}" aria-labelledby="edit-modal"
             aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
@@ -157,28 +169,28 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="/nomor-klasifikasi/{{ $item->posisi_jabatan }}" method="post"
+                    <form action="/nomor-klasifikasi/{{ $item->id_posisi_jabatan }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <input type="text" name="posisi_jabatan" value="{{ $item->posisi_jabatan }}" hidden>
+                        <input type="text" name="posisi_jabatan" value="{{ $item->id_posisi_jabatan }}" hidden>
                         <div class="row px-4 pt-4">
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="nomor_klasifikasi">Nomor Klasifikasi: </label>
+                                    <label for="nama_posisi_jabatan">Nama Posisi Jabatan: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="fas fa-building"></i>
+                                                <i class="bi bi-tag-fill"></i>
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control @error('nomor_klasifikasi') is-invalid @enderror"
-                                            placeholder="ex: 005" value="{{ $item->nomor_klasifikasi }}"
-                                            id="nomor_klasifikasi" name="nomor_klasifikasi" required autofocus>
+                                            class="form-control @error('nama_posisi_jabatan') is-invalid @enderror"
+                                            placeholder="ex: Kepala Sekolah" value="{{ $item->nama_posisi_jabatan }}"
+                                            id="nama_posisi_jabatan" name="nama_posisi_jabatan" required autofocus>
                                     </div>
                                     <span class="text-danger">
-                                        @error('nomor_klasifikasi')
+                                        @error('nama_posisi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -186,20 +198,32 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="nama_klasifikasi">Nama klasifikasi: </label>
+                                    <label for="tingkat_jabatan">Tingkat Jabatan: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                                <i class="bi bi-telephone-fill"></i>
+                                                <i class="bi bi-stack"></i>
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control @error('nama_klasifikasi') is-invalid @enderror"
-                                            placeholder="ex: Undangan" value="{{ $item->nama_klasifikasi }}"
-                                            id="nama_klasifikasi" name="nama_klasifikasi" required>
+                                            class="form-control @error('tingkat_jabatan') is-invalid @enderror"
+                                            placeholder="ex: Undangan" value="{{ $item->tingkat_jabatan }}"
+                                            id="tingkat_jabatan" name="tingkat_jabatan" required>
                                     </div>
                                     <span class="text-danger">
-                                        @error('nama_klasifikasi')
+                                        @error('tingkat_jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="deskripsi_jabatan">Masukkan Deskripsi Jabatan: </label>
+                                    <textarea class="summernote-simple @error('deskripsi_jabatan') is-invalid @enderror" id="deskripsi_jabatan"
+                                        name="deskripsi" required> {{ $item->deskripsi_jabatan }} </textarea>
+                                    <span class="text-danger">
+                                        @error('deskripsi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -216,15 +240,15 @@
                 </div>
             </div>
         </div>
-        {{-- End Edit nomor_klasifikasi --}}
+        {{-- End Edit Posisi Jabatan --}}
     @endforeach
 
-    <!-- Modal Tambah nomor klasifikasi -->
+    <!-- Modal Tambah Posisi Jabatan -->
     <div class="modal fade" id="tambah-modal" aria-labelledby="tambah-modal" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered ">
             <div class="modal-content">
                 <div class="modal-header border-bottom pb-4">
-                    <h5 class="modal-title" id="tambah-modal">Tambah Data Nomor klasifikasi</h5>
+                    <h5 class="modal-title" id="tambah-modal">Tambah Data Posisi Jabatan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -234,28 +258,7 @@
                     <div class="row px-4 pt-4">
                         <div class=" col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group ">
-                                <label for="nomor_klasifikasi">Masukkan Nomor Klasifikasi: </label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="bi bi-list-ol"></i>
-                                        </div>
-                                    </div>
-                                    <input type="text"
-                                        class="form-control @error('nomor_klasifikasi') is-invalid @enderror"
-                                        placeholder="ex: 005" value="{{ old('nomor_klasifikasi') }}"
-                                        id="nomor_klasifikasi" name="nomor_klasifikasi" required autofocus>
-                                </div>
-                                <span class="text-danger">
-                                    @error('nomor_klasifikasi')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label for="nama_klasifikasi">Masukkan Nama Klasifikasi: </label>
+                                <label for="nama_posisi_jabatan">Masukkan Nama Posisi Jabatan: </label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <div class="input-group-text">
@@ -263,12 +266,45 @@
                                         </div>
                                     </div>
                                     <input type="text"
-                                        class="form-control @error('nama_klasifikasi') is-invalid @enderror"
-                                        placeholder="ex: Undangan" value="{{ old('nama_klasifikasi') }}"
-                                        id="nama_klasifikasi" name="nama_klasifikasi" required>
+                                        class="form-control @error('nama_posisi_jabatan') is-invalid @enderror"
+                                        placeholder="ex: Kepala Sekolah" value="{{ old('nama_posisi_jabatan') }}"
+                                        id="nama_posisi_jabatan" name="nama_posisi_jabatan" required autofocus>
                                 </div>
                                 <span class="text-danger">
-                                    @error('nama_klasifikasi')
+                                    @error('nama_posisi_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label for="tingkat_jabatan">Masukkan Tingkat Jabatan: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-stack"></i>
+                                        </div>
+                                    </div>
+                                    <input type="number"
+                                        class="form-control @error('tingkat_jabatan') is-invalid @enderror"
+                                        placeholder="ex: 001" value="{{ old('tingkat_jabatan') }}" id="tingkat_jabatan"
+                                        name="tingkat_jabatan" required>
+                                </div>
+                                <span class="text-danger">
+                                    @error('tingkat_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="deskripsi_jabatan">Masukkan Deskripsi Jabatan: </label>
+                                <textarea class="summernote-simple @error('deskripsi_jabatan') is-invalid @enderror" id="deskripsi_jabatan"
+                                    name="deskripsi" required> {{ old('deskripsi_jabatan') }} </textarea>
+                                <span class="text-danger">
+                                    @error('deskripsi_jabatan')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -285,7 +321,7 @@
             </div>
         </div>
     </div>
-    {{-- End Tambah nomor_klasifikasi --}}
+    {{-- End Tambah Posisi Jabatan --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('posisi_jabatan', function (Blueprint $table) {
             $table->id('id_posisi_jabatan');
             $table->string('nama_posisi_jabatan', 100);
-            $table->string('deskripsi', 100);
-            $table->integer('tingkat');
+            $table->string('deskripsi_jabatan', 100);
+            $table->integer('tingkat_jabatan');
             $table->timestamps();
         });
     }

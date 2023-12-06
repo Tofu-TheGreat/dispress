@@ -4,7 +4,7 @@ namespace App\Repository\Ajukan;
 
 interface PengajuanRepository
 {
-    public function index();
+    public function index($status);
     public function store($data);
     public function show($id);
     public function edit($id);

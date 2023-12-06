@@ -52,7 +52,7 @@
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group ">
                                     <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
                                     <div class="input-group">
@@ -70,27 +70,6 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('id_klasifikasi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="status_pengajuan">Pilih Berdasarkan Status Pengajuan:
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('status_pengajuan') is-invalid  @enderror "
-                                            id="status_pengajuan" name="status_pengajuan" style="width: 100%;">
-                                            <option selected disabled>Pilih Status Pengajuan</option>
-                                            <option value="0" {{ $data->status_pengajuan === '0' ? 'selected' : '' }}>
-                                                Belum Didisposisi</option>
-                                            <option value="1" {{ $data->status_pengajuan === '1' ? 'selected' : '' }}>
-                                                Sudah Didisposisi</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('status_pengajuan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -172,8 +151,7 @@
                                         <input type="date"
                                             class="filter form-control tanggal_pengajuan_awal @error('tanggal_pengajuan_awal') is-invalid @enderror"
                                             placeholder="ex: 11/14/2023" value="{{ old('tanggal_pengajuan_awal') }}"
-                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal"
-                                            style="width: 80%;">
+                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal" style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_pengajuan_awal')
@@ -219,6 +197,30 @@
             </form>
         </div>
         {{-- Filter --}}
+
+        {{-- Tab --}}
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="col">
+                    <ul class="nav nav-pills" id="myTab3" role="tablist">
+                        <li class="nav-item w-50 text-center">
+                            <a class="nav-link active" id="belum-terdisposisikan-tab3" data-toggle="tab"
+                                href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
+                                aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
+                                Didisposisikan</a>
+                        </li>
+                        <li class="nav-item w-50 text-center">
+                            <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
+                                role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
+                                    class="bi bi-patch-check text-success"></i> Sudah
+                                Didisposisikan</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{-- Tab --}}
+
         <div class="section-body">
             <div class="">
                 <div class="card">
@@ -272,147 +274,315 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col">
-                                <div class="row">
-                                    @if ($pengajuanList->isEmpty())
-                                        <div class="d-flex justify-content-center align-content-center">
-                                            <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
-                                                class="w-50">
-                                        </div>
-                                    @else
-                                        @foreach ($pengajuanList as $data)
-                                            <div class="col-sm-12 col-md-12 col-lg-6">
-                                                <div class="card card-primary card-surat shadow-sm">
-                                                    <div class="card-header d-flex justify-content-between">
-                                                        <div class="position-relative">
-                                                            <h4>{{ $data->surat->nomor_surat }}</h4>
-                                                            <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->user->nama }}
-                                                            </small>
-                                                        </div>
-                                                        <div class="card-header-action btn-group">
-                                                            @if ($data->status_pengajuan == '0')
-                                                                <button class="btn btn-danger tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Belum Didisposisikan"
-                                                                    data-original-title="Belum Didisposisikan" disabled>
-                                                                    <span class="d-flex justify-content-center m-0"><i
-                                                                            class="bi bi bi-patch-minus"></i></span>
-                                                                </button>
-                                                            @elseif ($data->status_pengajuan == '1')
-                                                                <button class="btn btn-success tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sudah Didisposisikan"
-                                                                    data-original-title="Sudah Didisposisikan" disabled>
-                                                                    <span class="d-flex justify-content-center m-0"><i
-                                                                            class="bi bi bi-patch-check"></i></span>
-                                                                </button>
-                                                            @endif
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_pengajuan }}"
-                                                                class="btn btn-icon btn-info" href="#"><i
-                                                                    class="fas fa-minus"></i></a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="collapse show"
-                                                        id="mycard-collapse{{ $data->id_pengajuan }}">
-                                                        <div class="card-body card-body-surat position-relative "
-                                                            style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->catatan_pengajuan !!}</p>
-                                                            <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
-                                                                --</p>
-                                                            <div class="mt-1 mb-1 tombol-disposisi">
-                                                                <span class="tombol-disposisi" data-toggle="tooltip"
-                                                                    data-placement="right"
-                                                                    title="klik Untuk Mendisposisikan"
-                                                                    data-original-title="klik Untuk Mendisposisikan"
-                                                                    disabled>
-                                                                    <button type="button"
-                                                                        class="btn btn-success mr-2 tombol-disposisi"
-                                                                        data-toggle="modal"
-                                                                        data-target="#disposisi-modal{{ $data->id_pengajuan }}"
-                                                                        type="button">
-                                                                        Disposisi
-                                                                    </button>
-                                                                </span>
+                            <div class="col-12">
+
+                                <div class="tab-content" id="myTabContent2">
+                                    <div class="tab-pane fade show active" id="belum-terdisposisikan3" role="tabpanel"
+                                        aria-labelledby="belum-terdisposisikan-tab3">
+                                        <div class="row">
+                                            @if ($pengajuanList0->isEmpty())
+                                                <div class="d-flex justify-content-center align-content-center">
+                                                    <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                        class="w-50">
+                                                </div>
+                                            @else
+                                                @foreach ($pengajuanList0 as $data)
+                                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                                        <div class="card card-primary card-surat shadow-sm">
+                                                            <div class="card-header d-flex justify-content-between">
+                                                                <div class="position-relative">
+                                                                    <h4>{{ $data->surat->nomor_surat }}</h4>
+                                                                    <small class="text-primary"
+                                                                        style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                        {{ $data->user->nama }}
+                                                                    </small>
+                                                                </div>
+                                                                <div class="card-header-action btn-group">
+                                                                    @if ($data->status_pengajuan == '0')
+                                                                        <button
+                                                                            class="btn btn-danger tombol-disposisi mr-2"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Belum Didisposisikan"
+                                                                            data-original-title="Belum Didisposisikan"
+                                                                            disabled>
+                                                                            <span
+                                                                                class="d-flex justify-content-center m-0"><i
+                                                                                    class="bi bi bi-patch-minus"></i></span>
+                                                                        </button>
+                                                                    @elseif ($data->status_pengajuan == '1')
+                                                                        <button
+                                                                            class="btn btn-success tombol-disposisi mr-2"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Sudah Didisposisikan"
+                                                                            data-original-title="Sudah Didisposisikan"
+                                                                            disabled>
+                                                                            <span
+                                                                                class="d-flex justify-content-center m-0"><i
+                                                                                    class="bi bi bi-patch-check"></i></span>
+                                                                        </button>
+                                                                    @endif
+                                                                    <a data-collapse="#mycard-collapse{{ $data->id_pengajuan }}"
+                                                                        class="btn btn-icon btn-info" href="#"><i
+                                                                            class="fas fa-minus"></i></a>
+                                                                </div>
                                                             </div>
-                                                            <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($data->id_pengajuan)) }}"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data pengajuan disposisi"
-                                                                    data-original-title="Detail data pengajuan disposisi"
-                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                    href=""><i class="pl-1 bi bi-eye"></i>
-                                                                </a>
-                                                                <a type="button" data-toggle="tooltip"
-                                                                    data-placement="left" title="Edit data disposisi"
-                                                                    data-original-title="Edit data disposisi"
-                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                    href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
-                                                                        class="pl-1  bi bi-pencil-square "></i>
-                                                                </a>
-                                                                <form method="POST"
-                                                                    action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
-                                                                    class="tombol-hapus">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="button" data-toggle="tooltip"
-                                                                        data-placement="bottom"
-                                                                        title="Hapus data Pengajuan"
-                                                                        data-original-title="Hapus data Pengajuan"
-                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
-                                                                        href=""><i
-                                                                            class="pl-1  bi bi-trash tombol-hapus"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="card-footer  d-flex justify-content-between position-relative">
-                                                            <div class="d-flex flex-row ">
-                                                                @if ($data->user->foto_user)
-                                                                    <img alt="image"
-                                                                        src="{{ asset('image_save/' . $data->user->foto_user) }}"
-                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                        class="mr-2 border border-primary">
-                                                                @else
-                                                                    <img alt="image"
-                                                                        src="{{ asset('assets/img/avatar/avatar-1.png') }}"
-                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                        class="mr-2">
-                                                                @endif
-                                                                <div>
-                                                                    <div class="user-detail-name">
-                                                                        <span class="text-primary" href="#">
-                                                                            {{ $data->user->nama }}</span>
+                                                            <div class="collapse show"
+                                                                id="mycard-collapse{{ $data->id_pengajuan }}">
+                                                                <div class="card-body card-body-surat position-relative "
+                                                                    style="min-height: 130px">
+                                                                    <p class="w-75"> {!! $data->catatan_pengajuan !!}</p>
+                                                                    <p class="mt-3" style="font-size: .7rem;">
+                                                                        --
+                                                                        {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
+                                                                        --</p>
+                                                                    <div class="mt-1 mb-1 tombol-disposisi">
+                                                                        <span class="tombol-disposisi"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="klik Untuk Mendisposisikan"
+                                                                            data-original-title="klik Untuk Mendisposisikan"
+                                                                            disabled>
+                                                                            <button type="button"
+                                                                                class="btn btn-success mr-2 tombol-disposisi"
+                                                                                data-toggle="modal"
+                                                                                data-target="#disposisi-modal{{ $data->id_pengajuan }}"
+                                                                                type="button">
+                                                                                Disposisi
+                                                                            </button>
+                                                                        </span>
                                                                     </div>
-                                                                    <div class="text-job">
-                                                                        <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->user->nomor_telpon) }}
-                                                                        </small>
+                                                                    <div class="d-flex flex-column btn-group-action">
+                                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($data->id_pengajuan)) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Detail data pengajuan disposisi"
+                                                                            data-original-title="Detail data pengajuan disposisi"
+                                                                            class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                            href=""><i class="pl-1 bi bi-eye"></i>
+                                                                        </a>
+                                                                        <a type="button" data-toggle="tooltip"
+                                                                            data-placement="left"
+                                                                            title="Edit data disposisi"
+                                                                            data-original-title="Edit data disposisi"
+                                                                            class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
+                                                                                class="pl-1  bi bi-pencil-square "></i>
+                                                                        </a>
+                                                                        <form method="POST"
+                                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
+                                                                            class="tombol-hapus">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button" data-toggle="tooltip"
+                                                                                data-placement="bottom"
+                                                                                title="Hapus data Pengajuan"
+                                                                                data-original-title="Hapus data Pengajuan"
+                                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                href=""><i
+                                                                                    class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="card-footer  d-flex justify-content-between position-relative">
+                                                                    <div class="d-flex flex-row ">
+                                                                        @if ($data->user->foto_user)
+                                                                            <img alt="image"
+                                                                                src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                class="mr-2 border border-primary">
+                                                                        @else
+                                                                            <img alt="image"
+                                                                                src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                class="mr-2">
+                                                                        @endif
+                                                                        <div>
+                                                                            <div class="user-detail-name">
+                                                                                <span class="text-primary" href="#">
+                                                                                    {{ $data->user->nama }}</span>
+                                                                            </div>
+                                                                            <div class="text-job">
+                                                                                <small style="max-width: max-content">
+                                                                                    {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="text-center " style="margin-left: 15%;">
+                                                                        <a type="button"
+                                                                            class="btn btn-danger btn-scan-pdf"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Preview surat (PDF)"
+                                                                            data-original-title="Preview surat (PDF)"
+                                                                            href="{{ asset('document_save/' . $data->surat->scan_dokumen) }}"
+                                                                            target="_blank" title="Read PDF"><i
+                                                                                class="bi bi-file-pdf"
+                                                                                style="font-size: 1.1rem;"></i></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="text-center " style="margin-left: 15%;">
-                                                                <a type="button" class="btn btn-danger btn-scan-pdf"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Preview surat (PDF)"
-                                                                    data-original-title="Preview surat (PDF)"
-                                                                    href="{{ asset('document_save/' . $data->surat->scan_dokumen) }}"
-                                                                    target="_blank" title="Read PDF"><i
-                                                                        class="bi bi-file-pdf"
-                                                                        style="font-size: 1.1rem;"></i></a>
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            @endif
+                                        </div>
+                                        <div class="col-12">
+                                            {{ $pengajuanList0->onEachSide(1)->links() }}
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="terdisposisikan3" role="tabpanel"
+                                        aria-labelledby="terdisposisikan-tab3">
+                                        <div class="row">
+                                            @if ($pengajuanList1->isEmpty())
+                                                <div class="d-flex justify-content-center align-content-center">
+                                                    <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                        class="w-50">
+                                                </div>
+                                            @else
+                                                @foreach ($pengajuanList1 as $data)
+                                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                                        <div class="card card-primary card-surat shadow-sm">
+                                                            <div class="card-header d-flex justify-content-between">
+                                                                <div class="position-relative">
+                                                                    <h4>{{ $data->surat->nomor_surat }}</h4>
+                                                                    <small class="text-primary"
+                                                                        style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                        {{ $data->user->nama }}
+                                                                    </small>
+                                                                </div>
+                                                                <div class="card-header-action btn-group">
+                                                                    @if ($data->status_pengajuan == '0')
+                                                                        <button
+                                                                            class="btn btn-danger tombol-disposisi mr-2"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Belum Didisposisikan"
+                                                                            data-original-title="Belum Didisposisikan"
+                                                                            disabled>
+                                                                            <span
+                                                                                class="d-flex justify-content-center m-0"><i
+                                                                                    class="bi bi bi-patch-minus"></i></span>
+                                                                        </button>
+                                                                    @elseif ($data->status_pengajuan == '1')
+                                                                        <button
+                                                                            class="btn btn-success tombol-disposisi mr-2"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Sudah Didisposisikan"
+                                                                            data-original-title="Sudah Didisposisikan"
+                                                                            disabled>
+                                                                            <span
+                                                                                class="d-flex justify-content-center m-0"><i
+                                                                                    class="bi bi bi-patch-check"></i></span>
+                                                                        </button>
+                                                                    @endif
+                                                                    <a data-collapse="#mycard-collapse{{ $data->id_pengajuan }}"
+                                                                        class="btn btn-icon btn-info" href="#"><i
+                                                                            class="fas fa-minus"></i></a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="collapse show"
+                                                                id="mycard-collapse{{ $data->id_pengajuan }}">
+                                                                <div class="card-body card-body-surat position-relative "
+                                                                    style="min-height: 130px">
+                                                                    <p class="w-75"> {!! $data->catatan_pengajuan !!}</p>
+                                                                    <p class="mt-3" style="font-size: .7rem;">
+                                                                        --
+                                                                        {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
+                                                                        --</p>
+                                                                    <div class="mt-1 mb-1 tombol-disposisi">
+                                                                        <span class="tombol-disposisi"
+                                                                            data-toggle="tooltip" data-placement="right"
+                                                                            title="klik Untuk Mendisposisikan"
+                                                                            data-original-title="klik Untuk Mendisposisikan"
+                                                                            disabled>
+                                                                            <button type="button"
+                                                                                class="btn btn-success mr-2 tombol-disposisi"
+                                                                                data-toggle="modal"
+                                                                                data-target="#disposisi-modal{{ $data->id_pengajuan }}"
+                                                                                type="button">
+                                                                                Disposisi
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="d-flex flex-column btn-group-action">
+                                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($data->id_pengajuan)) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Detail data pengajuan disposisi"
+                                                                            data-original-title="Detail data pengajuan disposisi"
+                                                                            class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                            href=""><i class="pl-1 bi bi-eye"></i>
+                                                                        </a>
+                                                                        <a type="button" data-toggle="tooltip"
+                                                                            data-placement="left"
+                                                                            title="Edit data disposisi"
+                                                                            data-original-title="Edit data disposisi"
+                                                                            class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($data->id_pengajuan)) }}"><i
+                                                                                class="pl-1  bi bi-pencil-square "></i>
+                                                                        </a>
+                                                                        <form method="POST"
+                                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($data->id_pengajuan)) }}"
+                                                                            class="tombol-hapus">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button" data-toggle="tooltip"
+                                                                                data-placement="bottom"
+                                                                                title="Hapus data Pengajuan"
+                                                                                data-original-title="Hapus data Pengajuan"
+                                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                href=""><i
+                                                                                    class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                                <div
+                                                                    class="card-footer  d-flex justify-content-between position-relative">
+                                                                    <div class="d-flex flex-row ">
+                                                                        @if ($data->user->foto_user)
+                                                                            <img alt="image"
+                                                                                src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                class="mr-2 border border-primary">
+                                                                        @else
+                                                                            <img alt="image"
+                                                                                src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                class="mr-2">
+                                                                        @endif
+                                                                        <div>
+                                                                            <div class="user-detail-name">
+                                                                                <span class="text-primary" href="#">
+                                                                                    {{ $data->user->nama }}</span>
+                                                                            </div>
+                                                                            <div class="text-job">
+                                                                                <small style="max-width: max-content">
+                                                                                    {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                                </small>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="text-center " style="margin-left: 15%;">
+                                                                        <a type="button"
+                                                                            class="btn btn-danger btn-scan-pdf"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Preview surat (PDF)"
+                                                                            data-original-title="Preview surat (PDF)"
+                                                                            href="{{ asset('document_save/' . $data->surat->scan_dokumen) }}"
+                                                                            target="_blank" title="Read PDF"><i
+                                                                                class="bi bi-file-pdf"
+                                                                                style="font-size: 1.1rem;"></i></a>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        <div class="col-12">
-                                            {{ $pengajuanList->onEachSide(1)->links() }}
+                                                @endforeach
+                                            @endif
                                         </div>
-                                    @endif
+                                        <div class="col-12">
+                                            {{ $pengajuanList1->onEachSide(1)->links() }}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -420,10 +590,11 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 
     <!-- Modal Disposisi -->
-    @foreach ($pengajuanList as $data)
+    @foreach ($pengajuanList1 as $data)
         <div class="modal fade disposisi-modal" id="disposisi-modal{{ $data->id_pengajuan }}"
             aria-labelledby="disposisi-modal" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered ">
@@ -662,21 +833,29 @@
                                             <option value="1"
                                                 {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
                                                 Wakil Kepala Sekolah</option>
-                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
+                                            <option value="2"
+                                                {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
                                                 Kurikulum</option>
-                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
+                                            <option value="3"
+                                                {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
                                                 Kesiswaan</option>
-                                            <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
+                                            <option value="4"
+                                                {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
                                                 Sarana Prasarana</option>
-                                            <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
+                                            <option value="5"
+                                                {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
                                                 Kepala Jurusan</option>
-                                            <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
+                                            <option value="6"
+                                                {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
                                                 Hubin</option>
-                                            <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
+                                            <option value="7"
+                                                {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
                                                 Bimbingan Konseling</option>
-                                            <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
+                                            <option value="8"
+                                                {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
                                                 Guru Umum</option>
-                                            <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
+                                            <option value="9"
+                                                {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
                                                 Tata Usaha</option>
                                         </select>
                                     </div>
@@ -697,7 +876,8 @@
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                    {{ $data->nama }} | {{ jabatanConvert($data->jabatan, 'jabatan') }}
+                                                    {{ $data->nama }} |
+                                                    {{ jabatanConvert($data->jabatan, 'jabatan') }}
                                                 </option>
                                             @endforeach
                                         </select>

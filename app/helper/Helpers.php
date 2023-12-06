@@ -108,17 +108,21 @@ if (!function_exists('convertDisposisiField')) {
         switch ($type) {
             case 'sifat':
                 $map = [
-                    0 => 'Biasa',
-                    1 => 'Prioritas',
-                    2 => 'Rahasia',
+                    0 => 'Tindaklanjuti',
+                    1 => 'Biasa',
+                    2 => 'Segera',
+                    3 => 'Penting',
+                    4 => 'Rahasia',
                 ];
                 break;
             case 'status':
                 $map = [
-                    0 => 'Belum ditindak',
-                    1 => 'Diajukan',
-                    2 => 'Diterima',
-                    3 => 'Dikembalikan',
+                    0 => 'Arsipkan',
+                    1 => 'Jabarkan',
+                    2 => 'Umumkan',
+                    3 => 'Laksanakan',
+                    4 => 'Persiapan',
+                    5 => 'Ikuti',
                 ];
                 break;
             case 'tujuan':

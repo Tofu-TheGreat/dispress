@@ -9,7 +9,7 @@ interface PengajuanRepository
     public function show($id);
     public function edit($id);
     public function update($id, $data);
-    public function filterData($data);
+    public function filterData($data, $status);
     public function destroy($id);
-    public function search($data);
+    public function search($data, $status);
 }

@@ -121,7 +121,7 @@ if (!function_exists('convertDisposisiField')) {
                     1 => 'Jabarkan',
                     2 => 'Umumkan',
                     3 => 'Laksanakan',
-                    4 => 'Persiapan',
+                    4 => 'Persiapkan',
                     5 => 'Ikuti',
                 ];
                 break;

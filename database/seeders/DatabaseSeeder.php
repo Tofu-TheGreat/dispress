@@ -132,8 +132,8 @@ class DatabaseSeeder extends Seeder
             'catatan_disposisi' => 'Approve Disposisi',
             'tanggal_disposisi' => '2028-11-9',
             'status_disposisi' => '5',
-            'sifat_disposisi' => '1',
-            'id_user' => '1',
+            'sifat_disposisi' => '0',
+            'id_user' => '11',
             'tujuan_disposisi' => '5',
             'id_penerima' => '1',
         ]);

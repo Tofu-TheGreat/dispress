@@ -20,13 +20,13 @@
                 <div class="row d-flex">
                     {{-- judul Page --}}
                     <div class="col-md-9 col-sm-8">
-                        <h4 class="text-dark judul-page">Manajemen Nomor Klasifikasi</h4>
+                        <h4 class="text-dark judul-page">Manajemen Posisi Jabatan</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">Nomor Klasifikasi</div>
+                        <div class="breadcrumb-item d-inline">Posisi Jabatan</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -38,7 +38,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Nomor Klasifikasi</h4>
+                            <h4 class="text-primary judul-page">List Posisi Jabatan</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             {{-- Button Tambah Data --}}
@@ -96,7 +96,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="detail-modal">Detail Data Nomor Klasifikasi</h5>
+                        <h5 class="modal-title" id="detail-modal">Detail Data Posisi Jabatan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -164,7 +164,7 @@
             <div class="modal-dialog modal-lg modal-dialog-centered ">
                 <div class="modal-content">
                     <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="edit-modal">Edit Data Nomor Klasifikasi</h5>
+                        <h5 class="modal-title" id="edit-modal">Edit Data Posisi Jabatan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -328,17 +328,17 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Nomor Klasifikasi</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Posisi Jabatan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <form action="{{ route('nomor-klasifikasi.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Nomor Klasifikasi: </span>
+                        <span class="d-block">Unduh Template Import Posisi Jabatan: </span>
                         <a href="/file/Book3.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
                             download="nomor_klasifikasi-template-import">
-                            <span>Template Import Nomor Klasifikasi</span> <i
+                            <span>Template Import Posisi Jabatan</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
                         <div class="form-group">
@@ -529,19 +529,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data nomor klasifikasi ini!',
+                        text: 'Ingin menghapus data posisi jabatan ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data nomor klasifikasi berhasil dihapus!', {
+                            swal('Data posisi jabatan berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data nomor klasifikasi tidak jadi dihapus!');
+                            swal('Data posisi jabatan tidak jadi dihapus!');
                         }
                     });
             }
@@ -549,14 +549,14 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data nomor klasifikasi ini?',
+                        text: 'Ingin export data posisi jabatan ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data nomor klasifikasi berhasil diexport!', {
+                            swal('Data posisi jabatan berhasil diexport!', {
                                 icon: 'success',
                             });
 
@@ -577,7 +577,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data nomor klasifikasi tidak jadi diexport!');
+                            swal('Data posisi jabatan tidak jadi diexport!');
                         }
                     });
             }

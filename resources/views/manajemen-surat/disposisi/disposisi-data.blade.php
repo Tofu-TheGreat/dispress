@@ -445,7 +445,8 @@
                                                             {{-- End Sifat Disposisi BTN --}}
                                                             <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
                                                                 class="btn-icon btn-info btn-collapse" href="#"><i
-                                                                    class="fas fa-minus"></i></a>
+                                                                    class="fas fa-minus"
+                                                                    style="margin-left: 10px"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="collapse show"

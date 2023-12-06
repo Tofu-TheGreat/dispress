@@ -356,21 +356,27 @@ li {
 /* disposisi */
 
 .btn-group .btn-status-disposisi {
-    border-bottom-left-radius: 30%;
-    border-top-left-radius: 30%;
+    border-bottom-left-radius: 40%;
+    border-top-left-radius: 40%;
     border: none;
     padding: 0 10px;
+    letter-spacing: 0.2px;
 }
 
 .btn-group .btn-sifat-disposisi {
     border: none;
     color: white;
+    letter-spacing: 0.2px;
 }
 
 .btn-group .btn-collapse {
-    border-bottom-right-radius: 50%;
-    border-top-right-radius: 50%;
-    width: 30px;
+    border-bottom-right-radius: 40%;
+    border-top-right-radius: 40%;
+    width: 40px;
+}
+
+.btn-group .btn-collapse i {
+    margin-left: 13px !important;
 }
 
 /*--------------------

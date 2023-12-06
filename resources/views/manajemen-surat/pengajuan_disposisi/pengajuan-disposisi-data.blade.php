@@ -52,7 +52,7 @@
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
                         <div class="row">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group ">
                                     <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
                                     <div class="input-group">
@@ -70,27 +70,6 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('id_klasifikasi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="status_pengajuan">Pilih Berdasarkan Status Pengajuan:
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('status_pengajuan') is-invalid  @enderror "
-                                            id="status_pengajuan" name="status_pengajuan" style="width: 100%;">
-                                            <option selected disabled>Pilih Status Pengajuan</option>
-                                            <option value="0" {{ $data->status_pengajuan === '0' ? 'selected' : '' }}>
-                                                Belum Didisposisi</option>
-                                            <option value="1" {{ $data->status_pengajuan === '1' ? 'selected' : '' }}>
-                                                Sudah Didisposisi</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('status_pengajuan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -172,8 +151,7 @@
                                         <input type="date"
                                             class="filter form-control tanggal_pengajuan_awal @error('tanggal_pengajuan_awal') is-invalid @enderror"
                                             placeholder="ex: 11/14/2023" value="{{ old('tanggal_pengajuan_awal') }}"
-                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal"
-                                            style="width: 80%;">
+                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal" style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_pengajuan_awal')
@@ -219,19 +197,23 @@
             </form>
         </div>
         {{-- Filter --}}
+
         {{-- Tab --}}
         <div class="card">
             <div class="card-header d-flex justify-content-between">
                 <div class="col">
                     <ul class="nav nav-pills" id="myTab3" role="tablist">
-                        <li class="nav-item">
+                        <li class="nav-item w-50 text-center">
                             <a class="nav-link active" id="belum-terdisposisikan-tab3" data-toggle="tab"
                                 href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
-                                aria-selected="true">Belum Terdisposisikan</a>
+                                aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
+                                Didisposisikan</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
-                                role="tab" aria-controls="terdisposisikan" aria-selected="false">Terdisposisikan</a>
+                                role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
+                                    class="bi bi-patch-check text-success"></i> Sudah
+                                Didisposisikan</a>
                         </li>
                     </ul>
                 </div>

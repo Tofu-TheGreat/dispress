@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -52,6 +52,10 @@ Route::post('staff-import', [ImportController::class, 'import_user'])->name('sta
 Route::post("/admin-index", [AdminController::class, "indexAdmin"]);
 Route::post("/staff-index", [StaffController::class, "indexAdmin"]);
 Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
+
+// Manajemen Posisi Jabatan
+
+Route::resource('/posisi-jabatan', PosisiJabatanController::class)->middleware('auth');
 
 // Manajemen instansi
 

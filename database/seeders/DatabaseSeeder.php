@@ -9,6 +9,7 @@ use App\Models\Instansi;
 use App\Models\Disposisi;
 use App\Models\Pengajuan;
 use App\Models\Klasifikasi;
+use App\Models\PosisiJabatan;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,6 +21,13 @@ class DatabaseSeeder extends Seeder
     {
         \App\Models\User::factory(10)->create();
         // \App\Models\Surat::factory(10)->create();
+
+        // Seed Posisi Jabatan
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Kepala Sekolah',
+            'deskripsi' => 'Pengurus utama sekolah',
+            'tingkat' => '1',
+        ]);
 
         // Seed User
         User::factory()->create([

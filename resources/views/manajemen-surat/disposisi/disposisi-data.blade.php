@@ -179,7 +179,7 @@
                                 </div>
                             </div>
                             <div class="col-12 ">
-                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pengajuan Disposisi
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi Disposisi
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -260,7 +260,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="#" class="text-white ml-2 tombol-export">
+                            <a href="{{ route('disposisi.export') }}" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
                                     data-placement="top" title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
@@ -280,6 +280,22 @@
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.disposisi') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <a type="button" href="{{ route('disposisi.index') }}"
+                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($disposisiList->isEmpty())
@@ -293,39 +309,28 @@
                                                 <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
-                                                            <h4>{{ $data->surat->nomor_surat }}</h4>
+                                                            <h4>{{ $data->pengajuan->surat->nomor_surat }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Berstatus
-                                                                {{ $data->status_disposisi }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group">
-                                                            @if ($data->sifat_disposisi == 'Biasa')
-                                                                <button class="btn btn-primary tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Prioritas')
-                                                                <button class="btn btn-warning tombol-disposisi mr-2"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Rahasia')
+                                                            @if ($data->status_disposisi == '0')
                                                                 <button class="btn btn-danger tombol-disposisi mr-2"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Bersifat {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span
-                                                                        class="d-flex justify-content-center m-0">{{ $data->sifat_disposisi }}</span>
+                                                                    title="Belum Didisposisikan"
+                                                                    data-original-title="Belum Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-minus"></i></span>
+                                                                </button>
+                                                            @elseif ($data->status_disposisi == '1')
+                                                                <button class="btn btn-success tombol-disposisi mr-2"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Sudah Didisposisikan"
+                                                                    data-original-title="Sudah Didisposisikan" disabled>
+                                                                    <span class="d-flex justify-content-center m-0"><i
+                                                                            class="bi bi bi-patch-check"></i></span>
                                                                 </button>
                                                             @endif
                                                             <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
@@ -339,30 +344,15 @@
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
                                                                 --</p>
-                                                            <div class="mt-1 mb-1 tombol-disposisi">
-                                                                <span class="tombol-disposisi" data-toggle="tooltip"
-                                                                    data-placement="right"
-                                                                    title="klik Untuk Mendisposisikan"
-                                                                    data-original-title="klik Untuk Mendisposisikan"
-                                                                    disabled>
-                                                                    <button type="button"
-                                                                        class="btn btn-success mr-2 tombol-disposisi"
-                                                                        data-toggle="modal"
-                                                                        data-target="#disposisi-modal{{ $data->id_disposisi }}"
-                                                                        type="button">
-                                                                        Disposisi
-                                                                    </button>
-                                                                </span>
-                                                            </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data disposisi"
-                                                                    data-original-title="Detail data disposisi"
+                                                                    title="Detail data disposisi disposisi"
+                                                                    data-original-title="Detail data disposisi disposisi"
                                                                     class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                    href=""><i class="pl-1  bi bi-eye "></i>
+                                                                    href=""><i class="pl-1 bi bi-eye"></i>
                                                                 </a>
                                                                 <a type="button" data-toggle="tooltip"
                                                                     data-placement="left" title="Edit data disposisi"
@@ -378,8 +368,8 @@
                                                                     @method('DELETE')
                                                                     <button type="button" data-toggle="tooltip"
                                                                         data-placement="bottom"
-                                                                        title="Hapus data disposisi"
-                                                                        data-original-title="Hapus data disposisi"
+                                                                        title="Hapus data Disposisi"
+                                                                        data-original-title="Hapus data Disposisi"
                                                                         class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
                                                                         href=""><i
                                                                             class="pl-1  bi bi-trash tombol-hapus"></i>
@@ -418,7 +408,7 @@
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Preview surat (PDF)"
                                                                     data-original-title="Preview surat (PDF)"
-                                                                    href="{{ asset('document_save/' . $data->surat->scan_dokumen) }}"
+                                                                    href="{{ asset('document_save/' . $data->pengajuan->surat->scan_dokumen) }}"
                                                                     target="_blank" title="Read PDF"><i
                                                                         class="bi bi-file-pdf"
                                                                         style="font-size: 1.1rem;"></i></a>
@@ -440,207 +430,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Modal Ajukan Disposisi -->
-    @foreach ($disposisiList as $data)
-        <div class="modal fade ajukan-modal" id="disposisi-modal{{ $data->id_disposisi }}"
-            aria-labelledby="ajukan-modal" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered ">
-                <div class="modal-content">
-                    <div class="modal-header border-bottom pb-4">
-                        <h5 class="modal-title" id="ajukan-modal">Disposisikan Data Surat</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="/disposisi/{{ $data->id_disposisi }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
-                        <input type="text" name="id_user" value="{{ Auth::user()->id_user }}" hidden id="">
-                        <div class="row px-4 pt-4">
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="id_surat">Nomor Surat Disposisi: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text bg-secondary">
-                                                <i class="bi bi-list-ol"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text"
-                                            class="form-control capitalize @error('id_surat') is-invalid @enderror"
-                                            placeholder="ex: 090/1928-TU/2023" value="{{ $data->surat->nomor_surat }}"
-                                            id="id_surat" disabled>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_surat')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="tanggal_disposisi">Tanggal Disposisi: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text bg-secondary">
-                                                <i class="bi bi-calendar3"></i>
-                                            </div>
-                                        </div>
-                                        <input type="date"
-                                            class="form-control datepicker capitalize @error('tanggal_disposisi') is-invalid @enderror"
-                                            placeholder="ex:  11/14/2023" value="{{ old('tanggal_disposisi') }}"
-                                            id="tanggal_disposisi" name="tanggal_disposisi">
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('tanggal_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="catatan_disposisi">Catatan Disposisi: </label>
-                                    <textarea class="summernote-simple @error('catatan_disposisi') is-invalid @enderror"
-                                        placeholder="ex: Perihal rapat paripurna" id="catatan_disposisi" name="catatan_disposisi" required> {{ old('catatan_disposisi') }} </textarea>
-                                    <span class="text-danger">
-                                        @error('catatan_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
-                                    <div class="input-group">
-                                        <select
-                                            class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
-                                            id="sifat_disposisi" name="sifat_disposisi" required style="width: 100%;">
-                                            <option disabled>Pilih Sifat Surat</option>
-                                            <option value="0"
-                                                {{ $data->sifat_disposisi == 'Biasa' ? 'selected' : '' }}>
-                                                Biasa</option>
-                                            <option value="1"
-                                                {{ $data->sifat_disposisi == 'Prioritas' ? 'selected' : '' }}>
-                                                Prioritas</option>
-                                            <option value="2"
-                                                {{ $data->sifat_disposisi == 'Rahasia' ? 'selected' : '' }}>
-                                                Rahasia</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('sifat_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="status_disposisi">Status Disposisi:
-                                    </label>
-                                    <div class="input-group">
-                                        <select
-                                            class="form-control select2  @error('status_disposisi') is-invalid @enderror "
-                                            id="status_disposisi" name="status_disposisi" required style="width: 100%;">
-                                            <option disabled>Pilih Status Disposisi</option>
-                                            <option value="0"
-                                                {{ $data->status_disposisi === 'Belum ditindak' ? 'selected' : '' }}>
-                                                Belum ditindak</option>
-                                            <option value="1"
-                                                {{ $data->status_disposisi === 'Diajukan' ? 'selected' : '' }}>
-                                                Diajukan</option>
-                                            <option value="2"
-                                                {{ $data->status_disposisi == 'Diterima' ? 'selected' : '' }} disabled>
-                                                Diterima</option>
-                                            <option value="3"
-                                                {{ $data->status_disposisi == 'Dikembalikan' ? 'selected' : '' }} disabled>
-                                                Dikembalikan</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('status_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi:
-                                    </label>
-                                    <div class="input-group">
-                                        <select
-                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple="" required
-                                            style="width: 100%;">
-                                            <option disabled>Pilih Tujuan Disposisi</option>
-                                            <option value="0"
-                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
-                                                Kepala Sekolah</option>
-                                            <option value="1"
-                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
-                                                Wakil Kepala Sekolah</option>
-                                            <option value="2" {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
-                                                Kurikulum</option>
-                                            <option value="3" {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
-                                                Kesiswaan</option>
-                                            <option value="4" {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
-                                                Sarana Prasarana</option>
-                                            <option value="5" {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
-                                                Kepala Jurusan</option>
-                                            <option value="6" {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
-                                                Hubin</option>
-                                            <option value="7" {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
-                                                Bimbingan Konseling</option>
-                                            <option value="8" {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
-                                                Guru Umum</option>
-                                            <option value="9" {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
-                                                Tata Usaha</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('tujuan_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pengirim Ajuan: </label>
-                                    <div class="input-group">
-                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                            id="id_user" name="id_user" required readonly style="width: 100%;">
-                                            <option selected disabled>Pilih Pengirim Surat</option>
-                                            <option selected value="{{ auth()->user()->id_user }}">
-                                                {{ auth()->user()->nama }}</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_user')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer d-flex justify-content-between border-top pt-3">
-                            <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
-                                    class="bi bi-x-circle ml-3"></i></button>
-                            <button type="submit" value="Import" class="btn btn-primary text-white">
-                                Ajukan Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    @endforeach
-    {{-- End Ajukan Disposisi --}}
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">

@@ -97,3 +97,4 @@ Route::get('disposisi-export', [ExportController::class, 'export_disposisi'])->n
 Route::post('disposisi-import', [ImportController::class, 'import_user'])->name('disposisi.import');
 
 Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi');
+Route::post('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi');

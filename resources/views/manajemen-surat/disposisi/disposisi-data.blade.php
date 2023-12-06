@@ -317,135 +317,30 @@
                                                         </div>
                                                         <div class="card-header-action btn-group">
                                                             {{-- Sifat Disposisi BTN --}}
-                                                            @if ($data->status_disposisi == 'Arsipkan')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Arsipkan
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->status_disposisi == 'Jabarkan')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Jabarkan
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->status_disposisi == 'Umumkan')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Umumkan
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->status_disposisi == 'laksanakan')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        laksanakan
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->status_disposisi == 'Persiapkan')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Persiapkan
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->status_disposisi == 'Ikuti')
-                                                                <button
-                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Ikuti
-                                                                    </span>
-                                                                </button>
-                                                            @endif
+                                                            <button
+                                                                class="btn-primary btn-status-disposisi tombol-disposisi "
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Status Disposisi - {{ $data->status_disposisi }}"
+                                                                data-original-title="Status Disposisi - {{ $data->status_disposisi }}">
+                                                                <span class="d-flex justify-content-center m-0">
+                                                                    {{ $data->status_disposisi }}
+                                                                </span>
+                                                            </button>
                                                             {{-- End Status Disposisi BTN --}}
                                                             {{-- Sifat Disposisi BTN --}}
-                                                            @if ($data->sifat_disposisi == 'Tindaklanjuti')
-                                                                <button
-                                                                    class="btn-warning btn-sifat-disposisi tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Tindaklanjuti
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Biasa')
-                                                                <button
-                                                                    class="btn-primary btn-sifat-disposisi tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Biasa
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Segera')
-                                                                <button
-                                                                    class="btn-warning btn-sifat-disposisi tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Segera
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Penting')
-                                                                <button
-                                                                    class="btn-warning btn-sifat-disposisi tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Penting
-                                                                    </span>
-                                                                </button>
-                                                            @elseif ($data->sifat_disposisi == 'Rahasia')
-                                                                <button
-                                                                    class="btn-danger btn-sifat-disposisi tombol-disposisi"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                    disabled>
-                                                                    <span class="d-flex justify-content-center m-0">
-                                                                        Rahasia
-                                                                    </span>
-                                                                </button>
-                                                            @endif
+                                                            <button
+                                                                class="btn-primary btn-sifat-disposisi tombol-disposisi"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
+                                                                data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}">
+                                                                <span class="d-flex justify-content-center m-0">
+                                                                    {{ $data->sifat_disposisi }}
+                                                                </span>
+                                                            </button>
                                                             {{-- End Sifat Disposisi BTN --}}
                                                             <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
-                                                                class="btn-icon btn-info btn-collapse" href="#"><i
-                                                                    class="fas fa-minus"
+                                                                class="btn-icon btn-primary btn-collapse"
+                                                                href="#"><i class="fas fa-minus"
                                                                     style="margin-left: 10px"></i></a>
                                                         </div>
                                                     </div>

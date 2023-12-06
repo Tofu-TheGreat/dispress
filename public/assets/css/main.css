@@ -353,6 +353,26 @@ li {
     z-index: 999;
 }
 
+/* disposisi */
+
+.btn-group .btn-status-disposisi {
+    border-bottom-left-radius: 30%;
+    border-top-left-radius: 30%;
+    border: none;
+    padding: 0 10px;
+}
+
+.btn-group .btn-sifat-disposisi {
+    border: none;
+    color: white;
+}
+
+.btn-group .btn-collapse {
+    border-bottom-right-radius: 50%;
+    border-top-right-radius: 50%;
+    width: 30px;
+}
+
 /*--------------------
 Footer
 --------------------*/

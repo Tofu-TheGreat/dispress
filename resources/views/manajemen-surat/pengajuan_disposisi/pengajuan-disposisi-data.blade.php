@@ -207,15 +207,16 @@
                             <a class="nav-link active" id="belum-terdisposisikan-tab3" data-toggle="tab"
                                 href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
                                 aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
-                                Didisposisikan<span
-                                    class="badge badge-transparent">{{ $pengajuanList0->count() }}</span></a>
+                                Didisposisikan
+                                <span
+                                    class="badge badge-transparent text-success">{{ $pengajuanList0->count() }}</span></a>
                         </li>
                         <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
                                 role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
                                     class="bi bi-patch-check text-success"></i> Sudah
                                 Didisposisikan<span
-                                    class="badge badge-transparent">{{ $pengajuanList1->count() }}</span></a>
+                                    class="badge badge-transparent text-success">{{ $pengajuanList1->count() }}</span></a>
                         </li>
                     </ul>
                 </div>

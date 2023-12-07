@@ -322,10 +322,14 @@
                                             <label class="capitalize" for="status_disposisi">Status Disposisi:
                                             </label>
                                             <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text ">
+                                                        <i class="bi-envelope-exclamation-fill"></i>
+                                                    </div>
+                                                </div>
                                                 <select
                                                     class="form-control select2  @error('status_disposisi') is-invalid @enderror "
-                                                    id="status_disposisi" name="status_disposisi" readonly
-                                                    style="width: 100%;">
+                                                    id="status_disposisi" name="status_disposisi" readonly>
                                                     <option selected disabled>Pilih Status Disposisi</option>
                                                     <option value="0"
                                                         {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
@@ -358,10 +362,14 @@
                                         <div class="form-group">
                                             <label class="capitalize" for="sifat_disposisi">Sifat Disposisi: </label>
                                             <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text ">
+                                                        <i class="bi-envelope-exclamation"></i>
+                                                    </div>
+                                                </div>
                                                 <select
                                                     class="form-control select2  @error('sifat_disposisi') is-invalid @enderror "
-                                                    id="sifat_disposisi" name="sifat_disposisi" required
-                                                    style="width: 100%;">
+                                                    id="sifat_disposisi" name="sifat_disposisi" required>
                                                     <option selected disabled>Pilih Sifat Disposisi</option>
                                                     <option value="0"
                                                         {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>

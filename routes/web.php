@@ -92,6 +92,7 @@ Route::get('/pengajuan-filter', [PengajuanController::class, 'filterData'])->mid
 Route::post('/search-pengajuan', [PengajuanController::class, 'search'])->name('search.pengajuan');
 Route::get('pengajuan-export', [ExportController::class, 'export_pengajuan'])->name('pengajuan.export');
 
+Route::get('template-user', [ExportController::class, 'template_user'])->name('template.user');
 
 // Manajemen Disposisi
 

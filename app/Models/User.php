@@ -25,7 +25,7 @@ class User extends Authenticatable
         'nip',
         'nama',
         'level',
-        'jabatan',
+        'id_posisi_jabatan',
         'foto_user',
         'username',
         'nomor_telpon',
@@ -76,5 +76,9 @@ class User extends Authenticatable
     public function penerimaDisposisi()
     {
         return $this->hasMany(Disposisi::class, 'id_penerima');
+    }
+    public function posisijabatan()
+    {
+        return $this->belongsTo(posisijabatan::class, 'id_posisi_jabatan');
     }
 }

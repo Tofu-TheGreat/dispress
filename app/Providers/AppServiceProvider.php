@@ -26,6 +26,8 @@ use App\Repository\Disposisi\DisposisiImplement;
 use App\Repository\Disposisi\DisposisiRepository;
 use App\Repository\Klasifikasi\KlasifikasiImplement;
 use App\Repository\Klasifikasi\KlasifikasiRepository;
+use App\Repository\PosisiJabatan\PosisiJabatanImplements;
+use App\Repository\PosisiJabatan\PosisiJabatanRepository;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
 
 
@@ -45,6 +47,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(DisposisiRepository::class, DisposisiImplement::class);
         $this->app->bind(KlasifikasiRepository::class, KlasifikasiImplement::class);
         $this->app->bind(PengajuanRepository::class, PengajuanImplement::class);
+        $this->app->bind(PosisiJabatanRepository::class, PosisiJabatanImplements::class);
     }
 
     /**

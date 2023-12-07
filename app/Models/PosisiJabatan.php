@@ -16,4 +16,9 @@ class PosisiJabatan extends Model
         'deskripsi_jabatan',
         'tingkat_jabatan',
     ];
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id_posisi_jabatan');
+    }
 }

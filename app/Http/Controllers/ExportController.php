@@ -7,8 +7,10 @@ use App\Exports\OfficerExport;
 use App\Exports\InstansiExport;
 use App\Exports\KlasifikasiExport;
 use App\Exports\PengajuanExport;
+use App\Exports\PosisiJabatanExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
+use App\Exports\UserTemplate;
 use App\Imports\AdminImport;
 use App\Models\Perusahaan;
 use Maatwebsite\Excel\Facades\Excel;
@@ -42,7 +44,15 @@ class ExportController extends Controller
     }
     public function export_pengajuan()
     {
-        return Excel::download(new PengajuanExport, 'Data-Nomor-Pengajuan.xlsx');
+        return Excel::download(new PengajuanExport, 'Data-Pengajuan.xlsx');
+    }
+    public function export_posisijabatan()
+    {
+        return Excel::download(new PosisiJabatanExport, 'Data-Posisi-Jabatan.xlsx');
+    }
+    public function template_user()
+    {
+        return Excel::download(new UserTemplate, 'TemplateUser.xlsx');
     }
     // public function getPerusahaanNames()
     // {

@@ -33,7 +33,7 @@ class StaffImplement implements StaffRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'foto_user' => $nama_foto,
                 'username' => $data->username,
                 'email' => $data->email,
@@ -45,7 +45,7 @@ class StaffImplement implements StaffRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'username' => $data->username,
                 'email' => $data->email,
                 'nomor_telpon' => $data->nomor_telpon,
@@ -56,8 +56,6 @@ class StaffImplement implements StaffRepository
     public function show($id)
     {
         $data =  $this->user->where('id_user', $id)->first();
-
-        $data->jabatan = jabatanConvert($data->jabatan, 'jabatan');
         return $data;
     }
     public function edit($id)
@@ -85,7 +83,7 @@ class StaffImplement implements StaffRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'foto_user' => $nama_foto,
                 'username' => $data->username,
                 'email' => $data->email,
@@ -97,7 +95,7 @@ class StaffImplement implements StaffRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'username' => $data->username,
                 'email' => $data->email,
                 'nomor_telpon' => $data->nomor_telpon,

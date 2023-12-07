@@ -89,13 +89,16 @@ class DisposisiController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->disposisiRepository->edit($encryptId);
+        $pengajuanList = Pengajuan::get();
         $userList = User::get();
+
 
         return view('manajemen-surat.disposisi.disposisi-edit', [
             'title' => 'Edit Disposisi',
             'active' => 'Disposisi',
             'active1' => 'manajemen-surat',
             'editDataDisposisi' => $editData,
+            'pengajuanList' => $pengajuanList,
             'userList' => $userList,
         ]);
     }

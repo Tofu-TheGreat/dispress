@@ -13,7 +13,7 @@ class PosisiJabatanImplements implements PosisiJabatanRepository
     }
     public function index()
     {
-        return $this->posisijabatan->paginate(6);
+        return $this->posisijabatan->get();
     }
     public function store($data)
     {

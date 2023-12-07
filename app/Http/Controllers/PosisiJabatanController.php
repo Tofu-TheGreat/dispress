@@ -47,9 +47,8 @@ class PosisiJabatanController extends Controller
             ->addColumn('action', function ($posisiJabatanList) {
                 return view('manajemen-posisi-jabatan.elements.create-button')->with('posisiJabatanList', $posisiJabatanList);
             })
-            ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan'])
+            ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan', 'phone'])
             ->toJson();
-        // }
     }
 
     /**

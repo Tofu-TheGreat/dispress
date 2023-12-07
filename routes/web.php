@@ -56,6 +56,7 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 // Manajemen Posisi Jabatan
 
 Route::resource('/posisi-jabatan', PosisiJabatanController::class)->middleware('auth');
+Route::post("/posisi-jabatan-index", [PosisiJabatanController::class, "indexPosisiJabatan"]);
 
 // Manajemen instansi
 

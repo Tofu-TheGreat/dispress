@@ -76,8 +76,9 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nomor Klasifikasi</th>
-                                        <th>Nama Klasifikasi</th>
+                                        <th>Nama Posisi Jabatan</th>
+                                        <th>Deskripsi Jabatan</th>
+                                        <th>Tingkat Jabatan</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -379,18 +380,15 @@
 
     {{-- DataTables --}}
     <script>
-        let jabatan = $("#jabatan").val();
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({
                 processing: true,
-                serverside: true,
+                serverside: true, // Corrected typo here
                 ajax: {
-                    url: "{{ url('/klasifikasi-index') }}",
+                    url: "{{ url('/posisi-jabatan-index') }}",
                     type: "post",
                     data: function(d) {
                         d._token = "{{ csrf_token() }}";
-                        d.jabatan = jabatan;
-                        return d
                     }
                 },
                 columns: [{
@@ -400,30 +398,22 @@
                         searchable: false
                     },
                     {
-                        data: 'nomor_klasifikasi',
-                        name: 'Nomor Klasifikasi',
+                        data: 'nama_posisi_jabatan',
+                        name: 'Nama Posisi Jabatan',
                     },
                     {
-                        data: 'nama_klasifikasi',
-                        name: 'Nama Klasifikasi',
+                        data: 'deskripsi_jabatan',
+                        name: 'Deskripsi Jabatan',
+                    },
+                    {
+                        data: 'tingkat_jabatan',
+                        name: 'Tingkat Jabatan',
                     },
                     {
                         data: 'action',
                         name: 'Action',
                     }
                 ]
-            });
-            // Handle perubahan pilihan pada select box jabatan
-            $(".filter").change(function() {
-                jabatan = $(this).val(); // Perbarui variabel jabatan
-            });
-            $('#filtering').on('click', function() {
-                table.ajax.reload();
-            });
-            $('#reset').on('click', function() {
-                $("#jabatan").val(null).trigger('change');
-                jabatan = ""; // Reset variabel jabatan
-                table.ajax.reload();
             });
         })
     </script>

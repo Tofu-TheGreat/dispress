@@ -16,6 +16,10 @@
                 </a>
             </li>
             <li class="menu-header">Manajemen Users</li>
+            <li class="{{ $active == 'Posisi-jabatan' ? 'active' : '' }}">
+                <a class="nav-link" href="/posisi-jabatan"><i class="fas fa-user-tie"></i> <span>Posisi Jabatan</span>
+                </a>
+            </li>
             <li class="dropdown {{ $active1 == 'users' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>Users</span></a>

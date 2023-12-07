@@ -106,8 +106,7 @@
                                                 <i class="bi bi-patch-question-fill"></i>
                                             </div>
                                         </div>
-                                        <select
-                                            class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                        <select class="form-control  @error('status_verifikasi') is-invalid @enderror "
                                             id="status_verifikasi" name="status_verifikasi" disabled>
                                             <option selected disabled></option>
                                             <option value="0">

@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="collapse show " id="mycard-collapse{{ $editDataPengajuan->id_pengajuan }}">
-                            <div class="col-12 mt-3">
+                            <div class="col-12 ">
                                 <div class="form-group">
                                     <label for="nomor_surat">Nomor Surat: </label>
                                     <div class="input-group">
@@ -108,8 +108,7 @@
                                                 <i class="bi bi-patch-question-fill"></i>
                                             </div>
                                         </div>
-                                        <select
-                                            class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                        <select class="form-control  @error('status_verifikasi') is-invalid @enderror "
                                             id="status_verifikasi" name="status_verifikasi" disabled>
                                             <option selected disabled>Pilih Sifat Surat</option>
                                             <option value="0"

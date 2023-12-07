@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\DisposisiRequest;
 use App\Repository\Disposisi\DisposisiRepository;
 use App\Models\Instansi;
+use App\Models\Pengajuan;
 
 class DisposisiController extends Controller
 {
@@ -41,14 +42,17 @@ class DisposisiController extends Controller
      */
     public function create()
     {
-        $instansiList = Instansi::get();
-        $suratList = Surat::get();
+        $pengajuanList = Pengajuan::get();
+        $suratList = Surat::with('instansi')->get();
+        $userList = User::get();
+
         return view('manajemen-surat.disposisi.disposisi-create', [
             'title' => 'Create Disposisi',
             'active1' => 'manajemen-surat',
             'active' => 'Disposisi',
-            'instansiList' => $instansiList,
+            'pengajuanList' => $pengajuanList,
             'suratList' => $suratList,
+            'userList' => $userList,
         ]);
     }
 

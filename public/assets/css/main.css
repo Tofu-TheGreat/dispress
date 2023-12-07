@@ -361,12 +361,14 @@ li {
     border: none;
     padding: 0 10px;
     letter-spacing: 0.2px;
+    font-size: 0.8rem;
 }
 
 .btn-group .btn-sifat-disposisi {
     border: none;
     color: white;
     letter-spacing: 0.2px;
+    font-size: 0.8rem;
 }
 
 .btn-group .btn-collapse {

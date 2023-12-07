@@ -806,7 +806,7 @@
                                     <div class="custom-control custom-radio custom-control-inline">
                                         <input type="radio" id="jabatan{{ $data->id_pengajuan }}"
                                             name="jenis_disposisi" class="custom-control-input jabatan"
-                                            onclick="toggleSelects({{ $data->id_pengajuan }})">
+                                            onclick="toggleSelects({{ $data->id_pengajuan }})" checked>
                                         <label class="custom-control-label" for="jabatan{{ $data->id_pengajuan }}">Kirim
                                             Sesuai Jabatan</label>
                                     </div>

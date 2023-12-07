@@ -106,8 +106,7 @@
                                                 <i class="bi bi-patch-question-fill"></i>
                                             </div>
                                         </div>
-                                        <select
-                                            class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
+                                        <select class="form-control  @error('status_verifikasi') is-invalid @enderror "
                                             id="status_verifikasi" name="status_verifikasi" disabled>
                                             <option selected disabled>Pilih Sifat Surat</option>
                                             <option value="0"
@@ -278,7 +277,7 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
-                                                    <label for="tujuan_disposisi">Tujuan Disposisi: </label>
+                                                    <label for="tujuan_pengajuan">Tujuan Pengajuan: </label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text bg-secondary">
@@ -286,9 +285,9 @@
                                                             </div>
                                                         </div>
                                                         <input type="text"
-                                                            class="form-control @error('tujuan_disposisi') is-invalid @enderror"
+                                                            class="form-control @error('tujuan_pengajuan') is-invalid @enderror"
                                                             value="{{ $detailDataPengajuan->tujuan_pengajuan }}"
-                                                            id="tujuan_disposisi" name="tujuan_disposisi" readonly>
+                                                            id="tujuan_pengajuan" name="tujuan_pengajuan" readonly>
                                                     </div>
                                                 </div>
                                             </div>

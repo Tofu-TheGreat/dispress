@@ -6,9 +6,10 @@ use App\Models\PosisiJabatan;
 use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
-class PosisiJabatanImport implements ToCollection, ToModel, WithValidation
+class PosisiJabatanImport implements ToCollection, ToModel, WithValidation, WithHeadingRow
 {
     /**
      * @param Collection $collection
@@ -22,7 +23,7 @@ class PosisiJabatanImport implements ToCollection, ToModel, WithValidation
         return new PosisiJabatan([
             'nama_posisi_jabatan' => $row['nama_posisi_jabatan'],
             'deskripsi_jabatan'     => $row['deskripsi_jabatan'],
-            'tingkat_jabatan'     => $row['tingkat_jabatan'],
+            'tingkat_jabatan'     => reversetingkatJabatanConvert($row['tingkat_jabatan'], 'tingkat_jabatan'),
         ]);
     }
 

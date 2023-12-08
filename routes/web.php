@@ -57,6 +57,8 @@ Route::post("/officer-index", [OfficerController::class, "indexAdmin"]);
 
 Route::resource('/posisi-jabatan', PosisiJabatanController::class)->middleware('auth');
 Route::post("/posisi-jabatan-index", [PosisiJabatanController::class, "indexPosisiJabatan"]);
+Route::get("/posisi-jabatan-export", [ExportController::class, "export_posisijabatan"])->name('posisi-jabatan.export');
+Route::post('posisi-jabatan-import', [ImportController::class, 'import_posisijabatan'])->name('posisi-jabatan.import');
 
 // Manajemen instansi
 

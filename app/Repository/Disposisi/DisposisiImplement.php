@@ -49,7 +49,7 @@ class DisposisiImplement implements DisposisiRepository
                     'sifat_disposisi' => $data->sifat_disposisi,
                     'id_user' => $data->id_user,
                     'tanggal_disposisi' => $data->tanggal_disposisi,
-                    'tujuan_disposisi' => $jabatan,
+                    'id_posisi_jabatan' => $jabatan,
                 ]);
             }
             Pengajuan::where('id_pengajuan', $data->id_pengajuan)->update([
@@ -100,6 +100,7 @@ class DisposisiImplement implements DisposisiRepository
                 'id_user' => $data->id_user,
                 'tujuan_disposisi' => $jabatan,
                 'tanggal_disposisi' => $data->tanggal_disposisi,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'id_penerima' => $data->id_penerima,
             ]);
         }

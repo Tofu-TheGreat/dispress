@@ -223,7 +223,7 @@
                                                     id="id_posisi_jabatan" name="id_posisi_jabatan" required>
                                                     <option selected disabled>Pilih Posisi Jabatan User</option>
                                                     @foreach ($posisiJabatanList as $item)
-                                                        <option value="{{ $data->id_posisi_jabatan }}"
+                                                        <option value="{{ $item->id_posisi_jabatan }}"
                                                             {{ $data->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
                                                             {{ $item->nama_posisi_jabatan }} |
                                                             {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}

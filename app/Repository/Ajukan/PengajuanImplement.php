@@ -25,14 +25,11 @@ class PengajuanImplement implements PengajuanRepository
             'tanggal_terima' => $data->tanggal_terima,
             'catatan_pengajuan' => $data->catatan_pengajuan,
             'id_user' => $data->id_user,
-            'tujuan_pengajuan' => $data->tujuan_pengajuan,
         ]);
     }
     public function show($id)
     {
         $data = $this->pengajuan->where('id_pengajuan', $id)->first();
-
-        $data->tujuan_pengajuan = jabatanConvert($data->tujuan_pengajuan, 'jabatan');
         $data->status_pengajuan = statusPengajuanConvert($data->status_pengajuan, 'status_pengajuan');
 
         return $data;
@@ -40,8 +37,6 @@ class PengajuanImplement implements PengajuanRepository
     public function edit($id)
     {
         $data = $this->pengajuan->where('id_pengajuan', $id)->first();
-
-        $data->tujuan_pengajuan = jabatanConvert($data->tujuan_pengajuan, 'jabatan');
         $data->status_pengajuan = statusPengajuanConvert($data->status_pengajuan, 'status_pengajuan');
 
         return $data;
@@ -56,7 +51,6 @@ class PengajuanImplement implements PengajuanRepository
             'status_pengajuan' => $data->status_pengajuan,
             'catatan_pengajuan' => $data->catatan_pengajuan,
             'id_user' => $data->id_user,
-            'tujuan_pengajuan' => $data->tujuan_pengajuan,
         ]);
     }
     public function destroy($id)
@@ -78,9 +72,6 @@ class PengajuanImplement implements PengajuanRepository
         }
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
-        }
-        if (isset($data->tujuan_pengajuan) && ($data->tujuan_pengajuan != null)) {
-            $query->where('tujuan_pengajuan', $data->tujuan_pengajuan);
         }
         if (
             isset($data->tanggal_pengajuan_awal) &&

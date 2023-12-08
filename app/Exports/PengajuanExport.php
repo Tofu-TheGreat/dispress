@@ -27,7 +27,6 @@ class PengajuanExport implements FromCollection, WithMapping, WithHeadings
             'status_pengajuan',
             'catatan_pengajuan',
             'pengirim_ajuan',
-            'tujuan_pengajuan',
             'created_at',
             'updated_at',
         ];
@@ -50,7 +49,6 @@ class PengajuanExport implements FromCollection, WithMapping, WithHeadings
             statusPengajuanConvert($row->status_pengajuan, 'status_pengajuan'),
             $row->catatan_pengajuan,
             $row->user->nama,
-            jabatanConvert($row->tujuan_pengajuan,  'status_pengajuan'),
             $row->created_at,
             $row->updated_at,
         ];

@@ -26,7 +26,6 @@ class PengajuanRequest extends FormRequest
             'nomor_agenda' => 'required|unique:pengajuan,nomor_agenda,' . $this->input('id_pengajuan') . ',id_pengajuan',
             'id_surat' => 'required',
             'tanggal_terima' => 'required|date',
-            'tujuan_pengajuan' => 'required'
         ];
     }
     public function messages()
@@ -38,7 +37,6 @@ class PengajuanRequest extends FormRequest
             'id_surat.required' => 'Harap pilih surat Disposisi',
             'tanggal_terima.required' => 'Harap tentukan tanggal terima diposisi',
             'tanggal_terima.date' => 'Tanggal terima harus dalam format tanggal',
-            'tujuan_pengajuan.required' => 'Harap pilih Tujuan Pengajuan Disposisi',
         ];
     }
 }

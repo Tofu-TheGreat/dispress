@@ -33,7 +33,7 @@ class UserRequest extends FormRequest
             'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->input('id_user') . ',id_user', //melakukan validasi berdasarkan id yang dikirimkan
             'nama' => 'required',
             'level' => 'required',
-            'jabatan' => 'required',
+            'id_posisi_jabatan' => 'required',
             'username' => 'required',
             'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,' . $this->input('id_user') . ',id_user',
             'email' => 'required|email|unique:users,email,' . $this->input('id_user') . ',id_user',
@@ -56,7 +56,7 @@ class UserRequest extends FormRequest
             'nip.unique' => 'Harap Masukkan NIP yang berbeda',
             'nama.required' => 'Harap masukkan nama.',
             'level.required' => 'Harap pilih level.',
-            'jabatan.required' => 'Harap pilih jabatan.',
+            'id_posisi_jabatan.required' => 'Harap pilih jabatan.',
             'username.required' => 'Harap masukkan username.',
             'email.required' => 'Harap masukkan alamat email.',
             'email.email' => 'Harap masukkan alamat email yang valid.',

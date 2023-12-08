@@ -233,7 +233,7 @@
                                 <div class="form-group">
                                     <label for="deskripsi_jabatan">Masukkan Deskripsi Jabatan: </label>
                                     <textarea class="summernote-simple @error('deskripsi_jabatan') is-invalid @enderror" id="deskripsi_jabatan"
-                                        name="deskripsi" required> {{ $item->deskripsi_jabatan }} </textarea>
+                                        name="deskripsi_jabatan" required> {{ $item->deskripsi_jabatan }} </textarea>
                                     <span class="text-danger">
                                         @error('deskripsi_jabatan')
                                             {{ $message }}
@@ -265,7 +265,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('nomor-klasifikasi.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('posisi-jabatan.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="row px-4 pt-4">
                         <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -316,7 +316,7 @@
                             <div class="form-group">
                                 <label for="deskripsi_jabatan">Masukkan Deskripsi Jabatan: </label>
                                 <textarea class="summernote-simple @error('deskripsi_jabatan') is-invalid @enderror" id="deskripsi_jabatan"
-                                    name="deskripsi" required> {{ old('deskripsi_jabatan') }} </textarea>
+                                    name="deskripsi_jabatan" required> {{ old('deskripsi_jabatan') }} </textarea>
                                 <span class="text-danger">
                                     @error('deskripsi_jabatan')
                                         {{ $message }}
@@ -347,11 +347,11 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('nomor-klasifikasi.import') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('posisi-jabatan.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
                         <span class="d-block">Unduh Template Import Posisi Jabatan: </span>
-                        <a href="/file/Book3.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="nomor_klasifikasi-template-import">
+                        <a href="/file/Book4.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
+                            download="posisi-jabatan-template-import">
                             <span>Template Import Posisi Jabatan</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf
@@ -361,7 +361,14 @@
                                 MB.</small>
                             <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
                                 id="import" name="file" accept=".xlsx">
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
                         </div>
                     </div>
                     <div class="modal-footer d-flex justify-content-between">
@@ -536,7 +543,7 @@
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('nomor-klasifikasi.export') }}', {
+                            fetch('{{ route('posisi-jabatan.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {

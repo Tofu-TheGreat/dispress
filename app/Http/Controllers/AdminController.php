@@ -45,9 +45,9 @@ class AdminController extends Controller
         if ($request->jabatan) {
             // Memeriksa nilai 'jabatan' dan menyesuaikan query yang dikirimkan ajax
             if ($request->jabatan == "kp") {
-                $usersList = User::where('jabatan', '0')->where('level', 'admin')->get();
+                $usersList = User::where('id_posisi_jabatan', '0')->where('level', 'admin')->get();
             } else {
-                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'admin')->get();
+                $usersList = User::where('id_posisi_jabatan', $request->jabatan)->where('level', 'admin')->get();
             }
             return DataTables::of($usersList)
                 ->addIndexColumn()

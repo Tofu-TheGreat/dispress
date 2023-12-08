@@ -15,7 +15,7 @@ class PosisiJabatanExport implements FromCollection, WithHeadings, WithMapping
      */
     public function collection()
     {
-        PosisiJabatan::get();
+        return PosisiJabatan::get();
     }
     public function headings(): array
     {
@@ -24,6 +24,8 @@ class PosisiJabatanExport implements FromCollection, WithHeadings, WithMapping
             'nama_posisi_jabatan',
             'deskripsi_jabatan',
             'tingkat_jabatan',
+            'created_at',
+            'updated_at',
         ];
     }
 
@@ -44,7 +46,7 @@ class PosisiJabatanExport implements FromCollection, WithHeadings, WithMapping
             $rowNumber,
             $row->nama_posisi_jabatan,
             $row->deskripsi_jabatan,
-            $row->tingkat_jabatan,
+            tingkatJabatanConvert($row->tingkat_jabatan, 'tingkat_jabatan'),
             $row->created_at,
             $row->updated_at
         ];

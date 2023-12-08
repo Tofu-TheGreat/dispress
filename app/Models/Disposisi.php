@@ -19,7 +19,7 @@ class Disposisi extends Model
         'sifat_disposisi',
         'id_user',
         'tanggal_disposisi',
-        'tujuan_disposisi',
+        'id_posisi_jabatan',
         'id_penerima',
     ];
 

@@ -94,6 +94,44 @@ if (!function_exists('reverseJabatanConvert')) {
         return $map[$value] ?? $map['Tidak Diketahui'];
     }
 }
+if (!function_exists('tingkatJabatanConvert')) {
+    function tingkatJabatanConvert($value, $type)
+    {
+        switch ($type) {
+            case 'tingkat_jabatan':
+                $map = [
+                    '0' => 'Jabatan Struktural',
+                    '1' => 'Jabatan Fungsional Tertentu',
+                    '2' => 'Jabatan Fungsional Umum',
+                ];
+                break;
+            default:
+                $map = ['Tidak Diketahui' => null];
+                break;
+        }
+
+        return $map[$value] ?? $map['Tidak Diketahui'];
+    }
+}
+if (!function_exists('reversetingkatJabatanConvert')) {
+    function reversetingkatJabatanConvert($value, $type)
+    {
+        switch ($type) {
+            case 'tingkat_jabatan':
+                $map = [
+                    "Jabatan Struktural" => '0',
+                    "Jabatan Fungsional Tertentu" => '1',
+                    "Jabatan Fungsional Umum" => '2',
+                ];
+                break;
+            default:
+                $map = ['Tidak Diketahui' => null];
+                break;
+        }
+
+        return $map[$value] ?? $map['Tidak Diketahui'];
+    }
+}
 
 
 if (!function_exists('convertDisposisiField')) {

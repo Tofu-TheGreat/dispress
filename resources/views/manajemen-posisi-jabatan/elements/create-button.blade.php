@@ -18,7 +18,7 @@
              <small class="tombol-edit">Edit</small>
          </button>
          <form method="POST"
-             action="{{ route('nomor-klasifikasi.destroy', Crypt::encryptString($posisiJabatanList->id_posisi_jabatan)) }}"
+             action="{{ route('posisi-jabatan.destroy', Crypt::encryptString($posisiJabatanList->id_posisi_jabatan)) }}"
              class="tombol-hapus">
              @csrf
              @method('DELETE')

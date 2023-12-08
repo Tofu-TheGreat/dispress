@@ -43,9 +43,9 @@ class StaffController extends Controller
     {
         if ($request->jabatan) {
             if ($request->jabatan == "kp") {
-                $usersList = User::where('jabatan', '0')->where('level', 'staff')->get();
+                $usersList = User::where('id_posisi_jabatan', '0')->where('level', 'staff')->get();
             } else {
-                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'staff')->get();
+                $usersList = User::where('id_posisi_jabatan', $request->jabatan)->where('level', 'staff')->get();
             }
             return DataTables::of($usersList)
                 ->addIndexColumn()

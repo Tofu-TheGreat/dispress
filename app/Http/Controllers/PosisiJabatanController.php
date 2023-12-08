@@ -6,6 +6,7 @@ use App\Http\Requests\PosisiJabatanRequest;
 use App\Models\PosisiJabatan;
 use App\Repository\PosisiJabatan\PosisiJabatanRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\DataTables;
 
 class PosisiJabatanController extends Controller
@@ -65,6 +66,7 @@ class PosisiJabatanController extends Controller
     public function store(PosisiJabatanRequest $request)
     {
         $this->posisijabatanRepository->store($request);
+        return back()->with('success', 'Berhasil menambah Posisi Jabatan');
     }
 
     /**
@@ -88,7 +90,8 @@ class PosisiJabatanController extends Controller
      */
     public function update(PosisiJabatanRequest $request, string $id)
     {
-        $this->posisijabatanRepository->update($request, $id);
+        $this->posisijabatanRepository->update($id, $request);
+        return back()->with('success', 'Berhasil meng-edit Posisi Jabatan');
     }
 
     /**
@@ -96,6 +99,8 @@ class PosisiJabatanController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->posisijabatanRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->posisijabatanRepository->destroy($encryptId);
+        return back()->with('success', 'Berhasil menghapus Posisi Jabatan');
     }
 }

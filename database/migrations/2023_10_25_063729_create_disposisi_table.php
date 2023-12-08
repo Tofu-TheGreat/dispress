@@ -23,8 +23,6 @@ return new class extends Migration
             $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             $table->unsignedBigInteger('id_user'); //Pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '999'])->default('999'); //Penerima
-            // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
             $table->unsignedBigInteger('id_penerima'); //Penerima
             $table->foreign('id_penerima')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();

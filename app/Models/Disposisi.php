@@ -35,4 +35,8 @@ class Disposisi extends Model
     {
         return $this->belongsTo(User::class, 'id_penerima');
     }
+    public function posisiJabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'id_posisi_jabatan');
+    }
 }

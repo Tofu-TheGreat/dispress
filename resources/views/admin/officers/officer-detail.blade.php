@@ -165,8 +165,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('jabatan') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->jabatan }}" id="jabatan"
-                                                    name="jabatan" readonly>
+                                                    value="{{ $detailDataOfficer->posisiJabatan->nama_posisi_jabatan }} | {{ jabatanConvert($detailDataOfficer->posisiJabatan->tingkat_jabatan, 'jabatan') }}"
+                                                    id="jabatan" name="jabatan" readonly>
                                             </div>
                                         </div>
                                     </div>

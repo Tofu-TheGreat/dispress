@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\PosisiJabatan;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repository\Officer\OfficerRepository;
@@ -27,11 +28,14 @@ class OfficerController extends Controller
     public function index()
     {
         $usersList = $this->officerRepository->getUserbyOfficer();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.officers.officer-data', [
             'title' => 'Officer',
             'active' => 'Officer',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -85,10 +89,14 @@ class OfficerController extends Controller
      */
     public function create()
     {
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.officers.officer-create', [
             'title' => 'Create Officer',
             'active' => 'Officer',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -125,11 +133,15 @@ class OfficerController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->officerRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
+
         return view('admin.officers.officer-edit', [
             'title' => 'Edit Officer',
             'active' => 'Officer',
             'active1' => 'users',
-            'editDataOfficer' => $editData
+            'editDataOfficer' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 

@@ -21,4 +21,8 @@ class PosisiJabatan extends Model
     {
         return $this->hasOne(User::class, 'id_posisi_jabatan');
     }
+    public function disposisi()
+    {
+        return $this->hasMany(Disposisi::class, 'id_posisi_jabatan');
+    }
 }

@@ -275,22 +275,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12">
-                                                <div class="form-group">
-                                                    <label for="tujuan_pengajuan">Tujuan Pengajuan: </label>
-                                                    <div class="input-group">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text bg-secondary">
-                                                                <i class="bi bi-person-rolodex"></i>
-                                                            </div>
-                                                        </div>
-                                                        <input type="text"
-                                                            class="form-control @error('tujuan_pengajuan') is-invalid @enderror"
-                                                            value="{{ $detailDataPengajuan->tujuan_pengajuan }}"
-                                                            id="tujuan_pengajuan" name="tujuan_pengajuan" readonly>
-                                                    </div>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">

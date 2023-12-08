@@ -19,12 +19,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        PosisiJabatan::factory(15)->create();
-        \App\Models\User::factory(10)->create();
-        // \App\Models\Surat::factory(10)->create();
-
         // Seed Posisi Jabatan
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Ketua',
+            'deskripsi_jabatan' => 'Pengatur Jabatan',
+            'tingkat_jabatan' => '0',
+        ]);
 
+        PosisiJabatan::factory(15)->create();
+        User::factory(10)->create();
 
         // Seed User
         User::factory()->create([
@@ -117,7 +120,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_terima' => '2023-11-12',
             'catatan_pengajuan' => 'Sudah Didisposisikan',
             'id_user' => '11',
-            'tujuan_pengajuan' => '0',
         ]);
 
         Pengajuan::factory()->create([
@@ -128,7 +130,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_terima' => '2023-11-12',
             'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
             'id_user' => '5',
-            'tujuan_pengajuan' => '0',
         ]);
 
         // Seed Disposisi
@@ -139,7 +140,7 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '5',
             'sifat_disposisi' => '0',
             'id_user' => '11',
-            'tujuan_disposisi' => '5',
+            'id_posisi_jabatan' => '5',
             'id_penerima' => '1',
         ]);
     }

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\PengajuanRequest;
 use App\Models\Pengajuan;
+use App\Models\PosisiJabatan;
 use App\Models\Surat;
 use App\Repository\Ajukan\PengajuanRepository;
 
@@ -28,6 +29,8 @@ class PengajuanController extends Controller
         $pengajuanList1 = $this->pengajuanRepository->index('1');
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
@@ -36,6 +39,7 @@ class PengajuanController extends Controller
             'pengajuanList0' => $pengajuanList0,
             'pengajuanList1' => $pengajuanList1,
             'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
             'klasifikasiList' => $klasifikasiList,
         ]);
     }

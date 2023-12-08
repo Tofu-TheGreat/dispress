@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\Staff\StaffRepository;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\PosisiJabatan;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
+use App\Repository\Staff\StaffRepository;
 
 class StaffController extends Controller
 {
@@ -26,11 +27,15 @@ class StaffController extends Controller
     public function index()
     {
         $usersList = $this->staffRepository->getUserbyStaff();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-data', [
             'title' => 'Staff',
             'active' => 'Staff',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -84,10 +89,14 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-create', [
             'title' => 'Create Staff',
             'active' => 'Staff',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -123,11 +132,15 @@ class StaffController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->staffRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-edit', [
             'title' => 'Edit Staff',
             'active' => 'Staff',
             'active1' => 'users',
-            'editDataStaff' => $editData
+            'editDataStaff' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 

@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Surat;
+use App\Models\Instansi;
+use App\Models\Pengajuan;
 use App\Models\Perusahaan;
 use Illuminate\Http\Request;
+use App\Models\PosisiJabatan;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\DisposisiRequest;
 use App\Repository\Disposisi\DisposisiRepository;
-use App\Models\Instansi;
-use App\Models\Pengajuan;
 
 class DisposisiController extends Controller
 {
@@ -45,6 +46,7 @@ class DisposisiController extends Controller
         $pengajuanList = Pengajuan::get();
         $suratList = Surat::with('instansi')->get();
         $userList = User::get();
+        $posisiJabatanList = PosisiJabatan::get();
 
         return view('manajemen-surat.disposisi.disposisi-create', [
             'title' => 'Create Disposisi',
@@ -53,6 +55,7 @@ class DisposisiController extends Controller
             'pengajuanList' => $pengajuanList,
             'suratList' => $suratList,
             'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -91,7 +94,7 @@ class DisposisiController extends Controller
         $editData = $this->disposisiRepository->edit($encryptId);
         $pengajuanList = Pengajuan::get();
         $userList = User::get();
-
+        $posisiJabatanList = PosisiJabatan::get();
 
         return view('manajemen-surat.disposisi.disposisi-edit', [
             'title' => 'Edit Disposisi',
@@ -100,6 +103,7 @@ class DisposisiController extends Controller
             'editDataDisposisi' => $editData,
             'pengajuanList' => $pengajuanList,
             'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 

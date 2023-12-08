@@ -689,7 +689,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="tanggal_surat">Tanggal Surat: </label>
                                     <div class="input-group">
@@ -702,22 +702,6 @@
                                             class="form-control @error('tanggal_surat') is-invalid @enderror"
                                             value="{{ date('d-F-Y', strtotime($data->surat->tanggal_surat)) }}"
                                             id="tanggal_surat" name="tanggal_surat" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label for="tujuan_pengajuan">Kepada: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text bg-secondary">
-                                                <i class="bi bi-person-rolodex"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text"
-                                            class="form-control @error('tujuan_pengajuan') is-invalid @enderror"
-                                            value="{{ jabatanConvert($data->tujuan_pengajuan, 'jabatan') }}"
-                                            id="tujuan_pengajuan" name="tujuan_pengajuan" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -819,51 +803,28 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 mt-2">
-                                <div class="form-group tujuan_disposisi_div"
-                                    id="tujuan_disposisi_div{{ $data->id_pengajuan }}">
-                                    <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi (Jabatan):
+                            <div class="col-12 ">
+                                <div class="form-group id_posisi_jabatan_div"
+                                    id="id_posisi_jabatan_div{{ $data->id_pengajuan }}">
+                                    <label class="capitalize" for="id_posisi_jabatan">Pilih Tujuan Disposisi (Jabatan):
                                     </label>
                                     <div class="input-group">
                                         <select
-                                            class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
-                                            style="width: 100%;">
-                                            <option disabled>Pilih Tujuan Disposisi</option>
-                                            <option value="0"
-                                                {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
-                                                Kepala Sekolah</option>
-                                            <option value="1"
-                                                {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
-                                                Wakil Kepala Sekolah</option>
-                                            <option value="2"
-                                                {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
-                                                Kurikulum</option>
-                                            <option value="3"
-                                                {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
-                                                Kesiswaan</option>
-                                            <option value="4"
-                                                {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
-                                                Sarana Prasarana</option>
-                                            <option value="5"
-                                                {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
-                                                Kepala Jurusan</option>
-                                            <option value="6"
-                                                {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
-                                                Hubin</option>
-                                            <option value="7"
-                                                {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
-                                                Bimbingan Konseling</option>
-                                            <option value="8"
-                                                {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
-                                                Guru Umum</option>
-                                            <option value="9"
-                                                {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
-                                                Tata Usaha</option>
+                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="" required
+                                            style="width: 100%">
+                                            <option disabled>Pilih Posisi Jabatan User</option>
+                                            @foreach ($posisiJabatanList as $item)
+                                                <option value="{{ $item->id_posisi_jabatan }}"
+                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                    {{ $item->nama_posisi_jabatan }} |
+                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('tujuan_disposisi')
+                                        @error('id_posisi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -871,22 +832,23 @@
                             </div>
                             <div class="col-12">
                                 <div class="form-group id_user_div d-none" id="id_user_div{{ $data->id_pengajuan }}">
-                                    <label class="capitalize" for="id_user">Pilih Tujuan Disposisi (Personal): </label>
+                                    <label class="capitalize" for="id_user">Pilih Tujuan Disposisi (Personal):
+                                    </label>
                                     <div class="input-group">
-                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%;">
-                                            <option disabled>Pilih Tujuan Disposisi</option>
+                                        <select class="form-control select2 @error('id_user') is-invalid  @enderror "
+                                            id="id_user" name="id_user[]" multiple="" required style="width: 100%">
+                                            <option disabled>Pilih User</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
                                                     {{ $data->nama }} |
-                                                    {{ jabatanConvert($data->jabatan, 'jabatan') }}
+                                                    {{ $data->posisiJabatan->nama_posisi_jabatan }}
                                                 </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('id_penerima')
+                                        @error('id_user')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -1003,14 +965,14 @@
             const jabatanChecked = document.getElementById('jabatan' + id).checked;
             const personalChecked = document.getElementById('personal' + id).checked;
 
-            const tujuanDisposisiDiv = document.getElementById('tujuan_disposisi_div' + id);
+            const posisiJabatanDiv = document.getElementById('id_posisi_jabatan_div' + id);
             const idUserDiv = document.getElementById('id_user_div' + id);
 
             if (jabatanChecked) {
-                tujuanDisposisiDiv.classList.remove('d-none');
+                posisiJabatanDiv.classList.remove('d-none');
                 idUserDiv.classList.add('d-none');
             } else if (personalChecked) {
-                tujuanDisposisiDiv.classList.add('d-none');
+                posisiJabatanDiv.classList.add('d-none');
                 idUserDiv.classList.remove('d-none');
             }
         }

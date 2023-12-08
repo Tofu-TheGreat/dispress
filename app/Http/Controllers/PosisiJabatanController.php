@@ -42,7 +42,7 @@ class PosisiJabatanController extends Controller
                 return '<span class="capitalize">' . $posisiJabatanList->deskripsi_jabatan . '</span>';
             })
             ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' . $posisiJabatanList->tingkat_jabatan . '</span>';
+                return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';
             })
             ->addColumn('action', function ($posisiJabatanList) {
                 return view('manajemen-posisi-jabatan.elements.create-button')->with('posisiJabatanList', $posisiJabatanList);

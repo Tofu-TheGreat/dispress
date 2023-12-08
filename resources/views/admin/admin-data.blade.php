@@ -55,35 +55,23 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Berdasarkan Jabatan: </label>
+                                <label class="capitalize" for="id_posisi_jabatan">Pilih Berdasarkan Posisi Jabatan:
+                                </label>
                                 <div class="input-group ">
-                                    <select class="filter select2 @error('jabatan') is-invalid  @enderror " id="jabatan"
-                                        name="jabatan" required style="width: 100%">
-                                        <option selected disabled>Pilih Jabatan User</option>
-                                        <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
+                                    <select class="filter select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                        id="id_posisi_jabatan" name="id_posisi_jabatan" required style="width: 100%">
+                                        <option selected disabled>Pilih Posisi Jabatan User</option>
+                                        @foreach ($posisiJabatanList as $data)
+                                            <option value="{{ $data->id_posisi_jabatan }}"
+                                                {{ old('id_posisi_jabatan') == $data->id_posisi_jabatan ? 'selected' : '' }}>
+                                                {{ $data->nama_posisi_jabatan }} |
+                                                {{ jabatanConvert($data->tingkat_jabatan, 'jabatan') }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <span class="text-danger">
-                                    @error('jabatan')
+                                    @error('id_posisi_jabatan')
                                         {{ $message }}
                                     @enderror
                                 </span>

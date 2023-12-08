@@ -23,7 +23,6 @@ return new class extends Migration
             $table->string('catatan_pengajuan', 100);
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_pengajuan', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->default('0'); //Penerima
             $table->timestamps();
         });
     }

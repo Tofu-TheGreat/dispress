@@ -6,10 +6,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
-    <link rel="stylesheet"
-        href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
 @endsection
 
@@ -121,18 +117,30 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tingkat_jabatan">Tingkat Jabatan: </label>
+                                <label class="capitalize" for="tingkat_jabatan">Tingkat Jabatan:
+                                </label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
+                                    <div class="input-group-prepend ">
                                         <div class="input-group-text bg-secondary">
-                                            <i class="bi bi-tag-fill"></i>
+                                            <i class="bi bi-stack"></i>
                                         </div>
                                     </div>
-                                    <input type="text"
-                                        class="form-control @error('tingkat_jabatan') is-invalid @enderror"
-                                        placeholder="ex: 0878-2730-3388" value="{{ $item->tingkat_jabatan }}"
-                                        id="tingkat_jabatan" name="tingkat_jabatan" readonly>
+                                    <select class="form-control @error('tingkat_jabatan') is-invalid @enderror "
+                                        id="tingkat_jabatan" name="tingkat_jabatan" disabled>
+                                        <option selected disabled>Pilih Tingkat Jabatan</option>
+                                        <option value="0" {{ $item->tingkat_jabatan === '0' ? 'selected' : '' }}>
+                                            Jabatan Struktural</option>
+                                        <option value="1" {{ $item->tingkat_jabatan === '1' ? 'selected' : '' }}>
+                                            Jabatan Funsional Tertentu</option>
+                                        <option value="2" {{ $item->tingkat_jabatan == '2' ? 'selected' : '' }}>
+                                            Jabatan Fungsional Umum</option>
+                                    </select>
                                 </div>
+                                <span class="text-danger">
+                                    @error('tingkat_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-12">
@@ -170,7 +178,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form action="/nomor-klasifikasi/{{ $item->id_posisi_jabatan }}" method="post"
+                    <form action="/posisi-jabatan/{{ $item->id_posisi_jabatan }}" method="post"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -199,17 +207,20 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label for="tingkat_jabatan">Tingkat Jabatan: </label>
+                                    <label class="capitalize" for="tingkat_jabatan">Tingkat Jabatan:
+                                    </label>
                                     <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-stack"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text"
-                                            class="form-control @error('tingkat_jabatan') is-invalid @enderror"
-                                            placeholder="ex: Undangan" value="{{ $item->tingkat_jabatan }}"
-                                            id="tingkat_jabatan" name="tingkat_jabatan" required>
+                                        <select
+                                            class="form-control select2 @error('tingkat_jabatan') is-invalid @enderror "
+                                            id="tingkat_jabatan" name="tingkat_jabatan" required style="width: 100%;">
+                                            <option selected disabled>Pilih Tingkat Jabatan</option>
+                                            <option value="0" {{ $item->tingkat_jabatan === '0' ? 'selected' : '' }}>
+                                                Jabatan Strukturan</option>
+                                            <option value="1" {{ $item->tingkat_jabatan === '1' ? 'selected' : '' }}>
+                                                Jabatan Funsional Tertentu</option>
+                                            <option value="2" {{ $item->tingkat_jabatan == '2' ? 'selected' : '' }}>
+                                                Jabatan Fungsional Umum</option>
+                                        </select>
                                     </div>
                                     <span class="text-danger">
                                         @error('tingkat_jabatan')
@@ -280,17 +291,19 @@
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
-                                <label for="tingkat_jabatan">Masukkan Tingkat Jabatan: </label>
+                                <label class="capitalize" for="tingkat_jabatan">Tingkat Jabatan:
+                                </label>
                                 <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">
-                                            <i class="bi bi-stack"></i>
-                                        </div>
-                                    </div>
-                                    <input type="number"
-                                        class="form-control @error('tingkat_jabatan') is-invalid @enderror"
-                                        placeholder="ex: 001" value="{{ old('tingkat_jabatan') }}" id="tingkat_jabatan"
-                                        name="tingkat_jabatan" required>
+                                    <select class="form-control select2 @error('tingkat_jabatan') is-invalid @enderror "
+                                        id="tingkat_jabatan" name="tingkat_jabatan" required style="width: 100%;">
+                                        <option selected disabled>Pilih Tingkat Jabatan</option>
+                                        <option value="0" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
+                                            Jabatan Struktural</option>
+                                        <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
+                                            Jabatan Funsional Tertentu</option>
+                                        <option value="2" {{ old('tingkat_jabatan') == '2' ? 'selected' : '' }}>
+                                            Jabatan Fungsional Umum</option>
+                                    </select>
                                 </div>
                                 <span class="text-danger">
                                     @error('tingkat_jabatan')
@@ -370,13 +383,8 @@
     <script src="{{ asset('assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
-    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
 
     {{-- DataTables --}}
     <script>
@@ -420,29 +428,6 @@
 
     <script>
         $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
-
-            $(document).on("show.bs.modal", '.modal', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                $(this).css("z-index", zIndex);
-                setTimeout(function() {
-                    $(".modal-backdrop").not(".modal-stack").first().css("z-index", zIndex - 1)
-                        .addClass("modal-stack");
-                }, 0);
-            }).on("hidden.bs.modal", '.modal', function(event) {
-                $(".modal:visible").length && $("body").addClass("modal-open");
-            });
-            $(document).on('inserted.bs.tooltip', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                var tooltipId = $(event.target).attr("aria-describedby");
-                $("#" + tooltipId).css("z-index", zIndex);
-            });
-            $(document).on('inserted.bs.popover', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                var popoverId = $(event.target).attr("aria-describedby");
-                $("#" + popoverId).css("z-index", zIndex);
-            });
-
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
                 minHeight: 150,

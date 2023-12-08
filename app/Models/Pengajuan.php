@@ -37,4 +37,8 @@ class Pengajuan extends Model
     {
         return $this->belongsTo(Klasifikasi::class, 'id_klasifikasi');
     }
+    public function posisiJabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'id_posisi_jabatan');
+    }
 }

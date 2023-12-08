@@ -75,47 +75,22 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi: </label>
+                                    <label class="capitalize" for="id_posisi_jabatan">Pilih Tujuan Disposisi: </label>
                                     <div class="input-group">
-                                        <select class="filter select2 @error('tujuan_disposisi') is-invalid  @enderror "
-                                            id="tujuan_disposisi" name="tujuan_disposisi" style="width: 100%;">
+                                        <select class="filter select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan" style="width: 100%;">
                                             <option value="">Pilih Tujuan Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->tujuan_disposisi == '0' ? 'selected' : '' }}>
-                                                    Kepala Sekolah</option>
-                                                <option value="1"
-                                                    {{ $item->tujuan_disposisi == '1' ? 'selected' : '' }}>
-                                                    Wakil Kepala Sekolah</option>
-                                                <option value="2"
-                                                    {{ $item->tujuan_disposisi == '2' ? 'selected' : '' }}>
-                                                    Kurikulum</option>
-                                                <option value="3"
-                                                    {{ $item->tujuan_disposisi == '3' ? 'selected' : '' }}>
-                                                    Kesiswaan</option>
-                                                <option value="4"
-                                                    {{ $item->tujuan_disposisi == '4' ? 'selected' : '' }}>
-                                                    Sarana Prasarana</option>
-                                                <option value="5"
-                                                    {{ $item->tujuan_disposisi == '5' ? 'selected' : '' }}>
-                                                    Kepala Jurusan</option>
-                                                <option value="6"
-                                                    {{ $item->tujuan_disposisi == '6' ? 'selected' : '' }}>
-                                                    Hubin</option>
-                                                <option value="7"
-                                                    {{ $item->tujuan_disposisi == '7' ? 'selected' : '' }}>
-                                                    Bimbingan Konseling</option>
-                                                <option value="8"
-                                                    {{ $item->tujuan_disposisi == '8' ? 'selected' : '' }}>
-                                                    Guru Umum</option>
-                                                <option value="9"
-                                                    {{ $item->tujuan_disposisi == '9' ? 'selected' : '' }}>
-                                                    Tata Usaha</option>
+                                            @foreach ($posisiJabatanList as $item)
+                                                <option value="{{ $item->id_posisi_jabatan }}"
+                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                    {{ $item->nama_posisi_jabatan }} |
+                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                </option>
                                             @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('tujuan_disposisi')
+                                        @error('id_posisi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -128,17 +103,16 @@
                                         <select class="filter select2 @error('sifat_disposisi') is-invalid  @enderror "
                                             id="sifat_disposisi" name="sifat_disposisi" style="width: 100%;">
                                             <option value="">Pilih Sifat Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->sifat_disposisi === '0' ? 'selected' : '' }}>
-                                                    Biasa</option>
-                                                <option value="1"
-                                                    {{ $item->sifat_disposisi === '1' ? 'selected' : '' }}>
-                                                    Prioritas</option>
-                                                <option value="2"
-                                                    {{ $item->sifat_disposisi === '2' ? 'selected' : '' }}>
-                                                    Rahasia</option>
-                                            @endforeach
+                                            <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
+                                                Tindaklanjuti</option>
+                                            <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
+                                                Biasa</option>
+                                            <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
+                                                Segera</option>
+                                            <option value="3" {{ old('sifat_disposisi') == '3' ? 'selected' : '' }}>
+                                                Penting</option>
+                                            <option value="4" {{ old('sifat_disposisi') == '4' ? 'selected' : '' }}>
+                                                Rahasia</option>
                                         </select>
                                     </div>
                                     <span class="text-danger">
@@ -155,20 +129,18 @@
                                         <select class="filter select2 @error('status_disposisi') is-invalid  @enderror "
                                             id="status_disposisi" name="status_disposisi" style="width: 100%;">
                                             <option value="">Pilih Status Disposisi</option>
-                                            @foreach ($disposisiList as $item)
-                                                <option value="0"
-                                                    {{ $item->status_disposisi === '0' ? 'selected' : '' }}>
-                                                    Belum ditindak</option>
-                                                <option value="1"
-                                                    {{ $item->status_disposisi === '1' ? 'selected' : '' }}>
-                                                    Diajukan</option>
-                                                <option value="2"
-                                                    {{ $item->status_disposisi === '2' ? 'selected' : '' }}>
-                                                    Diterima</option>
-                                                <option value="3"
-                                                    {{ $item->status_disposisi === '3' ? 'selected' : '' }}>
-                                                    Dikembalikan</option>
-                                            @endforeach
+                                            <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                                Arsipkan</option>
+                                            <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                                Jabarkan</option>
+                                            <option value="2" {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
+                                                Umumkan</option>
+                                            <option value="3" {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
+                                                Laksanakan</option>
+                                            <option value="4" {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
+                                                Persiapkan</option>
+                                            <option value="5" {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
+                                                Ikuti</option>
                                         </select>
                                     </div>
                                     <span class="text-danger">

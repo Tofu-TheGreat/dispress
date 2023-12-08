@@ -134,59 +134,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label class="capitalize" for="tujuan_pengajuan">Kepada:
-                                            </label>
-                                            <div class="input-group">
-                                                <div class="input-group-prepend">
-                                                    <div class="input-group-text bg-secondary">
-                                                        <i class="bi bi-person-rolodex"></i>
-                                                    </div>
-                                                </div>
-                                                <select
-                                                    class="form-control  @error('tujuan_pengajuan') is-invalid @enderror "
-                                                    id="tujuan_pengajuan" name="tujuan_pengajuan" disabled>
-                                                    <option selected disabled></option>
-                                                    <option value="0"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 0 ? 'selected' : '' }}>
-                                                        Kepala Sekolah</option>
-                                                    <option value="1"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 1 ? 'selected' : '' }}>
-                                                        Wakil Kepala Sekolah</option>
-                                                    <option value="2"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 2 ? 'selected' : '' }}>
-                                                        Kurikulum</option>
-                                                    <option value="3"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 3 ? 'selected' : '' }}>
-                                                        Kesiswaan</option>
-                                                    <option value="4"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 4 ? 'selected' : '' }}>
-                                                        Sarana Prasarana</option>
-                                                    <option value="5"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 5 ? 'selected' : '' }}>
-                                                        Kepala Jurusan</option>
-                                                    <option value="6"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 6 ? 'selected' : '' }}>
-                                                        Hubin</option>
-                                                    <option value="7"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 7 ? 'selected' : '' }}>
-                                                        Bimbingan Konseling</option>
-                                                    <option value="8"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 8 ? 'selected' : '' }}>
-                                                        Guru Umum</option>
-                                                    <option value="9"
-                                                        {{ $editDataDisposisi->pengajuan->tujuan_pengajuan == 9 ? 'selected' : '' }}>
-                                                        Tata Usaha</option>
-                                                </select>
-                                            </div>
-                                            <span class="text-danger">
-                                                @error('tujuan_pengajuan')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
-                                        </div>
-                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="suratData" role="tabpanel" aria-labelledby="surat-data">
                                     <div class="col-12 mt-3">

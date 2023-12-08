@@ -734,7 +734,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label for="tanggal_disposisi">Tanggal Surat: </label>
                                     <div class="input-group">
@@ -751,35 +751,6 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_disposisi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="id_posisi_jabatan">Kepada: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-person-fill-exclamation"></i>
-                                            </div>
-                                        </div>
-                                        <select
-                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                            id="id_posisi_jabatan" name="id_posisi_jabatan" required>
-                                            <option selected disabled>Pilih Posisi Jabatan User</option>
-                                            @foreach ($posisiJabatanList as $data)
-                                                <option value="{{ $data->id_posisi_jabatan }}"
-                                                    {{ old('id_posisi_jabatan') == $data->id_posisi_jabatan ? 'selected' : '' }}>
-                                                    {{ $data->nama_posisi_jabatan }} |
-                                                    {{ jabatanConvert($data->tingkat_jabatan, 'jabatan') }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_posisi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>

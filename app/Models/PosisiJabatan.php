@@ -21,12 +21,8 @@ class PosisiJabatan extends Model
     {
         return $this->hasOne(User::class, 'id_posisi_jabatan');
     }
-    public function pengajuan()
-    {
-        return $this->hasOne(Pengajuan::class, 'id_posisi_jabatan');
-    }
     public function disposisi()
     {
-        return $this->hasOne(Disposisi::class, 'id_posisi_jabatan');
+        return $this->hasMany(Disposisi::class, 'id_posisi_jabatan');
     }
 }

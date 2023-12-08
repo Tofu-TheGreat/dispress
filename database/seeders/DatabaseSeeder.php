@@ -120,7 +120,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_terima' => '2023-11-12',
             'catatan_pengajuan' => 'Sudah Didisposisikan',
             'id_user' => '11',
-            'id_posisi_jabatan' => '1',
         ]);
 
         Pengajuan::factory()->create([
@@ -131,7 +130,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_terima' => '2023-11-12',
             'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
             'id_user' => '5',
-            'id_posisi_jabatan' => '1',
         ]);
 
         // Seed Disposisi

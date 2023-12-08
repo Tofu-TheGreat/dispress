@@ -571,7 +571,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="tanggal_surat">Tanggal Surat: </label>
                                 <div class="input-group">
@@ -587,43 +587,6 @@
                                 </div>
                                 <span class="text-danger">
                                     @error('tanggal_surat')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="capitalize" for="tujuan_pengajuan">Kepada:
-                                </label>
-                                <div class="input-group">
-                                    <select class="form-control select2  @error('tujuan_pengajuan') is-invalid @enderror "
-                                        id="tujuan_pengajuan" name="tujuan_pengajuan" required style="width: 100%;">
-                                        <option disabled>Pilih Tujuan Pengajuan</option>
-                                        <option value="0" {{ old('tujuan_pengajuan') === '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('tujuan_pengajuan') === '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('tujuan_pengajuan') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('tujuan_pengajuan') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('tujuan_pengajuan') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('tujuan_pengajuan') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('tujuan_pengajuan') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('tujuan_pengajuan') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('tujuan_pengajuan') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('tujuan_pengajuan') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
-                                    </select>
-                                </div>
-                                <span class="text-danger">
-                                    @error('tujuan_pengajuan')
                                         {{ $message }}
                                     @enderror
                                 </span>

@@ -54,7 +54,7 @@ class AdminImplement implements AdminRepository
     }
     public function show($id)
     {
-        $data =  $this->user->where('id_user', $id)->first();
+        $data =  $this->user->where('id_user', $id)->with('posisiJabatan')->first();
         return $data;
     }
     public function edit($id)

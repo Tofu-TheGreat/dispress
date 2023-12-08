@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SuratRequest;
+use App\Models\User;
+use Mockery\Undefined;
 use App\Models\Instansi;
 use App\Models\Klasifikasi;
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Repository\Surat\SuratRepository;
-use Mockery\Undefined;
-use Illuminate\Support\Facades\Crypt;
-
+use App\Models\PosisiJabatan;
+use App\Http\Requests\SuratRequest;
 use function Laravel\Prompts\select;
+
+use Illuminate\Support\Facades\Crypt;
+use App\Repository\Surat\SuratRepository;
 
 class SuratController extends Controller
 {
@@ -28,7 +29,9 @@ class SuratController extends Controller
         $suratList = $this->suratRepository->index();
         $instansiList = Instansi::get();
         $userList = User::get();
+        $adminList = User::where('level', 'admin')->get();
         $klasifikasiList = Klasifikasi::get();
+        $posisiJabatanList = PosisiJabatan::get();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
@@ -37,6 +40,8 @@ class SuratController extends Controller
             'suratList' => $suratList,
             'instansiList' => $instansiList,
             'userList' => $userList,
+            'adminList' => $adminList,
+            'posisiJabatanList' => $posisiJabatanList,
             'klasifikasiList' => $klasifikasiList,
         ]);
     }

@@ -230,7 +230,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('id_user') is-invalid @enderror"
-                                                    value="{{ $detailDataSurat->user->nama }} | {{ $detailDataSurat->user->jabatan }}"
+                                                    value="{{ $detailDataSurat->user->nama }} | {{ $detailDataSurat->user->posisiJabatan->nama_posisi_jabatan }}"
                                                     id="id_user" name="id_user" readonly>
                                             </div>
                                         </div>

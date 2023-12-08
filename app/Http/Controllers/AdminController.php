@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\PosisiJabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Admin\AdminRepository;
@@ -28,11 +29,14 @@ class AdminController extends Controller
     {
         // Mengambil daftar pengguna dari AdminRepository
         $usersList = $this->adminRepository->getUserbyAdmin();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-data', [
             'title' => 'Admin',
             'active' => 'Admin',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -87,10 +91,13 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-create', [
             'title' => 'Create Admin',
             'active' => 'Admin',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -111,11 +118,12 @@ class AdminController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->adminRepository->show($encryptId);
+
         return view('admin.admin-detail', [
             'title' => 'Detail Admin',
             'active' => 'Admin',
             'active1' => 'users',
-            'detailDataAdmin' => $detailAdmin
+            'detailDataAdmin' => $detailAdmin,
         ]);
     }
 
@@ -127,11 +135,14 @@ class AdminController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-edit', [
             'title' => 'Edit Admin',
             'active' => 'Admin',
             'active1' => 'users',
-            'editDataAdmin' => $editData
+            'editDataAdmin' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 

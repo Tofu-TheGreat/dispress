@@ -110,14 +110,14 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="level">Level: </label>
+                                        <label class="capitalize" for="level">Pilih Level User: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
                                                     <i class="fa fa-layer-group"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control select2  @error('level') is-invalid @enderror "
+                                            <select class="form-control select2 @error('level') is-invalid  @enderror "
                                                 id="level" name="level" required>
                                                 <option selected disabled>Pilih Level User</option>
                                                 <option value="admin" {{ old('level') == 'admin' ? 'selected' : '' }}
@@ -140,40 +140,28 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
+                                        <label class="capitalize" for="id_posisi_jabatan">Pilih Posisi Jabatan: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="fa fa-user-plus"></i>
+                                                    <i class="bi bi-person-fill-exclamation"></i>
                                                 </div>
                                             </div>
-                                            <select class="form-control select2 @error('jabatan') is-invalid  @enderror "
-                                                id="jabatan" name="jabatan" required>
-                                                <option selected disabled>Pilih Jabatan User</option>
-                                                <option value="0" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                                    Kepala Sekolah</option>
-                                                <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                                    Wakil Kepala Sekolah</option>
-                                                <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                                    Kurikulum</option>
-                                                <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                                    Kesiswaan</option>
-                                                <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                                    Sarana Prasarana</option>
-                                                <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                                    Kepala Jurusan</option>
-                                                <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                                    Hubin</option>
-                                                <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                                    Bimbingan Konseling</option>
-                                                <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                                    Guru Umum</option>
-                                                <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                                    Tata Usaha</option>
+                                            <select
+                                                class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                                id="id_posisi_jabatan" name="id_posisi_jabatan" required>
+                                                <option selected disabled>Pilih Posisi Jabatan User</option>
+                                                @foreach ($posisiJabatanList as $data)
+                                                    <option value="{{ $data->id_posisi_jabatan }}"
+                                                        {{ old('id_posisi_jabatan') == $data->id_posisi_jabatan ? 'selected' : '' }}>
+                                                        {{ $data->nama_posisi_jabatan }} |
+                                                        {{ jabatanConvert($data->tingkat_jabatan, 'jabatan') }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <span class="text-danger">
-                                            @error('jabatan')
+                                            @error('id_posisi_jabatan')
                                                 {{ $message }}
                                             @enderror
                                         </span>

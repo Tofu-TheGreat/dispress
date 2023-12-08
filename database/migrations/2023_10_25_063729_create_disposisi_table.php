@@ -19,6 +19,8 @@ return new class extends Migration
             $table->date('tanggal_disposisi');
             $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Arsipkan, Jabarkan, Umumkan, laksanakan, Persiapkan, Ikuti
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Tindaklanjuti, Biasa, Segera, Penting, Rahasia
+            $table->unsignedBigInteger('id_posisi_jabatan');
+            $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             $table->unsignedBigInteger('id_user'); //Pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '999'])->default('999'); //Penerima
@@ -41,6 +43,9 @@ return new class extends Migration
             $table->dropForeign('id_user');
             $table->dropIndex('id_user');
             $table->dropColumn('id_user');
+            $table->dropForeign('id_posisi_jabatan');
+            $table->dropIndex('id_posisi_jabatan');
+            $table->dropColumn('id_posisi_jabatan');
         });
     }
 };

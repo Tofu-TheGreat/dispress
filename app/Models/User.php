@@ -77,8 +77,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Disposisi::class, 'id_penerima');
     }
-    public function posisijabatan()
+    public function posisiJabatan()
     {
-        return $this->belongsTo(posisijabatan::class, 'id_posisi_jabatan');
+        return $this->belongsTo(PosisiJabatan::class, 'id_posisi_jabatan');
     }
 }

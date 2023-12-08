@@ -23,7 +23,8 @@ return new class extends Migration
             $table->string('catatan_pengajuan', 100);
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_pengajuan', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->default('0'); //Penerima
+            $table->unsignedBigInteger('id_posisi_jabatan');
+            $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade'); //tujuan dari pengajuan
             $table->timestamps();
         });
     }
@@ -40,6 +41,9 @@ return new class extends Migration
             $table->dropForeign('id_klasifikasi');
             $table->dropIndex('id_klasifikasi');
             $table->dropColumn('id_klasifikasi');
+            $table->dropForeign('id_posisi_jabatan');
+            $table->dropIndex('id_posisi_jabatan');
+            $table->dropColumn('id_posisi_jabatan');
         });
     }
 };

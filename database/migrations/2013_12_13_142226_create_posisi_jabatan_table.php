@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('id_posisi_jabatan');
             $table->string('nama_posisi_jabatan', 100);
             $table->string('deskripsi_jabatan', 100);
-            $table->integer('tingkat_jabatan');
+            $table->enum('tingkat_jabatan', ['0', '1', '2']); //jabatan struktural, jabatan fungsional tertentu, jabatan fungsional umum
             $table->timestamps();
         });
     }

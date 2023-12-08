@@ -758,39 +758,28 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tujuan_pengajuan">Kepada:
-                                    </label>
+                                    <label class="capitalize" for="id_posisi_jabatan">Kepada: </label>
                                     <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-person-fill-exclamation"></i>
+                                            </div>
+                                        </div>
                                         <select
-                                            class="form-control select2  @error('tujuan_pengajuan') is-invalid @enderror "
-                                            id="tujuan_pengajuan" name="tujuan_pengajuan" required style="width: 100%;">
-                                            <option disabled>Pilih Tujuan Disposisi</option>
-                                            <option value="0"
-                                                {{ old('tujuan_pengajuan') === '0' ? 'selected' : '' }}>
-                                                Kepala Sekolah</option>
-                                            <option value="1"
-                                                {{ old('tujuan_pengajuan') === '1' ? 'selected' : '' }}>
-                                                Wakil Kepala Sekolah</option>
-                                            <option value="2" {{ old('tujuan_pengajuan') == '2' ? 'selected' : '' }}>
-                                                Kurikulum</option>
-                                            <option value="3" {{ old('tujuan_pengajuan') == '3' ? 'selected' : '' }}>
-                                                Kesiswaan</option>
-                                            <option value="4" {{ old('tujuan_pengajuan') == '4' ? 'selected' : '' }}>
-                                                Sarana Prasarana</option>
-                                            <option value="5" {{ old('tujuan_pengajuan') == '5' ? 'selected' : '' }}>
-                                                Kepala Jurusan</option>
-                                            <option value="6" {{ old('tujuan_pengajuan') == '6' ? 'selected' : '' }}>
-                                                Hubin</option>
-                                            <option value="7" {{ old('tujuan_pengajuan') == '7' ? 'selected' : '' }}>
-                                                Bimbingan Konseling</option>
-                                            <option value="8" {{ old('tujuan_pengajuan') == '8' ? 'selected' : '' }}>
-                                                Guru Umum</option>
-                                            <option value="9" {{ old('tujuan_pengajuan') == '9' ? 'selected' : '' }}>
-                                                Tata Usaha</option>
+                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan" required>
+                                            <option selected disabled>Pilih Posisi Jabatan User</option>
+                                            @foreach ($posisiJabatanList as $data)
+                                                <option value="{{ $data->id_posisi_jabatan }}"
+                                                    {{ old('id_posisi_jabatan') == $data->id_posisi_jabatan ? 'selected' : '' }}>
+                                                    {{ $data->nama_posisi_jabatan }} |
+                                                    {{ jabatanConvert($data->tingkat_jabatan, 'jabatan') }}
+                                                </option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('tujuan_pengajuan')
+                                        @error('id_posisi_jabatan')
                                             {{ $message }}
                                         @enderror
                                     </span>

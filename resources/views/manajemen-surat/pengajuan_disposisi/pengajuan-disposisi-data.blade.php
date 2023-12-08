@@ -386,7 +386,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <div
-                                                                    class="card-footer  d-flex justify-content-between position-relative">
+                                                                    class="card-footer d-flex justify-content-between position-relative">
                                                                     <div class="d-flex flex-row ">
                                                                         @if ($data->user->foto_user)
                                                                             <img alt="image"
@@ -404,11 +404,10 @@
                                                                                 <span class="text-primary" href="#">
                                                                                     {{ $data->user->nama }}</span>
                                                                             </div>
-                                                                            <div class="text-job">
-                                                                                <small style="max-width: max-content">
-                                                                                    {{ currencyPhone($data->user->nomor_telpon) }}
-                                                                                </small>
-                                                                            </div>
+                                                                            <small
+                                                                                style="max-width: max-content; position: absolute; top: 45%;">
+                                                                                {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                            </small>
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-center " style="margin-left: 15%;">
@@ -557,11 +556,10 @@
                                                                                 <span class="text-primary" href="#">
                                                                                     {{ $data->user->nama }}</span>
                                                                             </div>
-                                                                            <div class="text-job">
-                                                                                <small style="max-width: max-content">
-                                                                                    {{ currencyPhone($data->user->nomor_telpon) }}
-                                                                                </small>
-                                                                            </div>
+                                                                            <small
+                                                                                style="max-width: max-content; position: absolute; top: 45%;">
+                                                                                {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                            </small>
                                                                         </div>
                                                                     </div>
                                                                     <div class="text-center " style="margin-left: 15%;">

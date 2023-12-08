@@ -382,50 +382,27 @@
                                         </div>
                                     </div>
                                     <div class="col-12 mt-2">
-                                        <div class="form-group tujuan_disposisi_div" id="tujuan_disposisi_div">
-                                            <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi
+                                        <div class="form-group id_posisi_jabatan_div" id="id_posisi_jabatan_div">
+                                            <label class="capitalize" for="id_posisi_jabatan">Pilih Tujuan Disposisi
                                                 (Jabatan):
                                             </label>
                                             <div class="input-group">
                                                 <select
-                                                    class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                                    id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
-                                                    style="width: 100%;">
-                                                    <option disabled>Pilih Tujuan Disposisi</option>
-                                                    <option value="0"
-                                                        {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
-                                                        Kepala Sekolah</option>
-                                                    <option value="1"
-                                                        {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
-                                                        Wakil Kepala Sekolah</option>
-                                                    <option value="2"
-                                                        {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
-                                                        Kurikulum</option>
-                                                    <option value="3"
-                                                        {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
-                                                        Kesiswaan</option>
-                                                    <option value="4"
-                                                        {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
-                                                        Sarana Prasarana</option>
-                                                    <option value="5"
-                                                        {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
-                                                        Kepala Jurusan</option>
-                                                    <option value="6"
-                                                        {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
-                                                        Hubin</option>
-                                                    <option value="7"
-                                                        {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
-                                                        Bimbingan Konseling</option>
-                                                    <option value="8"
-                                                        {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
-                                                        Guru Umum</option>
-                                                    <option value="9"
-                                                        {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
-                                                        Tata Usaha</option>
+                                                    class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                                    id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
+                                                    required>
+                                                    <option disabled>Pilih Posisi Jabatan User</option>
+                                                    @foreach ($posisiJabatanList as $item)
+                                                        <option value="{{ $item->id_posisi_jabatan }}"
+                                                            {{ $editDataDisposisi->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                            {{ $item->nama_posisi_jabatan }} |
+                                                            {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <span class="text-danger">
-                                                @error('tujuan_disposisi')
+                                                @error('id_posisi_jabatan')
                                                     {{ $message }}
                                                 @enderror
                                             </span>
@@ -440,12 +417,12 @@
                                                     class="form-control select2  @error('id_user') is-invalid @enderror "
                                                     id="id_user" name="id_penerima[]" multiple=""
                                                     style="width: 100%;">
-                                                    <option disabled>Pilih Tujuan Disposisi</option>
+                                                    <option disabled>Pilih Tujuan User</option>
                                                     @foreach ($userList as $data)
                                                         <option value="{{ $data->id_user }}"
-                                                            {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                            {{ $editDataDisposisi->id_penerima == $data->id_user ? 'selected' : '' }}>
                                                             {{ $data->nama }} |
-                                                            {{ jabatanConvert($data->jabatan, 'jabatan') }}
+                                                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -525,6 +502,25 @@
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+
+    {{-- handle radio input --}}
+    <script>
+        function toggleSelects() {
+            const jabatanChecked = document.getElementById('jabatan').checked;
+            const personalChecked = document.getElementById('personal').checked;
+
+            const posisiJabatanDiv = document.getElementById('id_posisi_jabatan_div');
+            const idUserDiv = document.getElementById('id_user_div');
+
+            if (jabatanChecked) {
+                posisiJabatanDiv.classList.remove('d-none');
+                idUserDiv.classList.add('d-none');
+            } else if (personalChecked) {
+                posisiJabatanDiv.classList.add('d-none');
+                idUserDiv.classList.remove('d-none');
+            }
+        }
+    </script>
 
     {{-- handle disable summernote --}}
     <script>

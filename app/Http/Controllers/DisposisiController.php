@@ -28,6 +28,7 @@ class DisposisiController extends Controller
     {
         $disposisiList = $this->disposisiRepository->index();
         $userList = User::get();
+        $posisiJabatanList = PosisiJabatan::get();
 
         return view('manajemen-surat.disposisi.disposisi-data', [
             'title' => 'Disposisi',
@@ -35,6 +36,8 @@ class DisposisiController extends Controller
             'active' => 'Disposisi',
             'disposisiList' => $disposisiList,
             'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -75,12 +78,17 @@ class DisposisiController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $detailDataDisposisi = $this->disposisiRepository->show($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+        $userList = User::get();
 
         return view('manajemen-surat.disposisi.disposisi-detail', [
             'title' => 'Detail Disposisi',
             'active1' => 'manajemen-surat',
             'active' => 'Disposisi',
+            'userList' => $userList,
             'detailDataDisposisi' => $detailDataDisposisi,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 

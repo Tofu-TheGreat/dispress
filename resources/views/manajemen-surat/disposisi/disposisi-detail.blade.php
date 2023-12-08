@@ -321,45 +321,22 @@
                                     </div>
                                     <div class="col-12 mt-2">
                                         <div class="form-group tujuan_disposisi_div" id="tujuan_disposisi_div">
-                                            <label class="capitalize" for="tujuan_disposisi">Pilih Tujuan Disposisi
+                                            <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi
                                                 (Jabatan):
                                             </label>
                                             <div class="input-group">
                                                 <select
                                                     class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
                                                     id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
-                                                    style="width: 100%;">
+                                                    style="width: 100%;" disabled>
                                                     <option disabled>Pilih Tujuan Disposisi</option>
-                                                    <option value="0"
-                                                        {{ old('tujuan_disposisi') === '0' ? 'selected' : '' }}>
-                                                        Kepala Sekolah</option>
-                                                    <option value="1"
-                                                        {{ old('tujuan_disposisi') === '1' ? 'selected' : '' }}>
-                                                        Wakil Kepala Sekolah</option>
-                                                    <option value="2"
-                                                        {{ old('tujuan_disposisi') == '2' ? 'selected' : '' }}>
-                                                        Kurikulum</option>
-                                                    <option value="3"
-                                                        {{ old('tujuan_disposisi') == '3' ? 'selected' : '' }}>
-                                                        Kesiswaan</option>
-                                                    <option value="4"
-                                                        {{ old('tujuan_disposisi') == '4' ? 'selected' : '' }}>
-                                                        Sarana Prasarana</option>
-                                                    <option value="5"
-                                                        {{ old('tujuan_disposisi') == '5' ? 'selected' : '' }}>
-                                                        Kepala Jurusan</option>
-                                                    <option value="6"
-                                                        {{ old('tujuan_disposisi') == '6' ? 'selected' : '' }}>
-                                                        Hubin</option>
-                                                    <option value="7"
-                                                        {{ old('tujuan_disposisi') == '7' ? 'selected' : '' }}>
-                                                        Bimbingan Konseling</option>
-                                                    <option value="8"
-                                                        {{ old('tujuan_disposisi') == '8' ? 'selected' : '' }}>
-                                                        Guru Umum</option>
-                                                    <option value="9"
-                                                        {{ old('tujuan_disposisi') == '9' ? 'selected' : '' }}>
-                                                        Tata Usaha</option>
+                                                    @foreach ($posisiJabatanList as $item)
+                                                        <option value="{{ $item->id_posisi_jabatan }}"
+                                                            {{ $detailDataDisposisi->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                            {{ $item->nama_posisi_jabatan }} |
+                                                            {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                             <span class="text-danger">
@@ -371,13 +348,22 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group id_user_div" id="id_user_div">
-                                            <label class="capitalize" for="id_user">Pilih Tujuan Disposisi (Personal):
+                                            <label class="capitalize" for="id_penerima">Pilih Tujuan Disposisi (Personal):
                                             </label>
                                             <div class="input-group">
-                                                <input type="text"
-                                                    class="form-control capitalize @error('id_user') is-invalid @enderror"
-                                                    value="{{ $detailDataDisposisi->pengajuan->user->nama }}"
-                                                    id="id_user" name="id_user" readonly>
+                                                <select
+                                                    class="form-control select2  @error('id_penerima') is-invalid @enderror "
+                                                    id="id_penerima" name="id_penerima[]" multiple=""
+                                                    style="width: 100%;" disabled>
+                                                    <option disabled>Pilih Tujuan User</option>
+                                                    @foreach ($userList as $data)
+                                                        <option value="{{ $data->id_user }}"
+                                                            {{ $detailDataDisposisi->id_penerima == $data->id_user ? 'selected' : '' }}>
+                                                            {{ $data->nama }} |
+                                                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <span class="text-danger">
                                                 @error('id_penerima')

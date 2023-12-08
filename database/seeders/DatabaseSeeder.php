@@ -140,7 +140,7 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '5',
             'sifat_disposisi' => '0',
             'id_user' => '11',
-            'id_posisi_jabatan' => '5',
+            'id_posisi_jabatan' => '4',
             'id_penerima' => '1',
         ]);
     }

@@ -40,7 +40,7 @@ class PosisiJabatanController extends Controller
                 return '<span class="capitalize">' . $posisiJabatanList->nama_posisi_jabatan . '</span>';
             })
             ->addColumn('deskripsi_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' . $posisiJabatanList->deskripsi_jabatan . '</span>';
+                return '<span class="capitalize">' .  strlen($posisiJabatanList->deskripsi_jabatan) > 15 ? substr($posisiJabatanList->deskripsi_jabatan, 0, 15) . '...' : $posisiJabatanList->deskripsi_jabatan . '</span>';
             })
             ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
                 return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';

@@ -151,12 +151,13 @@
                                 </div>
                             </div>
                             <div class="col-12 ">
-                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi Disposisi
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
+                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan
+                                        Disposisi:
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -180,7 +181,7 @@
                                 <div class="form-group">
                                     <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir
                                         Pembuatan
-                                        Surat: </label>
+                                        Disposisi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -327,8 +328,8 @@
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data disposisi disposisi"
-                                                                    data-original-title="Detail data disposisi disposisi"
+                                                                    title="Detail data disposisi "
+                                                                    data-original-title="Detail data disposisi "
                                                                     class="btn btn-info has-icon text-white tombol-detail-card"
                                                                     href=""><i class="pl-1 bi bi-eye"></i>
                                                                 </a>

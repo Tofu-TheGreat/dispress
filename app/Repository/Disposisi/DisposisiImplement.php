@@ -37,10 +37,11 @@ class DisposisiImplement implements DisposisiRepository
 
     public function store($data)
     {
-        $tujuanDisposisi = is_array($data->tujuan_disposisi) ? $data->tujuan_disposisi : [$data->tujuan_disposisi];
+
+        $tujuanDisposisi = is_array($data->id_posisi_jabatan) ? $data->id_posisi_jabatan : [$data->id_posisi_jabatan];
         $personalDisposisi = is_array($data->id_penerima) ? $data->id_penerima : [$data->id_penerima];
 
-        if ($data->has('tujuan_disposisi')) {
+        if ($data->id_posisi_jabatan != null) {
             foreach ($tujuanDisposisi as $jabatan) {
                 $this->disposisi->create([
                     'id_pengajuan' => $data->id_pengajuan,
@@ -55,7 +56,8 @@ class DisposisiImplement implements DisposisiRepository
             Pengajuan::where('id_pengajuan', $data->id_pengajuan)->update([
                 'status_pengajuan' => '1'
             ]);
-        } elseif ($data->has('id_penerima')) {
+        }
+        if ($data->id_penerima != null) {
             foreach ($personalDisposisi as $penerima) {
                 $this->disposisi->create([
                     'id_pengajuan' => $data->id_pengajuan,
@@ -89,21 +91,17 @@ class DisposisiImplement implements DisposisiRepository
     }
     public function update($id, $data)
     {
-        $tujuanDisposisi = is_array($data->tujuan_disposisi) ? $data->tujuan_disposisi : [$data->tujuan_disposisi];
 
-        foreach ($tujuanDisposisi as $jabatan) {
-            $this->disposisi->where('id_disposisi', $id)->update([
-                'id_pengajuan' => $data->id_pengajuan,
-                'catatan_disposisi' => $data->catatan_disposisi,
-                'status_disposisi' => $data->status_disposisi,
-                'sifat_disposisi' => $data->sifat_disposisi,
-                'id_user' => $data->id_user,
-                'tujuan_disposisi' => $jabatan,
-                'tanggal_disposisi' => $data->tanggal_disposisi,
-                'id_posisi_jabatan' => $data->id_posisi_jabatan,
-                'id_penerima' => $data->id_penerima,
-            ]);
-        }
+        $this->disposisi->where('id_disposisi', $id)->update([
+            'id_pengajuan' => $data->id_pengajuan,
+            'catatan_disposisi' => $data->catatan_disposisi,
+            'status_disposisi' => $data->status_disposisi,
+            'sifat_disposisi' => $data->sifat_disposisi,
+            'id_user' => $data->id_user,
+            'tanggal_disposisi' => $data->tanggal_disposisi,
+            'id_posisi_jabatan' => $data->id_posisi_jabatan,
+            'id_penerima' => $data->id_penerima,
+        ]);
     }
     public function destroy($id)
     {

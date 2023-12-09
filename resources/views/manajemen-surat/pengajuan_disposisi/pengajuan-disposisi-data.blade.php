@@ -809,7 +809,7 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="" required
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
                                             style="width: 100%">
                                             <option disabled>Pilih Posisi Jabatan User</option>
                                             @foreach ($posisiJabatanList as $item)
@@ -834,11 +834,11 @@
                                     </label>
                                     <div class="input-group">
                                         <select class="form-control select2 @error('id_user') is-invalid  @enderror "
-                                            id="id_user" name="id_user[]" multiple="" required style="width: 100%">
+                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%">
                                             <option disabled>Pilih User</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
-                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ old('id_penerima') == $data->id_user ? 'selected' : '' }}>
                                                     {{ $data->nama }} |
                                                     {{ $data->posisiJabatan->nama_posisi_jabatan }}
                                                 </option>

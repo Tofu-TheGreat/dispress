@@ -19,14 +19,12 @@ return new class extends Migration
             $table->date('tanggal_disposisi');
             $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Arsipkan, Jabarkan, Umumkan, laksanakan, Persiapkan, Ikuti
             $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Tindaklanjuti, Biasa, Segera, Penting, Rahasia
-            $table->unsignedBigInteger('id_posisi_jabatan');
-            $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             $table->unsignedBigInteger('id_user'); //Pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('id_posisi_jabatan');
+            $table->unsignedBigInteger('id_posisi_jabatan')->nullable();
             $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
-            $table->unsignedBigInteger('id_penerima'); //Penerima
+            $table->unsignedBigInteger('id_penerima')->nullable(); //Penerima
             $table->foreign('id_penerima')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

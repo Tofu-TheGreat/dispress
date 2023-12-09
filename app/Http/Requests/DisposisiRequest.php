@@ -28,8 +28,8 @@ class DisposisiRequest extends FormRequest
             'sifat_disposisi' => 'required',
             'status_disposisi' => 'required',
             'tanggal_disposisi' => 'required|date',
-            // 'tujuan_disposisi' => 'required',
-            'id_user' => 'required',
+            'id_posisi_jabatan' => 'required_without:id_penerima',
+            'id_penerima' => 'required_without:id_posisi_jabatan',
         ];
     }
     public function messages()
@@ -41,8 +41,8 @@ class DisposisiRequest extends FormRequest
             'sifat_disposisi.required' => 'Harap pilih sifat disposisi',
             'status_disposisi.required' => 'Harap pilih status disposisi',
             'tanggal_disposisi.date' => 'Tanggal Disposisi harus dalam format tanggal',
-            // 'tujuan_disposisi.required' => 'Harap tentukan tujuan diposisi',
-            'id_user.required' => 'Harap tentukan penerima diposisi',
+            'id_posisi_jabatan.required_without' => 'Harap tentukan tujuan diposisi',
+            'id_penerima.required_without' => 'Harap tentukan penerima diposisi',
         ];
     }
 }

@@ -250,8 +250,12 @@
                             </div>
                         </div>
                         <div class="card-body ">
-                            <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('disposisi.update', $editDataDisposisi->id_disposisi) }}"
+                                method="post" enctype="multipart/form-data">
                                 @csrf
+                                @method('PUT')
+                                <input type="text" name="id_user" hidden value="{{ Auth::user()->id_user }}"
+                                    id="">
                                 <div class="row">
                                     <div class=" col-12">
                                         <div class="form-group ">
@@ -265,7 +269,7 @@
                                                 </div>
                                                 <select
                                                     class="form-control select2  @error('id_pengajuan') is-invalid @enderror "
-                                                    id="id_pengajuan" name="id_pengajuan" disabled>
+                                                    id="id_pengajuan" name="id_pengajuan">
                                                     <option selected disabled>Pilih Nomor Agenda</option>
                                                     @foreach ($pengajuanList as $data)
                                                         <option value="{{ $data->id_pengajuan }}"
@@ -389,7 +393,7 @@
                                             <div class="input-group">
                                                 <select
                                                     class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                                    id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
+                                                    id="id_posisi_jabatan" name="id_posisi_jabatan" multiple=""
                                                     required>
                                                     <option disabled>Pilih Posisi Jabatan User</option>
                                                     @foreach ($posisiJabatanList as $item)
@@ -415,7 +419,7 @@
                                             <div class="input-group">
                                                 <select
                                                     class="form-control select2  @error('id_user') is-invalid @enderror "
-                                                    id="id_user" name="id_penerima[]" multiple=""
+                                                    id="id_user" name="id_penerima" multiple=""
                                                     style="width: 100%;">
                                                     <option disabled>Pilih Tujuan User</option>
                                                     @foreach ($userList as $data)

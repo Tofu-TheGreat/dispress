@@ -243,6 +243,8 @@
                         <div class="card-body ">
                             <form action="{{ route('disposisi.store') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <input type="text" name="id_user" id="" value="{{ Auth::user()->id_user }}"
+                                    hidden>
                                 <div class="row">
                                     <div class=" col-12">
                                         <div class="form-group ">

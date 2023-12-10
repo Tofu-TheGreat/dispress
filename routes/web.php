@@ -24,10 +24,13 @@ Route::get('/login', function () {
     return view('pages.login');
 })->middleware('guest');
 
-Route::get('/dashboard', [Controller::class, 'dashboard'])->middleware('auth', 'role:admin');
 
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard-admin', [Controller::class, 'dashboardAdmin'])->middleware('auth', 'role:admin');
+Route::get('/dashboard-officer', [Controller::class, 'dashboardOfficer'])->middleware('auth', 'role:officer');
+Route::get('/dashboard-staff', [Controller::class, 'dashboardStaff'])->middleware('auth', 'role:staff');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
@@ -37,7 +40,7 @@ Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFro
 Route::post('/filter', [AdminController::class, 'filterDataAdmin'])->name('filterDataAdmin');
 
 Route::get('admin-export', [ExportController::class, 'export_admin'])->name('admin.export');
-Route::post('admin-import', [ImportController::class, 'import_user'])->name('admin.import');
+Route::post('admin-import', [ImportController::class, 'import_user'])->name('admin.import')->middleware('auth', 'role:admin');
 
 Route::resource('/officer', OfficerController::class)->middleware('auth');
 
@@ -101,8 +104,8 @@ Route::get('template-user', [ExportController::class, 'template_user'])->name('t
 
 Route::resource('/disposisi', DisposisiController::class)->middleware('auth');
 
-Route::get('disposisi-export', [ExportController::class, 'export_disposisi'])->name('disposisi.export');
-Route::post('disposisi-import', [ImportController::class, 'import_user'])->name('disposisi.import');
+Route::get('disposisi-export', [ExportController::class, 'export_disposisi'])->name('disposisi.export', 'role:admin');
+Route::post('disposisi-import', [ImportController::class, 'import_user'])->name('disposisi.import', 'role:admin');
 
-Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi');
-Route::post('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi');
+Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi', 'role:admin');
+Route::post('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi', 'role:admin');

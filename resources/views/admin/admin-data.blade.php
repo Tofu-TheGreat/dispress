@@ -98,14 +98,16 @@
                             <h4 class="text-primary judul-page">List Administrator</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
-                            {{-- Button Tambah Data --}}
-                            <a href="/admin/create" class="text-white">
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                    title="Tambah Data" data-original-title="Tambah Data">
-                                    <i class="fa fa-plus-circle btn-tambah-data"></i>
-                                </button>
-                            </a>
-                            {{-- Akhir Button Tambah Data --}}
+                            @can('admin')
+                                {{-- Button Tambah Data --}}
+                                <a href="/admin/create" class="text-white">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                        title="Tambah Data" data-original-title="Tambah Data">
+                                        <i class="fa fa-plus-circle btn-tambah-data"></i>
+                                    </button>
+                                </a>
+                                {{-- Akhir Button Tambah Data --}}
+                            @endcan
                             {{-- Button Export Data --}}
                             <a href="#" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
@@ -114,15 +116,17 @@
                                 </button>
                             </a>
                             {{-- Akhir Button Export Data --}}
-                            {{-- Button import Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                data-original-title="Import Data" disabled>
-                                <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                    data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
-                                    <i class="fa fa-file-excel btn-tambah-data "></i>
-                                </button>
-                            </span>
-                            {{-- Akhir Button import Data --}}
+                            @can('admin')
+                                {{-- Button import Data --}}
+                                <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                    data-original-title="Import Data" disabled>
+                                    <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                        data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
+                                        <i class="fa fa-file-excel btn-tambah-data "></i>
+                                    </button>
+                                </span>
+                                {{-- Akhir Button import Data --}}
+                            @endcan
                         </div>
                     </div>
                     <div class="card-body">

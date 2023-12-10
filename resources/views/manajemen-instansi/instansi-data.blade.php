@@ -100,51 +100,53 @@
                                                             <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
                                                                 class="card-img-top bg-primary img-instansi"
                                                                 alt="foto instansi" style="min-width: 200px">
-                                                            <div
-                                                                class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
-                                                                <div class="mr-2 tombol-edit tombol-hover">
-                                                                    <span class="tombol-detail  tombol-hover"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Detail Data Instansi"
-                                                                        data-original-title="Detail data instansi" disabled>
-                                                                        <button type="button" data-toggle="modal"
-                                                                            data-target="#detail-modal{{ $data->id_instansi }}"
-                                                                            type="button"
-                                                                            class="rounded-circle btn btn-info tombol-detail tombol-detail-instansi">
-                                                                            <i class="bi bi-eye tombol-detail"></i>
-                                                                        </button>
-                                                                    </span>
+                                                            @cannot('staff')
+                                                                <div
+                                                                    class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
+                                                                    <div class="mr-2 tombol-edit tombol-hover">
+                                                                        <span class="tombol-detail  tombol-hover"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Detail Data Instansi"
+                                                                            data-original-title="Detail data instansi" disabled>
+                                                                            <button type="button" data-toggle="modal"
+                                                                                data-target="#detail-modal{{ $data->id_instansi }}"
+                                                                                type="button"
+                                                                                class="rounded-circle btn btn-info tombol-detail tombol-detail-instansi">
+                                                                                <i class="bi bi-eye tombol-detail"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="mr-2 tombol-edit  tombol-hover">
+                                                                        <span data-toggle="tooltip" data-placement="top"
+                                                                            title="Edit Data Instansi"
+                                                                            data-original-title="Edit data instansi"
+                                                                            class="tombol-edit  tombol-hover" disabled>
+                                                                            <button type="button" data-toggle="modal"
+                                                                                data-target="#edit-modal{{ $data->id_instansi }}"
+                                                                                type="button"
+                                                                                class="rounded-circle btn btn-warning tombol-edit tombol-edit-instansi">
+                                                                                <i class="bi bi-pencil-square tombol-edit"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class=" tombol-hover">
+                                                                        <form method="POST"
+                                                                            action="{{ route('instansi.destroy', Crypt::encryptString($data->id_instansi)) }}"
+                                                                            class="tombol-hapus  tombol-hover">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button" data-toggle="tooltip"
+                                                                                data-placement="top"
+                                                                                title="Hapus data instansi"
+                                                                                data-original-title="Hapus data instansi"
+                                                                                class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-instansi tombol-hapus"
+                                                                                href=""><i
+                                                                                    class="bi bi-trash tombol-hapus"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="mr-2 tombol-edit  tombol-hover">
-                                                                    <span data-toggle="tooltip" data-placement="top"
-                                                                        title="Edit Data Instansi"
-                                                                        data-original-title="Edit data instansi"
-                                                                        class="tombol-edit  tombol-hover" disabled>
-                                                                        <button type="button" data-toggle="modal"
-                                                                            data-target="#edit-modal{{ $data->id_instansi }}"
-                                                                            type="button"
-                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-instansi">
-                                                                            <i class="bi bi-pencil-square tombol-edit"></i>
-                                                                        </button>
-                                                                    </span>
-                                                                </div>
-                                                                <div class=" tombol-hover">
-                                                                    <form method="POST"
-                                                                        action="{{ route('instansi.destroy', Crypt::encryptString($data->id_instansi)) }}"
-                                                                        class="tombol-hapus  tombol-hover">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="button" data-toggle="tooltip"
-                                                                            data-placement="top"
-                                                                            title="Hapus data instansi"
-                                                                            data-original-title="Hapus data instansi"
-                                                                            class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-instansi tombol-hapus"
-                                                                            href=""><i
-                                                                                class="bi bi-trash tombol-hapus"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
+                                                            @endcannot
                                                         </div>
                                                         <div class="card-body position-relative">
                                                             <div class="position-relative">
@@ -152,6 +154,16 @@
                                                                     style="max-width: max-content;">
                                                                     {{ strlen($data->nama_instansi) > 15 ? substr($data->nama_instansi, 0, 15) . '...' : $data->nama_instansi }}
                                                                 </b>
+
+                                                                @can('staff')
+                                                                    <button type="button" data-toggle="modal"
+                                                                        data-target="#detail-modal{{ $data->id_instansi }}"
+                                                                        type="button"
+                                                                        class=" btn btn-info tombol-detail tombol-detail-instansi  mb-4">
+                                                                        <i class="bi bi-eye tombol-detail me-2"></i> Detail
+                                                                        Data
+                                                                    </button>
+                                                                @endcan
                                                             </div>
                                                             <div
                                                                 class="nomor_instansi d-flex justify-content-center align-content-center px-2">

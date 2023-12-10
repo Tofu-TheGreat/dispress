@@ -15,6 +15,8 @@ class ImportController extends Controller
 {
     public function import_user(Request $request)
     {
+        $this->authorize('admin');
+
         if (request()->has('file')) {
             $request->validate([
                 'file' => 'mimes:xlsx',

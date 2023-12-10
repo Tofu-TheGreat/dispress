@@ -46,6 +46,8 @@ class DisposisiController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
         $pengajuanList = Pengajuan::get();
         $suratList = Surat::with('instansi')->get();
         $userList = User::get();
@@ -67,6 +69,8 @@ class DisposisiController extends Controller
      */
     public function store(DisposisiRequest $request)
     {
+        $this->authorize('admin');
+
         $this->disposisiRepository->store($request);
         return redirect()->back()->with('success', 'Surat telah dikirimkan kepada yang terkait');
     }
@@ -97,6 +101,8 @@ class DisposisiController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->disposisiRepository->edit($encryptId);
@@ -120,6 +126,8 @@ class DisposisiController extends Controller
      */
     public function update(DisposisiRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         $this->disposisiRepository->update($id, $request);
         return redirect()->intended('/disposisi')->with('success', 'Berhasil meng-update data Disposisi.');
     }
@@ -129,6 +137,8 @@ class DisposisiController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         $this->disposisiRepository->destroy($encryptId);
         return redirect()->intended('/disposisi')->with('success', 'Berhasil menghapus data Disposisi.');

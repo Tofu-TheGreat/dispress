@@ -12,7 +12,8 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="{{ $active == 'dashboard' ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span>
+                <a class="nav-link" href="/dashboard-{{ auth()->user()->level }}"><i class="fas fa-fire"></i>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li class="menu-header">Manajemen Users</li>

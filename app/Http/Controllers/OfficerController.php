@@ -95,6 +95,8 @@ class OfficerController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
         $posisiJabatanList = PosisiJabatan::get();
 
         return view('admin.officers.officer-create', [
@@ -111,6 +113,8 @@ class OfficerController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->store($request);;
         return redirect()->intended('/officer')->with('success', 'Berhasil menambah data Officer.');
     }
@@ -136,6 +140,8 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->officerRepository->edit($encryptId);
@@ -156,6 +162,8 @@ class OfficerController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->update($request->id_user, $request);
         return redirect()->intended('/officer')->with('success', 'Berhasil meng-edit data Officer');
     }
@@ -165,6 +173,8 @@ class OfficerController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->officerRepository->destroy($encryptId);
@@ -176,6 +186,8 @@ class OfficerController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->deleteImageFromUser($id);
         return back()->with('success', 'Berhasil menghapus foto profil Officer');
     }

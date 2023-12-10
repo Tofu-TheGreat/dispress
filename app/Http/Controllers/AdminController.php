@@ -97,6 +97,8 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
         $posisiJabatanList = PosisiJabatan::get();
 
         return view('admin.admin-create', [
@@ -112,6 +114,8 @@ class AdminController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->store($request);;
         return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin!');
     }
@@ -138,6 +142,8 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
@@ -157,6 +163,8 @@ class AdminController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->update($request->id_user, $request);
         return redirect()->intended('/admin')->with('success', 'Berhasil meng-edit data Admin.');
     }
@@ -166,6 +174,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->adminRepository->destroy($encryptId);
@@ -177,6 +187,8 @@ class AdminController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->deleteImageFromUser($id);
         return back()->with('success', 'Berhasil menghapus foto profil Admin.');
     }

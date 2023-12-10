@@ -43,6 +43,8 @@ class InstansiController extends Controller
      */
     public function store(InstansiRequest $request)
     {
+        $this->authorize('admin-officer');
+
         $this->instansiRepository->store($request);
         return back()->with('success', 'Berhasil menambah data perusahaan.');
     }
@@ -60,6 +62,8 @@ class InstansiController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->instansiRepository->edit($id);
     }
 
@@ -68,6 +72,8 @@ class InstansiController extends Controller
      */
     public function update(InstansiRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->instansiRepository->update($request, $id);
         return back()->with('success', 'Berhasil meng-edit data instansi.');
     }
@@ -77,6 +83,8 @@ class InstansiController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->instansiRepository->destroy($encryptId);
         return redirect()->intended('/instansi')->with('success', 'Berhasil menghapus data instansi.');

@@ -82,8 +82,8 @@
                                 class="bi bi-lock-fill icon-btn-1 ms-2"></i></a>
                     @endguest
                     @auth
-                        <a href="/dashboard" class="btn btn-1 px-4" type="button"> <span>Dashboard</span> <i
-                                class="bi bi-unlock-fill icon-btn-1 ms-2"></i></a>
+                        <a href="/dashboard-{{ auth()->user()->level }}" class="btn btn-1 px-4" type="button">
+                            <span>Dashboard</span> <i class="bi bi-unlock-fill icon-btn-1 ms-2"></i></a>
                     @endauth
                 </div>
             </div>
@@ -119,7 +119,8 @@
                                         class="icon-btn-hero bi-box-arrow-in-right"></i> <span> Login </span></a>
                             @endguest
                             @auth
-                                <a href="/dashboard" type="button" class="btn btn-hero mt-3 px-4"><i
+                                <a href="/dashboard-{{ auth()->user()->level }}" type="button"
+                                    class="btn btn-hero mt-3 px-4"><i
                                         class="icon-btn-hero bi-box-arrow-in-right dashboard-icon"></i> <span> Dashboard
                                     </span></a>
                             @endauth

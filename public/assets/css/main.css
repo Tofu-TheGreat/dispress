@@ -97,7 +97,7 @@ li {
 
 .search:focus {
     width: 250px;
-    border: 1px solid #769bb8;
+    border: 1px solid #0028ad;
 }
 
 .search:focus ~ .search-icon {
@@ -119,6 +119,11 @@ li {
 .button-reset-search {
     height: 40px;
     border-radius: 9999px;
+}
+
+.button-reset-search span {
+    display: block;
+    margin-top: 2px;
 }
 
 /* instansi */

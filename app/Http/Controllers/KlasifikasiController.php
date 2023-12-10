@@ -63,6 +63,8 @@ class KlasifikasiController extends Controller
      */
     public function store(KlasifikasiRequest $request)
     {
+        $this->authorize('admin-officer');
+
         $this->klasifikasiRepository->store($request);
         return back()->with('success', 'Berhasil menambah data nomor klasfikasi baru.');
     }
@@ -88,6 +90,8 @@ class KlasifikasiController extends Controller
      */
     public function update(KlasifikasiRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->klasifikasiRepository->update($request, $id);
         return back()->with('success', 'Berhasil mengubah data nomor klasfikasi.');
     }
@@ -97,6 +101,8 @@ class KlasifikasiController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->klasifikasiRepository->destroy($encryptId);
         return back()->with('success', 'Berhasil menghapus data nomor klasfikasi.');

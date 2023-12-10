@@ -51,6 +51,8 @@ class SuratController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin-officer');
+
         $instansiList = Instansi::get();
         $klasifikasiList = Klasifikasi::get();
 
@@ -68,6 +70,8 @@ class SuratController extends Controller
      */
     public function store(SuratRequest $request)
     {
+        $this->authorize('admin-officer');
+
         $this->suratRepository->store($request);
         return redirect()->intended('/surat');
     }
@@ -101,6 +105,8 @@ class SuratController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $editDataSurat = $this->suratRepository->show($encryptId);
         $instansiList = Instansi::get();
@@ -121,6 +127,8 @@ class SuratController extends Controller
      */
     public function update(SuratRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->suratRepository->update($id, $request);
         return redirect()->intended('/surat')->with('success', 'Berhasil meng-update data surat.');
     }
@@ -130,6 +138,8 @@ class SuratController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->suratRepository->destroy($encryptId);
         return redirect()->intended('/surat')->with('success', 'Berhasil menghapus data surat.');
@@ -154,6 +164,8 @@ class SuratController extends Controller
     }
     public function verifikasi_surat(SuratRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->suratRepository->update($id, $request);
         return back()->with('success', 'Perubahan akan dikirimkan ke yang terkait.');
     }

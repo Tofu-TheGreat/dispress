@@ -311,7 +311,7 @@
                                             <button type="submit"
                                                 class="btn btn-primary button-submit-search">Search</button>
                                             <a type="button" href="{{ route('disposisi.index') }}"
-                                                class="btn btn-secondary rounded-pill button-reset-search">Reset</a>
+                                                class="btn btn-secondary rounded-pill button-reset-search"><span>Reset</span></a>
                                         </div>
                                     </div>
                                 </form>

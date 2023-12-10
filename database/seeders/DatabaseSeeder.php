@@ -21,13 +21,53 @@ class DatabaseSeeder extends Seeder
     {
         // Seed Posisi Jabatan
         PosisiJabatan::factory()->create([
-            'nama_posisi_jabatan' => 'Ketua',
-            'deskripsi_jabatan' => 'Pengatur Jabatan',
+            'nama_posisi_jabatan' => 'Kepala Sekolah',
+            'deskripsi_jabatan' => 'edukator, manager, administrator dan supervisor Pemimpin / Leader Inovator Motovator.',
+            'tingkat_jabatan' => '0',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Wakil Kepala Sekolah',
+            'deskripsi_jabatan' => 'Membantu kepala sekolah dan mengganti kan kepala sekolah jika di butuhkan',
             'tingkat_jabatan' => '0',
         ]);
 
-        PosisiJabatan::factory(15)->create();
-        User::factory(10)->create();
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Kurikulum',
+            'deskripsi_jabatan' => 'Membuat perencanaan proses pembelajaran, Menyusun pembagian tugas mengajar dan pembuatan jadwal',
+            'tingkat_jabatan' => '0',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Kesiswaan',
+            'deskripsi_jabatan' => 'Melaksanakan bimbingan, pengarahan serta pengendalian kegiatan siswa melalui OSIS',
+            'tingkat_jabatan' => '1',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Sarana Prasarana',
+            'deskripsi_jabatan' => 'Membuat dan menyusun program kerja tahunan kegiatan sekolah di bidang sarana dan prasarana dan mengkoordinir serta mengawasi pelaksanaannya.',
+            'tingkat_jabatan' => '1',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Kepala Jurusan',
+            'deskripsi_jabatan' => 'Mengatur semua yang berkaitan dengan jurusan.',
+            'tingkat_jabatan' => '1',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Hubin',
+            'deskripsi_jabatan' => 'Membantu Kepala Sekolah dalam pelaksanaan tugas hubungan industri/ masyarakat',
+            'tingkat_jabatan' => '1',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Tata Usaha',
+            'deskripsi_jabatan' => 'Para petugas yang mengemban tanggung jawab untuk mengurusi segala bentuk administasi di suatu sekolah.',
+            'tingkat_jabatan' => '1',
+        ]);
+        PosisiJabatan::factory()->create([
+            'nama_posisi_jabatan' => 'Guru Umum',
+            'deskripsi_jabatan' => 'Mengajar para siswa',
+            'tingkat_jabatan' => '2',
+        ]);
+
+        User::factory(7)->create();
 
         // Seed User
         User::factory()->create([
@@ -119,7 +159,7 @@ class DatabaseSeeder extends Seeder
             'status_pengajuan' => '1',
             'tanggal_terima' => '2023-11-12',
             'catatan_pengajuan' => 'Sudah Didisposisikan',
-            'id_user' => '11',
+            'id_user' => '7',
         ]);
 
         Pengajuan::factory()->create([
@@ -139,7 +179,7 @@ class DatabaseSeeder extends Seeder
             'tanggal_disposisi' => '2028-11-9',
             'status_disposisi' => '5',
             'sifat_disposisi' => '0',
-            'id_user' => '11',
+            'id_user' => '7',
             'id_posisi_jabatan' => '4',
             'id_penerima' => '1',
         ]);

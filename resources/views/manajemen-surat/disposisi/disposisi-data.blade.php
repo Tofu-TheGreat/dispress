@@ -54,11 +54,11 @@
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pilih Pengirim: </label>
+                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pengirim: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                             id="id_user" name="id_user" style="width: 100%;">
-                                            <option value="">Pilih Pengirim</option>
+                                            <option selected disabled>Pilih Pengirim</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
@@ -75,34 +75,12 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_posisi_jabatan">Pilih Tujuan Disposisi: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                            id="id_posisi_jabatan" name="id_posisi_jabatan" style="width: 100%;">
-                                            <option value="">Pilih Tujuan Disposisi</option>
-                                            @foreach ($posisiJabatanList as $item)
-                                                <option value="{{ $item->id_posisi_jabatan }}"
-                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
-                                                    {{ $item->nama_posisi_jabatan }} |
-                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_posisi_jabatan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="sifat_disposisi">Pilih Sifat Disposisi: </label>
+                                    <label class="capitalize" for="sifat_disposisi">Pilih Berdasarkan Sifat Disposisi:
+                                    </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('sifat_disposisi') is-invalid  @enderror "
                                             id="sifat_disposisi" name="sifat_disposisi" style="width: 100%;">
-                                            <option value="">Pilih Sifat Disposisi</option>
+                                            <option selected disabled>Pilih Sifat Disposisi</option>
                                             <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
                                                 Tindaklanjuti</option>
                                             <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
@@ -122,13 +100,13 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group">
                                     <label class="capitalize" for="status_disposisi">Pilih Status Disposisi: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('status_disposisi') is-invalid  @enderror "
                                             id="status_disposisi" name="status_disposisi" style="width: 100%;">
-                                            <option value="">Pilih Status Disposisi</option>
+                                            <option selected disabled>Pilih Status Disposisi</option>
                                             <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
                                                 Arsipkan</option>
                                             <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
@@ -145,6 +123,75 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('status_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center row">
+                                <div class="col-12 d-flex justify-content-center text-primary">Pilih
+                                    Salah
+                                    Satu</div>
+                                <div class="mt-2">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="jabatan" name="jenis_disposisi"
+                                            class="custom-control-input jabatan" onclick="toggleSelects()" checked>
+                                        <label class="custom-control-label" for="jabatan">
+                                            Sesuai Jabatan</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="personal" name="jenis_disposisi"
+                                            class="custom-control-input personal" onclick="toggleSelects()">
+                                        <label class="custom-control-label" for="personal">
+                                            Sesuai Personal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="form-group id_posisi_jabatan_div" id="id_posisi_jabatan_div">
+                                    <label class="capitalize" for="id_posisi_jabatan">Berdasarkan Tujuan Disposisi
+                                        (Jabatan):
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="" required>
+                                            <option disabled>Pilih Posisi Jabatan User</option>
+                                            @foreach ($posisiJabatanList as $item)
+                                                <option value="{{ $item->id_posisi_jabatan }}"
+                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                    {{ $item->nama_posisi_jabatan }} |
+                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_posisi_jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group id_user_div d-none" id="id_user_div">
+                                    <label class="capitalize" for="id_user">Berdasarkan Tujuan Disposisi (Personal):
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
+                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%;">
+                                            <option disabled>Pilih Tujuan User</option>
+                                            @foreach ($userList as $data)
+                                                <option value="{{ $data->id_user }}"
+                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ $data->nama }} |
+                                                    {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_penerima')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -466,6 +513,25 @@
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
+
+    {{-- handle radio input --}}
+    <script>
+        function toggleSelects() {
+            const jabatanChecked = document.getElementById('jabatan').checked;
+            const personalChecked = document.getElementById('personal').checked;
+
+            const posisiJabatanDiv = document.getElementById('id_posisi_jabatan_div');
+            const idUserDiv = document.getElementById('id_user_div');
+
+            if (jabatanChecked) {
+                posisiJabatanDiv.classList.remove('d-none');
+                idUserDiv.classList.add('d-none');
+            } else if (personalChecked) {
+                posisiJabatanDiv.classList.add('d-none');
+                idUserDiv.classList.remove('d-none');
+            }
+        }
+    </script>
 
     {{-- Toast --}}
     @if (Session::has('success'))

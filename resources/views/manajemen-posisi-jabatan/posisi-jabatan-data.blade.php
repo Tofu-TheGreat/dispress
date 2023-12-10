@@ -29,6 +29,68 @@
             </div>
         </div>
 
+        {{-- Filter --}}
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="col">
+                    <h4 class="text-primary">Filter</h4>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    {{-- Button Triger Filter --}}
+                    <span data-toggle="tooltip" data-placement="top" title="Klik untuk menu filter data."
+                        data-original-title="Filter Data" disabled>
+                        <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                            title="Tombol Filter">
+                            <i class="bi bi-funnel-fill"></i>
+                        </button>
+                    </span>
+                    {{-- Akhir Button Triger Filter --}}
+                </div>
+            </div>
+            <form action="/posisi-jabatan-filter" method="get">
+                @csrf
+                <div class="collapse" id="collapseExample" style="">
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tingkat_jabatan">Pilih Berdasarkan Tingkat Jabatan:
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('tingkat_jabatan') is-invalid  @enderror "
+                                            id="tingkat_jabatan" name="tingkat_jabatan" style="width: 100%;">
+                                            <option selected disabled>Pilih Tingkat Jabatan</option>
+                                            <option value="0" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
+                                                Jabatan Struktural</option>
+                                            <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
+                                                Jabatan Fungsional Tertentu</option>
+                                            <option value="2" {{ old('tingkat_jabatan') === '2' ? 'selected' : '' }}>
+                                                Jabatan Fungsional Umum</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tingkat_jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
+                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                            <a type="button" id="reset" href="/disposisi" class="btn btn-secondary mb-1"
+                                title="Reset">
+                                <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
+                                    Filter</span></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {{-- Filter --}}
+
         <div class="section-body">
             <div class="">
                 <div class="card">

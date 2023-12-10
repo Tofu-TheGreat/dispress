@@ -52,7 +52,10 @@ class AdminController extends Controller
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -63,14 +66,17 @@ class AdminController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         } else {
             $usersList = $this->adminRepository->getUserbyAdmin();
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -81,7 +87,7 @@ class AdminController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         }
     }

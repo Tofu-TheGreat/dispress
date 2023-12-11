@@ -48,46 +48,45 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/posisi-jabatan-filter" method="get">
-                @csrf
-                <div class="collapse" id="collapseExample" style="">
-                    <div class="p-4">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label class="capitalize" for="tingkat_jabatan">Pilih Berdasarkan Tingkat Jabatan:
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('tingkat_jabatan') is-invalid  @enderror "
-                                            id="tingkat_jabatan" name="tingkat_jabatan" style="width: 100%;">
-                                            <option selected disabled>Pilih Tingkat Jabatan</option>
-                                            <option value="0" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
-                                                Jabatan Struktural</option>
-                                            <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
-                                                Jabatan Fungsional Tertentu</option>
-                                            <option value="2" {{ old('tingkat_jabatan') === '2' ? 'selected' : '' }}>
-                                                Jabatan Fungsional Umum</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('tingkat_jabatan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
+
+            <div class="collapse" id="collapseExample" style="">
+                <div class="p-4">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label class="capitalize" for="tingkat_jabatan">Pilih Berdasarkan Tingkat Jabatan:
+                                </label>
+                                <div class="input-group">
+                                    <select class="filter select2 @error('tingkat_jabatan') is-invalid  @enderror "
+                                        id="tingkat_jabatan" name="tingkat_jabatan" style="width: 100%;">
+                                        <option selected disabled>Pilih Tingkat Jabatan</option>
+                                        <option value="0" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
+                                            Jabatan Struktural</option>
+                                        <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
+                                            Jabatan Fungsional Tertentu</option>
+                                        <option value="2" {{ old('tingkat_jabatan') === '2' ? 'selected' : '' }}>
+                                            Jabatan Fungsional Umum</option>
+                                    </select>
                                 </div>
+                                <span class="text-danger">
+                                    @error('tingkat_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
-                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                            <a type="button" id="reset" href="/disposisi" class="btn btn-secondary mb-1"
-                                title="Reset">
-                                <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
-                                    Filter</span></a>
-                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
+                            <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                        <a type="button" id="reset" href="/posisi-jabatan" class="btn btn-secondary mb-1"
+                            title="Reset">
+                            <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
+                                Filter</span></a>
                     </div>
                 </div>
-            </form>
+            </div>
+
         </div>
         {{-- Filter --}}
 
@@ -461,15 +460,19 @@
 
     {{-- DataTables --}}
     <script>
+        let tingkat_jabatan = $("#tingkat_jabatan").val();
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({
                 processing: true,
-                serverside: true, // Corrected typo here
+                serverSide: true,
                 ajax: {
                     url: "{{ url('/posisi-jabatan-index') }}",
                     type: "post",
                     data: function(d) {
                         d._token = "{{ csrf_token() }}";
+                        d.tingkat_jabatan = tingkat_jabatan;
+                        return d
+                        // You can add additional data here if needed
                     }
                 },
                 columns: [{
@@ -480,23 +483,38 @@
                     },
                     {
                         data: 'nama_posisi_jabatan',
-                        name: 'Nama Posisi Jabatan',
+                        name: 'Nama Posisi Jabatan'
                     },
                     {
                         data: 'deskripsi_jabatan',
-                        name: 'Deskripsi Jabatan',
+                        name: 'Deskripsi Jabatan'
                     },
                     {
                         data: 'tingkat_jabatan',
-                        name: 'Tingkat Jabatan',
+                        name: 'Tingkat Jabatan'
                     },
                     {
                         data: 'action',
-                        name: 'Action',
+                        name: 'Action'
                     }
                 ]
             });
-        })
+
+            // Handle perubahan pilihan pada select box tingkat_jabatan
+            $(".filter").change(function() {
+                tingkat_jabatan = $(this).val(); // Perbarui variabel tingkat_jabatan
+            });
+
+            $('#filtering').on('click', function() {
+                table.ajax.reload();
+            });
+
+            $('#reset').on('click', function() {
+                $("#tingkat_jabatan").val(null).trigger('change');
+                tingkat_jabatan = ""; // Reset variabel tingkat_jabatan
+                table.ajax.reload();
+            });
+        });
     </script>
 
     <script>

@@ -33,23 +33,45 @@ class PosisiJabatanController extends Controller
 
     public function indexPosisiJabatan(Request $request)
     {
-        $posisiJabatanList = $this->posisijabatanRepository->index();
-        return DataTables::of($posisiJabatanList)
-            ->addIndexColumn()
-            ->addColumn('nama_posisi_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' . $posisiJabatanList->nama_posisi_jabatan . '</span>';
-            })
-            ->addColumn('deskripsi_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' .  strlen($posisiJabatanList->deskripsi_jabatan) > 15 ? substr($posisiJabatanList->deskripsi_jabatan, 0, 15) . '...' : $posisiJabatanList->deskripsi_jabatan . '</span>';
-            })
-            ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';
-            })
-            ->addColumn('action', function ($posisiJabatanList) {
-                return view('manajemen-posisi-jabatan.elements.create-button')->with('posisiJabatanList', $posisiJabatanList);
-            })
-            ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan', 'phone'])
-            ->toJson();
+        if ($request->tingkat_jabatan) {
+
+            $posisiJabatanList = $this->posisijabatanRepository->index()->where('tingkat_jabatan', $request->tingkat_jabatan);
+            return DataTables::of($posisiJabatanList)
+                ->addIndexColumn()
+                ->addColumn('nama_posisi_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' . $posisiJabatanList->nama_posisi_jabatan . '</span>';
+                })
+                ->addColumn('deskripsi_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' .  strlen($posisiJabatanList->deskripsi_jabatan) > 15 ? substr($posisiJabatanList->deskripsi_jabatan, 0, 15) . '...' : $posisiJabatanList->deskripsi_jabatan . '</span>';
+                })
+                ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';
+                })
+                ->addColumn('action', function ($posisiJabatanList) {
+                    return view('manajemen-posisi-jabatan.elements.create-button')->with('posisiJabatanList', $posisiJabatanList);
+                })
+                ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan', 'phone'])
+                ->toJson();
+        } else {
+
+            $posisiJabatanList = $this->posisijabatanRepository->index();
+            return DataTables::of($posisiJabatanList)
+                ->addIndexColumn()
+                ->addColumn('nama_posisi_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' . $posisiJabatanList->nama_posisi_jabatan . '</span>';
+                })
+                ->addColumn('deskripsi_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' .  strlen($posisiJabatanList->deskripsi_jabatan) > 15 ? substr($posisiJabatanList->deskripsi_jabatan, 0, 15) . '...' : $posisiJabatanList->deskripsi_jabatan . '</span>';
+                })
+                ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
+                    return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';
+                })
+                ->addColumn('action', function ($posisiJabatanList) {
+                    return view('manajemen-posisi-jabatan.elements.create-button')->with('posisiJabatanList', $posisiJabatanList);
+                })
+                ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan', 'phone'])
+                ->toJson();
+        }
     }
 
     /**

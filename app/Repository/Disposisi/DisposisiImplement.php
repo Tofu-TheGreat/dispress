@@ -21,7 +21,7 @@ class DisposisiImplement implements DisposisiRepository
         if (Auth::check() && Auth::user()->level != 'admin') {
             $paginatedData = $this->disposisi->whereNot(function ($query) {
                 $query->where('status_disposisi', '0');
-            })->where('tujuan_disposisi', Auth::user()->jabatan)->paginate(6);
+            })->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->paginate(6);
         } else {
             $paginatedData = $this->disposisi->paginate(6);
         }

@@ -348,7 +348,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group id_user_div" id="id_user_div">
-                                            <label class="capitalize" for="id_penerima">Pilih Tujuan Disposisi (Personal):
+                                            <label class="capitalize" for="id_penerima">Tujuan Disposisi (Personal):
                                             </label>
                                             <div class="input-group">
                                                 <select

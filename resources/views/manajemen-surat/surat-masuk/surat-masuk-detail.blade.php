@@ -40,9 +40,11 @@
                         </div>
                     </div>
                     <div class="col-lg-1 col-sm-4 btn-group">
-                        <a class="tombol-verifikasi" data-toggle="tooltip" data-placement="top"
-                            title="klik Untuk Mengatur verifikasikan"
-                            data-original-title="klik Untuk Mengatur verifikasikan" disabled>
+                        @can('admin-officer')
+                            <a class="tombol-verifikasi" data-toggle="tooltip" data-placement="top"
+                                title="klik Untuk Mengatur verifikasikan"
+                                data-original-title="klik Untuk Mengatur verifikasikan" disabled>
+                            @endcan
                             @if ($detailDataSurat->status_verifikasi == 0)
                                 <button type="button" class="btn btn-primary tombol-verifikasi" data-toggle="modal"
                                     data-target="#verifikasi-modal{{ $detailDataSurat->id_surat }}" type="button">
@@ -62,36 +64,40 @@
                                         Dikembalikan</i>
                                 </button>
                             @endif
-                        </a>
-                        @if ($detailDataSurat->status_verifikasi == 1)
-                            <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
-                                title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
-                                <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
-                                    data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
-                                    Ajukan
-                                </button>
-                            </span>
-                        @endif
-                        <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
-                            class="text-white ml-2">
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                title="Edit Data Surat Masuk" data-original-title="Edit Data Surat Masuk">
-                                <i class="bi bi-pencil btn-tambah-data"></i>
-                            </button>
-                        </a>
-                        <form method="POST"
-                            action="{{ route('surat.destroy', Crypt::encryptString($detailDataSurat->id_surat)) }}"
-                            class="tombol-hapus">
-                            @csrf
-                            @method('DELETE')
-                            <a href="#" class="text-white ml-2 tombol-hapus">
-                                <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
-                                    data-placement="top" title="Hapus Data Surat Masuk"
-                                    data-original-title="Hapus Data Surat Masuk">
-                                    <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                            @can('admin-officer')
+                            </a>
+                        @endcan
+                        @can('admin-officer')
+                            @if ($detailDataSurat->status_verifikasi == 1)
+                                <span class="tombol-ajukan" data-toggle="tooltip" data-placement="top"
+                                    title="Ajukan untuk Disposisi" data-original-title="Ajukan untuk Disposisi" disabled>
+                                    <button type="button" class="btn btn-success ml-2 tombol-ajukan" data-toggle="modal"
+                                        data-target="#ajukan-modal{{ $detailDataSurat->id_surat }}" type="button">
+                                        Ajukan
+                                    </button>
+                                </span>
+                            @endif
+                            <a href="{{ route('surat.edit', Crypt::encryptString($detailDataSurat->id_surat)) }}"
+                                class="text-white ml-2">
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                    title="Edit Data Surat Masuk" data-original-title="Edit Data Surat Masuk">
+                                    <i class="bi bi-pencil btn-tambah-data"></i>
                                 </button>
                             </a>
-                        </form>
+                            <form method="POST"
+                                action="{{ route('surat.destroy', Crypt::encryptString($detailDataSurat->id_surat)) }}"
+                                class="tombol-hapus">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#" class="text-white ml-2 tombol-hapus">
+                                    <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
+                                        data-placement="top" title="Hapus Data Surat Masuk"
+                                        data-original-title="Hapus Data Surat Masuk">
+                                        <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body ">

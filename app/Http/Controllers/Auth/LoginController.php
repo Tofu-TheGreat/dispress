@@ -34,18 +34,17 @@ class LoginController extends Controller
                     Alert::toast('Admin berhasil login.', 'success');
                     Auth::login($credentials);
                     $request->session()->regenerate();
-                    return redirect()->intended('/dashboard');
+                    return redirect()->intended('/dashboard-admin');
                 } elseif ($credentials->level === 'officer') {
-                    // Alert::toast('Officer berhasil login.', 'success');
-                    // Auth::login($credentials);
-                    // $request->session()->regenerate();
-                    // return redirect()->intended('/dashboard');
-                    // return response()->json("Officer Berhasil Login");
+                    Alert::toast('Officer berhasil login.', 'success');
+                    Auth::login($credentials);
+                    $request->session()->regenerate();
+                    return redirect()->intended('/dashboard-officer');
                 } elseif ($credentials->level === 'staff') {
-                    // Alert::toast('Staff berhasil login.', 'success');
-                    // Auth::login($credentials);
-                    // $request->session()->regenerate();
-                    // return redirect()->intended('/dashboard');
+                    Alert::toast('Staff berhasil login.', 'success');
+                    Auth::login($credentials);
+                    $request->session()->regenerate();
+                    return redirect()->intended('/dashboard-staff');
                 }
             } else {
                 return redirect()->back()->with('error', 'Password salah.');

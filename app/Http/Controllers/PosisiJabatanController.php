@@ -40,7 +40,7 @@ class PosisiJabatanController extends Controller
                 return '<span class="capitalize">' . $posisiJabatanList->nama_posisi_jabatan . '</span>';
             })
             ->addColumn('deskripsi_jabatan', function ($posisiJabatanList) {
-                return '<span class="capitalize">' . $posisiJabatanList->deskripsi_jabatan . '</span>';
+                return '<span class="capitalize">' .  strlen($posisiJabatanList->deskripsi_jabatan) > 15 ? substr($posisiJabatanList->deskripsi_jabatan, 0, 15) . '...' : $posisiJabatanList->deskripsi_jabatan . '</span>';
             })
             ->addColumn('tingkat_jabatan', function ($posisiJabatanList) {
                 return '<span class="capitalize">' . jabatanConvert($posisiJabatanList->tingkat_jabatan, 'jabatan') . '</span>';
@@ -65,6 +65,8 @@ class PosisiJabatanController extends Controller
      */
     public function store(PosisiJabatanRequest $request)
     {
+        $this->authorize('admin-officer');
+
         $this->posisijabatanRepository->store($request);
         return back()->with('success', 'Berhasil menambah Posisi Jabatan');
     }
@@ -82,6 +84,8 @@ class PosisiJabatanController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin-officer');
+
         $posisiJabatan = $this->posisijabatanRepository->edit($id);
     }
 
@@ -90,6 +94,8 @@ class PosisiJabatanController extends Controller
      */
     public function update(PosisiJabatanRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->posisijabatanRepository->update($id, $request);
         return back()->with('success', 'Berhasil meng-edit Posisi Jabatan');
     }
@@ -99,6 +105,8 @@ class PosisiJabatanController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->posisijabatanRepository->destroy($encryptId);
         return back()->with('success', 'Berhasil menghapus Posisi Jabatan');

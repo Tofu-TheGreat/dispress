@@ -50,7 +50,10 @@ class StaffController extends Controller
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -68,7 +71,10 @@ class StaffController extends Controller
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -89,6 +95,8 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
         $posisiJabatanList = PosisiJabatan::get();
 
         return view('admin.staff.staff-create', [
@@ -105,6 +113,8 @@ class StaffController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->staffRepository->store($request);;
         return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff');
     }
@@ -129,6 +139,8 @@ class StaffController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->staffRepository->edit($encryptId);
@@ -149,6 +161,8 @@ class StaffController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $this->staffRepository->update($request->id_user, $request);
         return redirect()->intended('/staff')->with('success', 'Berhasil meng-edit data Staff');
@@ -159,6 +173,8 @@ class StaffController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->staffRepository->destroy($encryptId);
@@ -170,6 +186,8 @@ class StaffController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->staffRepository->deleteImageFromUser($id);
         return back()->with('success', 'Berhasil menghapus foto profil Staff');
     }

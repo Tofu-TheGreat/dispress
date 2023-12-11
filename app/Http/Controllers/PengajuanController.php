@@ -25,6 +25,8 @@ class PengajuanController extends Controller
      */
     public function index()
     {
+        $this->authorize('admin-officer');
+
         $pengajuanList0 = $this->pengajuanRepository->index('0');
         $pengajuanList1 = $this->pengajuanRepository->index('1');
         $userList = User::get();
@@ -49,6 +51,8 @@ class PengajuanController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin-officer');
+
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
         $suratList = Surat::get();
@@ -68,6 +72,8 @@ class PengajuanController extends Controller
      */
     public function store(PengajuanRequest $request)
     {
+        $this->authorize('admin-officer');
+
         $this->pengajuanRepository->store($request);
         return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil membuat pengajuan surat untuk Didisposisikan.');
     }
@@ -77,6 +83,8 @@ class PengajuanController extends Controller
      */
     public function show($id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $detailDataPengajuan = $this->pengajuanRepository->show($encryptId);
 
@@ -93,6 +101,8 @@ class PengajuanController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $editDataPengajuan = $this->pengajuanRepository->edit($encryptId);
         $klasifikasiList = Klasifikasi::get();
@@ -113,6 +123,8 @@ class PengajuanController extends Controller
      */
     public function update(PengajuanRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->pengajuanRepository->update($id, $request);
         return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil meng-update data Pengajuan.');
     }
@@ -122,6 +134,8 @@ class PengajuanController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->pengajuanRepository->destroy($encryptId);
         return redirect()->intended('/pengajuan-disposisi')->with('success', 'Berhasil menghapus data Pengajuan.');
@@ -129,6 +143,8 @@ class PengajuanController extends Controller
 
     public function filterData(Request $request)
     {
+        $this->authorize('admin-officer');
+
         $pengajuanList0 =  $this->pengajuanRepository->filterData($request, '0');
         $pengajuanList1 =  $this->pengajuanRepository->filterData($request, '1');
         $userList = User::get();
@@ -148,6 +164,8 @@ class PengajuanController extends Controller
 
     public function search(Request $request)
     {
+        $this->authorize('admin-officer');
+
         $pengajuanList0 = $this->pengajuanRepository->search($request, '0');
         $pengajuanList1 = $this->pengajuanRepository->search($request, '1');
         $userList = User::get();

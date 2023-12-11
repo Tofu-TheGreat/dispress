@@ -46,8 +46,10 @@
                             href="/nomor-klasifikasi">Nomor Klasifikasi</a></li>
                     <li><a class="nav-link {{ $active == 'Surat-masuk' ? 'active text-info' : '' }}"
                             href="/surat">Surat Masuk</a></li>
-                    <li><a class="nav-link {{ $active == 'Pengajuan-disposisi' ? 'active text-info' : '' }}"
-                            href="/pengajuan-disposisi">Pengajuan Disposisi</a></li>
+                    @can('admin-officer')
+                        <li><a class="nav-link {{ $active == 'Pengajuan-disposisi' ? 'active text-info' : '' }}"
+                                href="/pengajuan-disposisi">Pengajuan Disposisi</a></li>
+                    @endcan
                     <li><a class="nav-link {{ $active == 'Disposisi' ? 'active text-info' : '' }}"
                             href="/disposisi">Disposisi</a></li>
                     <li><a class="nav-link" href="layout-transparent.html">Surat Keluar</a></li>

@@ -210,7 +210,7 @@
 
     {{-- DataTables --}}
     <script>
-        let jabatan = $("#jabatan").val();
+        let jabatan = $("#id_posisi_jabatan").val();
         $(document).ready(function() {
             var table = $('#dataTable').DataTable({
                 processing: true,
@@ -260,7 +260,7 @@
                 table.ajax.reload();
             });
             $('#reset').on('click', function() {
-                $("#jabatan").val(null).trigger('change');
+                $("#id_posisi_jabatan").val(null).trigger('change');
                 jabatan = ""; // Reset variabel jabatan
                 table.ajax.reload();
             });

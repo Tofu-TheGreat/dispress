@@ -81,7 +81,7 @@
                         <span data-toggle="tooltip" data-placement="top"
                             title="Ini adalah data Pengajuan dan Disposisi yang dilakukan kamu."
                             data-original-title="Ini adalah data Pengajuan dan Disposisi yang dilakukan kamu." disabled>
-                            <i class="bi bi-question-circle mr-2"></i>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
                         <h4>Pengajuan vs Disposisi</h4>
                     </div>
@@ -95,7 +95,7 @@
                     <div class="card-header">
                         <span data-toggle="tooltip" data-placement="top" title="Ini adalah data Pengajuan terbaru"
                             data-original-title="Ini adalah data Pengajuan terbaru" disabled>
-                            <i class="bi bi-question-circle mr-2"></i>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
                         <h4>Pengajuan Terbaru</h4>
                         <div class="card-header-action dropdown">

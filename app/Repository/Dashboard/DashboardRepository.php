@@ -8,5 +8,9 @@ interface DashboardRepository
     public function getPengajuanAdmin();
     public function getDisposisi();
     public function getAllDisposisi();
-    public function getTotalUser();
+    public function getTotalAdmin();
+    public function getTotalOfficer();
+    public function getTotalStaff();
+    public function getPengajuanChartData();
+    public function getDisposisiChartData();
 }

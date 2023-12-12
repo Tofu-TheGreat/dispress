@@ -23,9 +23,16 @@ class Controller extends BaseController
     {
         $suratCount = $this->dashboardRepository->getSuratAdmin();
         $pengajuanCount = $this->dashboardRepository->getPengajuanAdmin();
-        $adminCount = $this->dashboardRepository->getTotalUser();
+        $adminCount = $this->dashboardRepository->getTotalAdmin();
+        $officerCount = $this->dashboardRepository->getTotalOfficer();
+        $staffCount = $this->dashboardRepository->getTotalStaff();
         $disposisiCount = $this->dashboardRepository->getDisposisi();
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisi();
+
+        // Retrieve dynamic data for the chart
+        $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
+        $disposisiChartData = $this->dashboardRepository->getDisposisiChartData();
+
         return view('admin.pages.dashboard-admin', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
@@ -33,12 +40,16 @@ class Controller extends BaseController
             'suratCount' => $suratCount,
             'pengajuanCount' => $pengajuanCount,
             'adminCount' => $adminCount,
+            'officerCount' => $officerCount,
+            'staffCount' => $staffCount,
             'alldisposisiCount' => $alldisposisiCount,
+            'pengajuanChartData' => $pengajuanChartData,
+            'disposisiChartData' => $disposisiChartData,
         ]);
     }
     public function dashboardOfficer()
     {
-        $officerCount = $this->dashboardRepository->getTotalUser();
+        $officerCount = $this->dashboardRepository->getTotalOfficer();
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
@@ -48,7 +59,7 @@ class Controller extends BaseController
     }
     public function dashboardStaff()
     {
-        $staffCount = $this->dashboardRepository->getTotalUser();
+        $staffCount = $this->dashboardRepository->getTotalStaff();
         return view('admin.pages.dashboard-staff', [
             'title' => 'Dashboard',
             'active' => 'dashboard',

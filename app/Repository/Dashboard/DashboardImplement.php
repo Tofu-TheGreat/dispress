@@ -27,8 +27,46 @@ class DashboardImplement implements DashboardRepository
     {
         return Disposisi::count();
     }
-    public function getTotalUser()
+    public function getTotalAdmin()
     {
-        return User::where('level', Auth::user()->level)->count();
+        return User::where('level', 'admin')->count();
+    }
+    public function getTotalOfficer()
+    {
+        return User::where('level', 'officer')->count();
+    }
+    public function getTotalStaff()
+    {
+        return User::where('level', 'staff')->count();
+    }
+    public function getPengajuanChartData()
+    {
+        // Assuming you have a 'created_at' timestamp column in your Pengajuan model
+        $pengajuanData = Pengajuan::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->get();
+
+        $labels = $pengajuanData->pluck('date')->toArray();
+        $data = $pengajuanData->pluck('count')->toArray();
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
+    }
+    public function getDisposisiChartData()
+    {
+        // Assuming you have a 'created_at' timestamp column in your Disposisi model
+        $disposisiData = Disposisi::selectRaw('DATE(created_at) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->get();
+
+        $labels = $disposisiData->pluck('date')->toArray();
+        $data = $disposisiData->pluck('count')->toArray();
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
     }
 }

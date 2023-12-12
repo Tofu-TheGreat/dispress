@@ -7,7 +7,7 @@
             <div class="col-lg-4 col-md-4 col-sm-12">
                 <div class="card card-statistic-2">
                     <div class="card-stats">
-                        <div class="card-stats-title">Dashboard Officer
+                        <div class="card-stats-title text-primary">Dashboard Officer
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">

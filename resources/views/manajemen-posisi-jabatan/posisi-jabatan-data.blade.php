@@ -60,7 +60,7 @@
                                     <select class="filter select2 @error('tingkat_jabatan') is-invalid  @enderror "
                                         id="tingkat_jabatan" name="tingkat_jabatan" style="width: 100%;">
                                         <option selected disabled>Pilih Tingkat Jabatan</option>
-                                        <option value="0" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
+                                        <option value="js" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
                                             Jabatan Struktural</option>
                                         <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
                                             Jabatan Fungsional Tertentu</option>

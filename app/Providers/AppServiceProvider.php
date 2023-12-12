@@ -8,6 +8,8 @@ use App\Repository\Admin\AdminImplement;
 use App\Repository\Admin\AdminRepository;
 use App\Repository\Ajukan\PengajuanImplement;
 use App\Repository\Ajukan\PengajuanRepository;
+use App\Repository\Dashboard\DashboardImplement;
+use App\Repository\Dashboard\DashboardRepository;
 use App\Repository\Login\LoginImplement;
 use App\Repository\Login\LoginRepository;
 use App\Repository\Officer\OfficerRepository;
@@ -48,6 +50,7 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(KlasifikasiRepository::class, KlasifikasiImplement::class);
         $this->app->bind(PengajuanRepository::class, PengajuanImplement::class);
         $this->app->bind(PosisiJabatanRepository::class, PosisiJabatanImplements::class);
+        $this->app->bind(DashboardRepository::class, DashboardImplement::class);
     }
 
     /**

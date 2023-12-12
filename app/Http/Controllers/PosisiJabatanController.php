@@ -34,8 +34,11 @@ class PosisiJabatanController extends Controller
     public function indexPosisiJabatan(Request $request)
     {
         if ($request->tingkat_jabatan) {
-
-            $posisiJabatanList = $this->posisijabatanRepository->index()->where('tingkat_jabatan', $request->tingkat_jabatan);
+            if ($request->tingkat_jabatan == 'js') {
+                $posisiJabatanList = $this->posisijabatanRepository->index()->where('tingkat_jabatan', '0');
+            } else {
+                $posisiJabatanList = $this->posisijabatanRepository->index()->where('tingkat_jabatan', $request->tingkat_jabatan);
+            }
             return DataTables::of($posisiJabatanList)
                 ->addIndexColumn()
                 ->addColumn('nama_posisi_jabatan', function ($posisiJabatanList) {
@@ -53,7 +56,6 @@ class PosisiJabatanController extends Controller
                 ->rawColumns(['nama_posisi_jabatan', 'deskripsi_jabatan', 'tingkat_jabatan', 'phone'])
                 ->toJson();
         } else {
-
             $posisiJabatanList = $this->posisijabatanRepository->index();
             return DataTables::of($posisiJabatanList)
                 ->addIndexColumn()

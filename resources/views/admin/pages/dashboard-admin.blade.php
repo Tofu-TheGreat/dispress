@@ -11,16 +11,16 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
-                                <div class="card-stats-item-label">Pending</div>
+                                <div class="card-stats-item-count">{{ $suratCount }}</div>
+                                <div class="card-stats-item-label">Surat</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">12</div>
-                                <div class="card-stats-item-label">Shipping</div>
+                                <div class="card-stats-item-count">{{ $pengajuanCount }}</div>
+                                <div class="card-stats-item-label">Pengajuan</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
-                                <div class="card-stats-item-label">Completed</div>
+                                <div class="card-stats-item-count">{{ $alldisposisiCount }}</div>
+                                <div class="card-stats-item-label">Disposisi</div>
                             </div>
                         </div>
                     </div>
@@ -32,7 +32,7 @@
                             <h4>Total Admin</h4>
                         </div>
                         <div class="card-body">
-                            15
+                            {{ $adminCount }}
                         </div>
                     </div>
                 </div>

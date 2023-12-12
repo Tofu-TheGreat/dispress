@@ -32,7 +32,7 @@
                             <h4>Total Officer</h4>
                         </div>
                         <div class="card-body">
-                            15
+                            {{ $officerCount }}
                         </div>
                     </div>
                 </div>

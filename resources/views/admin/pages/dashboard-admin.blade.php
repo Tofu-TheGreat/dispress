@@ -191,7 +191,7 @@
                         </span>
                         <h4>Disposisi Terbaru</h4>
                         <div class="card-header-action dropdown">
-                            <a href="/pengajuan-disposisi" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
+                            <a href="/disposisi" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                         </div>
                     </div>
                     <div class="card-body" id="top-5-scroll2">
@@ -205,7 +205,7 @@
                                                     <h4>{{ $dataDisposisi->pengajuan->nomor_agenda }}</h4>
                                                 </div>
                                                 <div class="card-header-action btn-group">
-                                                    @if ($dataPengajuan->status_pengajuan == '0')
+                                                    @if ($dataDisposisi->status_pengajuan == '0')
                                                         <button class="btn btn-danger tombol-disposisi mr-2"
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Belum Didisposisikan"
@@ -213,7 +213,7 @@
                                                             <span class="d-flex justify-content-center m-0"><i
                                                                     class="bi bi bi-patch-minus"></i></span>
                                                         </button>
-                                                    @elseif ($dataPengajuan->status_pengajuan == '1')
+                                                    @elseif ($dataDisposisi->status_pengajuan == '1')
                                                         <button class="btn btn-success tombol-disposisi mr-2"
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Sudah Didisposisikan"
@@ -222,21 +222,21 @@
                                                                     class="bi bi bi-patch-check"></i></span>
                                                         </button>
                                                     @endif
-                                                    <a data-collapse="#mycard-collapse{{ $dataPengajuan->id_pengajuan }}"
+                                                    <a data-collapse="#mycard-collapse{{ $dataDisposisi->id_pengajuan }}"
                                                         class="btn btn-icon btn-info" href="#"><i
                                                             class="fas fa-minus"></i></a>
                                                 </div>
                                             </div>
                                             <div class="collapse show"
-                                                id="mycard-collapse{{ $dataPengajuan->id_pengajuan }}">
+                                                id="mycard-collapse{{ $dataDisposisi->id_pengajuan }}">
                                                 <div class="card-body card-body-surat position-relative "
                                                     style="min-height: 130px">
-                                                    <p class="w-75"> {!! $dataPengajuan->catatan_pengajuan !!}</p>
+                                                    <p class="w-75"> {!! $dataDisposisi->catatan_pengajuan !!}</p>
                                                     <p class="mt-3" style="font-size: .7rem;">
                                                         --
-                                                        {{ date('d-F-Y', strtotime($dataPengajuan->tanggal_terima)) }}
+                                                        {{ date('d-F-Y', strtotime($dataDisposisi->tanggal_terima)) }}
                                                         --</p>
-                                                    @if ($dataPengajuan->status_pengajuan == '0')
+                                                    @if ($dataDisposisi->status_pengajuan == '0')
                                                         <div class="mt-1 mb-1 tombol-disposisi">
                                                             <span class="tombol-disposisi" data-toggle="tooltip"
                                                                 data-placement="right" title="klik Untuk Mendisposisikan"
@@ -244,7 +244,7 @@
                                                                 <button type="button"
                                                                     class="btn btn-success mr-2 tombol-disposisi"
                                                                     data-toggle="modal"
-                                                                    data-target="#disposisi-modal{{ $dataPengajuan->id_pengajuan }}"
+                                                                    data-target="#disposisi-modal{{ $dataDisposisi->id_pengajuan }}"
                                                                     type="button">
                                                                     Disposisi
                                                                 </button>
@@ -253,7 +253,7 @@
                                                     @endif
                                                     <div
                                                         class="d-flex flex-column btn-group-action btn-group-action-dashboard">
-                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
+                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($dataDisposisi->id_pengajuan)) }}"
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Detail data pengajuan disposisi"
                                                             data-original-title="Detail data pengajuan disposisi"
@@ -264,11 +264,11 @@
                                                             title="Edit data disposisi"
                                                             data-original-title="Edit data disposisi"
                                                             class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"><i
+                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($dataDisposisi->id_pengajuan)) }}"><i
                                                                 class="pl-1  bi bi-pencil-square "></i>
                                                         </a>
                                                         <form method="POST"
-                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
+                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($dataDisposisi->id_pengajuan)) }}"
                                                             class="tombol-hapus">
                                                             @csrf
                                                             @method('DELETE')
@@ -284,9 +284,9 @@
                                                 </div>
                                                 <div class="card-footer d-flex justify-content-between position-relative">
                                                     <div class="d-flex flex-row ">
-                                                        @if ($dataPengajuan->user->foto_user)
+                                                        @if ($dataDisposisi->user->foto_user)
                                                             <img alt="image"
-                                                                src="{{ asset('image_save/' . $dataPengajuan->user->foto_user) }}"
+                                                                src="{{ asset('image_save/' . $dataDisposisi->user->foto_user) }}"
                                                                 style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
                                                                 class="mr-2 border border-primary">
                                                         @else
@@ -298,7 +298,7 @@
                                                         <div>
                                                             <div class="user-detail-name">
                                                                 <span class="text-primary" href="#">
-                                                                    {{ $dataPengajuan->user->nama }}</span>
+                                                                    {{ $dataDisposisi->user->nama }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,7 +307,7 @@
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Preview surat (PDF)"
                                                             data-original-title="Preview surat (PDF)"
-                                                            href="{{ asset('document_save/' . $dataPengajuan->surat->scan_dokumen) }}"
+                                                            href="{{ asset('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen) }}"
                                                             target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
                                                                 style="font-size: 1.1rem;"></i></a>
                                                     </div>

@@ -70,72 +70,70 @@
                 <div class="card">
                     <div class="card-header">
                         <span data-toggle="tooltip" data-placement="top"
-                            title="Ini adalah data yang Didisposisikan ke Anda."
-                            data-original-title="Ini adalah data yang Didisposisikan ke Anda." disabled>
+                            title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan."
+                            data-original-title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan." disabled>
                             <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
-                        <h4>Disposisi</h4>
+                        <h4>Statistik Disposisi untuk {{ Auth::user()->nama }}</h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="myChart" height="158"></canvas>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card gradient-bottom">
-                    <div class="card-header">
-                        <span data-toggle="tooltip" data-placement="top" title="Ini adalah data disposisi terbaru"
-                            data-original-title="Ini adalah data disposisi terbaru" disabled>
-                            <i class="bi bi-question-circle mr-2 text-primary"></i>
-                        </span>
-                        <h4>Disposisi Terbaru</h4>
-                        <div class="card-header-action dropdown">
-                            <a href="#" data-toggle="dropdown" class="btn btn-danger dropdown-toggle">Month</a>
-                            <ul class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
-                                <li class="dropdown-title">Select Period</li>
-                                <li><a href="#" class="dropdown-item">Today</a></li>
-                                <li><a href="#" class="dropdown-item">Week</a></li>
-                                <li><a href="#" class="dropdown-item active">Month</a></li>
-                                <li><a href="#" class="dropdown-item">This Year</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="card-body" id="top-5-scroll">
-                        <ul class="list-unstyled list-unstyled-border">
-                            <li class="media">
-                                <img class="mr-3 rounded" width="55" src="assets/img/products/product-3-50.png"
-                                    alt="product">
-                                <div class="media-body">
-                                    <div class="float-right">
-                                        <div class="font-weight-600 text-muted text-small">86 Sales</div>
-                                    </div>
-                                    <div class="media-title">oPhone S9 Limited</div>
-                                    <div class="mt-1">
-                                        <div class="budget-price">
-                                            <div class="budget-price-square bg-primary" data-width="64%"></div>
-                                            <div class="budget-price-label">$68,714</div>
-                                        </div>
-                                        <div class="budget-price">
-                                            <div class="budget-price-square bg-danger" data-width="43%"></div>
-                                            <div class="budget-price-label">$38,700</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="card-footer pt-3 d-flex justify-content-center">
-                        <div class="budget-price justify-content-center">
-                            <div class="budget-price-square bg-primary" data-width="20"></div>
-                            <div class="budget-price-label">Selling Price</div>
-                        </div>
-                        <div class="budget-price justify-content-center">
-                            <div class="budget-price-square bg-danger" data-width="20"></div>
-                            <div class="budget-price-label">Budget Price</div>
-                        </div>
+                        <canvas id="myChartDisposisi" height="158"></canvas>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script src="{{ asset('assets/modules/chart.min.js') }}"></script>
+
+    <script>
+        const ctx = document.getElementById("myChartDisposisi").getContext('2d');
+        const myChartDisposisi = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($disposisiUserChart['dates']) !!},
+                datasets: [{
+                    label: 'Disposisi',
+                    data: {!! json_encode($disposisiUserChart['disposisi_count']) !!},
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(63,82,227,.8)',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
+                    pointBorderWidth: 0,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            // display: false,
+                            drawBorder: false,
+                            color: '#f2f2f2',
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 10,
+                            callback: function(value, index, values) {
+                                return value;
+                            }
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            tickMarkLength: 15,
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
 @endsection

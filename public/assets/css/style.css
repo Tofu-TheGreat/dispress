@@ -2827,7 +2827,7 @@ a.bb {
 .gradient-bottom:after {
     content: " ";
     position: absolute;
-    bottom: 41px;
+    bottom: 0;
     left: 0;
     width: 100%;
     background-image: linear-gradient(

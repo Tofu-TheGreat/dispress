@@ -382,8 +382,7 @@
                                             <div class="input-group">
                                                 <select
                                                     class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                                    id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
-                                                    required>
+                                                    id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="">
                                                     <option disabled>Pilih Posisi Jabatan User</option>
                                                     @foreach ($posisiJabatanList as $item)
                                                         <option value="{{ $item->id_posisi_jabatan }}"

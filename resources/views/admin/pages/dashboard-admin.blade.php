@@ -79,8 +79,8 @@
                 <div class="card">
                     <div class="card-header">
                         <span data-toggle="tooltip" data-placement="top"
-                            title="Ini adalah data Pengajuan dan Disposisi yang dilakukan kamu."
-                            data-original-title="Ini adalah data Pengajuan dan Disposisi yang dilakukan kamu." disabled>
+                            title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan."
+                            data-original-title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan." disabled>
                             <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
                         <h4>Pengajuan vs Disposisi</h4>
@@ -354,14 +354,14 @@
 
     {{-- Chart data pengajuan dan disposisi yang di lakukan oleh admin ini --}}
     <script>
-        var ctx = document.getElementById("myChart").getContext('2d');
-        var myChart = new Chart(ctx, {
+        const ctx = document.getElementById("myChart").getContext('2d');
+        const myChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August"],
+                labels: {!! json_encode($pengajuanDisposisiChartData['dates']) !!},
                 datasets: [{
-                        label: 'Sales',
-                        data: [3200, 1800, 4305, 3022, 6310, 5120, 5880, 6154],
+                        label: 'Pengajuan',
+                        data: {!! json_encode($pengajuanDisposisiChartData['pengajuan_count']) !!},
                         borderWidth: 2,
                         backgroundColor: 'rgba(63,82,227,.8)',
                         borderWidth: 0,
@@ -372,8 +372,8 @@
                         pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
                     },
                     {
-                        label: 'Budget',
-                        data: [2207, 3403, 2200, 5025, 2302, 4208, 3880, 4880],
+                        label: 'Disposisi',
+                        data: {!! json_encode($pengajuanDisposisiChartData['disposisi_count']) !!},
                         borderWidth: 2,
                         backgroundColor: 'rgba(254,86,83,.7)',
                         borderWidth: 0,
@@ -387,7 +387,7 @@
             },
             options: {
                 legend: {
-                    display: false
+                    display: true
                 },
                 scales: {
                     yAxes: [{
@@ -396,13 +396,13 @@
                             drawBorder: false,
                             color: '#f2f2f2',
                         },
-                        ticks: {
-                            beginAtZero: true,
-                            stepSize: 1500,
-                            callback: function(value, index, values) {
-                                return '$' + value;
-                            }
-                        }
+                        // ticks: {
+                        //     beginAtZero: true,
+                        //     stepSize: 50,
+                        //     callback: function(value, index, values) {
+                        //         return value;
+                        //     }
+                        // }
                     }],
                     xAxes: [{
                         gridLines: {

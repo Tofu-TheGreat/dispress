@@ -7,6 +7,7 @@ use App\Repository\Dashboard\DashboardRepository;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Carbon;
 
 class Controller extends BaseController
 {
@@ -29,6 +30,7 @@ class Controller extends BaseController
         $staffCount = $this->dashboardRepository->getTotalStaff();
         $disposisiCount = $this->dashboardRepository->getDisposisi();
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisi();
+        $newestPengajuan = $this->dashboardRepository->getNewestPengajuan();
 
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
@@ -48,6 +50,7 @@ class Controller extends BaseController
             'pengajuanChartData' => $pengajuanChartData,
             'disposisiChartData' => $disposisiChartData,
             'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
+            'newestPengajuan' => $newestPengajuan,
         ]);
     }
     public function dashboardOfficer()
@@ -55,6 +58,7 @@ class Controller extends BaseController
         $suratChartData = $this->dashboardRepository->getSuratChartData();
         $officerCount = $this->dashboardRepository->getTotalOfficer();
         $pengajuanUserChart = $this->dashboardRepository->getPengajuanUserChartData();
+        $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
 
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
@@ -63,6 +67,7 @@ class Controller extends BaseController
             'officerCount' => $officerCount,
             'suratChartData' => $suratChartData,
             'pengajuanUserChart' => $pengajuanUserChart,
+            'disposisiUserChart' => $disposisiUserChart,
         ]);
     }
     public function dashboardStaff()

@@ -74,6 +74,23 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <span data-toggle="tooltip" data-placement="top"
+                            title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan."
+                            data-original-title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan." disabled>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
+                        </span>
+                        <h4>Statistik Disposisi untuk {{ Auth::user()->nama }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChartDisposisi" height="158"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
 
@@ -192,6 +209,54 @@
                         },
                         ticks: {
                             display: false
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+    <script>
+        const ctx = document.getElementById("myChartDisposisi").getContext('2d');
+        const myChartDisposisi = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($disposisiUserChart['dates']) !!},
+                datasets: [{
+                    label: 'Disposisi',
+                    data: {!! json_encode($disposisiUserChart['disposisi_count']) !!},
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(63,82,227,.8)',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
+                    pointBorderWidth: 0,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            // display: false,
+                            drawBorder: false,
+                            color: '#f2f2f2',
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 10,
+                            callback: function(value, index, values) {
+                                return value;
+                            }
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            tickMarkLength: 15,
                         }
                     }]
                 },

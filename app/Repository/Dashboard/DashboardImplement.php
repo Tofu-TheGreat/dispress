@@ -8,6 +8,7 @@ use App\Models\Surat;
 use App\Models\Disposisi;
 use App\Repository\Dashboard\DashboardRepository;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class DashboardImplement implements DashboardRepository
 {
@@ -137,5 +138,29 @@ class DashboardImplement implements DashboardRepository
         $collections = Pengajuan::get();
 
         return $collections->sortByDesc('created_at');
+    }
+
+    public function getDisposisiFromUser()
+    {
+        $allMonths = [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+        ];
+
+        $disposisiData = Disposisi::selectRaw('DATE_FORMAT(tanggal_disposisi, "%M") as date, COUNT(*) as count')
+            ->where('id_penerima', auth()->user()->id_user)
+            ->orWhere('id_posisi_jabatan', auth()->user()->id_posisi_jabatan)
+            ->groupBy('date')
+            ->get();
+
+        $disposisiCounts = [];
+
+        foreach ($allMonths as $month) {
+            $disposisiCounts[$month] = $disposisiData->where('date', $month)->first()->count ?? 0;
+        }
+
+        return [
+            'dates' => $allMonths,
+            'disposisi_count' => array_values($disposisiCounts),
+        ];
     }
 }

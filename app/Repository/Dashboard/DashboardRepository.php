@@ -14,4 +14,6 @@ interface DashboardRepository
     public function getPengajuanChartData();
     public function getDisposisiChartData();
     public function getDisposisiAndPengajuanChartData();
+    public function getSuratChartData();
+    public function getPengajuanUserChartData();
 }

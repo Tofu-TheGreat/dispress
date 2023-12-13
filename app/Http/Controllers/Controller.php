@@ -29,6 +29,7 @@ class Controller extends BaseController
         $staffCount = $this->dashboardRepository->getTotalStaff();
         $disposisiCount = $this->dashboardRepository->getDisposisi();
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisi();
+        $newestPengajuan = $this->dashboardRepository->getNewestPengajuan();
 
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
@@ -48,6 +49,7 @@ class Controller extends BaseController
             'pengajuanChartData' => $pengajuanChartData,
             'disposisiChartData' => $disposisiChartData,
             'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
+            'newestPengajuan' => $newestPengajuan,
         ]);
     }
     public function dashboardOfficer()

@@ -100,4 +100,10 @@ class DashboardImplement implements DashboardRepository
             'pengajuan_count' => array_values($pengajuanCounts),
         ];
     }
+    public function getNewestPengajuan()
+    {
+        $collections = Pengajuan::get();
+
+        return $collections->sortByDesc('created_at');
+    }
 }

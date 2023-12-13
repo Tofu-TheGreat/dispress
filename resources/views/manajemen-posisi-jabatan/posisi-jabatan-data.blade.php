@@ -59,7 +59,7 @@
                                 <div class="input-group">
                                     <select class="filter select2 @error('tingkat_jabatan') is-invalid  @enderror "
                                         id="tingkat_jabatan" name="tingkat_jabatan" style="width: 100%;">
-                                        <option selected disabled>Pilih Tingkat Jabatan</option>
+                                        <option value="" selected disabled>Pilih Tingkat Jabatan</option>
                                         <option value="js" {{ old('tingkat_jabatan') === '0' ? 'selected' : '' }}>
                                             Jabatan Struktural</option>
                                         <option value="1" {{ old('tingkat_jabatan') === '1' ? 'selected' : '' }}>
@@ -79,8 +79,7 @@
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
                             <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
-                        <a type="button" id="reset" href="/posisi-jabatan" class="btn btn-secondary mb-1"
-                            title="Reset">
+                        <a type="button" id="reset" class="btn btn-secondary mb-1" title="Reset">
                             <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
                                 Filter</span></a>
                     </div>

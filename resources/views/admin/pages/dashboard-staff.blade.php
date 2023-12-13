@@ -14,7 +14,7 @@
                             <h4>Total Staff</h4>
                         </div>
                         <div class="card-body">
-                            10
+                            {{ $staffData }}
                         </div>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                             <h4>Disposisi</h4>
                         </div>
                         <div class="card-body">
-                            42
+                            {{ $disposisiCountByUser }}
                         </div>
                     </div>
                 </div>

@@ -6,6 +6,7 @@ use App\Models\Pengajuan;
 use App\Models\User;
 use App\Models\Surat;
 use App\Models\Disposisi;
+use App\Models\Instansi;
 use App\Repository\Dashboard\DashboardRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -162,5 +163,19 @@ class DashboardImplement implements DashboardRepository
             'dates' => $allMonths,
             'disposisi_count' => array_values($disposisiCounts),
         ];
+    }
+    public function getInstansi()
+    {
+        return Instansi::count();
+    }
+    public function getStaff()
+    {
+        return User::where('level', 'staff')->count();
+    }
+    public function getDisposisiByUser()
+    {
+        return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
+            ->orWhere('id_penerima', Auth::user()->id_user)
+            ->count();
     }
 }

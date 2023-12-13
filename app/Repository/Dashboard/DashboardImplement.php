@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Surat;
 use App\Models\Disposisi;
 use App\Models\Instansi;
+use App\Models\PosisiJabatan;
 use App\Repository\Dashboard\DashboardRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -140,6 +141,12 @@ class DashboardImplement implements DashboardRepository
 
         return $collections->sortByDesc('created_at');
     }
+    public function getNewestDisposisi()
+    {
+        $collections = Disposisi::get();
+
+        return $collections->sortByDesc('created_at');
+    }
 
     public function getDisposisiFromUser()
     {
@@ -177,5 +184,9 @@ class DashboardImplement implements DashboardRepository
         return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
             ->orWhere('id_penerima', Auth::user()->id_user)
             ->count();
+    }
+    public function getJabatan()
+    {
+        return PosisiJabatan::count();
     }
 }

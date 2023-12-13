@@ -178,3 +178,47 @@ if (!function_exists('convertDisposisiField')) {
         return $map[$value] ?? 'Tidak Diketahui';
     }
 }
+if (!function_exists('reverseconvertDisposisiField')) {
+    function reverseconvertDisposisiField($value, $type)
+    {
+        switch ($type) {
+            case 'sifat':
+                $map = [
+                    'Tindaklanjuti' => 0,
+                    'Biasa' => 1,
+                    'Segera' => 2,
+                    'Penting' => 3,
+                    'Rahasia' => 4,
+                ];
+                break;
+            case 'status':
+                $map = [
+                    'Arsipkan' => 0,
+                    'Jabarkan' => 1,
+                    'Umumkan' => 2,
+                    'Laksanakan' => 3,
+                    'Persiapkan' => 4,
+                    'Ikuti' => 5,
+                ];
+                break;
+            case 'tujuan':
+                $map = [
+                    'Kepala Sekolah' => 0,
+                    'Wakil Kepala Sekolah' => 1,
+                    'Kurikulum' => 2,
+                    'Kesiswaan' => 3,
+                    'Sarana dan Prasarana' => 4,
+                    'Kepala Jurusan' => 5,
+                    'Hubin' => 6,
+                    'Bimbingan Konseling' => 7,
+                    'Guru Umum' => 8,
+                    'Tata Usaha' => 9,
+                ];
+                break;
+            default:
+                return null; // Mengembalikan null untuk menunjukkan nilai tidak valid
+        }
+
+        return $map[$value] ?? null; // Mengembalikan null jika nilai tidak ditemukan
+    }
+}

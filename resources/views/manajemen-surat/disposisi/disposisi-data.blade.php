@@ -155,7 +155,7 @@
                                     <div class="input-group">
                                         <select
                                             class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="" required>
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple="">
                                             <option disabled>Pilih Posisi Jabatan User</option>
                                             @foreach ($posisiJabatanList as $item)
                                                 <option value="{{ $item->id_posisi_jabatan }}"
@@ -280,7 +280,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="{{ route('disposisi.export') }}" class="text-white ml-2 tombol-export">
+                            <a class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
                                     data-placement="top" title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>

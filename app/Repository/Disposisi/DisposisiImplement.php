@@ -91,7 +91,40 @@ class DisposisiImplement implements DisposisiRepository
     }
     public function update($id, $data)
     {
+        $tujuanDisposisi = is_array($data->id_posisi_jabatan) ? $data->id_posisi_jabatan : [$data->id_posisi_jabatan];
+        $personalDisposisi = is_array($data->id_penerima) ? $data->id_penerima : [$data->id_penerima];
 
+        if ($data->id_posisi_jabatan != null) {
+            $disposisiSlice = array_slice($tujuanDisposisi, 1);
+            if ($tujuanDisposisi > 0) {
+                foreach ($disposisiSlice as $jabatan) {
+                    $this->disposisi->create([
+                        'id_pengajuan' => $data->id_pengajuan,
+                        'catatan_disposisi' => $data->catatan_disposisi,
+                        'status_disposisi' => $data->status_disposisi,
+                        'sifat_disposisi' => $data->sifat_disposisi,
+                        'id_user' => $data->id_user,
+                        'tanggal_disposisi' => $data->tanggal_disposisi,
+                        'id_posisi_jabatan' => $jabatan,
+                    ]);
+                }
+            }
+        } elseif ($data->id_penerima != null) {
+            $penerimaSlice = array_slice($personalDisposisi, 1);
+            if ($personalDisposisi > 0) {
+                foreach ($penerimaSlice as $penerima) {
+                    $this->disposisi->create([
+                        'id_pengajuan' => $data->id_pengajuan,
+                        'catatan_disposisi' => $data->catatan_disposisi,
+                        'status_disposisi' => $data->status_disposisi,
+                        'sifat_disposisi' => $data->sifat_disposisi,
+                        'id_user' => $data->id_user,
+                        'tanggal_disposisi' => $data->tanggal_disposisi,
+                        'id_penerima' => $penerima,
+                    ]);
+                }
+            }
+        }
         $this->disposisi->where('id_disposisi', $id)->update([
             'id_pengajuan' => $data->id_pengajuan,
             'catatan_disposisi' => $data->catatan_disposisi,
@@ -99,8 +132,9 @@ class DisposisiImplement implements DisposisiRepository
             'sifat_disposisi' => $data->sifat_disposisi,
             'id_user' => $data->id_user,
             'tanggal_disposisi' => $data->tanggal_disposisi,
-            'id_posisi_jabatan' => $data->id_posisi_jabatan,
-            'id_penerima' => $data->id_penerima,
+            'id_posisi_jabatan' => $tujuanDisposisi[0],
+            'id_penerima' => $personalDisposisi[0],
+
         ]);
     }
     public function destroy($id)
@@ -114,8 +148,11 @@ class DisposisiImplement implements DisposisiRepository
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
         }
-        if (isset($data->tujuan_disposisi) && ($data->tujuan_disposisi != null)) {
-            $query->where('tujuan_disposisi', $data->tujuan_disposisi);
+        if (isset($data->id_posisi_jabatan) && is_array($data->id_posisi_jabatan) && count($data->id_posisi_jabatan) > 0) {
+            $query->whereIn('id_posisi_jabatan', $data->id_posisi_jabatan);
+        }
+        if (isset($data->id_penerima) && is_array($data->id_penerima) && count($data->id_penerima) > 0) {
+            $query->whereIn('id_penerima', $data->id_penerima);
         }
         if (isset($data->sifat_disposisi) && ($data->sifat_disposisi != null)) {
             $query->where('sifat_disposisi', $data->sifat_disposisi);
@@ -143,23 +180,37 @@ class DisposisiImplement implements DisposisiRepository
 
         return $result;
     }
-    public function search($data, $status)
+    public function search($data)
     {
-        $search = $this->disposisi->where('nomor_agenda', 'like', "%" . $data->search . "%")
-            ->orWhere(function ($query) use ($data, $status) {
-                $query->where('tanggal_terima', 'like', "%" . $data->search . "%")
-                    ->orWhereRaw("DATE_FORMAT(tanggal_terima, '%M') LIKE ?", ["%" . $data->search . "%"]);
+        $search = $this->disposisi
+            ->where(function ($query) use ($data) {
+                $query->where('tanggal_disposisi', 'like', "%" . $data->search . "%")
+                    ->orWhereRaw("DATE_FORMAT(tanggal_disposisi, '%M') LIKE ?", ["%" . $data->search . "%"]);
             })
-            ->orWhereHas('surat', function ($query) use ($data, $status) {
-                $query->where('nomor_surat', 'like', "%" . $data->search . "%");
+            ->orWhereHas('pengajuan', function ($query) use ($data) {
+                $query->where('nomor_agenda', 'like', "%" . $data->search . "%")
+                    ->orWhereHas('surat', function ($subquery) use ($data) {
+                        $subquery->where('nomor_surat', 'like', "%" . $data->search . "%");
+                    });
             })
-            ->orWhereHas('klasifikasi', function ($query) use ($data, $status) {
-                $query->where('nomor_klasifikasi', 'like', "%" . $data->search . "%");
-            });
+            ->orWhereHas('posisiJabatan', function ($query) use ($data) {
+                $query->where('nama_posisi_jabatan', 'like', "%" . $data->search . "%");
+            })
+            ->orWhere('catatan_disposisi', 'like', "%" . $data->search . "%");
+        // ->orWhere('status_disposisi', 'like', "%" . reverseconvertDisposisiField($data->search, 'status') . "%");
+
         // ->orWhereHas('user', function ($query) use ($data) {
         //     $query->where('nama', 'like', "%" . $data->search . "%");
         // })
-        // ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
-        return $search->paginate(6);
+        $result = $search->paginate(6);
+
+        $result->getCollection()->transform(function ($item) {
+            $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');
+            $item->status_disposisi = convertDisposisiField($item->status_disposisi, 'status');
+            $item->tujuan_disposisi = convertDisposisiField($item->tujuan_disposisi, 'tujuan');
+            return $item;
+        });
+
+        return $result;
     }
 }

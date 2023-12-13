@@ -11,5 +11,5 @@ interface DisposisiRepository
     public function update($id, $data);
     public function destroy($id);
     public function filterData($data);
-    public function search($data, $status);
+    public function search($data);
 }

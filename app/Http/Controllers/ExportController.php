@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\AdminExport;
+use App\Exports\DisposisiExport;
 use App\Exports\OfficerExport;
 use App\Exports\InstansiExport;
 use App\Exports\KlasifikasiExport;
@@ -45,6 +46,10 @@ class ExportController extends Controller
     public function export_pengajuan()
     {
         return Excel::download(new PengajuanExport, 'Data-Pengajuan.xlsx');
+    }
+    public function export_disposisi()
+    {
+        return Excel::download(new DisposisiExport, 'Data-Disposisi.xlsx');
     }
     public function export_posisijabatan()
     {

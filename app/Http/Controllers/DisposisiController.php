@@ -148,6 +148,7 @@ class DisposisiController extends Controller
     {
         $disposisiList = $this->disposisiRepository->filterData($request);
         $userList = User::get();
+        $posisiJabatanList = PosisiJabatan::get();
 
         return view('manajemen-surat.disposisi.disposisi-data', [
             'title' => 'Disposisi',
@@ -155,6 +156,22 @@ class DisposisiController extends Controller
             'active' => 'Disposisi',
             'disposisiList' => $disposisiList,
             'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
+        ]);
+    }
+    public function search(Request $request)
+    {
+        $disposisiList = $this->disposisiRepository->search($request);
+        $userList = User::get();
+        $posisiJabatanList = PosisiJabatan::get();
+
+        return view('manajemen-surat.disposisi.disposisi-data', [
+            'title' => 'Disposisi',
+            'active1' => 'manajemen-surat',
+            'active' => 'Disposisi',
+            'disposisiList' => $disposisiList,
+            'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 }

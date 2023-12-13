@@ -32,7 +32,9 @@ class Controller extends BaseController
         $disposisiCount = $this->dashboardRepository->getDisposisi();
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisi();
         $newestPengajuan = $this->dashboardRepository->getNewestPengajuan();
-
+        $newestDisposisi = $this->dashboardRepository->getNewestDisposisi();
+        $instansiData = $this->dashboardRepository->getInstansi();
+        $jabatanData = $this->dashboardRepository->getJabatan();
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
         $disposisiChartData = $this->dashboardRepository->getDisposisiChartData();
@@ -52,7 +54,10 @@ class Controller extends BaseController
             'disposisiChartData' => $disposisiChartData,
             'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
             'newestPengajuan' => $newestPengajuan,
+            'newestDisposisi' => $newestDisposisi,
             'disposisiCountByUser' => $disposisiCountByUser,
+            'instansiData' => $instansiData,
+            'jabatanData' => $jabatanData,
         ]);
     }
     public function dashboardOfficer()

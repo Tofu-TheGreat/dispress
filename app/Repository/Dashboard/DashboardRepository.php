@@ -15,10 +15,12 @@ interface DashboardRepository
     public function getDisposisiChartData();
     public function getDisposisiAndPengajuanChartData();
     public function getNewestPengajuan();
+    public function getNewestDisposisi();
     public function getSuratChartData();
     public function getPengajuanUserChartData();
     public function getDisposisiFromUser();
     public function getInstansi();
     public function getStaff();
     public function getDisposisiByUser();
+    public function getJabatan();
 }

@@ -112,7 +112,7 @@
                                     <h4>Instansi</h4>
                                 </div>
                                 <div class="card-body">
-                                    10 Data
+                                    {{ $instansiData }} Data
                                 </div>
                             </div>
                         </div>
@@ -127,7 +127,7 @@
                                     <h4>Jabatan</h4>
                                 </div>
                                 <div class="card-body">
-                                    42 Data
+                                    {{ $jabatanData }} Data
                                 </div>
                             </div>
                         </div>
@@ -196,13 +196,13 @@
                     </div>
                     <div class="card-body" id="top-5-scroll2">
                         <ul class="list-unstyled list-unstyled-border">
-                            @foreach ($newestPengajuan as $dataPengajuan)
+                            @foreach ($newestDisposisi as $dataDisposisi)
                                 <li class="media">
                                     <div class="col-12">
                                         <div class="card card-primary card-surat shadow-sm">
                                             <div class="card-header d-flex justify-content-between">
                                                 <div class="position-relative">
-                                                    <h4>{{ $dataPengajuan->surat->nomor_surat }}</h4>
+                                                    <h4>{{ $dataDisposisi->pengajuan->nomor_agenda }}</h4>
                                                 </div>
                                                 <div class="card-header-action btn-group">
                                                     @if ($dataPengajuan->status_pengajuan == '0')

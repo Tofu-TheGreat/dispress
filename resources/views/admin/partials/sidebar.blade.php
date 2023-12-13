@@ -52,8 +52,11 @@
                     @endcan
                     <li><a class="nav-link {{ $active == 'Disposisi' ? 'active text-info' : '' }}"
                             href="/disposisi">Disposisi</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Surat Keluar</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">SPPD</a></li>
+                    <li><a class="nav-link"
+                            href="{{ asset('assets-landing-page/img/Under construction-bro.png') }}">Surat Keluar</a>
+                    </li>
+                    <li><a class="nav-link"
+                            href="{{ asset('assets-landing-page/img/Under construction-bro.png') }}">SPPD</a></li>
                 </ul>
             </li>
             <li class="menu-header">Manajemen Setting</li>

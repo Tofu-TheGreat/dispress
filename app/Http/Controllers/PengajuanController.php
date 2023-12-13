@@ -55,7 +55,7 @@ class PengajuanController extends Controller
 
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
-        $suratList = Surat::get();
+        $suratList = Surat::where('status_verifikasi', '1')->get();
 
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-create', [
             'title' => 'Create Pengajuan Disposisi',

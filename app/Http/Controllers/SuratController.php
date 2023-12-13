@@ -27,6 +27,7 @@ class SuratController extends Controller
     public function index()
     {
         $suratList = $this->suratRepository->index();
+        $pengajuanCount = $this->suratRepository->getPengajuan();
         $instansiList = Instansi::get();
         $userList = User::get();
         $adminList = User::where('level', 'admin')->get();
@@ -43,6 +44,7 @@ class SuratController extends Controller
             'adminList' => $adminList,
             'posisiJabatanList' => $posisiJabatanList,
             'klasifikasiList' => $klasifikasiList,
+            'pengajuanCount' => $pengajuanCount,
         ]);
     }
 

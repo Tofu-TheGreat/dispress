@@ -4,6 +4,7 @@ namespace App\Repository\Surat;
 
 use App\Models\Surat;
 use App\Models\Klasifikasi;
+use App\Models\Pengajuan;
 
 class SuratImplement implements SuratRepository
 {
@@ -142,5 +143,10 @@ class SuratImplement implements SuratRepository
             })
             ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
         return $search->paginate(6);
+    }
+
+    public function getPengajuan()
+    {
+        return Pengajuan::get();
     }
 }

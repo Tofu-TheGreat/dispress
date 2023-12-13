@@ -365,8 +365,8 @@
                                                                 @endcan
                                                                 <span class="badge badge-transparent-success"
                                                                     data-toggle="tooltip" data-placement="right"
-                                                                    title="1 kali Di ajukan"
-                                                                    data-original-title="1 kali Di ajukan">1</span></a>
+                                                                    title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan"
+                                                                    data-original-title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan">{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }}</span></a>
                                                             </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')

@@ -101,14 +101,74 @@
                         <canvas id="myChart" height="158"></canvas>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-primary">
+                                <i class="far fa-building"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Instansi</h4>
+                                </div>
+                                <div class="card-body">
+                                    10 Data
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-danger">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Jabatan</h4>
+                                </div>
+                                <div class="card-body">
+                                    42 Data
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card card-statistic-1">
+                            <div class="card-icon bg-warning">
+                                <i class="far fa-envelope"></i>
+                            </div>
+                            <div class="card-wrap">
+                                <div class="card-header">
+                                    <h4>Surat Keluar</h4>
+                                </div>
+                                <div class="card-body">
+                                    20 Data
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span data-toggle="tooltip" data-placement="top"
+                            title="Ini adalah data Surat Keluar untuk {{ auth()->user()->nama }}."
+                            data-original-title="Ini adalah data Surat Keluar untuk {{ auth()->user()->nama }}." disabled>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
+                        </span>
+                        <h4>Statistik surat keluar untuk {{ auth()->user()->nama }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChart2" height="158"></canvas>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card card-statistic-1">
                     <div class="card-icon bg-primary position-relative">
                         <div style="position: absolute; top: -33px; left: 5px">
                             <span data-toggle="tooltip" data-placement="top"
-                                title="Ini adalah data yang Didisposisikan ke Anda."
-                                data-original-title="Ini adalah data yang Didisposisikan ke Anda.">
+                                title="Ini adalah data yang Didisposisikan untuk Anda."
+                                data-original-title="Ini adalah data yang Didisposisikan untuk Anda.">
                                 <i class="bi bi-question-circle mr-2 text-white"></i>
                             </span>
                         </div>
@@ -116,11 +176,148 @@
                     </div>
                     <div class="card-wrap">
                         <div class="card-header">
-                            <h4>Total Disposisi ke {{ auth()->user()->nama }}</h4>
+                            <h4>Total Disposisi untuk {{ auth()->user()->nama }}</h4>
                         </div>
                         <div class="card-body">
                             10 Data
                         </div>
+                    </div>
+                </div>
+                <div class="card gradient-bottom">
+                    <div class="card-header">
+                        <span data-toggle="tooltip" data-placement="top" title="Ini adalah semua data Disposisi terbaru"
+                            data-original-title="Ini adalah semua data Disposisi terbaru" disabled>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
+                        </span>
+                        <h4>Disposisi Terbaru</h4>
+                        <div class="card-header-action dropdown">
+                            <a href="/pengajuan-disposisi" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
+                        </div>
+                    </div>
+                    <div class="card-body" id="top-5-scroll2">
+                        <ul class="list-unstyled list-unstyled-border">
+                            @foreach ($newestPengajuan as $dataPengajuan)
+                                <li class="media">
+                                    <div class="col-12">
+                                        <div class="card card-primary card-surat shadow-sm">
+                                            <div class="card-header d-flex justify-content-between">
+                                                <div class="position-relative">
+                                                    <h4>{{ $dataPengajuan->surat->nomor_surat }}</h4>
+                                                </div>
+                                                <div class="card-header-action btn-group">
+                                                    @if ($dataPengajuan->status_pengajuan == '0')
+                                                        <button class="btn btn-danger tombol-disposisi mr-2"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Belum Didisposisikan"
+                                                            data-original-title="Belum Didisposisikan" disabled>
+                                                            <span class="d-flex justify-content-center m-0"><i
+                                                                    class="bi bi bi-patch-minus"></i></span>
+                                                        </button>
+                                                    @elseif ($dataPengajuan->status_pengajuan == '1')
+                                                        <button class="btn btn-success tombol-disposisi mr-2"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Sudah Didisposisikan"
+                                                            data-original-title="Sudah Didisposisikan" disabled>
+                                                            <span class="d-flex justify-content-center m-0"><i
+                                                                    class="bi bi bi-patch-check"></i></span>
+                                                        </button>
+                                                    @endif
+                                                    <a data-collapse="#mycard-collapse{{ $dataPengajuan->id_pengajuan }}"
+                                                        class="btn btn-icon btn-info" href="#"><i
+                                                            class="fas fa-minus"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="collapse show"
+                                                id="mycard-collapse{{ $dataPengajuan->id_pengajuan }}">
+                                                <div class="card-body card-body-surat position-relative "
+                                                    style="min-height: 130px">
+                                                    <p class="w-75"> {!! $dataPengajuan->catatan_pengajuan !!}</p>
+                                                    <p class="mt-3" style="font-size: .7rem;">
+                                                        --
+                                                        {{ date('d-F-Y', strtotime($dataPengajuan->tanggal_terima)) }}
+                                                        --</p>
+                                                    @if ($dataPengajuan->status_pengajuan == '0')
+                                                        <div class="mt-1 mb-1 tombol-disposisi">
+                                                            <span class="tombol-disposisi" data-toggle="tooltip"
+                                                                data-placement="right" title="klik Untuk Mendisposisikan"
+                                                                data-original-title="klik Untuk Mendisposisikan" disabled>
+                                                                <button type="button"
+                                                                    class="btn btn-success mr-2 tombol-disposisi"
+                                                                    data-toggle="modal"
+                                                                    data-target="#disposisi-modal{{ $dataPengajuan->id_pengajuan }}"
+                                                                    type="button">
+                                                                    Disposisi
+                                                                </button>
+                                                            </span>
+                                                        </div>
+                                                    @endif
+                                                    <div
+                                                        class="d-flex flex-column btn-group-action btn-group-action-dashboard">
+                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Detail data pengajuan disposisi"
+                                                            data-original-title="Detail data pengajuan disposisi"
+                                                            class="btn btn-info has-icon text-white tombol-detail-card"
+                                                            href=""><i class="pl-1 bi bi-eye"></i>
+                                                        </a>
+                                                        <a type="button" data-toggle="tooltip" data-placement="left"
+                                                            title="Edit data disposisi"
+                                                            data-original-title="Edit data disposisi"
+                                                            class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"><i
+                                                                class="pl-1  bi bi-pencil-square "></i>
+                                                        </a>
+                                                        <form method="POST"
+                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
+                                                            class="tombol-hapus">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="button" data-toggle="tooltip"
+                                                                data-placement="bottom" title="Hapus data Pengajuan"
+                                                                data-original-title="Hapus data Pengajuan"
+                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                href=""><i
+                                                                    class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between position-relative">
+                                                    <div class="d-flex flex-row ">
+                                                        @if ($dataPengajuan->user->foto_user)
+                                                            <img alt="image"
+                                                                src="{{ asset('image_save/' . $dataPengajuan->user->foto_user) }}"
+                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                class="mr-2 border border-primary">
+                                                        @else
+                                                            <img alt="image"
+                                                                src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                class="mr-2">
+                                                        @endif
+                                                        <div>
+                                                            <div class="user-detail-name">
+                                                                <span class="text-primary" href="#">
+                                                                    {{ $dataPengajuan->user->nama }}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="text-center " style="margin-left: 15%;">
+                                                        <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Preview surat (PDF)"
+                                                            data-original-title="Preview surat (PDF)"
+                                                            href="{{ asset('document_save/' . $dataPengajuan->surat->scan_dokumen) }}"
+                                                            target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
+                                                                style="font-size: 1.1rem;"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
                 <div class="card gradient-bottom">

@@ -119,7 +119,7 @@
                             <h4>Total Disposisi ke {{ auth()->user()->nama }}</h4>
                         </div>
                         <div class="card-body">
-                            10 Data
+                            {{ $disposisiCountByUser }} Data
                         </div>
                     </div>
                 </div>

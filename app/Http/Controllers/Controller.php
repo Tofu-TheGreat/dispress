@@ -23,6 +23,7 @@ class Controller extends BaseController
 
     public function dashboardAdmin()
     {
+        $disposisiCountByUser = $this->dashboardRepository->getDisposisiByUser();
         $suratCount = $this->dashboardRepository->getSuratAdmin();
         $pengajuanCount = $this->dashboardRepository->getPengajuanAdmin();
         $adminCount = $this->dashboardRepository->getTotalAdmin();
@@ -51,28 +52,39 @@ class Controller extends BaseController
             'disposisiChartData' => $disposisiChartData,
             'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
             'newestPengajuan' => $newestPengajuan,
+            'disposisiCountByUser' => $disposisiCountByUser,
         ]);
     }
     public function dashboardOfficer()
     {
         $suratChartData = $this->dashboardRepository->getSuratChartData();
         $officerCount = $this->dashboardRepository->getTotalOfficer();
+        $pengajuanCount = $this->dashboardRepository->getPengajuanAdmin();
         $pengajuanUserChart = $this->dashboardRepository->getPengajuanUserChartData();
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
+        $instansiData = $this->dashboardRepository->getInstansi();
+        $staffData = $this->dashboardRepository->getStaff();
+        $suratCount = $this->dashboardRepository->getSuratAdmin();
 
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
             'active1' => 'dashboard',
+            'pengajuanCount' => $pengajuanCount,
             'officerCount' => $officerCount,
             'suratChartData' => $suratChartData,
             'pengajuanUserChart' => $pengajuanUserChart,
             'disposisiUserChart' => $disposisiUserChart,
+            'instansiData' => $instansiData,
+            'staffData' => $staffData,
+            'suratCount' => $suratCount,
         ]);
     }
     public function dashboardStaff()
     {
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
+        $staffData = $this->dashboardRepository->getStaff();
+        $disposisiCountByUser = $this->dashboardRepository->getDisposisiByUser();
 
         $staffCount = $this->dashboardRepository->getTotalStaff();
         return view('admin.pages.dashboard-staff', [
@@ -81,6 +93,8 @@ class Controller extends BaseController
             'active1' => 'dashboard',
             'staffCount' => $staffCount,
             'disposisiUserChart' => $disposisiUserChart,
+            'staffData' => $staffData,
+            'disposisiCountByUser' => $disposisiCountByUser,
         ]);
     }
 }

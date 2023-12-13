@@ -11,7 +11,7 @@
                         </div>
                         <div class="card-stats-items">
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">24</div>
+                                <div class="card-stats-item-count">{{ $instansiData }}</div>
                                 <div style="font-size: .7rem">Instansi</div>
                             </div>
                             <div class="card-stats-item">
@@ -19,7 +19,7 @@
                                 <div style="font-size: .7rem">Surat Keluar</div>
                             </div>
                             <div class="card-stats-item">
-                                <div class="card-stats-item-count">23</div>
+                                <div class="card-stats-item-count">{{ $staffData }}</div>
                                 <div style="font-size: .7rem">Staff</div>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                             <h4>Total Surat</h4>
                         </div>
                         <div class="card-body">
-                            10 Data
+                            {{ $suratCount }} Data
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                             <h4>Total Pengajuan</h4>
                         </div>
                         <div class="card-body">
-                            10 Data
+                            {{ $pengajuanCount }} Data
                         </div>
                     </div>
                 </div>

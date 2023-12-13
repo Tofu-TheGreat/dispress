@@ -100,6 +100,38 @@ class DashboardImplement implements DashboardRepository
             'pengajuan_count' => array_values($pengajuanCounts),
         ];
     }
+
+    public function getSuratChartData()
+    {
+        // Assuming you have a 'created_at' timestamp column in your Surat model
+        $suratData = Surat::selectRaw('DATE(tanggal_surat) as date, COUNT(*) as count')
+            ->groupBy('date')
+            ->get();
+
+        $labels = $suratData->pluck('date')->toArray();
+        $data = $suratData->pluck('count')->toArray();
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
+    }
+    public function getPengajuanUserChartData()
+    {
+        // Assuming you have a 'created_at' timestamp column in your Pengajuan model
+        $pengajuanData = Pengajuan::selectRaw('DATE(tanggal_terima) as date, COUNT(*) as count')
+            ->where('id_user', auth()->user()->id_user)
+            ->groupBy('date')
+            ->get();
+
+        $labels = $pengajuanData->pluck('date')->toArray();
+        $data = $pengajuanData->pluck('count')->toArray();
+
+        return [
+            'labels' => $labels,
+            'data' => $data,
+        ];
+    }
     public function getNewestPengajuan()
     {
         $collections = Pengajuan::get();

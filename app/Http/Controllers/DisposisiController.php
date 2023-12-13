@@ -72,7 +72,7 @@ class DisposisiController extends Controller
         $this->authorize('admin');
 
         $this->disposisiRepository->store($request);
-        return redirect()->back()->with('success', 'Surat telah dikirimkan kepada yang terkait');
+        return redirect()->intended('/disposisi')->with('success', 'Surat telah dikirimkan kepada yang terkait');
     }
 
     /**

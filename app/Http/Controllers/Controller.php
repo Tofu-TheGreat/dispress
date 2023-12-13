@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Disposisi;
 use App\Repository\Dashboard\DashboardRepository;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
@@ -32,6 +33,7 @@ class Controller extends BaseController
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
         $disposisiChartData = $this->dashboardRepository->getDisposisiChartData();
+        $pengajuanDisposisiChartData = $this->dashboardRepository->getDisposisiAndPengajuanChartData();
 
         return view('admin.pages.dashboard-admin', [
             'title' => 'Dashboard',
@@ -45,6 +47,7 @@ class Controller extends BaseController
             'alldisposisiCount' => $alldisposisiCount,
             'pengajuanChartData' => $pengajuanChartData,
             'disposisiChartData' => $disposisiChartData,
+            'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
         ]);
     }
     public function dashboardOfficer()

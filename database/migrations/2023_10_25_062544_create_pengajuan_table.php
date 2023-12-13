@@ -15,13 +15,13 @@ return new class extends Migration
             $table->id('id_pengajuan');
             $table->unsignedBigInteger('id_surat');
             $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
-            $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
+            $table->unsignedBigInteger('id_klasifikasi');
             $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
             $table->string('nomor_agenda', 100);
             $table->enum('status_pengajuan', ['0', '1'])->default('0'); //Belum Didisposisikan, Sudah Didisposisikan
             $table->date('tanggal_terima');
             $table->string('catatan_pengajuan', 100);
-            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_user'); //pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

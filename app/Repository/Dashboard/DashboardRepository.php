@@ -13,4 +13,5 @@ interface DashboardRepository
     public function getTotalStaff();
     public function getPengajuanChartData();
     public function getDisposisiChartData();
+    public function getDisposisiAndPengajuanChartData();
 }

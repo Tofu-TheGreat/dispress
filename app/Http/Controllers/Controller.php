@@ -52,12 +52,17 @@ class Controller extends BaseController
     }
     public function dashboardOfficer()
     {
+        $suratChartData = $this->dashboardRepository->getSuratChartData();
         $officerCount = $this->dashboardRepository->getTotalOfficer();
+        $pengajuanUserChart = $this->dashboardRepository->getPengajuanUserChartData();
+
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
             'active1' => 'dashboard',
             'officerCount' => $officerCount,
+            'suratChartData' => $suratChartData,
+            'pengajuanUserChart' => $pengajuanUserChart,
         ]);
     }
     public function dashboardStaff()

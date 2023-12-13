@@ -190,6 +190,14 @@ li {
     transition: 0.3s ease-in-out;
 }
 
+.btn-group-action-dashboard {
+    position: absolute;
+    height: 60px;
+    right: -20%;
+    top: 10%;
+    transition: 0.3s ease-in-out;
+}
+
 .card-surat:hover .btn-group-action {
     right: 0;
 }

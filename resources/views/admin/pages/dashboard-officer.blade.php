@@ -37,7 +37,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-12">
+            <div class="col-lg-4 col-md-4 col-sm-12 position-relative">
+                <div style="position: absolute; top: 2px; left: 20px;z-index: 9;">
+                    <span data-toggle="tooltip" data-placement="top" title="Ini adalah Semua data Surat."
+                        data-original-title="Ini adalah Semua data Surat.">
+                        <i class="bi bi-question-circle mr-2 text-dark"></i>
+                    </span>
+                </div>
                 <div class="card card-statistic-2">
                     <div class="card-chart">
                         <canvas id="surat-chart" height="80"></canvas>
@@ -56,6 +62,13 @@
                 </div>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12">
+                <div style="position: absolute; top: 2px; left: 20px;z-index: 9;">
+                    <span data-toggle="tooltip" data-placement="top"
+                        title="Ini adalah data Pengajuan Disposisi yang Anda lakukan."
+                        data-original-title="Ini adalah data Pengajuan Disposisi yang Anda lakukan.">
+                        <i class="bi bi-question-circle mr-2 text-dark"></i>
+                    </span>
+                </div>
                 <div class="card card-statistic-2">
                     <div class="card-chart">
                         <canvas id="pengajuan-chart" height="80"></canvas>
@@ -79,8 +92,8 @@
                 <div class="card">
                     <div class="card-header">
                         <span data-toggle="tooltip" data-placement="top"
-                            title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan."
-                            data-original-title="Ini adalah data Pengajuan dan Disposisi yang kamu lakukan." disabled>
+                            title="Ini adalah data yang Didisposisikan ke Anda."
+                            data-original-title="Ini adalah data yang Didisposisikan ke Anda." disabled>
                             <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
                         <h4>Statistik Disposisi untuk {{ Auth::user()->nama }}</h4>

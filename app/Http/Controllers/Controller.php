@@ -72,12 +72,15 @@ class Controller extends BaseController
     }
     public function dashboardStaff()
     {
+        $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
+
         $staffCount = $this->dashboardRepository->getTotalStaff();
         return view('admin.pages.dashboard-staff', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
             'active1' => 'dashboard',
             'staffCount' => $staffCount,
+            'disposisiUserChart' => $disposisiUserChart,
         ]);
     }
 }

@@ -23,18 +23,22 @@ class Controller extends BaseController
 
     public function dashboardAdmin()
     {
-        $disposisiCountByUser = $this->dashboardRepository->getDisposisiByUser();
-        $suratCount = $this->dashboardRepository->getSuratAdmin();
-        $pengajuanCount = $this->dashboardRepository->getPengajuanAdmin();
-        $adminCount = $this->dashboardRepository->getTotalAdmin();
-        $officerCount = $this->dashboardRepository->getTotalOfficer();
-        $staffCount = $this->dashboardRepository->getTotalStaff();
-        $disposisiCount = $this->dashboardRepository->getDisposisi();
-        $alldisposisiCount = $this->dashboardRepository->getAllDisposisi();
+        $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
+        $alldisposisiCount = $this->dashboardRepository->getAllDisposisiCount();
+
+        $suratCount = $this->dashboardRepository->getSuratCount();
+        $pengajuanCount = $this->dashboardRepository->getPengajuanCount();
+
+        $adminCount = $this->dashboardRepository->getAdminCount();
+        $officerCount = $this->dashboardRepository->getOfficerCount();
+        $staffCount = $this->dashboardRepository->getStaffCount();
+
         $newestPengajuan = $this->dashboardRepository->getNewestPengajuan();
         $newestDisposisi = $this->dashboardRepository->getNewestDisposisi();
-        $instansiData = $this->dashboardRepository->getInstansi();
-        $jabatanData = $this->dashboardRepository->getJabatan();
+
+        $instansiData = $this->dashboardRepository->getInstansiCount();
+        $jabatanData = $this->dashboardRepository->getJabatanCount();
+
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
         $disposisiChartData = $this->dashboardRepository->getDisposisiChartData();
@@ -63,13 +67,15 @@ class Controller extends BaseController
     public function dashboardOfficer()
     {
         $suratChartData = $this->dashboardRepository->getSuratChartData();
-        $officerCount = $this->dashboardRepository->getTotalOfficer();
-        $pengajuanCount = $this->dashboardRepository->getPengajuanAdmin();
+        $officerCount = $this->dashboardRepository->getOfficerCount();
+        $pengajuanCount = $this->dashboardRepository->getPengajuanCount();
         $pengajuanUserChart = $this->dashboardRepository->getPengajuanUserChartData();
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
-        $instansiData = $this->dashboardRepository->getInstansi();
-        $staffData = $this->dashboardRepository->getStaff();
-        $suratCount = $this->dashboardRepository->getSuratAdmin();
+        $instansiData = $this->dashboardRepository->getInstansiCount();
+        $staffData = $this->dashboardRepository->getStaffCount();
+        $suratCount = $this->dashboardRepository->getSuratCount();
+        $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
+        $disposisiByUser = $this->dashboardRepository->getDisposisiByUser();
 
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
@@ -83,20 +89,20 @@ class Controller extends BaseController
             'instansiData' => $instansiData,
             'staffData' => $staffData,
             'suratCount' => $suratCount,
+            'disposisiCountByUser' => $disposisiCountByUser,
+            'disposisiByUser' => $disposisiByUser,
         ]);
     }
     public function dashboardStaff()
     {
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
-        $staffData = $this->dashboardRepository->getStaff();
+        $staffData = $this->dashboardRepository->getStaffCount();
         $disposisiCountByUser = $this->dashboardRepository->getDisposisiByUser();
 
-        $staffCount = $this->dashboardRepository->getTotalStaff();
         return view('admin.pages.dashboard-staff', [
             'title' => 'Dashboard',
             'active' => 'dashboard',
             'active1' => 'dashboard',
-            'staffCount' => $staffCount,
             'disposisiUserChart' => $disposisiUserChart,
             'staffData' => $staffData,
             'disposisiCountByUser' => $disposisiCountByUser,

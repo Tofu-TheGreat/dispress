@@ -659,8 +659,9 @@
                                     <label for="id_klasifikasi">Nomor Klasifikasi Agenda: </label>
                                     <div class="input-group">
                                         <select
-                                            class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
-                                            id="id_klasifikasi" name="id_klasifikasi" style="width: 100%">
+                                            class="form-control select2 id_klasifikasi @error('id_klasifikasi') is-invalid @enderror "
+                                            id="id_klasifikasi_{{ $data->id_surat }}" name="id_klasifikasi"
+                                            style="width: 100%" data-id-surat="{{ $data->id_surat }}">
                                             <option selected disabled>Pilih Nomor Klasifikasi</option>
                                             @foreach ($klasifikasiList as $item)
                                                 <option value="{{ $item->id_klasifikasi }}"
@@ -708,9 +709,9 @@
                                             </div>
                                         </div>
                                         <input type="text"
-                                            class="form-control capitalize @error('nomor_agenda') is-invalid @enderror"
+                                            class="form-control capitalize nomor_agenda @error('nomor_agenda') is-invalid @enderror"
                                             placeholder="ex: 090/1928-TU/2023" name="nomor_agenda"
-                                            value="{{ old('nomor_agenda') }}" id="nomor_agenda">
+                                            value="{{ old('nomor_agenda') }}" id="nomor_agenda_{{ $data->id_surat }}">
                                     </div>
                                     <span class="text-danger">
                                         @error('nomor_agenda')
@@ -770,7 +771,7 @@
                                                 <i class="bi bi-calendar3"></i>
                                             </div>
                                         </div>
-                                        <input type="date"
+                                        <input
                                             class="form-control capitalize @error('tanggal_disposisi') is-invalid @enderror"
                                             placeholder="ex:  11/14/2023"
                                             value="{{ date('d-F-Y', strtotime($data->tanggal_surat)) }}"
@@ -902,8 +903,8 @@
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 
         $(document).ready(function() {
-            // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
-            $(document).on('change', '#id_klasifikasi', function() {
+            // Delegasi event change untuk elemen dengan class 'id_klasifikasi'
+            $(document).on('change', '.id_klasifikasi', function() {
                 const selectedValue = $(this).val();
 
                 // Menggunakan klasifikasiList di sini
@@ -912,8 +913,10 @@
                     return item.id_klasifikasi == selectedValue;
                 });
 
-                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
-                $('#nomor_agenda').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
+                // Menetapkan nilai ke elemen nomor_agenda yang memiliki ID sesuai dengan data.id_surat
+                const idSurat = $(this).data('id-surat');
+                $('#nomor_agenda_' + idSurat).val(selectedKlasifikasi ? selectedKlasifikasi
+                    .nomor_klasifikasi : '');
             });
         });
     </script>

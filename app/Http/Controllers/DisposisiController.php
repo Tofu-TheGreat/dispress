@@ -48,7 +48,7 @@ class DisposisiController extends Controller
     {
         $this->authorize('admin');
 
-        $pengajuanList = Pengajuan::get();
+        $pengajuanList = Pengajuan::where('status_pengajuan', '0')->get();
         $suratList = Surat::with('instansi')->get();
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();

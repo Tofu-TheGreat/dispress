@@ -209,14 +209,14 @@
                                 aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
                                 Didisposisikan
                                 <span
-                                    class="badge badge-transparent text-success">{{ $pengajuanList0->count() }}</span></a>
+                                    class="badge badge-transparent-danger">{{ $pengajuanList0->count() }}</span></a>
                         </li>
                         <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
                                 role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
                                     class="bi bi-patch-check text-success"></i> Sudah
                                 Didisposisikan<span
-                                    class="badge badge-transparent text-success">{{ $pengajuanList1->count() }}</span></a>
+                                    class="badge badge-transparent-success">{{ $pengajuanList1->count() }}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -490,21 +490,6 @@
                                                                         --
                                                                         {{ date('d-F-Y', strtotime($data->tanggal_terima)) }}
                                                                         --</p>
-                                                                    <div class="mt-1 mb-1 tombol-disposisi">
-                                                                        <span class="tombol-disposisi"
-                                                                            data-toggle="tooltip" data-placement="right"
-                                                                            title="klik Untuk Mendisposisikan"
-                                                                            data-original-title="klik Untuk Mendisposisikan"
-                                                                            disabled>
-                                                                            <button type="button"
-                                                                                class="btn btn-success mr-2 tombol-disposisi"
-                                                                                data-toggle="modal"
-                                                                                data-target="#disposisi-modal{{ $data->id_pengajuan }}"
-                                                                                type="button">
-                                                                                Disposisi
-                                                                            </button>
-                                                                        </span>
-                                                                    </div>
                                                                     <div class="d-flex flex-column btn-group-action">
                                                                         <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($data->id_pengajuan)) }}"
                                                                             data-toggle="tooltip" data-placement="top"

@@ -1533,6 +1533,14 @@ h6 .badge {
     background-color: rgba(255, 255, 255, 0.25);
     color: #fff;
 }
+.badge.badge-transparent-danger {
+    background-color: rgba(252, 72, 72, 0.25);
+    color: #fff;
+}
+.badge.badge-transparent-success {
+    background-color: rgba(90, 240, 97, 0.25);
+    color: #fff;
+}
 
 /* 3.12 Button */
 .buttons .btn {

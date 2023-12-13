@@ -363,6 +363,10 @@
                                                                     @can('admin')
                                                                     </span>
                                                                 @endcan
+                                                                <span class="badge badge-transparent-success"
+                                                                    data-toggle="tooltip" data-placement="right"
+                                                                    title="1 kali Di ajukan"
+                                                                    data-original-title="1 kali Di ajukan">1</span></a>
                                                             </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')

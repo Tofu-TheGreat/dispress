@@ -55,6 +55,10 @@ class DashboardImplement implements DashboardRepository
     {
         return Pengajuan::count();
     }
+    public function getPengajuanByUser()
+    {
+        return Pengajuan::where('id_user',  Auth::user()->id_user)->count();
+    }
     // end get pengajuan
 
     // Get disposisi

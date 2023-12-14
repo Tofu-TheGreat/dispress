@@ -3,6 +3,7 @@
 namespace App\Repository\Ajukan;
 
 use App\Models\Pengajuan;
+use Illuminate\Support\Facades\Auth;
 
 class PengajuanImplement implements PengajuanRepository
 {
@@ -14,7 +15,14 @@ class PengajuanImplement implements PengajuanRepository
 
     public function index($status)
     {
-        return $this->pengajuan->where('status_pengajuan', $status)->paginate(6);
+        if (Auth::user()->level != 'admin') {
+            return $this->pengajuan->where('status_pengajuan', $status)
+                ->where('id_user', Auth::user()->id_user)
+                ->paginate(6);
+        } else {
+            return $this->pengajuan->where('status_pengajuan', $status)
+                ->paginate(6);
+        }
     }
     public function store($data)
     {

@@ -69,6 +69,7 @@ class Controller extends BaseController
         $suratChartData = $this->dashboardRepository->getSuratChartData();
         $officerCount = $this->dashboardRepository->getOfficerCount();
         $pengajuanCount = $this->dashboardRepository->getPengajuanCount();
+        $getPengajuanByUser = $this->dashboardRepository->getPengajuanByUser();
         $pengajuanUserChart = $this->dashboardRepository->getPengajuanUserChartData();
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
         $instansiData = $this->dashboardRepository->getInstansiCount();
@@ -76,6 +77,7 @@ class Controller extends BaseController
         $suratCount = $this->dashboardRepository->getSuratCount();
         $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
         $disposisiByUser = $this->dashboardRepository->getDisposisiByUser();
+
 
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
@@ -91,13 +93,15 @@ class Controller extends BaseController
             'suratCount' => $suratCount,
             'disposisiCountByUser' => $disposisiCountByUser,
             'disposisiByUser' => $disposisiByUser,
+            'getPengajuanByUser' => $getPengajuanByUser,
         ]);
     }
     public function dashboardStaff()
     {
         $disposisiUserChart = $this->dashboardRepository->getDisposisiFromUser();
         $staffData = $this->dashboardRepository->getStaffCount();
-        $disposisiCountByUser = $this->dashboardRepository->getDisposisiByUser();
+        $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
+        $disposisiByUser = $this->dashboardRepository->getDisposisiByUser();
 
         return view('admin.pages.dashboard-staff', [
             'title' => 'Dashboard',
@@ -106,6 +110,7 @@ class Controller extends BaseController
             'disposisiUserChart' => $disposisiUserChart,
             'staffData' => $staffData,
             'disposisiCountByUser' => $disposisiCountByUser,
+            'disposisiByUser' => $disposisiByUser,
         ]);
     }
 }

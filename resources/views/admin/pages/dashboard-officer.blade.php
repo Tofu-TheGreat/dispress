@@ -81,7 +81,7 @@
                             <h4>Total Pengajuan</h4>
                         </div>
                         <div class="card-body">
-                            {{ $pengajuanCount }} Data
+                            {{ $getPengajuanByUser }} Data
                         </div>
                     </div>
                 </div>

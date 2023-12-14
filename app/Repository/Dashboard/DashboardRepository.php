@@ -20,6 +20,7 @@ interface DashboardRepository
 
     //pengajuan
     public function getPengajuanCount();
+    public function getPengajuanByUser();
 
     //disposisi
     public function getAllDisposisiCount();

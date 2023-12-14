@@ -264,6 +264,31 @@
         </div>
         {{-- Filter --}}
 
+        @can('admin')
+            {{-- Tab --}}
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <div class="col">
+                        <ul class="nav nav-pills" id="myTab3" role="tablist">
+                            <li class="nav-item w-50 text-center">
+                                <a class="nav-link active" id="disposisi-user-login" data-toggle="tab"
+                                    href="#disposisi-user" role="tab" aria-controls="belum-terdisposisikan"
+                                    aria-selected="true"> <i class="bi bi-person text-success"></i> Disposisi Untuk anda
+                                    <span class="badge badge-transparent-success">{{ $disposisiList->count() }}</span></a>
+                            </li>
+                            <li class="nav-item w-50 text-center">
+                                <a class="nav-link" id="semua-disposisi" data-toggle="tab" href="#semua-disposisi3"
+                                    role="tab" aria-controls="semua-disposisi" aria-selected="false"> <i
+                                        class="bi bi-patch-check text-success"></i> Semua data Disposisi<span
+                                        class="badge badge-transparent-success">{{ $disposisiList->count() }}</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{-- Tab --}}
+        @endcan
+
         <div class="section-body">
             <div class="">
                 <div class="card">
@@ -317,139 +342,423 @@
                                     </div>
                                 </form>
                             </div>
-                            <div class="col">
-                                <div class="row">
-                                    @if ($disposisiList->isEmpty())
-                                        <div class="d-flex justify-content-center align-content-center">
-                                            <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
-                                                class="w-50">
-                                        </div>
-                                    @else
-                                        @foreach ($disposisiList as $data)
-                                            <div class="col-sm-12 col-md-12 col-lg-6">
-                                                <div class="card card-primary card-surat shadow-sm">
-                                                    <div class="card-header d-flex justify-content-between">
-                                                        <div class="position-relative">
-                                                            <h4>{{ $data->pengajuan->nomor_agenda }}</h4>
-                                                            <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->user->nama }}
-                                                            </small>
-                                                        </div>
-                                                        <div class="card-header-action btn-group">
-                                                            {{-- Sifat Disposisi BTN --}}
-                                                            <button
-                                                                class="btn-primary btn-status-disposisi tombol-disposisi "
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Status Disposisi - {{ $data->status_disposisi }}"
-                                                                data-original-title="Status Disposisi - {{ $data->status_disposisi }}">
-                                                                <span class="d-flex justify-content-center m-0">
-                                                                    {{ $data->status_disposisi }}
-                                                                </span>
-                                                            </button>
-                                                            {{-- End Status Disposisi BTN --}}
-                                                            {{-- Sifat Disposisi BTN --}}
-                                                            <button
-                                                                class="btn-primary btn-sifat-disposisi tombol-disposisi"
-                                                                data-toggle="tooltip" data-placement="top"
-                                                                title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
-                                                                data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}">
-                                                                <span class="d-flex justify-content-center m-0">
-                                                                    {{ $data->sifat_disposisi }}
-                                                                </span>
-                                                            </button>
-                                                            {{-- End Sifat Disposisi BTN --}}
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
-                                                                class="btn-icon btn-primary btn-collapse"
-                                                                href="#"><i class="fas fa-minus"
-                                                                    style="margin-left: 10px"></i></a>
-                                                        </div>
+                            <div class="col-12">
+                                @can('admin')
+                                    {{-- Tab Content --}}
+                                    <div class="tab-content" id="myTabContent2">
+                                        <div class="tab-pane fade show active" id="disposisi-user" role="tabpanel"
+                                            aria-labelledby="disposisi-user-login">
+                                            <div class="row">
+                                                @if ($disposisiList->isEmpty())
+                                                    <div class="d-flex justify-content-center align-content-center">
+                                                        <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                            class="w-50">
                                                     </div>
-                                                    <div class="collapse show"
-                                                        id="mycard-collapse{{ $data->id_disposisi }}">
-                                                        <div class="card-body card-body-surat position-relative "
-                                                            style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
-                                                            <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
-                                                                --</p>
-                                                            <div class="d-flex flex-column btn-group-action">
-                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                    data-toggle="tooltip" data-placement="top"
-                                                                    title="Detail data disposisi "
-                                                                    data-original-title="Detail data disposisi "
-                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                    href=""><i class="pl-1 bi bi-eye"></i>
-                                                                </a>
-                                                                <a type="button" data-toggle="tooltip"
-                                                                    data-placement="left" title="Edit data disposisi"
-                                                                    data-original-title="Edit data disposisi"
-                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
-                                                                        class="pl-1  bi bi-pencil-square "></i>
-                                                                </a>
-                                                                <form method="POST"
-                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                    class="tombol-hapus">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="button" data-toggle="tooltip"
-                                                                        data-placement="bottom"
-                                                                        title="Hapus data Disposisi"
-                                                                        data-original-title="Hapus data Disposisi"
-                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
-                                                                        href=""><i
-                                                                            class="pl-1  bi bi-trash tombol-hapus"></i>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <div
-                                                            class="card-footer  d-flex justify-content-between position-relative">
-                                                            <div class="d-flex flex-row ">
-                                                                @if ($data->user->foto_user)
-                                                                    <img alt="image"
-                                                                        src="{{ asset('image_save/' . $data->user->foto_user) }}"
-                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                        class="mr-2 border border-primary">
-                                                                @else
-                                                                    <img alt="image"
-                                                                        src="{{ asset('assets/img/avatar/avatar-1.png') }}"
-                                                                        style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                        class="mr-2">
-                                                                @endif
-                                                                <div>
-                                                                    <div class="user-detail-name">
-                                                                        <span class="text-primary" href="#">
-                                                                            {{ $data->user->nama }}</span>
-                                                                    </div>
-                                                                    <div class="text-job">
-                                                                        <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->user->nomor_telpon) }}
+                                                @else
+                                                    @foreach ($disposisiList as $data)
+                                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                                            <div class="card card-primary card-surat shadow-sm">
+                                                                <div class="card-header d-flex justify-content-between">
+                                                                    <div class="position-relative">
+                                                                        <h4>{{ $data->pengajuan->nomor_agenda }}</h4>
+                                                                        <small class="text-primary"
+                                                                            style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                            {{ $data->user->nama }}
                                                                         </small>
+                                                                    </div>
+                                                                    <div class="card-header-action btn-group">
+                                                                        {{-- Sifat Disposisi BTN --}}
+                                                                        <button
+                                                                            class="btn-primary btn-status-disposisi tombol-disposisi "
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Status Disposisi - {{ $data->status_disposisi }}"
+                                                                            data-original-title="Status Disposisi - {{ $data->status_disposisi }}">
+                                                                            <span class="d-flex justify-content-center m-0">
+                                                                                {{ $data->status_disposisi }}
+                                                                            </span>
+                                                                        </button>
+                                                                        {{-- End Status Disposisi BTN --}}
+                                                                        {{-- Sifat Disposisi BTN --}}
+                                                                        <button
+                                                                            class="btn-primary btn-sifat-disposisi tombol-disposisi"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
+                                                                            data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}">
+                                                                            <span class="d-flex justify-content-center m-0">
+                                                                                {{ $data->sifat_disposisi }}
+                                                                            </span>
+                                                                        </button>
+                                                                        {{-- End Sifat Disposisi BTN --}}
+                                                                        <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
+                                                                            class="btn-icon btn-primary btn-collapse"
+                                                                            href="#"><i class="fas fa-minus"
+                                                                                style="margin-left: 10px"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collapse show"
+                                                                    id="mycard-collapse{{ $data->id_disposisi }}">
+                                                                    <div class="card-body card-body-surat position-relative "
+                                                                        style="min-height: 130px">
+                                                                        <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
+                                                                        <p class="mt-3" style="font-size: .7rem;">
+                                                                            --
+                                                                            {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                            --</p>
+                                                                        <div class="d-flex flex-column btn-group-action">
+                                                                            <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Detail data disposisi "
+                                                                                data-original-title="Detail data disposisi "
+                                                                                class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                href=""><i class="pl-1 bi bi-eye"></i>
+                                                                            </a>
+                                                                            <a type="button" data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Edit data disposisi"
+                                                                                data-original-title="Edit data disposisi"
+                                                                                class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                                href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                                    class="pl-1  bi bi-pencil-square "></i>
+                                                                            </a>
+                                                                            <form method="POST"
+                                                                                action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                class="tombol-hapus">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="button" data-toggle="tooltip"
+                                                                                    data-placement="bottom"
+                                                                                    title="Hapus data Disposisi"
+                                                                                    data-original-title="Hapus data Disposisi"
+                                                                                    class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                    href=""><i
+                                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="card-footer  d-flex justify-content-between position-relative">
+                                                                        <div class="d-flex flex-row ">
+                                                                            @if ($data->user->foto_user)
+                                                                                <img alt="image"
+                                                                                    src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                    class="mr-2 border border-primary">
+                                                                            @else
+                                                                                <img alt="image"
+                                                                                    src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                    class="mr-2">
+                                                                            @endif
+                                                                            <div>
+                                                                                <div class="user-detail-name">
+                                                                                    <span class="text-primary" href="#">
+                                                                                        {{ $data->user->nama }}</span>
+                                                                                </div>
+                                                                                <div class="text-job">
+                                                                                    <small style="max-width: max-content">
+                                                                                        {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-center " style="margin-left: 15%;">
+                                                                            <a type="button"
+                                                                                class="btn btn-danger btn-scan-pdf"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Preview surat (PDF)"
+                                                                                data-original-title="Preview surat (PDF)"
+                                                                                href="{{ asset('document_save/' . $data->pengajuan->surat->scan_dokumen) }}"
+                                                                                target="_blank" title="Read PDF"><i
+                                                                                    class="bi bi-file-pdf"
+                                                                                    style="font-size: 1.1rem;"></i></a>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="text-center " style="margin-left: 15%;">
-                                                                <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                            <div class="col-12">
+                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="semua-disposisi3" role="tabpanel"
+                                            aria-labelledby="semua-disposisi">
+                                            <div class="row">
+                                                @if ($disposisiList->isEmpty())
+                                                    <div class="d-flex justify-content-center align-content-center">
+                                                        <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                            class="w-50">
+                                                    </div>
+                                                @else
+                                                    @foreach ($disposisiList as $data)
+                                                        <div class="col-sm-12 col-md-12 col-lg-6">
+                                                            <div class="card card-primary card-surat shadow-sm">
+                                                                <div class="card-header d-flex justify-content-between">
+                                                                    <div class="position-relative">
+                                                                        <h4>{{ $data->pengajuan->nomor_agenda }}</h4>
+                                                                        <small class="text-primary"
+                                                                            style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                            {{ $data->user->nama }}
+                                                                        </small>
+                                                                    </div>
+                                                                    <div class="card-header-action btn-group">
+                                                                        {{-- Sifat Disposisi BTN --}}
+                                                                        <button
+                                                                            class="btn-primary btn-status-disposisi tombol-disposisi "
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Status Disposisi - {{ $data->status_disposisi }}"
+                                                                            data-original-title="Status Disposisi - {{ $data->status_disposisi }}">
+                                                                            <span class="d-flex justify-content-center m-0">
+                                                                                {{ $data->status_disposisi }}
+                                                                            </span>
+                                                                        </button>
+                                                                        {{-- End Status Disposisi BTN --}}
+                                                                        {{-- Sifat Disposisi BTN --}}
+                                                                        <button
+                                                                            class="btn-primary btn-sifat-disposisi tombol-disposisi"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
+                                                                            data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}">
+                                                                            <span class="d-flex justify-content-center m-0">
+                                                                                {{ $data->sifat_disposisi }}
+                                                                            </span>
+                                                                        </button>
+                                                                        {{-- End Sifat Disposisi BTN --}}
+                                                                        <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
+                                                                            class="btn-icon btn-primary btn-collapse"
+                                                                            href="#"><i class="fas fa-minus"
+                                                                                style="margin-left: 10px"></i></a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="collapse show"
+                                                                    id="mycard-collapse{{ $data->id_disposisi }}">
+                                                                    <div class="card-body card-body-surat position-relative "
+                                                                        style="min-height: 130px">
+                                                                        <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
+                                                                        <p class="mt-3" style="font-size: .7rem;">
+                                                                            --
+                                                                            {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                            --</p>
+                                                                        <div class="d-flex flex-column btn-group-action">
+                                                                            <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Detail data disposisi "
+                                                                                data-original-title="Detail data disposisi "
+                                                                                class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                href=""><i class="pl-1 bi bi-eye"></i>
+                                                                            </a>
+                                                                            <a type="button" data-toggle="tooltip"
+                                                                                data-placement="left"
+                                                                                title="Edit data disposisi"
+                                                                                data-original-title="Edit data disposisi"
+                                                                                class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                                href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                                    class="pl-1  bi bi-pencil-square "></i>
+                                                                            </a>
+                                                                            <form method="POST"
+                                                                                action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                class="tombol-hapus">
+                                                                                @csrf
+                                                                                @method('DELETE')
+                                                                                <button type="button" data-toggle="tooltip"
+                                                                                    data-placement="bottom"
+                                                                                    title="Hapus data Disposisi"
+                                                                                    data-original-title="Hapus data Disposisi"
+                                                                                    class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                    href=""><i
+                                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                                </button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div
+                                                                        class="card-footer  d-flex justify-content-between position-relative">
+                                                                        <div class="d-flex flex-row ">
+                                                                            @if ($data->user->foto_user)
+                                                                                <img alt="image"
+                                                                                    src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                    class="mr-2 border border-primary">
+                                                                            @else
+                                                                                <img alt="image"
+                                                                                    src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                                    style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                                    class="mr-2">
+                                                                            @endif
+                                                                            <div>
+                                                                                <div class="user-detail-name">
+                                                                                    <span class="text-primary" href="#">
+                                                                                        {{ $data->user->nama }}</span>
+                                                                                </div>
+                                                                                <div class="text-job">
+                                                                                    <small style="max-width: max-content">
+                                                                                        {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                                    </small>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="text-center " style="margin-left: 15%;">
+                                                                            <a type="button"
+                                                                                class="btn btn-danger btn-scan-pdf"
+                                                                                data-toggle="tooltip" data-placement="top"
+                                                                                title="Preview surat (PDF)"
+                                                                                data-original-title="Preview surat (PDF)"
+                                                                                href="{{ asset('document_save/' . $data->pengajuan->surat->scan_dokumen) }}"
+                                                                                target="_blank" title="Read PDF"><i
+                                                                                    class="bi bi-file-pdf"
+                                                                                    style="font-size: 1.1rem;"></i></a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @endif
+                                            </div>
+                                            <div class="col-12">
+                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {{-- End tap content --}}
+                                @endcan
+                                @cannot('admin')
+                                    <div class="row">
+                                        @if ($disposisiList->isEmpty())
+                                            <div class="d-flex justify-content-center align-content-center">
+                                                <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
+                                                    class="w-50">
+                                            </div>
+                                        @else
+                                            @foreach ($disposisiList as $data)
+                                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                                    <div class="card card-primary card-surat shadow-sm">
+                                                        <div class="card-header d-flex justify-content-between">
+                                                            <div class="position-relative">
+                                                                <h4>{{ $data->pengajuan->nomor_agenda }}</h4>
+                                                                <small class="text-primary"
+                                                                    style="position: absolute; top: 50%;width: max-content;">Dari
+                                                                    {{ $data->user->nama }}
+                                                                </small>
+                                                            </div>
+                                                            <div class="card-header-action btn-group">
+                                                                {{-- Sifat Disposisi BTN --}}
+                                                                <button
+                                                                    class="btn-primary btn-status-disposisi tombol-disposisi "
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Preview surat (PDF)"
-                                                                    data-original-title="Preview surat (PDF)"
-                                                                    href="{{ asset('document_save/' . $data->pengajuan->surat->scan_dokumen) }}"
-                                                                    target="_blank" title="Read PDF"><i
-                                                                        class="bi bi-file-pdf"
-                                                                        style="font-size: 1.1rem;"></i></a>
+                                                                    title="Status Disposisi - {{ $data->status_disposisi }}"
+                                                                    data-original-title="Status Disposisi - {{ $data->status_disposisi }}">
+                                                                    <span class="d-flex justify-content-center m-0">
+                                                                        {{ $data->status_disposisi }}
+                                                                    </span>
+                                                                </button>
+                                                                {{-- End Status Disposisi BTN --}}
+                                                                {{-- Sifat Disposisi BTN --}}
+                                                                <button
+                                                                    class="btn-primary btn-sifat-disposisi tombol-disposisi"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Sifat Disposisi - {{ $data->sifat_disposisi }}"
+                                                                    data-original-title="Sifat Disposisi - {{ $data->sifat_disposisi }}">
+                                                                    <span class="d-flex justify-content-center m-0">
+                                                                        {{ $data->sifat_disposisi }}
+                                                                    </span>
+                                                                </button>
+                                                                {{-- End Sifat Disposisi BTN --}}
+                                                                <a data-collapse="#mycard-collapse{{ $data->id_disposisi }}"
+                                                                    class="btn-icon btn-primary btn-collapse"
+                                                                    href="#"><i class="fas fa-minus"
+                                                                        style="margin-left: 10px"></i></a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="collapse show"
+                                                            id="mycard-collapse{{ $data->id_disposisi }}">
+                                                            <div class="card-body card-body-surat position-relative "
+                                                                style="min-height: 130px">
+                                                                <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
+                                                                <p class="mt-3" style="font-size: .7rem;">
+                                                                    -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                    --</p>
+                                                                <div class="d-flex flex-column btn-group-action">
+                                                                    <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Detail data disposisi "
+                                                                        data-original-title="Detail data disposisi "
+                                                                        class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                        href=""><i class="pl-1 bi bi-eye"></i>
+                                                                    </a>
+                                                                    <a type="button" data-toggle="tooltip"
+                                                                        data-placement="left" title="Edit data disposisi"
+                                                                        data-original-title="Edit data disposisi"
+                                                                        class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                        href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                            class="pl-1  bi bi-pencil-square "></i>
+                                                                    </a>
+                                                                    <form method="POST"
+                                                                        action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                        class="tombol-hapus">
+                                                                        @csrf
+                                                                        @method('DELETE')
+                                                                        <button type="button" data-toggle="tooltip"
+                                                                            data-placement="bottom"
+                                                                            title="Hapus data Disposisi"
+                                                                            data-original-title="Hapus data Disposisi"
+                                                                            class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                            href=""><i
+                                                                                class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <div
+                                                                class="card-footer  d-flex justify-content-between position-relative">
+                                                                <div class="d-flex flex-row ">
+                                                                    @if ($data->user->foto_user)
+                                                                        <img alt="image"
+                                                                            src="{{ asset('image_save/' . $data->user->foto_user) }}"
+                                                                            style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                            class="mr-2 border border-primary">
+                                                                    @else
+                                                                        <img alt="image"
+                                                                            src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                                                            style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
+                                                                            class="mr-2">
+                                                                    @endif
+                                                                    <div>
+                                                                        <div class="user-detail-name">
+                                                                            <span class="text-primary" href="#">
+                                                                                {{ $data->user->nama }}</span>
+                                                                        </div>
+                                                                        <div class="text-job">
+                                                                            <small style="max-width: max-content">
+                                                                                {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                            </small>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="text-center " style="margin-left: 15%;">
+                                                                    <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        title="Preview surat (PDF)"
+                                                                        data-original-title="Preview surat (PDF)"
+                                                                        href="{{ asset('document_save/' . $data->pengajuan->surat->scan_dokumen) }}"
+                                                                        target="_blank" title="Read PDF"><i
+                                                                            class="bi bi-file-pdf"
+                                                                            style="font-size: 1.1rem;"></i></a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            @endforeach
+                                            <div class="col-12">
+                                                {{ $disposisiList->onEachSide(1)->links() }}
                                             </div>
-                                        @endforeach
-                                        <div class="col-12">
-                                            {{ $disposisiList->onEachSide(1)->links() }}
-                                        </div>
-                                    @endif
-                                </div>
+                                        @endif
+                                    </div>
+                                @endcannot
                             </div>
                         </div>
                     </div>

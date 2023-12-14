@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, DashboardController, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -28,9 +28,9 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard-admin', [DashboardController::class, 'dashboardAdmin'])->middleware('auth', 'role:admin');
-Route::get('/dashboard-officer', [DashboardController::class, 'dashboardOfficer'])->middleware('auth', 'role:officer');
-Route::get('/dashboard-staff', [DashboardController::class, 'dashboardStaff'])->middleware('auth', 'role:staff');
+Route::get('/dashboard-admin', [Controller::class, 'dashboardAdmin'])->middleware('auth', 'role:admin');
+Route::get('/dashboard-officer', [Controller::class, 'dashboardOfficer'])->middleware('auth', 'role:officer');
+Route::get('/dashboard-staff', [Controller::class, 'dashboardStaff'])->middleware('auth', 'role:staff');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 

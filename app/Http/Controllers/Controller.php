@@ -9,7 +9,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Carbon;
 
-class DashboardController extends BaseController
+class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 

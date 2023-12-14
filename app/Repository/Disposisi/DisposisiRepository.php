@@ -12,4 +12,5 @@ interface DisposisiRepository
     public function destroy($id);
     public function filterData($data);
     public function search($data);
+    public function indexAdmin();
 }

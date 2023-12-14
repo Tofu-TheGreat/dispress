@@ -19,11 +19,24 @@ class DisposisiImplement implements DisposisiRepository
     public function index()
     {
         if (Auth::check() && Auth::user()->level != 'admin') {
-            $paginatedData = $this->disposisi->whereNot(function ($query) {
-                $query->where('status_disposisi', '0');
-            })->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->paginate(6);
+            $paginatedData = $this->disposisi->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->paginate(6);
         } else {
             $paginatedData = $this->disposisi->paginate(6);
+        }
+        $paginatedData->getCollection()->transform(function ($data) {
+            $data->sifat_disposisi = convertDisposisiField($data->sifat_disposisi, 'sifat');
+            $data->status_disposisi = convertDisposisiField($data->status_disposisi, 'status');
+            $data->tujuan_disposisi = convertDisposisiField($data->tujuan_disposisi, 'tujuan');
+            return $data;
+        });
+
+        return $paginatedData;
+    }
+
+    public function indexAdmin()
+    {
+        if (Auth::check() && Auth::user()->level == 'admin') {
+            $paginatedData = $this->disposisi->where('id_penerima', Auth::user()->id_user)->paginate(6);
         }
         $paginatedData->getCollection()->transform(function ($data) {
             $data->sifat_disposisi = convertDisposisiField($data->sifat_disposisi, 'sifat');

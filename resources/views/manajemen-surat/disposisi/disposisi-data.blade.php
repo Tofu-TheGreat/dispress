@@ -274,13 +274,13 @@
                                 <a class="nav-link active" id="disposisi-user-login" data-toggle="tab"
                                     href="#disposisi-user" role="tab" aria-controls="belum-terdisposisikan"
                                     aria-selected="true"> <i class="bi bi-person text-success"></i> Disposisi Untuk anda
-                                    <span class="badge badge-transparent-success">{{ $disposisiList->count() }}</span></a>
+                                    <span class="badge badge-transparent-success">{{ $disposisiList1->count() }}</span></a>
                             </li>
                             <li class="nav-item w-50 text-center">
                                 <a class="nav-link" id="semua-disposisi" data-toggle="tab" href="#semua-disposisi3"
                                     role="tab" aria-controls="semua-disposisi" aria-selected="false"> <i
                                         class="bi bi-patch-check text-success"></i> Semua data Disposisi<span
-                                        class="badge badge-transparent-success">{{ $disposisiList->count() }}</span></a>
+                                        class="badge badge-transparent-success">{{ $disposisiList0->count() }}</span></a>
                             </li>
                         </ul>
                     </div>
@@ -349,13 +349,13 @@
                                         <div class="tab-pane fade show active" id="disposisi-user" role="tabpanel"
                                             aria-labelledby="disposisi-user-login">
                                             <div class="row">
-                                                @if ($disposisiList->isEmpty())
+                                                @if ($disposisiList1->isEmpty())
                                                     <div class="d-flex justify-content-center align-content-center">
                                                         <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                             class="w-50">
                                                     </div>
                                                 @else
-                                                    @foreach ($disposisiList as $data)
+                                                    @foreach ($disposisiList1 as $data)
                                                         <div class="col-sm-12 col-md-12 col-lg-6">
                                                             <div class="card card-primary card-surat shadow-sm">
                                                                 <div class="card-header d-flex justify-content-between">
@@ -481,19 +481,19 @@
                                                 @endif
                                             </div>
                                             <div class="col-12">
-                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                                {{ $disposisiList1->onEachSide(1)->links() }}
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="semua-disposisi3" role="tabpanel"
                                             aria-labelledby="semua-disposisi">
                                             <div class="row">
-                                                @if ($disposisiList->isEmpty())
+                                                @if ($disposisiList0->isEmpty())
                                                     <div class="d-flex justify-content-center align-content-center">
                                                         <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                             class="w-50">
                                                     </div>
                                                 @else
-                                                    @foreach ($disposisiList as $data)
+                                                    @foreach ($disposisiList0 as $data)
                                                         <div class="col-sm-12 col-md-12 col-lg-6">
                                                             <div class="card card-primary card-surat shadow-sm">
                                                                 <div class="card-header d-flex justify-content-between">
@@ -619,7 +619,7 @@
                                                 @endif
                                             </div>
                                             <div class="col-12">
-                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                                {{ $disposisiList0->onEachSide(1)->links() }}
                                             </div>
                                         </div>
                                     </div>

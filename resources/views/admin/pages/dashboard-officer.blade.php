@@ -154,36 +154,13 @@
                                                         --
                                                         {{ date('d-F-Y', strtotime($dataDisposisi->tanggal_disposisi)) }}
                                                         --</p>
-                                                    <div
-                                                        class="d-flex flex-column btn-group-action btn-group-action-dashboard">
-                                                        <a href="{{ route('disposisi.show', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Detail data disposisi"
-                                                            data-original-title="Detail data disposisi"
-                                                            class="btn btn-info has-icon text-white tombol-detail-card"
-                                                            href=""><i class="pl-1 bi bi-eye"></i>
-                                                        </a>
-                                                        <a type="button" data-toggle="tooltip" data-placement="left"
-                                                            title="Edit data disposisi"
-                                                            data-original-title="Edit data disposisi"
-                                                            class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                            href="{{ route('disposisi.edit', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"><i
-                                                                class="pl-1  bi bi-pencil-square "></i>
-                                                        </a>
-                                                        <form method="POST"
-                                                            action="{{ route('disposisi.destroy', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
-                                                            class="tombol-hapus-disposisi">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="button" data-toggle="tooltip"
-                                                                data-placement="bottom" title="Hapus data "
-                                                                data-original-title="Hapus data "
-                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus-disposisi"
-                                                                href=""><i
-                                                                    class="pl-1  bi bi-trash tombol-hapus-disposisi"></i>
-                                                            </button>
-                                                        </form>
-                                                    </div>
+                                                    <a href="{{ route('disposisi.show', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="Detail data disposisi"
+                                                        data-original-title="Detail data disposisi"
+                                                        class="btn btn-info has-icon text-white" href=""><i
+                                                            class="bi bi-eye"></i> Detail Data
+                                                    </a>
                                                 </div>
                                                 <div class="card-footer d-flex justify-content-between position-relative">
                                                     <div class="d-flex flex-row ">

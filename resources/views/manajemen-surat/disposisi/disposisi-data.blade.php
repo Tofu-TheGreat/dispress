@@ -280,7 +280,7 @@
                                 <a class="nav-link" id="semua-disposisi" data-toggle="tab" href="#semua-disposisi3"
                                     role="tab" aria-controls="semua-disposisi" aria-selected="false"> <i
                                         class="bi bi-patch-check text-success"></i> Semua data Disposisi<span
-                                        class="badge badge-transparent-success">{{ $disposisiList0->count() }}</span></a>
+                                        class="badge badge-transparent-success">{{ $disposisiList->count() }}</span></a>
                             </li>
                         </ul>
                     </div>
@@ -294,35 +294,40 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Disposisi</h4>
+                            <h4 class="text-primary judul-page">List Disposisi @cannot('admin')
+                                    Untuk {{ auth()->user()->nama }}
+                                @endcannot
+                            </h4>
                         </div>
-                        <div class="col-lg-1 col-sm-4 btn-group">
-                            {{-- Button Tambah Data --}}
-                            <a href="/disposisi/create" class="text-white">
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip"
-                                    data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
-                                    <i class="fa fa-plus-circle btn-tambah-data"></i>
-                                </button>
-                            </a>
-                            {{-- Akhir Button Tambah Data --}}
-                            {{-- Button Export Data --}}
-                            <a class="text-white ml-2 tombol-export">
-                                <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
-                                    data-placement="top" title="Export Data Excel" data-original-title="Export Data">
-                                    <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
-                                </button>
-                            </a>
-                            {{-- Akhir Button Export Data --}}
-                            {{-- Button import Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                data-original-title="Import Data" disabled>
-                                <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                    data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
-                                    <i class="fa fa-file-excel btn-tambah-data "></i>
-                                </button>
-                            </span>
-                            {{-- Akhir Button import Data --}}
-                        </div>
+                        @can('admin')
+                            <div class="col-lg-1 col-sm-4 btn-group">
+                                {{-- Button Tambah Data --}}
+                                <a href="/disposisi/create" class="text-white">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                                        data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
+                                        <i class="fa fa-plus-circle btn-tambah-data"></i>
+                                    </button>
+                                </a>
+                                {{-- Akhir Button Tambah Data --}}
+                                {{-- Button Export Data --}}
+                                <a class="text-white ml-2 tombol-export">
+                                    <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
+                                        data-placement="top" title="Export Data Excel" data-original-title="Export Data">
+                                        <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
+                                    </button>
+                                </a>
+                                {{-- Akhir Button Export Data --}}
+                                {{-- Button import Data --}}
+                                <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                    data-original-title="Import Data" disabled>
+                                    <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                        data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
+                                        <i class="fa fa-file-excel btn-tambah-data "></i>
+                                    </button>
+                                </span>
+                                {{-- Akhir Button import Data --}}
+                            </div>
+                        @endcan
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -487,13 +492,13 @@
                                         <div class="tab-pane fade" id="semua-disposisi3" role="tabpanel"
                                             aria-labelledby="semua-disposisi">
                                             <div class="row">
-                                                @if ($disposisiList0->isEmpty())
+                                                @if ($disposisiList->isEmpty())
                                                     <div class="d-flex justify-content-center align-content-center">
                                                         <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                             class="w-50">
                                                     </div>
                                                 @else
-                                                    @foreach ($disposisiList0 as $data)
+                                                    @foreach ($disposisiList as $data)
                                                         <div class="col-sm-12 col-md-12 col-lg-6">
                                                             <div class="card card-primary card-surat shadow-sm">
                                                                 <div class="card-header d-flex justify-content-between">
@@ -619,7 +624,7 @@
                                                 @endif
                                             </div>
                                             <div class="col-12">
-                                                {{ $disposisiList0->onEachSide(1)->links() }}
+                                                {{ $disposisiList->onEachSide(1)->links() }}
                                             </div>
                                         </div>
                                     </div>

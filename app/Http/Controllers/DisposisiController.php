@@ -26,7 +26,7 @@ class DisposisiController extends Controller
      */
     public function index()
     {
-        $disposisiList0 = $this->disposisiRepository->index();
+        $disposisiList = $this->disposisiRepository->index();
         $disposisiList1 = $this->disposisiRepository->indexAdmin();
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
@@ -35,7 +35,7 @@ class DisposisiController extends Controller
             'title' => 'Disposisi',
             'active1' => 'manajemen-surat',
             'active' => 'Disposisi',
-            'disposisiList0' => $disposisiList0,
+            'disposisiList' => $disposisiList,
             'disposisiList1' => $disposisiList1,
             'userList' => $userList,
             'posisiJabatanList' => $posisiJabatanList,

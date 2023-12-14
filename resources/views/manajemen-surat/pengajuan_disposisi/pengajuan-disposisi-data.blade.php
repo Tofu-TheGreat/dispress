@@ -208,8 +208,7 @@
                                 href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
                                 aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
                                 Didisposisikan
-                                <span
-                                    class="badge badge-transparent-danger">{{ $pengajuanList0->count() }}</span></a>
+                                <span class="badge badge-transparent-danger">{{ $pengajuanList0->count() }}</span></a>
                         </li>
                         <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
@@ -278,7 +277,7 @@
                                 </form>
                             </div>
                             <div class="col-12">
-
+                                {{-- Tab Content --}}
                                 <div class="tab-content" id="myTabContent2">
                                     <div class="tab-pane fade show active" id="belum-terdisposisikan3" role="tabpanel"
                                         aria-labelledby="belum-terdisposisikan-tab3">
@@ -570,6 +569,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- End tap content --}}
                             </div>
                         </div>
                     </div>

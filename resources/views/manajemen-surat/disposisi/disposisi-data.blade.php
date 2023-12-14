@@ -847,7 +847,23 @@
             }
         }
     </script>
+    {{-- Handle Filter disposisi --}}
+    <script>
+        document.body.addEventListener("click", function(event) {
+            event.preventDefault();
 
+            if ($("#disposisi-user-login").hasClass('active')) {
+                console.log('filter1');
+                $("#filter1").removeClass(".d-none");
+                $('#filter2').addClass(".d-none");
+            }
+            if ($("#semua-disposisi").hasClass('active')) {
+                console.log('filter2');
+                $("#filter2").removeClass(".d-none");
+                $('#filter1').addClass(".d-none");
+            }
+        });
+    </script>
     {{-- Toast --}}
     @if (Session::has('success'))
         <script>

@@ -156,7 +156,7 @@ class DisposisiImplement implements DisposisiRepository
     {
         $this->disposisi->where('id_disposisi', $id)->delete();
     }
-    public function filterData($data)
+    public function filterDataAll($data)
     {
         $query = $this->disposisi->query();
 
@@ -186,6 +186,7 @@ class DisposisiImplement implements DisposisiRepository
 
         $result = $query->paginate(6);
 
+
         $result->getCollection()->transform(function ($item) {
             $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');
             $item->status_disposisi = convertDisposisiField($item->status_disposisi, 'status');
@@ -195,6 +196,44 @@ class DisposisiImplement implements DisposisiRepository
 
         return $result;
     }
+
+
+    public function filterData($data)
+    {
+        $query = $this->disposisi->query();
+
+        if (isset($data->id_user) && ($data->id_user != null)) {
+            $query->where('id_user', $data->id_user);
+        }
+        if (isset($data->sifat_disposisi) && ($data->sifat_disposisi != null)) {
+            $query->where('sifat_disposisi', $data->sifat_disposisi);
+        }
+        if (isset($data->status_disposisi) && ($data->status_disposisi != null)) {
+            $query->where('status_disposisi', $data->status_disposisi);
+        }
+        if (
+            isset($data->tanggal_surat_awal) &&
+            ($data->tanggal_surat_awal != null) &&
+            isset($data->tanggal_surat_terakhir) &&
+            ($data->tanggal_surat_terakhir != null)
+        ) {
+            $query->whereBetween('tanggal_disposisi', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
+        }
+
+
+        $result = $query->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->paginate(6);
+
+        $result->getCollection()->transform(function ($item) {
+            $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');
+            $item->status_disposisi = convertDisposisiField($item->status_disposisi, 'status');
+            $item->tujuan_disposisi = convertDisposisiField($item->tujuan_disposisi, 'tujuan');
+            return $item;
+        });
+
+        return $result;
+    }
+
+
     public function search($data)
     {
         $search = $this->disposisi

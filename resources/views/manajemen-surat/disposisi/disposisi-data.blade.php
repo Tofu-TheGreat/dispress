@@ -575,13 +575,6 @@
     <script>
         document.body.addEventListener("click", function(event) {
             const element = event.target;
-            const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-            if (element.classList.contains("tombol-disposisi")) {
-                noteEditable.forEach((e) => {
-                    e.classList.add('mt-5');
-                })
-            }
 
             if (element.classList.contains("tombol-hapus")) {
                 swal({

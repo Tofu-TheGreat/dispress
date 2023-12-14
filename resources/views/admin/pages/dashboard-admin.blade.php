@@ -1,5 +1,8 @@
 @extends('admin.pages.layout')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
+@endsection
 
 @section('content')
     <section class="section">
@@ -104,7 +107,13 @@
                 <div class="row">
                     <div class="col">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-primary">
+                            <div class="card-icon bg-primary position-relative">
+                                <div style="position: absolute; top: -33px; left: 5px">
+                                    <span data-toggle="tooltip" data-placement="top" title="Ini adalah semua data Intansi."
+                                        data-original-title="Ini adalah semua data Intansi.">
+                                        <i class="bi bi-question-circle mr-2 text-white"></i>
+                                    </span>
+                                </div>
                                 <i class="far fa-building"></i>
                             </div>
                             <div class="card-wrap">
@@ -119,7 +128,14 @@
                     </div>
                     <div class="col">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-danger">
+                            <div class="card-icon bg-danger position-relative">
+                                <div style="position: absolute; top: -33px; left: 5px">
+                                    <span data-toggle="tooltip" data-placement="top"
+                                        title="Ini adalah semua data Posisi Jabatan."
+                                        data-original-title="Ini adalah semua data Posisi Jabatan.">
+                                        <i class="bi bi-question-circle mr-2 text-white"></i>
+                                    </span>
+                                </div>
                                 <i class="fas fa-user-tie"></i>
                             </div>
                             <div class="card-wrap">
@@ -134,7 +150,14 @@
                     </div>
                     <div class="col">
                         <div class="card card-statistic-1">
-                            <div class="card-icon bg-warning">
+                            <div class="card-icon bg-warning position-relative">
+                                <div style="position: absolute; top: -33px; left: 5px">
+                                    <span data-toggle="tooltip" data-placement="top"
+                                        title="Ini adalah semua data Surat Keluar."
+                                        data-original-title="Ini adalah semua data Surat Keluar.">
+                                        <i class="bi bi-question-circle mr-2 text-white"></i>
+                                    </span>
+                                </div>
                                 <i class="far fa-envelope"></i>
                             </div>
                             <div class="card-wrap">
@@ -191,72 +214,48 @@
                         </span>
                         <h4>Disposisi Terbaru</h4>
                         <div class="card-header-action dropdown">
-                            <a href="/pengajuan-disposisi" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
+                            <a href="/disposisi" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                         </div>
                     </div>
                     <div class="card-body" id="top-5-scroll2">
                         <ul class="list-unstyled list-unstyled-border">
                             @foreach ($newestDisposisi as $dataDisposisi)
                                 <li class="media">
-                                    <div class="col-12">
+                                    <div class="col-12" style="padding: 0">
                                         <div class="card card-primary card-surat shadow-sm">
                                             <div class="card-header d-flex justify-content-between">
                                                 <div class="position-relative">
                                                     <h4>{{ $dataDisposisi->pengajuan->nomor_agenda }}</h4>
                                                 </div>
                                                 <div class="card-header-action btn-group">
-                                                    @if ($dataPengajuan->status_pengajuan == '0')
-                                                        <button class="btn btn-danger tombol-disposisi mr-2"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Belum Didisposisikan"
-                                                            data-original-title="Belum Didisposisikan" disabled>
-                                                            <span class="d-flex justify-content-center m-0"><i
-                                                                    class="bi bi bi-patch-minus"></i></span>
-                                                        </button>
-                                                    @elseif ($dataPengajuan->status_pengajuan == '1')
-                                                        <button class="btn btn-success tombol-disposisi mr-2"
-                                                            data-toggle="tooltip" data-placement="top"
-                                                            title="Sudah Didisposisikan"
-                                                            data-original-title="Sudah Didisposisikan" disabled>
-                                                            <span class="d-flex justify-content-center m-0"><i
-                                                                    class="bi bi bi-patch-check"></i></span>
-                                                        </button>
-                                                    @endif
-                                                    <a data-collapse="#mycard-collapse{{ $dataPengajuan->id_pengajuan }}"
+                                                    <button class="btn btn-primary mr-1" data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="Status Disposisi - {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}"
+                                                        data-original-title="Status Disposisi - {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}">
+                                                        <span class="d-flex justify-content-center m-0">
+                                                            {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}
+                                                        </span>
+                                                    </button>
+                                                    <a data-collapse="#mycard-collapse{{ $dataDisposisi->id_pengajuan }}"
                                                         class="btn btn-icon btn-info" href="#"><i
                                                             class="fas fa-minus"></i></a>
                                                 </div>
                                             </div>
                                             <div class="collapse show"
-                                                id="mycard-collapse{{ $dataPengajuan->id_pengajuan }}">
+                                                id="mycard-collapse{{ $dataDisposisi->id_pengajuan }}">
                                                 <div class="card-body card-body-surat position-relative "
                                                     style="min-height: 130px">
-                                                    <p class="w-75"> {!! $dataPengajuan->catatan_pengajuan !!}</p>
+                                                    <p class="w-75"> {!! $dataDisposisi->catatan_disposisi !!}</p>
                                                     <p class="mt-3" style="font-size: .7rem;">
                                                         --
-                                                        {{ date('d-F-Y', strtotime($dataPengajuan->tanggal_terima)) }}
+                                                        {{ date('d-F-Y', strtotime($dataDisposisi->tanggal_disposisi)) }}
                                                         --</p>
-                                                    @if ($dataPengajuan->status_pengajuan == '0')
-                                                        <div class="mt-1 mb-1 tombol-disposisi">
-                                                            <span class="tombol-disposisi" data-toggle="tooltip"
-                                                                data-placement="right" title="klik Untuk Mendisposisikan"
-                                                                data-original-title="klik Untuk Mendisposisikan" disabled>
-                                                                <button type="button"
-                                                                    class="btn btn-success mr-2 tombol-disposisi"
-                                                                    data-toggle="modal"
-                                                                    data-target="#disposisi-modal{{ $dataPengajuan->id_pengajuan }}"
-                                                                    type="button">
-                                                                    Disposisi
-                                                                </button>
-                                                            </span>
-                                                        </div>
-                                                    @endif
                                                     <div
                                                         class="d-flex flex-column btn-group-action btn-group-action-dashboard">
-                                                        <a href="{{ route('pengajuan-disposisi.show', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
+                                                        <a href="{{ route('disposisi.show', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
                                                             data-toggle="tooltip" data-placement="top"
-                                                            title="Detail data pengajuan disposisi"
-                                                            data-original-title="Detail data pengajuan disposisi"
+                                                            title="Detail data disposisi"
+                                                            data-original-title="Detail data disposisi"
                                                             class="btn btn-info has-icon text-white tombol-detail-card"
                                                             href=""><i class="pl-1 bi bi-eye"></i>
                                                         </a>
@@ -264,29 +263,29 @@
                                                             title="Edit data disposisi"
                                                             data-original-title="Edit data disposisi"
                                                             class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                            href="{{ route('pengajuan-disposisi.edit', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"><i
+                                                            href="{{ route('disposisi.edit', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"><i
                                                                 class="pl-1  bi bi-pencil-square "></i>
                                                         </a>
                                                         <form method="POST"
-                                                            action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
-                                                            class="tombol-hapus">
+                                                            action="{{ route('disposisi.destroy', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
+                                                            class="tombol-hapus-disposisi">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" data-toggle="tooltip"
-                                                                data-placement="bottom" title="Hapus data Pengajuan"
-                                                                data-original-title="Hapus data Pengajuan"
-                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                data-placement="bottom" title="Hapus data "
+                                                                data-original-title="Hapus data "
+                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus-disposisi"
                                                                 href=""><i
-                                                                    class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                    class="pl-1  bi bi-trash tombol-hapus-disposisi"></i>
                                                             </button>
                                                         </form>
                                                     </div>
                                                 </div>
                                                 <div class="card-footer d-flex justify-content-between position-relative">
                                                     <div class="d-flex flex-row ">
-                                                        @if ($dataPengajuan->user->foto_user)
+                                                        @if ($dataDisposisi->user->foto_user)
                                                             <img alt="image"
-                                                                src="{{ asset('image_save/' . $dataPengajuan->user->foto_user) }}"
+                                                                src="{{ asset('image_save/' . $dataDisposisi->user->foto_user) }}"
                                                                 style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
                                                                 class="mr-2 border border-primary">
                                                         @else
@@ -298,7 +297,7 @@
                                                         <div>
                                                             <div class="user-detail-name">
                                                                 <span class="text-primary" href="#">
-                                                                    {{ $dataPengajuan->user->nama }}</span>
+                                                                    {{ $dataDisposisi->user->nama }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -307,7 +306,7 @@
                                                             data-toggle="tooltip" data-placement="top"
                                                             title="Preview surat (PDF)"
                                                             data-original-title="Preview surat (PDF)"
-                                                            href="{{ asset('document_save/' . $dataPengajuan->surat->scan_dokumen) }}"
+                                                            href="{{ asset('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen) }}"
                                                             target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
                                                                 style="font-size: 1.1rem;"></i></a>
                                                     </div>
@@ -335,7 +334,7 @@
                         <ul class="list-unstyled list-unstyled-border">
                             @foreach ($newestPengajuan as $dataPengajuan)
                                 <li class="media">
-                                    <div class="col-12">
+                                    <div class="col-12" style="padding: 0">
                                         <div class="card card-primary card-surat shadow-sm">
                                             <div class="card-header d-flex justify-content-between">
                                                 <div class="position-relative">
@@ -406,15 +405,15 @@
                                                         </a>
                                                         <form method="POST"
                                                             action="{{ route('pengajuan-disposisi.destroy', Crypt::encryptString($dataPengajuan->id_pengajuan)) }}"
-                                                            class="tombol-hapus">
+                                                            class="tombol-hapus-pengajuan">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="button" data-toggle="tooltip"
                                                                 data-placement="bottom" title="Hapus data Pengajuan"
                                                                 data-original-title="Hapus data Pengajuan"
-                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus-pengajuan"
                                                                 href=""><i
-                                                                    class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                    class="pl-1  bi bi-trash tombol-hapus-pengajuan"></i>
                                                             </button>
                                                         </form>
                                                     </div>
@@ -464,6 +463,80 @@
 
 @section('script')
     <script src="{{ asset('assets/modules/chart.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+
+    {{-- Toast --}}
+    @if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            $(document).ready(function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: "{{ Session::get('error') }} Import",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    {{-- Handle delete button --}}
+    <script>
+        document.body.addEventListener("click", function(event) {
+            const element = event.target;
+
+            if (element.classList.contains("tombol-hapus-disposisi")) {
+                swal({
+                        title: 'Apakah anda yakin?',
+                        text: 'Ingin menghapus data Disposisi ini!',
+                        icon: 'warning',
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal('Data Disposisi berhasil dihapus!', {
+                                icon: 'success',
+                            });
+                            element.closest('form').submit();
+                        } else {
+                            swal('Data Disposisi tidak jadi dihapus!');
+                        }
+                    });
+            }
+
+            if (element.classList.contains("tombol-hapus-pengajuan")) {
+                swal({
+                        title: 'Apakah anda yakin?',
+                        text: 'Ingin menghapus data Pengajuan ini!',
+                        icon: 'warning',
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            swal('Data Pengajuan berhasil dihapus!', {
+                                icon: 'success',
+                            });
+                            element.closest('form').submit();
+                        } else {
+                            swal('Data Pengajuan tidak jadi dihapus!');
+                        }
+                    });
+            }
+        });
+    </script>
 
     {{-- Chart Disposisi --}}
     <script>
@@ -617,6 +690,56 @@
                         pointHoverBackgroundColor: 'rgba(254,86,83,.8)',
                     }
                 ]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            // display: false,
+                            drawBorder: false,
+                            color: '#f2f2f2',
+                        },
+                        // ticks: {
+                        //     beginAtZero: true,
+                        //     stepSize: 50,
+                        //     callback: function(value, index, values) {
+                        //         return value;
+                        //     }
+                        // }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            tickMarkLength: 15,
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+
+    {{-- Chart data Surat Keluar untuk User --}}
+    <script>
+        const myChartSurat = document.getElementById("myChart2").getContext('2d');
+        const myChart2 = new Chart(myChartSurat, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($pengajuanDisposisiChartData['dates']) !!},
+                datasets: [{
+                    label: 'Surat Keluar',
+                    data: {!! json_encode($pengajuanDisposisiChartData['pengajuan_count']) !!},
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(63,82,227,.8)',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
+                    pointBorderWidth: 0,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+                }]
             },
             options: {
                 legend: {

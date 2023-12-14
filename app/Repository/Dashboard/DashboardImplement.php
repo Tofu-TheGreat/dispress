@@ -14,34 +14,88 @@ use Illuminate\Support\Carbon;
 
 class DashboardImplement implements DashboardRepository
 {
-    public function getSuratAdmin()
-    {
-        return Surat::count();
-    }
-    public function getPengajuanAdmin()
-    {
-        return Pengajuan::count();
-    }
-    public function getDisposisi()
-    {
-        return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->count();
-    }
-    public function getAllDisposisi()
-    {
-        return Disposisi::count();
-    }
-    public function getTotalAdmin()
+    // get user
+    public function getAdminCount()
     {
         return User::where('level', 'admin')->count();
     }
-    public function getTotalOfficer()
+    public function getOfficerCount()
     {
         return User::where('level', 'officer')->count();
     }
-    public function getTotalStaff()
+    public function getStaffCount()
     {
         return User::where('level', 'staff')->count();
     }
+    // End get user
+
+    // Get jabatan
+    public function getJabatanCount()
+    {
+        return PosisiJabatan::count();
+    }
+    // end get jabatan
+
+    // Get instansi
+    public function getInstansiCount()
+    {
+        return Instansi::count();
+    }
+    // end get instansi
+
+    // Get surat
+    public function getSuratCount()
+    {
+        return Surat::count();
+    }
+    // end get surat
+
+    // Get pengajuan
+    public function getPengajuanCount()
+    {
+        return Pengajuan::count();
+    }
+    // end get pengajuan
+
+    // Get disposisi
+
+    public function getAllDisposisiCount()
+    {
+        return Disposisi::count();
+    }
+
+    public function getDisposisiCountByUser()
+    {
+        return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->count();
+    }
+
+    public function getDisposisiByUser()
+    {
+        return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
+            ->orWhere('id_penerima', Auth::user()->id_user)
+            ->get();
+    }
+    // End get disposisi
+
+    // Get Newest data
+
+    public function getNewestPengajuan()
+    {
+        $collections = Pengajuan::get();
+
+        return $collections->sortByDesc('created_at');
+    }
+    public function getNewestDisposisi()
+    {
+        $collections = Disposisi::get();
+
+        return $collections->sortByDesc('created_at');
+    }
+
+    // End Get newest data
+
+    // Get data chart
+
     public function getPengajuanChartData()
     {
         // Assuming you have a 'created_at' timestamp column in your Pengajuan model
@@ -135,19 +189,6 @@ class DashboardImplement implements DashboardRepository
             'data' => $data,
         ];
     }
-    public function getNewestPengajuan()
-    {
-        $collections = Pengajuan::get();
-
-        return $collections->sortByDesc('created_at');
-    }
-    public function getNewestDisposisi()
-    {
-        $collections = Disposisi::get();
-
-        return $collections->sortByDesc('created_at');
-    }
-
     public function getDisposisiFromUser()
     {
         $allMonths = [
@@ -171,22 +212,6 @@ class DashboardImplement implements DashboardRepository
             'disposisi_count' => array_values($disposisiCounts),
         ];
     }
-    public function getInstansi()
-    {
-        return Instansi::count();
-    }
-    public function getStaff()
-    {
-        return User::where('level', 'staff')->count();
-    }
-    public function getDisposisiByUser()
-    {
-        return Disposisi::where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
-            ->orWhere('id_penerima', Auth::user()->id_user)
-            ->count();
-    }
-    public function getJabatan()
-    {
-        return PosisiJabatan::count();
-    }
+
+    // end get chart data
 }

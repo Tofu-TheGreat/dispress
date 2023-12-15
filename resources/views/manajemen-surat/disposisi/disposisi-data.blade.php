@@ -263,6 +263,241 @@
             </form>
         </div>
         {{-- Filter --}}
+        {{-- Filter --}}
+        <div class="card">
+            <div class="card-header d-flex justify-content-between">
+                <div class="col">
+                    <h4 class="text-primary">Filter 2</h4>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    {{-- Button Triger Filter --}}
+                    <span data-toggle="tooltip" data-placement="top" title="Klik untuk menu filter data."
+                        data-original-title="Filter Data" disabled>
+                        <button class="btn btn-info collapsed" type="button" data-toggle="collapse"
+                            data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"
+                            title="Tombol Filter">
+                            <i class="bi bi-funnel-fill"></i>
+                        </button>
+                    </span>
+                    {{-- Akhir Button Triger Filter --}}
+                </div>
+            </div>
+            <form action="/disposisi-filter" method="get">
+                @csrf
+                <div class="collapse" id="collapseExample" style="">
+                    <div class="p-4">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pengirim: </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('id_user') is-invalid  @enderror "
+                                            id="id_user" name="id_user" style="width: 100%;">
+                                            <option selected disabled>Pilih Pengirim</option>
+                                            @foreach ($userList as $data)
+                                                <option value="{{ $data->id_user }}"
+                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="sifat_disposisi">Pilih Berdasarkan Sifat Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('sifat_disposisi') is-invalid  @enderror "
+                                            id="sifat_disposisi" name="sifat_disposisi" style="width: 100%;">
+                                            <option selected disabled>Pilih Sifat Disposisi</option>
+                                            <option value="0" {{ old('sifat_disposisi') === '0' ? 'selected' : '' }}>
+                                                Tindaklanjuti</option>
+                                            <option value="1" {{ old('sifat_disposisi') === '1' ? 'selected' : '' }}>
+                                                Biasa</option>
+                                            <option value="2" {{ old('sifat_disposisi') == '2' ? 'selected' : '' }}>
+                                                Segera</option>
+                                            <option value="3" {{ old('sifat_disposisi') == '3' ? 'selected' : '' }}>
+                                                Penting</option>
+                                            <option value="4" {{ old('sifat_disposisi') == '4' ? 'selected' : '' }}>
+                                                Rahasia</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('sifat_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="capitalize" for="status_disposisi">Pilih Status Disposisi: </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('status_disposisi') is-invalid  @enderror "
+                                            id="status_disposisi" name="status_disposisi" style="width: 100%;">
+                                            <option selected disabled>Pilih Status Disposisi</option>
+                                            <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                                Arsipkan</option>
+                                            <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                                Jabarkan</option>
+                                            <option value="2" {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
+                                                Umumkan</option>
+                                            <option value="3" {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
+                                                Laksanakan</option>
+                                            <option value="4" {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
+                                                Persiapkan</option>
+                                            <option value="5" {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
+                                                Ikuti</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_disposisi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 d-flex justify-content-center row">
+                                <div class="col-12 d-flex justify-content-center text-primary">Pilih
+                                    Salah
+                                    Satu</div>
+                                <div class="mt-2">
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="jabatan" name="jenis_disposisi"
+                                            class="custom-control-input jabatan" onclick="toggleSelects()" checked>
+                                        <label class="custom-control-label" for="jabatan">
+                                            Sesuai Jabatan</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" id="personal" name="jenis_disposisi"
+                                            class="custom-control-input personal" onclick="toggleSelects()">
+                                        <label class="custom-control-label" for="personal">
+                                            Sesuai Personal</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="form-group id_posisi_jabatan_div" id="id_posisi_jabatan_div">
+                                    <label class="capitalize" for="id_posisi_jabatan">Berdasarkan Tujuan Disposisi
+                                        (Jabatan):
+                                    </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
+                                            style="width: 100%">
+                                            <option disabled>Pilih Posisi Jabatan User</option>
+                                            @foreach ($posisiJabatanList as $item)
+                                                <option value="{{ $item->id_posisi_jabatan }}"
+                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                    {{ $item->nama_posisi_jabatan }} |
+                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_posisi_jabatan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group id_user_div d-none" id="id_user_div">
+                                    <label class="capitalize" for="id_user">Berdasarkan Tujuan Disposisi (Personal):
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
+                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%;">
+                                            <option disabled>Pilih Tujuan User</option>
+                                            @foreach ($userList as $data)
+                                                <option value="{{ $data->id_user }}"
+                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ $data->nama }} |
+                                                    {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_penerima')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi
+                                </h6>
+                            </div>
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan
+                                        Disposisi:
+                                    </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="filter form-control tanggal_surat_awal @error('tanggal_surat_awal') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_awal') }}"
+                                            id="tanggal_surat_awal" name="tanggal_surat_awal" style="width: 80%;">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat_awal')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="tanggal_surat_terakhir">Sampai Tanggal Terakhir
+                                        Pembuatan
+                                        Disposisi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-calendar3"></i>
+                                            </div>
+                                        </div>
+                                        <input type="date"
+                                            class="form-control tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
+                                            placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
+                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir"
+                                            style="width: 80%;">
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('tanggal_surat_terakhir')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
+                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                            <a type="button" id="reset" href="/disposisi" class="btn btn-secondary mb-1"
+                                title="Reset">
+                                <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
+                                    Filter</span></a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        {{-- Filter --}}
 
         @can('admin')
             {{-- Tab --}}
@@ -849,20 +1084,32 @@
     </script>
     {{-- Handle Filter disposisi --}}
     <script>
-        document.body.addEventListener("click", function(event) {
-            event.preventDefault();
+        const disposisiUserLogin = document.getElementById('disposisi-user-login');
+        const semuaDisposisi = document.getElementById('semua-disposisi');
 
+        disposisiUserLogin.addEventListener("click", function(event) {
+            event.preventDefault();
             if ($("#disposisi-user-login").hasClass('active')) {
                 console.log('filter1');
                 $("#filter1").removeClass(".d-none");
                 $('#filter2').addClass(".d-none");
             }
+        })
+
+        semuaDisposisi.addEventListener("click", function(event) {
+            event.preventDefault();
+            if ($("#disposisi-user-login").hasClass('active')) {
+                console.log('filter1');
+                $("#filter1").removeClass(".d-none");
+                $('#filter2').addClass(".d-none");
+            }
+
             if ($("#semua-disposisi").hasClass('active')) {
                 console.log('filter2');
                 $("#filter2").removeClass(".d-none");
                 $('#filter1').addClass(".d-none");
             }
-        });
+        })
     </script>
     {{-- Toast --}}
     @if (Session::has('success'))

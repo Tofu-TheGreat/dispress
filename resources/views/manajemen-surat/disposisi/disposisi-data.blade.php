@@ -504,7 +504,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.disposisi') }}" method="post">
+                                <form action="{{ route('search.disposisi') }}" method="post" id="searchForm">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -1049,6 +1049,35 @@
             filter1.classList.add('d-none');
         })
     </script>
+
+
+    <script>
+        $(document).ready(function() {
+            // Initial form action
+            var initialAction = "{{ route('search.disposisi') }}";
+            $('#searchForm').attr('action', initialAction);
+
+            // Update form action when a tab is clicked
+            $('#myTab3 a').on('click', function(e) {
+                e.preventDefault();
+
+                // Get the tab id
+                var tabId = $(this).attr('href').substring(1);
+
+                // Define the route for each tab
+                var routes = {
+                    'disposisi-user': "{{ route('search.disposisi') }}", // Replace with your actual route
+                    'semua-disposisi3': "{{ route('search.semua.disposisi') }}" // Replace with your actual route
+                    // Add more routes as needed
+                };
+
+                // Update form action based on the selected tab
+                $('#searchForm').attr('action', routes[tabId]);
+
+            });
+        });
+    </script>
+
     {{-- Toast --}}
     @if (Session::has('success'))
         <script>

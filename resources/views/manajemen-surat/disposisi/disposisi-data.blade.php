@@ -28,8 +28,8 @@
             </div>
         </div>
 
-        {{-- Filter --}}
-        <div class="card">
+        {{-- Filter by user --}}
+        <div class="card" id="filter1">
             <div class="card-header d-flex justify-content-between">
                 <div class="col">
                     <h4 class="text-primary">Filter</h4>
@@ -128,76 +128,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-12 d-flex justify-content-center row">
-                                <div class="col-12 d-flex justify-content-center text-primary">Pilih
-                                    Salah
-                                    Satu</div>
-                                <div class="mt-2">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="jabatan" name="jenis_disposisi"
-                                            class="custom-control-input jabatan" onclick="toggleSelects()" checked>
-                                        <label class="custom-control-label" for="jabatan">
-                                            Sesuai Jabatan</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio" id="personal" name="jenis_disposisi"
-                                            class="custom-control-input personal" onclick="toggleSelects()">
-                                        <label class="custom-control-label" for="personal">
-                                            Sesuai Personal</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-12 mt-2">
-                                <div class="form-group id_posisi_jabatan_div" id="id_posisi_jabatan_div">
-                                    <label class="capitalize" for="id_posisi_jabatan">Berdasarkan Tujuan Disposisi
-                                        (Jabatan):
-                                    </label>
-                                    <div class="input-group">
-                                        <select
-                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                            id="id_posisi_jabatan" name="id_posisi_jabatan[]" multiple=""
-                                            style="width: 100%">
-                                            <option disabled>Pilih Posisi Jabatan User</option>
-                                            @foreach ($posisiJabatanList as $item)
-                                                <option value="{{ $item->id_posisi_jabatan }}"
-                                                    {{ old('id_posisi_jabatan') == $item->id_posisi_jabatan ? 'selected' : '' }}>
-                                                    {{ $item->nama_posisi_jabatan }} |
-                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_posisi_jabatan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="form-group id_user_div d-none" id="id_user_div">
-                                    <label class="capitalize" for="id_user">Berdasarkan Tujuan Disposisi (Personal):
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="form-control select2  @error('id_user') is-invalid @enderror "
-                                            id="id_user" name="id_penerima[]" multiple="" style="width: 100%;">
-                                            <option disabled>Pilih Tujuan User</option>
-                                            @foreach ($userList as $data)
-                                                <option value="{{ $data->id_user }}"
-                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                    {{ $data->nama }} |
-                                                    {{ $data->posisiJabatan->nama_posisi_jabatan }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_penerima')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
                             <div class="col-12 ">
                                 <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Disposisi
                                 </h6>
@@ -262,12 +192,13 @@
                 </div>
             </form>
         </div>
-        {{-- Filter --}}
-        {{-- Filter --}}
-        <div class="card">
+        {{-- end Filter by user --}}
+
+        {{-- Filter all disposisi --}}
+        <div class="card d-none" id="filter2">
             <div class="card-header d-flex justify-content-between">
                 <div class="col">
-                    <h4 class="text-primary">Filter 2</h4>
+                    <h4 class="text-primary">Filter</h4>
                 </div>
                 <div class="col d-flex justify-content-end">
                     {{-- Button Triger Filter --}}
@@ -282,7 +213,7 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/disposisi-filter" method="get">
+            <form action="/disposisi-filter-all" method="get">
                 @csrf
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
@@ -342,17 +273,23 @@
                                         <select class="filter select2 @error('status_disposisi') is-invalid  @enderror "
                                             id="status_disposisi" name="status_disposisi" style="width: 100%;">
                                             <option selected disabled>Pilih Status Disposisi</option>
-                                            <option value="0" {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
+                                            <option value="0"
+                                                {{ old('status_disposisi') === '0' ? 'selected' : '' }}>
                                                 Arsipkan</option>
-                                            <option value="1" {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
+                                            <option value="1"
+                                                {{ old('status_disposisi') === '1' ? 'selected' : '' }}>
                                                 Jabarkan</option>
-                                            <option value="2" {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
+                                            <option value="2"
+                                                {{ old('status_disposisi') === '2' ? 'selected' : '' }}>
                                                 Umumkan</option>
-                                            <option value="3" {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
+                                            <option value="3"
+                                                {{ old('status_disposisi') === '3' ? 'selected' : '' }}>
                                                 Laksanakan</option>
-                                            <option value="4" {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
+                                            <option value="4"
+                                                {{ old('status_disposisi') === '4' ? 'selected' : '' }}>
                                                 Persiapkan</option>
-                                            <option value="5" {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
+                                            <option value="5"
+                                                {{ old('status_disposisi') === '5' ? 'selected' : '' }}>
                                                 Ikuti</option>
                                         </select>
                                     </div>
@@ -497,7 +434,7 @@
                 </div>
             </form>
         </div>
-        {{-- Filter --}}
+        {{-- end Filter all disposisi --}}
 
         @can('admin')
             {{-- Tab --}}
@@ -919,7 +856,8 @@
                                                                 style="min-height: 130px">
                                                                 <p class="w-75"> {!! $data->catatan_disposisi !!}</p>
                                                                 <p class="mt-3" style="font-size: .7rem;">
-                                                                    -- {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
+                                                                    --
+                                                                    {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                     --</p>
                                                                 <div class="d-flex flex-column btn-group-action">
                                                                     <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
@@ -1087,28 +1025,28 @@
         const disposisiUserLogin = document.getElementById('disposisi-user-login');
         const semuaDisposisi = document.getElementById('semua-disposisi');
 
+        const filter1 = document.getElementById('filter1');
+        const filter2 = document.getElementById('filter2');
+
+
+
         disposisiUserLogin.addEventListener("click", function(event) {
-            event.preventDefault();
-            if ($("#disposisi-user-login").hasClass('active')) {
-                console.log('filter1');
-                $("#filter1").removeClass(".d-none");
-                $('#filter2').addClass(".d-none");
-            }
+            const element = event.target;
+
+            filter1.classList.remove('d-none');
+            filter2.classList.add('d-none');
+            filter2.classList.remove('d-block');
+            filter1.classList.add('d-block');
+
         })
 
         semuaDisposisi.addEventListener("click", function(event) {
-            event.preventDefault();
-            if ($("#disposisi-user-login").hasClass('active')) {
-                console.log('filter1');
-                $("#filter1").removeClass(".d-none");
-                $('#filter2').addClass(".d-none");
-            }
+            const element = event.target;
 
-            if ($("#semua-disposisi").hasClass('active')) {
-                console.log('filter2');
-                $("#filter2").removeClass(".d-none");
-                $('#filter1').addClass(".d-none");
-            }
+            filter2.classList.remove('d-none');
+            filter2.classList.add('d-block');
+            filter1.classList.remove('d-block');
+            filter1.classList.add('d-none');
         })
     </script>
     {{-- Toast --}}

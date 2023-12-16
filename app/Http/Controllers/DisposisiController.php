@@ -12,6 +12,7 @@ use App\Models\PosisiJabatan;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\DisposisiRequest;
 use App\Repository\Disposisi\DisposisiRepository;
+use Illuminate\Support\Facades\Auth;
 
 class DisposisiController extends Controller
 {
@@ -148,7 +149,7 @@ class DisposisiController extends Controller
 
     public function filterData(Request $request)
     {
-        $disposisiList = $this->disposisiRepository->filterData($request);
+        $disposisiList = $this->disposisiRepository->index($request);
         $disposisiList1 = $this->disposisiRepository->filterData($request);
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
@@ -166,7 +167,7 @@ class DisposisiController extends Controller
     public function filterDataAll(Request $request)
     {
         $disposisiList = $this->disposisiRepository->filterDataAll($request);
-        $disposisiList1 = $this->disposisiRepository->filterDataAll($request);
+        $disposisiList1 = $this->disposisiRepository->indexAdmin($request);
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
 
@@ -182,8 +183,8 @@ class DisposisiController extends Controller
     }
     public function search(Request $request)
     {
-        $disposisiList = $this->disposisiRepository->search($request);
-        $disposisiList1 = $this->disposisiRepository->search($request);
+        $disposisiList = $this->disposisiRepository->index($request);
+        $disposisiList1 =  $this->disposisiRepository->searchForuser($request);
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
 
@@ -192,6 +193,24 @@ class DisposisiController extends Controller
             'active1' => 'manajemen-surat',
             'active' => 'Disposisi',
             'disposisiList' => $disposisiList,
+            'disposisiList1' => $disposisiList1,
+            'userList' => $userList,
+            'posisiJabatanList' => $posisiJabatanList,
+        ]);
+    }
+    public function searchForAll(Request $request)
+    {
+        $disposisiList = $this->disposisiRepository->search($request);
+        $disposisiList1 =  $this->disposisiRepository->indexAdmin($request);
+        $userList = User::get();
+        $posisiJabatanList = PosisiJabatan::get();
+
+        return view('manajemen-surat.disposisi.disposisi-data', [
+            'title' => 'Disposisi',
+            'active1' => 'manajemen-surat',
+            'active' => 'Disposisi',
+            'disposisiList' => $disposisiList,
+            'disposisiList1' => $disposisiList1,
             'userList' => $userList,
             'posisiJabatanList' => $posisiJabatanList,
         ]);

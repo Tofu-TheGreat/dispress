@@ -13,5 +13,6 @@ interface DisposisiRepository
     public function filterDataAll($data);
     public function filterData($data);
     public function search($data);
+    public function searchForuser($data);
     public function indexAdmin();
 }

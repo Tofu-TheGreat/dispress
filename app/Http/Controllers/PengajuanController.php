@@ -147,6 +147,7 @@ class PengajuanController extends Controller
 
         $pengajuanList0 =  $this->pengajuanRepository->filterData($request, '0');
         $pengajuanList1 =  $this->pengajuanRepository->filterData($request, '1');
+        $posisiJabatanList = PosisiJabatan::get();
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
@@ -158,6 +159,7 @@ class PengajuanController extends Controller
             'pengajuanList1' => $pengajuanList1,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 

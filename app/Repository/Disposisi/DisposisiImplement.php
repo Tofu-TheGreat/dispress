@@ -221,7 +221,10 @@ class DisposisiImplement implements DisposisiRepository
         }
 
 
-        $result = $query->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)->orWhere('id_penerima', Auth::user()->id_user)->paginate(6);
+        $result = $query->where(function ($query) use ($data) {
+            $query->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
+                ->orWhere('id_penerima', Auth::user()->id_user);
+        })->paginate(6);
 
         $result->getCollection()->transform(function ($item) {
             $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');
@@ -251,12 +254,40 @@ class DisposisiImplement implements DisposisiRepository
                 $query->where('nama_posisi_jabatan', 'like', "%" . $data->search . "%");
             })
             ->orWhere('catatan_disposisi', 'like', "%" . $data->search . "%");
-        // ->orWhere('status_disposisi', 'like', "%" . reverseconvertDisposisiField($data->search, 'status') . "%");
 
-        // ->orWhereHas('user', function ($query) use ($data) {
-        //     $query->where('nama', 'like', "%" . $data->search . "%");
-        // })
         $result = $search->paginate(6);
+        $result->getCollection()->transform(function ($item) {
+            $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');
+            $item->status_disposisi = convertDisposisiField($item->status_disposisi, 'status');
+            $item->tujuan_disposisi = convertDisposisiField($item->tujuan_disposisi, 'tujuan');
+            return $item;
+        });
+
+        return $result;
+    }
+
+    public function searchForUser($data)
+    {
+        $result = $this->disposisi
+            ->where(function ($query) use ($data) {
+                $query->where('tanggal_disposisi', 'like', "%" . $data->search . "%")
+                    ->orWhereRaw("DATE_FORMAT(tanggal_disposisi, '%M') LIKE ?", ["%" . $data->search . "%"]);
+            })
+            ->orWhereHas('pengajuan', function ($query) use ($data) {
+                $query->where('nomor_agenda', 'like', "%" . $data->search . "%")
+                    ->orWhereHas('surat', function ($subquery) use ($data) {
+                        $subquery->where('nomor_surat', 'like', "%" . $data->search . "%");
+                    });
+            })
+            ->orWhereHas('posisiJabatan', function ($query) use ($data) {
+                $query->where('nama_posisi_jabatan', 'like', "%" . $data->search . "%");
+            })
+            ->orWhere('catatan_disposisi', 'like', "%" . $data->search . "%")
+            ->where(function ($query) use ($data) {
+                $query->where('id_posisi_jabatan', 'like', "%" . Auth::user()->id_posisi_jabatan . "%")
+                    ->orWhere('id_penerima', 'like', "%" . Auth::user()->id_user . "%");
+            })
+            ->paginate(6);
 
         $result->getCollection()->transform(function ($item) {
             $item->sifat_disposisi = convertDisposisiField($item->sifat_disposisi, 'sifat');

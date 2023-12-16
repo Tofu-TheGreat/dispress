@@ -148,8 +148,8 @@ class DisposisiController extends Controller
 
     public function filterData(Request $request)
     {
-        $disposisiList = $this->disposisiRepository->filterDataAll($request);
-        $disposisiList1 = $this->disposisiRepository->filterDataAll($request);
+        $disposisiList = $this->disposisiRepository->filterData($request);
+        $disposisiList1 = $this->disposisiRepository->filterData($request);
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
 
@@ -165,8 +165,8 @@ class DisposisiController extends Controller
     }
     public function filterDataAll(Request $request)
     {
-        $disposisiList = $this->disposisiRepository->filterData($request);
-        $disposisiList1 = $this->disposisiRepository->filterData($request);
+        $disposisiList = $this->disposisiRepository->filterDataAll($request);
+        $disposisiList1 = $this->disposisiRepository->filterDataAll($request);
         $userList = User::get();
         $posisiJabatanList = PosisiJabatan::get();
 

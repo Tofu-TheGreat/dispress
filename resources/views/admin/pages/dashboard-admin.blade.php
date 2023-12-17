@@ -186,7 +186,14 @@
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card card-statistic-1">
+                <div class="card card-statistic-1 position-relative">
+                    <div style="position: absolute; top: 5px; right: 5px">
+                        <a href="/disposisi" data-toggle="tooltip" data-placement="top"
+                            title="Menuju detail disposisi untuk anda."
+                            data-original-title="Menuju detail disposisi untuk anda.">
+                            <i class="bi bi-arrow-right-circle-fill mr-2 text-primary" style="font-size: 1rem;"></i>
+                        </a>
+                    </div>
                     <div class="card-icon bg-primary position-relative">
                         <div style="position: absolute; top: -33px; left: 5px">
                             <span data-toggle="tooltip" data-placement="top"

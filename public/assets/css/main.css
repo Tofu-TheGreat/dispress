@@ -520,6 +520,9 @@ Footer
         margin-top: 10px;
         justify-content: end;
     }
+    .button-reset-search {
+        margin-left: 5px;
+    }
 }
 
 @media screen and (max-width: 768px) {

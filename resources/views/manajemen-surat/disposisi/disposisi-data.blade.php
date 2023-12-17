@@ -581,37 +581,48 @@
                                                                             --
                                                                             {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                             --</p>
-                                                                        <div class="d-flex flex-column btn-group-action">
+                                                                        @can('admin')
+                                                                            <div class="d-flex flex-column btn-group-action">
+                                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Detail data disposisi "
+                                                                                    data-original-title="Detail data disposisi "
+                                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                    href=""><i class="pl-1 bi bi-eye"></i>
+                                                                                </a>
+                                                                                <a type="button" data-toggle="tooltip"
+                                                                                    data-placement="left"
+                                                                                    title="Edit data disposisi"
+                                                                                    data-original-title="Edit data disposisi"
+                                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                                        class="pl-1  bi bi-pencil-square "></i>
+                                                                                </a>
+                                                                                <form method="POST"
+                                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                    class="tombol-hapus">
+                                                                                    @csrf
+                                                                                    @method('DELETE')
+                                                                                    <button type="button" data-toggle="tooltip"
+                                                                                        data-placement="bottom"
+                                                                                        title="Hapus data Disposisi"
+                                                                                        data-original-title="Hapus data Disposisi"
+                                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                        href=""><i
+                                                                                            class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+                                                                        @endcan
+                                                                        @can('officer')
                                                                             <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                                 data-toggle="tooltip" data-placement="top"
                                                                                 title="Detail data disposisi "
                                                                                 data-original-title="Detail data disposisi "
-                                                                                class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                class="btn btn-info has-icon text-white "
                                                                                 href=""><i class="pl-1 bi bi-eye"></i>
                                                                             </a>
-                                                                            <a type="button" data-toggle="tooltip"
-                                                                                data-placement="left"
-                                                                                title="Edit data disposisi"
-                                                                                data-original-title="Edit data disposisi"
-                                                                                class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                                href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
-                                                                                    class="pl-1  bi bi-pencil-square "></i>
-                                                                            </a>
-                                                                            <form method="POST"
-                                                                                action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                                class="tombol-hapus">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="button" data-toggle="tooltip"
-                                                                                    data-placement="bottom"
-                                                                                    title="Hapus data Disposisi"
-                                                                                    data-original-title="Hapus data Disposisi"
-                                                                                    class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
-                                                                                    href=""><i
-                                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
+                                                                        @endcan
                                                                     </div>
                                                                     <div
                                                                         class="card-footer  d-flex justify-content-between position-relative">
@@ -719,37 +730,48 @@
                                                                             --
                                                                             {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                             --</p>
-                                                                        <div class="d-flex flex-column btn-group-action">
+                                                                        @can('admin')
+                                                                            <div class="d-flex flex-column btn-group-action">
+                                                                                <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                    data-toggle="tooltip" data-placement="top"
+                                                                                    title="Detail data disposisi "
+                                                                                    data-original-title="Detail data disposisi "
+                                                                                    class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                    href=""><i class="pl-1 bi bi-eye"></i>
+                                                                                </a>
+                                                                                <a type="button" data-toggle="tooltip"
+                                                                                    data-placement="left"
+                                                                                    title="Edit data disposisi"
+                                                                                    data-original-title="Edit data disposisi"
+                                                                                    class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                                    href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                                        class="pl-1  bi bi-pencil-square "></i>
+                                                                                </a>
+                                                                                <form method="POST"
+                                                                                    action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                                    class="tombol-hapus">
+                                                                                    @csrf
+                                                                                    @method('DELETE')
+                                                                                    <button type="button" data-toggle="tooltip"
+                                                                                        data-placement="bottom"
+                                                                                        title="Hapus data Disposisi"
+                                                                                        data-original-title="Hapus data Disposisi"
+                                                                                        class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                        href=""><i
+                                                                                            class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                                    </button>
+                                                                                </form>
+                                                                            </div>
+                                                                        @endcan
+                                                                        @can('officer')
                                                                             <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                                 data-toggle="tooltip" data-placement="top"
                                                                                 title="Detail data disposisi "
                                                                                 data-original-title="Detail data disposisi "
-                                                                                class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                                class="btn btn-info has-icon text-white "
                                                                                 href=""><i class="pl-1 bi bi-eye"></i>
                                                                             </a>
-                                                                            <a type="button" data-toggle="tooltip"
-                                                                                data-placement="left"
-                                                                                title="Edit data disposisi"
-                                                                                data-original-title="Edit data disposisi"
-                                                                                class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                                href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
-                                                                                    class="pl-1  bi bi-pencil-square "></i>
-                                                                            </a>
-                                                                            <form method="POST"
-                                                                                action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                                class="tombol-hapus">
-                                                                                @csrf
-                                                                                @method('DELETE')
-                                                                                <button type="button" data-toggle="tooltip"
-                                                                                    data-placement="bottom"
-                                                                                    title="Hapus data Disposisi"
-                                                                                    data-original-title="Hapus data Disposisi"
-                                                                                    class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
-                                                                                    href=""><i
-                                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
-                                                                                </button>
-                                                                            </form>
-                                                                        </div>
+                                                                        @endcan
                                                                     </div>
                                                                     <div
                                                                         class="card-footer  d-flex justify-content-between position-relative">
@@ -859,36 +881,48 @@
                                                                     --
                                                                     {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                     --</p>
-                                                                <div class="d-flex flex-column btn-group-action">
+                                                                @can('admin')
+                                                                    <div class="d-flex flex-column btn-group-action">
+                                                                        <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Detail data disposisi "
+                                                                            data-original-title="Detail data disposisi "
+                                                                            class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                            href=""><i class="pl-1 bi bi-eye"></i>
+                                                                        </a>
+                                                                        <a type="button" data-toggle="tooltip"
+                                                                            data-placement="left" title="Edit data disposisi"
+                                                                            data-original-title="Edit data disposisi"
+                                                                            class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                            href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
+                                                                                class="pl-1  bi bi-pencil-square "></i>
+                                                                        </a>
+                                                                        <form method="POST"
+                                                                            action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                            class="tombol-hapus">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button" data-toggle="tooltip"
+                                                                                data-placement="bottom"
+                                                                                title="Hapus data Disposisi"
+                                                                                data-original-title="Hapus data Disposisi"
+                                                                                class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                                href=""><i
+                                                                                    class="bi bi-trash tombol-hapus"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
+                                                                @endcan
+                                                                @can('officer')
                                                                     <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data disposisi "
                                                                         data-original-title="Detail data disposisi "
-                                                                        class="btn btn-info has-icon text-white tombol-detail-card"
-                                                                        href=""><i class="pl-1 bi bi-eye"></i>
+                                                                        class="btn btn-info has-icon text-white "
+                                                                        href=""><i class="mr-1 bi bi-eye"></i>Detail
+                                                                        Data
                                                                     </a>
-                                                                    <a type="button" data-toggle="tooltip"
-                                                                        data-placement="left" title="Edit data disposisi"
-                                                                        data-original-title="Edit data disposisi"
-                                                                        class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                        href="{{ route('disposisi.edit', Crypt::encryptString($data->id_disposisi)) }}"><i
-                                                                            class="pl-1  bi bi-pencil-square "></i>
-                                                                    </a>
-                                                                    <form method="POST"
-                                                                        action="{{ route('disposisi.destroy', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                        class="tombol-hapus">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="button" data-toggle="tooltip"
-                                                                            data-placement="bottom"
-                                                                            title="Hapus data Disposisi"
-                                                                            data-original-title="Hapus data Disposisi"
-                                                                            class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
-                                                                            href=""><i
-                                                                                class="pl-1  bi bi-trash tombol-hapus"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
+                                                                @endcan
                                                             </div>
                                                             <div
                                                                 class="card-footer  d-flex justify-content-between position-relative">

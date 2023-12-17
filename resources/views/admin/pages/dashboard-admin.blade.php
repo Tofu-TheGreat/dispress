@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-lg-4 col-md-6">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-primary position-relative">
                                 <div style="position: absolute; top: -33px; left: 5px">
@@ -126,7 +126,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-lg-4 col-md-6">
                         <div class="card card-statistic-1">
                             <div class="card-icon bg-danger position-relative">
                                 <div style="position: absolute; top: -33px; left: 5px">

@@ -208,7 +208,7 @@ class DatabaseSeeder extends Seeder
         Disposisi::factory()->create([
             'id_pengajuan' => '2',
             'catatan_disposisi' => 'Approve Disposisi',
-            'tanggal_disposisi' => '2028-12-9',
+            'tanggal_disposisi' => '2029-1-9',
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',

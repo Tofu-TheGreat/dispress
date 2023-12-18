@@ -168,10 +168,12 @@ class PengajuanController extends Controller
     {
         $this->authorize('admin-officer');
 
-        $pengajuanList0 = $this->pengajuanRepository->search($request, '0');
-        $pengajuanList1 = $this->pengajuanRepository->search($request, '1');
+        $page = $request->query('page', 1); // Default to page 1 if not present
+        $pengajuanList0 = $this->pengajuanRepository->search($request, '0')->appends(['page0' => $page]);
+        $pengajuanList1 = $this->pengajuanRepository->search($request, '1')->appends(['page1' => $page]);
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
+        $posisiJabatanList = PosisiJabatan::get();
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
@@ -181,6 +183,7 @@ class PengajuanController extends Controller
             'pengajuanList1' => $pengajuanList1,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 }

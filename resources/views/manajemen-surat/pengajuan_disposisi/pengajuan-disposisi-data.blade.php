@@ -208,14 +208,15 @@
                                 href="#belum-terdisposisikan3" role="tab" aria-controls="belum-terdisposisikan"
                                 aria-selected="true"> <i class="bi bi-patch-minus text-danger"></i> Belum
                                 Didisposisikan
-                                <span class="badge badge-transparent-danger">{{ $pengajuanList0->count() }}</span></a>
+                                <span
+                                    class="badge badge-transparent-danger">{{ $pengajuanList0->where('status_pengajuan', '0')->count() }}</span></a>
                         </li>
                         <li class="nav-item w-50 text-center">
                             <a class="nav-link" id="terdisposisikan-tab3" data-toggle="tab" href="#terdisposisikan3"
                                 role="tab" aria-controls="terdisposisikan" aria-selected="false"> <i
                                     class="bi bi-patch-check text-success"></i> Sudah
                                 Didisposisikan<span
-                                    class="badge badge-transparent-success">{{ $pengajuanList1->count() }}</span></a>
+                                    class="badge badge-transparent-success">{{ $pengajuanList1->where('status_pengajuan', '1')->count() }}</span></a>
                         </li>
                     </ul>
                 </div>
@@ -261,7 +262,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.pengajuan') }}" method="post">
+                                <form action="{{ route('search.pengajuan') }}" method="get">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -282,13 +283,13 @@
                                     <div class="tab-pane fade show active" id="belum-terdisposisikan3" role="tabpanel"
                                         aria-labelledby="belum-terdisposisikan-tab3">
                                         <div class="row">
-                                            @if ($pengajuanList0->isEmpty())
+                                            @if ($pengajuanList0->where('status_pengajuan', '0')->isEmpty())
                                                 <div class="d-flex justify-content-center align-content-center">
                                                     <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                         class="w-50">
                                                 </div>
                                             @else
-                                                @foreach ($pengajuanList0 as $data)
+                                                @foreach ($pengajuanList0->where('status_pengajuan', '0') as $data)
                                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                                         <div class="card card-primary card-surat shadow-sm">
                                                             <div class="card-header d-flex justify-content-between">
@@ -436,13 +437,13 @@
                                     <div class="tab-pane fade" id="terdisposisikan3" role="tabpanel"
                                         aria-labelledby="terdisposisikan-tab3">
                                         <div class="row">
-                                            @if ($pengajuanList1->isEmpty())
+                                            @if ($pengajuanList1->where('status_pengajuan', '1')->isEmpty())
                                                 <div class="d-flex justify-content-center align-content-center">
                                                     <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                         class="w-50">
                                                 </div>
                                             @else
-                                                @foreach ($pengajuanList1 as $data)
+                                                @foreach ($pengajuanList1->where('status_pengajuan', '1') as $data)
                                                     <div class="col-sm-12 col-md-12 col-lg-6">
                                                         <div class="card card-primary card-surat shadow-sm">
                                                             <div class="card-header d-flex justify-content-between">

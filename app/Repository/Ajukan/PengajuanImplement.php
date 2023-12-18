@@ -95,7 +95,10 @@ class PengajuanImplement implements PengajuanRepository
     }
     public function search($data, $status)
     {
-        $search = $this->pengajuan->where('status_pengajuan', $status)->where('nomor_agenda', 'like', "%" . $data->search . "%")
+        $search = $this->pengajuan->where('status_pengajuan', $status)
+            ->where(function ($query) use ($data, $status) {
+                $query->where('status_pengajuan', $status)->where('nomor_agenda', 'like', "%" . $data->search . "%");
+            })
             ->orWhere(function ($query) use ($data, $status) {
                 $query->where('status_pengajuan', $status)->where('tanggal_terima', 'like', "%" . $data->search . "%")
                     ->orWhereRaw("DATE_FORMAT(tanggal_terima, '%M') LIKE ?", ["%" . $data->search . "%"]);

@@ -446,7 +446,11 @@
                                 <a class="nav-link active" id="disposisi-user-login" data-toggle="tab"
                                     href="#disposisi-user" role="tab" aria-controls="belum-terdisposisikan"
                                     aria-selected="true"> <i class="bi bi-person text-success"></i> Disposisi Untuk anda
-                                    <span class="badge badge-transparent-success">{{ $disposisiList1->count() }}</span></a>
+                                    <span
+                                        class="badge badge-transparent-success">{{ $disposisiList1->filter(function ($item) {
+                                                return $item->id_posisi_jabatan == Auth::user()->id_posisi_jabatan ||
+                                                    $item->id_penerima == Auth::user()->id_user;
+                                            })->count() }}</span></a>
                             </li>
                             <li class="nav-item w-50 text-center">
                                 <a class="nav-link" id="semua-disposisi" data-toggle="tab" href="#semua-disposisi3"
@@ -504,7 +508,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.disposisi') }}" method="post" id="searchForm">
+                                <form action="{{ route('search.disposisi') }}" method="get" id="searchForm">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -532,7 +536,9 @@
                                                             class="w-50">
                                                     </div>
                                                 @else
-                                                    @foreach ($disposisiList1 as $data)
+                                                    @foreach ($disposisiList1->filter(function ($item) {
+                return $item->id_posisi_jabatan == Auth::user()->id_posisi_jabatan || $item->id_penerima == Auth::user()->id_user;
+            }) as $data)
                                                         <div class="col-sm-12 col-md-12 col-lg-6">
                                                             <div class="card card-primary card-surat shadow-sm">
                                                                 <div class="card-header d-flex justify-content-between">

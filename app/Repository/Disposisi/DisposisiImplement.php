@@ -284,8 +284,10 @@ class DisposisiImplement implements DisposisiRepository
             })
             ->orWhere('catatan_disposisi', 'like', "%" . $data->search . "%")
             ->where(function ($query) use ($data) {
-                $query->where('id_posisi_jabatan', 'like', "%" . Auth::user()->id_posisi_jabatan . "%")
-                    ->orWhere('id_penerima', 'like', "%" . Auth::user()->id_user . "%");
+                $query->where(function ($subquery) use ($data) {
+                    $subquery->where('id_posisi_jabatan', Auth::user()->id_posisi_jabatan)
+                        ->orWhere('id_penerima', Auth::user()->id_user);
+                });
             })
             ->paginate(6);
 

@@ -95,7 +95,7 @@ Route::post('/search-surat', [SuratController::class, 'search'])->name('search.s
 
 Route::resource('/pengajuan-disposisi', PengajuanController::class)->middleware('auth');
 Route::get('/pengajuan-filter', [PengajuanController::class, 'filterData'])->middleware('auth');
-Route::post('/search-pengajuan', [PengajuanController::class, 'search'])->name('search.pengajuan');
+Route::get('/search-pengajuan', [PengajuanController::class, 'search'])->name('search.pengajuan');
 Route::get('pengajuan-export', [ExportController::class, 'export_pengajuan'])->name('pengajuan.export');
 
 Route::get('template-user', [ExportController::class, 'template_user'])->name('template.user');
@@ -109,5 +109,5 @@ Route::post('disposisi-import', [ImportController::class, 'import_user'])->name(
 
 Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->name('filter.disposisi', 'role:admin');
 Route::get('/disposisi-filter-all', [DisposisiController::class, 'filterDataAll'])->name('filter.all.disposisi', 'role:admin');
-Route::post('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi', 'role:admin');
-Route::post('/search-disposisi-all', [DisposisiController::class, 'searchForAll'])->name('search.semua.disposisi', 'role:admin');
+Route::get('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi', 'role:admin');
+Route::get('/search-disposisi-all', [DisposisiController::class, 'searchForAll'])->name('search.semua.disposisi', 'role:admin');

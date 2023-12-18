@@ -356,7 +356,7 @@
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Detail data surat"
                                                                             data-original-title="Detail data surat"
-                                                                            class="btn btn-info has-icon text-white"
+                                                                            class="btn btn-info has-icon text-white mr-1"
                                                                             href=""><i class="bi bi-eye"></i>
                                                                         </a>
                                                                     @endcan

@@ -166,8 +166,18 @@ class DatabaseSeeder extends Seeder
             'id_surat' => '2',
             'id_klasifikasi' => '2',
             'nomor_agenda' => '020/1299-TU/2023',
-            'status_pengajuan' => '0',
+            'status_pengajuan' => '1',
             'tanggal_terima' => '2023-11-12',
+            'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
+            'id_user' => '5',
+        ]);
+
+        Pengajuan::factory()->create([
+            'id_surat' => '2',
+            'id_klasifikasi' => '2',
+            'nomor_agenda' => '020/1300-TU/2023',
+            'status_pengajuan' => '0',
+            'tanggal_terima' => '2023-12-12',
             'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
             'id_user' => '5',
         ]);
@@ -182,6 +192,28 @@ class DatabaseSeeder extends Seeder
             'id_user' => '7',
             'id_posisi_jabatan' => '4',
             'id_penerima' => '1',
+        ]);
+
+        Disposisi::factory()->create([
+            'id_pengajuan' => '2',
+            'catatan_disposisi' => 'Approve Disposisi',
+            'tanggal_disposisi' => '2028-12-9',
+            'status_disposisi' => '3',
+            'sifat_disposisi' => '1',
+            'id_user' => '7',
+            'id_posisi_jabatan' => '4',
+            'id_penerima' => '1',
+        ]);
+
+        Disposisi::factory()->create([
+            'id_pengajuan' => '2',
+            'catatan_disposisi' => 'Approve Disposisi',
+            'tanggal_disposisi' => '2028-12-9',
+            'status_disposisi' => '3',
+            'sifat_disposisi' => '1',
+            'id_user' => '7',
+            'id_posisi_jabatan' => '4',
+            'id_penerima' => '8',
         ]);
     }
 }

@@ -491,6 +491,32 @@ Footer
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* custom scrollbar */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.5, #2681cc),
+        color-stop(1, #2681cc1e)
+    );
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
 @media screen and (max-width: 570px) {
     .btn-group:not(.note-btn-group) {
         display: flex;

@@ -15,4 +15,5 @@ interface DisposisiRepository
     public function search($data);
     public function searchForuser($data);
     public function indexAdmin();
+    public function cetakDisposisi($id);
 }

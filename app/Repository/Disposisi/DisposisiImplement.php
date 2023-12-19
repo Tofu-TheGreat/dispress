@@ -300,4 +300,8 @@ class DisposisiImplement implements DisposisiRepository
 
         return $result;
     }
+    public function cetakDisposisi($id)
+    {
+        return $this->disposisi->where('id_disposisi', $id)->first();
+    }
 }

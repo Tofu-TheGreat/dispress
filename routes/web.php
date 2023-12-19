@@ -111,3 +111,5 @@ Route::get('/disposisi-filter', [DisposisiController::class, 'filterData'])->nam
 Route::get('/disposisi-filter-all', [DisposisiController::class, 'filterDataAll'])->name('filter.all.disposisi', 'role:admin');
 Route::get('/search-disposisi', [DisposisiController::class, 'search'])->name('search.disposisi', 'role:admin');
 Route::get('/search-disposisi-all', [DisposisiController::class, 'searchForAll'])->name('search.semua.disposisi', 'role:admin');
+
+Route::get('/disposisi-cetak/{id}', [DisposisiController::class, 'cetakDisposisi'])->name('cetak.disposisi');

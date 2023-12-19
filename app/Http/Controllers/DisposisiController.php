@@ -12,6 +12,7 @@ use App\Models\PosisiJabatan;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\DisposisiRequest;
 use App\Repository\Disposisi\DisposisiRepository;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 use Illuminate\Support\Facades\Auth;
 
 class DisposisiController extends Controller
@@ -145,6 +146,17 @@ class DisposisiController extends Controller
         $encryptId = Crypt::decryptString($id);
         $this->disposisiRepository->destroy($encryptId);
         return redirect()->intended('/disposisi')->with('success', 'Berhasil menghapus data Disposisi.');
+    }
+
+    public function cetakDisposisi($id)
+    {
+        $encryptId = Crypt::decryptString($id);
+        $dataDisposisi = $this->disposisiRepository->cetakDisposisi($encryptId);
+        $pdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi]);
+
+        $secPage = public_path('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen);
+        $pdf->AddPage($secPage);
+        return $pdf->stream();
     }
 
     public function filterData(Request $request)

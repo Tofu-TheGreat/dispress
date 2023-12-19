@@ -578,6 +578,21 @@
                                                                             --
                                                                             {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                             --</p>
+                                                                        <div class="mt-1 mb-1 tombol-cetak">
+                                                                            <a class="tombol-cetak" data-toggle="tooltip"
+                                                                                data-placement="right"
+                                                                                title="klik Untuk Mencetakkan disposisi"
+                                                                                data-original-title="klik Untuk Mencetakkan disposisi"
+                                                                                href="{{ route('cetak.disposisi', Crypt::encryptString($data->id_disposisi)) }}" target="_blank">
+                                                                                <button type="button"
+                                                                                    class="btn btn-primary mr-2 tombol-cetak"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#cetak-modal{{ $data->id_pengajuan }}"
+                                                                                    type="button">
+                                                                                    <i class="bi bi-printer"></i>
+                                                                                </button>
+                                                                            </a>
+                                                                        </div>
                                                                         @can('admin')
                                                                             <div class="d-flex flex-column btn-group-action">
                                                                                 <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"

@@ -493,15 +493,6 @@
                                     </button>
                                 </a>
                                 {{-- Akhir Button Export Data --}}
-                                {{-- Button import Data --}}
-                                <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                    data-original-title="Import Data" disabled>
-                                    <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                        data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
-                                        <i class="fa fa-file-excel btn-tambah-data "></i>
-                                    </button>
-                                </span>
-                                {{-- Akhir Button import Data --}}
                             </div>
                         @endcan
                     </div>
@@ -985,52 +976,6 @@
         </div>
     </section>
 
-    <!-- Modal Import -->
-    <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Users</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <form action="{{ route('admin.import') }}" method="post" enctype="multipart/form-data">
-                    <div class="modal-body py-4 px-4 mt-3 border border-1">
-                        <span class="d-block">Unduh Template Import Admin: </span>
-                        <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="Admin-template-import">
-                            <span>Template Import Admin</span> <i
-                                class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
-                        @csrf
-                        <div class="form-group">
-                            <label for="import">Masukkan file Yang Ingin di-import: </label>
-                            <small class="d-block">Catatan: masukkan file dengan format (XLSX), maksimal 10
-                                MB.</small>
-                            <input type="file" class="file-filepond-preview @error('file') is-invalid @enderror"
-                                id="import" name="file" accept=".xlsx">
-                            @if ($errors->any())
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {!! implode('', $errors->all('<div>:message</div>')) !!}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="modal-footer d-flex justify-content-between">
-                        <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
-                                class="bi bi-x-circle ml-3"></i></button>
-                        <button type="submit" value="Import" class="btn btn-primary text-white">
-                            Click untuk
-                            import <i class="bi bi-clipboard-check-fill ml-3"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    {{-- End Modal Import --}}
 @endsection
 @section('script')
     {{-- modules --}}

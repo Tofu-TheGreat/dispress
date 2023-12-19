@@ -179,6 +179,7 @@ return [
         // Maatwebsite
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProviderLaravelRecent::class,
+        Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
     ])->toArray(),
 
     /*
@@ -202,6 +203,7 @@ return [
 
         // images
         'Image' => Intervention\Image\Facades\Image::class,
+        'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class
     ])->toArray(),
 
 ];

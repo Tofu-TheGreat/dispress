@@ -179,7 +179,8 @@ return [
         // Maatwebsite
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Intervention\Image\ImageServiceProviderLaravelRecent::class,
-        Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class
+        Mccarlosen\LaravelMpdf\LaravelMpdfServiceProvider::class,
+        Webklex\PDFMerger\Providers\PDFMergerServiceProvider::class
     ])->toArray(),
 
     /*
@@ -203,7 +204,8 @@ return [
 
         // images
         'Image' => Intervention\Image\Facades\Image::class,
-        'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class
+        'PDF' => Mccarlosen\LaravelMpdf\Facades\LaravelMpdf::class,
+        'PDFMerger' => Webklex\PDFMerger\Facades\PDFMergerFacade::class,
     ])->toArray(),
 
 ];

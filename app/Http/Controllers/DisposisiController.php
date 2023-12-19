@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\DisposisiRequest;
 use App\Repository\Disposisi\DisposisiRepository;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMERGER;
 use Illuminate\Support\Facades\Auth;
 
 class DisposisiController extends Controller
@@ -152,11 +153,20 @@ class DisposisiController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $dataDisposisi = $this->disposisiRepository->cetakDisposisi($encryptId);
-        $pdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi]);
+        // Initialize PDFMerger
+        $pdfmerg = PDFMERGER::init();
 
-        $secPage = public_path('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen);
-        $pdf->AddPage($secPage);
-        return $pdf->stream();
+        // Create a temporary file for the main PDF
+        $tempMainPdf = tempnam(sys_get_temp_dir(), 'main_pdf');
+        $mainPdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi]);
+        $mainPdf->save($tempMainPdf);
+
+        // Add the main PDF
+        $pdfmerg->addPDF($tempMainPdf, 'all');
+        $pdfmerg->addPDF(public_path('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen), 'all');
+        $pdfmerg->merge();
+
+        return $pdfmerg->stream();
     }
 
     public function filterData(Request $request)

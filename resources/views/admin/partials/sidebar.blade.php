@@ -65,6 +65,8 @@
                         class="fas fa bi bi-gear-fill"></i>
                     <span>Setting</span></a>
                 <ul class="dropdown-menu">
+                    <li><a class="nav-link {{ $active == 'profile' ? 'active text-info' : '' }}"
+                            href="/profile">Profile</a></li>
                     <li>
                         <form action="/logout" method="POST" id="logout">
                             @csrf

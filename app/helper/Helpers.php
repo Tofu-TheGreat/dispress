@@ -222,3 +222,29 @@ if (!function_exists('reverseconvertDisposisiField')) {
         return $map[$value] ?? null; // Mengembalikan null jika nilai tidak ditemukan
     }
 }
+
+if (!function_exists('formatCetak')) {
+    function formatCetak($isiSurat, $panjangMaksimal = 29)
+    {
+        $kataKata = explode(' ', $isiSurat);
+        $hasil = '';
+        $panjangBaris = 0;
+
+        foreach ($kataKata as $kata) {
+            if ($panjangBaris + strlen($kata) > $panjangMaksimal) {
+                $hasil .= '<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+                $panjangBaris = 0;
+            }
+
+            if ($panjangBaris > 0) {
+                $hasil .= ' ';
+                $panjangBaris++;
+            }
+
+            $hasil .= $kata;
+            $panjangBaris += strlen($kata);
+        }
+
+        return $hasil;
+    }
+}

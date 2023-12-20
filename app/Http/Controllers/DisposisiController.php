@@ -166,6 +166,8 @@ class DisposisiController extends Controller
         $pdfmerg->addPDF(public_path('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen), 'all');
         $pdfmerg->merge();
 
+        $pdfmerg->setFileName($dataDisposisi->tanggal_disposisi . ' - ' . $dataDisposisi->pengajuan->nomor_agenda . ' - disposisi.pdf');
+
         return $pdfmerg->stream();
     }
 

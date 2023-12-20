@@ -152,23 +152,9 @@ class DisposisiController extends Controller
     public function cetakDisposisi($id)
     {
         $encryptId = Crypt::decryptString($id);
-        $dataDisposisi = $this->disposisiRepository->cetakDisposisi($encryptId);
-        // Initialize PDFMerger
-        $pdfmerg = PDFMERGER::init();
+        $pdfcetak = $this->disposisiRepository->cetakDisposisi($encryptId);
 
-        // Create a temporary file for the main PDF
-        $tempMainPdf = tempnam(sys_get_temp_dir(), 'main_pdf');
-        $mainPdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi]);
-        $mainPdf->save($tempMainPdf);
-
-        // Add the main PDF
-        $pdfmerg->addPDF($tempMainPdf, 'all');
-        $pdfmerg->addPDF(public_path('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen), 'all');
-        $pdfmerg->merge();
-
-        $pdfmerg->setFileName($dataDisposisi->tanggal_disposisi . ' - ' . $dataDisposisi->pengajuan->nomor_agenda . ' - disposisi.pdf');
-
-        return $pdfmerg->stream();
+        return $pdfcetak->stream();
     }
 
     public function filterData(Request $request)

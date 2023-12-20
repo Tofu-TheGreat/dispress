@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -113,3 +113,5 @@ Route::get('/search-disposisi', [DisposisiController::class, 'search'])->name('s
 Route::get('/search-disposisi-all', [DisposisiController::class, 'searchForAll'])->name('search.semua.disposisi', 'role:admin');
 
 Route::get('/disposisi-cetak/{id}', [DisposisiController::class, 'cetakDisposisi'])->name('cetak.disposisi');
+
+Route::resource('/surat-keluar', SuratKeluarController::class)->middleware('auth');

@@ -143,7 +143,12 @@
                         {!! formatCetak(date('d-F-Y', strtotime($dataDisposisi->pengajuan->tanggal_terima))) !!}
                     </p>
                     <p>Kepada&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                        {!! formatCetak($dataDisposisi->penerima->posisiJabatan->nama_posisi_jabatan) !!}</p>
+                        @if ($dataDisposisi->id_penerima != null)
+                            {!! formatCetak($dataDisposisi->penerima->posisiJabatan->nama_posisi_jabatan) !!}
+                        @else
+                            {!! formatCetak($dataDisposisi->posisiJabatan->nama_posisi_jabatan) !!}
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
@@ -164,8 +169,16 @@
             </div>
             <div class="diteruskan">
                 <p class="text-bold">Diteruskan Kepada : </p>
-                <p class="border-bottom-dotted">1. {{ $dataDisposisi->posisiJabatan->nama_posisi_jabatan }}
-                </p>
+                @if ($dataDisposisi->posisiJabatan != null)
+                    <?php
+                    $no = 1;
+                    ?>
+                    @foreach ($disposisiByRow as $data)
+                        <p class="border-bottom-dotted">{{ $no++ }}.
+                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                        </p>
+                    @endforeach
+                @endif
             </div>
             <div class="catatan-disposisi">
                 <p class="text-bold">Pesan/Catatan Disposisi</p>

@@ -33,7 +33,7 @@
         <div class="section-body">
             <h2 class="section-title">Hi, {{ $dataProfile->nama }}!</h2>
             <p class="section-lead">
-                Ubah Profile dan Informasi Anda disini.
+                Ubah Profile dan Password Anda disini.
             </p>
 
             <div class="row mt-sm-4">
@@ -561,13 +561,13 @@
             if (element.classList.contains("tombol-hapus-profile")) {
                 swal({
                     title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
+                    text: 'Ingin menghapus foto profile {{ $dataProfile->level }} ini?',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
+                        swal('Foto profile {{ $dataProfile->level }} berhasil dihapus!', {
                             icon: 'success',
                         });
                         // Make an AJAX request to trigger the delete
@@ -586,7 +586,7 @@
                                 console.error('Error:', error);
                             });
                     } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
+                        swal('Foto profile {{ $dataProfile->level }} tidak jadi dihapus!');
                     }
                 });
             }

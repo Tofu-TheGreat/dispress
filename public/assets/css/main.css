@@ -126,6 +126,17 @@ li {
     margin-top: 2px;
 }
 
+/* profile */
+
+.profile-hapus-foto {
+    z-index: 999;
+    bottom: -75px;
+    left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+}
+
 /* instansi */
 .card-instansi {
     position: relative;
@@ -558,6 +569,12 @@ custom scrollbar
     }
     .button-reset-search {
         margin-left: 5px;
+    }
+    .profile-hapus-foto {
+        z-index: 999;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
     }
 }
 

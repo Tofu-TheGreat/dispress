@@ -92,8 +92,8 @@
                 <div class="card">
                     <div class="card-header">
                         <span data-toggle="tooltip" data-placement="top"
-                            title="Ini adalah data yang Didisposisikan ke Anda."
-                            data-original-title="Ini adalah data yang Didisposisikan ke Anda." disabled>
+                            title="Ini adalah data yang Didisposisikan untuk Anda."
+                            data-original-title="Ini adalah data yang Didisposisikan untuk Anda." disabled>
                             <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
                         <h4>Statistik Disposisi untuk {{ Auth::user()->nama }}</h4>

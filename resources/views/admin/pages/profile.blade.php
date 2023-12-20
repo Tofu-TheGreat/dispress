@@ -203,13 +203,13 @@
                                             <i class="bi bi-arrow-left mr-3"></i>
                                         </a>
                                         <ul class="nav nav-pills" id="myTab3" role="tablist">
-                                            <li class="nav-item">
+                                            <li class="nav-item text-center">
                                                 <a class="nav-link active" id="home-tab3" data-toggle="tab"
                                                     href="#profile-edit" role="tab" aria-controls="home"
                                                     aria-selected="true"><i class="bi bi-person-fill"></i> Edit
                                                     Profile</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item text-center">
                                                 <a class="nav-link" id="profile-tab3" data-toggle="tab"
                                                     href="#change-password" role="tab" aria-controls="profile"
                                                     aria-selected="false"><i class="bi bi-lock-fill"></i> Change

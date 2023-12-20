@@ -59,39 +59,56 @@
                                     class="rounded-circle profile-widget-picture">
                             @endif
                             <div class="profile-widget-items">
-                                <div class="profile-widget-item position-relative">
-                                    <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
-                                        <span data-toggle="tooltip" data-placement="top"
-                                            title="Ini adalah Semua data Surat yang Anda buat."
-                                            data-original-title="Ini adalah Semua data Surat yang Anda buat.">
-                                            <i class="bi bi-question-circle mr-2 text-primary"></i>
-                                        </span>
+                                @can('admin-officer')
+                                    <div class="profile-widget-item position-relative">
+                                        <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
+                                            <span data-toggle="tooltip" data-placement="top"
+                                                title="Ini adalah Semua data Surat yang Anda buat."
+                                                data-original-title="Ini adalah Semua data Surat yang Anda buat.">
+                                                <i class="bi bi-question-circle mr-2 text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <div class="profile-widget-item-label">Surat</div>
+                                        <div class="profile-widget-item-value">10</div>
                                     </div>
-                                    <div class="profile-widget-item-label">Surat</div>
-                                    <div class="profile-widget-item-value">10</div>
-                                </div>
-                                <div class="profile-widget-item position-relative">
-                                    <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
-                                        <span data-toggle="tooltip" data-placement="top"
-                                            title="Ini adalah Semua data Pengajuan yang Anda buat."
-                                            data-original-title="Ini adalah Semua data Pengajuan yang Anda buat.">
-                                            <i class="bi bi-question-circle mr-2 text-primary"></i>
-                                        </span>
+                                    <div class="profile-widget-item position-relative">
+                                        <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
+                                            <span data-toggle="tooltip" data-placement="top"
+                                                title="Ini adalah Semua data Pengajuan yang Anda buat."
+                                                data-original-title="Ini adalah Semua data Pengajuan yang Anda buat.">
+                                                <i class="bi bi-question-circle mr-2 text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <div class="profile-widget-item-label">Pengajuan</div>
+                                        <div class="profile-widget-item-value">5</div>
                                     </div>
-                                    <div class="profile-widget-item-label">Pengajuan</div>
-                                    <div class="profile-widget-item-value">5</div>
-                                </div>
-                                <div class="profile-widget-item position-relative">
-                                    <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
-                                        <span data-toggle="tooltip" data-placement="top"
-                                            title="Ini adalah Semua data Disposisi yang Anda buat."
-                                            data-original-title="Ini adalah Semua data Disposisi yang Anda buat.">
-                                            <i class="bi bi-question-circle mr-2 text-primary"></i>
-                                        </span>
+                                @endcan
+                                @can('admin')
+                                    <div class="profile-widget-item position-relative">
+                                        <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
+                                            <span data-toggle="tooltip" data-placement="top"
+                                                title="Ini adalah Semua data Disposisi yang Anda buat."
+                                                data-original-title="Ini adalah Semua data Disposisi yang Anda buat.">
+                                                <i class="bi bi-question-circle mr-2 text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <div class="profile-widget-item-label">Disposisi</div>
+                                        <div class="profile-widget-item-value">2</div>
                                     </div>
-                                    <div class="profile-widget-item-label">Disposisi</div>
-                                    <div class="profile-widget-item-value">2</div>
-                                </div>
+                                @endcan
+                                @cannot('admin')
+                                    <div class="profile-widget-item position-relative">
+                                        <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
+                                            <span data-toggle="tooltip" data-placement="top"
+                                                title="Ini adalah Semua data Disposisi untuk Anda."
+                                                data-original-title="Ini adalah Semua data Disposisi untuk Anda.">
+                                                <i class="bi bi-question-circle mr-2 text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <div class="profile-widget-item-label">Disposisi</div>
+                                        <div class="profile-widget-item-value">2</div>
+                                    </div>
+                                @endcannot
                             </div>
                         </div>
                         <div class="profile-widget-description">

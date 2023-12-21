@@ -28,7 +28,7 @@ class SuratRequest extends FormRequest
             'isi_surat' => 'required|max:100',
             'id_instansi' => 'required',
             'catatan_verifikasi' => 'required',
-            'scan_dokumen' => 'required|mimes:pdf, docx|file',
+            'scan_dokumen' => 'mimes:pdf, docx|file',
         ];
     }
     public function messages()

@@ -225,6 +225,8 @@
                                         @csrf
                                         <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
                                             id="" hidden>
+                                        <input type="text" name="password" value="{{ $dataProfile->password }}"
+                                            id="" hidden>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="row">
@@ -662,13 +664,10 @@
             type: 'line',
             data: {
                 // labels:
-                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
-                    'Oktober', 'November', 'Desember'
-                ],
+                labels: {!! json_encode($disposisiUserChart['dates']) !!},
                 datasets: [{
                     label: 'Disposisi',
-                    // data:
-                    data: [0, 10, 5, 2, 20, 30, 45, 10, 20, 5, 10, 2],
+                    data: {!! json_encode($disposisiUserChart['disposisi_count']) !!},
                     borderWidth: 2,
                     backgroundColor: 'rgba(63,82,227,.8)',
                     borderWidth: 0,

@@ -13,16 +13,13 @@
             <div class="card-body">
                 <div class="row d-flex">
                     {{-- judul Page --}}
-                    <div class="col-md-8 col-sm-12">
-                        <h4 class="text-dark judul-page">Manajemen Users</h4>
+                    <div class="col-md-9 col-sm-12">
+                        <h4 class="text-dark judul-page">Manajemen Setting</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
-                    <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
+                    <div class="col-md-3 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline active"><a
-                                href="/{{ $dataProfile->level }}">{{ $dataProfile->level }}</a>
-                        </div>
                         <div class="breadcrumb-item d-inline">Profile {{ $dataProfile->level }}</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
@@ -33,7 +30,7 @@
         <div class="section-body">
             <h2 class="section-title">Hi, {{ $dataProfile->nama }}!</h2>
             <p class="section-lead">
-                Ubah Profile dan Informasi Anda disini.
+                Ubah Profile dan Password Anda disini.
             </p>
 
             <div class="row mt-sm-4">
@@ -203,13 +200,13 @@
                                             <i class="bi bi-arrow-left mr-3"></i>
                                         </a>
                                         <ul class="nav nav-pills" id="myTab3" role="tablist">
-                                            <li class="nav-item">
+                                            <li class="nav-item text-center">
                                                 <a class="nav-link active" id="home-tab3" data-toggle="tab"
                                                     href="#profile-edit" role="tab" aria-controls="home"
                                                     aria-selected="true"><i class="bi bi-person-fill"></i> Edit
                                                     Profile</a>
                                             </li>
-                                            <li class="nav-item">
+                                            <li class="nav-item text-center">
                                                 <a class="nav-link" id="profile-tab3" data-toggle="tab"
                                                     href="#change-password" role="tab" aria-controls="profile"
                                                     aria-selected="false"><i class="bi bi-lock-fill"></i> Change
@@ -473,7 +470,7 @@
 
                                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="password_baru">Password Baru : </label>
+                                                        <label for="password_baru">Masukkan Password Baru : </label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text bg-secondary">
@@ -561,13 +558,13 @@
             if (element.classList.contains("tombol-hapus-profile")) {
                 swal({
                     title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto profile Admin ini?',
+                    text: 'Ingin menghapus foto profile {{ $dataProfile->level }} ini?',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        swal('Foto profile Admin berhasil dihapus!', {
+                        swal('Foto profile {{ $dataProfile->level }} berhasil dihapus!', {
                             icon: 'success',
                         });
                         // Make an AJAX request to trigger the delete
@@ -586,7 +583,7 @@
                                 console.error('Error:', error);
                             });
                     } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
+                        swal('Foto profile {{ $dataProfile->level }} tidak jadi dihapus!');
                     }
                 });
             }

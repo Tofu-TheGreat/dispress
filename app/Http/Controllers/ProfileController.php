@@ -14,7 +14,7 @@ class ProfileController extends Controller
         $posisiJabatanList = PosisiJabatan::get();
 
         return view('admin.pages.profile', [
-            'title' => 'Setting',
+            'title' => 'Profile',
             'active' => 'profile',
             'active1' => 'setting',
             'dataProfile' => $usersList[0],

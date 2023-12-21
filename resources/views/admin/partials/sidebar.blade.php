@@ -52,9 +52,8 @@
                     @endcan
                     <li><a class="nav-link {{ $active == 'Disposisi' ? 'active text-info' : '' }}"
                             href="/disposisi">Disposisi</a></li>
-                    <li><a class="nav-link"
-                            href="{{ asset('assets-landing-page/img/Under construction-bro.png') }}">Surat Keluar</a>
-                    </li>
+                    <li><a class="nav-link {{ $active == 'surat-keluar' ? 'active text-info' : '' }}"
+                            href="/surat-keluar">Surat Keluar</a></li>
                     <li><a class="nav-link"
                             href="{{ asset('assets-landing-page/img/Under construction-bro.png') }}">SPPD</a></li>
                 </ul>
@@ -67,6 +66,9 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link {{ $active == 'profile' ? 'active text-info' : '' }}"
                             href="/profile">Profile</a></li>
+                    <li>
+                    <li><a class="nav-link {{ $active == 'web-setting' ? 'active text-info' : '' }}"
+                            href="/web-setting">Web Setting</a></li>
                     <li>
                         <form action="/logout" method="POST" id="logout">
                             @csrf

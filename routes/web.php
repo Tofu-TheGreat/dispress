@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController, WebSettingController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -24,15 +24,20 @@ Route::get('/login', function () {
     return view('pages.login');
 })->middleware('guest');
 
+// Manajemen setting
 
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+
+Route::get('/web-setting', [WebSettingController::class, 'index'])->middleware('auth');
+
+// Manajemen user
+
 Route::get('/dashboard-admin', [Controller::class, 'dashboardAdmin'])->middleware('auth', 'role:admin');
 Route::get('/dashboard-officer', [Controller::class, 'dashboardOfficer'])->middleware('auth', 'role:officer');
 Route::get('/dashboard-staff', [Controller::class, 'dashboardStaff'])->middleware('auth', 'role:staff');
-
-Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 
 Route::resource('/admin', AdminController::class)->middleware('auth');
 
@@ -113,5 +118,7 @@ Route::get('/search-disposisi', [DisposisiController::class, 'search'])->name('s
 Route::get('/search-disposisi-all', [DisposisiController::class, 'searchForAll'])->name('search.semua.disposisi', 'role:admin');
 
 Route::get('/disposisi-cetak/{id}', [DisposisiController::class, 'cetakDisposisi'])->name('cetak.disposisi');
+
+// manajemen surat keluar
 
 Route::resource('/surat-keluar', SuratKeluarController::class)->middleware('auth');

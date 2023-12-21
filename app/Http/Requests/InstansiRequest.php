@@ -31,7 +31,9 @@ class InstansiRequest extends FormRequest
         $rules = [
             'nama_instansi' => 'required',
             'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
-            'alamat_instansi' => 'required|min:5|max:150|'
+            'alamat_instansi' => 'required|min:5|max:150|',
+            'email' => 'required|email|unique:instansi,email,' . $this->input('id_instansi') . ',id_instansi',
+            'foto_instansi' => 'image|mimes:jpeg,png,jpg|max:10240',
         ];
 
         return $rules;
@@ -47,6 +49,11 @@ class InstansiRequest extends FormRequest
             'alamat_instansi.required' => 'Alamat instansi tidak boleh kosong!',
             'alamat_instansi.min' => 'Alamat instansi tidak boleh kurang dari 5',
             'alamat_instansi.max' => 'Alamat instansi tidak boleh lebih dari 150',
+            'email.required' => 'Email instansi tidak boleh kosong!',
+            'email.email' => 'Harap masukkan alamat email yang valid.',
+            'email.unique' => 'Harap Masukkan email yang berbeda',
+            'foto_instansi.image' => 'Harap masukan foto',
+            'foto_instansi.mimes' => 'Harap masukan foto dengan format :values.'
         ];
     }
 }

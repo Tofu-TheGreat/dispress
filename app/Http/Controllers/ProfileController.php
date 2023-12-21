@@ -29,6 +29,7 @@ class ProfileController extends Controller
         $getDisposisiByUserCount = $this->profileRepository->getDisposisiByUser();
         $getDisposisiForUserCount = $this->profileRepository->getDisposisiForUser();
         $getSuratKeluarForUserCount = $this->profileRepository->getSuratKeluarForUser();
+        $disposisiUserChart = $this->profileRepository->getDisposisiFromUserChart();
 
         return view('admin.pages.profile', [
             'title' => 'Profile',
@@ -41,6 +42,7 @@ class ProfileController extends Controller
             'getDisposisiForUserCount' => $getDisposisiForUserCount,
             'getSuratKeluarForUserCount' => $getSuratKeluarForUserCount,
             'getPengajuanCount' => $getPengajuanCount,
+            'disposisiUserChart' => $disposisiUserChart,
         ]);
     }
     public function editProfile(UserRequest $request, $id)

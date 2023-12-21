@@ -372,7 +372,7 @@ li {
 .view-password-icon {
     position: absolute;
     right: 3%;
-    top: 22%;
+    top: 20%;
     font-size: 1.2rem;
     z-index: 999;
 }

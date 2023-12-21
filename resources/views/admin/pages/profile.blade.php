@@ -460,13 +460,16 @@
                                                             <input type="password"
                                                                 class="form-control capitalize @error('password_lama') is-invalid @enderror"
                                                                 id="password_lama" name="password_lama">
+                                                            <i class="bi bi-eye view-password-icon"></i>
                                                         </div>
-                                                        @error('password_lama')
-                                                            {{ $message }}
-                                                        @enderror
-                                                        @if (Session::has('password_lama'))
-                                                            <p>{{ Session::get('password_lama') }}</p>
-                                                        @endif
+                                                        <div class="text-danger">
+                                                            @error('password_lama')
+                                                                {{ $message }}
+                                                            @enderror
+                                                            @if (Session::has('password_lama'))
+                                                                <p>{{ Session::get('password_lama') }}</p>
+                                                            @endif
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -482,10 +485,14 @@
                                                             <input type="password"
                                                                 class="form-control phone @error('password_baru') is-invalid @enderror"
                                                                 id="password_baru" name="password_baru">
+                                                            <i class="bi bi-eye view-password-icon"></i>
+
                                                         </div>
-                                                        @error('password_baru')
-                                                            {{ $message }}
-                                                        @enderror
+                                                        <div class="text-danger">
+                                                            @error('password_baru')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -502,10 +509,14 @@
                                                             <input type="password"
                                                                 class="form-control phone @error('password_baru_ulang') is-invalid @enderror"
                                                                 id="password_baru_ulang" name="password_baru_ulang">
+                                                            <i class="bi bi-eye view-password-icon"></i>
+
                                                         </div>
-                                                        @error('password_baru_ulang')
-                                                            {{ $message }}
-                                                        @enderror
+                                                        <div class="text-danger">
+                                                            @error('password_baru_ulang')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-12 d-flex justify-content-end">
@@ -551,6 +562,60 @@
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/chart.min.js') }}"></script>
+
+    {{-- handle view password --}}
+
+    <script>
+        $('.view-password-icon').on('click', function() {
+            const passwordInput = $(this).closest('.form-group').find('input[type="password"]');
+
+            if ($(this).hasClass('bi-eye')) {
+                $(this).removeClass('bi-eye');
+                $(this).addClass('bi-eye-slash');
+                passwordInput.attr('type', 'text');
+            } else {
+                $(this).removeClass('bi-eye-slash');
+                $(this).addClass('bi-eye');
+                passwordInput.attr('type', 'password');
+            }
+        });
+    </script>
+
+    {{-- Toast --}}
+    @if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+    @if (Session::has('warning'))
+        <script>
+            $(document).ready(function() {
+                iziToast.warning({
+                    title: 'warning',
+                    message: "{{ Session::get('warning') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            $(document).ready(function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: "{{ Session::get('error') }} Import",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
 
     {{-- seweetalert confirmation delete image --}}
     <script>

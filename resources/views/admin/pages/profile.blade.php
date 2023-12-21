@@ -192,221 +192,172 @@
                 </div>
                 <div class="col-12 col-md-12 col-lg-7">
                     <div class="card">
-                        <form method="post" class="needs-validation" novalidate="">
-                            <div class="card-header">
-                                <div class="col-10">
-                                    <div class="row">
-                                        <a href="/{{ $dataProfile->level }}" class="mt-2" title="Kembali">
-                                            <i class="bi bi-arrow-left mr-3"></i>
-                                        </a>
-                                        <ul class="nav nav-pills" id="myTab3" role="tablist">
-                                            <li class="nav-item text-center">
-                                                <a class="nav-link active" id="home-tab3" data-toggle="tab"
-                                                    href="#profile-edit" role="tab" aria-controls="home"
-                                                    aria-selected="true"><i class="bi bi-person-fill"></i> Edit
-                                                    Profile</a>
-                                            </li>
-                                            <li class="nav-item text-center">
-                                                <a class="nav-link" id="profile-tab3" data-toggle="tab"
-                                                    href="#change-password" role="tab" aria-controls="profile"
-                                                    aria-selected="false"><i class="bi bi-lock-fill"></i> Change
-                                                    Password</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                        <div class="card-header">
+                            <div class="col-10">
+                                <div class="row">
+                                    <a href="/{{ $dataProfile->level }}" class="mt-2" title="Kembali">
+                                        <i class="bi bi-arrow-left mr-3"></i>
+                                    </a>
+                                    <ul class="nav nav-pills" id="myTab3" role="tablist">
+                                        <li class="nav-item text-center">
+                                            <a class="nav-link active" id="home-tab3" data-toggle="tab"
+                                                href="#profile-edit" role="tab" aria-controls="home"
+                                                aria-selected="true"><i class="bi bi-person-fill"></i> Edit
+                                                Profile</a>
+                                        </li>
+                                        <li class="nav-item text-center">
+                                            <a class="nav-link" id="profile-tab3" data-toggle="tab"
+                                                href="#change-password" role="tab" aria-controls="profile"
+                                                aria-selected="false"><i class="bi bi-lock-fill"></i> Change
+                                                Password</a>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <div class="tab-content" id="myTabContent2">
-                                    <div class="tab-pane fade show active" id="profile-edit" role="tabpanel"
-                                        aria-labelledby="home-tab3">
-                                        {{-- edit profile --}}
-                                        <form action="{{ url('profile-edit', $dataProfile->id_user) }}" method="post"
-                                            enctype="multipart/form-data">
-                                            @csrf
-                                            <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
-                                                id="" hidden>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="row">
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="nip">NIP: </label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text bg-secondary">
-                                                                            <i class="bi bi-key-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text"
-                                                                        class="form-control capitalize @error('nip') is-invalid @enderror"
-                                                                        placeholder="ex: 213720078171677275"
-                                                                        value="{{ $dataProfile->nip }}" id="nip"
-                                                                        name="nip">
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('nip')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="nama">Nama: </label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text bg-secondary">
-                                                                            <i class="bi bi-person-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text"
-                                                                        class="form-control capitalize @error('nama') is-invalid @enderror"
-                                                                        placeholder="ex: Pasya Nada Abinaya"
-                                                                        value="{{ $dataProfile->nama }}" id="nama"
-                                                                        name="nama">
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('nama')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="username">Username: </label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text bg-secondary">
-                                                                            <i class="bi bi-person-badge-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text"
-                                                                        class="form-control @error('username') is-invalid @enderror"
-                                                                        placeholder="ex: pasyaNada"
-                                                                        value="{{ $dataProfile->username }}"
-                                                                        id="username" name="username">
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('username')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="email">Email: </label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text bg-secondary">
-                                                                            <i class="bi bi-envelope-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text"
-                                                                        class="form-control @error('email') is-invalid @enderror"
-                                                                        placeholder="ex: contoh@gmail.com"
-                                                                        value="{{ $dataProfile->email }}" id="email"
-                                                                        name="email">
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('email')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="nomor_telpon">Nomor Telepon: </label>
-                                                                <div class="input-group">
-                                                                    <div class="input-group-prepend">
-                                                                        <div class="input-group-text bg-secondary">
-                                                                            <i class="bi bi-telephone-fill"></i>
-                                                                        </div>
-                                                                    </div>
-                                                                    <input type="text"
-                                                                        class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                                        placeholder="ex: 0878-2730-3388"
-                                                                        value="{{ $dataProfile->nomor_telpon }}"
-                                                                        id="nomor_telpon" name="nomor_telpon">
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('nomor_telpon')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                                            <div class="form-group">
-                                                                <label for="level">Pilih Level: </label>
-                                                                <div class="input-group">
-                                                                    <select class="form-control select2" id="level"
-                                                                        name="level" style="width: 100%">
-                                                                        <option selected disabled>Pilih Level</option>
-                                                                        <option value="admin"
-                                                                            {{ $dataProfile->level == 'admin' ? 'selected' : '' }}>
-                                                                            Admin</option>
-                                                                        <option value="officer"
-                                                                            {{ $dataProfile->level == 'officer' ? 'selected' : '' }}>
-                                                                            officer</option>
-                                                                        <option value="staff"
-                                                                            {{ $dataProfile->level == 'staff' ? 'selected' : '' }}>
-                                                                            staff</option>
-                                                                    </select>
-                                                                </div>
-                                                                <span class="text-danger">
-                                                                    @error('level')
-                                                                        {{ $message }}
-                                                                    @enderror
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label class="capitalize" for="id_posisi_jabatan">Pilih Posisi
-                                                            Jabatan:
-                                                        </label>
-                                                        <div class="input-group">
-                                                            <select
-                                                                class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                                                id="id_posisi_jabatan" name="id_posisi_jabatan" required
-                                                                style="width: 100%">
-                                                                <option selected disabled>Pilih Posisi Jabatan User</option>
-                                                                @foreach ($posisiJabatanList as $item)
-                                                                    <option value="{{ $item->id_posisi_jabatan }}"
-                                                                        {{ $dataProfile->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
-                                                                        {{ $item->nama_posisi_jabatan }} |
-                                                                        {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                        </div>
-                                                        <span class="text-danger">
-                                                            @error('id_posisi_jabatan')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                                <div class="col">
-                                                    <div class="form-group">
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content" id="myTabContent2">
+                                <div class="tab-pane fade show active" id="profile-edit" role="tabpanel"
+                                    aria-labelledby="home-tab3">
+                                    {{-- edit profile --}}
+                                    <form action="{{ route('profile-edit', $dataProfile->id_user) }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
+                                            id="" hidden>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="row">
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label for="foto">Masukkan Foto: </label>
-                                                            <small class="d-block">Catatan: masukkan foto dengan format
-                                                                (JPEG, PNG,
-                                                                JPG),
-                                                                maksimal 10
-                                                                MB.</small>
-                                                            <input type="file"
-                                                                class="img-filepond-preview @error('foto_user') is-invalid @enderror"
-                                                                id="foto_user" name="foto_user" accept="jpg,jpeg,png">
+                                                            <label for="nip">NIP: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-key-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control capitalize @error('nip') is-invalid @enderror"
+                                                                    placeholder="ex: 213720078171677275"
+                                                                    value="{{ $dataProfile->nip }}" id="nip"
+                                                                    name="nip">
+                                                            </div>
                                                             <span class="text-danger">
-                                                                @error('foto_user')
+                                                                @error('nip')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nama">Nama: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-person-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control capitalize @error('nama') is-invalid @enderror"
+                                                                    placeholder="ex: Pasya Nada Abinaya"
+                                                                    value="{{ $dataProfile->nama }}" id="nama"
+                                                                    name="nama">
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('nama')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="username">Username: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-person-badge-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control @error('username') is-invalid @enderror"
+                                                                    placeholder="ex: pasyaNada"
+                                                                    value="{{ $dataProfile->username }}" id="username"
+                                                                    name="username">
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('username')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="email">Email: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-envelope-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control @error('email') is-invalid @enderror"
+                                                                    placeholder="ex: contoh@gmail.com"
+                                                                    value="{{ $dataProfile->email }}" id="email"
+                                                                    name="email">
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('email')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="nomor_telpon">Nomor Telepon: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control phone @error('nomor_telpon') is-invalid @enderror"
+                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    value="{{ $dataProfile->nomor_telpon }}"
+                                                                    id="nomor_telpon" name="nomor_telpon">
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('nomor_telpon')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="level">Pilih Level: </label>
+                                                            <div class="input-group">
+                                                                <select class="form-control select2" id="level"
+                                                                    name="level" style="width: 100%">
+                                                                    <option selected disabled>Pilih Level</option>
+                                                                    <option value="admin"
+                                                                        {{ $dataProfile->level == 'admin' ? 'selected' : '' }}>
+                                                                        Admin</option>
+                                                                    <option value="officer"
+                                                                        {{ $dataProfile->level == 'officer' ? 'selected' : '' }}>
+                                                                        officer</option>
+                                                                    <option value="staff"
+                                                                        {{ $dataProfile->level == 'staff' ? 'selected' : '' }}>
+                                                                        staff</option>
+                                                                </select>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('level')
                                                                     {{ $message }}
                                                                 @enderror
                                                             </span>
@@ -414,7 +365,159 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="capitalize" for="id_posisi_jabatan">Pilih Posisi
+                                                        Jabatan:
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <select
+                                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                                            id="id_posisi_jabatan" name="id_posisi_jabatan" required
+                                                            style="width: 100%">
+                                                            <option selected disabled>Pilih Posisi Jabatan User</option>
+                                                            @foreach ($posisiJabatanList as $item)
+                                                                <option value="{{ $item->id_posisi_jabatan }}"
+                                                                    {{ $dataProfile->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                                    {{ $item->nama_posisi_jabatan }} |
+                                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <span class="text-danger">
+                                                        @error('id_posisi_jabatan')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="foto">Masukkan Foto: </label>
+                                                        <small class="d-block">Catatan: masukkan foto dengan format
+                                                            (JPEG, PNG,
+                                                            JPG),
+                                                            maksimal 10
+                                                            MB.</small>
+                                                        <input type="file"
+                                                            class="img-filepond-preview @error('foto_user') is-invalid @enderror"
+                                                            id="foto_user" name="foto_user" accept="jpg,jpeg,png">
+                                                        <span class="text-danger">
+                                                            @error('foto_user')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <div class="row d-flex justify-content-end">
+                                                <div class="ml-2 ">
+                                                    <a href="/{{ $dataProfile->level }}" class="btn btn-warning  ">
+                                                        <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
+                                                        <span class="bi-text">Kembali</span>
+                                                    </a>
+                                                </div>
+                                                <div class="ml-2">
+                                                    <button type="submit" class="btn btn-primary mb-1">
+                                                        <i class="bi bi-clipboard-check-fill fs-6 mr-1"></i>
+                                                        <span class="bi-text">Save Data</span></button>
+                                                </div>
+                                                <div class="ml-2 ">
+                                                    <button type="reset" class="btn btn-secondary">
+                                                        <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
+                                                        <span class="bi-text">Reset</span></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {{-- end edit profile --}}
+                                </div>
+                                <div class="tab-pane fade" id="change-password" role="tabpanel"
+                                    aria-labelledby="profile-tab3">
+                                    {{-- change password --}}
+                                    <form action="/profile-change-password/{{ $dataProfile->id_user }}" method="post"
+                                        enctype="multipart/form-data">
+                                        @csrf
+
+                                        <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
+                                            id="" hidden>
+                                        <div class="row">
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="password_lama">Masukkan Password Lama: </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text bg-secondary">
+                                                                <i class="bi fs-2 bi-key"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="password"
+                                                            class="form-control capitalize @error('password_lama') is-invalid @enderror"
+                                                            id="password_lama" name="password_lama">
+                                                        <i class="bi bi-eye view-password-icon"></i>
+                                                    </div>
+                                                    <div class="text-danger">
+                                                        @error('password_lama')
+                                                            {{ $message }}
+                                                        @enderror
+                                                        @if (Session::has('password_lama'))
+                                                            <p>{{ Session::get('password_lama') }}</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                                <div class="form-group">
+                                                    <label for="password_baru">Masukkan Password Baru : </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text bg-secondary">
+                                                                <i class="bi fs-2 bi-key-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="password"
+                                                            class="form-control phone @error('password_baru') is-invalid @enderror"
+                                                            id="password_baru" name="password_baru">
+                                                        <i class="bi bi-eye view-password-icon"></i>
+
+                                                    </div>
+                                                    <div class="text-danger">
+                                                        @error('password_baru')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="password_baru_ulang">Ulangi Password Baru :
+                                                    </label>
+                                                    <div class="input-group">
+                                                        <div class="input-group-prepend">
+                                                            <div class="input-group-text bg-secondary">
+                                                                <i class="bi fs-2 bi-key-fill"></i>
+                                                            </div>
+                                                        </div>
+                                                        <input type="password"
+                                                            class="form-control phone @error('password_baru_ulang') is-invalid @enderror"
+                                                            id="password_baru_ulang" name="password_baru_ulang">
+                                                        <i class="bi bi-eye view-password-icon"></i>
+
+                                                    </div>
+                                                    <div class="text-danger">
+                                                        @error('password_baru_ulang')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <div class="col-12 d-flex justify-content-end">
                                                 <div class="row d-flex justify-content-end">
                                                     <div class="ml-2 ">
@@ -435,117 +538,12 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
-                                        {{-- end edit profile --}}
-                                    </div>
-                                    <div class="tab-pane fade" id="change-password" role="tabpanel"
-                                        aria-labelledby="profile-tab3">
-                                        {{-- change password --}}
-                                        <form action="/profile-change-password/{{ $dataProfile->id_user }}"
-                                            method="post" enctype="multipart/form-data">
-                                            @csrf
-
-                                            <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
-                                                id="" hidden>
-                                            <div class="row">
-                                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="password_lama">Masukkan Password Lama: </label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text bg-secondary">
-                                                                    <i class="bi fs-2 bi-key"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="password"
-                                                                class="form-control capitalize @error('password_lama') is-invalid @enderror"
-                                                                id="password_lama" name="password_lama">
-                                                            <i class="bi bi-eye view-password-icon"></i>
-                                                        </div>
-                                                        <div class="text-danger">
-                                                            @error('password_lama')
-                                                                {{ $message }}
-                                                            @enderror
-                                                            @if (Session::has('password_lama'))
-                                                                <p>{{ Session::get('password_lama') }}</p>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                                    <div class="form-group">
-                                                        <label for="password_baru">Masukkan Password Baru : </label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text bg-secondary">
-                                                                    <i class="bi fs-2 bi-key-fill"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="password"
-                                                                class="form-control phone @error('password_baru') is-invalid @enderror"
-                                                                id="password_baru" name="password_baru">
-                                                            <i class="bi bi-eye view-password-icon"></i>
-
-                                                        </div>
-                                                        <div class="text-danger">
-                                                            @error('password_baru')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-12">
-                                                    <div class="form-group">
-                                                        <label for="password_baru_ulang">Ulangi Password Baru :
-                                                        </label>
-                                                        <div class="input-group">
-                                                            <div class="input-group-prepend">
-                                                                <div class="input-group-text bg-secondary">
-                                                                    <i class="bi fs-2 bi-key-fill"></i>
-                                                                </div>
-                                                            </div>
-                                                            <input type="password"
-                                                                class="form-control phone @error('password_baru_ulang') is-invalid @enderror"
-                                                                id="password_baru_ulang" name="password_baru_ulang">
-                                                            <i class="bi bi-eye view-password-icon"></i>
-
-                                                        </div>
-                                                        <div class="text-danger">
-                                                            @error('password_baru_ulang')
-                                                                {{ $message }}
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 d-flex justify-content-end">
-                                                    <div class="row d-flex justify-content-end">
-                                                        <div class="ml-2 ">
-                                                            <a href="/{{ $dataProfile->level }}"
-                                                                class="btn btn-warning  ">
-                                                                <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
-                                                                <span class="bi-text">Kembali</span>
-                                                            </a>
-                                                        </div>
-                                                        <div class="ml-2">
-                                                            <button type="submit" class="btn btn-primary mb-1">
-                                                                <i class="bi bi-clipboard-check-fill fs-6 mr-1"></i>
-                                                                <span class="bi-text">Save Data</span></button>
-                                                        </div>
-                                                        <div class="ml-2 ">
-                                                            <button type="reset" class="btn btn-secondary">
-                                                                <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
-                                                                <span class="bi-text">Reset</span></button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </form>
-                                        {{-- end change password --}}
-                                    </div>
+                                        </div>
+                                    </form>
+                                    {{-- end change password --}}
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>

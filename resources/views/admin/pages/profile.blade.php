@@ -567,7 +567,7 @@
 
     <script>
         $('.view-password-icon').on('click', function() {
-            const passwordInput = $(this).closest('.form-group').find('input[type="password"]');
+            const passwordInput = $(this).closest('.form-group').find('input');
 
             if ($(this).hasClass('bi-eye')) {
                 $(this).removeClass('bi-eye');

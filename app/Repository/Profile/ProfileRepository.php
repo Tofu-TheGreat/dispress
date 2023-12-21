@@ -13,4 +13,5 @@ interface ProfileRepository
     public function getSuratKeluarForUser();
     public function editProfile($data, $id);
     public function changePassword($data, $id);
+    public function getDisposisiFromUserChart();
 }

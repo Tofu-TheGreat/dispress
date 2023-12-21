@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SuratKeluarRequest;
 use App\Models\SuratKeluar;
 use App\Repository\Surat\SuratRepository;
+use App\Repository\SuratKeluar\SuratKeluarRepository;
 use Illuminate\Http\Request;
 use App\Models\Instansi;
 use App\Models\User;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Crypt;
 class SuratKeluarController extends Controller
 {
     private $suratKeluarRepository;
-    public function __construct(SuratRepository $suratKeluarRepository)
+    public function __construct(SuratKeluarRepository $suratKeluarRepository)
     {
         $this->suratKeluarRepository = $suratKeluarRepository;
     }

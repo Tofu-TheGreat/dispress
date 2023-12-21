@@ -66,7 +66,7 @@
                                             </span>
                                         </div>
                                         <div class="profile-widget-item-label">Surat</div>
-                                        <div class="profile-widget-item-value">10</div>
+                                        <div class="profile-widget-item-value">{{ $getSuratCount }}</div>
                                     </div>
                                     <div class="profile-widget-item position-relative">
                                         <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
@@ -77,7 +77,7 @@
                                             </span>
                                         </div>
                                         <div class="profile-widget-item-label">Pengajuan</div>
-                                        <div class="profile-widget-item-value">5</div>
+                                        <div class="profile-widget-item-value">{{ $getPengajuanCount }}</div>
                                     </div>
                                 @endcan
                                 @can('admin')
@@ -90,7 +90,7 @@
                                             </span>
                                         </div>
                                         <div class="profile-widget-item-label">Disposisi</div>
-                                        <div class="profile-widget-item-value">2</div>
+                                        <div class="profile-widget-item-value">{{ $getDisposisiByUserCount }}</div>
                                     </div>
                                 @endcan
                                 @cannot('admin')
@@ -103,7 +103,7 @@
                                             </span>
                                         </div>
                                         <div class="profile-widget-item-label">Disposisi</div>
-                                        <div class="profile-widget-item-value">2</div>
+                                        <div class="profile-widget-item-value">{{ $getDisposisiForUserCount }}</div>
                                     </div>
                                 @endcannot
                             </div>
@@ -158,7 +158,7 @@
                                 <h4>Total Disposisi untuk {{ auth()->user()->nama }}</h4>
                             </div>
                             <div class="card-body">
-                                10 Data
+                                {{ $getDisposisiForUserCount }} Data
                             </div>
                         </div>
                     </div>
@@ -221,10 +221,9 @@
                                     <div class="tab-pane fade show active" id="profile-edit" role="tabpanel"
                                         aria-labelledby="home-tab3">
                                         {{-- edit profile --}}
-                                        <form action="/profile/{{ $dataProfile->id_user }}" method="post"
+                                        <form action="{{ url('profile-edit', $dataProfile->id_user) }}" method="post"
                                             enctype="multipart/form-data">
                                             @csrf
-                                            @method('PUT')
                                             <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
                                                 id="" hidden>
                                             <div class="row">
@@ -442,10 +441,10 @@
                                     <div class="tab-pane fade" id="change-password" role="tabpanel"
                                         aria-labelledby="profile-tab3">
                                         {{-- change password --}}
-                                        <form action="/profile/{{ $dataProfile->id_user }}" method="post"
-                                            enctype="multipart/form-data">
+                                        <form action="/profile-change-password/{{ $dataProfile->id_user }}"
+                                            method="post" enctype="multipart/form-data">
                                             @csrf
-                                            @method('PUT')
+
                                             <input type="text" name="id_user" value="{{ $dataProfile->id_user }}"
                                                 id="" hidden>
                                             <div class="row">
@@ -465,6 +464,9 @@
                                                         @error('password_lama')
                                                             {{ $message }}
                                                         @enderror
+                                                        @if (Session::has('password_lama'))
+                                                            <p>{{ Session::get('password_lama') }}</p>
+                                                        @endif
                                                     </div>
                                                 </div>
 

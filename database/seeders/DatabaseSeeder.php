@@ -8,6 +8,7 @@ use App\Models\Surat;
 use App\Models\Instansi;
 use App\Models\Disposisi;
 use App\Models\Pengajuan;
+use App\Models\WebSetting;
 use App\Models\Klasifikasi;
 use App\Models\PosisiJabatan;
 use Illuminate\Database\Seeder;
@@ -79,6 +80,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'pasya@gmail.com',
             'nomor_telpon' => '089123456789',
             'password' => bcrypt('password'),
+            'foto_user' => '1703172366.png',
         ]);
 
         User::factory()->create([
@@ -107,15 +109,32 @@ class DatabaseSeeder extends Seeder
         Instansi::factory()->create([
             'nama_instansi' => 'SMKN3 Kota Tangerang',
             'nomor_telpon' => '089123000990',
+            'email' => 'smkn3@gmail.com',
             'alamat_instansi' => 'Jl. Maulana Yusuf, RT.002/RW.003, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
         ]);
         Instansi::factory()->create([
             'nama_instansi' => 'SMKN2 Kota Tangerang',
             'nomor_telpon' => '089123111990',
+            'email' => 'smkn2@gmail.com',
             'alamat_instansi' => 'Jl. Veteran No.2, RT.004/RW.011, Sukasari, Kec. Tangerang, Kota Tangerang, Banten 15118',
         ]);
 
+        Instansi::factory()->create([
+            'nama_instansi' => 'SMKN4 Kota Tangerang',
+            'nomor_telpon' => '089123111770',
+            'email' => 'smkn4@gmail.com',
+            'alamat_instansi' => 'Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
+            'foto_instansi' => '1703172032.jpg',
+        ]);
+
         Instansi::factory(15)->create();
+
+        // websetting
+        WebSetting::factory()->create([
+            'id_instansi' => '3',
+            'id_ketua' => '9',
+            'default_logo' => 'logoxamp.png',
+        ]);
 
         // Seed klasifikasi
         Klasifikasi::factory()->create([

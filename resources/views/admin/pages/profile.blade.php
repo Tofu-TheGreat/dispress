@@ -14,7 +14,7 @@
                 <div class="row d-flex">
                     {{-- judul Page --}}
                     <div class="col-md-8 col-sm-12">
-                        <h4 class="text-dark judul-page">Manajemen Users</h4>
+                        <h4 class="text-dark judul-page">Manajemen Setting</h4>
                     </div>
                     {{-- Akhir judul Page --}}
                     {{-- Breadcrumb --}}
@@ -473,7 +473,7 @@
 
                                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                                     <div class="form-group">
-                                                        <label for="password_baru">Password Baru : </label>
+                                                        <label for="password_baru">Masukkan Password Baru : </label>
                                                         <div class="input-group">
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text bg-secondary">

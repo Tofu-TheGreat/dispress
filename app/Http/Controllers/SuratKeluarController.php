@@ -25,6 +25,14 @@ class SuratKeluarController extends Controller
         $instansiList = Instansi::get();
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
+
+        return view('manajemen-surat.surat-keluar.surat-keluar-data', [
+            'title' => 'Surat Keluar',
+            'active1' => 'manajemen-surat',
+            'active' => 'surat-keluar',
+            'suratKeluarList' => $suratKeluarList,
+            'instansiList' => $instansiList,
+        ]);
     }
 
     /**

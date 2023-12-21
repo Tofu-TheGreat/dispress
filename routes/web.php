@@ -30,6 +30,8 @@ Route::post('/login', [LoginController::class, 'login'])->name('login')->middlew
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::post('/profile-edit/{id}', [ProfileController::class, 'editProfile'])->middleware('auth');
+Route::post('/profile-change-password/{id}', [ProfileController::class, 'changePassword'])->middleware('auth');
 
 Route::get('/web-setting', [WebSettingController::class, 'index'])->middleware('auth');
 

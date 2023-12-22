@@ -30,6 +30,19 @@ class WebSettingController extends Controller
             'userList' => $userList,
         ]);
     }
+
+    public function create()
+    {
+        $userList = User::get();
+
+        return view('admin.pages.web-setting-create', [
+            'title' => 'Web-setting-create',
+            'active' => 'web-setting',
+            'active1' => 'setting',
+            'userList' => $userList,
+        ]);
+    }
+
     public function store(WebSettingRequest $request)
     {
         $this->webSettingRepository->store($request);

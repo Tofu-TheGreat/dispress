@@ -24,8 +24,13 @@ Route::get('/login', function () {
     return view('pages.login');
 })->middleware('guest');
 
+Route::get('/register', function () {
+    return view('pages.register');
+})->middleware('guest');
+
 // Manajemen setting
 
+Route::post('/register', [LoginController::class, 'register'])->name('register')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

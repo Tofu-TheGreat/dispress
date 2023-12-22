@@ -57,6 +57,11 @@ class LoginController extends Controller
     public function logout(Request $request)
     {
         $this->loginRepository->logout($request);
-        return redirect()->intended('/login')->with('success', 'Berhasil logout akun');
+        return redirect()->intended('/login')->with('success', 'Berhasil logout akun.');
+    }
+
+    public function register(Request $request)
+    {
+        return redirect()->intended('/web-setting/create')->with('success', 'Berhasil register akun.');
     }
 }

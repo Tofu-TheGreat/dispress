@@ -14,6 +14,11 @@ class WebSettingImplement implements WebSettingRepository
         $this->websetting = $webSetting;
     }
 
+    public function index()
+    {
+        return $this->websetting->where('id_web_setting', 1)->get();
+    }
+
     public function store($data)
     {
         if ($data->hasFile('default_logo')) {

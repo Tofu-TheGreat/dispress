@@ -96,14 +96,23 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="row px-3">
+                                        <div class="row">
                                             @foreach ($instansiList as $data)
-                                                <div class="col mx-1">
+                                                <div class="col">
                                                     <div class="card shadow shadow-sm" style="max-width: 360px;">
                                                         <div class="position-relative">
-                                                            <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
-                                                                class="card-img-top bg-primary img-instansi"
-                                                                alt="foto instansi" style="min-width: 200px">
+                                                            @if ($data->foto_instansi)
+                                                                <div class="background-image-instansi-wrapper">
+                                                                    <div class="background-image-instansi"
+                                                                        style="background-image: url({{ asset('image_save/' . $data->foto_instansi) }}); min-width: 200px;min-height:230px;">
+                                                                    </div>
+                                                                </div>
+                                                            @else
+                                                                <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
+                                                                    class="card-img-top bg-primary img-instansi"
+                                                                    alt="foto {{ $data->nama_instansi }}"
+                                                                    style="min-width: 200px;min-height:230px;">
+                                                            @endif
                                                             @cannot('staff')
                                                                 <div
                                                                     class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
@@ -111,7 +120,8 @@
                                                                         <span class="tombol-detail  tombol-hover"
                                                                             data-toggle="tooltip" data-placement="top"
                                                                             title="Detail Data Instansi"
-                                                                            data-original-title="Detail data instansi" disabled>
+                                                                            data-original-title="Detail data instansi"
+                                                                            disabled>
                                                                             <button type="button" data-toggle="modal"
                                                                                 data-target="#detail-modal{{ $data->id_instansi }}"
                                                                                 type="button"
@@ -233,7 +243,6 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
                                         id="nama_instansi" name="nama_instansi" readonly>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -255,10 +264,29 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                <label for="email">Email Instansi: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="ex: contoh@gmail.com" value="{{ $item->email }}" id="email"
+                                        name="email" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="alamat_instansi">Alamat Instansi: </label>
                                 <textarea class="summernote-simple summernote-disable @error('alamat_instansi') is-invalid @enderror"
                                     id="alamat_instansi" name="alamat_instansi" readonly> {{ $item->alamat_instansi }} </textarea>
-
                             </div>
                         </div>
                     </div>
@@ -326,6 +354,26 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('nomor_telpon')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="email">Masukkan Email Instansi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-envelope-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            placeholder="ex: contoh@gmail.com" value="{{ $item->email }}"
+                                            id="email" name="email" required>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('email')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -427,6 +475,26 @@
                                 </div>
                                 <span class="text-danger">
                                     @error('nomor_telpon')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="email">Masukkan Email Instansi: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="ex: contoh@gmail.com" value="{{ old('email') }}" id="email"
+                                        name="email" required>
+                                </div>
+                                <span class="text-danger">
+                                    @error('email')
                                         {{ $message }}
                                     @enderror
                                 </span>

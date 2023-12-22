@@ -45,7 +45,6 @@ class InstansiController extends Controller
     {
         $this->authorize('admin-officer');
 
-        $this->instansiRepository->store($request);
         return back()->with('success', 'Berhasil menambah data perusahaan.');
     }
 

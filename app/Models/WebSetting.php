@@ -17,7 +17,6 @@ class WebSetting extends Model
         'id_instansi',
         'id_ketua',
         'default_logo',
-
     ];
 
     protected $casts = [];

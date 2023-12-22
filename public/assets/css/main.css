@@ -137,6 +137,33 @@ li {
     width: 120px;
 }
 
+/* web setting */
+
+.profile-widget-header-bg-img {
+    min-height: 280px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.img-web-wrapper {
+    position: absolute;
+    bottom: -45px;
+    position: absolute;
+    left: 50%;
+    margin-left: -85px;
+    margin-top: -50px;
+}
+
+.profile-hapus-foto-instansi {
+    z-index: 999;
+    bottom: -73px;
+    left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+}
+
 /* instansi */
 .card-instansi {
     position: relative;
@@ -146,6 +173,21 @@ li {
     bottom: -17px;
     right: 50%;
     left: 50%;
+}
+
+.background-image-instansi-wrapper {
+    overflow: hidden;
+    border-bottom: 2px solid #3649e3;
+}
+
+.background-image-instansi {
+    background-position: center;
+    background-size: cover;
+    transition: all 0.4s ease-in-out;
+}
+
+.background-image-instansi-wrapper:hover .background-image-instansi {
+    transform: scale(1.2) rotateZ(5deg);
 }
 
 .img-instansi {
@@ -575,6 +617,17 @@ custom scrollbar
         position: absolute;
         bottom: 20px;
         right: 20px;
+    }
+
+    .img-web-wrapper {
+        margin-left: -50px;
+        bottom: -85px;
+    }
+
+    .profile-hapus-foto-instansi {
+        z-index: 999;
+        left: -10px;
+        bottom: 30px;
     }
 }
 

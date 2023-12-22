@@ -33,7 +33,7 @@ class InstansiImplement implements InstansiRepository
                 'alamat_instansi' => $data->alamat_instansi,
                 'nomor_telpon' => $data->nomor_telpon,
                 'email' => $data->email,
-                'foto_instansi' => $nama_foto
+                'foto_instansi' => $nama_foto,
             ]);
         } else {
             $this->instansi->create([
@@ -54,7 +54,7 @@ class InstansiImplement implements InstansiRepository
     }
     public function update($data, string $id)
     {
-        if ($data->hasFile('foto_user')) {
+        if ($data->hasFile('foto_instansi')) {
             $instansi = $this->instansi->where('id_instansi', $id)->first();
             if ($instansi->foto_instansi != null) {
                 $fotoPath = public_path('image_save/') . $instansi->foto_instansi;

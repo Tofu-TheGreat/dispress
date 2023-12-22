@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\WebSettingRequest;
+use App\Models\Instansi;
+use App\Models\User;
 use App\Repository\WebSetting\WebSettingRepository;
 use Illuminate\Http\Request;
 
@@ -15,10 +17,17 @@ class WebSettingController extends Controller
     }
     public function index()
     {
+        $dataWebSetting = $this->webSettingRepository->index();
+        $instansiList = Instansi::get();
+        $userList = User::get();
+
         return view('admin.pages.web-setting', [
             'title' => 'Web-setting',
             'active' => 'web-setting',
             'active1' => 'setting',
+            'dataWebSetting' => $dataWebSetting[0],
+            'instansiList' => $instansiList,
+            'userList' => $userList,
         ]);
     }
     public function store(WebSettingRequest $request)

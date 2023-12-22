@@ -49,14 +49,14 @@ class ProfileController extends Controller
     {
         $this->profileRepository->editProfile($request, $id);
 
-        return redirect()->intended('/profile')->with('success', 'Data profilmu telah ter-update');
+        return redirect()->intended('/profile')->with('success', 'Data profilmu telah ter-update.');
     }
     public function changePassword(ChangePasswordRequest $request, $id)
     {
         if (!Hash::check($request->password_lama, Auth::user()->password)) {
-            return redirect()->intended('/profile')->with('password_lama', 'Password lama Tidak sesuai');
+            return redirect()->intended('/profile')->with('password_lama', 'Password lama Tidak sesuai.');
         }
         $this->profileRepository->changePassword($request, $id);
-        return redirect()->intended('/profile')->with('success', 'Berhasil Mengubah Password');
+        return redirect()->intended('/profile')->with('success', 'Berhasil Mengubah Password.');
     }
 }

@@ -54,7 +54,7 @@
                     <img class="logo-login pb-4 d-lg-block" src="{{ asset('/assets-landing-page/img/logo-brand.svg') }}"
                         alt="logo-dispress" width="250px" />
                 </div>
-                <div class="col-lg-10 card rounded-4">
+                <div class="col-lg-10 card rounded-4 card-login">
                     <div class="row align-items-center">
                         <div class="col-md-5 text-center order-lg-last">
                             <div class="login-img me-5" data-aos="fade-up-left" data-aos-duration="1600">
@@ -66,11 +66,13 @@
                             <a href="/" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
-                            <form action="/login" method="POST" class="p-lg-5 p-md-4 p-sm-5">
+                            <form action="/login" method="POST" class="p-lg-4 p-md-4 ">
                                 @csrf
                                 <h2 class="login-title">Login</h2>
-                                <small>Welcome, Please enter your credentials</small>
-                                <div class="form-input">
+                                <div class="small-line-height">
+                                    <small class="text-primary">Welcome, Please enter your credentials !</small>
+                                </div>
+                                <div class="form-input mt-3">
                                     <label for="login">Email or Username</label>
                                     <div class="col">
                                         <input type="text" class="form-control" name="login" id="login"
@@ -117,9 +119,13 @@
                                         </div>
                                     @endif
                                 </div>
-                                <button type="submit" class="btn btn-submit-login mt-4"><i
+                                <button type="submit" class="btn btn-submit-login mt-3"><i
                                         class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>
                                 </button>
+                                <div class="text-center mt-1 text-register">
+                                    <small>Don't have an account? <a href="/register"
+                                            class="text-decoration-none">Register</a></small>
+                                </div>
                             </form>
                         </div>
                     </div>

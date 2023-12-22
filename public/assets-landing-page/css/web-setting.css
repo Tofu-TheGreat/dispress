@@ -319,9 +319,9 @@ Togle Theme
 }
 
 /*--------------------
-Login Section
+Web-setting Section
 --------------------*/
-.login {
+.web-setting {
     min-height: 100vh;
     padding-left: 10px;
     padding-right: 10px;
@@ -342,15 +342,15 @@ Login Section
     transition: all 0.7s ease;
 }
 
-.login .container {
+.web-setting .container {
     margin: 10px auto auto auto;
 }
 
-.login .container .form-login {
+.web-setting .container .form-web-setting {
     padding: 30px;
 }
 
-.login .container .form-login .back-index {
+.web-setting .container .form-web-setting .back-index {
     position: absolute;
     left: 15px;
     top: 15px;
@@ -362,51 +362,35 @@ Login Section
     align-items: center;
 }
 
-.login .container .form-login .back-index .back-index-icon {
+.web-setting .container .form-web-setting .back-index .back-index-icon {
     color: var(--main-color);
     transition: color 0.3s ease-in-out;
 }
 
-.login .container .form-login .back-index:hover .back-index-icon {
+.web-setting .container .form-web-setting .back-index:hover .back-index-icon {
     color: var(--tertiary-color);
 }
 
-.login .login-title {
+.web-setting .web-setting-title {
     color: var(--main-color);
     margin-bottom: 0;
     position: relative;
     font-weight: bold;
 }
 
-.login .form-login small {
+.web-setting .form-web-setting small {
     font-size: 0.8rem;
     color: black;
 }
 
-.login .form-input label {
-    margin-top: 5px;
-    font-size: 0.9rem;
-}
-
-.login .form-input input {
-    width: 110%;
-    height: 45px;
-    border-radius: 10px;
-    margin-bottom: 15px;
-}
-
-.login .form-login .text-register {
-    margin-left: 10%;
-}
-
-.login .login-text h1 {
+.web-setting .web-setting-text h1 {
     font-size: 2.1rem;
     font-weight: 700;
     color: var(--tertiary-color);
     margin: 0 0 30px;
 }
 
-.login-text p {
+.web-setting-text p {
     font-size: 1.1rem;
     line-height: 28px;
     color: #eeee;
@@ -414,29 +398,22 @@ Login Section
     font-weight: 300;
 }
 
-.login-img img {
-    max-width: 400px;
-    margin: 5px;
-    width: 120%;
-    animation: bounceTop_01 3s ease infinite;
-}
-
 .view-password-icon {
     position: absolute;
-    right: -5%;
+    right: 10px;
     top: 22%;
     font-size: 1.2rem;
     z-index: 999;
 }
 
-.alert-login {
+.alert-web-setting {
     width: 110%;
 }
 
-.btn-submit-login {
+.btn-submit-web-setting {
     background-color: var(--secondary-color);
     padding: 8px;
-    width: 110%;
+    width: 100%;
     border: none;
     border-radius: 30px;
     color: #eee;
@@ -449,16 +426,16 @@ Login Section
     overflow: hidden;
 }
 
-.btn-submit-login:focus {
+.btn-submit-web-setting:focus {
     box-shadow: var(--shadow-black-300);
 }
 
-.btn-submit-login:hover {
+.btn-submit-web-setting:hover {
     color: #ffffff;
     background-color: var(--main-to-dark-color);
 }
 
-.icon-btn-login {
+.icon-btn-web-setting {
     color: #eeee;
     position: absolute;
     transition: all 0.5s ease-in-out;
@@ -467,13 +444,13 @@ Login Section
     z-index: 2;
 }
 
-.btn-submit-login:hover .icon-btn-login {
+.btn-submit-web-setting:hover .icon-btn-web-setting {
     color: #eeee;
     left: 47%;
     transform: scale(1.4);
 }
 
-.btn-submit-login span {
+.btn-submit-web-setting span {
     color: #f7f7f7;
     position: relative;
     padding-left: 23px;
@@ -481,11 +458,11 @@ Login Section
     transition: left 0.5s ease-in-out;
 }
 
-.btn-submit-login:hover span {
+.btn-submit-web-setting:hover span {
     left: 100%;
 }
 
-.btn-submit-login::before {
+.btn-submit-web-setting::before {
     content: "";
     background: var(--main-color);
     position: absolute;
@@ -501,8 +478,14 @@ Login Section
     transition: width 0.6s ease-in-out;
 }
 
-.btn-submit-login:hover::before {
+.btn-submit-web-setting:hover::before {
     width: 150%;
+}
+
+.text-web-setting {
+    position: relative;
+    text-align: center;
+    margin-right: 20px;
 }
 
 .effect-wrap {
@@ -563,7 +546,7 @@ Login Section
     .button-theme {
         top: 9%;
     }
-    .login-img {
+    .web-setting-img {
         display: none;
     }
     .social-pages {
@@ -572,27 +555,17 @@ Login Section
     .features .feature-item-icon {
         display: none;
     }
-    .login .login-title {
+    .web-setting .web-setting-title {
         margin-top: 20px;
     }
-    .login .form-input input {
-        width: 100%;
+    .web-setting .form-input input {
         margin-bottom: 25px;
     }
-    .login .form-login .text-register {
-        margin-left: 0;
-    }
-    .alert-login {
-        width: 100%;
-    }
-    .btn-submit-login {
-        width: 100%;
-    }
-    .logo-login {
+    .logo-web-setting {
         display: none;
     }
-    .view-password-icon {
-        right: 3%;
+    .btn-submit-web-setting {
+        width: 100%;
     }
 }
 
@@ -603,7 +576,7 @@ Login Section
     .navbar-nav {
         padding-top: 10px;
     }
-    .login {
+    .web-setting {
         background-position: center;
     }
     .footer-slogan {

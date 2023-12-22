@@ -34,6 +34,8 @@ Route::post('/profile-edit/{id}', [ProfileController::class, 'editProfile'])->mi
 Route::post('/profile-change-password/{id}', [ProfileController::class, 'changePassword'])->middleware('auth');
 
 Route::get('/web-setting', [WebSettingController::class, 'index'])->middleware('auth');
+Route::post('/web-setting-edit/{id}', [WebSettingController::class, 'update'])->name('web-setting-edit')->middleware('auth');
+Route::get('/deleteImageWebSetting/{id}', [WebSettingController::class, 'deleteImageWebSetting'])->name('deleteImageWebSetting');
 
 // Manajemen user
 
@@ -42,6 +44,7 @@ Route::get('/dashboard-officer', [Controller::class, 'dashboardOfficer'])->middl
 Route::get('/dashboard-staff', [Controller::class, 'dashboardStaff'])->middleware('auth', 'role:staff');
 
 Route::resource('/admin', AdminController::class)->middleware('auth');
+
 
 Route::get('/deleteImageFromUser/{id}', [AdminController::class, 'deleteImageFromUser'])->name('deleteImageFromUser');
 Route::post('/filter', [AdminController::class, 'filterDataAdmin'])->name('filterDataAdmin');
@@ -72,11 +75,12 @@ Route::post('posisi-jabatan-import', [ImportController::class, 'import_posisijab
 
 // Manajemen instansi
 
+
 Route::resource('/instansi', InstansiController::class)->middleware('auth');
 
 Route::get('instansi-export', [ExportController::class, 'export_instansi'])->name('instansi.export');
 Route::post('instansi-import', [ImportController::class, 'import_instansi'])->name('instansi.import');
-Route::post('instansi-search', [InstansiController::class, 'search'])->name('instansi.search');
+Route::post('instansi-search', [InstansiController::class, 'search'])->name('search.instansi');
 
 // Manajemen Nomor Klasifikasi
 

@@ -73,7 +73,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.surat') }}" method="post">
+                                <form action="{{ route('search.instansi') }}" method="post">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"

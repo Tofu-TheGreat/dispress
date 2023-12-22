@@ -50,7 +50,7 @@
                                         <div class="position-absolute text-center profile-hapus-foto-instansi">
                                             <button type="button" data-toggle="tooltip" data-placement="top"
                                                 title="Hapus Logo Instansi" data-original-title="Hapus Logo Instansi"
-                                                class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1 tombol-hapus-profile"><i
+                                                class="btn btn-icon icon-left btn-danger btn-sm px-md-3 px-sm-1 tombol-hapus-instansi"><i
                                                     class="fas fa-trash"></i>Hapus
                                             </button>
                                         </div>
@@ -267,7 +267,7 @@
                                 <div class="tab-pane fade" id="edit-web-setting" role="tabpanel"
                                     aria-labelledby="web-setting-edit">
                                     {{-- edit web profile --}}
-                                    <form action="{{ route('profile-edit', $dataWebSetting->id_web_setting) }}"
+                                    <form action="{{ route('web-setting-edit', $dataWebSetting->id_web_setting) }}"
                                         method="post" enctype="multipart/form-data">
                                         @csrf
                                         <div class="row">
@@ -303,7 +303,7 @@
                                                             <div class="input-group">
                                                                 <select
                                                                     class="filter select2 @error('id_user') is-invalid  @enderror "
-                                                                    id="id_user" name="id_user" style="width: 100%;"
+                                                                    id="id_user" name="id_ketua" style="width: 100%;"
                                                                     required>
                                                                     <option selected disabled>Pilih Instansi Pengirim
                                                                     </option>
@@ -377,7 +377,7 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="form-group">
-                                                        <label for="default_logo">Logo Instansi: </label>
+                                                        <label for="default_logo">Set Default Logo Instansi: </label>
                                                         <small class="d-block">Catatan: masukkan logo dengan format
                                                             (JPEG, PNG,
                                                             JPG),
@@ -507,5 +507,43 @@
         });
 
         $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);
+    </script>
+    <script>
+        document.body.addEventListener("click", function(event) {
+            const element = event.target;
+
+            if (element.classList.contains("tombol-hapus-instansi")) {
+                swal({
+                    title: 'Apakah anda yakin?',
+                    text: 'Ingin menghapus foto instansi ini?',
+                    icon: 'warning',
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        swal('Foto instansi berhasil dihapus!', {
+                            icon: 'success',
+                        });
+                        // Make an AJAX request to trigger the delete
+                        fetch('{{ route('deleteImageWebSetting', $dataWebSetting->id_web_setting) }}', {
+                                method: 'GET',
+                            })
+                            .then(response => {
+                                // Handle the response here (e.g., trigger the delete)
+                                if (response.ok) {
+
+                                    window.location.reload();
+                                }
+                            })
+                            .catch(error => {
+                                // Handle any errors here
+                                console.error('Error:', error);
+                            });
+                    } else {
+                        swal('Foto profile Admin tidak jadi dihapus!');
+                    }
+                });
+            }
+        });
     </script>
 @endsection

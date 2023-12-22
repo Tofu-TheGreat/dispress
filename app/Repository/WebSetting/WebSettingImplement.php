@@ -2,6 +2,7 @@
 
 namespace App\Repository\WebSetting;
 
+use App\Models\Instansi;
 use App\Models\WebSetting;
 use Intervention\Image\Facades\Image;
 
@@ -30,13 +31,13 @@ class WebSettingImplement implements WebSettingRepository
                 $constraint->upsize();
             })->save($destinationPath . '/' . $nama_foto);
             $data->default_logo->move(public_path('image_save'), $nama_foto);
-            return $this->websetting->create([
+            $this->websetting->create([
                 'id_instansi' => $data['id_instansi'],
                 'id_ketua' => $data['id_ketua'],
                 'default_logo' => $nama_foto,
             ]);
         } else {
-            return $this->websetting->create([
+            $this->websetting->create([
                 'id_instansi' => $data['id_instansi'],
                 'id_ketua' => $data['id_ketua'],
             ]);
@@ -52,7 +53,7 @@ class WebSettingImplement implements WebSettingRepository
         }
 
         if ($data->hasFile('default_logo')) {
-            $web_setting = $this->websetting->where('id_web_setting', $data->id_web_setting)->first();
+            $web_setting = $this->websetting->where('id_web_setting', $id)->first();
             if ($web_setting->default_logo != null) {
                 $fotoPath = public_path('image_save/') . $web_setting->default_logo;
                 if (file_exists($fotoPath)) {
@@ -77,6 +78,26 @@ class WebSettingImplement implements WebSettingRepository
                 'id_ketua' => $data['id_ketua'],
             ]);
         }
+
+        if ($data->has('email') || $data->has('nomor_telpon') || $data->has('alamat_instansi')) {
+            Instansi::where('id_instansi', $data->id_instansi)->update([
+                'email' => $data['email'],
+                'nomor_telpon' =>  currencyPhoneToNumeric($data['nomor_telpon']),
+                'alamat_instansi' => $data['alamat_instansi'],
+            ]);
+        }
         return $webSetting;
+    }
+    public function deleteImageWebSetting($id)
+    {
+        $websetting = $this->websetting->find($id);
+        if ($websetting->default_logo != null) {
+            $fotoPath = public_path('image_save/') . $websetting->default_logo;
+            if (file_exists($fotoPath)) {
+                unlink($fotoPath);
+            }
+        }
+        $websetting->default_logo = null;
+        $websetting->save();
     }
 }

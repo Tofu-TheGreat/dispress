@@ -50,11 +50,11 @@ class WebSettingController extends Controller
     public function update(WebSettingRequest $request, $id)
     {
         $this->webSettingRepository->update($request, $id);
-        return redirect()->intended('/web-setting')->with('success', 'Berhasil mengubah data');
+        return redirect()->intended('/web-setting')->with('success', 'Berhasil mengubah data.');
     }
     public function deleteImageWebSetting($id)
     {
         $this->webSettingRepository->deleteImageWebSetting($id);
-        return back()->with('success', 'Berhasil menghapus foto instansi');
+        return back()->with('success', 'Berhasil menghapus logo instansi.');
     }
 }

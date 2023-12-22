@@ -139,11 +139,19 @@ li {
 
 /* web setting */
 
+.card-profile-widget {
+    border-radius: 5px;
+}
+
 .profile-widget-header-bg-img {
+    background-image: url(../../assets-landing-page/img/Building-bro.png);
+    background-color: #3649e3;
     min-height: 280px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
 }
 
 .img-web-wrapper {
@@ -151,17 +159,21 @@ li {
     bottom: -45px;
     position: absolute;
     left: 50%;
-    margin-left: -85px;
+    margin-left: -90px;
     margin-top: -50px;
 }
 
 .profile-hapus-foto-instansi {
     z-index: 999;
-    bottom: -73px;
-    left: 20px;
+    bottom: -90px;
+    left: 30px;
     margin-left: auto;
     margin-right: auto;
     width: 120px;
+}
+
+.profile-widget-picture-instansi {
+    width: 120px !important;
 }
 
 /* instansi */
@@ -617,6 +629,10 @@ custom scrollbar
         position: absolute;
         bottom: 20px;
         right: 20px;
+    }
+
+    .profile-widget-picture-instansi {
+        width: 100px !important;
     }
 
     .img-web-wrapper {

@@ -318,7 +318,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="nomor_telpon">Nomor Telepon: </label>
                                                             <div class="input-group">
@@ -335,6 +335,34 @@
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('nomor_telpon')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label class="capitalize" for="id_posisi_jabatan">Pilih Posisi
+                                                                Jabatan:
+                                                            </label>
+                                                            <div class="input-group">
+                                                                <select
+                                                                    class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                                                    id="id_posisi_jabatan" name="id_posisi_jabatan"
+                                                                    required style="width: 100%">
+                                                                    <option selected disabled>Pilih Posisi Jabatan User
+                                                                    </option>
+                                                                    @foreach ($posisiJabatanList as $item)
+                                                                        <option value="{{ $item->id_posisi_jabatan }}"
+                                                                            {{ $dataProfile->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                                            {{ $item->nama_posisi_jabatan }} |
+                                                                            {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('id_posisi_jabatan')
                                                                     {{ $message }}
                                                                 @enderror
                                                             </span>
@@ -368,33 +396,6 @@
                                                 </div>
                                             </div>
                                             <div class="col-12">
-                                                <div class="form-group">
-                                                    <label class="capitalize" for="id_posisi_jabatan">Pilih Posisi
-                                                        Jabatan:
-                                                    </label>
-                                                    <div class="input-group">
-                                                        <select
-                                                            class="form-control select2 @error('id_posisi_jabatan') is-invalid  @enderror "
-                                                            id="id_posisi_jabatan" name="id_posisi_jabatan" required
-                                                            style="width: 100%">
-                                                            <option selected disabled>Pilih Posisi Jabatan User</option>
-                                                            @foreach ($posisiJabatanList as $item)
-                                                                <option value="{{ $item->id_posisi_jabatan }}"
-                                                                    {{ $dataProfile->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
-                                                                    {{ $item->nama_posisi_jabatan }} |
-                                                                    {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
-                                                                </option>
-                                                            @endforeach
-                                                        </select>
-                                                    </div>
-                                                    <span class="text-danger">
-                                                        @error('id_posisi_jabatan')
-                                                            {{ $message }}
-                                                        @enderror
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="col">
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="foto">Masukkan Foto: </label>
@@ -460,7 +461,8 @@
                                                         </div>
                                                         <input type="password"
                                                             class="form-control capitalize @error('password_lama') is-invalid @enderror"
-                                                            id="password_lama" name="password_lama">
+                                                            id="password_lama" name="password_lama"
+                                                            placeholder="ex: p@sya123">
                                                         <i class="bi bi-eye view-password-icon"></i>
                                                     </div>
                                                     <div class="text-danger">
@@ -484,8 +486,9 @@
                                                             </div>
                                                         </div>
                                                         <input type="password"
-                                                            class="form-control phone @error('password_baru') is-invalid @enderror"
-                                                            id="password_baru" name="password_baru">
+                                                            class="form-control @error('password_baru') is-invalid @enderror"
+                                                            id="password_baru" name="password_baru"
+                                                            placeholder="ex: p@sya555">
                                                         <i class="bi bi-eye view-password-icon"></i>
 
                                                     </div>
@@ -508,8 +511,9 @@
                                                             </div>
                                                         </div>
                                                         <input type="password"
-                                                            class="form-control phone @error('password_baru_ulang') is-invalid @enderror"
-                                                            id="password_baru_ulang" name="password_baru_ulang">
+                                                            class="form-control @error('password_baru_ulang') is-invalid @enderror"
+                                                            id="password_baru_ulang" name="password_baru_ulang"
+                                                            placeholder="ex: p@sya555">
                                                         <i class="bi bi-eye view-password-icon"></i>
 
                                                     </div>
@@ -566,6 +570,10 @@
     {{-- handle view password --}}
 
     <script>
+        $('.phone').inputmask('9999-9999-9999');
+
+        $('#nip').inputmask('999999999999999999');
+
         $('.view-password-icon').on('click', function() {
             const passwordInput = $(this).closest('.form-group').find('input');
 

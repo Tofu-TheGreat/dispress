@@ -132,7 +132,7 @@ class DatabaseSeeder extends Seeder
         // websetting
         WebSetting::factory()->create([
             'id_instansi' => '3',
-            'id_ketua' => '9',
+            'id_ketua' => '8',
             'default_logo' => 'logoxamp.png',
         ]);
 

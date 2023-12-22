@@ -31,20 +31,22 @@
         <div class="section-body">
             <h2 class="section-title">Setting</h2>
             <p class="section-lead">
-                Atur dan sesuaikan semua pengaturan tentang situs ini.
+                Atur dan sesuaikan Instansi anda.
             </p>
 
             <div class="row mt-sm-4">
                 <div class="col-12 col-md-12 col-lg-5">
-                    <div class="card profile-widget">
+                    <div class="card card-profile-widget profile-widget shadow-sm mb-5">
                         <div class="profile-widget-header profile-widget-header-bg-img position-relative"
-                            style="background-image: url({{ asset('image_save/' . $dataWebSetting->instansi->foto_instansi) }})">
+                            @if ($dataWebSetting->instansi->foto_instansi) style="background-image: url({{ asset('image_save/' . $dataWebSetting->instansi->foto_instansi) }})"
+                            @else
+                            style="background-image: url({{ asset('assets-landing-page/img/Building-bro.png') }})" @endif>
                             @if ($dataWebSetting->default_logo)
                                 <div class="img-web-wrapper">
                                     <div class="position-relative">
                                         <img alt="image {{ $dataWebSetting->instansi->nama_instansi }}"
                                             src="{{ asset('image_save/' . $dataWebSetting->default_logo) }}"
-                                            class="rounded-circle profile-widget-picture">
+                                            class="rounded-circle profile-widget-picture profile-widget-picture-instansi">
                                         <div class="position-absolute text-center profile-hapus-foto-instansi">
                                             <button type="button" data-toggle="tooltip" data-placement="top"
                                                 title="Hapus Logo Instansi" data-original-title="Hapus Logo Instansi"
@@ -55,20 +57,72 @@
                                     </div>
                                 </div>
                             @else
-                                <img alt="image {{ $dataWebSetting->username }}"
-                                    src="{{ asset('assets-landing-page/img/logo-brand.svg') }}"
-                                    class="rounded-circle profile-widget-picture">
+                                <div class="img-web-wrapper">
+                                    <div class="position-relative">
+                                        <img alt="image {{ $dataWebSetting->instansi->nama_instansi }}"
+                                            src="{{ asset('assets-landing-page/img/logo-sekolah.png') }}"
+                                            class="rounded-circle profile-widget-picture profile-widget-picture-instansi">
+                                    </div>
+                                </div>
                             @endif
                         </div>
                         <div class="profile-widget-description mt-4">
                             <div class="profile-widget-name text-capitalize">{{ $dataWebSetting->instansi->nama_instansi }}
                             </div>
                             <div class="informasi">
-                                <p>ketua : {{ $dataWebSetting->ketua->nama }}</p>
-                                <p>email: {{ $dataWebSetting->instansi->email }}</p>
-                                <p>nomor telpon: {{ $dataWebSetting->instansi->nomor_telpon }}</p>
-                                <p>alamat: {{ $dataWebSetting->instansi->alamat }}</p>
+                                <p>{{ $dataWebSetting->instansi->alamat_instansi }}</p>
                             </div>
+                            <div class="text-center">
+                                <div class="font-weight-bold mb-2"> Informasi Lainnya </div>
+                                <span data-toggle="tooltip" data-placement="top"
+                                    title="{{ $dataWebSetting->instansi->email }}"
+                                    data-original-title="{{ $dataWebSetting->instansi->email }}"
+                                    class="btn btn-primary mr-1">
+                                    <i class="bi bi-envelope"></i>
+                                </span>
+                                <span data-toggle="tooltip" data-placement="top"
+                                    title="{{ currencyPhone($dataWebSetting->instansi->nomor_telpon) }}"
+                                    data-original-title="{{ currencyPhone($dataWebSetting->instansi->nomor_telpon) }}"
+                                    class="btn btn-primary mr-1">
+                                    <i class="bi bi-telephone"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card profile-widget">
+                        <div class="profile-widget-header">
+                            @if ($dataWebSetting->ketua->foto_user)
+                                <img alt="image {{ $dataWebSetting->ketua->username }}"
+                                    src="{{ asset('image_save/' . $dataWebSetting->ketua->foto_user) }}"
+                                    class="rounded-circle profile-widget-picture">
+                            @else
+                                <img alt="image {{ $dataWebSetting->ketua->username }}"
+                                    src="{{ asset('assets/img/avatar/avatar-1.png') }}"
+                                    class="rounded-circle profile-widget-picture">
+                            @endif
+                            <div class="profile-widget-items">
+                                <div class="profile-widget-item">
+                                    <div class="profile-widget-item-value">{{ $dataWebSetting->ketua->nama }}</div>
+                                    <div class="profile-widget-item-label">Ketua Instansi</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="profile-widget-description">
+                            <ul
+                                class="list-unstyled user-details list-unstyled-border list-unstyled-noborder d-flex justify-content-center">
+                                <li class="media">
+                                    <div class="media-items">
+                                        <div class="media-item">
+                                            <div class="media-value">Email</div>
+                                            <div class="media-label">{{ $dataWebSetting->ketua->email }}</div>
+                                        </div>
+                                        <div class="media-item">
+                                            <div class="media-value">No. Telp</div>
+                                            <div class="media-label">{{ $dataWebSetting->ketua->nomor_telpon }}</div>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -122,7 +176,7 @@
                                                                     class="form-control capitalize @error('id_instansi') is-invalid @enderror"
                                                                     placeholder="ex: 213720078171677275"
                                                                     value="{{ $dataWebSetting->instansi->nama_instansi }}"
-                                                                    id="id_instansi" name="id_instansi" readonly>
+                                                                    name="id_instansi" readonly>
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('id_instansi')
@@ -166,7 +220,7 @@
                                                                     class="form-control @error('email') is-invalid @enderror"
                                                                     placeholder="ex: contoh@gmail.com"
                                                                     value="{{ $dataWebSetting->instansi->email }}"
-                                                                    id="email" name="email" readonly>
+                                                                    name="email" readonly>
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('email')
@@ -188,7 +242,7 @@
                                                                     class="form-control phone @error('nomor_telpon') is-invalid @enderror"
                                                                     placeholder="ex: 0878-2730-3388"
                                                                     value="{{ $dataWebSetting->instansi->nomor_telpon }}"
-                                                                    id="nomor_telpon" name="nomor_telpon" readonly>
+                                                                    name="nomor_telpon" readonly>
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('nomor_telpon')
@@ -201,7 +255,7 @@
                                                         <div class="form-group">
                                                             <label for="alamat_instansi">Alamat Instansi: </label>
                                                             <textarea class="summernote-simple summernote-disable @error('alamat_instansi') is-invalid @enderror"
-                                                                id="alamat_instansi" name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
+                                                                name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -315,9 +369,16 @@
                                             </div>
                                             <div class="col-12">
                                                 <div class="form-group">
+                                                    <label for="alamat_instansi">Alamat Instansi: </label>
+                                                    <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
+                                                        name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
                                                     <div class="form-group">
-                                                        <label for="default_logo">Masukkan Logo Instansi: </label>
-                                                        <small class="d-block">Catatan: masukkan foto dengan format
+                                                        <label for="default_logo">Logo Instansi: </label>
+                                                        <small class="d-block">Catatan: masukkan logo dengan format
                                                             (JPEG, PNG,
                                                             JPG),
                                                             maksimal 10
@@ -375,6 +436,27 @@
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    <script>
+        // Delegasi event change untuk elemen dengan ID 'id_instansi'
+        $(document).on('change', '#id_instansi', function() {
+            // Mendapatkan nilai yang dipilih dari dropdown
+            const selectedValue = $(this).val();
+
+            // Mendapatkan data terkait dari dropdown yang dipilih
+            const selectedInstansi = {!! json_encode($instansiList) !!}.find(function(item) {
+                return item.id_instansi == selectedValue;
+            });
+
+            // Mengisi nilai pada elemen dengan ID 'email' dan 'nomor_telpon'
+            $('#email').val(selectedInstansi ? selectedInstansi.email : '');
+            $('#nomor_telpon').val(selectedInstansi ? selectedInstansi.nomor_telpon : '');
+
+            // Menetapkan nilai pada elemen dengan ID 'alamat_instansi'
+            const alamatValue = selectedInstansi ? selectedInstansi.alamat_instansi : '';
+            $('#alamat_instansi').summernote('code', alamatValue);
+        });
+    </script>
 
     {{-- Toast --}}
     @if (Session::has('success'))

@@ -171,7 +171,7 @@
                                         <div class="input-group">
                                             <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                                 id="id_user" name="id_ketua" style="width: 100%;" required>
-                                                <option selected disabled>Pilih Instansi Pengirim
+                                                <option selected disabled>Ketua Instansi Anda
                                                 </option>
                                                 <option value="{{ Auth::user()->id_user }}"
                                                     {{ Auth::user()->id_user == Auth::user()->id_user ? 'selected' : '' }}>
@@ -188,7 +188,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="default_logo">Set Default Logo Instansi: </label>
+                                            <label for="default_logo">Set Default Logo Instansi: (Optional)</label>
                                             <small class="d-block">Catatan: masukkan logo dengan format
                                                 (JPEG, PNG,
                                                 JPG),

@@ -80,7 +80,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'pasya@gmail.com',
             'nomor_telpon' => '089123456789',
             'password' => bcrypt('password'),
-            'foto_user' => '1703172366.png',
         ]);
 
         User::factory()->create([
@@ -124,7 +123,6 @@ class DatabaseSeeder extends Seeder
             'nomor_telpon' => '089123111770',
             'email' => 'smkn4@gmail.com',
             'alamat_instansi' => 'Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
-            'foto_instansi' => '1703172032.jpg',
         ]);
 
         Instansi::factory(15)->create();
@@ -133,7 +131,6 @@ class DatabaseSeeder extends Seeder
         WebSetting::factory()->create([
             'id_instansi' => '3',
             'id_ketua' => '8',
-            'default_logo' => 'logoxamp.png',
         ]);
 
         // Seed klasifikasi

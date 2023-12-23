@@ -79,6 +79,14 @@ ul {
     list-style: none;
 }
 
+.select2-selection__rendered {
+    font-size: 0.8em !important;
+}
+
+.note-editable {
+    font-size: 0.7em !important;
+}
+
 @keyframes spin_01 {
     0% {
         transform: rotate(0deg);
@@ -344,6 +352,10 @@ Web-setting Section
 
 .web-setting .container {
     margin: 10px auto auto auto;
+}
+
+.web-setting .card-web-setting {
+    border-radius: 8px !important;
 }
 
 .web-setting .container .form-web-setting {

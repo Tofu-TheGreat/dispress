@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\RegWebSettingRequest;
+use App\Http\Requests\UserRequest;
+use App\Repository\Instansi\InstansiRepository;
 use Illuminate\Http\Request;
 use App\Repository\Login\LoginRepository;
 use Illuminate\Support\Facades\{Auth, Hash};
@@ -11,10 +15,11 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
-    private $loginRepository;
-    public function __construct(LoginRepository $loginRepository)
+    private $loginRepository, $instansiRepository;
+    public function __construct(LoginRepository $loginRepository, InstansiRepository $instansiRepository)
     {
         $this->loginRepository = $loginRepository;
+        $this->instansiRepository = $instansiRepository;
     }
 
     public function login(LoginRequest $request)
@@ -60,8 +65,14 @@ class LoginController extends Controller
         return redirect()->intended('/login')->with('success', 'Berhasil logout akun.');
     }
 
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
+        $this->loginRepository->register($request);
         return redirect()->intended('/web-setting/create')->with('success', 'Berhasil register akun.');
+    }
+    public function register_web_setting(RegWebSettingRequest $request)
+    {
+        $this->loginRepository->register_web_setting($request);
+        return redirect()->intended('/dashboard-admin')->with('success', 'Berhasil register akun.');
     }
 }

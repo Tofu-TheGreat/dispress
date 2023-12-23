@@ -175,7 +175,7 @@
                                         <div class="input-group">
                                             <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
                                                 id="id_instansi" name="id_instansi" style="width: 100%;" required>
-                                                <option selected disabled>Pilih Instansi Pengirim
+                                                <option selected disabled>Pilih Instansi Anda
                                                 </option>
                                                 {{-- @foreach ($instansiList as $data)
                                                     <option value="{{ $data->id_instansi }}"
@@ -197,7 +197,7 @@
                                         <div class="input-group">
                                             <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                                 id="id_user" name="id_ketua" style="width: 100%;" required>
-                                                <option selected disabled>Pilih Instansi Pengirim
+                                                <option selected disabled>Ketua Instansi Anda
                                                 </option>
                                                 {{-- @foreach ($userList as $data)
                                                     <option value="{{ $data->id_user }}"
@@ -218,7 +218,7 @@
                                         <label for="email">Email: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
+                                                <div class="input-group-text">
                                                     <i class="bi bi-envelope-fill"></i>
                                                 </div>
                                             </div>
@@ -239,7 +239,7 @@
                                         <label for="nomor_telpon">Nomor Telepon: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
+                                                <div class="input-group-text">
                                                     <i class="bi bi-telephone-fill"></i>
                                                 </div>
                                             </div>
@@ -270,7 +270,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <div class="form-group">
-                                            <label for="default_logo">Set Default Logo Instansi: </label>
+                                            <label for="default_logo">Set Default Logo Instansi: (Optional)</label>
                                             <small class="d-block">Catatan: masukkan logo dengan format
                                                 (JPEG, PNG,
                                                 JPG),

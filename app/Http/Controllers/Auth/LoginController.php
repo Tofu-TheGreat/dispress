@@ -23,6 +23,29 @@ class LoginController extends Controller
         $this->instansiRepository = $instansiRepository;
     }
 
+    public function loginPage()
+    {
+        $userList = User::get();
+
+        return view('pages.login', [
+            'title' => 'Login',
+            'userList' => $userList,
+        ]);
+    }
+
+    public function registerPage()
+    {
+        $userList = User::get();
+        if ($userList->isEmpty()) {
+            return view('pages.register', [
+                'title' => 'Register',
+                'userList' => $userList,
+            ]);
+        } else {
+            return redirect()->intended('/');
+        }
+    }
+
     public function login(LoginRequest $request)
     {
         $login = $request->input('login');

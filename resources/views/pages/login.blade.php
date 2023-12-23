@@ -122,12 +122,12 @@
                                 <button type="submit" class="btn btn-submit-login mt-3"><i
                                         class="icon-btn-login bi-box-arrow-in-right"></i> <span> Login </span>
                                 </button>
-                                @guest
+                                @if ($userList->isEmpty())
                                     <div class="text-center mt-1 text-register">
                                         <small>Don't have an account? <a href="/register"
                                                 class="text-decoration-none">Register</a></small>
                                     </div>
-                                @endguest
+                                @endif
                             </form>
                         </div>
                     </div>

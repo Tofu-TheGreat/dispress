@@ -58,7 +58,7 @@
                 <div class="col-lg-10 card rounded-4 card-register mb-5">
                     <div class="row align-items-center">
                         <div class="col-12 order-lg-first form-register">
-                            <a href="/" class="back-index">
+                            <a href="/login" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
                             <form action="/register" method="POST" class="p-lg-4 p-md-4 row">

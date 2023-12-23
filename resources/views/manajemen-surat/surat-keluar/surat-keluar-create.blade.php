@@ -97,7 +97,28 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class=" col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
+                                        <label for="perihal">Masukkan Perihal Surat: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('perihal') is-invalid @enderror"
+                                                placeholder="ex: Undangan Rapat" value="{{ old('perihal') }}"
+                                                id="perihal" name="perihal" required autofocus>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('perihal')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="tanggal_surat_keluar">Masukkan Tanggal Surat:
                                         </label>
@@ -121,7 +142,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="isi_surat">Masukkan Ringkasan Surat: </label>
+                                        <label for="isi_surat">Masukkan Isi Surat: </label>
                                         <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
                                             id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
                                         <span class="text-danger">
@@ -131,7 +152,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="id_instansi_penerima">Tujuan Pengiriman Surat:
                                         </label>
@@ -144,16 +165,37 @@
                                             <select
                                                 class="form-control select2  @error('id_instansi_penerima') is-invalid @enderror "
                                                 id="id_instansi_penerima" name="id_instansi_penerima" required>
-                                                <option selected disabled>Pilih Pengirim Surat</option>
+                                                <option selected disabled>Pilih Tujuan Pengiriman Surat</option>
                                                 @foreach ($instansiList as $data)
-                                                    <option value="{{ $data->id_instansi_penerima }}"
-                                                        {{ old('id_instansi_penerima') == $data->id_instansi_penerima ? 'selected' : '' }}>
+                                                    <option value="{{ $data->id_instansi }}"
+                                                        {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
                                                         {{ $data->nama_instansi }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <span class="text-danger">
                                             @error('id_instansi_penerima')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
+                                        <label for="tembusan">Masukkan Tembusan: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('tembusan') is-invalid @enderror"
+                                                placeholder="ex: Sekretaris Dinas" value="{{ old('tembusan') }}"
+                                                id="tembusan" name="tembusan" required autofocus>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('tembusan')
                                                 {{ $message }}
                                             @enderror
                                         </span>

@@ -283,12 +283,13 @@
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 
         $(document).ready(function() {
-            // Simpan nilai awal nomor_surat
-            const nomorSuratInput = $('#nomor_surat').val();
 
             // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
             $(document).on('change', '#id_klasifikasi', function() {
                 const selectedValue = $(this).val();
+
+                // Simpan nilai awal nomor_surat
+                const nomorSuratInput = $('#nomor_surat').val();
 
                 // Menggunakan klasifikasiList di sini
                 // Contoh: Menampilkan data terkait dengan nilai terpilih

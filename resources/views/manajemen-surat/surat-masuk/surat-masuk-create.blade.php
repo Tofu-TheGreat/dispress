@@ -232,14 +232,24 @@
             $(document).on('change', '#id_klasifikasi', function() {
                 const selectedValue = $(this).val();
 
+                // Simpan nilai awal nomor_surat
+                const nomorSuratInput = $('#nomor_surat').val();
+
                 // Menggunakan klasifikasiList di sini
                 // Contoh: Menampilkan data terkait dengan nilai terpilih
                 const selectedKlasifikasi = klasifikasiList.find(function(item) {
                     return item.id_klasifikasi == selectedValue;
                 });
 
-                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
-                $('#nomor_surat').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
+                // Ambil tiga angka pertama dari nomor_klasifikasi
+                const tigaAngkaPertama = selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi.slice(
+                    0, 3) : '';
+
+                // Ganti tiga angka pertama di nomorSuratInput
+                const nomorSuratBaru = tigaAngkaPertama + nomorSuratInput.slice(3);
+
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat'
+                $('#nomor_surat').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });
         });
     </script>

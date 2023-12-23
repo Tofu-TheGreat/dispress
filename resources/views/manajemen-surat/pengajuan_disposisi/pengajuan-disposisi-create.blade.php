@@ -380,9 +380,13 @@
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 
         $(document).ready(function() {
+
             // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
             $(document).on('change', '#id_klasifikasi', function() {
                 const selectedValue = $(this).val();
+
+                // Simpan nilai awal nomor_agenda
+                const nomorAgendaInput = $('#nomor_agenda').val();
 
                 // Menggunakan klasifikasiList di sini
                 // Contoh: Menampilkan data terkait dengan nilai terpilih
@@ -390,13 +394,18 @@
                     return item.id_klasifikasi == selectedValue;
                 });
 
+                // Ambil tiga angka pertama dari nomor_klasifikasi
+                const tigaAngkaPertama = selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi.slice(
+                    0, 3) : '';
+
+                // Ganti tiga angka pertama di nomorAgendaInput
+                const nomorAgendaBaru = tigaAngkaPertama + nomorAgendaInput.slice(3);
+
                 // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_agenda'
-                $('#nomor_agenda').val(selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi : '');
+                $('#nomor_agenda').val(selectedKlasifikasi ? nomorAgendaBaru : '');
             });
         });
-    </script>
 
-    <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-99999');
 

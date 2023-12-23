@@ -907,16 +907,25 @@
             $(document).on('change', '.id_klasifikasi', function() {
                 const selectedValue = $(this).val();
 
+                // Simpan nilai awal nomor_agenda
+                const nomorAgendaInput = $('.nomor_agenda').val();
+
                 // Menggunakan klasifikasiList di sini
                 // Contoh: Menampilkan data terkait dengan nilai terpilih
                 const selectedKlasifikasi = klasifikasiList.find(function(item) {
                     return item.id_klasifikasi == selectedValue;
                 });
 
+                // Ambil tiga angka pertama dari nomor_klasifikasi
+                const tigaAngkaPertama = selectedKlasifikasi ? selectedKlasifikasi.nomor_klasifikasi.slice(
+                    0, 3) : '';
+
+                // Ganti tiga angka pertama di nomorAgendaInput
+                const nomorAgendaBaru = tigaAngkaPertama + nomorAgendaInput.slice(3);
+
                 // Menetapkan nilai ke elemen nomor_agenda yang memiliki ID sesuai dengan data.id_surat
                 const idSurat = $(this).data('id-surat');
-                $('#nomor_agenda_' + idSurat).val(selectedKlasifikasi ? selectedKlasifikasi
-                    .nomor_klasifikasi : '');
+                $('#nomor_agenda_' + idSurat).val(selectedKlasifikasi ? nomorAgendaBaru : '');
             });
         });
     </script>

@@ -216,7 +216,7 @@
                         <div class="col-lg-1 col-sm-4 btn-group">
                             @can('admin-officer')
                                 {{-- Button Tambah Data --}}
-                                <a href="/surat/create" class="text-white">
+                                <a href="/surat-keluar/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
                                         data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
                                         <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -276,95 +276,30 @@
                                                 <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
-                                                            <h4>{{ $data->nomor_surat }}</h4>
+                                                            <h4>{{ $data->nomor_surat_keluar }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Dari
-                                                                {{ $data->instansi->nama_instansi }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Tujuan
+                                                                {{ $data->instansiPenerima->nama_instansi }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
-                                                            @can('admin-officer')
-                                                                @if ($data->status_verifikasi == 1)
-                                                                    <span class="tombol-ajukan" data-toggle="tooltip"
-                                                                        data-placement="top" title="Ajukan untuk Disposisi"
-                                                                        data-original-title="Ajukan untuk Disposisi" disabled>
-                                                                        <button type="button"
-                                                                            class="btn btn-success mr-2 tombol-ajukan"
-                                                                            data-toggle="modal"
-                                                                            data-target="#ajukan-modal{{ $data->id_surat }}"
-                                                                            type="button">
-                                                                            Ajukan
-                                                                        </button>
-                                                                    </span>
-                                                                @endif
-                                                            @endcan
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat }}"
+                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat_keluar }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
                                                         </div>
                                                     </div>
-                                                    <div class="collapse show" id="mycard-collapse{{ $data->id_surat }}">
+                                                    <div class="collapse show"
+                                                        id="mycard-collapse{{ $data->id_surat_keluar }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->isi_surat !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
-                                                                -- {{ date('d-F-Y', strtotime($data->tanggal_surat)) }}
+                                                                --
+                                                                {{ date('d-F-Y', strtotime($data->tanggal_surat_keluar)) }}
                                                                 --</p>
-                                                            <div class="mt-1 mb-1 tombol-verifikasi">
-                                                                @can('admin')
-                                                                    <span class="tombol-verifikasi" data-toggle="tooltip"
-                                                                        data-placement="right"
-                                                                        title="klik Untuk Mengatur verifikasikan"
-                                                                        data-original-title="klik Untuk Mengatur verifikasikan"
-                                                                        disabled>
-                                                                    @endcan
-                                                                    @if ($data->status_verifikasi == 0)
-                                                                        <button type="button"
-                                                                            class="btn btn-primary mr-2 tombol-verifikasi"
-                                                                            data-toggle="modal"
-                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
-                                                                            type="button">
-                                                                            <i class="bi bi-patch-minus-fill tombol-verifikasi"
-                                                                                style="font-size: .8rem;"> Belum
-                                                                                Terverifikasi</i>
-                                                                        </button>
-                                                                    @elseif ($data->status_verifikasi == 1)
-                                                                        <button type="button"
-                                                                            class="btn btn-success mr-2 tombol-verifikasi"
-                                                                            data-toggle="modal"
-                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
-                                                                            type="button">
-                                                                            <i class="bi bi-patch-plus-fill tombol-verifikasi"
-                                                                                style="font-size: .8rem;">
-                                                                                Terverifikasi</i>
-                                                                        </button>
-                                                                    @else
-                                                                        <button type="button"
-                                                                            class="btn btn-danger mr-2 tombol-verifikasi"
-                                                                            data-toggle="modal"
-                                                                            data-target="#verifikasi-modal{{ $data->id_surat }}"
-                                                                            type="button">
-                                                                            <i class="bi bi-patch-exclamation-fill tombol-verifikasi"
-                                                                                style="font-size: .8rem;">
-                                                                                Dikembalikan</i>
-                                                                        </button>
-                                                                    @endif
-                                                                    @can('staff')
-                                                                        <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
-                                                                            title="Detail data surat"
-                                                                            data-original-title="Detail data surat"
-                                                                            class="btn btn-info has-icon text-white mr-1"
-                                                                            href=""><i class="bi bi-eye"></i>
-                                                                        </a>
-                                                                    @endcan
-                                                                    @can('admin')
-                                                                    </span>
-                                                                @endcan
-                                                            </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')
-                                                                    <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
+                                                                    <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data surat"
                                                                         data-original-title="Detail data surat"
@@ -375,11 +310,11 @@
                                                                         data-placement="left" title="Edit data surat"
                                                                         data-original-title="Edit data surat"
                                                                         class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                        href="{{ route('surat.edit', Crypt::encryptString($data->id_surat)) }}"><i
+                                                                        href="{{ route('surat.edit', Crypt::encryptString($data->id_surat_keluar)) }}"><i
                                                                             class="pl-1  bi bi-pencil-square "></i>
                                                                     </a>
                                                                     <form method="POST"
-                                                                        action="{{ route('surat.destroy', Crypt::encryptString($data->id_surat)) }}"
+                                                                        action="{{ route('surat.destroy', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                         class="tombol-hapus">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -400,11 +335,11 @@
                                                                 <div>
                                                                     <div class="user-detail-name">
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->instansi->nama_instansi }}</span>
+                                                                            {{ $data->instansiPenerima->nama_instansi }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->instansi->nomor_telpon) }}
+                                                                            {{ currencyPhone($data->instansiPenerima->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>
@@ -440,7 +375,7 @@
     @can('admin')
         <!-- Modal Verifikasi Surat -->
         @foreach ($suratKeluarList as $data)
-            <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $data->id_surat }}"
+            <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $data->id_surat_keluar }}"
                 aria-labelledby="verifikasi-modal" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered ">
                     <div class="modal-content">
@@ -450,15 +385,17 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <form action="/surat-verifikasi/{{ $data->id_surat }}" method="post" enctype="multipart/form-data">
+                        <form action="/surat-verifikasi/{{ $data->id_surat_keluar }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
-                            <input type="text" name="id_surat" value="{{ $data->id_surat }}" hidden id="">
+                            <input type="text" name="id_surat_keluar" value="{{ $data->id_surat_keluar }}" hidden
+                                id="">
                             <input type="text" name="id_klasifikasi" value="{{ $data->id_klasifikasi }}" hidden
                                 id="">
                             <div class="row px-4 pt-4">
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="id_surat">Nomor Surat: </label>
+                                        <label for="id_surat_keluar">Nomor Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text bg-secondary">

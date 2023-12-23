@@ -70,7 +70,7 @@
                             <div class="profile-widget-name text-capitalize">{{ $dataWebSetting->instansi->nama_instansi }}
                             </div>
                             <div class="informasi">
-                                <p>{{ $dataWebSetting->instansi->alamat_instansi }}</p>
+                                <p>{!! $dataWebSetting->instansi->alamat_instansi !!}</p>
                             </div>
                             <div class="text-center">
                                 <div class="font-weight-bold mb-2"> Informasi Lainnya </div>
@@ -334,7 +334,7 @@
                                                                     class="form-control @error('email') is-invalid @enderror"
                                                                     placeholder="ex: contoh@gmail.com"
                                                                     value="{{ $dataWebSetting->instansi->email }}"
-                                                                    id="email" name="email">
+                                                                    id="email" name="email" required>
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('email')
@@ -356,7 +356,7 @@
                                                                     class="form-control phone @error('nomor_telpon') is-invalid @enderror"
                                                                     placeholder="ex: 0878-2730-3388"
                                                                     value="{{ $dataWebSetting->instansi->nomor_telpon }}"
-                                                                    id="nomor_telpon" name="nomor_telpon">
+                                                                    id="nomor_telpon" name="nomor_telpon" required>
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('nomor_telpon')
@@ -371,7 +371,7 @@
                                                 <div class="form-group">
                                                     <label for="alamat_instansi">Alamat Instansi: </label>
                                                     <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
-                                                        name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
+                                                        name="alamat_instansi" required> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -436,6 +436,12 @@
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+        });
+    </script>
 
     <script>
         // Delegasi event change untuk elemen dengan ID 'id_instansi'

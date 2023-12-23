@@ -25,7 +25,6 @@ class WebSettingRequest extends FormRequest
             'id_instansi' => 'required|exists:instansi,id_instansi',
             'id_ketua' => 'required|exists:users,id_user',
             'default_logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
-
         ];
     }
 

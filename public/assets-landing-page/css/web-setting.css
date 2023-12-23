@@ -80,7 +80,8 @@ ul {
 }
 
 .select2-selection__rendered {
-    font-size: 0.8em !important;
+    font-size: 0.9em !important;
+    padding-top: 5px;
 }
 
 .note-editable {
@@ -419,13 +420,17 @@ Web-setting Section
 }
 
 .alert-web-setting {
-    width: 110%;
+    width: 100%;
+}
+
+.text-danger {
+    font-size: 0.7rem;
 }
 
 .btn-submit-web-setting {
     background-color: var(--secondary-color);
     padding: 8px;
-    width: 100%;
+    width: 50%;
     border: none;
     border-radius: 30px;
     color: #eee;

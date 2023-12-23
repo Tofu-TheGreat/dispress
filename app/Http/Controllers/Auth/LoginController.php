@@ -7,6 +7,7 @@ use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegisterRequest;
 use App\Http\Requests\RegWebSettingRequest;
 use App\Http\Requests\UserRequest;
+use App\Models\User;
 use App\Repository\Instansi\InstansiRepository;
 use Illuminate\Http\Request;
 use App\Repository\Login\LoginRepository;
@@ -67,11 +68,20 @@ class LoginController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $this->loginRepository->register($request);
-        return redirect()->intended('/web-setting/create')->with('success', 'Berhasil register akun.');
+        // $this->loginRepository->register($request);
+        $user = $request->all();
+        $userList = User::get();
+        return view('admin.pages.web-setting-create', [
+            'title' => 'Web-setting-create',
+            'active' => 'web-setting',
+            'active1' => 'setting',
+            'userList' => $userList,
+            'user' => $user
+        ])->with('success', 'Berhasil register akun.');
     }
     public function register_web_setting(RegWebSettingRequest $request)
     {
+
         $this->loginRepository->register_web_setting($request);
         return redirect()->intended('/dashboard-admin')->with('success', 'Berhasil register akun.');
     }

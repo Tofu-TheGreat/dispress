@@ -51,6 +51,25 @@ class LoginImplement implements LoginRepository
     }
     public function register_web_setting($data)
     {
+
+
+        $jabatan = PosisiJabatan::create([
+            'nama_posisi_jabatan' => 'Kepala Instansi',
+            'deskripsi_jabatan' => 'Tidak ada deskripsi',
+            'tingkat_jabatan' => '0'
+        ]);
+        $userreg =  User::create([
+            'nip' => $data->nip,
+            'nama' => $data->nama,
+            'level' => 'admin',
+            'id_posisi_jabatan' => $jabatan->id_posisi_jabatan,
+            // 'foto_user' => $nama_foto,
+            'username' => $data->username,
+            'email' => $data->email_user,
+            'nomor_telpon' => $data->nomor_telpon_user,
+            'password' => Hash::make($data->password)
+        ]);
+
         $instansiCreate = Instansi::create([
             'nama_instansi' => $data->nama_instansi,
             'alamat_instansi' => $data->alamat_instansi,
@@ -68,14 +87,16 @@ class LoginImplement implements LoginRepository
             $data->default_logo->move(public_path('image_save'), $nama_foto);
             WebSetting::create([
                 'id_instansi' => $instansiCreate['id_instansi'],
-                'id_ketua' => $data['id_ketua'],
+                'id_ketua' => $userreg->id_user,
                 'default_logo' => $nama_foto
             ]);
         } else {
             WebSetting::create([
                 'id_instansi' => $instansiCreate['id_instansi'],
-                'id_ketua' => $data['id_ketua'],
+                'id_ketua' => $userreg->id_user,
             ]);
         }
+        Auth::login($userreg);
+        $data->session()->regenerate();
     }
 }

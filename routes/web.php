@@ -31,7 +31,7 @@ Route::get('/register', function () {
 // Manajemen setting
 
 Route::post('/register', [LoginController::class, 'register'])->name('register')->middleware('guest');
-Route::post('/register_web_setting', [LoginController::class, 'register_web_setting'])->name('register.web.setting')->middleware('auth', 'role:admin');
+Route::post('/register_web_setting', [LoginController::class, 'register_web_setting'])->name('register.web.setting');
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -40,7 +40,7 @@ Route::post('/profile-edit/{id}', [ProfileController::class, 'editProfile'])->mi
 Route::post('/profile-change-password/{id}', [ProfileController::class, 'changePassword'])->middleware('auth');
 
 Route::get('/web-setting', [WebSettingController::class, 'index'])->middleware('auth');
-Route::get('/web-setting/create', [WebSettingController::class, 'create'])->middleware('auth', 'role:admin');
+Route::get('/web-setting/create', [WebSettingController::class, 'create']);
 Route::post('/web-setting-edit/{id}', [WebSettingController::class, 'update'])->name('web-setting-edit')->middleware('auth');
 Route::get('/deleteImageWebSetting/{id}', [WebSettingController::class, 'deleteImageWebSetting'])->name('deleteImageWebSetting');
 

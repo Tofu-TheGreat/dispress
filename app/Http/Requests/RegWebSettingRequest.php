@@ -33,7 +33,7 @@ class RegWebSettingRequest extends FormRequest
             'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
             'alamat_instansi' => 'required|min:5|max:150|',
             'email' => 'required|email|unique:instansi,email,' . $this->input('id_instansi') . ',id_instansi',
-            'id_ketua' => 'required|exists:users,id_user',
+
             'default_logo' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
@@ -51,8 +51,7 @@ class RegWebSettingRequest extends FormRequest
             'email.required' => 'Email instansi tidak boleh kosong!',
             'email.email' => 'Harap masukkan alamat email yang valid.',
             'email.unique' => 'Harap Masukkan email yang berbeda',
-            'id_ketua.required' => 'Kolom ketua wajib diisi.',
-            'id_ketua.exists' => 'Ketua yang dipilih tidak valid.',
+
             'default_logo.image' => 'Logo default harus berupa gambar.',
             'default_logo.mimes' => 'Logo default harus berupa file dengan tipe: jpeg, png, jpg, gif.',
             'default_logo.max' => 'Logo default tidak boleh lebih dari 2 megabyte.',

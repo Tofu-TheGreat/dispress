@@ -103,7 +103,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-list-ol"></i>
+                                                    <i class="bi bi-envelope"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -186,7 +186,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-list-ol"></i>
+                                                    <i class="bi bi-person-fill-exclamation"></i>
                                                 </div>
                                             </div>
                                             <input type="text"

@@ -207,6 +207,7 @@
     <script src="{{ asset('/assets-landing-page/js/owl.carousel.min.js') }}"></script>
     <!-- aos js -->
     <script src="{{ asset('/assets-landing-page/js/aos.js') }}"></script>
+
 </body>
 
 </html>

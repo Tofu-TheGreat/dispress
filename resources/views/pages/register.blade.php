@@ -127,7 +127,7 @@
                                     <div class="form-input">
                                         <label for="nomor_telpon">Nomor telepon</label>
                                         <div class="col">
-                                            <input type="text" class="form-control" name="nomor_telpon"
+                                            <input type="text" class="form-control phone" name="nomor_telpon"
                                                 id="nomor_telpon" placeholder="ex: 0878-2730-3388" autofocus
                                                 required />
                                         </div>
@@ -208,6 +208,13 @@
     <!-- aos js -->
     <script src="{{ asset('/assets-landing-page/js/aos.js') }}"></script>
 
+    <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+        });
+    </script>
 </body>
 
 </html>

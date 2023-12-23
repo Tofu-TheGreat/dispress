@@ -19,6 +19,13 @@ class RegWebSettingRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    protected function prepareForValidation()
+    {
+        // Convert nomor_telpon to a numeric format
+        $this->merge([
+            'nomor_telpon' => currencyPhoneToNumeric($this->input('nomor_telpon')),
+        ]);
+    }
     public function rules(): array
     {
         return [

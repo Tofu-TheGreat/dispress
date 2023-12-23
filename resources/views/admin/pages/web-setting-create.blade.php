@@ -65,155 +65,154 @@
                         src="{{ asset('/assets-landing-page/img/logo-brand.svg') }}" alt="logo-dispress"
                         width="250px" />
                 </div>
-                <form action="/register_web_setting" method="POST" enctype="multipart/form-data" class=" p-md-4 row">
-                    @csrf
-                    <div class="col-lg-4 card rounded-4 card-web-setting mb-5 me-lg-4">
-                        <div class="row align-items-center">
-                            <div class="col-12 order-lg-first form-web-setting">
-                                <a href="/register" class="back-index">
-                                    <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
-                                </a>
-                                <h2 class="web-setting-title">Instansi</h2>
-                                <div class="small-line-height mb-3 ">
-                                    <small class="text-primary">Masukkan data instansi Anda disini !</small>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group ">
-                                        <label for="nama_instansi">Masukkan Nama Instansi: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="fas fa-building"></i>
+                <div class="col-12 ">
+                    <form action="/register_web_setting" method="POST" enctype="multipart/form-data"
+                        class="d-flex justify-content-center">
+                        @csrf
+                        <div class="col-lg-10 card rounded-4 card-web-setting mb-5">
+                            <div class="row">
+                                <div class="col-12 form-web-setting p-5">
+                                    <a href="/register" class="back-index">
+                                        <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
+                                    </a>
+                                    <h2 class="web-setting-title">Instansi</h2>
+                                    <div class="small-line-height mb-3 ">
+                                        <small class="text-primary">Masukkan data instansi Anda disini !</small>
+                                    </div>
+                                    <div class="row">
+                                        <input type="hidden" name="id_ketua" value="{{ Auth::user()->id_user }}">
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group ">
+                                                <label for="nama_instansi">Masukkan Nama Instansi: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="fas fa-building"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text"
+                                                        class="form-control @error('nama_instansi') is-invalid @enderror"
+                                                        placeholder="ex: PT Gayuh Net"
+                                                        value="{{ old('nama_instansi') }}" id="nama_instansi"
+                                                        name="nama_instansi" required autofocus>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('nama_instansi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label for="nomor_telpon">Masukkan Nomor Telepon Instansi: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-telephone-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text"
+                                                        class="form-control phone @error('nomor_telpon') is-invalid @enderror"
+                                                        placeholder="ex: 0878-2730-3388"
+                                                        value="{{ old('nomor_telpon') }}" id="nomor_telpon"
+                                                        name="nomor_telpon" required>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('nomor_telpon')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="email">Masukkan Email Instansi: </label>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-envelope-fill"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        placeholder="ex: contoh@gmail.com"
+                                                        value="{{ old('email') }}" id="email" name="email"
+                                                        required>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('email')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                                <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
+                                                    name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
+                                                <span class="text-danger">
+                                                    @error('alamat_instansi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label for="id_ketua">Ketua Instansi: </label>
+                                                <div class="input-group">
+                                                    <select
+                                                        class="filter select2 @error('id_ketua') is-invalid  @enderror "
+                                                        id="id_ketua" name="id_ketua" style="width: 100%;" disabled>
+                                                        <option selected disabled>Ketua Instansi Anda
+                                                        </option>
+                                                        <option value="{{ Auth::user()->id_user }}"
+                                                            {{ Auth::user()->id_user == Auth::user()->id_user ? 'selected' : '' }}>
+                                                            {{ Auth::user()->nama }}</option>
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('id_ketua')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="default_logo">Set Default Logo Instansi:
+                                                        (Optional)</label>
+                                                    <small class="d-block">Catatan: masukkan logo dengan format
+                                                        (JPEG, PNG,
+                                                        JPG),
+                                                        maksimal 10
+                                                        MB.</small>
+                                                    <input type="file"
+                                                        class="img-filepond-preview @error('default_logo') is-invalid @enderror"
+                                                        id="default_logo" name="default_logo" accept="jpg,jpeg,png">
+                                                    <span class="text-danger">
+                                                        @error('default_logo')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control @error('nama_instansi') is-invalid @enderror"
-                                                placeholder="ex: PT Gayuh Net" value="{{ old('nama_instansi') }}"
-                                                id="nama_instansi" name="nama_instansi" required autofocus>
                                         </div>
-                                        <span class="text-danger">
-                                            @error('nama_instansi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
                                     </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="nomor_telpon">Masukkan Nomor Telepon Instansi: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-telephone-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                placeholder="ex: 0878-2730-3388" value="{{ old('nomor_telpon') }}"
-                                                id="nomor_telpon" name="nomor_telpon" required>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('nomor_telpon')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="email">Masukkan Email Instansi: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-envelope-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="email"
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="ex: contoh@gmail.com" value="{{ old('email') }}"
-                                                id="email" name="email" required>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('email')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
-                                        <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
-                                            name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
-                                        <span class="text-danger">
-                                            @error('alamat_instansi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 card rounded-4 card-web-setting mb-5">
-                        <div class="row align-items-center">
-                            <div class="col-12 order-lg-first form-web-setting">
-
-                                <h2 class="web-setting-title">Web Setting</h2>
-                                <div class="small-line-height mb-3 ">
-                                    <small class="text-primary">Ubah data web Anda disini !</small>
-                                </div>
-
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="id_ketua">Ketua Instansi: </label>
-                                        <div class="input-group">
-                                            <select class="filter select2 @error('id_user') is-invalid  @enderror "
-                                                id="id_user" name="id_ketua" style="width: 100%;" required>
-                                                <option selected disabled>Ketua Instansi Anda
-                                                </option>
-                                                <option value="{{ Auth::user()->id_user }}"
-                                                    {{ Auth::user()->id_user == Auth::user()->id_user ? 'selected' : '' }}>
-                                                    {{ Auth::user()->nama }}</option>
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_ketua')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <div class="form-group">
-                                            <label for="default_logo">Set Default Logo Instansi: (Optional)</label>
-                                            <small class="d-block">Catatan: masukkan logo dengan format
-                                                (JPEG, PNG,
-                                                JPG),
-                                                maksimal 10
-                                                MB.</small>
-                                            <input type="file"
-                                                class="img-filepond-preview @error('default_logo') is-invalid @enderror"
-                                                id="default_logo" name="default_logo" accept="jpg,jpeg,png">
-                                            <span class="text-danger">
-                                                @error('default_logo')
-                                                    {{ $message }}
-                                                @enderror
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-submit-web-setting col-12"><i
+                                                class="icon-btn-web-setting bi-box-arrow-in-right"></i> <span> Submit
                                             </span>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-submit-web-setting col-12"><i
-                                        class="icon-btn-web-setting bi-box-arrow-in-right"></i> <span> Submit
-                                    </span>
-                                </button>
-
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </section>
         <!-- Login Section End -->
@@ -242,6 +241,11 @@
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
 
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
+        });
+    </script>
 
 </body>
 

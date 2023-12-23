@@ -57,18 +57,25 @@ class LoginImplement implements LoginRepository
             'nomor_telpon' => $data->nomor_telpon,
             'email' => $data->email,
         ]);
-        $image = $data->default_logo;
-        $nama_foto = time() . '.' . $image->extension();
-        $destinationPath = public_path('/image_save');
-        $imgFile = Image::make($image->getRealPath());
-        $imgFile->resize(1200, 1200, function ($constraint) {
-            $constraint->upsize();
-        })->save($destinationPath . '/' . $nama_foto);
-        $data->default_logo->move(public_path('image_save'), $nama_foto);
-        WebSetting::create([
-            'id_instansi' => $instansiCreate['id_instansi'],
-            'id_ketua' => $data['id_ketua'],
-            'default_logo' => $nama_foto
-        ]);
+        if ($data->hasFile('default_logo')) {
+            $image = $data->default_logo;
+            $nama_foto = time() . '.' . $image->extension();
+            $destinationPath = public_path('/image_save');
+            $imgFile = Image::make($image->getRealPath());
+            $imgFile->resize(1200, 1200, function ($constraint) {
+                $constraint->upsize();
+            })->save($destinationPath . '/' . $nama_foto);
+            $data->default_logo->move(public_path('image_save'), $nama_foto);
+            WebSetting::create([
+                'id_instansi' => $instansiCreate['id_instansi'],
+                'id_ketua' => $data['id_ketua'],
+                'default_logo' => $nama_foto
+            ]);
+        } else {
+            WebSetting::create([
+                'id_instansi' => $instansiCreate['id_instansi'],
+                'id_ketua' => $data['id_ketua'],
+            ]);
+        }
     }
 }

@@ -69,6 +69,13 @@
                     <form action="/register_web_setting" method="POST" enctype="multipart/form-data"
                         class="d-flex justify-content-center">
                         @csrf
+                        <input type="text" name="nip" value="{{ $user['nip'] }}" id="" hidden>
+                        <input type="text" name="nama" value="{{ $user['nama'] }}" id="" hidden>
+                        <input type="text" name="username" value="{{ $user['username'] }}" id="" hidden>
+                        <input type="text" name="email_user" value="{{ $user['email'] }}" id="" hidden>
+                        <input type="text" name="nomor_telpon_user" value="{{ $user['nomor_telpon'] }}"
+                            id="" hidden>
+                        <input type="text" name="password" value="{{ $user['password'] }}" id="" hidden>
                         <div class="col-lg-10 card rounded-4 card-web-setting mb-5">
                             <div class="row">
                                 <div class="col-12 form-web-setting p-5">
@@ -80,7 +87,7 @@
                                         <small class="text-primary">Masukkan data instansi Anda disini !</small>
                                     </div>
                                     <div class="row">
-                                        <input type="hidden" name="id_ketua" value="{{ Auth::user()->id_user }}">
+                                        {{-- <input type="hidden" name="id_ketua" value="{{ Auth::user()->id_user }}"> --}}
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group ">
                                                 <label for="nama_instansi">Masukkan Nama Instansi: </label>
@@ -159,6 +166,7 @@
                                                 </span>
                                             </div>
                                         </div>
+
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="id_ketua">Ketua Instansi: </label>
@@ -168,9 +176,8 @@
                                                         id="id_ketua" name="id_ketua" style="width: 100%;" disabled>
                                                         <option selected disabled>Ketua Instansi Anda
                                                         </option>
-                                                        <option value="{{ Auth::user()->id_user }}"
-                                                            {{ Auth::user()->id_user == Auth::user()->id_user ? 'selected' : '' }}>
-                                                            {{ Auth::user()->nama }}</option>
+                                                        <option {{ $user['nama'] == $user['nama'] ? 'selected' : '' }}>
+                                                            {{ $user['nama'] }}</option>
                                                     </select>
                                                 </div>
                                                 <span class="text-danger">

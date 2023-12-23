@@ -65,14 +65,14 @@
                         src="{{ asset('/assets-landing-page/img/logo-brand.svg') }}" alt="logo-dispress"
                         width="250px" />
                 </div>
-                <div class="col-lg-4 card rounded-4 card-web-setting mb-5 me-lg-4">
-                    <div class="row align-items-center">
-                        <div class="col-12 order-lg-first form-web-setting">
-                            <a href="/register" class="back-index">
-                                <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
-                            </a>
-                            <form action="/instansi" method="POST" class=" p-md-4 row">
-                                @csrf
+                <form action="/register_web_setting" method="POST" enctype="multipart/form-data" class=" p-md-4 row">
+                    @csrf
+                    <div class="col-lg-4 card rounded-4 card-web-setting mb-5 me-lg-4">
+                        <div class="row align-items-center">
+                            <div class="col-12 order-lg-first form-web-setting">
+                                <a href="/register" class="back-index">
+                                    <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
+                                </a>
                                 <h2 class="web-setting-title">Instansi</h2>
                                 <div class="small-line-height mb-3 ">
                                     <small class="text-primary">Masukkan data instansi Anda disini !</small>
@@ -152,45 +152,19 @@
                                         </span>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-submit-web-setting col-12"><i
-                                        class="icon-btn-web-setting bi-box-arrow-in-right"></i> <span> Submit
-                                    </span>
-                                </button>
-                            </form>
+
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 card rounded-4 card-web-setting mb-5">
-                    <div class="row align-items-center">
-                        <div class="col-12 order-lg-first form-web-setting">
-                            <form action="/web-setting" method="POST" class=" p-md-4 row">
-                                @csrf
+                    <div class="col-lg-6 card rounded-4 card-web-setting mb-5">
+                        <div class="row align-items-center">
+                            <div class="col-12 order-lg-first form-web-setting">
+
                                 <h2 class="web-setting-title">Web Setting</h2>
                                 <div class="small-line-height mb-3 ">
                                     <small class="text-primary">Ubah data web Anda disini !</small>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="id_instansi">Instansi Anda: </label>
-                                        <div class="input-group">
-                                            <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
-                                                id="id_instansi" name="id_instansi" style="width: 100%;" required>
-                                                <option selected disabled>Pilih Instansi Pengirim
-                                                </option>
-                                                {{-- @foreach ($instansiList as $data)
-                                                    <option value="{{ $data->id_instansi }}"
-                                                        {{ $dataWebSetting->id_instansi == $data->id_instansi ? 'selected' : '' }}>
-                                                        {{ $data->nama_instansi }}</option>
-                                                @endforeach --}}
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_instansi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
+
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="id_ketua">Ketua Instansi: </label>
@@ -199,69 +173,13 @@
                                                 id="id_user" name="id_ketua" style="width: 100%;" required>
                                                 <option selected disabled>Pilih Instansi Pengirim
                                                 </option>
-                                                {{-- @foreach ($userList as $data)
-                                                    <option value="{{ $data->id_user }}"
-                                                        {{ $dataWebSetting->id_ketua == $data->id_user ? 'selected' : '' }}>
-                                                        {{ $data->nama }}</option>
-                                                @endforeach --}}
+                                                <option value="{{ Auth::user()->id_user }}"
+                                                    {{ Auth::user()->id_user == Auth::user()->id_user ? 'selected' : '' }}>
+                                                    {{ Auth::user()->nama }}</option>
                                             </select>
                                         </div>
                                         <span class="text-danger">
                                             @error('id_ketua')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="email">Email: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-envelope-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('email') is-invalid @enderror"
-                                                placeholder="ex: contoh@gmail.com" value="" id="email"
-                                                name="email">
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('email')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="nomor_telpon">Nomor Telepon: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-telephone-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                placeholder="ex: 0878-2730-3388" value="" id="nomor_telpon"
-                                                name="nomor_telpon">
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('nomor_telpon')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
-                                        <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
-                                            name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
-                                        <span class="text-danger">
-                                            @error('alamat_instansi')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -291,10 +209,11 @@
                                         class="icon-btn-web-setting bi-box-arrow-in-right"></i> <span> Submit
                                     </span>
                                 </button>
-                            </form>
+
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </section>
         <!-- Login Section End -->
@@ -322,6 +241,7 @@
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+
 
 </body>
 

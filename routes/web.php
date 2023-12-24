@@ -33,7 +33,6 @@ Route::post('/profile-edit/{id}', [ProfileController::class, 'editProfile'])->mi
 Route::post('/profile-change-password/{id}', [ProfileController::class, 'changePassword'])->middleware('auth');
 
 Route::get('/web-setting', [WebSettingController::class, 'index'])->middleware('auth');
-Route::get('/web-setting/create', [WebSettingController::class, 'create']);
 Route::post('/web-setting-edit/{id}', [WebSettingController::class, 'update'])->name('web-setting-edit')->middleware('auth');
 Route::get('/deleteImageWebSetting/{id}', [WebSettingController::class, 'deleteImageWebSetting'])->name('deleteImageWebSetting');
 

@@ -19,17 +19,10 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return view('pages.index');
 });
-
-Route::get('/login', function () {
-    return view('pages.login');
-})->middleware('guest');
-
-Route::get('/register', function () {
-    return view('pages.register');
-})->middleware('guest');
-
 // Manajemen setting
 
+Route::get('/login', [LoginController::class, 'loginPage'])->middleware('guest');
+Route::get('/register', [LoginController::class, 'registerPage'])->middleware('guest');
 Route::post('/register', [LoginController::class, 'register'])->name('register')->middleware('guest');
 Route::post('/register_web_setting', [LoginController::class, 'register_web_setting'])->name('register.web.setting');
 Route::post('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');

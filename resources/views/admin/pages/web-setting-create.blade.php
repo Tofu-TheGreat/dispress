@@ -79,9 +79,6 @@
                         <div class="col-lg-10 card rounded-4 card-web-setting mb-5">
                             <div class="row">
                                 <div class="col-12 form-web-setting p-5">
-                                    <a href="/register" class="back-index">
-                                        <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
-                                    </a>
                                     <h2 class="web-setting-title">Instansi</h2>
                                     <div class="small-line-height mb-3 ">
                                         <small class="text-primary">Masukkan data instansi Anda disini !</small>

@@ -58,7 +58,7 @@
                 <div class="col-lg-10 card rounded-4 card-register mb-5">
                     <div class="row align-items-center">
                         <div class="col-12 order-lg-first form-register">
-                            <a href="/" class="back-index">
+                            <a href="/login" class="back-index">
                                 <i class="bi bi-arrow-left-circle-fill back-index-icon fs-3 px-2"></i>
                             </a>
                             <form action="/register" method="POST" class="p-lg-4 p-md-4 row">
@@ -72,7 +72,8 @@
                                         <label for="nama">Nama lengkap</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="nama" id="nama"
-                                                placeholder="ex: pasya nada albinaya" autofocus required />
+                                                placeholder="ex: pasya nada albinaya" value="{{ old('nama') }}"
+                                                autofocus required />
                                         </div>
                                         <span class="text-danger fs-6 text-center">
                                             @error('nama')
@@ -86,7 +87,8 @@
                                         <label for="nip">NIP</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="nip" id="nip"
-                                                placeholder="ex: 213720078171677275" autofocus required />
+                                                placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
+                                                autofocus required />
                                         </div>
                                         <span class="text-danger fs-6 text-center">
                                             @error('nip')
@@ -100,7 +102,8 @@
                                         <label for="username">Username</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="username" id="username"
-                                                placeholder="ex: pasya.nada" autofocus required />
+                                                placeholder="ex: pasya.nada" value="{{ old('username') }}" autofocus
+                                                required />
                                         </div>
                                         <span class="text-danger fs-6 text-center">
                                             @error('username')
@@ -114,7 +117,8 @@
                                         <label for="email">Email</label>
                                         <div class="col">
                                             <input type="email" class="form-control" name="email" id="email"
-                                                placeholder="ex: contoh@example.com" autofocus required />
+                                                placeholder="ex: contoh@example.com" value="{{ old('email') }}"
+                                                autofocus required />
                                         </div>
                                         <span class="text-danger fs-6 text-center">
                                             @error('email')
@@ -127,7 +131,8 @@
                                     <div class="form-input">
                                         <label for="nomor_telpon">Nomor telepon</label>
                                         <div class="col">
-                                            <input type="text" class="form-control phone" name="nomor_telpon"
+                                            <input type="text" class="form-control phone"
+                                                value="{{ old('nomor_telpon') }}" name="nomor_telpon"
                                                 id="nomor_telpon" placeholder="ex: 0878-2730-3388" autofocus
                                                 required />
                                         </div>

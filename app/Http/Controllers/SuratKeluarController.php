@@ -65,7 +65,7 @@ class SuratKeluarController extends Controller
         $this->authorize('admin-officer');
 
         $this->suratKeluarRepository->store($request);
-        return redirect()->intended('/surat');
+        return redirect()->intended('/surat-keluar');
     }
 
     /**
@@ -77,6 +77,14 @@ class SuratKeluarController extends Controller
         $detailDataSuratKeluar = $this->suratKeluarRepository->show($encryptId);
         $instansiList = Instansi::get();
         $klasifikasiList = Klasifikasi::get();
+        return view('manajemen-surat.surat-keluar.surat-keluar-detail', [
+            'title' => 'Surat Keluar Create',
+            'active1' => 'manajemen-surat',
+            'active' => 'surat-keluar',
+            'detailDataSuratKeluar' => $detailDataSuratKeluar,
+            'instansiList' => $instansiList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 
     /**
@@ -89,6 +97,14 @@ class SuratKeluarController extends Controller
         $editDataSuratKeluar = $this->suratKeluarRepository->show($encryptId);
         $instansiList = Instansi::get();
         $klasifikasiList = Klasifikasi::get();
+        return view('manajemen-surat.surat-keluar.surat-keluar-edit', [
+            'title' => 'Surat Keluar Create',
+            'active1' => 'manajemen-surat',
+            'active' => 'surat-keluar',
+            'editDataSuratKeluar' => $editDataSuratKeluar,
+            'instansiList' => $instansiList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 
     /**
@@ -98,6 +114,7 @@ class SuratKeluarController extends Controller
     {
         $this->authorize('admin-officer');
         $this->suratKeluarRepository->update($id, $request);
+        return redirect()->intended('surat-keluar')->with('success', 'Berhasil mengubah data Surat Keluar');
     }
 
     /**
@@ -108,6 +125,7 @@ class SuratKeluarController extends Controller
         $this->authorize('admin-officer');
         $encryptId = Crypt::decryptString($id);
         $this->suratKeluarRepository->destroy($encryptId);
+        return redirect()->intended('surat-keluar')->with('success', 'Berhasil menghapus data Surat Keluar');
     }
     public function filterData(Request $request)
     {
@@ -115,6 +133,15 @@ class SuratKeluarController extends Controller
         $klasifikasiList = Klasifikasi::get();
         $instansiList = Instansi::get();
         $userList = User::get();
+        return view('manajemen-surat.surat-keluar.surat-keluar-data', [
+            'title' => 'Surat Keluar',
+            'active1' => 'manajemen-surat',
+            'active' => 'surat-keluar',
+            'suratKeluarList' => $suratKeluarList,
+            'instansiList' => $instansiList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
     public function search(Request $request)
     {
@@ -122,5 +149,14 @@ class SuratKeluarController extends Controller
         $klasifikasiList = Klasifikasi::get();
         $instansiList = Instansi::get();
         $userList = User::get();
+        return view('manajemen-surat.surat-keluar.surat-keluar-data', [
+            'title' => 'Surat Keluar',
+            'active1' => 'manajemen-surat',
+            'active' => 'surat-keluar',
+            'suratKeluarList' => $suratKeluarList,
+            'instansiList' => $instansiList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
+        ]);
     }
 }

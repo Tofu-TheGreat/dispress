@@ -475,8 +475,8 @@
                                 @endcannot
                             </h4>
                         </div>
-                        @can('admin')
-                            <div class="col-lg-1 col-sm-4 btn-group">
+                        <div class="col-lg-1 col-sm-4 btn-group">
+                            @can('admin')
                                 {{-- Button Tambah Data --}}
                                 <a href="/disposisi/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
@@ -485,16 +485,16 @@
                                     </button>
                                 </a>
                                 {{-- Akhir Button Tambah Data --}}
-                                {{-- Button Export Data --}}
-                                <a class="text-white ml-2 tombol-export">
-                                    <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
-                                        data-placement="top" title="Export Data Excel" data-original-title="Export Data">
-                                        <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
-                                    </button>
-                                </a>
-                                {{-- Akhir Button Export Data --}}
-                            </div>
-                        @endcan
+                            @endcan
+                            {{-- Button Export Data --}}
+                            <a class="text-white ml-2 tombol-export">
+                                <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
+                                    data-placement="top" title="Export Data Excel" data-original-title="Export Data">
+                                    <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
+                                </button>
+                            </a>
+                            {{-- Akhir Button Export Data --}}
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -853,13 +853,15 @@
                                 @endcan
                                 @cannot('admin')
                                     <div class="row">
-                                        @if ($disposisiList->isEmpty())
+                                        @if ($disposisiList1->isEmpty())
                                             <div class="d-flex justify-content-center align-content-center">
                                                 <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                     class="w-50">
                                             </div>
                                         @else
-                                            @foreach ($disposisiList as $data)
+                                            @foreach ($disposisiList1->filter(function ($item) {
+                return $item->id_posisi_jabatan == Auth::user()->id_posisi_jabatan || $item->id_penerima == Auth::user()->id_user;
+            }) as $data)
                                                 <div class="col-sm-12 col-md-12 col-lg-6">
                                                     <div class="card card-primary card-surat shadow-sm">
                                                         <div class="card-header d-flex justify-content-between">
@@ -1006,7 +1008,7 @@
                                                 </div>
                                             @endforeach
                                             <div class="col-12">
-                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                                {{ $disposisiList1->onEachSide(1)->links() }}
                                             </div>
                                         @endif
                                     </div>

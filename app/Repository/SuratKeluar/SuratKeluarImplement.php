@@ -22,9 +22,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $this->suratkeluar->create([
             'id_klasifikasi' => $data->id_klasifikasi,
-            'nomor_surat_keluar' => $data->nomor_surat,
-            'tanggal_surat_keluar' => $data->tanggal_surat,
-            'id_instansi' => $data->id_instansi,
+            'nomor_surat_keluar' => $data->nomor_surat_keluar,
+            'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,
             'id_instansi_penerima' => $data->id_instansi_penerima,
             'perihal' => $data->perihal,
@@ -48,9 +47,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $this->suratkeluar->where('id_surat_keluar', $id)->update([
             'id_klasifikasi' => $data->id_klasifikasi,
-            'nomor_surat_keluar' => $data->nomor_surat,
-            'tanggal_surat_keluar' => $data->tanggal_surat,
-            'id_instansi' => $data->id_instansi,
+            'nomor_surat_keluar' => $data->nomor_surat_keluar,
+            'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,
             'id_instansi_penerima' => $data->id_instansi_penerima,
             'perihal' => $data->perihal,
@@ -67,14 +65,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $query = $this->suratkeluar->query();
 
-        if (isset($data->id_instansi) && ($data->id_instansi != null)) {
-            $query->where('id_instansi', $data->id_instansi);
-        }
         if (isset($data->id_instansi_penerima) && ($data->id_instansi_penerima != null)) {
             $query->where('id_instansi_penerima', $data->id_instansi_penerima);
-        }
-        if (isset($data->id_instansi) && ($data->id_instansi != null)) {
-            $query->where('id_instansi', $data->id_instansi);
         }
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
@@ -101,10 +93,10 @@ class SuratKeluarImplement implements SuratKeluarRepository
                 $query->where('tanggal_surat_keluar', 'like', "%" . $data->search . "%")
                     ->orWhereRaw("DATE_FORMAT(tanggal_surat_keluar, '%M') LIKE ?", ["%" . $data->search . "%"]);
             })
-            ->orWhereHas('instansi', function ($query) use ($data) {
+            ->orWhereHas('instansiPenerima', function ($query) use ($data) {
                 $query->where('nama_instansi', 'like', "%" . $data->search . "%");
             })
-            ->orWhereHas('instansi', function ($query) use ($data) {
+            ->orWhereHas('instansiPenerima', function ($query) use ($data) {
                 $query->where('nomor_telpon', 'like', "%" . $data->search . "%");
             })
             ->orWhereHas('user', function ($query) use ($data) {

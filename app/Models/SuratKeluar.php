@@ -18,7 +18,6 @@ class SuratKeluar extends Model
         'nomor_surat_keluar',
         'tanggal_surat_keluar',
         'id_user',
-        'id_instansi',
         'id_instansi_penerima',
         'perihal',
         'isi_surat',
@@ -35,10 +34,6 @@ class SuratKeluar extends Model
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function instansi()
-    {
-        return $this->belongsTo(Instansi::class, 'id_instansi');
-    }
 
     public function instansiPenerima()
     {

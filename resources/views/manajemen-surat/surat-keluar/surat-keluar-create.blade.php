@@ -45,8 +45,9 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form action="{{ route('surat.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('surat-keluar.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            <input type="text" name="id_user" id="" hidden value="{{ Auth::user()->id_user }}">
                             <div class="row">
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
@@ -204,20 +205,6 @@
                                 <input type="id_user" class="form-control @error('id_user') is-invalid @enderror"
                                     placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}"
                                     id="id_user" name="id_user" hidden>
-                            </div>
-                            <div class="form-group">
-                                <label for="foto">Masukkan Scan Dokumen Surat: </label>
-                                <small class="d-block">Catatan: masukkan dokumen dengan format (PDF),
-                                    maksimal 10
-                                    MB.</small>
-                                <input type="file"
-                                    class="img-filepond-preview @error('scan_dokumen') is-invalid @enderror"
-                                    id="scan_dokumen" name="scan_dokumen" accept="pdf">
-                                <span class="text-danger">
-                                    @error('scan_dokumen')
-                                        {{ $message }}
-                                    @enderror
-                                </span>
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">

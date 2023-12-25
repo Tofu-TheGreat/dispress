@@ -269,7 +269,7 @@
                                                         id="mycard-collapse{{ $data->id_surat_keluar }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->isi_surat !!}</p>
+                                                            <p class="w-75"> {!! $data->perihal !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 --
                                                                 {{ date('d-F-Y', strtotime($data->tanggal_surat_keluar)) }}

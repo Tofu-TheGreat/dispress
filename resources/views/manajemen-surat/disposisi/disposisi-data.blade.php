@@ -956,7 +956,7 @@
                                                                         </form>
                                                                     </div>
                                                                 @endcan
-                                                                @can('officer')
+                                                                @cannot('admin')
                                                                     <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data disposisi "
@@ -965,7 +965,7 @@
                                                                         href=""><i class="mr-1 bi bi-eye"></i>Detail
                                                                         Data
                                                                     </a>
-                                                                @endcan
+                                                                @endcannot
                                                             </div>
                                                             <div
                                                                 class="card-footer  d-flex justify-content-between position-relative">

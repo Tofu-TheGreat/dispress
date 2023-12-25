@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <div class="col-lg-1 col-sm-4 btn-group">
-                        @can('admin-officer')
+                        @can('admin')
                             <a class="tombol-verifikasi" data-toggle="tooltip" data-placement="top"
                                 title="klik Untuk Mengatur verifikasikan"
                                 data-original-title="klik Untuk Mengatur verifikasikan" disabled>
@@ -64,7 +64,7 @@
                                         Dikembalikan</i>
                                 </button>
                             @endif
-                            @can('admin-officer')
+                            @can('admin')
                             </a>
                         @endcan
                         @can('admin-officer')

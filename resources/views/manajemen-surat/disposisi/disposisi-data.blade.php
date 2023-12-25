@@ -864,7 +864,8 @@
                                                     <div class="card card-primary card-surat shadow-sm">
                                                         <div class="card-header d-flex justify-content-between">
                                                             <div class="position-relative">
-                                                                <h4>{{ $data->pengajuan->nomor_agenda }}</h4>
+                                                                <h4 class="position-relative">
+                                                                    {{ $data->pengajuan->nomor_agenda }}</h4>
                                                                 <small class="text-primary"
                                                                     style="position: absolute; top: 50%;width: max-content;">Dari
                                                                     {{ $data->user->nama }}
@@ -956,12 +957,11 @@
                                                                 @endcan
                                                                 @cannot('admin')
                                                                     <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                        data-toggle="tooltip" data-placement="top"
+                                                                        data-toggle="tooltip" data-placement="right"
                                                                         title="Detail data disposisi "
                                                                         data-original-title="Detail data disposisi "
                                                                         class="btn btn-info has-icon text-white "
-                                                                        href=""><i class="mr-1 bi bi-eye"></i>Detail
-                                                                        Data
+                                                                        href=""><i class="bi bi-eye"></i>
                                                                     </a>
                                                                 @endcannot
                                                             </div>

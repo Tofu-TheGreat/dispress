@@ -172,10 +172,20 @@
                 @if ($dataDisposisi->posisiJabatan != null)
                     <?php
                     $no = 1;
+                    $uniquePosisi = $disposisiByRow->unique('posisiJabatan.nama_posisi_jabatan');
+                    ?>
+                    @foreach ($uniquePosisi as $data)
+                        <p class="border-bottom-dotted">{{ $no++ }}.
+                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                        </p>
+                    @endforeach
+                @elseif ($dataDisposisi->id_penerima != null)
+                    <?php
+                    $no = 1;
                     ?>
                     @foreach ($disposisiByRow as $data)
                         <p class="border-bottom-dotted">{{ $no++ }}.
-                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                            {{ $data->penerima->nama }}
                         </p>
                     @endforeach
                 @endif

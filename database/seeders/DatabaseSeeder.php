@@ -208,7 +208,6 @@ class DatabaseSeeder extends Seeder
             'sifat_disposisi' => '0',
             'id_user' => '7',
             'id_posisi_jabatan' => '4',
-            'id_penerima' => '1',
         ]);
 
         Disposisi::factory()->create([
@@ -218,7 +217,6 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
-            'id_posisi_jabatan' => '4',
             'id_penerima' => '1',
         ]);
 
@@ -229,7 +227,6 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
-            'id_posisi_jabatan' => '4',
             'id_penerima' => '8',
         ]);
 

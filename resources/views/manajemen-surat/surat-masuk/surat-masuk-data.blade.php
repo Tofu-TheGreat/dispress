@@ -353,7 +353,7 @@
                                                                     @endif
                                                                     @can('staff')
                                                                         <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat)) }}"
-                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            data-toggle="tooltip" data-placement="right"
                                                                             title="Detail data surat"
                                                                             data-original-title="Detail data surat"
                                                                             class="btn btn-info has-icon text-white mr-1"
@@ -363,10 +363,13 @@
                                                                     @can('admin')
                                                                     </span>
                                                                 @endcan
-                                                                <span class="badge badge-transparent-success"
-                                                                    data-toggle="tooltip" data-placement="right"
-                                                                    title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan"
-                                                                    data-original-title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan">{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }}</span></a>
+                                                                @can('admin-officer')
+                                                                    <span class="badge badge-transparent-success"
+                                                                        data-toggle="tooltip" data-placement="right"
+                                                                        title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan"
+                                                                        data-original-title="{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }} kali Di ajukan">{{ $pengajuanCount->where('id_surat', $data->id_surat)->count() }}
+                                                                    </span>
+                                                                @endcan
                                                             </div>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')

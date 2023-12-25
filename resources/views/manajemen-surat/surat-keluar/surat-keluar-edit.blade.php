@@ -2,6 +2,7 @@
 
 @section('css')
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
@@ -22,7 +23,7 @@
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/surat-keluar">Surat Keluar</a></div>
-                        <div class="breadcrumb-item d-inline">Tambah Data</div>
+                        <div class="breadcrumb-item d-inline">Edit Data</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -35,18 +36,22 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-1 mr-3">
-                                <a href="/surat-keluar">
+                                <a href="/surat">
                                     <i class="bi bi-arrow-left"></i>
                                 </a>
                             </div>
                             <div class="col-">
-                                <h4 class="text-primary">Tambah Data Surat Keluar</h4>
+                                <h4 class="text-primary">Edit Data Surat Keluar</h4>
                             </div>
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form action="{{ route('surat-keluar.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('surat-keluar.update', $editDataSuratKeluar->id_surat_keluar) }}"
+                            method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('PUT')
+                            <input type="text" name="id_surat_keluar" id="" hidden
+                                value="{{ $editDataSuratKeluar->id_surat_keluar }}">
                             <input type="text" name="id_user" id="" hidden value="{{ Auth::user()->id_user }}">
                             <div class="row">
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
@@ -64,7 +69,7 @@
                                                 <option selected disabled>Pilih Nomor Klasifikasi</option>
                                                 @foreach ($klasifikasiList as $data)
                                                     <option value="{{ $data->id_klasifikasi }}"
-                                                        {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                        {{ $editDataSuratKeluar->id_klasifikasi == $data->id_klasifikasi ? 'selected' : '' }}>
                                                         {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
                                                     </option>
                                                 @endforeach
@@ -88,7 +93,8 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('nomor_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_surat_keluar') }}"
+                                                placeholder="ex: 090/1928-TU/2023"
+                                                value="{{ $editDataSuratKeluar->nomor_surat_keluar }}"
                                                 id="nomor_surat_keluar" name="nomor_surat_keluar" required autofocus>
                                         </div>
                                         <span class="text-danger">
@@ -109,8 +115,9 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('perihal') is-invalid @enderror"
-                                                placeholder="ex: Undangan Rapat" value="{{ old('perihal') }}"
-                                                id="perihal" name="perihal" required autofocus>
+                                                placeholder="ex: Undangan Rapat"
+                                                value="{{ $editDataSuratKeluar->perihal }}" id="perihal" name="perihal"
+                                                required autofocus>
                                         </div>
                                         <span class="text-danger">
                                             @error('perihal')
@@ -131,7 +138,8 @@
                                             </div>
                                             <input type="date"
                                                 class="form-control datepicker tanggal_surat_keluar @error('tanggal_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_keluar') }}"
+                                                placeholder="ex: 11/14/2023"
+                                                value="{{ $editDataSuratKeluar->tanggal_surat_keluar }}"
                                                 id="tanggal_surat_keluar" name="tanggal_surat_keluar" required>
                                         </div>
                                         <span class="text-danger">
@@ -145,7 +153,7 @@
                                     <div class="form-group">
                                         <label for="isi_surat">Masukkan Isi Surat: </label>
                                         <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
-                                            id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
+                                            id="isi_surat" name="isi_surat" required> {{ $editDataSuratKeluar->isi_surat }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')
                                                 {{ $message }}
@@ -169,7 +177,7 @@
                                                 <option selected disabled>Pilih Tujuan Pengiriman Surat</option>
                                                 @foreach ($instansiList as $data)
                                                     <option value="{{ $data->id_instansi }}"
-                                                        {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
+                                                        {{ $editDataSuratKeluar->id_instansi_penerima == $data->id_instansi ? 'selected' : '' }}>
                                                         {{ $data->nama_instansi }}</option>
                                                 @endforeach
                                             </select>
@@ -192,8 +200,9 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('tembusan') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas" value="{{ old('tembusan') }}"
-                                                id="tembusan" name="tembusan" required autofocus>
+                                                placeholder="ex: Sekretaris Dinas"
+                                                value="{{ $editDataSuratKeluar->tembusan }}" id="tembusan"
+                                                name="tembusan" required autofocus>
                                         </div>
                                         <span class="text-danger">
                                             @error('tembusan')
@@ -231,11 +240,12 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 @endsection
 @section('script')
-    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
@@ -247,13 +257,12 @@
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 
         $(document).ready(function() {
+            // Simpan nilai awal nomor_surat
+            const nomorSuratInput = $('#nomor_surat').val();
 
             // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
             $(document).on('change', '#id_klasifikasi', function() {
                 const selectedValue = $(this).val();
-
-                // Simpan nilai awal nomor_surat_keluar
-                const nomorSuratInput = $('#nomor_surat_keluar').val();
 
                 // Menggunakan klasifikasiList di sini
                 // Contoh: Menampilkan data terkait dengan nilai terpilih
@@ -268,17 +277,41 @@
                 // Ganti tiga angka pertama di nomorSuratInput
                 const nomorSuratBaru = tigaAngkaPertama + nomorSuratInput.slice(3);
 
-                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat_keluar'
-                $('#nomor_surat_keluar').val(selectedKlasifikasi ? nomorSuratBaru : '');
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat'
+                $('#nomor_surat').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });
         });
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-99999');
+        document.body.addEventListener("click", function(event) {
+                    const element = event.target;
+                    const noteEditable = document.body.querySelectorAll(".note-editing-area");
 
-            $('#nip').inputmask('999999999999999999');
+                    if (element.classList.contains("tombol-hapus")) {
+                        swal({
+                                title: 'Apakah anda yakin?',
+                                text: 'Ingin menghapus data Surat ini!',
+                                icon: 'warning',
+                                buttons: true,
+                                dangerMode: true,
+                            })
+                            .then((willDelete) => {
+                                if (willDelete) {
+                                    swal('Data Surat berhasil dihapus!', {
+                                        icon: 'success',
+                                    });
+                                    element.closest('form').submit();
+                                } else {
+                                    swal('Data Surat tidak jadi dihapus!');
+                                }
+                            });
+                    }
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.phone').inputmask('9999-9999-9999');
         });
     </script>
 @endsection

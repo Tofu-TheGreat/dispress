@@ -153,6 +153,7 @@ class SuratController extends Controller
         $instansiList = Instansi::get();
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
+        $pengajuanCount = $this->suratRepository->getPengajuan();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
@@ -162,6 +163,7 @@ class SuratController extends Controller
             'instansiList' => $instansiList,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
+            'pengajuanCount' => $pengajuanCount,
         ]);;
     }
     public function verifikasi_surat(SuratRequest $request, string $id)
@@ -178,6 +180,7 @@ class SuratController extends Controller
         $instansiList = Instansi::get();
         $userList = User::get();
         $klasifikasiList = Klasifikasi::get();
+        $pengajuanCount = $this->suratRepository->getPengajuan();
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
@@ -187,6 +190,7 @@ class SuratController extends Controller
             'instansiList' => $instansiList,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
+            'pengajuanCount' => $pengajuanCount,
         ]);
     }
 }

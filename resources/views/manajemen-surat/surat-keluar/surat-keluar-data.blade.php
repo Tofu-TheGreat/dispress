@@ -47,7 +47,7 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/surat-filter" method="get">
+            <form action="/surat-keluar-filter" method="get">
                 @csrf
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
@@ -81,8 +81,13 @@
                                     </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
+
                                             id="id_instansi" name="id_instansi" style="width: 100%;">
                                             <option selected disabled>Pilih Instansi Penerima</option>
+
+                                            id="id_instansi" name="id_instansi_penerima" style="width: 100%;">
+                                            <option selected disabled>Pilih Instansi Pengirim</option>
+
                                             @foreach ($instansiList as $data)
                                                 <option value="{{ $data->id_instansi }}"
                                                     {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
@@ -97,7 +102,11 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div class="col-12">
+
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+
                                 <div class="form-group">
                                     <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat: </label>
                                     <div class="input-group">
@@ -118,6 +127,56 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="filter form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                            id="id_klasifikasi" name="id_klasifikasi" style="width: 100%;" required>
+                                            <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                            @foreach ($klasifikasiList as $data)
+                                                <option value="{{ $data->id_klasifikasi }}"
+                                                    {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                    {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_klasifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            {{-- <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group">
+                                    <label class="capitalize" for="status_verifikasi">Pilih Berdasarkan Status Verifikasi:
+                                    </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('status_verifikasi') is-invalid  @enderror "
+                                            id="status_verifikasi" name="status_verifikasi" style="width: 100%;">
+                                            <option selected disabled>Pilih Status Verifikasi</option>
+                                            <option value="0" {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
+                                                Belum Terverifikasi</option>
+                                            <option value="1"
+                                                {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
+                                                Terverifikasi</option>
+                                            <option value="2"
+                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
+                                                Dikembalikan</option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('status_verifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div> --}}
+
                             <div class="col-12 ">
                                 <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                                 </h6>
@@ -225,7 +284,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.surat') }}" method="post">
+                                <form action="{{ route('search.surat-keluar') }}" method="post">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -234,7 +293,7 @@
                                         <div class="button-search">
                                             <button type="submit"
                                                 class="btn btn-primary button-submit-search">Search</button>
-                                            <a type="button" href="{{ route('surat.index') }}"
+                                            <a type="button" href="{{ route('surat-keluar.index') }}"
                                                 class="btn btn-secondary rounded-pill button-reset-search"><span>Reset</span></a>
                                         </div>
                                     </div>
@@ -276,7 +335,7 @@
                                                                 --</p>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')
-                                                                    <a href="{{ route('surat.show', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                    <a href="{{ route('surat-keluar.show', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data surat"
                                                                         data-original-title="Detail data surat"
@@ -287,11 +346,11 @@
                                                                         data-placement="left" title="Edit data surat"
                                                                         data-original-title="Edit data surat"
                                                                         class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                        href="{{ route('surat.edit', Crypt::encryptString($data->id_surat_keluar)) }}"><i
+                                                                        href="{{ route('surat-keluar.edit', Crypt::encryptString($data->id_surat_keluar)) }}"><i
                                                                             class="pl-1  bi bi-pencil-square "></i>
                                                                     </a>
                                                                     <form method="POST"
-                                                                        action="{{ route('surat.destroy', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                        action="{{ route('surat-keluar.destroy', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                         class="tombol-hapus">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -433,11 +492,11 @@
                                                     <i class="bi bi-person-rolodex"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
+                                            {{-- <input type="text"
                                                 class="form-control @error('id_instansi') is-invalid @enderror"
                                                 value="{{ $data->instansi->nama_instansi }}" id="id_instansi" readonly>
                                             <input type="text" name="id_instansi" value="{{ $data->id_instansi }}" hidden
-                                                id="">
+                                                id=""> --}}
                                         </div>
                                         <span class="text-danger">
                                             @error('id_instansi')

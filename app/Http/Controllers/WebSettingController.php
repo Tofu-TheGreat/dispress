@@ -17,6 +17,8 @@ class WebSettingController extends Controller
     }
     public function index()
     {
+        $this->authorize('admin');
+
         $dataWebSetting = $this->webSettingRepository->index();
         $instansiList = Instansi::get();
         $userList = User::get();
@@ -34,15 +36,21 @@ class WebSettingController extends Controller
 
     public function store(WebSettingRequest $request)
     {
+        $this->authorize('admin');
+
         $this->webSettingRepository->store($request);
     }
     public function update(WebSettingRequest $request, $id)
     {
+        $this->authorize('admin');
+
         $this->webSettingRepository->update($request, $id);
         return redirect()->intended('/web-setting')->with('success', 'Berhasil mengubah data.');
     }
     public function deleteImageWebSetting($id)
     {
+        $this->authorize('admin');
+
         $this->webSettingRepository->deleteImageWebSetting($id);
         return back()->with('success', 'Berhasil menghapus logo instansi.');
     }

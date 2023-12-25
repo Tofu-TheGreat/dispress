@@ -475,8 +475,8 @@
                                 @endcannot
                             </h4>
                         </div>
-                        @can('admin')
-                            <div class="col-lg-1 col-sm-4 btn-group">
+                        <div class="col-lg-1 col-sm-4 btn-group">
+                            @can('admin')
                                 {{-- Button Tambah Data --}}
                                 <a href="/disposisi/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
@@ -485,16 +485,16 @@
                                     </button>
                                 </a>
                                 {{-- Akhir Button Tambah Data --}}
-                                {{-- Button Export Data --}}
-                                <a class="text-white ml-2 tombol-export">
-                                    <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
-                                        data-placement="top" title="Export Data Excel" data-original-title="Export Data">
-                                        <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
-                                    </button>
-                                </a>
-                                {{-- Akhir Button Export Data --}}
-                            </div>
-                        @endcan
+                            @endcan
+                            {{-- Button Export Data --}}
+                            <a class="text-white ml-2 tombol-export">
+                                <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
+                                    data-placement="top" title="Export Data Excel" data-original-title="Export Data">
+                                    <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
+                                </button>
+                            </a>
+                            {{-- Akhir Button Export Data --}}
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">

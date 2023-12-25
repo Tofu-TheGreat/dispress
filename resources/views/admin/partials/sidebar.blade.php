@@ -66,9 +66,10 @@
                 <ul class="dropdown-menu">
                     <li><a class="nav-link {{ $active == 'profile' ? 'active text-info' : '' }}"
                             href="/profile">Profile</a></li>
-                    <li>
-                    <li><a class="nav-link {{ $active == 'web-setting' ? 'active text-info' : '' }}"
-                            href="/web-setting">Web Setting</a></li>
+                    @can('admin')
+                        <li><a class="nav-link {{ $active == 'web-setting' ? 'active text-info' : '' }}"
+                                href="/web-setting">Web Setting</a></li>
+                    @endcan
                     <li>
                         <form action="/logout" method="POST" id="logout">
                             @csrf

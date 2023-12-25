@@ -116,7 +116,7 @@ class StaffController extends Controller
         $this->authorize('admin');
 
         $this->staffRepository->store($request);;
-        return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff');
+        return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff.');
     }
 
     /**
@@ -165,7 +165,7 @@ class StaffController extends Controller
 
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $this->staffRepository->update($request->id_user, $request);
-        return redirect()->intended('/staff')->with('success', 'Berhasil meng-edit data Staff');
+        return redirect()->intended('/staff')->with('success', 'Berhasil mengubah data Staff.');
     }
 
     /**
@@ -178,7 +178,7 @@ class StaffController extends Controller
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->staffRepository->destroy($encryptId);
-            return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff');
+            return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff.');
         } else {
             return redirect()->intended('/staff')->with('warning', 'Tidak bisa menghapus data Staff ini.');
         }
@@ -189,6 +189,6 @@ class StaffController extends Controller
         $this->authorize('admin');
 
         $this->staffRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil menghapus foto profil Staff');
+        return back()->with('success', 'Berhasil menghapus foto profil Staff.');
     }
 }

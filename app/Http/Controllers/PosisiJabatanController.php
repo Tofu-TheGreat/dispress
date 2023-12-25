@@ -92,7 +92,7 @@ class PosisiJabatanController extends Controller
         $this->authorize('admin-officer');
 
         $this->posisijabatanRepository->store($request);
-        return back()->with('success', 'Berhasil menambah Posisi Jabatan');
+        return back()->with('success', 'Berhasil menambah data posisi jabatan.');
     }
 
     /**
@@ -121,7 +121,7 @@ class PosisiJabatanController extends Controller
         $this->authorize('admin-officer');
 
         $this->posisijabatanRepository->update($id, $request);
-        return back()->with('success', 'Berhasil meng-edit Posisi Jabatan');
+        return back()->with('success', 'Berhasil mengubah data posisi jabatan.');
     }
 
     /**
@@ -133,6 +133,6 @@ class PosisiJabatanController extends Controller
 
         $encryptId = Crypt::decryptString($id);
         $this->posisijabatanRepository->destroy($encryptId);
-        return back()->with('success', 'Berhasil menghapus Posisi Jabatan');
+        return back()->with('success', 'Berhasil menghapus Posisi jabatan.');
     }
 }

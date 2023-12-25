@@ -126,7 +126,7 @@ class PengajuanController extends Controller
         $this->authorize('admin-officer');
 
         $this->pengajuanRepository->update($id, $request);
-        return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil meng-update data Pengajuan.');
+        return redirect()->intended('pengajuan-disposisi')->with('success', 'Berhasil mengubah data Pengajuan.');
     }
 
     /**

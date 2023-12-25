@@ -165,7 +165,7 @@ class OfficerController extends Controller
         $this->authorize('admin');
 
         $this->officerRepository->update($request->id_user, $request);
-        return redirect()->intended('/officer')->with('success', 'Berhasil meng-edit data Officer');
+        return redirect()->intended('/officer')->with('success', 'Berhasil mengubah data Officer.');
     }
 
     /**
@@ -178,7 +178,7 @@ class OfficerController extends Controller
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->officerRepository->destroy($encryptId);
-            return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer');
+            return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer.');
         } else {
             return redirect()->intended('/officer')->with('warning', 'Tidak bisa menghapus data Officer ini.');
         }
@@ -189,6 +189,6 @@ class OfficerController extends Controller
         $this->authorize('admin');
 
         $this->officerRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil menghapus foto profil Officer');
+        return back()->with('success', 'Berhasil menghapus foto profil Officer.');
     }
 }

@@ -132,7 +132,7 @@ class SuratController extends Controller
         $this->authorize('admin-officer');
 
         $this->suratRepository->update($id, $request);
-        return redirect()->intended('/surat')->with('success', 'Berhasil meng-update data surat masuk.');
+        return redirect()->intended('/surat')->with('success', 'Berhasil mengubah data surat masuk.');
     }
 
     /**

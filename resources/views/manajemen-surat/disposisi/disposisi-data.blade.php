@@ -853,13 +853,15 @@
                                 @endcan
                                 @cannot('admin')
                                     <div class="row">
-                                        @if ($disposisiList->isEmpty())
+                                        @if ($disposisiList1->isEmpty())
                                             <div class="d-flex justify-content-center align-content-center">
                                                 <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                     class="w-50">
                                             </div>
                                         @else
-                                            @foreach ($disposisiList as $data)
+                                            @foreach ($disposisiList1->filter(function ($item) {
+                return $item->id_posisi_jabatan == Auth::user()->id_posisi_jabatan || $item->id_penerima == Auth::user()->id_user;
+            }) as $data)
                                                 <div class="col-sm-12 col-md-12 col-lg-6">
                                                     <div class="card card-primary card-surat shadow-sm">
                                                         <div class="card-header d-flex justify-content-between">
@@ -1008,7 +1010,7 @@
                                                 </div>
                                             @endforeach
                                             <div class="col-12">
-                                                {{ $disposisiList->onEachSide(1)->links() }}
+                                                {{ $disposisiList1->onEachSide(1)->links() }}
                                             </div>
                                         @endif
                                     </div>

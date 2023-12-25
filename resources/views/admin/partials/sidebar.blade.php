@@ -54,8 +54,6 @@
                             href="/disposisi">Disposisi</a></li>
                     <li><a class="nav-link {{ $active == 'surat-keluar' ? 'active text-info' : '' }}"
                             href="/surat-keluar">Surat Keluar</a></li>
-                    <li><a class="nav-link"
-                            href="{{ asset('assets-landing-page/img/Under construction-bro.png') }}">SPPD</a></li>
                 </ul>
             </li>
             <li class="menu-header">Manajemen Setting</li>

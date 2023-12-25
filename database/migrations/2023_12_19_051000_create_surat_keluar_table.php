@@ -19,8 +19,6 @@ return new class extends Migration
             $table->date('tanggal_surat_keluar');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('id_instansi');
-            $table->foreign('id_instansi')->references('id_instansi')->on('instansi')->onDelete('cascade');
             $table->unsignedBigInteger('id_instansi_penerima');
             $table->foreign('id_instansi_penerima')->references('id_instansi')->on('instansi')->onDelete('cascade');
             $table->string('perihal', 50);

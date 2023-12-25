@@ -69,6 +69,15 @@ li {
     width: 65%;
 }
 
+.form-group .control-label,
+.form-group > label {
+    font-weight: 600;
+    color: #34395e;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px !important;
+}
+
 /* search card */
 
 .container-input {

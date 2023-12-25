@@ -196,17 +196,17 @@
                     <div class="tanggal-tdd">
                         <p class="small">Tangerang, <span>...........................</span>
                             <br>
-                            Plt. Kepala {{ $dataDisposisi->pengajuan->surat->instansi->nama_instansi }}
+                            Plt. Kepala {{ $dataWeb->instansi->nama_instansi }}
                         </p>
                         <br>
                         <br>
                         <br>
                         <p class="small">
                             <span class="text-bold" style="text-decoration: underline">
-                                {{ $dataDisposisi->pengajuan->surat->user->nama }}
+                                {{ $dataWeb->ketua->nama }}
                             </span>
                             <br>
-                            NIP. {{ $dataDisposisi->pengajuan->surat->user->nip }}
+                            NIP. {{ $dataWeb->ketua->nip }}
                         </p>
                     </div>
                 </div>

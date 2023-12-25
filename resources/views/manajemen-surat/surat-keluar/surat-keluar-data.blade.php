@@ -53,13 +53,41 @@
                     <div class="p-4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
+                                    <div class="input-group">
+                                        <select
+                                            class="filter form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                            id="id_klasifikasi" name="id_klasifikasi" style="width: 100%;" required>
+                                            <option selected disabled>Pilih Nomor Klasifikasi</option>
+                                            @foreach ($klasifikasiList as $data)
+                                                <option value="{{ $data->id_klasifikasi }}"
+                                                    {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
+                                                    {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_klasifikasi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
                                     <label class="capitalize" for="id_instansi">Pilih Berdasarkan Instansi Penerima:
                                     </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
+
+                                            id="id_instansi" name="id_instansi" style="width: 100%;">
+                                            <option selected disabled>Pilih Instansi Penerima</option>
+
                                             id="id_instansi" name="id_instansi_penerima" style="width: 100%;">
                                             <option selected disabled>Pilih Instansi Pengirim</option>
+
                                             @foreach ($instansiList as $data)
                                                 <option value="{{ $data->id_instansi }}"
                                                     {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
@@ -74,13 +102,17 @@
                                     </span>
                                 </div>
                             </div>
+
+                            <div class="col-12">
+
                             <div class="col-sm-12 col-md-6 col-lg-6">
+
                                 <div class="form-group">
                                     <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                             id="id_user" name="id_user" style="width: 100%;">
-                                            <option selected disabled>Pilih Penerima</option>
+                                            <option selected disabled>Pilih Pembuat</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
@@ -95,6 +127,7 @@
                                     </span>
                                 </div>
                             </div>
+
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
                                     <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
@@ -143,6 +176,7 @@
                                     </span>
                                 </div>
                             </div> --}}
+
                             <div class="col-12 ">
                                 <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                                 </h6>
@@ -294,7 +328,7 @@
                                                         id="mycard-collapse{{ $data->id_surat_keluar }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->isi_surat !!}</p>
+                                                            <p class="w-75"> {!! $data->perihal !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 --
                                                                 {{ date('d-F-Y', strtotime($data->tanggal_surat_keluar)) }}

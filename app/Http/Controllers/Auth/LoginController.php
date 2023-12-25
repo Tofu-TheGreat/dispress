@@ -94,6 +94,7 @@ class LoginController extends Controller
         // $this->loginRepository->register($request);
         $user = $request->all();
         $userList = User::get();
+
         return view('admin.pages.web-setting-create', [
             'title' => 'Web-setting-create',
             'active' => 'web-setting',

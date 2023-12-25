@@ -51,8 +51,6 @@ class LoginImplement implements LoginRepository
     }
     public function register_web_setting($data)
     {
-
-
         $jabatan = PosisiJabatan::create([
             'nama_posisi_jabatan' => 'Kepala Instansi',
             'deskripsi_jabatan' => 'Tidak ada deskripsi',

@@ -11,6 +11,7 @@ use App\Models\Pengajuan;
 use App\Models\WebSetting;
 use App\Models\Klasifikasi;
 use App\Models\PosisiJabatan;
+use App\Models\SuratKeluar;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -157,7 +158,7 @@ class DatabaseSeeder extends Seeder
         ]);
         Surat::factory()->create([
             'nomor_surat' => '020/1928-SMKN2/2023',
-            'tanggal_surat' => '2028-11-9',
+            'tanggal_surat' => '2023-11-9',
             'isi_surat' => 'Peminjaman peralatan oleh bu Nada',
             'id_instansi' => '2',
             'id_klasifikasi' => '2',
@@ -183,7 +184,7 @@ class DatabaseSeeder extends Seeder
             'id_klasifikasi' => '2',
             'nomor_agenda' => '020/1299-TU/2023',
             'status_pengajuan' => '1',
-            'tanggal_terima' => '2023-11-12',
+            'tanggal_terima' => '2024-1-1',
             'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
             'id_user' => '5',
         ]);
@@ -193,7 +194,7 @@ class DatabaseSeeder extends Seeder
             'id_klasifikasi' => '2',
             'nomor_agenda' => '020/1300-TU/2023',
             'status_pengajuan' => '0',
-            'tanggal_terima' => '2023-12-12',
+            'tanggal_terima' => '2024-1-2',
             'catatan_pengajuan' => 'Tolong segera di disposisikan ya pak/bu',
             'id_user' => '5',
         ]);
@@ -202,7 +203,7 @@ class DatabaseSeeder extends Seeder
         Disposisi::factory()->create([
             'id_pengajuan' => '1',
             'catatan_disposisi' => 'Approve Disposisi',
-            'tanggal_disposisi' => '2028-11-9',
+            'tanggal_disposisi' => '2024-1-3',
             'status_disposisi' => '5',
             'sifat_disposisi' => '0',
             'id_user' => '7',
@@ -213,7 +214,7 @@ class DatabaseSeeder extends Seeder
         Disposisi::factory()->create([
             'id_pengajuan' => '2',
             'catatan_disposisi' => 'Approve Disposisi',
-            'tanggal_disposisi' => '2028-12-9',
+            'tanggal_disposisi' => '2024-1-4',
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
@@ -224,12 +225,25 @@ class DatabaseSeeder extends Seeder
         Disposisi::factory()->create([
             'id_pengajuan' => '2',
             'catatan_disposisi' => 'Approve Disposisi',
-            'tanggal_disposisi' => '2029-1-9',
+            'tanggal_disposisi' => '2024-1-5',
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
             'id_posisi_jabatan' => '4',
             'id_penerima' => '8',
+        ]);
+
+        //seed surat keluar
+        SuratKeluar::factory()->create([
+            'nomor_surat_keluar' => '005/1299-SMKN4/2024',
+            'tanggal_surat_keluar' => '2024-1-6',
+            'isi_surat' => 'Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan.',
+            'id_klasifikasi' => '1',
+            'id_instansi' => '1',
+            'id_instansi_penerima' => '2',
+            'id_user' => '8',
+            'perihal' => 'Perihal undangan rapat ',
+            'tembusan' => 'wakil kepala sekolah',
         ]);
     }
 }

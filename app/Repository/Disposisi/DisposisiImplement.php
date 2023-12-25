@@ -4,6 +4,7 @@ namespace app\Repository\Disposisi;
 
 use App\Models\Disposisi;
 use App\Models\Pengajuan;
+use App\Models\WebSetting;
 use App\Repository\Disposisi\DisposisiRepository;
 use Illuminate\Support\Facades\Auth;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
@@ -306,13 +307,15 @@ class DisposisiImplement implements DisposisiRepository
     {
         $dataDisposisi = $this->disposisi->where('id_disposisi', $id)->first();
 
+        $dataWeb = WebSetting::first();
+
         $disposisiByRow = $this->disposisi->where('id_pengajuan', $dataDisposisi->id_pengajuan)->get();
         // Initialize PDFMerger
         $pdfmerg = PDFMERGER::init();
 
         // Create a temporary file for the main PDF
         $tempMainPdf = tempnam(sys_get_temp_dir(), 'main_pdf');
-        $mainPdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi, 'disposisiByRow' => $disposisiByRow]);
+        $mainPdf = PDF::loadView('manajemen-surat.disposisi.disposisi-cetak', ['dataDisposisi' => $dataDisposisi, 'disposisiByRow' => $disposisiByRow, 'dataWeb' => $dataWeb]);
         $mainPdf->save($tempMainPdf);
 
         // Add the main PDF

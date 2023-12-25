@@ -475,8 +475,8 @@
                                 @endcannot
                             </h4>
                         </div>
-                        @can('admin')
-                            <div class="col-lg-1 col-sm-4 btn-group">
+                        <div class="col-lg-1 col-sm-4 btn-group">
+                            @can('admin')
                                 {{-- Button Tambah Data --}}
                                 <a href="/disposisi/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
@@ -485,16 +485,16 @@
                                     </button>
                                 </a>
                                 {{-- Akhir Button Tambah Data --}}
-                                {{-- Button Export Data --}}
-                                <a class="text-white ml-2 tombol-export">
-                                    <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
-                                        data-placement="top" title="Export Data Excel" data-original-title="Export Data">
-                                        <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
-                                    </button>
-                                </a>
-                                {{-- Akhir Button Export Data --}}
-                            </div>
-                        @endcan
+                            @endcan
+                            {{-- Button Export Data --}}
+                            <a class="text-white ml-2 tombol-export">
+                                <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
+                                    data-placement="top" title="Export Data Excel" data-original-title="Export Data">
+                                    <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
+                                </button>
+                            </a>
+                            {{-- Akhir Button Export Data --}}
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -910,22 +910,20 @@
                                                                     --
                                                                     {{ date('d-F-Y', strtotime($data->tanggal_disposisi)) }}
                                                                     --</p>
-                                                                <div class="mt-1 mb-1 tombol-cetak">
-                                                                    <a class="tombol-cetak" data-toggle="tooltip"
-                                                                        data-placement="right"
-                                                                        title="klik Untuk Mencetakkan disposisi"
-                                                                        data-original-title="klik Untuk Mencetakkan disposisi"
-                                                                        href="{{ route('cetak.disposisi', Crypt::encryptString($data->id_disposisi)) }}"
-                                                                        target="_blank">
-                                                                        <button type="button"
-                                                                            class="btn btn-primary mr-2 tombol-cetak"
-                                                                            data-toggle="modal"
-                                                                            data-target="#cetak-modal{{ $data->id_pengajuan }}"
-                                                                            type="button">
-                                                                            <i class="bi bi-printer"></i>
-                                                                        </button>
-                                                                    </a>
-                                                                </div>
+                                                                <a class="tombol-cetak" data-toggle="tooltip"
+                                                                    data-placement="right"
+                                                                    title="klik Untuk Mencetakkan disposisi"
+                                                                    data-original-title="klik Untuk Mencetakkan disposisi"
+                                                                    href="{{ route('cetak.disposisi', Crypt::encryptString($data->id_disposisi)) }}"
+                                                                    target="_blank">
+                                                                    <button type="button"
+                                                                        class="btn btn-primary mr-2 tombol-cetak"
+                                                                        data-toggle="modal"
+                                                                        data-target="#cetak-modal{{ $data->id_pengajuan }}"
+                                                                        type="button">
+                                                                        <i class="bi bi-printer"></i>
+                                                                    </button>
+                                                                </a>
                                                                 @can('admin')
                                                                     <div class="d-flex flex-column btn-group-action">
                                                                         <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
@@ -958,7 +956,7 @@
                                                                         </form>
                                                                     </div>
                                                                 @endcan
-                                                                @can('officer')
+                                                                @cannot('admin')
                                                                     <a href="{{ route('disposisi.show', Crypt::encryptString($data->id_disposisi)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data disposisi "
@@ -967,7 +965,7 @@
                                                                         href=""><i class="mr-1 bi bi-eye"></i>Detail
                                                                         Data
                                                                     </a>
-                                                                @endcan
+                                                                @endcannot
                                                             </div>
                                                             <div
                                                                 class="card-footer  d-flex justify-content-between position-relative">

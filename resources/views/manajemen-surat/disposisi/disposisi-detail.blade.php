@@ -83,7 +83,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('tanggal_terima') is-invalid @enderror"
-                                                    value="{{ $detailDataDisposisi->pengajuan->tanggal_terima }}"
+                                                    value="{{ date('d-F-Y', strtotime($detailDataDisposisi->pengajuan->tanggal_terima)) }}"
                                                     id="tanggal_terima" name="tanggal_terima" readonly>
                                             </div>
                                         </div>
@@ -163,7 +163,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('tanggal_surat') is-invalid @enderror"
-                                                    value="{{ $detailDataDisposisi->pengajuan->surat->tanggal_surat }}"
+                                                    value="{{ date('d-F-Y', strtotime($detailDataDisposisi->pengajuan->surat->tanggal_surat)) }}"
                                                     id="tanggal_surat" name="tanggal_surat" readonly>
                                             </div>
                                         </div>
@@ -382,10 +382,10 @@
                                                         <i class="bi bi-calendar3"></i>
                                                     </div>
                                                 </div>
-                                                <input type="date"
+                                                <input type="text"
                                                     class="form-control tanggal_disposisi @error('tanggal_disposisi') is-invalid @enderror"
                                                     placeholder="ex: 11/14/2023"
-                                                    value="{{ $detailDataDisposisi->tanggal_disposisi }}"
+                                                    value="{{ date('d-F-Y', strtotime($detailDataDisposisi->tanggal_disposisi)) }}"
                                                     id="tanggal_disposisi" name="tanggal_disposisi" readonly>
                                             </div>
                                             <span class="text-danger">
@@ -411,20 +411,10 @@
                                 <div class="col-12 d-flex justify-content-end">
                                     <div class="row d-flex justify-content-end">
                                         <div class="ml-2 ">
-                                            <a href="/pengajuan-disposisi" class="btn btn-warning  ">
+                                            <a href="/disposisi" class="btn btn-warning  ">
                                                 <i class="bi bi-arrow-90deg-left fs-6 l-1"></i>
                                                 <span class="bi-text">Kembali</span>
                                             </a>
-                                        </div>
-                                        <div class="ml-2">
-                                            <button type="submit" class="btn btn-primary mb-1">
-                                                <i class="bi bi-clipboard-plus-fill fs-6 mr-1"></i>
-                                                <span class="bi-text">Save Data</span></button>
-                                        </div>
-                                        <div class="ml-2 ">
-                                            <button type="reset" class="btn btn-secondary">
-                                                <i class="bi bi-arrow-counterclockwise fs-6 mr-1"></i>
-                                                <span class="bi-text">Reset</span></button>
                                         </div>
                                     </div>
                                 </div>

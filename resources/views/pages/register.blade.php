@@ -21,6 +21,8 @@
     <!-- aos carousel -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/aos.css') }}" />
 
+    <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
+
 </head>
 
 <body>
@@ -214,6 +216,46 @@
     <script src="{{ asset('/assets-landing-page/js/aos.js') }}"></script>
 
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
+
+    <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
+
+    {{-- Toast --}}
+    @if (Session::has('success'))
+        <script>
+            $(document).ready(function() {
+                iziToast.success({
+                    title: 'Success',
+                    message: "{{ Session::get('success') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+    @if (Session::has('warning'))
+        <script>
+            $(document).ready(function() {
+                iziToast.warning({
+                    title: 'warning',
+                    message: "{{ Session::get('warning') }}",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+
+    @if (Session::has('error'))
+        <script>
+            $(document).ready(function() {
+                iziToast.error({
+                    title: 'Error',
+                    message: "{{ Session::get('error') }} Import",
+                    position: 'topRight'
+                })
+            });
+        </script>
+    @endif
+    {{-- seweetalert confirmation --}}
+
 
     <script>
         $(document).ready(function() {

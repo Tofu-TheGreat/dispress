@@ -53,48 +53,6 @@
                     <div class="p-4">
                         <div class="row">
                             <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="id_instansi">Pilih Berdasarkan Instansi: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
-                                            id="id_instansi" name="id_instansi" style="width: 100%;">
-                                            <option selected disabled>Pilih Instansi Pengirim</option>
-                                            @foreach ($instansiList as $data)
-                                                <option value="{{ $data->id_instansi }}"
-                                                    {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
-                                                    {{ $data->nama_instansi }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_instansi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            {{-- <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Penerima: </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('id_user') is-invalid  @enderror "
-                                            id="id_user" name="id_user" style="width: 100%;">
-                                            <option selected disabled>Pilih Penerima</option>
-                                            @foreach ($userList as $data)
-                                                <option value="{{ $data->id_user }}"
-                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
-                                                    {{ $data->nama }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_user')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
                                     <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
                                     <div class="input-group">
@@ -116,27 +74,45 @@
                                         @enderror
                                     </span>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="status_verifikasi">Pilih Berdasarkan Status Verifikasi:
+                                    <label class="capitalize" for="id_instansi">Pilih Berdasarkan Instansi Penerima:
                                     </label>
                                     <div class="input-group">
-                                        <select class="filter select2 @error('status_verifikasi') is-invalid  @enderror "
-                                            id="status_verifikasi" name="status_verifikasi" style="width: 100%;">
-                                            <option selected disabled>Pilih Status Verifikasi</option>
-                                            <option value="0" {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
-                                                Belum Terverifikasi</option>
-                                            <option value="1"
-                                                {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
-                                                Terverifikasi</option>
-                                            <option value="2"
-                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
-                                                Dikembalikan</option>
+                                        <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
+                                            id="id_instansi" name="id_instansi" style="width: 100%;">
+                                            <option selected disabled>Pilih Instansi Penerima</option>
+                                            @foreach ($instansiList as $data)
+                                                <option value="{{ $data->id_instansi }}"
+                                                    {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
+                                                    {{ $data->nama_instansi }}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <span class="text-danger">
-                                        @error('status_verifikasi')
+                                        @error('id_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat: </label>
+                                    <div class="input-group">
+                                        <select class="filter select2 @error('id_user') is-invalid  @enderror "
+                                            id="id_user" name="id_user" style="width: 100%;">
+                                            <option selected disabled>Pilih Pembuat</option>
+                                            @foreach ($userList as $data)
+                                                <option value="{{ $data->id_user }}"
+                                                    {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
+                                                    {{ $data->nama }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('id_user')
                                             {{ $message }}
                                         @enderror
                                     </span>
@@ -182,7 +158,8 @@
                                         <input type="date"
                                             class="form-control tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
                                             placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
-                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir" style="width: 80%;">
+                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir"
+                                            style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_surat_terakhir')

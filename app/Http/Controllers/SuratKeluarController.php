@@ -33,6 +33,8 @@ class SuratKeluarController extends Controller
             'active' => 'surat-keluar',
             'suratKeluarList' => $suratKeluarList,
             'instansiList' => $instansiList,
+            'userList' => $userList,
+            'klasifikasiList' => $klasifikasiList,
         ]);
     }
 

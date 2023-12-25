@@ -208,7 +208,6 @@ class DatabaseSeeder extends Seeder
             'sifat_disposisi' => '0',
             'id_user' => '7',
             'id_posisi_jabatan' => '4',
-            'id_penerima' => '1',
         ]);
 
         Disposisi::factory()->create([
@@ -218,7 +217,6 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
-            'id_posisi_jabatan' => '4',
             'id_penerima' => '1',
         ]);
 
@@ -229,7 +227,6 @@ class DatabaseSeeder extends Seeder
             'status_disposisi' => '3',
             'sifat_disposisi' => '1',
             'id_user' => '7',
-            'id_posisi_jabatan' => '4',
             'id_penerima' => '8',
         ]);
 
@@ -239,7 +236,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_surat_keluar' => '2024-1-6',
             'isi_surat' => 'Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan.',
             'id_klasifikasi' => '1',
-            'id_instansi' => '1',
             'id_instansi_penerima' => '2',
             'id_user' => '8',
             'perihal' => 'Perihal undangan rapat ',

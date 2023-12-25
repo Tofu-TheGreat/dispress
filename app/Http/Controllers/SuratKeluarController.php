@@ -65,7 +65,7 @@ class SuratKeluarController extends Controller
         $this->authorize('admin-officer');
 
         $this->suratKeluarRepository->store($request);
-        return redirect()->intended('/surat-keluar');
+        return redirect()->intended('/surat-keluar')->with('success', 'Berhasil membuat data surat keluar.');
     }
 
     /**
@@ -98,7 +98,7 @@ class SuratKeluarController extends Controller
         $instansiList = Instansi::get();
         $klasifikasiList = Klasifikasi::get();
         return view('manajemen-surat.surat-keluar.surat-keluar-edit', [
-            'title' => 'Surat Keluar Create',
+            'title' => 'Surat Keluar Edit',
             'active1' => 'manajemen-surat',
             'active' => 'surat-keluar',
             'editDataSuratKeluar' => $editDataSuratKeluar,
@@ -114,7 +114,7 @@ class SuratKeluarController extends Controller
     {
         $this->authorize('admin-officer');
         $this->suratKeluarRepository->update($id, $request);
-        return redirect()->intended('surat-keluar')->with('success', 'Berhasil mengubah data Surat Keluar');
+        return redirect()->intended('surat-keluar')->with('success', 'Berhasil mengubah data surat keluar.');
     }
 
     /**
@@ -125,7 +125,7 @@ class SuratKeluarController extends Controller
         $this->authorize('admin-officer');
         $encryptId = Crypt::decryptString($id);
         $this->suratKeluarRepository->destroy($encryptId);
-        return redirect()->intended('surat-keluar')->with('success', 'Berhasil menghapus data Surat Keluar');
+        return redirect()->intended('surat-keluar')->with('success', 'Berhasil menghapus data surat keluar.');
     }
     public function filterData(Request $request)
     {

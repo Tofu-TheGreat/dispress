@@ -377,6 +377,27 @@
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <div class="form-group">
+                                                        <label for="foto_instansi">Set foto instansi: </label>
+                                                        <small class="d-block">Catatan: masukkan foto dengan format
+                                                            (JPEG, PNG,
+                                                            JPG),
+                                                            maksimal 10
+                                                            MB.</small>
+                                                        <input type="file"
+                                                            class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
+                                                            id="foto_instansi" name="foto_instansi"
+                                                            accept="jpg,jpeg,png">
+                                                        <span class="text-danger">
+                                                            @error('foto_instansi')
+                                                                {{ $message }}
+                                                            @enderror
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="form-group">
                                                         <label for="default_logo">Set Default Logo Instansi: </label>
                                                         <small class="d-block">Catatan: masukkan logo dengan format
                                                             (JPEG, PNG,

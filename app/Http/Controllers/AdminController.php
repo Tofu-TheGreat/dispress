@@ -117,7 +117,7 @@ class AdminController extends Controller
         $this->authorize('admin');
 
         $this->adminRepository->store($request);;
-        return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin!');
+        return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin.');
     }
 
     /**
@@ -166,7 +166,7 @@ class AdminController extends Controller
         $this->authorize('admin');
 
         $this->adminRepository->update($request->id_user, $request);
-        return redirect()->intended('/admin')->with('success', 'Berhasil meng-edit data Admin.');
+        return redirect()->intended('/admin')->with('success', 'Berhasil mengubah data Admin.');
     }
 
     /**

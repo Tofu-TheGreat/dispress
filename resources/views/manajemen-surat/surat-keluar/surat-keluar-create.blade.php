@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
-                                        <label for="tembusan">Masukkan Tembusan: </label>
+                                        <label for="tembusan">Masukkan Tembusan: (optional) </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -193,7 +193,7 @@
                                             <input type="text"
                                                 class="form-control @error('tembusan') is-invalid @enderror"
                                                 placeholder="ex: Sekretaris Dinas" value="{{ old('tembusan') }}"
-                                                id="tembusan" name="tembusan" required autofocus>
+                                                id="tembusan" name="tembusan" autofocus>
                                         </div>
                                         <span class="text-danger">
                                             @error('tembusan')

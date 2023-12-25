@@ -81,13 +81,8 @@
                                     </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
-
                                             id="id_instansi" name="id_instansi" style="width: 100%;">
                                             <option selected disabled>Pilih Instansi Penerima</option>
-
-                                            id="id_instansi" name="id_instansi_penerima" style="width: 100%;">
-                                            <option selected disabled>Pilih Instansi Pengirim</option>
-
                                             @foreach ($instansiList as $data)
                                                 <option value="{{ $data->id_instansi }}"
                                                     {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
@@ -104,15 +99,12 @@
                             </div>
 
                             <div class="col-12">
-
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat: </label>
+                                    <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat Surat: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "
                                             id="id_user" name="id_user" style="width: 100%;">
-                                            <option selected disabled>Pilih Pembuat</option>
+                                            <option selected disabled>Pilih Pembuat Surat</option>
                                             @foreach ($userList as $data)
                                                 <option value="{{ $data->id_user }}"
                                                     {{ old('id_user') == $data->id_user ? 'selected' : '' }}>
@@ -127,63 +119,14 @@
                                     </span>
                                 </div>
                             </div>
-
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group ">
-                                    <label for="id_klasifikasi">Pilih Berdasarkan Nomor Klasifikasi: </label>
-                                    <div class="input-group">
-                                        <select
-                                            class="filter form-control select2  @error('id_klasifikasi') is-invalid @enderror "
-                                            id="id_klasifikasi" name="id_klasifikasi" style="width: 100%;" required>
-                                            <option selected disabled>Pilih Nomor Klasifikasi</option>
-                                            @foreach ($klasifikasiList as $data)
-                                                <option value="{{ $data->id_klasifikasi }}"
-                                                    {{ old('id_klasifikasi') == $data->id_klasifikasi ? 'selected' : '' }}>
-                                                    {{ $data->nomor_klasifikasi }} | {{ $data->nama_klasifikasi }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_klasifikasi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            {{-- <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="status_verifikasi">Pilih Berdasarkan Status Verifikasi:
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('status_verifikasi') is-invalid  @enderror "
-                                            id="status_verifikasi" name="status_verifikasi" style="width: 100%;">
-                                            <option selected disabled>Pilih Status Verifikasi</option>
-                                            <option value="0" {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
-                                                Belum Terverifikasi</option>
-                                            <option value="1"
-                                                {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
-                                                Terverifikasi</option>
-                                            <option value="2"
-                                                {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
-                                                Dikembalikan</option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('status_verifikasi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div> --}}
-
                             <div class="col-12 ">
                                 <h6 class="text-primary text-center mb-4">Sortir berdasarkan Tanggal Pembuatan Surat
                                 </h6>
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan Surat:
+                                    <label class="capitalize" for="tanggal_surat_awal">Dari Tanggal Awal Pembuatan
+                                        Surat:
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -230,7 +173,8 @@
                         </div>
                         <div class="d-flex justify-content-end">
                             <button type="submit" class="btn btn-success mr-2 mb-1 " id="filtering" title="Filter">
-                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter Data</span></button>
+                                <i class="bi bi-funnel mr-1 "></i><span class="bi-text mr-2">Filter
+                                    Data</span></button>
                             <a type="button" id="reset" href="{{ route('surat.index') }}"
                                 class="btn btn-secondary mb-1" title="Reset">
                                 <i class="bi bi-arrow-clockwise mr-1"></i><span class="bi-text mr-2">Reset
@@ -381,13 +325,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="text-center " style="margin-left: 15%;">
-                                                                <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                                <a type="button" class="btn btn-primary btn-scan-pdf"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Preview surat (PDF)"
-                                                                    data-original-title="Preview surat (PDF)"
+                                                                    title="Cetak surat keluar"
+                                                                    data-original-title="Cetak surat keluar"
                                                                     href="{{ asset('document_save/' . $data->scan_dokumen) }}"
                                                                     target="_blank" title="Read PDF"><i
-                                                                        class="bi bi-file-pdf"
+                                                                        class="bi bi-printer-fill"
                                                                         style="font-size: 1.1rem;"></i></a>
                                                             </div>
                                                         </div>
@@ -407,179 +351,6 @@
             </div>
         </div>
     </section>
-
-    @can('admin')
-        <!-- Modal Verifikasi Surat -->
-        @foreach ($suratKeluarList as $data)
-            <div class="modal fade verifikasi-modal" id="verifikasi-modal{{ $data->id_surat_keluar }}"
-                aria-labelledby="verifikasi-modal" aria-hidden="true">
-                <div class="modal-dialog modal-lg modal-dialog-centered ">
-                    <div class="modal-content">
-                        <div class="modal-header border-bottom pb-4">
-                            <h5 class="modal-title" id="verifikasi-modal">Verifikasi Data surat untuk di Disposisikan</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form action="/surat-verifikasi/{{ $data->id_surat_keluar }}" method="post"
-                            enctype="multipart/form-data">
-                            @csrf
-                            <input type="text" name="id_surat_keluar" value="{{ $data->id_surat_keluar }}" hidden
-                                id="">
-                            <input type="text" name="id_klasifikasi" value="{{ $data->id_klasifikasi }}" hidden
-                                id="">
-                            <div class="row px-4 pt-4">
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="id_surat_keluar">Nomor Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-list-ol"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control capitalize @error('nomor_surat') is-invalid @enderror"
-                                                placeholder="ex: 090/1928-TU/2023" value="{{ $data->nomor_surat }}"
-                                                id="nomor_surat" name="nomor_surat" readonly>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('nomor_surat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="tanggal_surat">Tanggal Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-calendar3"></i>
-                                                </div>
-                                            </div>
-                                            <input type="date"
-                                                class="form-control @error('tanggal_surat') is-invalid @enderror"
-                                                value="{{ $data->tanggal_surat }}" id="tanggal_surat" name="tanggal_surat"
-                                                readonly>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('tanggal_surat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="isi_surat">Ringkasan Surat: </label>
-                                        <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
-                                            placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $data->isi_surat }} </textarea>
-                                        <span class="text-danger">
-                                            @error('isi_surat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="id_instansi">Pengirim Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-person-rolodex"></i>
-                                                </div>
-                                            </div>
-                                            {{-- <input type="text"
-                                                class="form-control @error('id_instansi') is-invalid @enderror"
-                                                value="{{ $data->instansi->nama_instansi }}" id="id_instansi" readonly>
-                                            <input type="text" name="id_instansi" value="{{ $data->id_instansi }}" hidden
-                                                id=""> --}}
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_instansi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="id_user">Penerima Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-person-rolodex"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text" class="form-control @error('id_user') is-invalid @enderror"
-                                                value="{{ $data->user->nama }}" id="id_user" readonly>
-                                            <input type="text" name="id_user" value="{{ $data->id_user }}" hidden
-                                                id="">
-
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_user')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="status_verifikasi">Verifikasi Surat: </label>
-                                        <div class="input-group">
-                                            <select
-                                                class="form-control select2  @error('status_verifikasi') is-invalid @enderror "
-                                                id="status_verifikasi" name="status_verifikasi" required
-                                                style="width: 100%;">
-                                                <option selected disabled>Pilih Status Verifikasi Surat</option>
-                                                <option value="0"
-                                                    {{ $data->status_verifikasi === '0' ? 'selected' : '' }}>
-                                                    Belum Terverifikasi</option>
-                                                <option value="1"
-                                                    {{ $data->status_verifikasi === '1' ? 'selected' : '' }}>
-                                                    Terverifikasi</option>
-                                                <option value="2"
-                                                    {{ $data->status_verifikasi === '2' ? 'selected' : '' }}>
-                                                    Dikembalikan</option>
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('status_verifikasi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
-                                        <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
-                                            placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" readonly> {{ $data->catatan_verifikasi }} </textarea>
-                                        <span class="text-danger">
-                                            @error('catatan_verifikasi')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer d-flex justify-content-between border-top pt-3">
-                                <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
-                                        class="bi bi-x-circle ml-3"></i></button>
-                                <button type="submit" value="Import" class="btn btn-primary text-white">
-                                    Save Data <i class="bi bi-clipboard-check-fill ml-3"></i></button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-        {{-- End Verifikasi Surat --}}
-    @endcan
 
     <!-- Modal Import -->
     <div class="modal fade" id="importmodal" aria-labelledby="importmodalLabel" aria-hidden="true">
@@ -699,19 +470,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Surat ini!',
+                        text: 'Ingin menghapus data surat keluar ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Surat berhasil dihapus!', {
+                            swal('Data surat keluar berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Surat tidak jadi dihapus!');
+                            swal('Data surat keluar tidak jadi dihapus!');
                         }
                     });
             }
@@ -719,14 +490,14 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Surat ini?',
+                        text: 'Ingin export data surat keluar ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Surat berhasil diexport!', {
+                            swal('Data surat keluar berhasil diexport!', {
                                 icon: 'success',
                             });
 
@@ -747,7 +518,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Surat tidak jadi diexport!');
+                            swal('Data surat keluar tidak jadi diexport!');
                         }
                     });
             }

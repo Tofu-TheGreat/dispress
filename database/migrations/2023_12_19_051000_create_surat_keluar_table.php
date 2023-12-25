@@ -23,7 +23,7 @@ return new class extends Migration
             $table->foreign('id_instansi_penerima')->references('id_instansi')->on('instansi')->onDelete('cascade');
             $table->string('perihal', 50);
             $table->text('isi_surat');
-            $table->string('tembusan', 50);
+            $table->string('tembusan', 50)->nullable()->default('tidak ada tembusan');
             $table->timestamps();
         });
     }

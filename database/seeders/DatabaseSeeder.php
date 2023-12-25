@@ -236,7 +236,6 @@ class DatabaseSeeder extends Seeder
             'tanggal_surat_keluar' => '2024-1-6',
             'isi_surat' => 'Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan.',
             'id_klasifikasi' => '1',
-            'id_instansi' => '1',
             'id_instansi_penerima' => '2',
             'id_user' => '8',
             'perihal' => 'Perihal undangan rapat ',

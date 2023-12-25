@@ -643,19 +643,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data Surat ini!',
+                        text: 'Ingin menghapus data surat keluar ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data Surat berhasil dihapus!', {
+                            swal('Data surat keluar berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data Surat tidak jadi dihapus!');
+                            swal('Data surat keluar tidak jadi dihapus!');
                         }
                     });
             }
@@ -663,14 +663,14 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Surat ini?',
+                        text: 'Ingin export data surat keluar ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Surat berhasil diexport!', {
+                            swal('Data surat keluar berhasil diexport!', {
                                 icon: 'success',
                             });
 
@@ -691,7 +691,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Surat tidak jadi diexport!');
+                            swal('Data surat keluar tidak jadi diexport!');
                         }
                     });
             }

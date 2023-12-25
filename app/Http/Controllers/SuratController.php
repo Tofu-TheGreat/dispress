@@ -75,7 +75,7 @@ class SuratController extends Controller
         $this->authorize('admin-officer');
 
         $this->suratRepository->store($request);
-        return redirect()->intended('/surat');
+        return redirect()->intended('/surat')->with('success', 'Berhasil membuat data surat masuk.');
     }
 
     /**
@@ -132,7 +132,7 @@ class SuratController extends Controller
         $this->authorize('admin-officer');
 
         $this->suratRepository->update($id, $request);
-        return redirect()->intended('/surat')->with('success', 'Berhasil meng-update data surat.');
+        return redirect()->intended('/surat')->with('success', 'Berhasil meng-update data surat masuk.');
     }
 
     /**
@@ -144,7 +144,7 @@ class SuratController extends Controller
 
         $encryptId = Crypt::decryptString($id);
         $this->suratRepository->destroy($encryptId);
-        return redirect()->intended('/surat')->with('success', 'Berhasil menghapus data surat.');
+        return redirect()->intended('/surat')->with('success', 'Berhasil menghapus data surat masuk.');
     }
 
     public function filterData(Request $request)

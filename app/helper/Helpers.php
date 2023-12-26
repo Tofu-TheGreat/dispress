@@ -248,3 +248,24 @@ if (!function_exists('formatCetak')) {
         return $hasil;
     }
 }
+
+if (!function_exists('convertToNIP')) {
+    function convertToNIP($inputString)
+    {
+        // Pastikan bahwa inputString memiliki panjang yang cukup
+        if (strlen($inputString) !== 18) {
+            return 'Invalid input string length';
+        }
+
+        // Pisahkan bagian-bagian dari inputString
+        $tanggalLahir = substr($inputString, 0, 8);
+        $tahunMasuk = substr($inputString, 8, 6);
+        $jenisKelamin = substr($inputString, 14, 1);
+        $urutan = substr($inputString, 15);
+
+        // Format NIP
+        $formattedNIP = $tanggalLahir . ' ' . $tahunMasuk . ' ' . $jenisKelamin . ' ' . $urutan;
+
+        return $formattedNIP;
+    }
+}

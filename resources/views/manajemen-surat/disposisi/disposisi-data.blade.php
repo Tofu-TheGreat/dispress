@@ -919,8 +919,6 @@
                                                                     target="_blank">
                                                                     <button type="button"
                                                                         class="btn btn-primary mr-2 tombol-cetak"
-                                                                        data-toggle="modal"
-                                                                        data-target="#cetak-modal{{ $data->id_pengajuan }}"
                                                                         type="button">
                                                                         <i class="bi bi-printer"></i>
                                                                     </button>

@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\PosisiJabatan;
 use App\Models\Klasifikasi;
 use Illuminate\Support\Facades\Crypt;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 
 class SuratKeluarController extends Controller
 {
@@ -127,6 +128,28 @@ class SuratKeluarController extends Controller
         $this->suratKeluarRepository->destroy($encryptId);
         return redirect()->intended('surat-keluar')->with('success', 'Berhasil menghapus data surat keluar.');
     }
+
+    public function cetakSuratKeluar($id)
+    {
+        $encryptId = Crypt::decryptString($id);
+        $dataSuratKeluar = SuratKeluar::where('id_surat_keluar', $encryptId)->first();
+        // $pdfcetak = $this->disposisiRepository->cetakDisposisi($encryptId);
+
+        // return $pdfcetak->stream();
+
+        $pdf = PDF::loadView(
+            'manajemen-surat.surat-keluar.surat-keluar-cetak',
+            ['dataSuratKeluar' => $dataSuratKeluar]
+        );
+
+        // You can save the PDF to a file or return it as a response.
+        // Example: Save to a file
+        // $pdf->save(storage_path('app/public/example.pdf'));
+
+        // Example: Return as a response
+        return $pdf->stream('example.pdf');
+    }
+
     public function filterData(Request $request)
     {
         $suratKeluarList =  $this->suratKeluarRepository->filterData($request);

@@ -158,7 +158,7 @@
                                 <h4>Total Disposisi untuk {{ auth()->user()->nama }}</h4>
                             </div>
                             <div class="card-body">
-                                {{ $getDisposisiForUserCount }} Data
+                                {{ $getDisposisiForUserCount ? $getDisposisiForUserCount : 0 }} Data
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@
                                 <h4>Total Surat Keluar untuk {{ auth()->user()->nama }}</h4>
                             </div>
                             <div class="card-body">
-                                10 Data
+                                {{ $getSuratKeluarForUserCount ? $getSuratKeluarForUserCount : 0 }} Data
                             </div>
                         </div>
                     </div>

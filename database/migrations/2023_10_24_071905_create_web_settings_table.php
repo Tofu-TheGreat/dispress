@@ -27,6 +27,13 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('web_setting');
+        Schema::dropIfExists('web_setting', function (Blueprint $table) {
+            $table->dropForeign('id_instansi');
+            $table->dropIndex('id_instansi');
+            $table->dropColumn('id_instansi');
+            $table->dropForeign('id_ketua');
+            $table->dropIndex('id_ketua');
+            $table->dropColumn('id_ketua');
+        });
     }
 };

@@ -241,7 +241,7 @@
                             </a>
                             {{-- Akhir Button Tambah Data --}}
                             {{-- Button Export Data --}}
-                            <a href="{{ route('pengajuan.export') }}" class="text-white ml-2 tombol-export">
+                            <a href="#" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
                                     data-placement="top" title="Export Data Excel" data-original-title="Export Data">
                                     <i class="fa fa-file-excel btn-tambah-data tombol-export"></i>
@@ -895,7 +895,7 @@
         <div class="modal-dialog  modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="importmodalLabel">Import Users</h5>
+                    <h5 class="modal-title" id="importmodalLabel">Import Pengajuan</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -1063,19 +1063,19 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data Disposisi ini?',
+                        text: 'Ingin export data Pengajuan ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data Disposisi berhasil diexport!', {
+                            swal('Data Pengajuan berhasil diexport!', {
                                 icon: 'success',
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('disposisi.export') }}', {
+                            fetch('{{ route('pengajuan.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -1091,7 +1091,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data Disposisi tidak jadi diexport!');
+                            swal('Data Pengajuan tidak jadi diexport!');
                         }
                     });
             }

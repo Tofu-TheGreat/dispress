@@ -329,7 +329,7 @@
                                                                     data-toggle="tooltip" data-placement="top"
                                                                     title="Cetak surat keluar"
                                                                     data-original-title="Cetak surat keluar"
-                                                                    href="{{ asset('document_save/' . $data->scan_dokumen) }}"
+                                                                    href="{{ route('cetak.surat-keluar', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                     target="_blank" title="Read PDF"><i
                                                                         class="bi bi-printer-fill"
                                                                         style="font-size: 1.1rem;"></i></a>

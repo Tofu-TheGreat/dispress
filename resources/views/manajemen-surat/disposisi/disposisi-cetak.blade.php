@@ -212,11 +212,11 @@
                         <br>
                         <br>
                         <p class="small">
-                            <span class="text-bold" style="text-decoration: underline">
+                            <span class="text-bold" style="text-decoration: underline; text-transform: uppercase;">
                                 {{ $dataWeb->ketua->nama }}
                             </span>
                             <br>
-                            NIP. {{ $dataWeb->ketua->nip }}
+                            NIP. {{ convertToNIP($dataWeb->ketua->nip) }}
                         </p>
                     </div>
                 </div>

@@ -587,8 +587,6 @@
                                                                                 target="_blank">
                                                                                 <button type="button"
                                                                                     class="btn btn-primary mr-2 tombol-cetak"
-                                                                                    data-toggle="modal"
-                                                                                    data-target="#cetak-modal{{ $data->id_pengajuan }}"
                                                                                     type="button">
                                                                                     <i class="bi bi-printer"></i>
                                                                                 </button>
@@ -1125,18 +1123,6 @@
                 iziToast.error({
                     title: 'Error',
                     message: "{!! implode('', $errors->all('<div>:message</div>')) !!}",
-                    position: 'topRight'
-                })
-            });
-        </script>
-    @endif
-
-    @if (Session::has('error'))
-        <script>
-            $(document).ready(function() {
-                iziToast.error({
-                    title: 'Error',
-                    message: "{{ Session::get('error') }} Import",
                     position: 'topRight'
                 })
             });

@@ -237,16 +237,47 @@
                 </div>
                 <div class="col-12 col-sm-12 col-lg-8">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-1 mr-3">
-                                    <a href="/disposisi">
-                                        <i class="bi bi-arrow-left"></i>
+                        <div class="row card-header">
+                            <div class="col-lg-11 col-sm-8">
+                                <div class="row">
+                                    <a href="/disposisi" title="Kembali">
+                                        <i class="bi bi-arrow-left mr-3"></i>
                                     </a>
+                                    <h4 class="text-primary" style="max-width: max-content;">Detail Data Disposisi
+                                    </h4>
                                 </div>
-                                <div class="col-">
-                                    <h4 class="text-primary">Detail Data Disposisi</h4>
-                                </div>
+                            </div>
+                            <div class="col-lg-1 col-sm-4 d-flex justify-content-end btn-group">
+                                <a class="tombol-cetak" data-toggle="tooltip" data-placement="top"
+                                    title="klik Untuk Mencetakkan disposisi"
+                                    data-original-title="klik Untuk Mencetakkan disposisi"
+                                    href="{{ route('cetak.disposisi', Crypt::encryptString($detailDataDisposisi->id_disposisi)) }}"
+                                    target="_blank">
+                                    <button type="button" class="btn btn-info tombol-cetak" type="button">
+                                        <i class="bi bi-printer"></i>
+                                    </button>
+                                </a>
+                                <a href="{{ route('disposisi.edit', Crypt::encryptString($detailDataDisposisi->id_disposisi)) }}"
+                                    class="text-white ml-2">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                                        data-placement="top" title="Edit Data Disposisi"
+                                        data-original-title="Edit Data Disposisi">
+                                        <i class="bi bi-pencil btn-tambah-data"></i>
+                                    </button>
+                                </a>
+                                <form method="POST"
+                                    action="{{ route('disposisi.destroy', Crypt::encryptString($detailDataDisposisi->id_disposisi)) }}"
+                                    class="tombol-hapus">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="#" class="text-white ml-2 tombol-hapus">
+                                        <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
+                                            data-placement="top" title="Hapus Data Disposisi"
+                                            data-original-title="Hapus Data Disposisi">
+                                            <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                                        </button>
+                                    </a>
+                                </form>
                             </div>
                         </div>
                         <div class="card-body ">
@@ -319,59 +350,62 @@
                                             </span>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-2">
-                                        <div class="form-group tujuan_disposisi_div" id="tujuan_disposisi_div">
-                                            <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi
-                                                (Jabatan):
-                                            </label>
-                                            <div class="input-group">
-                                                <select
-                                                    class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
-                                                    id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
-                                                    style="width: 100%;" disabled>
-                                                    <option disabled>Pilih Tujuan Disposisi</option>
-                                                    @foreach ($posisiJabatanList as $item)
-                                                        <option value="{{ $item->id_posisi_jabatan }}"
-                                                            {{ $detailDataDisposisi->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
-                                                            {{ $item->nama_posisi_jabatan }} |
-                                                            {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                    @if ($detailDataDisposisi->id_posisi_jabatan)
+                                        <div class="col-12 mt-2">
+                                            <div class="form-group tujuan_disposisi_div" id="tujuan_disposisi_div">
+                                                <label class="capitalize" for="tujuan_disposisi">Tujuan Disposisi
+                                                    (Jabatan):
+                                                </label>
+                                                <div class="input-group">
+                                                    <select
+                                                        class="form-control select2  @error('tujuan_disposisi') is-invalid @enderror "
+                                                        id="tujuan_disposisi" name="tujuan_disposisi[]" multiple=""
+                                                        style="width: 100%;" disabled>
+                                                        <option disabled>Pilih Tujuan Disposisi</option>
+                                                        @foreach ($posisiJabatanList as $item)
+                                                            <option value="{{ $item->id_posisi_jabatan }}"
+                                                                {{ $detailDataDisposisi->id_posisi_jabatan == $item->id_posisi_jabatan ? 'selected' : '' }}>
+                                                                {{ $item->nama_posisi_jabatan }} |
+                                                                {{ jabatanConvert($item->tingkat_jabatan, 'jabatan') }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('tujuan_disposisi')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
                                             </div>
-                                            <span class="text-danger">
-                                                @error('tujuan_disposisi')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group id_user_div" id="id_user_div">
-                                            <label class="capitalize" for="id_penerima">Tujuan Disposisi (Personal):
-                                            </label>
-                                            <div class="input-group">
-                                                <select
-                                                    class="form-control select2  @error('id_penerima') is-invalid @enderror "
-                                                    id="id_penerima" name="id_penerima[]" multiple=""
-                                                    style="width: 100%;" disabled>
-                                                    <option disabled>Pilih Tujuan User</option>
-                                                    @foreach ($userList as $data)
-                                                        <option value="{{ $data->id_user }}"
-                                                            {{ $detailDataDisposisi->id_penerima == $data->id_user ? 'selected' : '' }}>
-                                                            {{ $data->nama }} |
-                                                            {{ $data->posisiJabatan->nama_posisi_jabatan }}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
+                                    @elseif($detailDataDisposisi->id_penerima)
+                                        <div class="col-12">
+                                            <div class="form-group id_user_div" id="id_user_div">
+                                                <label class="capitalize" for="id_penerima">Tujuan Disposisi (Personal):
+                                                </label>
+                                                <div class="input-group">
+                                                    <select
+                                                        class="form-control select2  @error('id_penerima') is-invalid @enderror "
+                                                        id="id_penerima" name="id_penerima[]" multiple=""
+                                                        style="width: 100%;" disabled>
+                                                        <option disabled>Pilih Tujuan User</option>
+                                                        @foreach ($userList as $data)
+                                                            <option value="{{ $data->id_user }}"
+                                                                {{ $detailDataDisposisi->id_penerima == $data->id_user ? 'selected' : '' }}>
+                                                                {{ $data->nama }} |
+                                                                {{ $data->posisiJabatan->nama_posisi_jabatan }}
+                                                            </option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                                <span class="text-danger">
+                                                    @error('id_penerima')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
                                             </div>
-                                            <span class="text-danger">
-                                                @error('id_penerima')
-                                                    {{ $message }}
-                                                @enderror
-                                            </span>
                                         </div>
-                                    </div>
+                                    @endif
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label class="capitalize" for="tanggal_disposisi">Masukkan Tanggal Disposisi:

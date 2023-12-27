@@ -103,7 +103,7 @@
         }
 
         .tujuan-surat {
-            margin-top: 35px;
+            margin-top: 25px;
         }
 
         .tujuan-surat p {
@@ -112,7 +112,7 @@
         }
 
         .isi-surat {
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .ttd {

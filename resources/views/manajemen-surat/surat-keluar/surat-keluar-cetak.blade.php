@@ -62,7 +62,7 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 10px;
+            padding-top: 30px;
             padding-bottom: 5px;
             padding-left: 5px;
             padding-right: 20px;
@@ -72,10 +72,17 @@
             margin-top: 15px
         }
 
-        .keterangan-instansi h2 {
+
+        .keterangan-instansi .header {
             margin-bottom: 7px !important;
             margin-top: 0;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+        }
+
+        .keterangan-instansi .nama_instansi {
+            margin-bottom: 7px !important;
+            margin-top: 0;
+            font-size: 1.4rem;
         }
 
         .isi-surat-wrappper {
@@ -153,9 +160,11 @@
                 </div>
                 <div class="keterangan-instansi">
                     @if ($dataSuratKeluar->header_surat_keluar != null)
-                        <h2 style="text-transform: uppercase;"> {{ $dataSuratKeluar->header_surat_keluar }}</h2>
+                        <h2 style="text-transform: uppercase;" class="header">
+                            {{ $dataSuratKeluar->header_surat_keluar }}</h2>
                     @endif
-                    <h2 style="text-transform: uppercase"> {{ $dataWeb->instansi->nama_instansi }}</h2>
+                    <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
+                    </h2>
                     <div class="small">
                         <span style="display: block;">{{ $dataWeb->instansi->alamat_instansi }}</span>
                         <span>Telepon : {{ $dataWeb->instansi->nomor_telpon }}</span>

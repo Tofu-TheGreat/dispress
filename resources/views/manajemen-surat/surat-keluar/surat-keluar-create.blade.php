@@ -144,7 +144,7 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="isi_surat">Masukkan Isi Surat: </label>
-                                        <textarea class="summernote-simple @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                        <textarea class="summernote @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
                                             id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')

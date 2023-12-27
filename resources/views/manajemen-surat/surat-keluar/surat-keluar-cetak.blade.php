@@ -152,10 +152,9 @@
                     @endif
                 </div>
                 <div class="keterangan-instansi">
-                    <h2 style="text-transform: uppercase;"> pemerintah provinsi banten Dinas
-                        pendidikan dan kebudayaan
-                        unit
-                        pelaksanaan teknis</h2>
+                    @if ($dataSuratKeluar->header_surat_keluar != null)
+                        <h2 style="text-transform: uppercase;"> {{ $dataSuratKeluar->header_surat_keluar }}</h2>
+                    @endif
                     <h2 style="text-transform: uppercase"> {{ $dataWeb->instansi->nama_instansi }}</h2>
                     <div class="small">
                         <span style="display: block;">{{ $dataWeb->instansi->alamat_instansi }}</span>
@@ -173,7 +172,7 @@
                 <p>Nomor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->nomor_surat_keluar) !!}</p>
                 <p>Sifat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
                     Penting</p>
-                <p>Lampiran &nbsp;&nbsp;&nbsp;&nbsp;: 1 (satu) Lembar</p>
+                <p>Lampiran &nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataSuratKeluar->jumlah_lampiran }} Lembar</p>
                 <p>Perihal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->perihal) !!}</p>
             </div>
             <div class="tujuan-surat">

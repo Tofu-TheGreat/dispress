@@ -11,6 +11,7 @@ use App\Models\Instansi;
 use App\Models\User;
 use App\Models\PosisiJabatan;
 use App\Models\Klasifikasi;
+use App\Models\WebSetting;
 use Illuminate\Support\Facades\Crypt;
 use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 
@@ -133,13 +134,14 @@ class SuratKeluarController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $dataSuratKeluar = SuratKeluar::where('id_surat_keluar', $encryptId)->first();
+        $dataWeb = WebSetting::first();
         // $pdfcetak = $this->disposisiRepository->cetakDisposisi($encryptId);
 
         // return $pdfcetak->stream();
 
         $pdf = PDF::loadView(
             'manajemen-surat.surat-keluar.surat-keluar-cetak',
-            ['dataSuratKeluar' => $dataSuratKeluar]
+            ['dataSuratKeluar' => $dataSuratKeluar, 'dataWeb' => $dataWeb]
         );
 
         // You can save the PDF to a file or return it as a response.

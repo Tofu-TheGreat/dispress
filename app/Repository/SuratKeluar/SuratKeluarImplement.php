@@ -22,6 +22,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $this->suratkeluar->create([
             'id_klasifikasi' => $data->id_klasifikasi,
+            'header_surat_keluar' => $data->header_surat_keluar,
+            'jumlah_lampiran' => $data->jumlah_lampiran,
             'nomor_surat_keluar' => $data->nomor_surat_keluar,
             'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,
@@ -47,6 +49,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $this->suratkeluar->where('id_surat_keluar', $id)->update([
             'id_klasifikasi' => $data->id_klasifikasi,
+            'header_surat_keluar' => $data->header_surat_keluar,
+            'jumlah_lampiran' => $data->jumlah_lampiran,
             'nomor_surat_keluar' => $data->nomor_surat_keluar,
             'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,

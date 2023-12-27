@@ -233,6 +233,7 @@ class DatabaseSeeder extends Seeder
         //seed surat keluar
         SuratKeluar::factory()->create([
             'nomor_surat_keluar' => '005/1299-SMKN4/2024',
+            'jumlah_lampiran' => '1',
             'tanggal_surat_keluar' => '2024-1-6',
             'isi_surat' => 'Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan.',
             'id_klasifikasi' => '1',

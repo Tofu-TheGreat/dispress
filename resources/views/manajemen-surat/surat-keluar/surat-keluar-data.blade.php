@@ -502,7 +502,7 @@
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('surat.export') }}', {
+                            fetch('{{ route('surat.keluar.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {

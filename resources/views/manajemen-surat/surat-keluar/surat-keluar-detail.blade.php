@@ -72,6 +72,50 @@
                         <div class="row">
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
+                                    <label for="header_surat_keluar">Masukkan Header Surat (optional) :</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('header_surat_keluar') is-invalid @enderror"
+                                            placeholder="ex: KEMENTRIAN WISATA REPUBLIK INDONESIA"
+                                            value="{{ $detailDataSuratKeluar->header_surat_keluar }}"
+                                            id="header_surat_keluar" name="header_surat_keluar" readonly autofocus>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('header_surat_keluar')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="jumlah_lampiran">Masukkan Jumlah Lampiran:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-list-ol"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('jumlah_lampiran') is-invalid @enderror"
+                                            placeholder="ex: 1..2" value="{{ $detailDataSuratKeluar->jumlah_lampiran }}"
+                                            id="jumlah_lampiran" name="jumlah_lampiran" readonly autofocus>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('jumlah_lampiran')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class=" col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
                                     <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -129,8 +173,9 @@
                                             </div>
                                         </div>
                                         <input type="text" class="form-control @error('perihal') is-invalid @enderror"
-                                            placeholder="ex: Undangan Rapat" value="{{ $detailDataSuratKeluar->perihal }}"
-                                            id="perihal" name="perihal" disabled autofocus>
+                                            placeholder="ex: Undangan Rapat"
+                                            value="{{ $detailDataSuratKeluar->perihal }}" id="perihal" name="perihal"
+                                            disabled autofocus>
                                     </div>
                                     <span class="text-danger">
                                         @error('perihal')

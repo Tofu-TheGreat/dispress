@@ -10,21 +10,18 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class SuratKeluarExport implements FromCollection, WithMapping, WithHeadings
 {
-    protected $data;
-
-    public function __construct(SuratKeluar $data)
-    {
-        $this->data = $data;
-    }
 
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return $this->data;
+        return SuratKeluar::get();
     }
-
+    public function query()
+    {
+        return SuratKeluar::query();
+    }
     /**
      * @return array
      */
@@ -33,6 +30,8 @@ class SuratKeluarExport implements FromCollection, WithMapping, WithHeadings
         return [
             'No',
             'id_klasifikasi',
+            'header_surat_keluar',
+            'jumlah_lampiran',
             'nomor_surat_keluar',
             'tanggal_surat_keluar',
             'id_user',
@@ -57,10 +56,11 @@ class SuratKeluarExport implements FromCollection, WithMapping, WithHeadings
         return [
             $rowNumber,
             $row->id_klasifikasi,
+            $row->header_surat_keluar,
+            $row->jumlah_lampiran,
             $row->nomor_surat_keluar,
             $row->tanggal_surat_keluar,
             $row->user->id_user,
-            $row->instansi->nama_instansi,
             $row->instansiPenerima->nama_instansi,
             $row->perihal,
             $row->isi_surat,

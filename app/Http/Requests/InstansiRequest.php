@@ -30,7 +30,7 @@ class InstansiRequest extends FormRequest
     {
         $rules = [
             'nama_instansi' => 'required',
-            'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
+            'nomor_telpon' => 'required|min:8|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
             'alamat_instansi' => 'required|min:5|max:150|',
             'email' => 'required|email|unique:instansi,email,' . $this->input('id_instansi') . ',id_instansi',
             'foto_instansi' => 'image|mimes:jpeg,png,jpg|max:10240',

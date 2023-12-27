@@ -129,5 +129,6 @@ Route::get('/disposisi-cetak/{id}', [DisposisiController::class, 'cetakDisposisi
 Route::resource('/surat-keluar', SuratKeluarController::class)->middleware('auth');
 Route::get('/surat-keluar-filter', [SuratKeluarController::class, 'filterData'])->name('filter.surat.keluar');
 Route::post('/search-surat-keluar', [SuratKeluarController::class, 'search'])->name('search.surat-keluar');
+Route::get('/surat-keluar-export', [ExportController::class, 'export_surat_keluar'])->name('surat.keluar.export', 'role:admin');
 
 Route::get('/surat-keluar-cetak/{id}', [SuratKeluarController::class, 'cetakSuratKeluar'])->name('cetak.surat-keluar');

@@ -48,7 +48,53 @@
                         <form action="{{ route('surat-keluar.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="text" name="id_user" id="" hidden value="{{ Auth::user()->id_user }}">
+
                             <div class="row">
+
+                                <div class=" col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
+                                        <label for="header_surat_keluar">Masukkan Header Surat (optional) :</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('header_surat_keluar') is-invalid @enderror"
+                                                placeholder="ex: KEMENTRIAN WISATA REPUBLIK INDONESIA"
+                                                value="{{ old('header_surat_keluar') }}" id="header_surat_keluar"
+                                                name="header_surat_keluar" required autofocus>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('header_surat_keluar')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class=" col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
+                                        <label for="jumlah_lampiran">Masukkan Jumlah Lampiran:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('jumlah_lampiran') is-invalid @enderror"
+                                                placeholder="ex: 1..2" value="{{ old('jumlah_lampiran') }}"
+                                                id="jumlah_lampiran" name="jumlah_lampiran" required autofocus>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('jumlah_lampiran')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
                                         <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>

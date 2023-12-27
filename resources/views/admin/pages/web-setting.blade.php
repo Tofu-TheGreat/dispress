@@ -542,13 +542,13 @@
             if (element.classList.contains("tombol-hapus-instansi")) {
                 swal({
                     title: 'Apakah anda yakin?',
-                    text: 'Ingin menghapus foto instansi ini?',
+                    text: 'Ingin menghapus logo instansi ini?',
                     icon: 'warning',
                     buttons: true,
                     dangerMode: true,
                 }).then((willDelete) => {
                     if (willDelete) {
-                        swal('Foto instansi berhasil dihapus!', {
+                        swal('Logo instansi berhasil dihapus!', {
                             icon: 'success',
                         });
                         // Make an AJAX request to trigger the delete
@@ -567,7 +567,7 @@
                                 console.error('Error:', error);
                             });
                     } else {
-                        swal('Foto profile Admin tidak jadi dihapus!');
+                        swal('Logo instansi tidak jadi dihapus!');
                     }
                 });
             }

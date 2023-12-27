@@ -80,6 +80,22 @@ class WebSettingImplement implements WebSettingRepository
         }
 
         if ($data->has('email') || $data->has('nomor_telpon') || $data->has('alamat_instansi')) {
+            if ($data->hasFile('foto_instansi')) {
+                $image_instansi = $data->foto_instansi;
+                $nama_foto_instansi = time() . '.' . $image_instansi->extension();
+                $destinationPath_instansi = public_path('/image_save');
+                $imgFile_instansi = Image::make($image_instansi->getRealPath());
+                $imgFile_instansi->resize(1200, 1200, function ($constraint) {
+                    $constraint->upsize();
+                })->save($destinationPath_instansi . '/' . $nama_foto_instansi);
+                $data->foto_instansi->move(public_path('image_save'), $nama_foto_instansi);
+                Instansi::where('id_instansi', $data->id_instansi)->update([
+                    'email' => $data['email'],
+                    'nomor_telpon' =>  currencyPhoneToNumeric($data['nomor_telpon']),
+                    'alamat_instansi' => $data['alamat_instansi'],
+                    'foto_instansi' => $nama_foto_instansi,
+                ]);
+            }
             Instansi::where('id_instansi', $data->id_instansi)->update([
                 'email' => $data['email'],
                 'nomor_telpon' =>  currencyPhoneToNumeric($data['nomor_telpon']),

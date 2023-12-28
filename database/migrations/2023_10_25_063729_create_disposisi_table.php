@@ -13,20 +13,17 @@ return new class extends Migration
     {
         Schema::create('disposisi', function (Blueprint $table) {
             $table->id('id_disposisi');
-            $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
-            $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');
-            $table->string('nomor_agenda', 100);
-            $table->unsignedBigInteger('id_surat');
-            $table->foreign('id_surat')->references('id_surat')->on('surat')->onDelete('cascade');
-            $table->date('tanggal_disposisi');
+            $table->unsignedBigInteger('id_pengajuan');
+            $table->foreign('id_pengajuan')->references('id_pengajuan')->on('pengajuan')->onDelete('cascade');
             $table->string('catatan_disposisi', 225);
-            $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Diajukan, Diterima
-            $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Biasa, Prioritas, Rahasia
+            $table->date('tanggal_disposisi');
+            $table->enum('status_disposisi', ['0', '1', '2', '3', '4', '5'])->default('0'); //Arsipkan, Jabarkan, Umumkan, laksanakan, Persiapkan, Ikuti
+            $table->enum('sifat_disposisi', ['0', '1', '2', '3', '4']); //Tindaklanjuti, Biasa, Segera, Penting, Rahasia
             $table->unsignedBigInteger('id_user'); //Pengirim
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->enum('tujuan_disposisi', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'])->nullable(); //Penerima
-            // kepsek, wakasek, kurikulum, kesiswaaan, sarana prasarana, kepala jurusan, hubin, bimbingan konseling (bp), guru umum, TU (tata usaha)
-            $table->unsignedBigInteger('id_penerima'); //Penerima
+            $table->unsignedBigInteger('id_posisi_jabatan')->nullable();
+            $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
+            $table->unsignedBigInteger('id_penerima')->nullable(); //Penerima
             $table->foreign('id_penerima')->references('id_user')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -38,9 +35,15 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('disposisi', function (Blueprint $table) {
-            $table->dropForeign('id_surat');
-            $table->dropIndex('id_surat');
-            $table->dropColumn('id_surat');
+            $table->dropForeign('id_ajukan');
+            $table->dropIndex('id_ajukan');
+            $table->dropColumn('id_ajukan');
+            $table->dropForeign('id_user');
+            $table->dropIndex('id_user');
+            $table->dropColumn('id_user');
+            $table->dropForeign('id_posisi_jabatan');
+            $table->dropIndex('id_posisi_jabatan');
+            $table->dropColumn('id_posisi_jabatan');
         });
     }
 };

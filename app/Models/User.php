@@ -25,7 +25,7 @@ class User extends Authenticatable
         'nip',
         'nama',
         'level',
-        'jabatan',
+        'id_posisi_jabatan',
         'foto_user',
         'username',
         'nomor_telpon',
@@ -72,5 +72,13 @@ class User extends Authenticatable
     public function surat()
     {
         return $this->hasMany(Surat::class, 'id_user');
+    }
+    public function penerimaDisposisi()
+    {
+        return $this->hasMany(Disposisi::class, 'id_penerima');
+    }
+    public function posisiJabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'id_posisi_jabatan');
     }
 }

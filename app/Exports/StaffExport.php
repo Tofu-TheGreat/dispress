@@ -63,7 +63,7 @@ class StaffExport implements WithColumnFormatting, FromCollection, WithHeadings,
             $nip,
             $row->nama,
             $row->level,
-            $this->convertJabatan($row->jabatan), //Value jabatan akan diubah menjadi kata kata
+            $row->posisijabatan->nama_posisi_jabatan, //Value jabatan akan diubah menjadi kata kata
             $row->username,
             $row->email,
             $nomor_telepon,

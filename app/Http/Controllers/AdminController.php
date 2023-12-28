@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\PosisiJabatan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Repository\Admin\AdminRepository;
@@ -28,11 +29,14 @@ class AdminController extends Controller
     {
         // Mengambil daftar pengguna dari AdminRepository
         $usersList = $this->adminRepository->getUserbyAdmin();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-data', [
             'title' => 'Admin',
             'active' => 'Admin',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -41,14 +45,17 @@ class AdminController extends Controller
         if ($request->jabatan) {
             // Memeriksa nilai 'jabatan' dan menyesuaikan query yang dikirimkan ajax
             if ($request->jabatan == "kp") {
-                $usersList = User::where('jabatan', '0')->where('level', 'admin')->get();
+                $usersList = User::where('id_posisi_jabatan', '0')->where('level', 'admin')->get();
             } else {
-                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'admin')->get();
+                $usersList = User::where('id_posisi_jabatan', $request->jabatan)->where('level', 'admin')->get();
             }
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -59,14 +66,17 @@ class AdminController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         } else {
             $usersList = $this->adminRepository->getUserbyAdmin();
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -77,7 +87,7 @@ class AdminController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         }
     }
@@ -87,10 +97,15 @@ class AdminController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-create', [
             'title' => 'Create Admin',
             'active' => 'Admin',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -99,8 +114,10 @@ class AdminController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->store($request);;
-        return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin!');
+        return redirect()->intended('/admin')->with('success', 'Berhasil menambah data Admin.');
     }
 
     /**
@@ -111,11 +128,12 @@ class AdminController extends Controller
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $detailAdmin = $this->adminRepository->show($encryptId);
+
         return view('admin.admin-detail', [
             'title' => 'Detail Admin',
             'active' => 'Admin',
             'active1' => 'users',
-            'detailDataAdmin' => $detailAdmin
+            'detailDataAdmin' => $detailAdmin,
         ]);
     }
 
@@ -124,14 +142,19 @@ class AdminController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->adminRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.admin-edit', [
             'title' => 'Edit Admin',
             'active' => 'Admin',
             'active1' => 'users',
-            'editDataAdmin' => $editData
+            'editDataAdmin' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -140,8 +163,10 @@ class AdminController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->update($request->id_user, $request);
-        return redirect()->intended('/admin')->with('success', 'Berhasil meng-edit data Admin.');
+        return redirect()->intended('/admin')->with('success', 'Berhasil mengubah data Admin.');
     }
 
     /**
@@ -149,6 +174,8 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->adminRepository->destroy($encryptId);
@@ -160,6 +187,8 @@ class AdminController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->adminRepository->deleteImageFromUser($id);
         return back()->with('success', 'Berhasil menghapus foto profil Admin.');
     }

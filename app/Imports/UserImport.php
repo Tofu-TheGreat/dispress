@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\PosisiJabatan;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -25,7 +26,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation
             'nip' => $row['nip'],
             'nama'     => $row['nama'],
             'level'     => $row['level'],
-            'jabatan'     => $this->transformJabatan(Str::title($row['jabatan'])), //Mengubah value jabatan serta mengubah letter case dari value yang dikirim
+            'id_posisi_jabatan'   =>  $this->transformJabatan($row['id_posisi_jabatan']), //Mengubah value jabatan serta mengubah letter case dari value yang dikirim
             'username'     => $row['username'],
             'email'    => $row['email'],
             'nomor_telpon'     => $row['nomor_telpon'],
@@ -39,7 +40,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation
             'nip' => 'required|max:18|min:18|unique:users,nip,' . request()->get('id_user') . ',id_user',
             'nama' => 'required',
             'level' => 'required',
-            'jabatan' => 'required',
+            'id_posisi_jabatan' => 'required',
             'username' => 'required',
             'email' => 'required|email|unique:users,email,' . request()->get('id_user') . ',id_user',
             'nomor_telpon' => 'required|min:12|max:13|unique:users,nomor_telpon,' . request()->get('id_user') . ',id_user',
@@ -58,7 +59,7 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation
             'nip.unique' => 'NIP sudah ada, harap masukan NIP lain',
             'nama.required' => 'Harap masukkan nama.',
             'level.required' => 'Harap masukan level.',
-            'jabatan.required' => 'Harap masukan jabatan.',
+            'id_posisi_jabatan.required' => 'Harap masukan jabatan.',
             'username.required' => 'Harap masukkan username.',
             'email.required' => 'Harap masukkan alamat email.',
             'email.email' => 'Harap masukkan alamat email yang valid.',
@@ -73,30 +74,15 @@ class UserImport implements ToModel, WithHeadingRow, WithValidation
 
     public function transformJabatan($data)
     {
-        //Mengubah value jabatan agar sesuai dengan nilai di database
-        switch ($data) {
-            case 'Kepala Sekolah':
-                return '0';
-            case 'Wakil Kepala Sekolah':
-                return '1';
-            case 'Kurikulum':
-                return '2';
-            case 'Kesiswaan':
-                return '3';
-            case 'Sarana Dan Prasarana':
-                return '4';
-            case 'Kepala Jurusan':
-                return '5';
-            case 'Hubin':
-                return '6';
-            case 'Bimbingan Konseling':
-                return '7';
-            case 'Guru Umum':
-                return '8';
-            case 'Tata Usaha':
-                return '9';
-            default:
-                return 'Tidak Diketahui';
+        // Assuming that 'nama_posisi_jabatan' is the column in the PosisiJabatan table
+        $posisiJabatan = PosisiJabatan::where('nama_posisi_jabatan', $data)->first();
+
+        // Check if the record was found
+        if ($posisiJabatan) {
+            return $posisiJabatan->id_posisi_jabatan;
         }
+
+        // Return a default value or handle the case where the record was not found
+        return null;
     }
 }

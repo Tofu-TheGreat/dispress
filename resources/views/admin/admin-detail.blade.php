@@ -34,24 +34,26 @@
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-end btn-group">
-                        <a href="/admin/{{ Crypt::encryptString($detailDataAdmin->id_user) }}/edit" class="text-white">
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                title="Edit Data Administrator" data-original-title="Edit Data Administrator">
-                                <i class="bi bi-pencil btn-tambah-data"></i>
-                            </button>
-                        </a>
-                        <form method="POST"
-                            action="{{ route('admin.destroy', Crypt::encryptString($detailDataAdmin->id_user)) }}"
-                            class="tombol-hapus">
-                            @csrf
-                            @method('DELETE')
-                            <a href="#" class="text-white ml-2 tombol-hapus">
-                                <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
-                                    data-placement="top" title="Hapus Data Admin" data-original-title="Hapus Data Admin">
-                                    <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                        @can('admin')
+                            <a href="/admin/{{ Crypt::encryptString($detailDataAdmin->id_user) }}/edit" class="text-white">
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                    title="Edit Data Administrator" data-original-title="Edit Data Administrator">
+                                    <i class="bi bi-pencil btn-tambah-data"></i>
                                 </button>
                             </a>
-                        </form>
+                            <form method="POST"
+                                action="{{ route('admin.destroy', Crypt::encryptString($detailDataAdmin->id_user)) }}"
+                                class="tombol-hapus">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#" class="text-white ml-2 tombol-hapus">
+                                    <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
+                                        data-placement="top" title="Hapus Data Admin" data-original-title="Hapus Data Admin">
+                                        <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body ">
@@ -164,8 +166,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('jabatan') is-invalid @enderror"
-                                                    value="{{ $detailDataAdmin->jabatan }}" id="jabatan"
-                                                    name="jabatan" readonly>
+                                                    value="{{ $detailDataAdmin->posisiJabatan->nama_posisi_jabatan }} | {{ jabatanConvert($detailDataAdmin->posisiJabatan->tingkat_jabatan, 'jabatan') }}"
+                                                    id="jabatan" name="jabatan" readonly>
                                             </div>
                                         </div>
                                     </div>

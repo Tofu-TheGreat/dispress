@@ -19,6 +19,7 @@ class instansiFactory extends Factory
         return [
             'nama_instansi' => $this->faker->company(),
             'alamat_instansi' => $this->faker->address(),
+            'email' => $this->faker->companyEmail(),
             'nomor_telpon' => $this->faker->numerify('#############'),
         ];
     }

@@ -20,6 +20,7 @@ class InstansiImport implements ToModel, WithValidation, WithHeadingRow
             'nama_instansi' => $row['nama_instansi'],
             'nomor_telpon' => $row['nomor_telpon'],
             'alamat_instansi' => $row['alamat_instansi'],
+            'email' => $row['email'],
         ]);
     }
 
@@ -28,7 +29,9 @@ class InstansiImport implements ToModel, WithValidation, WithHeadingRow
         return [
             'nama_instansi' => 'required',
             'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . request()->get('id_instansi') . ',id_instansi',
-            'alamat_instansi' => 'required'
+            'alamat_instansi' => 'required',
+            'email' => 'required|email|unique:instansi,email,' . request()->get('id_instansi') . ',id_instansi',
+
         ];
     }
 
@@ -41,6 +44,9 @@ class InstansiImport implements ToModel, WithValidation, WithHeadingRow
             'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
             'alamat_instansi.required' => 'Alamat instansi tidak boleh kosong!',
+            'email.required' => 'Email instansi tidak boleh kosong!',
+            'email.email' => 'Harap masukkan alamat email yang valid.',
+            'email.unique' => 'Harap Masukkan email yang berbeda',
         ];
     }
 }

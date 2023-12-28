@@ -2,7 +2,9 @@
 
 namespace App\Repository\Admin;
 
+use App\Models\Instansi;
 use App\Models\User;
+use App\Models\WebSetting;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
@@ -32,7 +34,7 @@ class AdminImplement implements AdminRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'foto_user' => $nama_foto,
                 'username' => $data->username,
                 'email' => $data->email,
@@ -44,7 +46,7 @@ class AdminImplement implements AdminRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'username' => $data->username,
                 'email' => $data->email,
                 'nomor_telpon' => $data->nomor_telpon,
@@ -54,9 +56,7 @@ class AdminImplement implements AdminRepository
     }
     public function show($id)
     {
-        $data =  $this->user->where('id_user', $id)->first();
-
-        $data->jabatan = jabatanConvert($data->jabatan, 'jabatan');
+        $data =  $this->user->where('id_user', $id)->with('posisiJabatan')->first();
         return $data;
     }
     public function edit($id)
@@ -84,7 +84,7 @@ class AdminImplement implements AdminRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'foto_user' => $nama_foto,
                 'username' => $data->username,
                 'email' => $data->email,
@@ -96,7 +96,7 @@ class AdminImplement implements AdminRepository
                 'nip' => $data->nip,
                 'nama' => $data->nama,
                 'level' => $data->level,
-                'jabatan' => $data->jabatan,
+                'id_posisi_jabatan' => $data->id_posisi_jabatan,
                 'username' => $data->username,
                 'email' => $data->email,
                 'nomor_telpon' => $data->nomor_telpon,

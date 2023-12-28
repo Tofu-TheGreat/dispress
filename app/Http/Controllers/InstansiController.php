@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\InstansiRequest;
 use App\Repository\Instansi\InstansiRepository;
+use Illuminate\Http\Request;
 
 class InstansiController extends Controller
 {
@@ -42,8 +43,9 @@ class InstansiController extends Controller
      */
     public function store(InstansiRequest $request)
     {
+        $this->authorize('admin-officer');
         $this->instansiRepository->store($request);
-        return back()->with('success', 'Berhasil menambah data perusahaan');
+        return back()->with('success', 'Berhasil menambah data instansi.');
     }
 
     /**
@@ -59,6 +61,8 @@ class InstansiController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->instansiRepository->edit($id);
     }
 
@@ -67,8 +71,10 @@ class InstansiController extends Controller
      */
     public function update(InstansiRequest $request, string $id)
     {
+        $this->authorize('admin-officer');
+
         $this->instansiRepository->update($request, $id);
-        return back()->with('success', 'Berhasil meng-edit data instansi');
+        return back()->with('success', 'Berhasil mengubah data instansi.');
     }
 
     /**
@@ -76,8 +82,22 @@ class InstansiController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin-officer');
+
         $encryptId = Crypt::decryptString($id);
         $this->instansiRepository->destroy($encryptId);
         return redirect()->intended('/instansi')->with('success', 'Berhasil menghapus data instansi.');
+    }
+
+    public function search(Request $request)
+    {
+        $instansiList = $this->instansiRepository->search($request);
+
+        return view('manajemen-instansi.instansi-data', [
+            'title' => 'Instansi',
+            'active' => 'Instansi',
+            'active1' => 'Instansi',
+            'instansiList' => $instansiList,
+        ]);
     }
 }

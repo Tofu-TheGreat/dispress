@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Repository\Staff\StaffRepository;
-use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
-use Illuminate\Support\Facades\Crypt;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\PosisiJabatan;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 use Yajra\DataTables\Facades\DataTables;
+use App\Repository\Staff\StaffRepository;
 
 class StaffController extends Controller
 {
@@ -26,11 +27,15 @@ class StaffController extends Controller
     public function index()
     {
         $usersList = $this->staffRepository->getUserbyStaff();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-data', [
             'title' => 'Staff',
             'active' => 'Staff',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -38,14 +43,17 @@ class StaffController extends Controller
     {
         if ($request->jabatan) {
             if ($request->jabatan == "kp") {
-                $usersList = User::where('jabatan', '0')->where('level', 'staff')->get();
+                $usersList = User::where('id_posisi_jabatan', '0')->where('level', 'staff')->get();
             } else {
-                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'staff')->get();
+                $usersList = User::where('id_posisi_jabatan', $request->jabatan)->where('level', 'staff')->get();
             }
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -63,7 +71,10 @@ class StaffController extends Controller
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -84,10 +95,16 @@ class StaffController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-create', [
             'title' => 'Create Staff',
             'active' => 'Staff',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -96,8 +113,10 @@ class StaffController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->staffRepository->store($request);;
-        return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff');
+        return redirect()->intended('/staff')->with('success', 'Berhasil menambah data Staff.');
     }
 
     /**
@@ -120,14 +139,20 @@ class StaffController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->staffRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.staff.staff-edit', [
             'title' => 'Edit Staff',
             'active' => 'Staff',
             'active1' => 'users',
-            'editDataStaff' => $editData
+            'editDataStaff' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -136,9 +161,11 @@ class StaffController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $this->staffRepository->update($request->id_user, $request);
-        return redirect()->intended('/staff')->with('success', 'Berhasil meng-edit data Staff');
+        return redirect()->intended('/staff')->with('success', 'Berhasil mengubah data Staff.');
     }
 
     /**
@@ -146,10 +173,12 @@ class StaffController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->staffRepository->destroy($encryptId);
-            return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff');
+            return redirect()->intended('/staff')->with('success', 'Berhasil menghapus data Staff.');
         } else {
             return redirect()->intended('/staff')->with('warning', 'Tidak bisa menghapus data Staff ini.');
         }
@@ -157,7 +186,9 @@ class StaffController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->staffRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil menghapus foto profil Staff');
+        return back()->with('success', 'Berhasil menghapus foto profil Staff.');
     }
 }

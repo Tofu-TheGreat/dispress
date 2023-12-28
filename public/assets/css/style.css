@@ -1529,8 +1529,16 @@ h6 .badge {
     margin-left: 5px;
     padding: 4px 7px;
 }
-.btn .badge.badge-transparent {
+.badge.badge-transparent {
     background-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+}
+.badge.badge-transparent-danger {
+    background-color: rgba(252, 72, 72, 0.25);
+    color: #fff;
+}
+.badge.badge-transparent-success {
+    background-color: rgba(90, 240, 97, 0.25);
     color: #fff;
 }
 
@@ -2819,7 +2827,7 @@ a.bb {
 .gradient-bottom:after {
     content: " ";
     position: absolute;
-    bottom: 41px;
+    bottom: 0;
     left: 0;
     width: 100%;
     background-image: linear-gradient(
@@ -3666,9 +3674,6 @@ body.layout-3 .main-footer {
     letter-spacing: 1.3px;
     font-weight: 600;
 }
-.main-sidebar .sidebar-menu li.menu-header:not(:first-child) {
-    margin-top: 10px;
-}
 .main-sidebar .sidebar-menu li a {
     position: relative;
     display: flex;
@@ -3724,6 +3729,17 @@ body.layout-3 .main-footer {
 .main-sidebar .sidebar-menu li.active > ul.dropdown-menu li a:hover {
     background-color: #fcfcfd;
 }
+
+body:not(.sidebar-mini)
+    .sidebar-style-2
+    .sidebar-menu
+    li.active
+    ul.dropdown-menu
+    li
+    a:hover {
+    padding-left: 70px;
+}
+
 .main-sidebar .sidebar-menu li ul.dropdown-menu {
     padding: 0;
     margin: 0;

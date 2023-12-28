@@ -37,16 +37,18 @@
                             <h4 class="text-primary judul-page">List Instansi</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
-                            {{-- Button Tambah Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Tambah Data Instansi"
-                                data-original-title="Tambah Data" class="tombol-tambah" disabled>
-                                <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
-                                    data-target="#tambah-modal" type="button"
-                                    class="btn btn-primary text-white tombol-tambah ml-2">
-                                    <i class="fa fa-plus-circle btn-tambah-data tombol=tambah"></i>
-                                </button>
-                            </span>
-                            {{-- Akhir Button Tambah Data --}}
+                            @can('admin-officer')
+                                {{-- Button Tambah Data --}}
+                                <span data-toggle="tooltip" data-placement="top" title="Tambah Data Instansi"
+                                    data-original-title="Tambah Data" class="tombol-tambah" disabled>
+                                    <button type="button" class="btn btn-primary ml-2" data-toggle="modal"
+                                        data-target="#tambah-modal" type="button"
+                                        class="btn btn-primary text-white tombol-tambah ml-2">
+                                        <i class="fa fa-plus-circle btn-tambah-data tombol=tambah"></i>
+                                    </button>
+                                </span>
+                                {{-- Akhir Button Tambah Data --}}
+                            @endcan
                             {{-- Button Export Data --}}
                             <a href="#" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
@@ -55,19 +57,37 @@
                                 </button>
                             </a>
                             {{-- Akhir Button Export Data --}}
-                            {{-- Button import Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                data-original-title="Import Data" disabled>
-                                <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                    data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
-                                    <i class="fa fa-file-excel btn-tambah-data "></i>
-                                </button>
-                            </span>
-                            {{-- Akhir Button import Data --}}
+                            @can('admin-officer')
+                                {{-- Button import Data --}}
+                                <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                    data-original-title="Import Data" disabled>
+                                    <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                        data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
+                                        <i class="fa fa-file-excel btn-tambah-data "></i>
+                                    </button>
+                                </span>
+                                {{-- Akhir Button import Data --}}
+                            @endcan
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
+                            <div class="col-12 d-flex justify-content-end mb-3">
+                                <form action="{{ route('search.instansi') }}" method="post">
+                                    @csrf
+                                    <div class="container-input">
+                                        <input type="text" placeholder="Search" name="search" class="search"
+                                            id="searchInput">
+                                        <i class="bi bi-search-heart search-icon"></i>
+                                        <div class="button-search">
+                                            <button type="submit"
+                                                class="btn btn-primary button-submit-search">Search</button>
+                                            <a type="button" href="{{ route('instansi.index') }}"
+                                                class="btn btn-secondary rounded-pill button-reset-search"><span>Reset</span></a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                             <div class="col">
                                 <div class="row">
                                     @if ($instansiList->isEmpty())
@@ -76,59 +96,71 @@
                                                 class="w-50">
                                         </div>
                                     @else
-                                        <div class="row px-3">
+                                        <div class="row">
                                             @foreach ($instansiList as $data)
-                                                <div class="col mx-1">
+                                                <div class="col">
                                                     <div class="card shadow shadow-sm" style="max-width: 360px;">
                                                         <div class="position-relative">
-                                                            <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
-                                                                class="card-img-top bg-primary img-instansi"
-                                                                alt="foto instansi" style="min-width: 200px">
-                                                            <div
-                                                                class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
-                                                                <div class="mr-2 tombol-edit tombol-hover">
-                                                                    <span class="tombol-detail  tombol-hover"
-                                                                        data-toggle="tooltip" data-placement="top"
-                                                                        title="Detail Data Instansi"
-                                                                        data-original-title="Detail data instansi" disabled>
-                                                                        <button type="button" data-toggle="modal"
-                                                                            data-target="#detail-modal{{ $data->id_instansi }}"
-                                                                            type="button"
-                                                                            class="rounded-circle btn btn-info tombol-detail tombol-detail-instansi">
-                                                                            <i class="bi bi-eye tombol-detail"></i>
-                                                                        </button>
-                                                                    </span>
+                                                            @if ($data->foto_instansi)
+                                                                <div class="background-image-instansi-wrapper">
+                                                                    <div class="background-image-instansi"
+                                                                        style="background-image: url({{ asset('image_save/' . $data->foto_instansi) }}); min-width: 200px;min-height:230px;">
+                                                                    </div>
                                                                 </div>
-                                                                <div class="mr-2 tombol-edit  tombol-hover">
-                                                                    <span data-toggle="tooltip" data-placement="top"
-                                                                        title="Edit Data Instansi"
-                                                                        data-original-title="Edit data instansi"
-                                                                        class="tombol-edit  tombol-hover" disabled>
-                                                                        <button type="button" data-toggle="modal"
-                                                                            data-target="#edit-modal{{ $data->id_instansi }}"
-                                                                            type="button"
-                                                                            class="rounded-circle btn btn-warning tombol-edit tombol-edit-instansi">
-                                                                            <i class="bi bi-pencil-square tombol-edit"></i>
-                                                                        </button>
-                                                                    </span>
+                                                            @else
+                                                                <img src="{{ asset('assets-landing-page/img/Building-bro.png') }}"
+                                                                    class="card-img-top bg-primary img-instansi"
+                                                                    alt="foto {{ $data->nama_instansi }}"
+                                                                    style="min-width: 200px;min-height:230px;">
+                                                            @endif
+                                                            @cannot('staff')
+                                                                <div
+                                                                    class="d-flex flex-row justify-content-center align-content-center btn-group-action-instansi ">
+                                                                    <div class="mr-2 tombol-edit tombol-hover">
+                                                                        <span class="tombol-detail  tombol-hover"
+                                                                            data-toggle="tooltip" data-placement="top"
+                                                                            title="Detail Data Instansi"
+                                                                            data-original-title="Detail data instansi"
+                                                                            disabled>
+                                                                            <button type="button" data-toggle="modal"
+                                                                                data-target="#detail-modal{{ $data->id_instansi }}"
+                                                                                type="button"
+                                                                                class="rounded-circle btn btn-info tombol-detail tombol-detail-instansi">
+                                                                                <i class="bi bi-eye tombol-detail"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class="mr-2 tombol-edit  tombol-hover">
+                                                                        <span data-toggle="tooltip" data-placement="top"
+                                                                            title="Edit Data Instansi"
+                                                                            data-original-title="Edit data instansi"
+                                                                            class="tombol-edit  tombol-hover" disabled>
+                                                                            <button type="button" data-toggle="modal"
+                                                                                data-target="#edit-modal{{ $data->id_instansi }}"
+                                                                                type="button"
+                                                                                class="rounded-circle btn btn-warning tombol-edit tombol-edit-instansi">
+                                                                                <i class="bi bi-pencil-square tombol-edit"></i>
+                                                                            </button>
+                                                                        </span>
+                                                                    </div>
+                                                                    <div class=" tombol-hover">
+                                                                        <form method="POST"
+                                                                            action="{{ route('instansi.destroy', Crypt::encryptString($data->id_instansi)) }}"
+                                                                            class="tombol-hapus  tombol-hover">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="button" data-toggle="tooltip"
+                                                                                data-placement="top"
+                                                                                title="Hapus data instansi"
+                                                                                data-original-title="Hapus data instansi"
+                                                                                class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-instansi tombol-hapus"
+                                                                                href=""><i
+                                                                                    class="bi bi-trash tombol-hapus"></i>
+                                                                            </button>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
-                                                                <div class=" tombol-hover">
-                                                                    <form method="POST"
-                                                                        action="{{ route('instansi.destroy', Crypt::encryptString($data->id_instansi)) }}"
-                                                                        class="tombol-hapus  tombol-hover">
-                                                                        @csrf
-                                                                        @method('DELETE')
-                                                                        <button type="button" data-toggle="tooltip"
-                                                                            data-placement="top"
-                                                                            title="Hapus data instansi"
-                                                                            data-original-title="Hapus data instansi"
-                                                                            class="rounded-circle btn btn-danger has-icon text-white tombol-hapus-instansi tombol-hapus"
-                                                                            href=""><i
-                                                                                class="bi bi-trash tombol-hapus"></i>
-                                                                        </button>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
+                                                            @endcannot
                                                         </div>
                                                         <div class="card-body position-relative">
                                                             <div class="position-relative">
@@ -136,11 +168,21 @@
                                                                     style="max-width: max-content;">
                                                                     {{ strlen($data->nama_instansi) > 15 ? substr($data->nama_instansi, 0, 15) . '...' : $data->nama_instansi }}
                                                                 </b>
+
+                                                                @can('staff')
+                                                                    <button type="button" data-toggle="modal"
+                                                                        data-target="#detail-modal{{ $data->id_instansi }}"
+                                                                        type="button"
+                                                                        class=" btn btn-info tombol-detail tombol-detail-instansi  mb-4">
+                                                                        <i class="bi bi-eye tombol-detail me-2"></i> Detail
+                                                                        Data
+                                                                    </button>
+                                                                @endcan
                                                             </div>
                                                             <div
                                                                 class="nomor_instansi d-flex justify-content-center align-content-center px-2">
-                                                                <small class="text-center phone">
-                                                                    {{ $data->nomor_telpon }}
+                                                                <small class="text-center">
+                                                                    {{ currencyPhone($data->nomor_telpon) }}
                                                                 </small>
                                                             </div>
                                                         </div>
@@ -201,7 +243,6 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
                                         id="nama_instansi" name="nama_instansi" readonly>
                                 </div>
-
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -223,10 +264,29 @@
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                <label for="email">Email Instansi: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text bg-secondary">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="ex: contoh@gmail.com" value="{{ $item->email }}" id="email"
+                                        name="email" readonly>
+                                </div>
+                                <span class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="alamat_instansi">Alamat Instansi: </label>
                                 <textarea class="summernote-simple summernote-disable @error('alamat_instansi') is-invalid @enderror"
                                     id="alamat_instansi" name="alamat_instansi" readonly> {{ $item->alamat_instansi }} </textarea>
-
                             </div>
                         </div>
                     </div>
@@ -271,7 +331,11 @@
                                             placeholder="ex: PT Gayuh Net" value="{{ $item->nama_instansi }}"
                                             id="nama_instansi" name="nama_instansi" required autofocus>
                                     </div>
-
+                                    <span class="text-danger">
+                                        @error('nama_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
@@ -288,7 +352,31 @@
                                             placeholder="ex: 0878-2730-3388" value="{{ $item->nomor_telpon }}"
                                             id="nomor_telpon" name="nomor_telpon" required>
                                     </div>
-
+                                    <span class="text-danger">
+                                        @error('nomor_telpon')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="email">Masukkan Email Instansi: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-envelope-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                            placeholder="ex: contoh@gmail.com" value="{{ $item->email }}"
+                                            id="email" name="email" required>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('email')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -296,6 +384,11 @@
                                     <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
                                     <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                         name="alamat_instansi"> {{ $item->alamat_instansi }} </textarea>
+                                    <span class="text-danger">
+                                        @error('alamat_instansi')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
                                     <span class="text-danger">
                                         @error('alamat_instansi')
                                             {{ $message }}
@@ -313,7 +406,11 @@
                             <input type="file"
                                 class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
                                 id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
-
+                            <span class="text-danger">
+                                @error('foto_instansi')
+                                    {{ $message }}
+                                @enderror
+                            </span>
                         </div>
                         <div class="modal-footer d-flex justify-content-between border-top pt-3">
                             <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i
@@ -355,7 +452,11 @@
                                         placeholder="ex: PT Gayuh Net" value="{{ old('nama_instansi') }}"
                                         id="nama_instansi" name="nama_instansi" required autofocus>
                                 </div>
-
+                                <span class="text-danger">
+                                    @error('nama_instansi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
@@ -372,7 +473,31 @@
                                         placeholder="ex: 0878-2730-3388" value="{{ old('nomor_telpon') }}"
                                         id="nomor_telpon" name="nomor_telpon" required>
                                 </div>
-
+                                <span class="text-danger">
+                                    @error('nomor_telpon')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="email">Masukkan Email Instansi: </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">
+                                            <i class="bi bi-envelope-fill"></i>
+                                        </div>
+                                    </div>
+                                    <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                        placeholder="ex: contoh@gmail.com" value="{{ old('email') }}" id="email"
+                                        name="email" required>
+                                </div>
+                                <span class="text-danger">
+                                    @error('email')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                         <div class="col-12">
@@ -380,7 +505,11 @@
                                 <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
                                 <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                     name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
-
+                                <span class="text-danger">
+                                    @error('alamat_instansi')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -392,7 +521,11 @@
                             MB.</small>
                         <input type="file" class="img-filepond-preview @error('foto_instansi') is-invalid @enderror"
                             id="foto_instansi" name="foto_instansi" accept="jpg,jpeg,png,svg">
-
+                        <span class="text-danger">
+                            @error('foto_instansi')
+                                {{ $message }}
+                            @enderror
+                        </span>
                     </div>
                     <div class="modal-footer d-flex justify-content-between border-top pt-3">
                         <button type="button" class="btn btn-danger"data-dismiss="modal" aria-label="Close">Close <i

@@ -23,6 +23,7 @@ class InstansiExport implements FromCollection, WithHeadings, WithMapping
             "id_instansi",
             "nomor_telpon",
             "alamat_instansi",
+            "email",
             "created_at",
             "updated_at",
         ];
@@ -46,6 +47,7 @@ class InstansiExport implements FromCollection, WithHeadings, WithMapping
             $row->id_instansi,
             $nomor_telepon,
             $row->alamat_instansi,
+            $row->email,
             $row->created_at,
             $row->updated_at
         ];

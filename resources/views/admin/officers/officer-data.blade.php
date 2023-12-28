@@ -53,37 +53,25 @@
             <div class="collapse" id="collapseExample" style="">
                 <div class="p-4">
                     <div class="row">
-                        <div class="col-sm-12 col-md-12 col-lg-12">
+                        <div class="col-12">
                             <div class="form-group">
-                                <label class="capitalize" for="jabatan">Pilih Jabatan: </label>
-                                <div class="input-group">
-                                    <select class="filter select2 @error('jabatan') is-invalid  @enderror " id="jabatan"
-                                        name="jabatan" required style="width: 100%">
-                                        <option value="">Pilih Jabatan User</option>
-                                        <option value="kp" {{ old('jabatan') == '0' ? 'selected' : '' }}>
-                                            Kepala Sekolah</option>
-                                        <option value="1" {{ old('jabatan') == '1' ? 'selected' : '' }}>
-                                            Wakil Kepala Sekolah</option>
-                                        <option value="2" {{ old('jabatan') == '2' ? 'selected' : '' }}>
-                                            Kurikulum</option>
-                                        <option value="3" {{ old('jabatan') == '3' ? 'selected' : '' }}>
-                                            Kesiswaan</option>
-                                        <option value="4" {{ old('jabatan') == '4' ? 'selected' : '' }}>
-                                            Sarana Prasarana</option>
-                                        <option value="5" {{ old('jabatan') == '5' ? 'selected' : '' }}>
-                                            Kepala Jurusan</option>
-                                        <option value="6" {{ old('jabatan') == '6' ? 'selected' : '' }}>
-                                            Hubin</option>
-                                        <option value="7" {{ old('jabatan') == '7' ? 'selected' : '' }}>
-                                            Bimbingan Konseling</option>
-                                        <option value="8" {{ old('jabatan') == '8' ? 'selected' : '' }}>
-                                            Guru Umum</option>
-                                        <option value="9" {{ old('jabatan') == '9' ? 'selected' : '' }}>
-                                            Tata Usaha</option>
+                                <label class="capitalize" for="id_posisi_jabatan">Pilih Berdasarkan Posisi Jabatan:
+                                </label>
+                                <div class="input-group ">
+                                    <select class="filter select2 @error('id_posisi_jabatan') is-invalid  @enderror "
+                                        id="id_posisi_jabatan" name="id_posisi_jabatan" required style="width: 100%">
+                                        <option selected disabled>Pilih Posisi Jabatan User</option>
+                                        @foreach ($posisiJabatanList as $data)
+                                            <option value="{{ $data->id_posisi_jabatan }}"
+                                                {{ old('id_posisi_jabatan') == $data->id_posisi_jabatan ? 'selected' : '' }}>
+                                                {{ $data->nama_posisi_jabatan }} |
+                                                {{ jabatanConvert($data->tingkat_jabatan, 'jabatan') }}
+                                            </option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <span class="text-danger">
-                                    @error('jabatan')
+                                    @error('id_posisi_jabatan')
                                         {{ $message }}
                                     @enderror
                                 </span>
@@ -110,14 +98,16 @@
                             <h4 class="text-primary judul-page">List Officer</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
-                            {{-- Button Tambah Data --}}
-                            <a href="/officer/create" class="text-white">
-                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                    title="Tambah Data" data-original-title="Tambah Data">
-                                    <i class="fa fa-plus-circle btn-tambah-data"></i>
-                                </button>
-                            </a>
-                            {{-- Akhir Button Tambah Data --}}
+                            @can('admin')
+                                {{-- Button Tambah Data --}}
+                                <a href="/officer/create" class="text-white">
+                                    <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                        title="Tambah Data" data-original-title="Tambah Data">
+                                        <i class="fa fa-plus-circle btn-tambah-data"></i>
+                                    </button>
+                                </a>
+                                {{-- Akhir Button Tambah Data --}}
+                            @endcan
                             {{-- Button Export Data --}}
                             <a href="#" class="text-white ml-2 tombol-export">
                                 <button type="button" class="btn btn-success tombol-export" data-toggle="tooltip"
@@ -126,15 +116,17 @@
                                 </button>
                             </a>
                             {{-- Akhir Button Export Data --}}
-                            {{-- Button import Data --}}
-                            <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
-                                data-original-title="Import Data" disabled>
-                                <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
-                                    data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
-                                    <i class="fa fa-file-excel btn-tambah-data "></i>
-                                </button>
-                            </span>
-                            {{-- Akhir Button import Data --}}
+                            @can('admin')
+                                {{-- Button import Data --}}
+                                <span data-toggle="tooltip" data-placement="top" title="Import Data Excel"
+                                    data-original-title="Import Data" disabled>
+                                    <button type="button" class="btn btn-warning ml-2" data-toggle="modal"
+                                        data-target="#importmodal" type="button" class="btn btn-warning text-white ml-2">
+                                        <i class="fa fa-file-excel btn-tambah-data "></i>
+                                    </button>
+                                </span>
+                                {{-- Akhir Button import Data --}}
+                            @endcan
                         </div>
                     </div>
                     <div class="card-body">
@@ -171,8 +163,7 @@
                 <form action="{{ route('officer.import') }}" method="post" enctype="multipart/form-data">
                     <div class="modal-body py-4 px-4 mt-3 border border-1">
                         <span class="d-block">Unduh Template Import Officer: </span>
-                        <a href="/file/Book1.xlsx" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button"
-                            download="Officer-template-import">
+                        <a href="{{ route('template.user') }}" class="btn btn-1 px-4 mb-4 mt-1 w-100" type="button">
                             <span>Template Import Officer</span> <i
                                 class="bi bi-file-earmark-excel-fill icon-btn-1 ms-2"></i></a>
                         @csrf

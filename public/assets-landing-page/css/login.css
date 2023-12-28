@@ -217,6 +217,10 @@ body.dark .section-title h2 {
         1px 1px 0 #ffffff;
 }
 
+.small-line-height {
+    line-height: 0.8;
+}
+
 /*--------------------
 Preloader
 --------------------*/
@@ -371,11 +375,7 @@ Login Section
     color: var(--main-color);
     margin-bottom: 0;
     position: relative;
-}
-
-.login .login-title {
-    color: var(--main-color);
-    position: relative;
+    font-weight: bold;
 }
 
 .login .form-login small {
@@ -385,7 +385,7 @@ Login Section
 
 .login .form-input label {
     margin-top: 5px;
-    font-size: smaller;
+    font-size: 0.9rem;
 }
 
 .login .form-input input {
@@ -393,6 +393,10 @@ Login Section
     height: 45px;
     border-radius: 10px;
     margin-bottom: 15px;
+}
+
+.login .form-login .text-register {
+    margin-left: 10%;
 }
 
 .login .login-text h1 {
@@ -569,11 +573,14 @@ Login Section
         display: none;
     }
     .login .login-title {
-        margin-top: 30px;
+        margin-top: 20px;
     }
     .login .form-input input {
         width: 100%;
         margin-bottom: 25px;
+    }
+    .login .form-login .text-register {
+        margin-left: 0;
     }
     .alert-login {
         width: 100%;

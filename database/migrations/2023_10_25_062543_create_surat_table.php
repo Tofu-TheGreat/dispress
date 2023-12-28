@@ -38,6 +38,12 @@ return new class extends Migration
             $table->dropForeign('id_user');
             $table->dropIndex('id_user');
             $table->dropColumn('id_user');
+            $table->dropForeign('id_instansi');
+            $table->dropIndex('id_instansi');
+            $table->dropColumn('id_instansi');
+            $table->dropForeign('id_klasifikasi');
+            $table->dropIndex('id_klasifikasi');
+            $table->dropColumn('id_klasifikasi');
             $table->softDeletes();
         });
     }

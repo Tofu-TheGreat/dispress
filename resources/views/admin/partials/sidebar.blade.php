@@ -12,10 +12,15 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="{{ $active == 'dashboard' ? 'active' : '' }}">
-                <a class="nav-link" href="/dashboard"><i class="fas fa-fire"></i> <span>Dashboard</span>
+                <a class="nav-link" href="/dashboard-{{ auth()->user()->level }}"><i class="fas fa-fire"></i>
+                    <span>Dashboard</span>
                 </a>
             </li>
             <li class="menu-header">Manajemen Users</li>
+            <li class="{{ $active == 'Posisi-jabatan' ? 'active' : '' }}">
+                <a class="nav-link" href="/posisi-jabatan"><i class="fas fa-user-tie"></i> <span>Posisi Jabatan</span>
+                </a>
+            </li>
             <li class="dropdown {{ $active1 == 'users' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-users"></i>
                     <span>Users</span></a>
@@ -28,7 +33,7 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-header">Manajemen Surat</li>
+            <li class="menu-header">Menu Utama</li>
             <li class="{{ $active == 'Instansi' ? 'active' : '' }}">
                 <a class="nav-link" href="/instansi"><i class="fas fa-building"></i> <span>Instansi</span>
                 </a>
@@ -41,10 +46,14 @@
                             href="/nomor-klasifikasi">Nomor Klasifikasi</a></li>
                     <li><a class="nav-link {{ $active == 'Surat-masuk' ? 'active text-info' : '' }}"
                             href="/surat">Surat Masuk</a></li>
+                    @can('admin-officer')
+                        <li><a class="nav-link {{ $active == 'Pengajuan-disposisi' ? 'active text-info' : '' }}"
+                                href="/pengajuan-disposisi">Pengajuan Disposisi</a></li>
+                    @endcan
                     <li><a class="nav-link {{ $active == 'Disposisi' ? 'active text-info' : '' }}"
                             href="/disposisi">Disposisi</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">Surat Keluar</a></li>
-                    <li><a class="nav-link" href="layout-transparent.html">SPPD</a></li>
+                    <li><a class="nav-link {{ $active == 'surat-keluar' ? 'active text-info' : '' }}"
+                            href="/surat-keluar">Surat Keluar</a></li>
                 </ul>
             </li>
             <li class="menu-header">Manajemen Setting</li>
@@ -53,6 +62,12 @@
                         class="fas fa bi bi-gear-fill"></i>
                     <span>Setting</span></a>
                 <ul class="dropdown-menu">
+                    <li><a class="nav-link {{ $active == 'profile' ? 'active text-info' : '' }}"
+                            href="/profile">Profile</a></li>
+                    @can('admin')
+                        <li><a class="nav-link {{ $active == 'web-setting' ? 'active text-info' : '' }}"
+                                href="/web-setting">Web Setting</a></li>
+                    @endcan
                     <li>
                         <form action="/logout" method="POST" id="logout">
                             @csrf

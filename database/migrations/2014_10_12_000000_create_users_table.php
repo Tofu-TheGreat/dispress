@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('nip', 18)->unique();
             $table->string('nama', 225);
             $table->enum('level', ['admin', 'officer', 'staff']);
-            $table->enum('jabatan', ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']);
+            $table->unsignedBigInteger('id_posisi_jabatan');
+            $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             $table->string('username', 60);
             $table->string('email', 225)->unique();
             $table->string('foto_user', 225)->nullable();
@@ -32,6 +33,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['id_posisi_jabatan']);
+        });
+
         Schema::dropIfExists('users');
     }
 };

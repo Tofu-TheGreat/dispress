@@ -13,24 +13,30 @@ class Disposisi extends Model
     protected $table = 'disposisi';
     protected $primaryKey = 'id_disposisi';
     protected $fillable = [
-        'id_surat',
-        'id_klasifikasi',
-        'nomor_agenda',
-        'tanggal_disposisi',
+        'id_pengajuan',
         'catatan_disposisi',
         'status_disposisi',
         'sifat_disposisi',
         'id_user',
-        'tujuan_disposisi',
+        'tanggal_disposisi',
+        'id_posisi_jabatan',
         'id_penerima',
     ];
 
-    public function surat()
+    public function pengajuan()
     {
-        return $this->belongsTo(Surat::class, 'id_surat');
+        return $this->belongsTo(Pengajuan::class, 'id_pengajuan');
     }
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
+    }
+    public function penerima()
+    {
+        return $this->belongsTo(User::class, 'id_penerima');
+    }
+    public function posisiJabatan()
+    {
+        return $this->belongsTo(PosisiJabatan::class, 'id_posisi_jabatan');
     }
 }

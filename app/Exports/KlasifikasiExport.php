@@ -43,8 +43,8 @@ class KlasifikasiExport implements FromCollection, WithHeadings, WithMapping
 
         return [
             $rowNumber,
-            $row->id_instansi,
-            $nomor_telepon,
+            $row->nomor_klasifikasi,
+            $row->nama_klasifikasi,
             $row->created_at,
             $row->updated_at
         ];

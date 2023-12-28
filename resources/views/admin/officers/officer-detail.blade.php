@@ -34,25 +34,27 @@
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-end btn-group">
-                        <a href="/officer/{{ Crypt::encryptString($detailDataOfficer->id_user) }}/edit" class="text-white">
-                            <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
-                                title="Edit Data Officer" data-original-title="Edit Data Officer">
-                                <i class="bi bi-pencil btn-tambah-data"></i>
-                            </button>
-                        </a>
-                        <form method="POST"
-                            action="{{ route('officer.destroy', Crypt::encryptString($detailDataOfficer->id_user)) }}"
-                            class="tombol-hapus">
-                            @csrf
-                            @method('DELETE')
-                            <a href="#" class="text-white ml-2 tombol-hapus">
-                                <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
-                                    data-placement="top" title="Hapus Data Officer"
-                                    data-original-title="Hapus Data Officer">
-                                    <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                        @can('admin')
+                            <a href="/officer/{{ Crypt::encryptString($detailDataOfficer->id_user) }}/edit" class="text-white">
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
+                                    title="Edit Data Officer" data-original-title="Edit Data Officer">
+                                    <i class="bi bi-pencil btn-tambah-data"></i>
                                 </button>
                             </a>
-                        </form>
+                            <form method="POST"
+                                action="{{ route('officer.destroy', Crypt::encryptString($detailDataOfficer->id_user)) }}"
+                                class="tombol-hapus">
+                                @csrf
+                                @method('DELETE')
+                                <a href="#" class="text-white ml-2 tombol-hapus">
+                                    <button type="button" class="btn btn-danger tombol-hapus" data-toggle="tooltip"
+                                        data-placement="top" title="Hapus Data Officer"
+                                        data-original-title="Hapus Data Officer">
+                                        <i class="bi bi-trash btn-tambah-data tombol-hapus"></i>
+                                    </button>
+                                </a>
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 <div class="card-body ">
@@ -165,8 +167,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('jabatan') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->jabatan }}" id="jabatan"
-                                                    name="jabatan" readonly>
+                                                    value="{{ $detailDataOfficer->posisiJabatan->nama_posisi_jabatan }} | {{ jabatanConvert($detailDataOfficer->posisiJabatan->tingkat_jabatan, 'jabatan') }}"
+                                                    id="jabatan" name="jabatan" readonly>
                                             </div>
                                         </div>
                                     </div>

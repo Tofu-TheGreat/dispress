@@ -21,7 +21,7 @@ class UserFactory extends Factory
             'nip' => $this->faker->unique()->numerify('##################'),
             'nama' => $this->faker->name(),
             'level' => $this->faker->randomElement(["officer", "staff", 'admin']),
-            'jabatan' => $this->faker->randomElement(["0", " 1", " 2", "3", "4", "5", "6", "7", " 8"]),
+            'id_posisi_jabatan' => $this->faker->randomElement([" 1", " 2", "3", "4", "5", "6", "7"]),
             'username' => $this->faker->username(),
             'email' => $this->faker->unique()->safeEmail(),
             'nomor_telpon' => $this->faker->unique()->numerify('#############'),

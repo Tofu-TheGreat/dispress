@@ -45,6 +45,12 @@ li {
     aspect-ratio: 1/1;
 }
 
+.dropdown-menu button:hover {
+    background-color: #f3f3f3;
+    color: var(--black-000);
+    cursor: pointer;
+}
+
 .btn-logout-nav {
     font-size: 0.8rem;
     cursor: pointer;
@@ -63,6 +69,122 @@ li {
     width: 65%;
 }
 
+.form-group .control-label,
+.form-group > label {
+    font-weight: 600;
+    color: #34395e;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px !important;
+}
+
+/* search card */
+
+.container-input {
+    position: relative;
+}
+
+.search {
+    width: 200px;
+    height: 40px;
+    padding: 10px 0px 10px 40px;
+    border-radius: 9999px;
+    border: solid 1px #333;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    opacity: 0.8;
+    position: relative;
+}
+
+.container-input .search-icon {
+    position: absolute;
+    top: 47%;
+    left: 10px;
+    transform: translate(0, -50%);
+    transition: all 0.3s ease-in-out;
+}
+
+.search:focus {
+    width: 250px;
+    border: 1px solid #0028ad;
+}
+
+.search:focus ~ .search-icon {
+    color: red;
+}
+
+.container-input:hover > .search-icon {
+    animation: anim 1s linear infinite;
+}
+
+.button-search {
+    display: inline-block;
+}
+
+.button-submit-search {
+    height: 40px;
+    border-radius: 9999px;
+}
+.button-reset-search {
+    height: 40px;
+    border-radius: 9999px;
+}
+
+.button-reset-search span {
+    display: block;
+    margin-top: 2px;
+}
+
+/* profile */
+
+.profile-hapus-foto {
+    z-index: 999;
+    bottom: -75px;
+    left: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+}
+
+/* web setting */
+
+.card-profile-widget {
+    border-radius: 5px;
+}
+
+.profile-widget-header-bg-img {
+    background-image: url(../../assets-landing-page/img/Building-bro.png);
+    background-color: #3649e3;
+    min-height: 280px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.img-web-wrapper {
+    position: absolute;
+    bottom: -45px;
+    position: absolute;
+    left: 50%;
+    margin-left: -90px;
+    margin-top: -50px;
+}
+
+.profile-hapus-foto-instansi {
+    z-index: 999;
+    bottom: -90px;
+    left: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 120px;
+}
+
+.profile-widget-picture-instansi {
+    width: 120px !important;
+}
+
 /* instansi */
 .card-instansi {
     position: relative;
@@ -72,6 +194,21 @@ li {
     bottom: -17px;
     right: 50%;
     left: 50%;
+}
+
+.background-image-instansi-wrapper {
+    overflow: hidden;
+    border-bottom: 2px solid #3649e3;
+}
+
+.background-image-instansi {
+    background-position: center;
+    background-size: cover;
+    transition: all 0.4s ease-in-out;
+}
+
+.background-image-instansi-wrapper:hover .background-image-instansi {
+    transform: scale(1.2) rotateZ(5deg);
 }
 
 .img-instansi {
@@ -123,6 +260,14 @@ li {
     position: absolute;
     height: 60px;
     right: -17%;
+    top: 10%;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-group-action-dashboard {
+    position: absolute;
+    height: 60px;
+    right: -20%;
     top: 10%;
     transition: 0.3s ease-in-out;
 }
@@ -290,9 +435,37 @@ li {
 .view-password-icon {
     position: absolute;
     right: 3%;
-    top: 22%;
+    top: 20%;
     font-size: 1.2rem;
     z-index: 999;
+}
+
+/* disposisi */
+
+.btn-group .btn-status-disposisi {
+    border-bottom-left-radius: 40%;
+    border-top-left-radius: 40%;
+    border: none;
+    padding: 0 10px;
+    letter-spacing: 0.2px;
+    font-size: 0.8rem;
+}
+
+.btn-group .btn-sifat-disposisi {
+    border: none;
+    color: white;
+    letter-spacing: 0.2px;
+    font-size: 0.8rem;
+}
+
+.btn-group .btn-collapse {
+    border-bottom-right-radius: 40%;
+    border-top-right-radius: 40%;
+    width: 40px;
+}
+
+.btn-group .btn-collapse i {
+    margin-left: 13px !important;
 }
 
 /*--------------------
@@ -392,6 +565,42 @@ Footer
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/*--------------------
+custom scrollbar
+--------------------*/
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.5, #6777ef),
+        color-stop(1, #2681cc1e)
+    );
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        left top,
+        color-stop(0.5, #7567ef),
+        color-stop(1, #2681cc1e)
+    );
+}
+
 @media screen and (max-width: 570px) {
     .btn-group:not(.note-btn-group) {
         display: flex;
@@ -410,6 +619,40 @@ Footer
         width: 150px;
         height: 150px;
         margin-bottom: 20px;
+    }
+
+    .container-input .search-icon {
+        top: 22%;
+    }
+
+    .button-search {
+        display: flex;
+        margin-top: 10px;
+        justify-content: end;
+    }
+    .button-reset-search {
+        margin-left: 5px;
+    }
+    .profile-hapus-foto {
+        z-index: 999;
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .profile-widget-picture-instansi {
+        width: 100px !important;
+    }
+
+    .img-web-wrapper {
+        margin-left: -50px;
+        bottom: -85px;
+    }
+
+    .profile-hapus-foto-instansi {
+        z-index: 999;
+        left: -10px;
+        bottom: 30px;
     }
 }
 

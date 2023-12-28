@@ -22,7 +22,7 @@ class Surat extends Model
         'id_instansi',
         'id_user',
         'status_verifikasi',
-        'catatan',
+        'catatan_verifikasi',
         'scan_dokumen',
     ];
 
@@ -31,15 +31,16 @@ class Surat extends Model
         return $this->belongsTo(Instansi::class, 'id_instansi');
     }
 
+    public function pengajuan()
+    {
+        return $this->hasMany(Pengajuan::class, 'id_surat');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user');
     }
 
-    public function disposisi()
-    {
-        return $this->hasOne(Disposisi::class, 'id_surat');
-    }
     public function klasifikasi()
     {
         return $this->belongsTo(Klasifikasi::class, 'id_klasifikasi');

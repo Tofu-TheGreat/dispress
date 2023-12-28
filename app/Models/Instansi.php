@@ -14,6 +14,8 @@ class Instansi extends Model
         'nama_instansi',
         'alamat_instansi',
         'nomor_telpon',
+        'email',
+        'foto_instansi'
     ];
 
     public function surat()

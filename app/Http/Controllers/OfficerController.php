@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Models\PosisiJabatan;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repository\Officer\OfficerRepository;
@@ -27,11 +28,14 @@ class OfficerController extends Controller
     public function index()
     {
         $usersList = $this->officerRepository->getUserbyOfficer();
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.officers.officer-data', [
             'title' => 'Officer',
             'active' => 'Officer',
             'active1' => 'users',
             'users' => $usersList,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -39,14 +43,17 @@ class OfficerController extends Controller
     {
         if ($request->jabatan) {
             if ($request->jabatan == "kp") {
-                $usersList = User::where('jabatan', '0')->where('level', 'officer')->get();
+                $usersList = User::where('id_posisi_jabatan', '0')->where('level', 'officer')->get();
             } else {
-                $usersList = User::where('jabatan', $request->jabatan)->where('level', 'officer')->get();
+                $usersList = User::where('id_posisi_jabatan', $request->jabatan)->where('level', 'officer')->get();
             }
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -57,14 +64,17 @@ class OfficerController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         } else {
             $usersList = $this->officerRepository->getUserbyOfficer();
             return DataTables::of($usersList)
                 ->addIndexColumn()
                 ->addColumn('nama', function ($usersList) {
-                    return '<span class="capitalize">' . $usersList->nama . '</span>';
+                    return '<span class="capitalize">' .  strlen($usersList->nama) > 20 ? substr($usersList->nama, 0, 20) . '...' : $usersList->nama . '</span>';
+                })
+                ->addColumn('email', function ($usersList) {
+                    return '<span>' .  strlen($usersList->email) > 20 ? substr($usersList->email, 0, 20) . '...' : $usersList->email . '</span>';
                 })
                 ->addColumn('nomor_telpon', function ($usersList) {
                     return currencyPhone($usersList->nomor_telpon);
@@ -75,7 +85,7 @@ class OfficerController extends Controller
                 ->addColumn('action', function ($usersList) {
                     return view('admin.elements.create-button')->with('usersList', $usersList);
                 })
-                ->rawColumns(['akses', 'nama', 'phone'])
+                ->rawColumns(['akses', 'email', 'nama', 'phone'])
                 ->toJson();
         }
     }
@@ -85,10 +95,16 @@ class OfficerController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
+        $posisiJabatanList = PosisiJabatan::get();
+
         return view('admin.officers.officer-create', [
             'title' => 'Create Officer',
             'active' => 'Officer',
             'active1' => 'users',
+            'posisiJabatanList' => $posisiJabatanList,
+
         ]);
     }
 
@@ -97,6 +113,8 @@ class OfficerController extends Controller
      */
     public function store(UserRequest $request)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->store($request);;
         return redirect()->intended('/officer')->with('success', 'Berhasil menambah data Officer.');
     }
@@ -122,14 +140,20 @@ class OfficerController extends Controller
      */
     public function edit(string $id)
     {
+        $this->authorize('admin');
+
         //Mengacak id agar menampilkan pesan acak untuk menjaga url
         $encryptId = Crypt::decryptString($id);
         $editData = $this->officerRepository->edit($encryptId);
+        $posisiJabatanList = PosisiJabatan::get();
+
+
         return view('admin.officers.officer-edit', [
             'title' => 'Edit Officer',
             'active' => 'Officer',
             'active1' => 'users',
-            'editDataOfficer' => $editData
+            'editDataOfficer' => $editData,
+            'posisiJabatanList' => $posisiJabatanList,
         ]);
     }
 
@@ -138,8 +162,10 @@ class OfficerController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->update($request->id_user, $request);
-        return redirect()->intended('/officer')->with('success', 'Berhasil meng-edit data Officer');
+        return redirect()->intended('/officer')->with('success', 'Berhasil mengubah data Officer.');
     }
 
     /**
@@ -147,10 +173,12 @@ class OfficerController extends Controller
      */
     public function destroy(string $id)
     {
+        $this->authorize('admin');
+
         $encryptId = Crypt::decryptString($id);
         if (Auth::user()->id_user != $encryptId) {
             $this->officerRepository->destroy($encryptId);
-            return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer');
+            return redirect()->intended('/officer')->with('success', 'Berhasil menghapus data Officer.');
         } else {
             return redirect()->intended('/officer')->with('warning', 'Tidak bisa menghapus data Officer ini.');
         }
@@ -158,7 +186,9 @@ class OfficerController extends Controller
 
     public function deleteImageFromUser($id)
     {
+        $this->authorize('admin');
+
         $this->officerRepository->deleteImageFromUser($id);
-        return back()->with('success', 'Berhasil menghapus foto profil Officer');
+        return back()->with('success', 'Berhasil menghapus foto profil Officer.');
     }
 }

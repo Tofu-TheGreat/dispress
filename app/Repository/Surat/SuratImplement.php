@@ -3,6 +3,8 @@
 namespace App\Repository\Surat;
 
 use App\Models\Surat;
+use App\Models\Klasifikasi;
+use App\Models\Pengajuan;
 
 class SuratImplement implements SuratRepository
 {
@@ -22,6 +24,7 @@ class SuratImplement implements SuratRepository
         $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
         $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
         $this->surat->create([
+            'id_klasifikasi' => $data->id_klasifikasi,
             'nomor_surat' => $data->nomor_surat,
             'tanggal_surat' => $data->tanggal_surat,
             'isi_surat' => $data->isi_surat,
@@ -57,6 +60,7 @@ class SuratImplement implements SuratRepository
             $nama_dokumen =  $data->scan_dokumen->getClientOriginalName();
             $data->scan_dokumen->move(public_path('document_save'), $nama_dokumen);
             $this->surat->where('id_surat', $id)->update([
+                'id_klasifikasi' => $data->id_klasifikasi,
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,
@@ -68,6 +72,7 @@ class SuratImplement implements SuratRepository
             ]);
         } else {
             $this->surat->where('id_surat', $id)->update([
+                'id_klasifikasi' => $data->id_klasifikasi,
                 'nomor_surat' => $data->nomor_surat,
                 'tanggal_surat' => $data->tanggal_surat,
                 'isi_surat' => $data->isi_surat,
@@ -101,6 +106,12 @@ class SuratImplement implements SuratRepository
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
         }
+        if (isset($data->status_verifikasi) && ($data->status_verifikasi != null)) {
+            $query->where('status_verifikasi', $data->status_verifikasi);
+        }
+        if (isset($data->id_klasifikasi) && ($data->id_klasifikasi != null)) {
+            $query->where('id_klasifikasi', $data->id_klasifikasi);
+        }
         if (
             isset($data->tanggal_surat_awal) &&
             ($data->tanggal_surat_awal != null) &&
@@ -112,5 +123,30 @@ class SuratImplement implements SuratRepository
 
 
         return $query->paginate(6);
+    }
+
+    public function search($data)
+    {
+        $search = $this->surat->where('nomor_surat', 'like', "%" . $data->search . "%")
+            ->orWhere(function ($query) use ($data) {
+                $query->where('tanggal_surat', 'like', "%" . $data->search . "%")
+                    ->orWhereRaw("DATE_FORMAT(tanggal_surat, '%M') LIKE ?", ["%" . $data->search . "%"]);
+            })
+            ->orWhereHas('instansi', function ($query) use ($data) {
+                $query->where('nama_instansi', 'like', "%" . $data->search . "%");
+            })
+            ->orWhereHas('instansi', function ($query) use ($data) {
+                $query->where('nomor_telpon', 'like', "%" . $data->search . "%");
+            })
+            ->orWhereHas('user', function ($query) use ($data) {
+                $query->where('nama', 'like', "%" . $data->search . "%");
+            })
+            ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
+        return $search->paginate(6);
+    }
+
+    public function getPengajuan()
+    {
+        return Pengajuan::get();
     }
 }

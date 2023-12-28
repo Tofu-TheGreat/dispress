@@ -118,6 +118,10 @@
             margin-bottom: 0;
         }
 
+        .tujuan-surat .kepada {
+            font-size: .9rem;
+        }
+
         .isi-surat {
             margin-top: 10px;
         }
@@ -180,14 +184,13 @@
             <div class="keterangan-surat">
                 <p>Nomor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->nomor_surat_keluar) !!}</p>
                 <p>Sifat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                    Penting</p>
+                    {!! formatCetak($dataSuratKeluar->sifat_surat_keluar) !!}</p>
                 <p>Lampiran &nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataSuratKeluar->jumlah_lampiran }} Lembar</p>
                 <p>Perihal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->perihal) !!}</p>
             </div>
             <div class="tujuan-surat">
                 <p>Kepada Yth. </p>
-                <p class="text-bold">{{ $dataSuratKeluar->instansiPenerima->nama_instansi }}</p>
-                <p>Di tempat.</p>
+                <p class="kepada">{!! $dataSuratKeluar->tujuan_surat_keluar !!}</p>
             </div>
             <div class="isi-surat">
                 <p>

@@ -243,19 +243,20 @@
         </script>
     @endif
 
-    @if (Session::has('error'))
+    @if ($errors->any())
         <script>
             $(document).ready(function() {
-                iziToast.error({
-                    title: 'Error',
-                    message: "{{ Session::get('error') }} Import",
-                    position: 'topRight'
-                })
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif
     {{-- seweetalert confirmation --}}
-
 
     <script>
         $(document).ready(function() {

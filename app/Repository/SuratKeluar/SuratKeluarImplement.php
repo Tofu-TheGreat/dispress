@@ -27,7 +27,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
             'nomor_surat_keluar' => $data->nomor_surat_keluar,
             'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,
-            'id_instansi_penerima' => $data->id_instansi_penerima,
+            'tujuan_surat_keluar' => $data->tujuan_surat_keluar,
+            'sifat_surat_keluar' => $data->sifat_surat_keluar,
             'perihal' => $data->perihal,
             'isi_surat' => $data->isi_surat,
             'tembusan' => $data->tembusan,
@@ -54,7 +55,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
             'nomor_surat_keluar' => $data->nomor_surat_keluar,
             'tanggal_surat_keluar' => $data->tanggal_surat_keluar,
             'id_user' => $data->id_user,
-            'id_instansi_penerima' => $data->id_instansi_penerima,
+            'tujuan_surat_keluar' => $data->tujuan_surat_keluar,
+            'sifat_surat_keluar' => $data->sifat_surat_keluar,
             'perihal' => $data->perihal,
             'isi_surat' => $data->isi_surat,
             'tembusan' => $data->tembusan,
@@ -69,8 +71,8 @@ class SuratKeluarImplement implements SuratKeluarRepository
     {
         $query = $this->suratkeluar->query();
 
-        if (isset($data->id_instansi_penerima) && ($data->id_instansi_penerima != null)) {
-            $query->where('id_instansi_penerima', $data->id_instansi_penerima);
+        if (isset($data->tujuan_surat_keluar) && ($data->tujuan_surat_keluar != null)) {
+            $query->where('tujuan_surat_keluar', $data->tujuan_surat_keluar);
         }
         if (isset($data->id_user) && ($data->id_user != null)) {
             $query->where('id_user', $data->id_user);
@@ -97,17 +99,12 @@ class SuratKeluarImplement implements SuratKeluarRepository
                 $query->where('tanggal_surat_keluar', 'like', "%" . $data->search . "%")
                     ->orWhereRaw("DATE_FORMAT(tanggal_surat_keluar, '%M') LIKE ?", ["%" . $data->search . "%"]);
             })
-            ->orWhereHas('instansiPenerima', function ($query) use ($data) {
-                $query->where('nama_instansi', 'like', "%" . $data->search . "%");
-            })
-            ->orWhereHas('instansiPenerima', function ($query) use ($data) {
-                $query->where('nomor_telpon', 'like', "%" . $data->search . "%");
-            })
             ->orWhereHas('user', function ($query) use ($data) {
                 $query->where('nama', 'like', "%" . $data->search . "%");
             })
             ->orWhere('perihal', 'like', "%" . $data->search . "%")
             ->orWhere('tembusan', 'like', "%" . $data->search . "%")
+            ->orWhere('sifat_surat_keluar', 'like', "%" . $data->search . "%")
             ->orWhere('isi_surat', 'like', "%" . $data->search . "%");
         return $search->paginate(6);
     }

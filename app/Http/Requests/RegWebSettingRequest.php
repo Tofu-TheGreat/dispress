@@ -30,7 +30,7 @@ class RegWebSettingRequest extends FormRequest
     {
         return [
             'nama_instansi' => 'required',
-            'nomor_telpon' => 'required|min:12|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
+            'nomor_telpon' => 'required|min:10|max:13|unique:instansi,nomor_telpon,' . $this->input('id_instansi') . ',id_instansi',
             'alamat_instansi' => 'required|min:5|max:150|',
             'email' => 'required|email|unique:instansi,email,' . $this->input('id_instansi') . ',id_instansi',
 
@@ -42,7 +42,7 @@ class RegWebSettingRequest extends FormRequest
         return [
             'nama_instansi.required' => 'Nama instansi tidak boleh kosong!',
             'nomor_telpon.required' => 'Harap masukkan nomor telepon.',
-            'nomor_telpon.min' => 'Nomor telepon tidak boleh kurang dari 12',
+            'nomor_telpon.min' => 'Nomor telepon tidak boleh kurang dari 10',
             'nomor_telpon.max' => 'Nomor telepon tidak boleh lebih dari 13',
             'nomor_telpon.unique' => 'Harap Masukkan nomor telpon yang berbeda',
             'alamat_instansi.required' => 'Alamat instansi tidak boleh kosong!',

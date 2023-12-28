@@ -239,9 +239,9 @@
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
-                                                                    class="form-control phone @error('nomor_telpon') is-invalid @enderror"
+                                                                    class="form-control @error('nomor_telpon') is-invalid @enderror"
                                                                     placeholder="ex: 0878-2730-3388"
-                                                                    value="{{ $dataWebSetting->instansi->nomor_telpon }}"
+                                                                    value="{{ currencyPhone($dataWebSetting->instansi->nomor_telpon) }}"
                                                                     name="nomor_telpon" readonly>
                                                             </div>
                                                             <span class="text-danger">

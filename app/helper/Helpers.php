@@ -6,7 +6,15 @@ if (!function_exists('currencyPhone')) {
         $phone = preg_replace('/[^\d]/', '', $phone);
 
         // Mengecek panjang nomor telepon
-        if (strlen($phone) === 12) {
+        if (strlen($phone) === 10) {
+            $ac = substr($phone, 0, 2);
+            $prefix = substr($phone, 2, 4);
+            $suffix = substr($phone, 6);
+        } elseif (strlen($phone) === 11) {
+            $ac = substr($phone, 0, 3);
+            $prefix = substr($phone, 3, 4);
+            $suffix = substr($phone, 7);
+        } elseif (strlen($phone) === 12) {
             $ac = substr($phone, 0, 4);
             $prefix = substr($phone, 4, 4);
             $suffix = substr($phone, 8);
@@ -19,7 +27,7 @@ if (!function_exists('currencyPhone')) {
             return 'Invalid phone number';
         }
 
-        $formatted = "{$ac}-{$prefix}-{$suffix}";
+        $formatted = "($ac) {$prefix}-{$suffix}";
         return $formatted;
     }
 }

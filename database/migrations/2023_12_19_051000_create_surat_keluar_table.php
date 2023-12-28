@@ -21,8 +21,8 @@ return new class extends Migration
             $table->date('tanggal_surat_keluar');
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
-            $table->unsignedBigInteger('id_instansi_penerima');
-            $table->foreign('id_instansi_penerima')->references('id_instansi')->on('instansi')->onDelete('cascade');
+            $table->text('tujuan_surat_keluar');
+            $table->string('sifat_surat_keluar', 50);
             $table->string('perihal', 50);
             $table->text('isi_surat');
             $table->string('tembusan', 50)->nullable()->default('tidak ada tembusan');
@@ -39,9 +39,6 @@ return new class extends Migration
             $table->dropForeign('id_klasifikasi');
             $table->dropIndex('id_klasifikasi');
             $table->dropColumn('id_klasifikasi');
-            $table->dropForeign('id_instansi_penerima');
-            $table->dropIndex('id_instansi_penerima');
-            $table->dropColumn('id_instansi_penerima');
             $table->dropForeign('id_user');
             $table->dropIndex('id_user');
             $table->dropColumn('id_user');

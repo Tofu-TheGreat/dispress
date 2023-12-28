@@ -123,7 +123,7 @@
 </head>
 
 <body>
-    <h2 class="title-disposisi">Diposisi Surat</h2>
+    <h2 class="title-disposisi">Disposisi Surat</h2>
     <div class="container">
         <div class="d-flex justify-content-evenly">
             <div class="surat-pengajuan">

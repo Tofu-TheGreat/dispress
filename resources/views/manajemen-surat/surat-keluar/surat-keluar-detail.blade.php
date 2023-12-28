@@ -72,7 +72,7 @@
                         <div class="row">
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="header_surat_keluar">Masukkan Header Surat (optional) :</label>
+                                    <label for="header_surat_keluar">Header Surat (optional) :</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -95,7 +95,7 @@
 
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="jumlah_lampiran">Masukkan Jumlah Lampiran:</label>
+                                    <label for="jumlah_lampiran">Jumlah Lampiran:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -116,7 +116,7 @@
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
+                                    <label for="id_klasifikasi">Nomor Klasifikasi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -143,7 +143,7 @@
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="nomor_surat_keluar">Masukkan Nomor Surat: </label>
+                                    <label for="nomor_surat_keluar">Nomor Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -165,7 +165,7 @@
                             </div>
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="perihal">Masukkan Perihal Surat: </label>
+                                    <label for="perihal">Perihal Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -186,7 +186,7 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="tanggal_surat_keluar">Masukkan Tanggal Surat:
+                                    <label class="capitalize" for="tanggal_surat_keluar">Tanggal Surat:
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
@@ -207,49 +207,9 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="isi_surat">Masukkan Isi Surat: </label>
-                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
-                                        placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSuratKeluar->isi_surat }} </textarea>
-                                    <span class="text-danger">
-                                        @error('isi_surat')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group">
-                                    <label class="capitalize" for="id_instansi_penerima">Tujuan Pengiriman Surat:
-                                    </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-person-rolodex"></i>
-                                            </div>
-                                        </div>
-                                        <select
-                                            class="form-control select2  @error('id_instansi_penerima') is-invalid @enderror "
-                                            id="id_instansi_penerima" name="id_instansi_penerima" disabled>
-                                            <option selected disabled>Pilih Tujuan Pengiriman Surat</option>
-                                            @foreach ($instansiList as $data)
-                                                <option value="{{ $data->id_instansi }}"
-                                                    {{ $detailDataSuratKeluar->id_instansi_penerima == $data->id_instansi ? 'selected' : '' }}>
-                                                    {{ $data->nama_instansi }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_instansi_penerima')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
-                                    <label for="tembusan">Masukkan Tembusan: </label>
+                                    <label for="tembusan">Tembusan: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -263,6 +223,52 @@
                                     </div>
                                     <span class="text-danger">
                                         @error('tembusan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="form-group ">
+                                    <label for="sifat_surat_keluar">Sifat Surat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-envelope-exclamation-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text"
+                                            class="form-control @error('sifat_surat_keluar') is-invalid @enderror"
+                                            placeholder="ex: Sekretaris Dinas"
+                                            value="{{ $detailDataSuratKeluar->sifat_surat_keluar }}"
+                                            id="sifat_surat_keluar" name="sifat_surat_keluar" disabled autofocus>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('sifat_surat_keluar')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="tujuan_surat_keluar">Tujuan Surat: </label>
+                                    <textarea class="summernote-simple summernote-disable @error('tujuan_surat_keluar') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="tujuan_surat_keluar" name="tujuan_surat_keluar" readonly> {{ $detailDataSuratKeluar->tujuan_surat_keluar }} </textarea>
+                                    <span class="text-danger">
+                                        @error('tujuan_surat_keluar')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="isi_surat">Isi Surat: </label>
+                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                        placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSuratKeluar->isi_surat }} </textarea>
+                                    <span class="text-danger">
+                                        @error('isi_surat')
                                             {{ $message }}
                                         @enderror
                                     </span>

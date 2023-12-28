@@ -193,46 +193,6 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="isi_surat">Masukkan Isi Surat: </label>
-                                        <textarea class="summernote @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
-                                            id="isi_surat" name="isi_surat" required> {{ $editDataSuratKeluar->isi_surat }} </textarea>
-                                        <span class="text-danger">
-                                            @error('isi_surat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label class="capitalize" for="id_instansi_penerima">Tujuan Pengiriman Surat:
-                                        </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-rolodex"></i>
-                                                </div>
-                                            </div>
-                                            <select
-                                                class="form-control select2  @error('id_instansi_penerima') is-invalid @enderror "
-                                                id="id_instansi_penerima" name="id_instansi_penerima" required>
-                                                <option selected disabled>Pilih Tujuan Pengiriman Surat</option>
-                                                @foreach ($instansiList as $data)
-                                                    <option value="{{ $data->id_instansi }}"
-                                                        {{ $editDataSuratKeluar->id_instansi_penerima == $data->id_instansi ? 'selected' : '' }}>
-                                                        {{ $data->nama_instansi }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('id_instansi_penerima')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
                                         <label for="tembusan">Masukkan Tembusan: </label>
@@ -250,6 +210,52 @@
                                         </div>
                                         <span class="text-danger">
                                             @error('tembusan')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group ">
+                                        <label for="sifat_surat_keluar">Masukkan Sifat Surat: </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-envelope-exclamation-fill"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('sifat_surat_keluar') is-invalid @enderror"
+                                                placeholder="ex: Sekretaris Dinas"
+                                                value="{{ $editDataSuratKeluar->sifat_surat_keluar }}"
+                                                id="sifat_surat_keluar" name="sifat_surat_keluar" required autofocus>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('sifat_surat_keluar')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="tujuan_surat_keluar">Masukkan Tujuan Surat: </label>
+                                        <textarea class="summernote @error('tujuan_surat_keluar') is-invalid @enderror"
+                                            placeholder="ex: Perihal rapat paripurna" id="tujuan_surat_keluar" name="tujuan_surat_keluar" required> {{ $editDataSuratKeluar->tujuan_surat_keluar }} </textarea>
+                                        <span class="text-danger">
+                                            @error('tujuan_surat_keluar')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="isi_surat">Masukkan Isi Surat: </label>
+                                        <textarea class="summernote @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="isi_surat" name="isi_surat" required> {{ $editDataSuratKeluar->isi_surat }} </textarea>
+                                        <span class="text-danger">
+                                            @error('isi_surat')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -301,8 +307,8 @@
         const klasifikasiList = {!! json_encode($klasifikasiList) !!};
 
         $(document).ready(function() {
-            // Simpan nilai awal nomor_surat
-            const nomorSuratInput = $('#nomor_surat').val();
+            // Simpan nilai awal nomor_surat_keluar
+            const nomorSuratInput = $('#nomor_surat_keluar').val();
 
             // Delegasi event change untuk elemen dengan ID 'id_klasifikasi' di dalam modal
             $(document).on('change', '#id_klasifikasi', function() {
@@ -321,8 +327,8 @@
                 // Ganti tiga angka pertama di nomorSuratInput
                 const nomorSuratBaru = tigaAngkaPertama + nomorSuratInput.slice(3);
 
-                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat'
-                $('#nomor_surat').val(selectedKlasifikasi ? nomorSuratBaru : '');
+                // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat_keluar'
+                $('#nomor_surat_keluar').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });
         });
     </script>

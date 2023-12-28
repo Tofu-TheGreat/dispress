@@ -36,7 +36,7 @@ class SuratController extends Controller
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
             'instansiList' => $instansiList,
@@ -60,7 +60,7 @@ class SuratController extends Controller
 
         return view('manajemen-surat.surat-masuk.surat-masuk-create', [
             'title' => 'Create Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'instansiList' => $instansiList,
             'klasifikasiList' => $klasifikasiList,
@@ -92,7 +92,7 @@ class SuratController extends Controller
 
         return view('manajemen-surat.surat-masuk.surat-masuk-detail', [
             'title' => 'Detail Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'detailDataSurat' => $detailDataSurat,
             'userget' => $userget,
@@ -116,7 +116,7 @@ class SuratController extends Controller
         // dd($editDataSurat->id_surat);
         return view('manajemen-surat.surat-masuk.surat-masuk-edit', [
             'title' => 'Edit Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'editDataSurat' => $editDataSurat,
             'instansiList' => $instansiList,
@@ -157,7 +157,7 @@ class SuratController extends Controller
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
             'instansiList' => $instansiList,
@@ -184,7 +184,7 @@ class SuratController extends Controller
 
         return view('manajemen-surat.surat-masuk.surat-masuk-data', [
             'title' => 'Surat Masuk',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'active' => 'Surat-masuk',
             'suratList' => $suratList,
             'instansiList' => $instansiList,

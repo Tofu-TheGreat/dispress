@@ -36,7 +36,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             // 'pengajuanList' => $pengajuanList,
             'pengajuanList0' => $pengajuanList0,
             'pengajuanList1' => $pengajuanList1,
@@ -60,7 +60,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-create', [
             'title' => 'Create Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'suratList' => $suratList,
             'userList' => $userList,
             'klasifikasiList' => $klasifikasiList,
@@ -91,7 +91,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-detail', [
             'title' => 'Detail Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'detailDataPengajuan' => $detailDataPengajuan,
         ]);
     }
@@ -111,7 +111,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-edit', [
             'title' => 'Edit Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             'editDataPengajuan' => $editDataPengajuan,
             'klasifikasiList' => $klasifikasiList,
             'userList' => $userList,
@@ -153,7 +153,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             // 'pengajuanList' => $pengajuanList,
             'pengajuanList0' => $pengajuanList0,
             'pengajuanList1' => $pengajuanList1,
@@ -177,7 +177,7 @@ class PengajuanController extends Controller
         return view('manajemen-surat.pengajuan_disposisi.pengajuan-disposisi-data', [
             'title' => 'Pengajuan Disposisi',
             'active' => 'Pengajuan-disposisi',
-            'active1' => 'manajemen-surat',
+            'active1' => 'surat-masuk',
             // 'pengajuanList' => $pengajuanList,
             'pengajuanList0' => $pengajuanList0,
             'pengajuanList1' => $pengajuanList1,

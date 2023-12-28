@@ -33,27 +33,42 @@
                     </li>
                 </ul>
             </li>
-            <li class="menu-header">Menu Utama</li>
+            <li class="menu-header">Manajemen Surat</li>
             <li class="{{ $active == 'Instansi' ? 'active' : '' }}">
                 <a class="nav-link" href="/instansi"><i class="fas fa-building"></i> <span>Instansi</span>
                 </a>
             </li>
-            <li class="dropdown {{ $active1 == 'manajemen-surat' ? 'active' : '' }}">
+            <li class="{{ $active == 'Nomor-klasifikasi' ? 'active' : '' }}">
+                <a class="nav-link" href="/nomor-klasifikasi"><i class="fas fa-hashtag"></i> <span>Nomor
+                        Klasifikasi</span>
+                </a>
+            </li>
+            <li class="dropdown {{ $active1 == 'surat-masuk' ? 'active' : '' }}">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-envelope"></i>
-                    <span>Surat</span></a>
+                    <span>Surat Masuk</span></a>
                 <ul class="dropdown-menu">
-                    <li><a class="nav-link {{ $active == 'Nomor-klasifikasi' ? 'active text-info' : '' }}"
-                            href="/nomor-klasifikasi">Nomor Klasifikasi</a></li>
                     <li><a class="nav-link {{ $active == 'Surat-masuk' ? 'active text-info' : '' }}"
                             href="/surat">Surat Masuk</a></li>
                     @can('admin-officer')
                         <li><a class="nav-link {{ $active == 'Pengajuan-disposisi' ? 'active text-info' : '' }}"
                                 href="/pengajuan-disposisi">Pengajuan Disposisi</a></li>
                     @endcan
-                    <li><a class="nav-link {{ $active == 'Disposisi' ? 'active text-info' : '' }}"
-                            href="/disposisi">Disposisi</a></li>
+                </ul>
+            </li>
+            <li class="{{ $active == 'Disposisi' ? 'active' : '' }}">
+                <a class="nav-link" href="/disposisi"><i class="fas fa-envelope-open-text"></i> <span>Disposisi
+                    </span>
+                </a>
+            </li>
+            <li class="dropdown {{ $active1 == 'surat-keluar' ? 'active' : '' }}">
+                <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
+                        class="fas fa-envelope-open"></i>
+                    <span>Surat Keluar</span></a>
+                <ul class="dropdown-menu">
                     <li><a class="nav-link {{ $active == 'surat-keluar' ? 'active text-info' : '' }}"
                             href="/surat-keluar">Surat Keluar</a></li>
+                    <li><a class="nav-link {{ $active == 'surat-tugas' ? 'active text-info' : '' }}"
+                            href="/surat-tugas">Surat Tugas</a></li>
                 </ul>
             </li>
             <li class="menu-header">Manajemen Setting</li>
@@ -77,5 +92,10 @@
                 </ul>
             </li>
         </ul>
+        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            <a href="/" class="btn btn-primary btn-lg btn-block btn-icon-split">
+                <i class="fas fa-home"></i> Beranda
+            </a>
+        </div>
     </aside>
 </div>

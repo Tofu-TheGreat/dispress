@@ -118,7 +118,7 @@
                                                     </div>
                                                     <input type="text"
                                                         class="form-control phone @error('nomor_telpon') is-invalid @enderror"
-                                                        placeholder="ex: 0878-2730-3388"
+                                                        placeholder="ex: (0878)-2730-3388"
                                                         value="{{ old('nomor_telpon') }}" id="nomor_telpon"
                                                         name="nomor_telpon" required>
                                                 </div>
@@ -247,7 +247,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
+            $('.phone').inputmask('(9999)-9999-9999');
         });
     </script>
 

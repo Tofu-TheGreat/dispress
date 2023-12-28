@@ -135,7 +135,7 @@
                                         <div class="col">
                                             <input type="text" class="form-control phone"
                                                 value="{{ old('nomor_telpon') }}" name="nomor_telpon"
-                                                id="nomor_telpon" placeholder="ex: 0878-2730-3388" autofocus
+                                                id="nomor_telpon" placeholder="ex: (0878)-2730-3388" autofocus
                                                 required />
                                         </div>
                                         <span class="text-danger fs-6 text-center">
@@ -152,12 +152,12 @@
                                             <input type="password" name="password" class="form-control"
                                                 id="password" placeholder="**********" required />
                                             <i class="bi bi-eye view-password-icon"></i>
+                                            <span class="text-danger fs-6 text-center">
+                                                @error('password')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
                                         </div>
-                                        <span class="text-danger">
-                                            @error('password')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
                                         @if (session()->has('error'))
                                             <div class="alert alert-danger alert-register align-content-center d-flex justify-content-between"
                                                 role="alert">
@@ -259,7 +259,7 @@
 
     <script>
         $(document).ready(function() {
-            $('.phone').inputmask('9999-9999-9999');
+            $('.phone').inputmask('(9999)-9999-9999');
         });
     </script>
 </body>

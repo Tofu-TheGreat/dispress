@@ -181,8 +181,8 @@
                                                             </div>
                                                             <div
                                                                 class="nomor_instansi d-flex justify-content-center align-content-center px-2">
-                                                                <small class="text-center phone">
-                                                                    {{ $data->nomor_telpon }}
+                                                                <small class="text-center">
+                                                                    {{ currencyPhone($data->nomor_telpon) }}
                                                                 </small>
                                                             </div>
                                                         </div>

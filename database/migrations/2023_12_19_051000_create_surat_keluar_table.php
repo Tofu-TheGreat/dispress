@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade');
             $table->text('tujuan_surat_keluar');
-            $table->string('sifat_surat_keluar', 50);
+            $table->string('sifat_surat_keluar', 20);
             $table->string('perihal', 50);
             $table->text('isi_surat');
             $table->string('tembusan', 50)->nullable()->default('tidak ada tembusan');

@@ -41,6 +41,13 @@
                     </div>
                     <div class="col-lg-1 col-sm-4 btn-group">
                         @can('admin-officer')
+                            <a href="{{ route('cetak.surat-keluar', Crypt::encryptString($detailDataSuratKeluar->id_surat_keluar)) }}"
+                                class="text-white ml-2" target="_blank">
+                                <button type="button" class="btn btn-info" data-toggle="tooltip" data-placement="top"
+                                    title="Cetak Data Surat Keluar" data-original-title="Cetak Data Surat Keluar">
+                                    <i class="bi bi-printer-fill btn-tambah-data"></i>
+                                </button>
+                            </a>
                             <a href="{{ route('surat-keluar.edit', Crypt::encryptString($detailDataSuratKeluar->id_surat_keluar)) }}"
                                 class="text-white ml-2">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -123,7 +130,8 @@
                                                 <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
-                                        <select class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                        <select
+                                            class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
                                             id="id_klasifikasi" name="id_klasifikasi" disabled>
                                             <option selected disabled>Pilih Nomor Klasifikasi</option>
                                             @foreach ($klasifikasiList as $data)

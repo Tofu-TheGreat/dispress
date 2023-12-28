@@ -206,7 +206,7 @@
                                                 class="form-control @error('tembusan') is-invalid @enderror"
                                                 placeholder="ex: Sekretaris Dinas"
                                                 value="{{ $editDataSuratKeluar->tembusan }}" id="tembusan"
-                                                name="tembusan" required autofocus>
+                                                name="tembusan" autofocus>
                                         </div>
                                         <span class="text-danger">
                                             @error('tembusan')

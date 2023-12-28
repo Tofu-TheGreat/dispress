@@ -247,8 +247,8 @@
                                                         <div class="position-relative">
                                                             <h4>{{ $data->nomor_surat_keluar }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Tujuan
-                                                                {{ $data->instansiPenerima->nama_instansi }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Pembuat
+                                                                {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
@@ -304,11 +304,11 @@
                                                                 <div>
                                                                     <div class="user-detail-name">
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->instansiPenerima->nama_instansi }}</span>
+                                                                            {{ $data->user->nama }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->instansiPenerima->nomor_telpon) }}
+                                                                            {{ currencyPhone($data->user->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>

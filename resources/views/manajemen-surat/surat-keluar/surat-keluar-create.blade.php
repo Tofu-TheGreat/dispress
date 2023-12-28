@@ -221,7 +221,7 @@
                                                 class="form-control @error('sifat_surat_keluar') is-invalid @enderror"
                                                 placeholder="ex: Sekretaris Dinas"
                                                 value="{{ old('sifat_surat_keluar') }}" id="sifat_surat_keluar"
-                                                name="sifat_surat_keluar" autofocus>
+                                                name="sifat_surat_keluar" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('sifat_surat_keluar')

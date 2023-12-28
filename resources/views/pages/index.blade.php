@@ -232,7 +232,7 @@
                                     alt="multi-platform-img" />
                             </div>
                             <h3 class="text-white">Multi Platform</h3>
-                            <p>Memungkinkan pengguna untuk melakukan atau aktivitas pada website melalui desktop PC,Laptop,Tablet,bahkan Smartphone</p>
+                            <p>Memungkinkan pengguna untuk melakukan atau aktivitas pada website melalui desktop PC,Laptop,Tablet,bahkan Smartphone.</p>
                         </div>
                         <div class="superiority-item">
                             <div class="icon" style="--i: #9c5bb6; --j: #081649"><img

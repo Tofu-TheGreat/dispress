@@ -46,7 +46,7 @@
         }
 
         .logo-wrapper {
-            width: 130px;
+            width: 110px;
             padding-top: 20px;
             padding-bottom: 10px;
             padding-right: 5px;
@@ -62,10 +62,9 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 30px;
+            padding-top: 20px;
             padding-bottom: 5px;
-            padding-left: 5px;
-            padding-right: 20px;
+            padding-left: 10px;
             float: right;
             text-align: center;
             line-height: .9;
@@ -93,7 +92,7 @@
 
         .tanggal-surat-keluar {
             float: right;
-            width: 200px;
+            width: 190px;
             font-size: .9rem;
         }
 
@@ -127,7 +126,7 @@
         }
 
         .ttd {
-            margin-top: 30px;
+            margin-top: 35px;
         }
 
         .small {
@@ -136,7 +135,7 @@
         }
 
         .ttd-disposisi {
-            width: 290px;
+            width: 250px;
             float: right;
         }
 

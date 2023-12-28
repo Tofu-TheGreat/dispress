@@ -247,7 +247,7 @@ li {
     margin-right: auto;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    width: 120px; /* Need a specific value to work */
+    width: 130px; /* Need a specific value to work */
     color: #eee;
     background-color: #6777ef;
 }

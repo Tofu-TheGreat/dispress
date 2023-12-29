@@ -88,6 +88,7 @@ $(document).ready(function () {
     /*----- Page Scroll -----*/
     $.scrollIt({
         topOffset: -50,
+        scrollTime: 90,
     });
 
     /*----- Features Carousel -----*/

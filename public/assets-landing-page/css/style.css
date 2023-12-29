@@ -419,14 +419,6 @@ Navbar
     transition: all 0.5s ease;
 }
 
-body.dark .navbar.navbar-shrink {
-    box-shadow: 0 10px 10px rgba(255, 255, 255, 0.1);
-    background-color: rgba(var(--main-to-dark-color), 0, 5);
-    padding: 22px 0;
-    transition: all 0.7s ease;
-    backdrop-filter: blur(4px);
-}
-
 .navbar > .container {
     padding: 0 15px;
 }

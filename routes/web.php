@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController, WebSettingController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController, WebSettingController, SuratTugasController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -132,3 +132,12 @@ Route::post('/search-surat-keluar', [SuratKeluarController::class, 'search'])->n
 Route::get('/surat-keluar-export', [ExportController::class, 'export_surat_keluar'])->name('surat.keluar.export', 'role:admin');
 
 Route::get('/surat-keluar-cetak/{id}', [SuratKeluarController::class, 'cetakSuratKeluar'])->name('cetak.surat-keluar');
+
+// manajemen surat Tugas
+
+Route::resource('/surat-tugas', SuratTugasController::class)->middleware('auth');
+Route::get('/surat-tugas-filter', [SuratTugasController::class, 'filterData'])->name('filter.surat.tugas');
+Route::post('/search-surat-tugas', [SuratTugasController::class, 'search'])->name('search.surat-tugas');
+Route::get('/surat-tugas-export', [ExportController::class, 'export_surat_tugas'])->name('surat.tugas.export', 'role:admin');
+
+Route::get('/surat-tugas-cetak/{id}', [SuratTugasController::class, 'cetakSuratTugas'])->name('cetak.surat-tugas');

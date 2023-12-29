@@ -21,7 +21,7 @@
                     {{-- Breadcrumb --}}
                     <div class="col-md-3 col-sm-4 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
-                        <div class="breadcrumb-item d-inline">Surat Keluar</div>
+                        <div class="breadcrumb-item d-inline">Surat Tugas</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -47,7 +47,7 @@
                     {{-- Akhir Button Triger Filter --}}
                 </div>
             </div>
-            <form action="/surat-keluar-filter" method="get">
+            <form action="/surat-tugas-filter" method="get">
                 @csrf
                 <div class="collapse" id="collapseExample" style="">
                     <div class="p-4">
@@ -167,12 +167,12 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="col-lg-11 col-sm-8">
-                            <h4 class="text-primary judul-page">List Surat Keluar</h4>
+                            <h4 class="text-primary judul-page">List Surat Tugas</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
                             @can('admin-officer')
                                 {{-- Button Tambah Data --}}
-                                <a href="/surat-keluar/create" class="text-white">
+                                <a href="/surat-tugas/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
                                         data-placement="top" title="Tambah Data" data-original-title="Tambah Data">
                                         <i class="fa fa-plus-circle btn-tambah-data"></i>
@@ -193,7 +193,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12 d-flex justify-content-end mb-3">
-                                <form action="{{ route('search.surat-keluar') }}" method="post">
+                                <form action="{{ route('search.surat-tugas') }}" method="post">
                                     @csrf
                                     <div class="container-input">
                                         <input type="text" placeholder="Search" name="search" class="search"
@@ -202,7 +202,7 @@
                                         <div class="button-search">
                                             <button type="submit"
                                                 class="btn btn-primary button-submit-search">Search</button>
-                                            <a type="button" href="{{ route('surat-keluar.index') }}"
+                                            <a type="button" href="{{ route('surat-tugas.index') }}"
                                                 class="btn btn-secondary rounded-pill button-reset-search"><span>Reset</span></a>
                                         </div>
                                     </div>
@@ -210,41 +210,41 @@
                             </div>
                             <div class="col">
                                 <div class="row">
-                                    @if ($suratKeluarList->isEmpty())
+                                    @if ($suratTugasList->isEmpty())
                                         <div class="d-flex justify-content-center align-content-center">
                                             <img src="{{ asset('assets-landing-page/img/No data-rafiki.png') }}"
                                                 class="w-50">
                                         </div>
                                     @else
-                                        @foreach ($suratKeluarList as $data)
+                                        @foreach ($suratTugasList as $data)
                                             <div class="col-sm-12 col-md-12 col-lg-6">
                                                 <div class="card card-primary card-surat shadow-sm">
                                                     <div class="card-header d-flex justify-content-between">
                                                         <div class="position-relative">
-                                                            <h4>{{ $data->nomor_surat_keluar }}</h4>
+                                                            <h4>{{ $data->nomor_surat_tugas }}</h4>
                                                             <small class="text-primary"
                                                                 style="position: absolute; top: 50%;width: max-content;">Pembuat
                                                                 {{ $data->user->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
-                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat_keluar }}"
+                                                            <a data-collapse="#mycard-collapse{{ $data->id_surat_tugas }}"
                                                                 class="btn btn-icon btn-info" href="#"><i
                                                                     class="fas fa-minus"></i></a>
                                                         </div>
                                                     </div>
                                                     <div class="collapse show"
-                                                        id="mycard-collapse{{ $data->id_surat_keluar }}">
+                                                        id="mycard-collapse{{ $data->id_surat_tugas }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
                                                             <p class="w-75"> {!! $data->perihal !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 --
-                                                                {{ date('d-F-Y', strtotime($data->tanggal_surat_keluar)) }}
+                                                                {{ date('d-F-Y', strtotime($data->tanggal_surat_tugas)) }}
                                                                 --</p>
                                                             <div class="d-flex flex-column btn-group-action">
                                                                 @can('admin-officer')
-                                                                    <a href="{{ route('surat-keluar.show', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                    <a href="{{ route('surat-tugas.show', Crypt::encryptString($data->id_surat_tugas)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data surat"
                                                                         data-original-title="Detail data surat"
@@ -255,11 +255,11 @@
                                                                         data-placement="left" title="Edit data surat"
                                                                         data-original-title="Edit data surat"
                                                                         class="btn btn-warning has-icon text-white tombol-edit-card"
-                                                                        href="{{ route('surat-keluar.edit', Crypt::encryptString($data->id_surat_keluar)) }}"><i
+                                                                        href="{{ route('surat-tugas.edit', Crypt::encryptString($data->id_surat_tugas)) }}"><i
                                                                             class="pl-1  bi bi-pencil-square "></i>
                                                                     </a>
                                                                     <form method="POST"
-                                                                        action="{{ route('surat-keluar.destroy', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                        action="{{ route('surat-tugas.destroy', Crypt::encryptString($data->id_surat_tugas)) }}"
                                                                         class="tombol-hapus">
                                                                         @csrf
                                                                         @method('DELETE')
@@ -292,9 +292,9 @@
                                                             <div class="text-center " style="margin-left: 15%;">
                                                                 <a type="button" class="btn btn-primary btn-scan-pdf"
                                                                     data-toggle="tooltip" data-placement="top"
-                                                                    title="Cetak surat keluar"
-                                                                    data-original-title="Cetak surat keluar"
-                                                                    href="{{ route('cetak.surat-keluar', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                    title="Cetak surat tugas"
+                                                                    data-original-title="Cetak surat tugas"
+                                                                    href="{{ route('cetak.surat-tugas', Crypt::encryptString($data->id_surat_tugas)) }}"
                                                                     target="_blank" title="Read PDF"><i
                                                                         class="bi bi-printer-fill"
                                                                         style="font-size: 1.1rem;"></i></a>
@@ -305,7 +305,7 @@
                                             </div>
                                         @endforeach
                                         <div class="col-12">
-                                            {{ $suratKeluarList->onEachSide(1)->links() }}
+                                            {{ $suratTugasList->onEachSide(1)->links() }}
                                         </div>
                                     @endif
                                 </div>
@@ -377,19 +377,19 @@
             if (element.classList.contains("tombol-hapus")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin menghapus data surat keluar ini!',
+                        text: 'Ingin menghapus data surat tugas ini!',
                         icon: 'warning',
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willDelete) => {
                         if (willDelete) {
-                            swal('Data surat keluar berhasil dihapus!', {
+                            swal('Data surat tugas berhasil dihapus!', {
                                 icon: 'success',
                             });
                             element.closest('form').submit();
                         } else {
-                            swal('Data surat keluar tidak jadi dihapus!');
+                            swal('Data surat tugas tidak jadi dihapus!');
                         }
                     });
             }
@@ -397,19 +397,19 @@
             if (element.classList.contains("tombol-export")) {
                 swal({
                         title: 'Apakah anda yakin?',
-                        text: 'Ingin export data surat keluar ini?',
+                        text: 'Ingin export data surat tugas ini?',
                         icon: 'info', // Change the icon to a question mark
                         buttons: true,
                         dangerMode: true,
                     })
                     .then((willExport) => {
                         if (willExport) {
-                            swal('Data surat keluar berhasil diexport!', {
+                            swal('Data surat tugas berhasil diexport!', {
                                 icon: 'success',
                             });
 
                             // Make an AJAX request to trigger the export
-                            fetch('{{ route('surat.keluar.export') }}', {
+                            fetch('{{ route('surat.tugas.export') }}', {
                                     method: 'GET',
                                 })
                                 .then(response => {
@@ -425,7 +425,7 @@
                                     console.error('Error:', error);
                                 });
                         } else {
-                            swal('Data surat keluar tidak jadi diexport!');
+                            swal('Data surat tugas tidak jadi diexport!');
                         }
                     });
             }

@@ -33,10 +33,12 @@ class UserTemplate implements WithColumnFormatting, FromCollection, WithHeadings
     public function __construct()
     {
         $level = ['admin', 'officer', 'staff'];
+        $jk = ['L', 'P'];
         $roles = PosisiJabatan::pluck('nama_posisi_jabatan')->toArray();
         $selects = [  //selects should have column_name and options
-            ['jabatan' => 'D', 'options' => $roles],
+            ['jabatan' => 'G', 'options' => $roles],
             ['jabatan' => 'C', 'options' => $level],
+            ['jabatan' => 'F', 'options' => $jk],
         ];
         $this->selects = $selects;
         $this->row_count = 1000; //number of rows that will have the dropdown
@@ -52,6 +54,9 @@ class UserTemplate implements WithColumnFormatting, FromCollection, WithHeadings
             "nip",
             "nama",
             "level",
+            "pangkat",
+            "golongan",
+            "jenis_kelamin",
             "id_posisi_jabatan",
             "username",
             'email',

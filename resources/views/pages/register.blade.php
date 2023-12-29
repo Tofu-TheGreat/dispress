@@ -131,6 +131,61 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-input">
+                                        <label for="pangkat">Pangkat (optional): </label>
+                                        <input type="text"
+                                            class="form-control @error('pangkat') is-invalid @enderror"
+                                            placeholder="ex: Pembina Utama Muda" value="{{ old('pangkat') }}"
+                                            id="pangkat" name="pangkat">
+                                        <span class="text-danger">
+                                            @error('pangkat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-input">
+                                        <label for="golongan">Golongan (optional): </label>
+
+                                        <input type="text"
+                                            class="form-control @error('golongan') is-invalid @enderror"
+                                            placeholder="ex: IV-C" value="{{ old('golongan') }}" id="golongan"
+                                            name="golongan">
+
+                                        <span class="text-danger">
+                                            @error('golongan')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-input">
+                                        <label class="capitalize" for="jenis_kelamin">Pilih Jenis Kelamin: </label>
+
+                                        <select
+                                            class="form-control select2 @error('jenis_kelamin') is-invalid  @enderror "
+                                            id="jenis_kelamin" name="jenis_kelamin" required>
+                                            <option selected disabled>Pilih Jenis Kelamin User</option>
+                                            <option value="L"
+                                                {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>
+                                                Laki-Laki
+                                            </option>
+                                            <option value="P"
+                                                {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>
+                                                Perempuan
+                                            </option>
+                                        </select>
+
+                                        <span class="text-danger">
+                                            @error('jenis_kelamin')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-input">
                                         <label for="nomor_telpon">Nomor telepon</label>
                                         <div class="col">
                                             <input type="text" class="form-control phone"
@@ -145,7 +200,7 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                <div class="col-sm col-md col-lg">
                                     <div class="form-input">
                                         <label for="password">Password</label>
                                         <div class="col position-relative">

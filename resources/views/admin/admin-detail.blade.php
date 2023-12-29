@@ -173,6 +173,75 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12 ">
+                                <div class="form-group">
+                                    <label for="pangkat">Pangkat: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-person-badge-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control @error('pangkat') is-invalid @enderror"
+                                            placeholder="ex: Pembina Utama Muda"value="{{ $detailDataAdmin->pangkat }}"
+                                            id="pangkat" name="pangkat" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('pangkat')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <div class="form-group">
+                                    <label for="golongan">Golongan: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-person-badge-fill"></i>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control @error('golongan') is-invalid @enderror"
+                                            placeholder="ex: IV-C" value="{{ $detailDataAdmin->golongan }}"
+                                            id="golongan" name="golongan" readonly>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('golongan')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-12 ">
+                                <div class="form-group">
+                                    <label class="capitalize" for="jenis_kelamin">Jenis Kelamin: </label>
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <i class="bi bi-person-fill-exclamation"></i>
+                                            </div>
+                                        </div>
+                                        <select class="form-control select2 @error('jenis_kelamin') is-invalid  @enderror "
+                                            id="jenis_kelamin" name="jenis_kelamin" readonly>
+                                            <option selected disabled>Pilih Jenis Kelamin User</option>
+                                            <option value="L"
+                                                {{ $detailDataAdmin->jenis_kelamin == 'L' ? 'selected' : '' }} disabled>
+                                                Laki-Laki
+                                            </option>
+                                            <option value="P"
+                                                {{ $detailDataAdmin->jenis_kelamin == 'P' ? 'selected' : '' }} disabled>
+                                                Perempuan
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <span class="text-danger">
+                                        @error('jenis_kelamin')
+                                            {{ $message }}
+                                        @enderror
+                                    </span>
+                                </div>
+                            </div>
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="level">Akses: </label>

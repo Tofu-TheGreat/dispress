@@ -35,6 +35,8 @@ class OfficerExport implements WithColumnFormatting, FromCollection, WithHeading
             "nip",
             "nama",
             "level",
+            "pangkat",
+            "golongan",
             "jabatan",
             "username",
             'email',
@@ -63,6 +65,9 @@ class OfficerExport implements WithColumnFormatting, FromCollection, WithHeading
             $nip,
             $row->nama,
             $row->level,
+            $row->pangkat,
+            $row->golongan,
+            $row->jenis_kelamin,
             $row->posisijabatan->nama_posisi_jabatan, //Value jabatan akan diubah menjadi kata kata
             $row->username,
             $row->email,

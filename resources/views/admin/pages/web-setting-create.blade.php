@@ -72,6 +72,10 @@
                         <input type="text" name="nip" value="{{ $user['nip'] }}" id="" hidden>
                         <input type="text" name="nama" value="{{ $user['nama'] }}" id="" hidden>
                         <input type="text" name="username" value="{{ $user['username'] }}" id="" hidden>
+                        <input type="text" name="pangkat" value="{{ $user['pangkat'] }}" id="" hidden>
+                        <input type="text" name="golongan" value="{{ $user['golongan'] }}" id="" hidden>
+                        <input type="text" name="jenis_kelamin" value="{{ $user['jenis_kelamin'] }}" id=""
+                            hidden>
                         <input type="text" name="email_user" value="{{ $user['email'] }}" id="" hidden>
                         <input type="text" name="nomor_telpon_user" value="{{ $user['nomor_telpon'] }}"
                             id="" hidden>

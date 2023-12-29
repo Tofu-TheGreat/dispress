@@ -16,6 +16,9 @@ return new class extends Migration
             $table->string('nip', 18)->unique();
             $table->string('nama', 225);
             $table->enum('level', ['admin', 'officer', 'staff']);
+            $table->string('pangkat', 30)->nullable();
+            $table->string('golongan', 30)->nullable();
+            $table->enum('jenis_kelamin', ['L', 'P']);
             $table->unsignedBigInteger('id_posisi_jabatan');
             $table->foreign('id_posisi_jabatan')->references('id_posisi_jabatan')->on('posisi_jabatan')->onDelete('cascade');
             $table->string('username', 60);

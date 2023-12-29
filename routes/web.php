@@ -19,6 +19,11 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/petunjuk-teknis', function () {
+    return view('pages.petunjuk-teknis', ['title' => 'Petunjuk Teknis']);
+});
+
 // Manajemen setting
 
 Route::get('/login', [LoginController::class, 'loginPage'])->middleware('guest');

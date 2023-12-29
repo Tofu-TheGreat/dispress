@@ -1099,6 +1099,29 @@ superiority Section
 }
 
 /*--------------------
+technical-instructions Section
+--------------------*/
+.main-technical-instructions {
+    background-image: url(/assets-landing-page/img/superiority-bg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--main-to-dark-color);
+    transition: all 0.3s ease-in-out;
+}
+.technical-instructions {
+    display: flex;
+    background-image: url(/assets-landing-page/img/superiority-bg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--main-to-dark-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/*--------------------
 Footer
 --------------------*/
 .footer {
@@ -1237,6 +1260,12 @@ Footer
         padding-left: 145px;
     }
     .superiority {
+        background-image: url(/assets-landing-page/img/SimpleShiny.svg);
+    }
+    .technical-instructions {
+        background-image: url(/assets-landing-page/img/SimpleShiny.svg);
+    }
+    .main-technical-instructions {
         background-image: url(/assets-landing-page/img/SimpleShiny.svg);
     }
 }

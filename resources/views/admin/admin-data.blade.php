@@ -53,7 +53,7 @@
             <div class="collapse" id="collapseExample" style="">
                 <div class="p-4">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="form-group">
                                 <label class="capitalize" for="id_posisi_jabatan">Pilih Berdasarkan Posisi Jabatan:
                                 </label>
@@ -72,6 +72,29 @@
                                 </div>
                                 <span class="text-danger">
                                     @error('id_posisi_jabatan')
+                                        {{ $message }}
+                                    @enderror
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="form-group">
+                                <label class="capitalize" for="jenis_kelamin">Pilih Berdasarkan Jenis Kelamin: </label>
+                                <div class="input-group">
+                                    <select
+                                        class="filter form-control select2 @error('jenis_kelamin') is-invalid  @enderror "
+                                        id="jenis_kelamin" name="jenis_kelamin" required style="width: 100%">
+                                        <option selected disabled>Pilih Jenis Kelamin User</option>
+                                        <option value="L" {{ old('jenis_kelamin') == 'L' ? 'selected' : '' }}>
+                                            Laki-Laki
+                                        </option>
+                                        <option value="P" {{ old('jenis_kelamin') == 'P' ? 'selected' : '' }}>
+                                            Perempuan
+                                        </option>
+                                    </select>
+                                </div>
+                                <span class="text-danger">
+                                    @error('jenis_kelamin')
                                         {{ $message }}
                                     @enderror
                                 </span>

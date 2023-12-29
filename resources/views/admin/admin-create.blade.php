@@ -238,7 +238,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="pangkat">Masukkan Pangkat (optional): </label>

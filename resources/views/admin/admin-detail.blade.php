@@ -14,7 +14,7 @@
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/admin">Administrator</a></div>
-                        <div class="breadcrumb-item d-inline">Profile Administrator</div>
+                        <div class="breadcrumb-item d-inline">Detail Administrator</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -227,7 +227,7 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('pangkat') is-invalid @enderror"
-                                                    placeholder="ex: Pembina Utama Muda"value="{{ $detailDataAdmin->pangkat }}"
+                                                    placeholder="ex: Pembina Utama Muda"value="{{ $detailDataAdmin->pangkat === null ? '-' : $detailDataAdmin->pangkat }}"
                                                     id="pangkat" name="pangkat" readonly>
                                             </div>
                                             <span class="text-danger">
@@ -248,7 +248,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('golongan') is-invalid @enderror"
-                                                    placeholder="ex: IV-C" value="{{ $detailDataAdmin->golongan }}"
+                                                    placeholder="ex: IV-C"
+                                                    value="{{ $detailDataAdmin->golongan === null ? '-' : $detailDataAdmin->golongan }}"
                                                     id="golongan" name="golongan" readonly>
                                             </div>
                                             <span class="text-danger">

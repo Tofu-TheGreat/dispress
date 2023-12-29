@@ -33,8 +33,8 @@ class UserRequest extends FormRequest
             'nip' => 'required|max:18|min:18|unique:users,nip,' . $this->input('id_user') . ',id_user', //melakukan validasi berdasarkan id yang dikirimkan
             'nama' => 'required',
             'level' => 'required',
-            'pangkat' => 'required|max:30',
-            'golongan' => 'required|max:30',
+            'pangkat' => 'max:30',
+            'golongan' => 'max:30',
             'jenis_kelamin' => 'required',
             'id_posisi_jabatan' => 'required',
             'username' => 'required',

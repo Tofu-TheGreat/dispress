@@ -286,7 +286,7 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control @error('pangkat') is-invalid @enderror"
-                                                            placeholder="ex: Pembina Utama Muda"value="{{ $data->pangkat }}"
+                                                            placeholder="ex: Pembina Utama Muda"value="{{ $data->pangkat === null ? '-' : $data->pangkat }}"
                                                             id="pangkat" name="pangkat">
                                                     </div>
                                                     <span class="text-danger">
@@ -307,7 +307,8 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control @error('golongan') is-invalid @enderror"
-                                                            placeholder="ex: IV-C" value="{{ $data->golongan }}"
+                                                            placeholder="ex: IV-C"
+                                                            value="{{ $data->golongan === null ? '-' : $data->golongan }}"
                                                             id="golongan" name="golongan">
                                                     </div>
                                                     <span class="text-danger">

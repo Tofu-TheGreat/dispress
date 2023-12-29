@@ -245,7 +245,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-layers-fill"></i>
+                                                    <i class="bi bi-stack"></i>
                                                 </div>
                                             </div>
                                             <input type="text"

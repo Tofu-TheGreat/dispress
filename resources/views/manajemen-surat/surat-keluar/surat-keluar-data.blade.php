@@ -77,29 +77,6 @@
                             </div>
                             <div class="col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group">
-                                    <label class="capitalize" for="id_instansi">Pilih Berdasarkan Instansi Penerima:
-                                    </label>
-                                    <div class="input-group">
-                                        <select class="filter select2 @error('id_instansi') is-invalid  @enderror "
-                                            id="id_instansi" name="id_instansi" style="width: 100%;">
-                                            <option selected disabled>Pilih Instansi Penerima</option>
-                                            @foreach ($instansiList as $data)
-                                                <option value="{{ $data->id_instansi }}"
-                                                    {{ old('id_instansi') == $data->id_instansi ? 'selected' : '' }}>
-                                                    {{ $data->nama_instansi }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('id_instansi')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <div class="form-group">
                                     <label class="capitalize" for="id_user">Pilih Berdasarkan Pembuat Surat: </label>
                                     <div class="input-group">
                                         <select class="filter select2 @error('id_user') is-invalid  @enderror "
@@ -160,8 +137,7 @@
                                         <input type="date"
                                             class="form-control tanggal_surat_terakhir @error('tanggal_surat_terakhir') is-invalid @enderror"
                                             placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_terakhir') }}"
-                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir"
-                                            style="width: 80%;">
+                                            id="tanggal_surat_terakhir" name="tanggal_surat_terakhir" style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_surat_terakhir')

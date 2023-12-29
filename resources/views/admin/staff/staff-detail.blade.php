@@ -149,8 +149,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('nip') is-invalid @enderror"
-                                                    value="{{ $detailDataStaff->nip }}" id="nip" name="nip"
-                                                    readonly>
+                                                    value="{{ convertToNip($detailDataStaff->nip) }} }}" id="nip"
+                                                    name="nip" readonly>
                                             </div>
                                         </div>
                                     </div>

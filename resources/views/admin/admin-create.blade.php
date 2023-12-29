@@ -76,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control @error('nip') is-invalid @enderror"
-                                                placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
+                                                placeholder="ex: 21372007 817167 7 275" value="{{ old('nip') }}"
                                                 id="nip" name="nip" required>
                                         </div>
                                         <span class="text-danger">
@@ -356,7 +356,7 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
-            $('#nip').inputmask('999999999999999999');
+            $('#nip').inputmask('99999999 999999 9 999');
 
             $('.view-password-icon').on('click', function() {
                 if ($(this).hasClass('bi-eye')) {

@@ -87,7 +87,7 @@
                                                         </div>
                                                         <input type="text"
                                                             class="form-control capitalize @error('nip') is-invalid @enderror"
-                                                            placeholder="ex: 213720078171677275"
+                                                            placeholder="ex: 21372007 817167 7 275"
                                                             value="{{ $data->nip }}" id="nip" name="nip">
                                                     </div>
                                                     <span class="text-danger">
@@ -382,7 +382,7 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
-            $('#nip').inputmask('999999999999999999');
+            $('#nip').inputmask('99999999 999999 9 999');
         });
     </script>
 

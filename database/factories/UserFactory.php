@@ -26,7 +26,7 @@ class UserFactory extends Factory
             'username' => $this->faker->username(),
             'email' => $this->faker->unique()->safeEmail(),
             'golongan' => $this->faker->bothify('??-?'),
-            'pangkat' => $this->faker->sentence(3),
+            'pangkat' => $this->faker->sentence(1),
             'nomor_telpon' => $this->faker->unique()->numerify('#############'),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),

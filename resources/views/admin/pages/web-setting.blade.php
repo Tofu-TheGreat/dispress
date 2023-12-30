@@ -251,6 +251,50 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="header_surat">Header Surat: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control  @error('header_surat') is-invalid @enderror"
+                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    value="{{ $dataWebSetting->header_surat }}"
+                                                                    id="header_surat" name="header_surat" readonly>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('header_surat')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="kota_user">Kota: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control  @error('kota_user') is-invalid @enderror"
+                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    value="{{ $dataWebSetting->kota_user }}"
+                                                                    id="kota_user" name="kota_user" readonly>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('kota_user')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="alamat_instansi">Alamat Instansi: </label>
@@ -360,6 +404,50 @@
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('nomor_telpon')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="header_surat">Header Surat: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control  @error('header_surat') is-invalid @enderror"
+                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    value="{{ $dataWebSetting->header_surat }}"
+                                                                    id="header_surat" name="header_surat" required>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('header_surat')
+                                                                    {{ $message }}
+                                                                @enderror
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                        <div class="form-group">
+                                                            <label for="kota_user">Kota: </label>
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                    </div>
+                                                                </div>
+                                                                <input type="text"
+                                                                    class="form-control  @error('kota_user') is-invalid @enderror"
+                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    value="{{ $dataWebSetting->kota_user }}"
+                                                                    id="kota_user" name="kota_user" required>
+                                                            </div>
+                                                            <span class="text-danger">
+                                                                @error('kota_user')
                                                                     {{ $message }}
                                                                 @enderror
                                                             </span>

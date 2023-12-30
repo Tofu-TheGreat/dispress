@@ -16,6 +16,8 @@ class WebSetting extends Model
     protected $fillable = [
         'id_instansi',
         'id_ketua',
+        'kota_user',
+        'header_surat',
         'default_logo',
     ];
 

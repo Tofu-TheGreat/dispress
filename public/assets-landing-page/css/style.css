@@ -8,7 +8,7 @@ Global CSS
 --------------------*/
 :root {
     --main-color: #1f66b8;
-    --secondary-color: rgb(47, 67, 100);
+    --secondary-color: #2f4364;
     --tertiary-color: #b3e4fa;
     --secondary-dark-color: rgb(53, 86, 139);
     --color-1: #e91e63;
@@ -199,6 +199,7 @@ ul {
 
 .section-title {
     margin-bottom: 60px;
+    font-size: 1rem;
 }
 
 .section-title h2 {
@@ -220,6 +221,10 @@ body.dark .section-title h2 {
     color: var(--main-color);
     text-shadow: -1px -1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff,
         1px 1px 0 #ffffff;
+}
+
+.text-justify {
+    text-align: justify;
 }
 
 .owl-carousel .owl-dots {
@@ -407,7 +412,6 @@ Togle To Top
 Navbar
 --------------------*/
 .navbar {
-    background-color: transparent;
     padding: 20px 0;
     transition: all 0.3s ease;
 }
@@ -1099,6 +1103,104 @@ superiority Section
 }
 
 /*--------------------
+technical-instructions Section
+--------------------*/
+.main-technical-instructions {
+    background-image: url(/assets-landing-page/img/superiority-bg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--main-to-dark-color);
+    transition: all 0.3s ease-in-out;
+}
+.technical-instructions {
+    display: flex;
+    background-image: url(/assets-landing-page/img/superiority-bg.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-color: var(--main-to-dark-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.title-petunjuk {
+    text-decoration: none !important;
+}
+
+.title-petunjuk h6 {
+    color: black;
+    font-size: 1.2rem;
+}
+
+.title-petunjuk h6:hover {
+    color: var(--main-color);
+}
+
+.title-petunjuk h6.active {
+    color: var(--main-color);
+}
+
+.section-petunjuk {
+    font-size: 0.8rem;
+    color: #6b657e;
+}
+
+.title-page-petunjuk {
+    color: var(--main-color);
+}
+
+.tanggal-page-petunjuk {
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 0.7rem;
+}
+
+.custom-block-warning {
+    background-color: #fff7d0;
+    padding: 5px 20px;
+    border-left: 4px solid #e7c000;
+}
+
+.custom-block-title {
+    color: #e7c000;
+}
+
+.custom-block-text {
+    font-size: 0.8rem;
+}
+
+.img-caption-petunjuk {
+    font-weight: bold;
+    color: var(--main-color);
+}
+
+.bold-main {
+    color: var(--main-color);
+    font-weight: bold;
+}
+
+.text-page-petunjuk {
+    text-align: justify;
+}
+
+/*--------------------
+Selamat Datang
+--------------------*/
+.list-rekomendasi-perangkat {
+    color: var(--main-color);
+}
+
+.alamat-web a {
+    color: var(--main-color);
+}
+
+/*--------------------
+Dashboard
+--------------------*/
+
+/*--------------------
 Footer
 --------------------*/
 .footer {
@@ -1224,6 +1326,12 @@ Footer
     .navbar-nav {
         padding-top: 10px;
     }
+    .collapse .navbar-nav .nav-item .nav-link {
+        padding-top: 20px;
+    }
+    .btn-1 {
+        margin-top: 10px;
+    }
     .hero {
         background-position: center;
     }
@@ -1237,6 +1345,12 @@ Footer
         padding-left: 145px;
     }
     .superiority {
+        background-image: url(/assets-landing-page/img/SimpleShiny.svg);
+    }
+    .technical-instructions {
+        background-image: url(/assets-landing-page/img/SimpleShiny.svg);
+    }
+    .main-technical-instructions {
         background-image: url(/assets-landing-page/img/SimpleShiny.svg);
     }
 }

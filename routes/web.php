@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PosisiJabatanController, SuratKeluarController, WebSettingController, SuratTugasController};
+use App\Http\Controllers\{KlasifikasiController, AdminController, PengajuanController, Controller, ExportController, ImportController, ProfileController, OfficerController, InstansiController, StaffController, SuratController, DisposisiController, PetunjukTeknisController, PosisiJabatanController, SuratKeluarController, WebSettingController, SuratTugasController};
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -19,6 +19,11 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/petunjuk-teknis', [PetunjukTeknisController::class, 'petunjukTeknis']);
+Route::get('/petunjuk-teknis/registrasi', [PetunjukTeknisController::class, 'petunjukRegistrasi']);
+Route::get('/petunjuk-teknis/dashboard', [PetunjukTeknisController::class, 'petunjukDashboard']);
+
 // Manajemen setting
 
 Route::get('/login', [LoginController::class, 'loginPage'])->middleware('guest');

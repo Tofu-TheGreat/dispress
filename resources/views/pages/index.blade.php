@@ -72,8 +72,8 @@
                                 class="bi bi-star-half me-2"></i>Keunggulan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-scroll-nav="3" href="#petunjuk-teknis"><i
-                                class="bi bi-book-half me-2"></i>Petunjuk teknis</a>
+                        <a class="nav-link" href="/petunjuk-teknis"><i class="bi bi-book-half me-2"></i>Petunjuk
+                            teknis</a>
                     </li>
                 </ul>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
@@ -176,7 +176,8 @@
                     </div>
                     <div class="feature-item col-lg-8 col-md-6" data-aos="zoom-in" data-aos-duration="1400">
                         <h3>Export/Import</h3>
-                        <p>Pengguna dapat melakukan ekspor data/file yang ada pada penyimpanan lokal ataupun impor data/file yang berasal dari website dalam bentuk excel.</p>
+                        <p>Pengguna dapat melakukan ekspor data/file yang ada pada penyimpanan lokal ataupun impor
+                            data/file yang berasal dari website dalam bentuk excel.</p>
                     </div>
                     <div class="feature-item col-lg-8 col-md-6" data-aos="fade-right" data-aos-duration="1400">
                         <h3>Chart</h3>
@@ -218,13 +219,15 @@
                                     src="{{ asset('/assets-landing-page/img/go-green.webp') }}" alt="paperles-img" />
                             </div>
                             <h3 class="text-white">Paperless</h3>
-                            <p>Memungkinkan pengguna untuk melakukan kegiatan dokumentasi pendataan atau pencatatan beralih menjadi digital.Sehingga dapat mengurangi penggunaan kertas.</p>
+                            <p>Memungkinkan pengguna untuk melakukan kegiatan dokumentasi pendataan atau pencatatan
+                                beralih menjadi digital.Sehingga dapat mengurangi penggunaan kertas.</p>
                         </div>
                         <div class="superiority-item">
                             <div class="icon" style="--i: rgba(7, 55, 150, 1); --j: rgba(0, 198, 255, 1)"><img
                                     src="{{ asset('/assets-landing-page/img/mudah.webp') }}" alt="mudah-img" /></div>
                             <h3 class="text-white">Mudah</h3>
-                            <p>Kami menyediakan petunjuk teknis sebagai panduan,jika menemukan kesulitan tim kami bersedia membantu dan memberikan solusi.</p>
+                            <p>Kami menyediakan petunjuk teknis sebagai panduan,jika menemukan kesulitan tim kami
+                                bersedia membantu dan memberikan solusi.</p>
                         </div>
                         <div class="superiority-item">
                             <div class="icon" style="--i: #081649; --j: #749cdc"><img
@@ -232,7 +235,8 @@
                                     alt="multi-platform-img" />
                             </div>
                             <h3 class="text-white">Multi Platform</h3>
-                            <p>Memungkinkan pengguna untuk melakukan atau aktivitas pada website melalui desktop PC,Laptop,Tablet,bahkan Smartphone.</p>
+                            <p>Memungkinkan pengguna untuk melakukan atau aktivitas pada website melalui desktop
+                                PC,Laptop,Tablet,bahkan Smartphone.</p>
                         </div>
                         <div class="superiority-item">
                             <div class="icon" style="--i: #9c5bb6; --j: #081649"><img

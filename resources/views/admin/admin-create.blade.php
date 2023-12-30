@@ -76,7 +76,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" class="form-control @error('nip') is-invalid @enderror"
-                                                placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
+                                                placeholder="ex: 21372007 817167 7 275" value="{{ old('nip') }}"
                                                 id="nip" name="nip" required>
                                         </div>
                                         <span class="text-danger">
@@ -168,53 +168,11 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label for="pangkat">Masukkan Pangkat (optional): </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-badge-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('pangkat') is-invalid @enderror"
-                                                placeholder="ex: Pembina Utama Muda" value="{{ old('pangkat') }}"
-                                                id="pangkat" name="pangkat">
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('pangkat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
-                                        <label for="golongan">Masukkan Golongan (optional): </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-badge-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('golongan') is-invalid @enderror"
-                                                placeholder="ex: IV-C" value="{{ old('golongan') }}" id="golongan"
-                                                name="golongan">
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('golongan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group">
                                         <label class="capitalize" for="jenis_kelamin">Pilih Jenis Kelamin: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-person-fill-exclamation"></i>
+                                                    <i class="bi bi-gender-ambiguous"></i>
                                                 </div>
                                             </div>
                                             <select
@@ -238,7 +196,6 @@
                                         </span>
                                     </div>
                                 </div>
-
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label for="email">Masukkan Email: </label>
@@ -282,6 +239,48 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="pangkat">Masukkan Pangkat (optional): </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-stack"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('pangkat') is-invalid @enderror"
+                                                placeholder="ex: Pembina Utama Muda" value="{{ old('pangkat') }}"
+                                                id="pangkat" name="pangkat">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('pangkat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="golongan">Masukkan Golongan (optional): </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-collection-fill"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('golongan') is-invalid @enderror"
+                                                placeholder="ex: IV-C" value="{{ old('golongan') }}" id="golongan"
+                                                name="golongan">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('golongan')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
                                     <div class="form-group">
                                         <label for="password">Masukkan Password: </label>
                                         <div class="input-group position-relative">
@@ -357,7 +356,7 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
-            $('#nip').inputmask('999999999999999999');
+            $('#nip').inputmask('99999999 999999 9 999');
 
             $('.view-password-icon').on('click', function() {
                 if ($(this).hasClass('bi-eye')) {

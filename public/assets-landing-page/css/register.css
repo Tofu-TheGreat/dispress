@@ -221,6 +221,12 @@ body.dark .section-title h2 {
     line-height: 0.8;
 }
 
+.text-error {
+    display: block;
+    font-size: 0.8rem !important;
+    margin-top: -10px;
+}
+
 /*--------------------
 Preloader
 --------------------*/
@@ -391,7 +397,7 @@ Register Section
 .register .form-input input {
     height: 45px;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 }
 
 .register .register-text h1 {

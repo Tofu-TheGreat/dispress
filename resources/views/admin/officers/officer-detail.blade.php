@@ -14,7 +14,7 @@
                     <div class="col-md-4 col-sm-12 text-center items-center mt-2 ">
                         <div class="breadcrumb-item d-inline active"><a href="/dashboard">Dashboard</a></div>
                         <div class="breadcrumb-item d-inline active"><a href="/officer">Officer</a></div>
-                        <div class="breadcrumb-item d-inline">Profile Officer</div>
+                        <div class="breadcrumb-item d-inline">Detail Officer</div>
                     </div>
                     {{-- Akhir Breadcrumb --}}
                 </div>
@@ -30,7 +30,7 @@
                             <a href="/officer" title="Kembali">
                                 <i class="bi bi-arrow-left mr-3"></i>
                             </a>
-                            <h4 class="text-primary ">Profile Officer</h4>
+                            <h4 class="text-primary ">Detail Officer</h4>
                         </div>
                     </div>
                     <div class="col-2 d-flex justify-content-end btn-group">
@@ -151,8 +151,8 @@
                                                 </div>
                                                 <input type="text"
                                                     class="form-control @error('nip') is-invalid @enderror"
-                                                    value="{{ $detailDataOfficer->nip }}" id="nip" name="nip"
-                                                    readonly>
+                                                    value="{{ convertToNip($detailDataOfficer->nip) }}" id="nip"
+                                                    name="nip" readonly>
                                             </div>
                                         </div>
                                     </div>
@@ -174,88 +174,91 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-12 ">
-                                <div class="form-group">
-                                    <label for="pangkat">Pangkat: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-person-badge-fill"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control @error('pangkat') is-invalid @enderror"
-                                            placeholder="ex: Pembina Utama Muda"value="{{ $detailDataOfficer->pangkat }}"
-                                            id="pangkat" name="pangkat" readonly>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('pangkat')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-12 ">
-                                <div class="form-group">
-                                    <label for="golongan">Golongan: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-person-badge-fill"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text" class="form-control @error('golongan') is-invalid @enderror"
-                                            placeholder="ex: IV-C" value="{{ $detailDataOfficer->golongan }}"
-                                            id="golongan" name="golongan" readonly>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('golongan')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="col-12 ">
-                                <div class="form-group">
-                                    <label class="capitalize" for="jenis_kelamin">Jenis Kelamin: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-person-fill-exclamation"></i>
-                                            </div>
-                                        </div>
-                                        <select class="form-control select2 @error('jenis_kelamin') is-invalid  @enderror "
-                                            id="jenis_kelamin" name="jenis_kelamin" readonly>
-                                            <option selected disabled>Pilih Jenis Kelamin User</option>
-                                            <option value="L"
-                                                {{ $detailDataOfficer->jenis_kelamin == 'L' ? 'selected' : '' }} disabled>
-                                                Laki-Laki
-                                            </option>
-                                            <option value="P"
-                                                {{ $detailDataOfficer->jenis_kelamin == 'P' ? 'selected' : '' }} disabled>
-                                                Perempuan
-                                            </option>
-                                        </select>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('jenis_kelamin')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
                             <div class="col-12">
-                                <div class="form-group">
-                                    <label for="level">Akses: </label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text bg-secondary">
-                                                <i class="bi bi-layers-fill"></i>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label class="capitalize" for="jenis_kelamin">Jenis Kelamin: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        @if ($detailDataOfficer->jenis_kelamin == 'L')
+                                                            <i class="bi bi-gender-male"></i>
+                                                        @elseif ($detailDataOfficer->jenis_kelamin == 'P')
+                                                            <i class="bi bi-gender-female"></i>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('jenis_kelamin') is-invalid @enderror"
+                                                    value="{{ $detailDataOfficer->jenis_kelamin == 'L' ? 'Laki-Laki' : 'Perempuan' }}"
+                                                    id="jenis_kelamin" name="jenis_kelamin" readonly>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('jenis_kelamin')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="level">Akses: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-layers-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control capitalize @error('level') is-invalid @enderror"
+                                                    value="{{ $detailDataOfficer->level === 'admin' ? 'Administrator' : $detailDataOfficer->level }}"
+                                                    id="level" name="level" readonly>
                                             </div>
                                         </div>
-                                        <input type="text"
-                                            class="form-control capitalize @error('level') is-invalid @enderror"
-                                            value="{{ $detailDataOfficer->level === 'admin' ? 'Officer' : $detailDataOfficer->level }}"
-                                            id="level" name="level" readonly>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="pangkat">Pangkat: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-stack"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('pangkat') is-invalid @enderror"
+                                                    placeholder="ex: Pembina Utama Muda"value="{{ $detailDataOfficer->pangkat === null ? '-' : $detailDataOfficer->pangkat }}"
+                                                    id="pangkat" name="pangkat" readonly>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('pangkat')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label for="golongan">Golongan: </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text bg-secondary">
+                                                        <i class="bi bi-collection-fill"></i>
+                                                    </div>
+                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('golongan') is-invalid @enderror"
+                                                    placeholder="ex: IV-C"
+                                                    value="{{ $detailDataOfficer->golongan === null ? '-' : $detailDataOfficer->golongan }}"
+                                                    id="golongan" name="golongan" readonly>
+                                            </div>
+                                            <span class="text-danger">
+                                                @error('golongan')
+                                                    {{ $message }}
+                                                @enderror
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

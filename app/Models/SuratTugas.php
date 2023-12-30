@@ -18,15 +18,14 @@ class SuratTugas extends Model
         'id_user',
         'id_user_penerima',
         'nomor_surat_tugas',
-        'lokasi_surat_tugas',
-        'tanggal_surat_tugas',
+        'dasar',
         'tanggal_mulai',
         'tanggal_selesai',
         'waktu_mulai',
         'waktu_selesai',
-        'dasar_surat_tugas',
-        'tujuan_tugas',
-        'tempat_tugas',
+        'tujuan_pelaksanaan',
+        'tempat_pelaksanaan',
+        'tembusan',
     ];
 
     protected $casts = [

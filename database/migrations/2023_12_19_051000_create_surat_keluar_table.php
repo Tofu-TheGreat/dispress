@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('surat_keluar', function (Blueprint $table) {
             $table->id('id_surat_keluar');
-            $table->string('header_surat_keluar', 80)->nullable();
             $table->string('jumlah_lampiran', 3);
             $table->unsignedBigInteger('id_klasifikasi'); //Pengirim
             $table->foreign('id_klasifikasi')->references('id_klasifikasi')->on('klasifikasi')->onDelete('cascade');

@@ -2,13 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SuratTugasRequest;
 use App\Models\User;
 use App\Models\Klasifikasi;
 use App\Models\Surat;
+use App\Repository\SuratTugas\SuratTugasRepository;
 use Illuminate\Http\Request;
 
 class SuratTugasController extends Controller
 {
+    private $suratTugasRepository;
+
+    public function __construct(SuratTugasRepository $suratTugasRepository)
+    {
+        $this->suratTugasRepository = $suratTugasRepository;
+    }
     /**
      * Display a listing of the resource.
      */
@@ -16,7 +24,7 @@ class SuratTugasController extends Controller
     {
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
-        $suratTugasList = Surat::paginate(6);
+        $suratTugasList =  $this->suratTugasRepository->index();
 
         return view('manajemen-surat.surat-tugas.surat-tugas-data', [
             'title' => 'Surat Tugas',
@@ -39,9 +47,9 @@ class SuratTugasController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SuratTugasRequest $request)
     {
-        //
+        $this->suratTugasRepository->store($request);
     }
 
     /**
@@ -49,7 +57,7 @@ class SuratTugasController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $dataSuratTugas = $this->suratTugasRepository->show($id);
     }
 
     /**
@@ -57,15 +65,15 @@ class SuratTugasController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $dataSuratTugas = $this->suratTugasRepository->edit($id);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(SuratTugasRequest $request, string $id)
     {
-        //
+        $this->suratTugasRepository->update($id, $request);
     }
 
     /**
@@ -73,6 +81,14 @@ class SuratTugasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $this->suratTugasRepository->destroy($id);
+    }
+
+    public function filterData(Request $request)
+    {
+    }
+    public function search(Request $request)
+    {
+        $this->suratTugasRepository->search($request);
     }
 }

@@ -140,6 +140,8 @@ class DatabaseSeeder extends Seeder
         // websetting
         WebSetting::factory()->create([
             'id_instansi' => '3',
+            'header_surat' => 'Pemerintahan Kota Tangerang',
+            'kota_user' => 'Tangerang',
             'id_ketua' => '8',
         ]);
 
@@ -241,7 +243,6 @@ class DatabaseSeeder extends Seeder
 
         //seed surat keluar
         SuratKeluar::factory()->create([
-            'header_surat_keluar' => 'pemerintah provinsi banten Dinas pendidikan dan kebudayaan',
             'nomor_surat_keluar' => '005/1299-SMKN4/2024',
             'jumlah_lampiran' => '1',
             'tanggal_surat_keluar' => '2024-1-6',

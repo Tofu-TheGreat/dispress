@@ -30,7 +30,6 @@ class SuratKeluarExport implements FromCollection, WithMapping, WithHeadings
         return [
             'No',
             'id_klasifikasi',
-            'header_surat_keluar',
             'jumlah_lampiran',
             'nomor_surat_keluar',
             'tanggal_surat_keluar',
@@ -56,7 +55,6 @@ class SuratKeluarExport implements FromCollection, WithMapping, WithHeadings
         return [
             $rowNumber,
             $row->id_klasifikasi,
-            $row->header_surat_keluar,
             $row->jumlah_lampiran,
             $row->nomor_surat_keluar,
             $row->tanggal_surat_keluar,

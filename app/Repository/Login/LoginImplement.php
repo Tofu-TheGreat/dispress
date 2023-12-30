@@ -89,18 +89,24 @@ class LoginImplement implements LoginRepository
                 $constraint->upsize();
             })->save($destinationPath . '/' . $nama_foto);
             $data->default_logo->move(public_path('image_save'), $nama_foto);
-            WebSetting::create([
+            $webset = WebSetting::create([
                 'id_instansi' => $instansiCreate['id_instansi'],
                 'id_ketua' => $userreg->id_user,
+                'kota_user' => $data['kota_user'],
+                'header_surat' => $data['header_surat'],
                 'default_logo' => $nama_foto
             ]);
         } else {
-            WebSetting::create([
+            $webset = WebSetting::create([
                 'id_instansi' => $instansiCreate['id_instansi'],
                 'id_ketua' => $userreg->id_user,
+                'kota_user' => $data['kota_user'],
+                'header_surat' => $data['header_surat'],
             ]);
         }
-        Auth::login($userreg);
-        $data->session()->regenerate();
+        if ($jabatan && $userreg && $instansiCreate && $webset) {
+            Auth::login($userreg);
+            $data->session()->regenerate();
+        }
     }
 }

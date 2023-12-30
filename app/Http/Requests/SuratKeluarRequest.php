@@ -23,7 +23,6 @@ class SuratKeluarRequest extends FormRequest
     {
         return [
             'id_klasifikasi' => 'required|exists:klasifikasi,id_klasifikasi',
-            'header_surat_keluar' => 'string|max:80',
             'jumlah_lampiran' => 'string|max:3',
             'nomor_surat_keluar' => 'required|string|max:50|unique:surat_keluar,nomor_surat_keluar,' . $this->input('id_surat_keluar') . ',id_surat_keluar',
             'tanggal_surat_keluar' => 'required|date',
@@ -50,7 +49,6 @@ class SuratKeluarRequest extends FormRequest
             'id_user.exists' => 'User pengirim tidak valid.',
             'tujuan_surat_keluar.required' => 'Penerima wajib diisi.',
             'tujuan_surat_keluar.max' => 'Penerima tidak boleh lebih dari :max karakter.',
-            'header_surat_keluar.string' => 'Header harus berupa string.',
             'jumlah_lampiran.string' => 'Jumlah Lampiran harus berupa string.',
             'jumlah_lampiran.max' => 'Jumlah Lampiran tidak boleh lebih dari :max karakter.',
             'perihal.required' => 'Perihal wajib diisi.',

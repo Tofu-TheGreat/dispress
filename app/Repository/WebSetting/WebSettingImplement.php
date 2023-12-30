@@ -34,11 +34,15 @@ class WebSettingImplement implements WebSettingRepository
             $this->websetting->create([
                 'id_instansi' => $data['id_instansi'],
                 'id_ketua' => $data['id_ketua'],
+                'kota_user' => $data['kota_user'],
+                'header_surat' => $data['header_surat'],
                 'default_logo' => $nama_foto,
             ]);
         } else {
             $this->websetting->create([
                 'id_instansi' => $data['id_instansi'],
+                'kota_user' => $data['kota_user'],
+                'header_surat' => $data['header_surat'],
                 'id_ketua' => $data['id_ketua'],
             ]);
         }
@@ -70,12 +74,16 @@ class WebSettingImplement implements WebSettingRepository
             $webSetting->update([
                 'id_instansi' => $data['id_instansi'],
                 'id_ketua' => $data['id_ketua'],
+                'header_surat' => $data['header_surat'],
+                'kota_user' => $data['kota_user'],
                 'default_logo' => $nama_foto
             ]);
         } else {
             $webSetting->update([
                 'id_instansi' => $data['id_instansi'],
                 'id_ketua' => $data['id_ketua'],
+                'header_surat' => $data['header_surat'],
+                'kota_user' => $data['kota_user'],
             ]);
         }
 

@@ -77,28 +77,7 @@
                         @csrf
                         <input type="text" name="id_user" id="" hidden value="{{ Auth::user()->id_user }}">
                         <div class="row">
-                            <div class=" col-sm-12 col-md-6 col-lg-6">
-                                <div class="form-group ">
-                                    <label for="header_surat_keluar">Header Surat (optional) :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                                <i class="bi bi-list-ol"></i>
-                                            </div>
-                                        </div>
-                                        <input type="text"
-                                            class="form-control @error('header_surat_keluar') is-invalid @enderror"
-                                            placeholder="ex: KEMENTRIAN WISATA REPUBLIK INDONESIA"
-                                            value="{{ $detailDataSuratKeluar->header_surat_keluar }}"
-                                            id="header_surat_keluar" name="header_surat_keluar" readonly autofocus>
-                                    </div>
-                                    <span class="text-danger">
-                                        @error('header_surat_keluar')
-                                            {{ $message }}
-                                        @enderror
-                                    </span>
-                                </div>
-                            </div>
+
 
                             <div class=" col-sm-12 col-md-6 col-lg-6">
                                 <div class="form-group ">
@@ -130,8 +109,7 @@
                                                 <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
-                                        <select
-                                            class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
+                                        <select class="form-control select2  @error('id_klasifikasi') is-invalid @enderror "
                                             id="id_klasifikasi" name="id_klasifikasi" disabled>
                                             <option selected disabled>Pilih Nomor Klasifikasi</option>
                                             @foreach ($klasifikasiList as $data)
@@ -236,7 +214,7 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-6">
+                            <div class="col-12">
                                 <div class="form-group ">
                                     <label for="sifat_surat_keluar">Sifat Surat: </label>
                                     <div class="input-group">

@@ -12,6 +12,7 @@ use App\Models\WebSetting;
 use App\Models\Klasifikasi;
 use App\Models\PosisiJabatan;
 use App\Models\SuratKeluar;
+use App\Models\SuratTugas;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -252,6 +253,22 @@ class DatabaseSeeder extends Seeder
             'tujuan_surat_keluar' => 'Kepala Sekolah SMKN 3 Tangerang <br> Di Tempat.',
             'id_user' => '8',
             'perihal' => 'Perihal undangan rapat ',
+            'tembusan' => 'wakil kepala sekolah',
+        ]);
+
+        //seed surat Tugas
+        SuratTugas::factory()->create([
+            'id_klasifikasi' => '1',
+            'nomor_surat_tugas' => '005/1299-SMKN4/2024',
+            'tanggal_mulai' => '2024-1-6',
+            'tanggal_selesai' => '2024-1-6',
+            'waktu_mulai' => '09:30:00',
+            'waktu_selesai' => '09:30:00',
+            'tujuan_pelaksanaan' => 'Mendatangi Undangan',
+            'tempat_pelaksanaan' => 'Bandung',
+            'dasar' => 'Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan.',
+            'id_user' => '8',
+            'id_user_penerima' => '8',
             'tembusan' => 'wakil kepala sekolah',
         ]);
     }

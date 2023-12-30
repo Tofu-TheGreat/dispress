@@ -41,7 +41,16 @@ class SuratTugasController extends Controller
      */
     public function create()
     {
-        //
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-create', [
+            'title' => 'Surat Tugas Create',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+        ]);
     }
 
     /**

@@ -100,6 +100,33 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div class=" col-12">
+                                    <div class="form-group ">
+                                        <label for="id_surat">Nomor Surat Masuk (optional): </label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <select class="form-control select2  @error('id_surat') is-invalid @enderror "
+                                                id="id_surat" name="id_surat">
+                                                <option selected disabled>Pilih Nomor Surat Masuk</option>
+                                                @foreach ($suratMasukList as $data)
+                                                    <option value="{{ $data->id_surat }}"
+                                                        {{ old('id_surat') == $data->id_surat ? 'selected' : '' }}>
+                                                        {{ $data->nomor_surat }} | {{ $data->isi_surat }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('id_surat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="dasar">Masukkan Dasar/Perihal tugas: </label>
@@ -243,7 +270,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-calendar3"></i>
+                                                    <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -265,7 +292,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-calendar3"></i>
+                                                    <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -350,6 +377,33 @@
                 // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat_tugas'
                 $('#nomor_surat_tugas').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });
+
+            // Mengambil data suratMasukList dari PHP
+            const suratMasukList = {!! json_encode($suratMasukList) !!};
+
+            // Handle pengisian field 'Dasar' setelah pilih surat masuk
+            $(document).on('change', '#id_surat', function() {
+                const selectedValue = $(this).val();
+
+                // Simpan nilai awal field 'dasar'
+                const dasarSummernoteField = $('#dasar').val();
+
+                // Menggunakan suratMasukList di sini
+                // Contoh: Menampilkan data terkait dengan nilai terpilih
+                const selectedSuratMasuk = suratMasukList.find(function(item) {
+                    return item.id_surat == selectedValue;
+                });
+
+                const pengirim = selectedSuratMasuk ? selectedSuratMasuk.instansi.nama_instansi : '';
+                const nomorSurat = selectedSuratMasuk ? selectedSuratMasuk.nomor_surat : '';
+                const tanggalSurat = selectedSuratMasuk ? selectedSuratMasuk.tanggal_surat : '';
+                const perihal = selectedSuratMasuk ? selectedSuratMasuk.isi_surat : '';
+
+                const dasarBaru =
+                    `Surat dari ${pengirim}, nomor ${nomorSurat}, tanggal ${moment(tanggalSurat).format('DD-MMMM-YYYY')}, perihal: ${perihal},  untuk`;
+
+                $('#dasar').summernote('code', dasarBaru);
+            });
         });
     </script>
 
@@ -368,7 +422,7 @@
                     onInit: function() {
                         // Tambahkan placeholder saat inisialisasi
                         $(this).summernote('pasteHTML',
-                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Surat dari Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten, nomor 005/1474/IPKAD 04/2023, tanggal 9 Oktober 2023, dan Persediaan Triwulan III Tahun 2023, Negeri 4 Tangerang perihal Rekonsiliasi Data Aset untuk kepentingan dinas Kepala SMK</span>'
+                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Surat dari Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten, nomor 005/1474/IPKAD 04/2023, tanggal 9 Oktober 2023,perihal: Persediaan Triwulan III Tahun 2023, untuk kepentingan dinas Kepala Sekolah SMKN 1 Tangerang</span>'
                         );
                     },
                     onFocus: function() {

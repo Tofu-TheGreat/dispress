@@ -43,6 +43,7 @@ class SuratTugasController extends Controller
     {
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
+        $suratMasukList = Surat::with('instansi')->get();
 
         return view('manajemen-surat.surat-tugas.surat-tugas-create', [
             'title' => 'Surat Tugas Create',
@@ -50,6 +51,7 @@ class SuratTugasController extends Controller
             'active' => 'surat-tugas',
             'klasifikasiList' => $klasifikasiList,
             'userList' => $userList,
+            'suratMasukList' => $suratMasukList,
         ]);
     }
 

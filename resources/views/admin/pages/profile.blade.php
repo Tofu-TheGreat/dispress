@@ -241,7 +241,7 @@
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control capitalize @error('nip') is-invalid @enderror"
-                                                                    placeholder="ex: 213720078171677275"
+                                                                    placeholder="ex: 21372007 817167 7 275"
                                                                     value="{{ $dataProfile->nip }}" id="nip"
                                                                     name="nip">
                                                             </div>
@@ -373,8 +373,9 @@
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control @error('golongan') is-invalid @enderror"
-                                                                    placeholder="ex: IV-C" value="{{ $dataProfile->golongan }}"
-                                                                    id="golongan" name="golongan">
+                                                                    placeholder="ex: IV-C"
+                                                                    value="{{ $dataProfile->golongan }}" id="golongan"
+                                                                    name="golongan">
                                                             </div>
                                                             <span class="text-danger">
                                                                 @error('golongan')
@@ -641,7 +642,7 @@
     <script>
         $('.phone').inputmask('9999-9999-9999');
 
-        $('#nip').inputmask('999999999999999999');
+        $('#nip').inputmask('99999999 999999 9 999');
 
         $('.view-password-icon').on('click', function() {
             const passwordInput = $(this).closest('.form-group').find('input');

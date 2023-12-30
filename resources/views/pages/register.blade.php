@@ -70,14 +70,14 @@
                                     <small class="text-primary">Create your account !</small>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label for="nama">Nama lengkap</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="nama" id="nama"
                                                 placeholder="ex: pasya nada albinaya" value="{{ old('nama') }}"
                                                 autofocus required />
                                         </div>
-                                        <span class="text-danger fs-6 text-center">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('nama')
                                                 {{ $message }}
                                             @enderror
@@ -85,14 +85,14 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input ">
+                                    <div class="form-input mb-3 ">
                                         <label for="nip">NIP</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="nip" id="nip"
-                                                placeholder="ex: 213720078171677275" value="{{ old('nip') }}"
+                                                placeholder="ex: 21372007 817167 7 275" value="{{ old('nip') }}"
                                                 autofocus required />
                                         </div>
-                                        <span class="text-danger fs-6 text-center">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('nip')
                                                 {{ $message }}
                                             @enderror
@@ -100,14 +100,14 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label for="username">Username</label>
                                         <div class="col">
                                             <input type="text" class="form-control" name="username" id="username"
                                                 placeholder="ex: pasya.nada" value="{{ old('username') }}" autofocus
                                                 required />
                                         </div>
-                                        <span class="text-danger fs-6 text-center">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('username')
                                                 {{ $message }}
                                             @enderror
@@ -115,14 +115,14 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label for="email">Email</label>
                                         <div class="col">
                                             <input type="email" class="form-control" name="email" id="email"
                                                 placeholder="ex: contoh@example.com" value="{{ old('email') }}"
                                                 autofocus required />
                                         </div>
-                                        <span class="text-danger fs-6 text-center">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('email')
                                                 {{ $message }}
                                             @enderror
@@ -130,39 +130,8 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
-                                        <label for="pangkat">Pangkat (optional): </label>
-                                        <input type="text"
-                                            class="form-control @error('pangkat') is-invalid @enderror"
-                                            placeholder="ex: Pembina Utama Muda" value="{{ old('pangkat') }}"
-                                            id="pangkat" name="pangkat">
-                                        <span class="text-danger">
-                                            @error('pangkat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
-                                        <label for="golongan">Golongan (optional): </label>
-
-                                        <input type="text"
-                                            class="form-control @error('golongan') is-invalid @enderror"
-                                            placeholder="ex: IV-C" value="{{ old('golongan') }}" id="golongan"
-                                            name="golongan">
-
-                                        <span class="text-danger">
-                                            @error('golongan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label class="capitalize" for="jenis_kelamin">Pilih Jenis Kelamin: </label>
-
                                         <select
                                             class="form-control select2 @error('jenis_kelamin') is-invalid  @enderror "
                                             id="jenis_kelamin" name="jenis_kelamin" required>
@@ -177,7 +146,7 @@
                                             </option>
                                         </select>
 
-                                        <span class="text-danger">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('jenis_kelamin')
                                                 {{ $message }}
                                             @enderror
@@ -185,7 +154,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label for="nomor_telpon">Nomor telepon</label>
                                         <div class="col">
                                             <input type="text" class="form-control phone"
@@ -193,21 +162,51 @@
                                                 id="nomor_telpon" placeholder="ex: (0878)-2730-3388" autofocus
                                                 required />
                                         </div>
-                                        <span class="text-danger fs-6 text-center">
+                                        <span class="text-danger  text-error fs-6 ">
                                             @error('nomor_telpon')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-input mb-3">
+                                        <label for="pangkat">Pangkat (optional): </label>
+                                        <input type="text"
+                                            class="form-control @error('pangkat') is-invalid @enderror"
+                                            placeholder="ex: Pembina Utama Muda" value="{{ old('pangkat') }}"
+                                            id="pangkat" name="pangkat">
+                                        <span class="text-danger  text-error fs-6 ">
+                                            @error('pangkat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-input mb-3">
+                                        <label for="golongan">Golongan (optional): </label>
+
+                                        <input type="text"
+                                            class="form-control @error('golongan') is-invalid @enderror"
+                                            placeholder="ex: IV-C" value="{{ old('golongan') }}" id="golongan"
+                                            name="golongan">
+
+                                        <span class="text-danger  text-error fs-6 ">
+                                            @error('golongan')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
                                 <div class="col-sm col-md col-lg">
-                                    <div class="form-input">
+                                    <div class="form-input mb-3">
                                         <label for="password">Password</label>
                                         <div class="col position-relative">
                                             <input type="password" name="password" class="form-control"
                                                 id="password" placeholder="**********" required />
                                             <i class="bi bi-eye view-password-icon"></i>
-                                            <span class="text-danger fs-6 text-center">
+                                            <span class="text-danger  text-error fs-6 ">
                                                 @error('password')
                                                     {{ $message }}
                                                 @enderror
@@ -316,6 +315,7 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('(9999)-9999-9999');
+            $('#nip').inputmask('99999999 999999 9 999');
         });
     </script>
 </body>

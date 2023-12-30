@@ -306,6 +306,10 @@
                                                                 <span class="text-primary" href="#">
                                                                     {{ $dataDisposisi->user->nama }}</span>
                                                             </div>
+                                                            <small
+                                                                style="max-width: max-content; position: absolute; top: 45%;">
+                                                                {{ currencyPhone($dataDisposisi->user->nomor_telpon) }}
+                                                            </small>
                                                         </div>
                                                     </div>
                                                     <div class="text-center " style="margin-left: 15%;">
@@ -443,6 +447,10 @@
                                                                 <span class="text-primary" href="#">
                                                                     {{ $dataPengajuan->user->nama }}</span>
                                                             </div>
+                                                            <small
+                                                                style="max-width: max-content; position: absolute; top: 45%;">
+                                                                {{ currencyPhone($dataPengajuan->user->nomor_telpon) }}
+                                                            </small>
                                                         </div>
                                                     </div>
                                                     <div class="text-center " style="margin-left: 15%;">

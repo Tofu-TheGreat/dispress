@@ -1125,10 +1125,21 @@ technical-instructions Section
     transition: all 0.3s ease-in-out;
 }
 
-.title-petunjuk a {
-    text-decoration: none;
-    color: var(--main-color);
+.title-petunjuk {
+    text-decoration: none !important;
+}
+
+.title-petunjuk h6 {
+    color: black;
     font-size: 1.2rem;
+}
+
+.title-petunjuk h6:hover {
+    color: var(--main-color);
+}
+
+.title-petunjuk h6.active {
+    color: var(--main-color);
 }
 
 .section-petunjuk {
@@ -1163,6 +1174,11 @@ technical-instructions Section
 .img-caption-petunjuk {
     font-weight: bold;
     color: var(--main-color);
+}
+
+.bold-main {
+    color: var(--main-color);
+    font-weight: bold;
 }
 
 .text-page-petunjuk {

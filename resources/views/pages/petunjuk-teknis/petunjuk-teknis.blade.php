@@ -123,17 +123,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="row d-flex justify-content-center gap-3 mx-4">
-                    <div class="col-sm-12 col-md-12 col-lg-4 card p-4">
-                        <ul class="nav nav-pills flex-column" id="myTab4" role="tablist">
-                            <h6 class="title-petunjuk">
-                                <a class="" href="/petunjuk-teknis">Selamat Datang</a>
-                            </h6>
+                <div class="row d-flex justify-content-center gap-3 mx-3">
+                    <div class="col-sm-12 col-md-12 col-lg-3 card p-4">
+                        <ul class="nav nav-pills flex-column">
+                            <a class="title-petunjuk mt-2" href="/petunjuk-teknis">
+                                <h6 class="active">Selamat Datang</h6>
+                            </a>
                             <li class="nav-item">
                                 <a class="nav-link" data-scroll-nav="0" href="#rekomendasi"
                                     data-bs-target="#rekomendasi"><i class="bi bi-laptop me-2"></i>
                                     Rekomendasi
-                                    Perangkat</a>
+                                    Device</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" data-scroll-nav="1" href="#browser" data-bs-target="#browser"><i
@@ -147,9 +147,38 @@
                                     Alamat
                                     Web</a>
                             </li>
+                            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/registrasi">
+                                <h6 class="">Registrasi</h6>
+                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-registrasi#registrasi"
+                                    data-bs-target="petunjuk-registrasi#registrasi"><i
+                                        class="bi bi-lock-fill me-2"></i>
+                                    registrasi</a>
+                                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-registrasi#login"
+                                    data-bs-target="petunjuk-registrasi#login"><i class="bi bi-unlock-fill me-2"></i>
+                                    login</a>
+                            </li>
+                            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/dashboard">
+                                <h6 class="">Dashboard</h6>
+                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-dashboard#akun"
+                                    data-bs-target="petunjuk-dashboard#akun"><i
+                                        class="bi bi-person-badge-fill me-2"></i>
+                                    Akun</a>
+                            </li>
+                            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/user">
+                                <h6 class="">User</h6>
+                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-user#user"
+                                    data-bs-target="petunjuk-user#user"><i class="bi bi-person-fill me-2"></i>
+                                    User</a>
+                            </li>
                         </ul>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-7 card p-4">
+                    <div class="col-sm-12 col-md-12 col-lg-8 card p-4">
                         <div class="tab-content no-padding" id="myTab2Content">
                             <div class="tab-pane fade show active" id="main" role="tabpanel"
                                 aria-labelledby="home-tab4">
@@ -160,8 +189,9 @@
                                     <div class="custom-block-warning mb-4">
                                         <p class="custom-block-title mt-1 mb-50">Perhatian</p>
                                         <p class="custom-block-text">Anda sedang membaca petunjuk teknis Dispress versi
-                                            <b>v.1.0</b> <br>
-                                            Progress Petunjuk teknis ini baru mencakup <b>20%</b> dari keseluruhan
+                                            <b class="bold-main">v.1.0</b> <br>
+                                            Progress Petunjuk teknis ini baru mencakup <b class="bold-main">20%</b>
+                                            dari keseluruhan
                                             fungsi Dispress
                                         </p>
                                     </div>
@@ -230,8 +260,8 @@
                                     </p>
                                     <div class="custom-block-warning ">
                                         <p class="custom-block-title mt-1 mb-50">Lanjutkan Petunjuk</p>
-                                        <a class="btn btn-sm btn-success mb-2" href="/juknis/dashboard">Lanjutkan <i
-                                                class="bi bi-arrow-right-circle-fill ms-2"></i></a>
+                                        <a class="btn btn-sm btn-success mb-2" href="/juknis/dashboard">Lanjutkan
+                                            <i class="bi bi-arrow-right-circle-fill ms-2"></i></a>
                                         <p class="custom-block-text">Klik untuk melanjutkan membaca petunjuk teknis -
                                             Penjelasan Halaman Dashboard
                                         </p>
@@ -324,14 +354,6 @@
             document.body.scrollTop = 0;
             document.documentElement.scrollTop = 0;
         }
-
-        $(document).ready(function() {
-            // Aktifkan tab Bootstrap
-            $('#myTab4 a').on('click', function(e) {
-                e.preventDefault();
-                $(this).tab('show');
-            });
-        })
     </script>
 </body>
 

@@ -18,7 +18,7 @@ class SuratTugasImplement implements SuratTugasRepository
 
     public function index()
     {
-        $this->suratTugas->get();
+        return $this->suratTugas->paginate(6);
     }
     public function store($data)
     {

@@ -148,7 +148,7 @@
                                     Web</a>
                             </li>
                             <a class="title-petunjuk mt-2" href="/petunjuk-teknis/registrasi">
-                                <h6 class="">Registrasi</h6>
+                                <h6 class="">Akun</h6>
                             </a>
                             <li class="nav-item">
                                 <a class="nav-link" data-scroll-nav="0" href="/petunjuk-registrasi#registrasi"
@@ -160,13 +160,13 @@
                                     login</a>
                             </li>
                             <a class="title-petunjuk mt-2" href="/petunjuk-teknis/dashboard">
-                                <h6 class="">Dashboard</h6>
+                                <h6 class="">Role</h6>
                             </a>
                             <li class="nav-item">
                                 <a class="nav-link" data-scroll-nav="0" href="/petunjuk-dashboard#akun"
                                     data-bs-target="petunjuk-dashboard#akun"><i
                                         class="bi bi-person-badge-fill me-2"></i>
-                                    Akun</a>
+                                    Admin</a>
                             </li>
                             <a class="title-petunjuk mt-2" href="/petunjuk-teknis/user">
                                 <h6 class="">User</h6>

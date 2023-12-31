@@ -3,25 +3,6 @@
 @section('css')
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/style.css') }}" />
-
-    <style>
-        .nav-pills .nav-link.active {
-            background-color: transparent !important;
-            color: #1f66b8;
-            font-size: 1rem;
-        }
-
-        .nav-pills .nav-link {
-            background-color: transparent !important;
-            color: #2f4364;
-            font-size: .9rem;
-            padding: 4px 10px;
-        }
-
-        .nav-pills .nav-link:hover {
-            color: #1f66b8;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -40,86 +21,63 @@
                 </div>
                 <div class="row d-flex justify-content-center gap-3 mx-3">
                     @include('pages.partials.sidebar-petunjuk')
-                    <div class="col-sm-12 col-md-12 col-lg-8 card p-4">
+                    <div class="col-sm-12 col-md-12 col-lg-8 petunjuk-wrapper p-4">
                         <div class="tab-content no-padding" id="myTab2Content">
-                            <div class="tab-pane fade show active" id="main" role="tabpanel"
-                                aria-labelledby="home-tab4">
-                                <section class="section-petunjuk">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-door-open-fill"></i>
+                            <div class="tab-pane fade show active" role="tabpanel" aria-labelledby="home-tab4">
+                                <section class="section-petunjuk" id="registrasi" data-scroll-index="3">
+                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-lock-fill"></i>
                                         Petunjuk Registrasi</h5>
                                     <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
                                     <div class="custom-block-warning mb-4">
                                         <p class="custom-block-title mt-1 mb-50">Perhatian</p>
-                                        <p class="custom-block-text">Anda sedang membaca petunjuk teknis Dispress versi
-                                            <b class="bold-main">v.1.0</b> <br>
-                                            Progress Petunjuk teknis ini baru mencakup <b class="bold-main">20%</b>
-                                            dari keseluruhan
-                                            fungsi Dispress
+                                        <p class="custom-block-text">
+                                            Registrasi jika anda belum memiliki akun. <br>
+                                            Note: Registrasi hanya dilakukan sekali dan dengan akun ketua instansi anda.
                                         </p>
                                     </div>
                                     <div class="text-center mb-2">
                                         <div class="">
                                             <img width="90%"
-                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/landing-page-dispress.png') }}"
-                                                class="img-fluid image-box" alt="">
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/registrasi-landing-page.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan Landing Page">
                                         </div>
-                                        <small class="img-caption-petunjuk">Landing Page Dispress</small>
+                                        <small class="img-caption-petunjuk">Registrasi Dispress</small>
                                     </div>
-                                    <p class="text-page-petunjuk">Dispress (Disposisi Express) adalah Lorem ipsum dolor
-                                        sit amet consectetur,
-                                        adipisicing elit. Maxime adipisci
-                                        deleniti ab assumenda repudiandae fuga distinctio architecto error iste esse.
-                                        Quidem consequuntur tenetur nisi eveniet dolorum officiis ut autem, possimus,
-                                        exercitationem magni quibusdam doloremque ullam molestias, blanditiis voluptates
-                                        consequatur alias! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut
-                                        architecto incidunt dolorum! Ipsa a aspernatur odio reiciendis iste quam quos.
+                                    <p class="text-page-petunjuk">
+                                        Isi semua inputan yang ada di form, jika ada tulisan dalam kurung 'optional' maka
+                                        itu tidak wajib diisi
+                                        <br> <br>
+                                        setelah itu user akan di pindahkan ke tampilan Web Setting, di tampilan ini user
+                                        harus memasukkan data instansi beserta data yang di perlukan untuk membuat surat
+                                        keluar.
+                                    </p>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/web-setting-create-page-1.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan Landing Page">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Web Setting Create Dispress 1</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        Isi semua inputan yang ada di form, jika ada tulisan dalam kurung 'optional' maka
+                                        itu tidak wajib diisi
+                                        <br> <br>
+                                        Header surat yang dimaksud adalah
                                     </p>
                                 </section>
-                                <section class="section-petunjuk mt-4" id="rekomendasi" data-scroll-index="0">
+                                <section class="section-petunjuk mt-4" id="login" data-scroll-index="4">
                                     <h5 class="title-page-petunjuk mb-0"><i class="bi bi-laptop-fill"></i>
-                                        Rekomendasi Perangkat</h5>
+                                        Login</h5>
                                     <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
 
                                     <p class="text-justify">Aplikasi Dispress dapat diakses melalui perangkat berikut:
                                     </p>
 
-                                    <ul class="list-rekomendasi-perangkat">
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Komputer/PC</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Tablet</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Smartphone</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Laptop</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Perangkat Lainnya</li>
-                                    </ul>
-
                                     <p>Kami merekomendasikan untuk menggunakan perangkat dengan resolusi layar minimal
                                         1080p. Dalam mengakses Aplikasi Dispress, perangkat di atas harus terhubung
                                         dengan Internet menggunakan browser.</p>
-                                </section>
-                                <section class="section-petunjuk mt-4" id="browser" data-scroll-index="1">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-browser-chrome"></i>
-                                        Rekomendasi Browser</h5>
-                                    <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
 
-                                    <p class="text-justify">
-                                        DiGi.Ka. dibuat untuk berjalan optimal sesuai dengan fungsi-fungsinya pada
-                                        peramban Google Chrome. Kami merekomendasikan untuk menggunakan peramban
-                                        tersebut, namun Anda juga dapat menggunakan peramban lainnya seperti Mozilla
-                                        Firefox, Microsoft Edge dan peramban lainnya.
-                                    </p>
-                                    <p class="text-justify">
-                                        Pengunaan peramban selain daripada yang direkomendasikan, mungkin saja akan
-                                        menyebabkan beberapa fungsi tidak berjalan sesuai dengan semestinya.
-                                    </p>
-                                </section>
-                                <section class="section-petunjuk mt-4" id="#alamat" data-scroll-index="2">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-globe2"></i>
-                                        Alamat Web</h5>
-                                    <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
-
-                                    <p class="text-justify alamat-web">
-                                        DiGi.Ka. dapat diakses melalui alamat website: <a
-                                            href="https://dispress.smkn4-tng.sch.id/">https://dispress.smkn4-tng.sch.id/</a>
-                                    </p>
                                     <div class="custom-block-warning ">
                                         <p class="custom-block-title mt-1 mb-50">Lanjutkan Petunjuk</p>
                                         <a class="btn btn-sm btn-success mb-2" href="/juknis/dashboard">Lanjutkan

@@ -3,25 +3,6 @@
 @section('css')
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/style.css') }}" />
-
-    <style>
-        .nav-pills .nav-link.active {
-            background-color: transparent !important;
-            color: #1f66b8;
-            font-size: 1rem;
-        }
-
-        .nav-pills .nav-link {
-            background-color: transparent !important;
-            color: #2f4364;
-            font-size: .9rem;
-            padding: 4px 10px;
-        }
-
-        .nav-pills .nav-link:hover {
-            color: #1f66b8;
-        }
-    </style>
 @endsection
 
 @section('content')
@@ -40,7 +21,7 @@
                 </div>
                 <div class="row d-flex justify-content-center gap-3 mx-3">
                     @include('pages.partials.sidebar-petunjuk')
-                    <div class="col-sm-12 col-md-12 col-lg-8 card p-4">
+                    <div class="col-sm-12 col-md-12 col-lg-8 card p-4 petunjuk-wrapper">
                         <div class="tab-content no-padding" id="myTab2Content">
                             <div class="tab-pane fade show active" id="main" role="tabpanel"
                                 aria-labelledby="home-tab4">
@@ -61,7 +42,7 @@
                                         <div class="">
                                             <img width="90%"
                                                 src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/landing-page-dispress.png') }}"
-                                                class="img-fluid image-box" alt="">
+                                                class="img-fluid image-box" alt="Foto Tampilan Landing Page">
                                         </div>
                                         <small class="img-caption-petunjuk">Landing Page Dispress</small>
                                     </div>
@@ -111,7 +92,7 @@
                                         menyebabkan beberapa fungsi tidak berjalan sesuai dengan semestinya.
                                     </p>
                                 </section>
-                                <section class="section-petunjuk mt-4" id="#alamat" data-scroll-index="2">
+                                <section class="section-petunjuk mt-4" id="alamat" data-scroll-index="2">
                                     <h5 class="title-page-petunjuk mb-0"><i class="bi bi-globe2"></i>
                                         Alamat Web</h5>
                                     <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
@@ -122,10 +103,10 @@
                                     </p>
                                     <div class="custom-block-warning ">
                                         <p class="custom-block-title mt-1 mb-50">Lanjutkan Petunjuk</p>
-                                        <a class="btn btn-sm btn-success mb-2" href="/juknis/dashboard">Lanjutkan
+                                        <a class="btn btn-sm btn-success mb-2" href="/petunjuk-teknis/registrasi">Lanjutkan
                                             <i class="bi bi-arrow-right-circle-fill ms-2"></i></a>
                                         <p class="custom-block-text">Klik untuk melanjutkan membaca petunjuk teknis -
-                                            Penjelasan Halaman Dashboard
+                                            Petunjuk Registrasi
                                         </p>
                                     </div>
                                 </section>

@@ -95,7 +95,7 @@
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="fas fa-building"></i>
+                                                            <i class="bi bi-building"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -138,15 +138,15 @@
                                                 <label for="header_surat">Header Surat: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text bg-secondary">
-                                                            <i class="bi bi-telephone-fill"></i>
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-envelope-arrow-up-fill"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
                                                         class="form-control  @error('header_surat') is-invalid @enderror"
-                                                        placeholder="ex: 0878-2730-3388"
-                                                        value="{{ old('header_surat') }}"
-                                                        id="header_surat" name="header_surat" required>
+                                                        placeholder="ex: pemerintah provinsi banten Dinas pendidikan dan kebudayaan unit pelaksanaan teknis"
+                                                        value="{{ old('header_surat') }}" id="header_surat"
+                                                        name="header_surat" required>
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('header_surat')
@@ -160,14 +160,13 @@
                                                 <label for="kota_user">Kota: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text bg-secondary">
-                                                            <i class="bi bi-telephone-fill"></i>
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-geo-alt"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
                                                         class="form-control  @error('kota_user') is-invalid @enderror"
-                                                        placeholder="ex: 0878-2730-3388"
-                                                        value="{{ old('kota_user') }}"
+                                                        placeholder="ex: Tangerang" value="{{ old('kota_user') }}"
                                                         id="kota_user" name="kota_user" required>
                                                 </div>
                                                 <span class="text-danger">

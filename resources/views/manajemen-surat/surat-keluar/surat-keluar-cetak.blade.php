@@ -62,7 +62,7 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 20px;
+            padding-top: 35px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
@@ -162,14 +162,14 @@
                     @endif
                 </div>
                 <div class="keterangan-instansi">
-                    @if ($dataSuratKeluar->header_surat_keluar != null)
+                    @if ($dataWeb->header_surat != null)
                         <h2 style="text-transform: uppercase;" class="header">
-                            {{ $dataSuratKeluar->header_surat_keluar }}</h2>
+                            {{ $dataWeb->header_surat }}</h2>
                     @endif
                     <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
                     </h2>
                     <div class="small">
-                        <span style="display: block;">{{ $dataWeb->instansi->alamat_instansi }}</span>
+                        <span style="display: block;">{!! $dataWeb->instansi->alamat_instansi !!}</span>
                         <span>Telepon : {{ $dataWeb->instansi->nomor_telpon }}</span>
                         <span>Email : {{ $dataWeb->instansi->email }}</span>
                     </div>

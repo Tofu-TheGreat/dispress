@@ -146,7 +146,7 @@
                                         <div class="input-group">
                                             <select
                                                 class="form-control select2  @error('id_user_penerima') is-invalid @enderror "
-                                                id="id_user_penerima" name="id_penerima[]" multiple=""
+                                                id="id_user_penerima" name="id_user_penerima[]" multiple=""
                                                 style="width: 100%;">
                                                 <option disabled>Pilih Tujuan User</option>
                                                 @foreach ($userList as $data)
@@ -159,7 +159,7 @@
                                             </select>
                                         </div>
                                         <span class="text-danger">
-                                            @error('id_penerima')
+                                            @error('id_user_penerima')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -403,6 +403,10 @@
                     `Surat dari ${pengirim}, nomor ${nomorSurat}, tanggal ${moment(tanggalSurat).format('DD-MMMM-YYYY')}, perihal: ${perihal},  untuk`;
 
                 $('#dasar').summernote('code', dasarBaru);
+
+                const tempatPelaksanaan = selectedSuratMasuk ? selectedSuratMasuk.instansi.alamat_instansi :
+                    '';
+                $('#tempat_pelaksanaan').summernote('code', tempatPelaksanaan);
             });
         });
     </script>
@@ -410,8 +414,6 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-99999');
-
-            $('#nip').inputmask('999999999999999999');
 
             // Tambahkan placeholder setelah inisialisasi
             // Inisialisasi Summernote

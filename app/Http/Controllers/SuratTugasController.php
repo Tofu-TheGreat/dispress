@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SuratTugasRequest;
 use App\Models\User;
-use App\Models\Klasifikasi;
 use App\Models\Surat;
-use App\Repository\SuratTugas\SuratTugasRepository;
+use App\Models\Klasifikasi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use App\Http\Requests\SuratTugasRequest;
+use App\Repository\SuratTugas\SuratTugasRepository;
 
 class SuratTugasController extends Controller
 {
@@ -41,6 +42,8 @@ class SuratTugasController extends Controller
      */
     public function create()
     {
+        $this->authorize('admin');
+
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
         $suratMasukList = Surat::with('instansi')->get();
@@ -60,7 +63,10 @@ class SuratTugasController extends Controller
      */
     public function store(SuratTugasRequest $request)
     {
+        $this->authorize('admin');
+
         $this->suratTugasRepository->store($request);
+        return redirect()->intended('/surat-tugas')->with('success', 'Berhasil membuat data surat tugas.');
     }
 
     /**
@@ -68,7 +74,21 @@ class SuratTugasController extends Controller
      */
     public function show(string $id)
     {
-        $dataSuratTugas = $this->suratTugasRepository->show($id);
+        $encryptId = Crypt::decryptString($id);
+        $detailDataSuratTugas = $this->suratTugasRepository->show($encryptId);
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+        $suratMasukList = Surat::with('instansi')->get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-detail', [
+            'title' => 'Surat Tugas Detail',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+            'suratMasukList' => $suratMasukList,
+            'detailDataSuratTugas' => $detailDataSuratTugas,
+        ]);
     }
 
     /**
@@ -76,7 +96,23 @@ class SuratTugasController extends Controller
      */
     public function edit(string $id)
     {
-        $dataSuratTugas = $this->suratTugasRepository->edit($id);
+        $this->authorize('admin');
+
+        $encryptId = Crypt::decryptString($id);
+        $editDataSuratTugas = $this->suratTugasRepository->edit($encryptId);
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+        $suratMasukList = Surat::with('instansi')->get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-edit', [
+            'title' => 'Surat Tugas Edit',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+            'suratMasukList' => $suratMasukList,
+            'editDataSuratTugas' => $editDataSuratTugas,
+        ]);
     }
 
     /**
@@ -84,7 +120,10 @@ class SuratTugasController extends Controller
      */
     public function update(SuratTugasRequest $request, string $id)
     {
+        $this->authorize('admin');
+
         $this->suratTugasRepository->update($id, $request);
+        return redirect()->intended('surat-tugas')->with('success', 'Berhasil mengubah data surat tugas.');
     }
 
     /**
@@ -92,7 +131,9 @@ class SuratTugasController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->suratTugasRepository->destroy($id);
+        $encryptId = Crypt::decryptString($id);
+        $this->suratTugasRepository->destroy($encryptId);
+        return redirect()->intended('surat-tugas')->with('success', 'Berhasil menghapus data surat tugas.');
     }
 
     public function filterData(Request $request)

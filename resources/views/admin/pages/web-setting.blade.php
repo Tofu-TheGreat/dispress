@@ -257,12 +257,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
                                                                     value="{{ $dataWebSetting->header_surat }}"
                                                                     id="header_surat" name="header_surat" readonly>
                                                             </div>
@@ -279,12 +279,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-geo-alt"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('kota_user') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Tangerang"
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" readonly>
                                                             </div>
@@ -415,12 +415,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
                                                                     value="{{ $dataWebSetting->header_surat }}"
                                                                     id="header_surat" name="header_surat" required>
                                                             </div>
@@ -437,12 +437,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-geo-alt"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('kota_user') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Tangerang"
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" required>
                                                             </div>

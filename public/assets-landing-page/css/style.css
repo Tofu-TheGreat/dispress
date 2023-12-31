@@ -1125,13 +1125,22 @@ technical-instructions Section
     transition: all 0.3s ease-in-out;
 }
 
+.sidebar-petunjuk {
+    padding: 13px;
+    border-radius: 5px;
+}
+
+.title-sidebar-petunjuk {
+    font-size: 1.1rem;
+}
+
 .title-petunjuk {
     text-decoration: none !important;
 }
 
 .title-petunjuk h6 {
     color: black;
-    font-size: 1.2rem;
+    font-size: 0.9rem;
 }
 
 .title-petunjuk h6:hover {

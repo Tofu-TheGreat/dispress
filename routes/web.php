@@ -17,7 +17,10 @@ use App\Http\Controllers\Auth\LoginController;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    return view('pages.index', [
+        'title' => 'Landing Page',
+        'active' => 'landing-page'
+    ]);
 });
 
 Route::get('/petunjuk-teknis', [PetunjukTeknisController::class, 'petunjukTeknis']);

@@ -308,15 +308,16 @@
                         </p>
                         <br>
                         <br>
-                        <p class="small">
+                        <p class="small" style="margin-bottom: 0">
                             <span class="text-bold" style="text-decoration: underline; text-transform: uppercase;">
                                 {{ $dataWeb->ketua->nama }}
                             </span>
                             <br>
-                            {{ $dataSuratTugas->pengirim->pangkat }},{{ $dataSuratTugas->pengirim->golongan }}
-                        <p>
-                            NIP. {{ convertToNIP($dataWeb->ketua->nip) }}
                         </p>
+                        <p style="margin-top: 0;font-size: .7rem">
+                            {{ $dataSuratTugas->pengirim->pangkat }},{{ $dataSuratTugas->pengirim->golongan }}
+                            <br>
+                            NIP. {{ convertToNIP($dataWeb->ketua->nip) }}
                         </p>
                     </div>
                 </div>

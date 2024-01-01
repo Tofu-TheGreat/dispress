@@ -91,7 +91,8 @@
                                         {{-- <input type="hidden" name="id_ketua" value="{{ Auth::user()->id_user }}"> --}}
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group ">
-                                                <label for="nama_instansi">Masukkan Nama Instansi: </label>
+                                                <label class="label-form" for=" nama_instansi">Masukkan Nama Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -113,7 +114,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label for="nomor_telpon">Masukkan Nomor Telepon Instansi: </label>
+                                                <label class="label-form" for=" nomor_telpon">Masukkan Nomor Telepon
+                                                    Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -135,7 +138,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label for="header_surat">Header Surat: </label>
+                                                <label class="label-form" for=" header_surat">Header Surat: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -157,7 +160,7 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label for="kota_user">Kota: </label>
+                                                <label class="label-form" for=" kota_user">Kota: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -178,7 +181,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email">Masukkan Email Instansi: </label>
+                                                <label class="label-form" for=" email">Masukkan Email Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -200,7 +204,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                                <label class="label-form" for=" alamat_instansi">Masukkan Alamat
+                                                    Instansi:
+                                                </label>
                                                 <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                                     name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
                                                 <span class="text-danger">
@@ -213,7 +219,7 @@
 
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="id_ketua">Ketua Instansi: </label>
+                                                <label class="label-form" for=" id_ketua">Ketua Instansi: </label>
                                                 <div class="input-group">
                                                     <select
                                                         class="filter select2 @error('id_ketua') is-invalid  @enderror "
@@ -234,7 +240,8 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label for="default_logo">Set Default Logo Instansi:
+                                                    <label class="label-form" for=" default_logo">Set Default Logo
+                                                        Instansi:
                                                         (Optional)</label>
                                                     <small class="d-block">Catatan: masukkan logo dengan format
                                                         (JPEG, PNG,

@@ -11,7 +11,7 @@
         <section class="technical-instructions section-padding">
             <div class="container">
                 <div class="row justify-content-center">
-                    <div class="col-lg-12">
+                    <div class="col-lg-12 mt-5">
                         <div class="section-title" data-aos="zoom-in-up" data-aos-duration="1400">
                             <h2>
                                 Petunjuk <span>Teknis <i class="bi bi-book-half"></i></span>
@@ -106,7 +106,7 @@
                                         <a class="btn btn-sm btn-success mb-2" href="/petunjuk-teknis/registrasi">Lanjutkan
                                             <i class="bi bi-arrow-right-circle-fill ms-2"></i></a>
                                         <p class="custom-block-text">Klik untuk melanjutkan membaca petunjuk teknis -
-                                            Petunjuk Registrasi
+                                            Petunjuk registrasi
                                         </p>
                                     </div>
                                 </section>

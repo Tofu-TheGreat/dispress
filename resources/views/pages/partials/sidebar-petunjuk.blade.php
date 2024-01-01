@@ -48,13 +48,23 @@
                         class="bi bi-unlock-fill me-2"></i>
                     Login</a>
             </li>
-            {{-- <a class="title-petunjuk mt-2" href="/petunjuk-teknis/dashboard">
+            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/dashboard">
                 <h6 class="">Role</h6>
             </a>
             <li class="nav-item">
-                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-dashboard#akun"
-                    data-bs-target="petunjuk-dashboard#akun"><i class="bi bi-person-badge-fill me-2"></i>
+                <a class="nav-link" href="/petunjuk-teknis/role#admin" data-bs-target="#admin"><i <i
+                        class="bi bi-person-fill-gear me-2"></i>
                     Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/petunjuk-teknis/role#officer" data-bs-target="#officer"><i <i
+                        class="bi bi-person-fill-lock me-2"></i>
+                    Officer</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/petunjuk-teknis/role#staff" data-bs-target="#staff"><i <i
+                        class="bi bi-person-fill me-2"></i>
+                    Staff</a>
             </li>
             <a class="title-petunjuk mt-2" href="/petunjuk-teknis/user">
                 <h6 class="">User</h6>
@@ -63,7 +73,7 @@
                 <a class="nav-link" data-scroll-nav="0" href="/petunjuk-user#user"
                     data-bs-target="petunjuk-user#user"><i class="bi bi-person-fill me-2"></i>
                     User</a>
-            </li> --}}
+            </li>
         </ul>
     </div>
 </div>

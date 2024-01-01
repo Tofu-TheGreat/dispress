@@ -352,6 +352,12 @@ Register Section
     margin: 10px auto auto auto;
 }
 
+.register .card-register {
+    background-color: var(--black-100);
+    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-black-100);
+}
+
 .register .container .form-register {
     padding: 30px;
 }
@@ -392,12 +398,23 @@ Register Section
 .register .form-input label {
     margin-top: 5px;
     font-size: 0.9rem;
+    color: var(--white-900);
 }
 
 .register .form-input input {
     height: 45px;
     border-radius: 10px;
     margin-bottom: 25px;
+    box-shadow: var(--shadow-black-100);
+    background-color: #f5f5f5d3;
+}
+
+.register .form-input select {
+    height: 45px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow-black-100);
+    background-color: #f5f5f5d3;
 }
 
 .register .register-text h1 {
@@ -503,6 +520,11 @@ Register Section
     position: relative;
     text-align: center;
     margin-right: 20px;
+    color: var(--white-900);
+}
+
+.text-register small {
+    color: var(--white-900) !important;
 }
 
 .effect-wrap {

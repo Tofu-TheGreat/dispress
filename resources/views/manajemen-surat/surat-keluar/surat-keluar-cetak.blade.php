@@ -46,11 +46,11 @@
         }
 
         .logo-wrapper {
-            width: 110px;
-            padding-top: 20px;
+            width: 95px;
+            padding-top: 25px;
             padding-bottom: 10px;
             padding-right: 5px;
-            padding-left: 20px;
+            padding-left: 30px;
             float: left;
         }
 
@@ -62,7 +62,7 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 35px;
+            padding-top: 15px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
@@ -123,6 +123,10 @@
 
         .isi-surat {
             margin-top: 10px;
+        }
+
+        .isi-surat p {
+            text-align: justify;
         }
 
         .ttd {
@@ -199,7 +203,7 @@
             <div class="ttd">
                 <div class="ttd-disposisi">
                     <div class="tanggal-tdd">
-                        <p class="small">Tangerang, <span>...........................</span>
+                        <p class="small">{{ $dataWeb->kota_user }}, <span>...........................</span>
                             <br>
                             Plt. Kepala {{ $dataWeb->instansi->nama_instansi }}
                         </p>

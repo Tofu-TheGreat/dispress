@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Surat;
+use App\Models\SuratTugas;
+use App\Models\WebSetting;
 use App\Models\Klasifikasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Http\Requests\SuratTugasRequest;
 use App\Repository\SuratTugas\SuratTugasRepository;
+use Mccarlosen\LaravelMpdf\Facades\LaravelMpdf as PDF;
 
 class SuratTugasController extends Controller
 {
@@ -134,6 +137,28 @@ class SuratTugasController extends Controller
         $encryptId = Crypt::decryptString($id);
         $this->suratTugasRepository->destroy($encryptId);
         return redirect()->intended('surat-tugas')->with('success', 'Berhasil menghapus data surat tugas.');
+    }
+
+    public function cetakSuratTugas($id)
+    {
+        $encryptId = Crypt::decryptString($id);
+        $dataSuratTugas = SuratTugas::where('id_surat_tugas', $encryptId)->first();
+        $dataWeb = WebSetting::first();
+        // $pdfcetak = $this->disposisiRepository->cetakDisposisi($encryptId);
+
+        // return $pdfcetak->stream();
+
+        $pdf = PDF::loadView(
+            'manajemen-surat.surat-tugas.surat-tugas-cetak',
+            ['dataSuratTugas' => $dataSuratTugas, 'dataWeb' => $dataWeb]
+        );
+
+        // You can save the PDF to a file or return it as a response.
+        // Example: Save to a file
+        // $pdf->save(storage_path('app/public/example.pdf'));
+
+        // Example: Return as a response
+        return $pdf->stream('example.pdf');
     }
 
     public function filterData(Request $request)

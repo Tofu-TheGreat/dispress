@@ -6,6 +6,14 @@
 
 <body>
     <div id="app">
+        <!-- Preloader Start -->
+        <div class="preloader">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+        <!-- Preloader End -->
+
         {{-- Alert --}}
         @include('sweetalert::alert')
         <div class="main-wrapper main-wrapper-1">

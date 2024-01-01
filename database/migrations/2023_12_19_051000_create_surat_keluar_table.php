@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('sifat_surat_keluar', 20);
             $table->string('perihal', 50);
             $table->text('isi_surat');
-            $table->string('tembusan', 50)->nullable()->default('tidak ada tembusan');
+            $table->text('tembusan', 50)->nullable();
             $table->timestamps();
         });
     }

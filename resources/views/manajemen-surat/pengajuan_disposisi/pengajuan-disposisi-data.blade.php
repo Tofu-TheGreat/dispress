@@ -913,6 +913,34 @@
     {{-- summernote --}}
     <script>
         $(document).ready(function() {
+            $('#catatan_disposisi').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                inheritPlaceholder: true,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+                callbacks: {
+                    onInit: function() {
+                        // Tambahkan placeholder saat inisialisasi
+                        $(this).summernote('pasteHTML',
+                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Laksanakan rapat</span>'
+                        );
+                    },
+                    onFocus: function() {
+                        // Hapus placeholder saat editor fokus
+                        $(this).find('.placeholder').remove();
+                    },
+                }
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
                 minHeight: 150,

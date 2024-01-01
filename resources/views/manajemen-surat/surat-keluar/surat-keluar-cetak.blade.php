@@ -46,11 +46,11 @@
         }
 
         .logo-wrapper {
-            width: 110px;
-            padding-top: 20px;
+            width: 95px;
+            padding-top: 25px;
             padding-bottom: 10px;
             padding-right: 5px;
-            padding-left: 20px;
+            padding-left: 30px;
             float: left;
         }
 
@@ -62,7 +62,7 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 20px;
+            padding-top: 15px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
@@ -125,6 +125,10 @@
             margin-top: 10px;
         }
 
+        .isi-surat p {
+            text-align: justify;
+        }
+
         .ttd {
             margin-top: 35px;
         }
@@ -162,14 +166,14 @@
                     @endif
                 </div>
                 <div class="keterangan-instansi">
-                    @if ($dataSuratKeluar->header_surat_keluar != null)
+                    @if ($dataWeb->header_surat != null)
                         <h2 style="text-transform: uppercase;" class="header">
-                            {{ $dataSuratKeluar->header_surat_keluar }}</h2>
+                            {{ $dataWeb->header_surat }}</h2>
                     @endif
                     <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
                     </h2>
                     <div class="small">
-                        <span style="display: block;">{{ $dataWeb->instansi->alamat_instansi }}</span>
+                        <span style="display: block;">{!! $dataWeb->instansi->alamat_instansi !!}</span>
                         <span>Telepon : {{ $dataWeb->instansi->nomor_telpon }}</span>
                         <span>Email : {{ $dataWeb->instansi->email }}</span>
                     </div>
@@ -199,7 +203,7 @@
             <div class="ttd">
                 <div class="ttd-disposisi">
                     <div class="tanggal-tdd">
-                        <p class="small">Tangerang, <span>...........................</span>
+                        <p class="small">{{ $dataWeb->kota_user }}, <span>...........................</span>
                             <br>
                             Plt. Kepala {{ $dataWeb->instansi->nama_instansi }}
                         </p>
@@ -215,6 +219,13 @@
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <div class="tembusan" style="line-height: .2">
+                <p>Tembusan disampaikan kepada Yth:</p>
+                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
+                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
+                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
             </div>
         </div>
     </div>

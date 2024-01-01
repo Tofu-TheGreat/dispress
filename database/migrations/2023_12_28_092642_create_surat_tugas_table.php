@@ -25,7 +25,7 @@ return new class extends Migration
             $table->time('waktu_mulai');
             $table->time('waktu_selesai');
             $table->text('tujuan_pelaksanaan');
-            $table->string('tempat_pelaksanaan', 100);
+            $table->text('tempat_pelaksanaan');
             $table->text('tembusan');
             $table->timestamps();
             // $table->string('lokasi_surat_tugas', 100); //penggunaan sebagai dimana surat dikeluarkan contohnya dalam ((Tangerang)), 12 Oktober 2023

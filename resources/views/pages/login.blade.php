@@ -54,8 +54,8 @@
                     <img class="logo-login pb-4 d-lg-block" src="{{ asset('/assets-landing-page/img/logo-brand.svg') }}"
                         alt="logo-dispress" width="250px" />
                 </div>
-                <div class="col-lg-10 card rounded-4 card-login">
-                    <div class="row align-items-center">
+                <div class="col-lg-10 card rounded-4 card-login ">
+                    <div class="row align-items-center ">
                         <div class="col-md-5 text-center order-lg-last">
                             <div class="login-img me-5" data-aos="fade-up-left" data-aos-duration="1600">
                                 <img class="login-img" src="{{ asset('/assets-landing-page/img/login-img.png') }}"

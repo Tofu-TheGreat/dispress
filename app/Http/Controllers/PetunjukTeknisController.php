@@ -8,11 +8,14 @@ class PetunjukTeknisController extends Controller
 {
     public function petunjukTeknis()
     {
-        return view('pages.petunjuk-teknis.petunjuk-teknis', ['title' => 'Petunjuk Teknis']);
+        return view(
+            'pages.petunjuk-teknis.petunjuk-teknis',
+            ['title' => 'Petunjuk Teknis', 'active' => 'petunjuk-teknis']
+        );
     }
     public function petunjukRegistrasi()
     {
-        return view('pages.petunjuk-teknis.petunjuk-registrasi', ['title' => 'Petunjuk Teknis']);
+        return view('pages.petunjuk-teknis.petunjuk-registrasi', ['title' => 'Petunjuk Registrasi', 'active' => 'petunjuk-registrasi']);
     }
 
     public function petunjukDashboard()

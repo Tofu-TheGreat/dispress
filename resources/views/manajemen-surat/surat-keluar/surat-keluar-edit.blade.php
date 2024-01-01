@@ -172,28 +172,6 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
-                                        <label for="tembusan">Masukkan Tembusan: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text bg-secondary">
-                                                    <i class="bi bi-person-fill-exclamation"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('tembusan') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas"
-                                                value="{{ $editDataSuratKeluar->tembusan }}" id="tembusan"
-                                                name="tembusan" autofocus>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('tembusan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group ">
                                         <label for="sifat_surat_keluar">Masukkan Sifat Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -233,6 +211,18 @@
                                             id="isi_surat" name="isi_surat" required> {{ $editDataSuratKeluar->isi_surat }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="tembusan">Masukkan Tembusan (optional): </label>
+                                        <textarea class="summernote @error('tembusan') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="tembusan" name="tembusan" required> {{ $editDataSuratKeluar->tembusan }} </textarea>
+                                        <span class="text-danger">
+                                            @error('tembusan')
                                                 {{ $message }}
                                             @enderror
                                         </span>

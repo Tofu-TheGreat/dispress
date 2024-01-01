@@ -174,9 +174,8 @@
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('sifat_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas"
-                                                value="{{ old('sifat_surat_keluar') }}" id="sifat_surat_keluar"
-                                                name="sifat_surat_keluar" required>
+                                                placeholder="ex: Penting" value="{{ old('sifat_surat_keluar') }}"
+                                                id="sifat_surat_keluar" name="sifat_surat_keluar" required>
                                         </div>
                                         <span class="text-danger">
                                             @error('sifat_surat_keluar')
@@ -360,19 +359,6 @@
                 ['insert', ['link']],
                 ['view', ['codeview', 'help']],
             ],
-            // Opsi Summernote
-            callbacks: {
-                onInit: function() {
-                    // Tambahkan placeholder saat inisialisasi
-                    $(this).summernote('pasteHTML',
-                        '<span contenteditable="false" class="placeholder" style="color: gray;">ex: 1. Wakil kepala sekolah <br> 2. Kepala Sekolah</span>'
-                    );
-                },
-                onFocus: function() {
-                    // Hapus placeholder saat editor fokus
-                    $(this).find('.placeholder').remove();
-                },
-            }
         });
     </script>
 

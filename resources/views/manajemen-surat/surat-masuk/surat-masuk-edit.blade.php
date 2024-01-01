@@ -174,7 +174,7 @@
                                             </div>
                                         </div>
                                         @can('admin')
-                                            <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <div class="col-12">
                                                 <div class="form-group ">
                                                     <label for="status_verifikasi">Verifikasi Surat: </label>
                                                     <div class="input-group">
@@ -205,8 +205,6 @@
                                                     </span>
                                                 </div>
                                             </div>
-                                        @endcan
-                                        @can('admin')
                                             <div class="col-12">
                                                 <div class="form-group">
                                                     <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
@@ -324,6 +322,36 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
+
+            $('#catatan_verifikasi').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
+            $('#isi_surat').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
         });
     </script>
 @endsection

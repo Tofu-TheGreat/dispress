@@ -311,29 +311,19 @@
     </script>
 
     <script>
-        document.body.addEventListener("click", function(event) {
-                    const element = event.target;
-                    const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-                    if (element.classList.contains("tombol-hapus")) {
-                        swal({
-                                title: 'Apakah anda yakin?',
-                                text: 'Ingin menghapus data Surat ini!',
-                                icon: 'warning',
-                                buttons: true,
-                                dangerMode: true,
-                            })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal('Data Surat berhasil dihapus!', {
-                                        icon: 'success',
-                                    });
-                                    element.closest('form').submit();
-                                } else {
-                                    swal('Data Surat tidak jadi dihapus!');
-                                }
-                            });
-                    }
+        $('.summernote').summernote({
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
     </script>
 
     <script>

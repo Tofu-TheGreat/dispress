@@ -165,27 +165,6 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
-                                        <label for="tembusan">Masukkan Tembusan: (optional) </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-fill-exclamation"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('tembusan') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas" value="{{ old('tembusan') }}"
-                                                id="tembusan" name="tembusan" autofocus>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('tembusan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group ">
                                         <label for="sifat_surat_keluar">Masukkan Sifat Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -225,6 +204,18 @@
                                             id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="tembusan">Masukkan Tembusan (optional): </label>
+                                        <textarea class="summernote @error('tembusan') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="tembusan" name="tembusan"> {{ old('tembusan') }} </textarea>
+                                        <span class="text-danger">
+                                            @error('tembusan')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -299,6 +290,89 @@
                 // Contoh: Menetapkan nilai ke elemen dengan ID 'nomor_surat_keluar'
                 $('#nomor_surat_keluar').val(selectedKlasifikasi ? nomorSuratBaru : '');
             });
+        });
+    </script>
+
+    <script>
+        $('#tujuan_surat_keluar').summernote({
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+            // Opsi Summernote
+            callbacks: {
+                onInit: function() {
+                    // Tambahkan placeholder saat inisialisasi
+                    $(this).summernote('pasteHTML',
+                        '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Kepala Sekolah SMKN 3 Tangerang <br> Di Tempat.</span>'
+                    );
+                },
+                onFocus: function() {
+                    // Hapus placeholder saat editor fokus
+                    $(this).find('.placeholder').remove();
+                },
+            }
+        });
+
+        $('#isi_surat').summernote({
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+            // Opsi Summernote
+            callbacks: {
+                onInit: function() {
+                    // Tambahkan placeholder saat inisialisasi
+                    $(this).summernote('pasteHTML',
+                        '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakanoleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakanmateri tambahan jika diperlukan.</span>'
+                    );
+                },
+                onFocus: function() {
+                    // Hapus placeholder saat editor fokus
+                    $(this).find('.placeholder').remove();
+                },
+            }
+        });
+
+        $('#tembusan').summernote({
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+            // Opsi Summernote
+            callbacks: {
+                onInit: function() {
+                    // Tambahkan placeholder saat inisialisasi
+                    $(this).summernote('pasteHTML',
+                        '<span contenteditable="false" class="placeholder" style="color: gray;">ex: 1. Wakil kepala sekolah <br> 2. Kepala Sekolah</span>'
+                    );
+                },
+                onFocus: function() {
+                    // Hapus placeholder saat editor fokus
+                    $(this).find('.placeholder').remove();
+                },
+            }
         });
     </script>
 

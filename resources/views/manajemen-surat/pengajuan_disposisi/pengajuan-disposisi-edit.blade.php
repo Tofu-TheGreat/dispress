@@ -393,9 +393,30 @@
 
     <script>
         $(document).ready(function() {
+            $('#catatan_pengajuan').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
+            // Tambahkan event listener untuk 'summernote.blur'
+            $('#catatan_pengajuan').on('summernote.blur', function() {
+                // Hapus placeholder saat editor kehilangan fokus
+                $(this).find('.placeholder').remove();
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
-                minHeight: 150,
+                minHeight: 120,
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough']],

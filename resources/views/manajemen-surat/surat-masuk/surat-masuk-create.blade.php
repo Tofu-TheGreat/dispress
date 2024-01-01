@@ -159,7 +159,7 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="catatan_verifikasi">Masukkan Verifikasi Surat: </label>
+                                        <label for="catatan_verifikasi">Masukkan Catatan Verifikasi Surat: </label>
                                         <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
                                             placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ old('catatan_verifikasi') }} </textarea>
                                         <span class="text-danger">
@@ -259,6 +259,60 @@
             $('.phone').inputmask('9999-9999-99999');
 
             $('#nip').inputmask('999999999999999999');
+
+            $('#isi_surat').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+                callbacks: {
+                    onInit: function() {
+                        // Tambahkan placeholder saat inisialisasi
+                        $(this).summernote('pasteHTML',
+                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Perihal undangan rapat</span>'
+                        );
+                    },
+                    onFocus: function() {
+                        // Hapus placeholder saat editor fokus
+                        $(this).find('.placeholder').remove();
+                    },
+                }
+            });
+
+            $('#catatan_verifikasi').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+                callbacks: {
+                    onInit: function() {
+                        // Tambahkan placeholder saat inisialisasi
+                        $(this).summernote('pasteHTML',
+                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Tolong untuk di verifikasi pa/bu</span>'
+                        );
+                    },
+                    onFocus: function() {
+                        // Hapus placeholder saat editor fokus
+                        $(this).find('.placeholder').remove();
+                    },
+                }
+            });
         });
     </script>
 @endsection

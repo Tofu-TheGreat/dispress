@@ -528,9 +528,23 @@
     {{-- handle disable summernote --}}
     <script>
         $(document).ready(function() {
+            $('#catatan_disposisi').summernote({
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
-                minHeight: 150,
+                minHeight: 120,
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough']],

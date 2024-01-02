@@ -45,56 +45,11 @@
                         </div>
                     </div>
                     <div class="card-body ">
-                        <form action="{{ route('surat-keluar.store') }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('surat-tugas.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <input type="text" name="id_user" id="" hidden value="{{ Auth::user()->id_user }}">
 
                             <div class="row">
-
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="header_surat_keluar">Masukkan Header Surat (optional) :</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-list-ol"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('header_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: KEMENTRIAN WISATA REPUBLIK INDONESIA"
-                                                value="{{ old('header_surat_keluar') }}" id="header_surat_keluar"
-                                                name="header_surat_keluar" required autofocus>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('header_surat_keluar')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="jumlah_lampiran">Masukkan Jumlah Lampiran:</label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-list-ol"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('jumlah_lampiran') is-invalid @enderror"
-                                                placeholder="ex: 1..2" value="{{ old('jumlah_lampiran') }}"
-                                                id="jumlah_lampiran" name="jumlah_lampiran" required autofocus>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('jumlah_lampiran')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
                                 <div class=" col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
                                         <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
@@ -123,9 +78,10 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="nomor_surat_keluar">Masukkan Nomor Surat: </label>
+
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="nomor_surat_tugas">Nomor Surat Tugas:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
@@ -133,73 +89,175 @@
                                                 </div>
                                             </div>
                                             <input type="text"
-                                                class="form-control @error('nomor_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: 090/1928-TU/2023" value="{{ old('nomor_surat_keluar') }}"
-                                                id="nomor_surat_keluar" name="nomor_surat_keluar" required autofocus>
+                                                class="form-control @error('nomor_surat_tugas') is-invalid @enderror"
+                                                placeholder="ex: 090/1928-TU/2023" placeholder="Nomor Surat Tugas"
+                                                value="{{ old('nomor_surat_tugas') }}" id="nomor_surat_tugas"
+                                                name="nomor_surat_tugas" required autofocus>
                                         </div>
                                         <span class="text-danger">
-                                            @error('nomor_surat_keluar')
+                                            @error('nomor_surat_tugas')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
-                                <div class=" col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="perihal">Masukkan Perihal Surat: </label>
+                                <!-- Formulir untuk kolom 'id_user_penerima' (array) -->
+                                <div class="col-12 ">
+                                    <div class="form-group">
+                                        <label for="id_user_penerima">Orang yang ditugaskan:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-envelope"></i>
+                                                    <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control @error('perihal') is-invalid @enderror"
-                                                placeholder="ex: Undangan Rapat" value="{{ old('perihal') }}"
-                                                id="perihal" name="perihal" required autofocus>
+                                            <select
+                                                class="form-control select2  @error('id_user_penerima') is-invalid @enderror "
+                                                id="id_user_penerima" multiple="" name="id_user_penerima[]" required>
+                                                <option disabled>Pilih User</option>
+                                                @foreach ($userList as $data)
+                                                    <option value="{{ $data->id_user }}"
+                                                        {{ old('id_user_penerima') == $data->id_user ? 'selected' : '' }}>
+                                                        {{ $data->nama }}</option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                         <span class="text-danger">
-                                            @error('perihal')
+                                            @error('id_user_penerima')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
+
+                                <!-- Formulir untuk kolom 'tanggal_mulai' -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="tanggal_surat_keluar">Masukkan Tanggal Surat:
-                                        </label>
+                                        <label for="tanggal_mulai">Tanggal Mulai:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-calendar3"></i>
+                                                    <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
                                             <input type="date"
-                                                class="form-control datepicker tanggal_surat_keluar @error('tanggal_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: 11/14/2023" value="{{ old('tanggal_surat_keluar') }}"
-                                                id="tanggal_surat_keluar" name="tanggal_surat_keluar" required>
+                                                class="form-control @error('tanggal_mulai') is-invalid @enderror"
+                                                placeholder="Tanggal Mulai" value="{{ old('tanggal_mulai') }}"
+                                                id="tanggal_mulai" name="tanggal_mulai">
                                         </div>
                                         <span class="text-danger">
-                                            @error('tanggal_surat_keluar')
+                                            @error('tanggal_mulai')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
+
+                                <!-- Formulir untuk kolom 'tanggal_selesai' -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="tembusan">Masukkan Tembusan: (optional) </label>
+                                    <div class="form-group">
+                                        <label for="tanggal_selesai">Tanggal Selesai:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-person-fill-exclamation"></i>
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="date"
+                                                class="form-control @error('tanggal_selesai') is-invalid @enderror"
+                                                placeholder="Tanggal Selesai" value="{{ old('tanggal_selesai') }}"
+                                                id="tanggal_selesai" name="tanggal_selesai">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('tanggal_selesai')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Formulir untuk kolom 'waktu_mulai' -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="waktu_mulai">Waktu Mulai:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="time"
+                                                class="form-control @error('waktu_mulai') is-invalid @enderror"
+                                                placeholder="Waktu Mulai" value="{{ old('waktu_mulai') }}"
+                                                id="waktu_mulai" name="waktu_mulai">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('waktu_mulai')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Formulir untuk kolom 'waktu_selesai' -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="waktu_selesai">Waktu Selesai:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="time"
+                                                class="form-control @error('waktu_selesai') is-invalid @enderror"
+                                                placeholder="Waktu Selesai" value="{{ old('waktu_selesai') }}"
+                                                id="waktu_selesai" name="waktu_selesai">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('waktu_selesai')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Formulir untuk kolom 'tempat_pelaksanaan' -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="tempat_pelaksanaan">Tempat Pelaksanaan:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
+                                                </div>
+                                            </div>
+                                            <input type="text"
+                                                class="form-control @error('tempat_pelaksanaan') is-invalid @enderror"
+                                                placeholder="Tempat Pelaksanaan" value="{{ old('tempat_pelaksanaan') }}"
+                                                id="tempat_pelaksanaan" name="tempat_pelaksanaan">
+                                        </div>
+                                        <span class="text-danger">
+                                            @error('tempat_pelaksanaan')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <!-- Formulir untuk kolom 'tembusan' -->
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="tembusan">Tembusan:</label>
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text">
+                                                    <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
                                                 class="form-control @error('tembusan') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas" value="{{ old('tembusan') }}"
-                                                id="tembusan" name="tembusan" autofocus>
+                                                placeholder="Tembusan" value="{{ old('tembusan') }}" id="tembusan"
+                                                name="tembusan">
                                         </div>
                                         <span class="text-danger">
                                             @error('tembusan')
@@ -208,23 +266,13 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-sm-12 col-md-6 col-lg-6">
-                                    <div class="form-group ">
-                                        <label for="sifat_surat_keluar">Masukkan Sifat Surat: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-envelope-exclamation-fill"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('sifat_surat_keluar') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas"
-                                                value="{{ old('sifat_surat_keluar') }}" id="sifat_surat_keluar"
-                                                name="sifat_surat_keluar" required>
-                                        </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="tujuan_pelaksanaan">Masukkan Tujuan Pelaksanaan: </label>
+                                        <textarea class="summernote-simple @error('tujuan_pelaksanaan') is-invalid @enderror"
+                                            placeholder="ex: Perihal rapat paripurna" id="tujuan_pelaksanaan" name="tujuan_pelaksanaan" required> {{ old('tujuan_pelaksanaan') }} </textarea>
                                         <span class="text-danger">
-                                            @error('sifat_surat_keluar')
+                                            @error('tujuan_pelaksanaan')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -232,31 +280,18 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
-                                        <label for="tujuan_surat_keluar">Masukkan Tujuan Surat: </label>
-                                        <textarea class="summernote @error('tujuan_surat_keluar') is-invalid @enderror"
-                                            placeholder="ex: Kepala sekolah SMMPN 1 Cimahi" id="tujuan_surat_keluar" name="tujuan_surat_keluar" required> {{ old('tujuan_surat_keluar') }} </textarea>
+                                        <label for="dasar">Masukkan Dasar Surat(optional): </label>
+                                        <textarea class="summernote-simple @error('dasar') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="dasar" name="dasar" required> {{ old('dasar') }} </textarea>
                                         <span class="text-danger">
-                                            @error('tujuan_surat_keluar')
+                                            @error('dasar')
                                                 {{ $message }}
                                             @enderror
                                         </span>
                                     </div>
                                 </div>
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label for="isi_surat">Masukkan Isi Surat: </label>
-                                        <textarea class="summernote @error('isi_surat') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
-                                            id="isi_surat" name="isi_surat" required> {{ old('isi_surat') }} </textarea>
-                                        <span class="text-danger">
-                                            @error('isi_surat')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <input type="id_user" class="form-control @error('id_user') is-invalid @enderror"
-                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}"
-                                    id="id_user" name="id_user" hidden>
+
+
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">

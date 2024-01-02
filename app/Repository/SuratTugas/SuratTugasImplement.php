@@ -18,16 +18,18 @@ class SuratTugasImplement implements SuratTugasRepository
 
     public function index()
     {
-        $this->suratTugas->get();
+        return $this->suratTugas->paginate(6);
     }
     public function store($data)
     {
+        $idUsersArray = [$data->id_user_penerima];
+        $idUsersJson = json_encode($idUsersArray);
         $this->suratTugas->create([
             'id_klasifikasi' => $data['id_klasifikasi'],
             'nomor_surat_tugas' => $data['nomor_surat_tugas'],
             'id_user' => Auth::user()->id_user,
             'dasar' => $data['dasar'],
-            'id_user_penerima' => $data['id_user_penerima'],
+            'id_user_penerima' => $idUsersJson,
             'tanggal_mulai' => $data['tanggal_mulai'],
             'tanggal_selesai' => $data['tanggal_selesai'],
             'waktu_mulai' => $data['waktu_mulai'],

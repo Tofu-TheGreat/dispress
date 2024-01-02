@@ -22,17 +22,17 @@ class SuratTugasController extends Controller
      */
     public function index()
     {
+        $suratTugasList =  $this->suratTugasRepository->index();
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
-        $suratTugasList =  $this->suratTugasRepository->index();
 
         return view('manajemen-surat.surat-tugas.surat-tugas-data', [
             'title' => 'Surat Tugas',
             'active1' => 'surat-keluar',
             'active' => 'surat-tugas',
+            'suratTugasList' => $suratTugasList,
             'klasifikasiList' => $klasifikasiList,
             'userList' => $userList,
-            'suratTugasList' => $suratTugasList,
         ]);
     }
 
@@ -41,7 +41,16 @@ class SuratTugasController extends Controller
      */
     public function create()
     {
-        //
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-create', [
+            'title' => 'Surat Tugas',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+        ]);
     }
 
     /**
@@ -50,6 +59,7 @@ class SuratTugasController extends Controller
     public function store(SuratTugasRequest $request)
     {
         $this->suratTugasRepository->store($request);
+        return redirect()->intended('surat-tugas')->with('success', 'Berhasil membuat surat tugas');
     }
 
     /**

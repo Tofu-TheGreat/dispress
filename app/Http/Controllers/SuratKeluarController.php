@@ -45,7 +45,7 @@ class SuratKeluarController extends Controller
      */
     public function create()
     {
-        $this->authorize('admin-officer');
+        $this->authorize('admin');
 
         $instansiList = Instansi::get();
         $klasifikasiList = Klasifikasi::get();
@@ -64,7 +64,7 @@ class SuratKeluarController extends Controller
      */
     public function store(SuratKeluarRequest $request)
     {
-        $this->authorize('admin-officer');
+        $this->authorize('admin');
 
         $this->suratKeluarRepository->store($request);
         return redirect()->intended('/surat-keluar')->with('success', 'Berhasil membuat data surat keluar.');
@@ -94,7 +94,7 @@ class SuratKeluarController extends Controller
      */
     public function edit(string $id)
     {
-        $this->authorize('admin-officer');
+        $this->authorize('admin');
         $encryptId = Crypt::decryptString($id);
         $editDataSuratKeluar = $this->suratKeluarRepository->show($encryptId);
         $instansiList = Instansi::get();
@@ -114,7 +114,7 @@ class SuratKeluarController extends Controller
      */
     public function update(SuratKeluarRequest $request, string $id)
     {
-        $this->authorize('admin-officer');
+        $this->authorize('admin');
         $this->suratKeluarRepository->update($id, $request);
         return redirect()->intended('surat-keluar')->with('success', 'Berhasil mengubah data surat keluar.');
     }
@@ -124,7 +124,7 @@ class SuratKeluarController extends Controller
      */
     public function destroy(string $id)
     {
-        $this->authorize('admin-officer');
+        $this->authorize('admin');
         $encryptId = Crypt::decryptString($id);
         $this->suratKeluarRepository->destroy($encryptId);
         return redirect()->intended('surat-keluar')->with('success', 'Berhasil menghapus data surat keluar.');

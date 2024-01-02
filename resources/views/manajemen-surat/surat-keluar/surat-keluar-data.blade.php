@@ -170,7 +170,7 @@
                             <h4 class="text-primary judul-page">List Surat Keluar</h4>
                         </div>
                         <div class="col-lg-1 col-sm-4 btn-group">
-                            @can('admin-officer')
+                            @can('admin')
                                 {{-- Button Tambah Data --}}
                                 <a href="/surat-keluar/create" class="text-white">
                                     <button type="button" class="btn btn-primary" data-toggle="tooltip"
@@ -243,7 +243,7 @@
                                                                 {{ date('d-F-Y', strtotime($data->tanggal_surat_keluar)) }}
                                                                 --</p>
                                                             <div class="d-flex flex-column btn-group-action">
-                                                                @can('admin-officer')
+                                                                @can('admin')
                                                                     <a href="{{ route('surat-keluar.show', Crypt::encryptString($data->id_surat_keluar)) }}"
                                                                         data-toggle="tooltip" data-placement="top"
                                                                         title="Detail data surat"
@@ -273,6 +273,15 @@
                                                                     </form>
                                                                 @endcan
                                                             </div>
+                                                            @cannot('admin')
+                                                                <a href="{{ route('surat-keluar.show', Crypt::encryptString($data->id_surat_keluar)) }}"
+                                                                    data-toggle="tooltip" data-placement="right"
+                                                                    title="Detail data surat keluar"
+                                                                    data-original-title="Detail data surat keluar"
+                                                                    class="btn btn-info has-icon text-white mr-1"
+                                                                    href=""><i class="bi bi-eye"></i>
+                                                                </a>
+                                                            @endcannot
                                                         </div>
                                                         <div
                                                             class="card-footer d-flex justify-content-between position-relative">

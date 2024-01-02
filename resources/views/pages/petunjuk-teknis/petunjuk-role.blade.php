@@ -26,16 +26,14 @@
                             <div class="tab-pane fade show active" id="main" role="tabpanel"
                                 aria-labelledby="home-tab4">
                                 <section class="section-petunjuk">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-door-closed-fill"></i>
-                                        Selamat Datang</h5>
+                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-person-exclamation"></i>
+                                        Petunjuk Role</h5>
                                     <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
                                     <div class="custom-block-warning mb-4">
                                         <p class="custom-block-title mt-1 mb-50">Perhatian</p>
-                                        <p class="custom-block-text">Anda sedang membaca petunjuk teknis Dispress versi
-                                            <b class="bold-main">v.1.0</b> <br>
-                                            Progress Petunjuk teknis ini baru mencakup <b class="bold-main">20%</b>
-                                            dari keseluruhan
-                                            fungsi Dispress
+                                        <p class="custom-block-text">
+                                            Dispress (Disposisi Express), Memiliki 3 role yaitu Admin, Officer, Staff setiap
+                                            role memiliki hak aksesnya masing-masing.
                                         </p>
                                     </div>
                                     <div class="text-center mb-2">

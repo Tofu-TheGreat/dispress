@@ -48,8 +48,8 @@
                         class="bi bi-unlock-fill me-2"></i>
                     Login</a>
             </li>
-            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/dashboard">
-                <h6 class="">Role</h6>
+            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/role">
+                <h6 class="{{ $active == 'petunjuk-role' ? 'active' : '' }}">Role</h6>
             </a>
             <li class="nav-item">
                 <a class="nav-link" href="/petunjuk-teknis/role#admin" data-bs-target="#admin"><i <i

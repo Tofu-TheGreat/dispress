@@ -48,6 +48,8 @@
                                     <i class="bi bi-printer-fill btn-tambah-data"></i>
                                 </button>
                             </a>
+                        @endcan
+                        @can('admin')
                             <a href="{{ route('surat-keluar.edit', Crypt::encryptString($detailDataSuratKeluar->id_surat_keluar)) }}"
                                 class="text-white ml-2">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"

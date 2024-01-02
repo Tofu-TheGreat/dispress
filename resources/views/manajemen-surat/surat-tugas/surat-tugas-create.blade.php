@@ -257,8 +257,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_mulai @error('waktu_mulai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control waktu_mulai @error('waktu_mulai') is-invalid @enderror"
                                                 placeholder="ex: 10:20 AM" value="{{ old('waktu_mulai') }}"
                                                 id="waktu_mulai" name="waktu_mulai" required>
                                         </div>
@@ -279,8 +279,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_selesai @error('waktu_selesai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control waktu_selesai @error('waktu_selesai') is-invalid @enderror"
                                                 placeholder="ex: 12:20 PM" value="{{ old('waktu_selesai') }}"
                                                 id="waktu_selesai" name="waktu_selesai" required>
                                         </div>

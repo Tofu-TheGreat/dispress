@@ -148,9 +148,8 @@
                                             id="id_user_penerima" name="id_user_penerima[]" multiple=""
                                             style="width: 100%;" disabled>
                                             <option disabled>Pilih Tujuan User</option>
-                                            @foreach ($userList as $data)
-                                                <option value="{{ $data->id_user }}"
-                                                    {{ $detailDataSuratTugas->id_user_penerima == $data->id_user ? 'selected' : '' }}>
+                                            @foreach ($userGet as $data)
+                                                <option value="{{ $data->id_user }}" selected>
                                                     {{ $data->nama }} |
                                                     {{ $data->posisiJabatan->nama_posisi_jabatan }}
                                                 </option>

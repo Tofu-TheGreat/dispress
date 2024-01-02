@@ -12,6 +12,7 @@ use App\Exports\PosisiJabatanExport;
 use App\Exports\StaffExport;
 use App\Exports\SuratExport;
 use App\Exports\SuratKeluarExport;
+use App\Exports\SuratTugasExport;
 use App\Exports\UserTemplate;
 use App\Imports\AdminImport;
 use App\Models\Perusahaan;
@@ -59,6 +60,10 @@ class ExportController extends Controller
     public function export_surat_keluar()
     {
         return Excel::download(new SuratKeluarExport(), 'Data-Surat-Keluar.xlsx');
+    }
+    public function export_surat_tugas()
+    {
+        return Excel::download(new SuratTugasExport, 'Data-Surat-Tugas.xlsx');
     }
     public function template_user()
     {

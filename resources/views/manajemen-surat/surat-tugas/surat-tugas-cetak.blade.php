@@ -228,34 +228,22 @@
 
             <div class="right-side">
                 <div class="dasar" style="line-height: .2; margin-top: 6px">
-                    <div class="penerima-surat-tugas" style="margin-top: 3px">
-                        <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                            {!! $dataSuratTugas->pengirim->nama !!}</p>
-                        <p>NIP
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            :
-                            {!! $dataSuratTugas->pengirim->nip !!}</p>
-                        @if ($dataSuratTugas->pengirim->pangkat == null && $dataSuratTugas->pengirim->golongan == null)
-                            <p>-</p>
-                        @else
-                            <p>Pangkat,Gol &nbsp;&nbsp;&nbsp;: {{ $dataSuratTugas->pengirim->pangkat }},
-                                {{ $dataSuratTugas->pengirim->golongan }}</p>
-                        @endif
-                    </div>
-                    <div class="penerima-surat-tugas" style="margin-top: 3px">
-                        <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
-                            {!! $dataSuratTugas->pengirim->nama !!}</p>
-                        <p>NIP
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            :
-                            {!! $dataSuratTugas->pengirim->nip !!}</p>
-                        @if ($dataSuratTugas->pengirim->pangkat == null && $dataSuratTugas->pengirim->golongan == null)
-                            <p>-</p>
-                        @else
-                            <p>Pangkat,Gol &nbsp;&nbsp;&nbsp;: {{ $dataSuratTugas->pengirim->pangkat }},
-                                {{ $dataSuratTugas->pengirim->golongan }}</p>
-                        @endif
-                    </div>
+                    @foreach ($userGet as $data)
+                        <div class="penerima-surat-tugas" style="margin-top: 3px">
+                            <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                                {!! $data->nama !!}</p>
+                            <p>NIP
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                :
+                                {!! $data->nip !!}</p>
+                            @if ($data->pangkat == null && $data->golongan == null)
+                                <p>-</p>
+                            @else
+                                <p>Pangkat,Gol &nbsp;&nbsp;&nbsp;: {{ $data->pangkat }},
+                                    {{ $data->golongan }}</p>
+                            @endif
+                        </div>
+                    @endforeach
                 </div>
             </div>
 
@@ -285,7 +273,6 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                             {!! $dataSuratTugas->waktu_mulai !!} s.d {!! $dataSuratTugas->waktu_selesai !!}</p>
                         <p>Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                            {{ $dataSuratTugas->pengirim->pangkat }},
                             {{ $dataSuratTugas->tempat_pelaksanaan }}</p>
                     </div>
                 </div>
@@ -329,9 +316,7 @@
 
             <div class="tembusan" style="line-height: .2">
                 <p>Tembusan disampaikan kepada Yth:</p>
-                <p>1. {{ $dataSuratTugas->tembusan }}</p>
-                <p>1. {{ $dataSuratTugas->tembusan }}</p>
-                <p>1. {{ $dataSuratTugas->tembusan }}</p>
+                <p>{{ $dataSuratTugas->tembusan }}</p>
             </div>
         </div>
     </div>

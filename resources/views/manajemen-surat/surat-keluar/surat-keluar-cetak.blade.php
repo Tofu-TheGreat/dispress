@@ -223,9 +223,7 @@
 
             <div class="tembusan" style="line-height: .2">
                 <p>Tembusan disampaikan kepada Yth:</p>
-                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
-                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
-                <p>1. {{ $dataSuratKeluar->tembusan }}</p>
+                <p>{{ $dataSuratKeluar->tembusan }}</p>
             </div>
         </div>
     </div>

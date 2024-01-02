@@ -47,7 +47,7 @@
 
         .logo-wrapper {
             width: 95px;
-            padding-top: 25px;
+            padding-top: 17px;
             padding-bottom: 10px;
             padding-right: 5px;
             padding-left: 30px;
@@ -62,20 +62,25 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 15px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
             text-align: center;
-            line-height: .9;
-            margin-top: 15px
+            line-height: .1;
         }
 
 
         .keterangan-instansi .header {
             margin-bottom: 7px !important;
+            margin-top: ;
+        }
+
+        .keterangan-instansi .header p {
+            font-size: 1.1rem;
+            line-height: 10px;
+            margin-bottom: 10px;
             margin-top: 0;
-            font-size: 1.2rem;
+            font-weight: normal;
         }
 
         .keterangan-instansi .nama_instansi {
@@ -177,9 +182,10 @@
                 <div class="keterangan-instansi">
                     @if ($dataWeb->header_surat != null)
                         <h2 style="text-transform: uppercase;" class="header">
-                            {{ $dataWeb->header_surat }}</h2>
+                            {!! $dataWeb->header_surat !!}</h2>
                     @endif
-                    <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
+                    <h2 style="text-transform: uppercase;" class="nama_instansi">
+                        {{ $dataWeb->instansi->nama_instansi }}
                     </h2>
                     <div class="small">
                         <span style="display: block;">{!! $dataWeb->instansi->alamat_instansi !!}</span>
@@ -259,7 +265,7 @@
 
             <div class="right-side" style="margin-top:16px;">
                 <div class="dasar">
-                    <span style="font-size: .9rem;">{{ $dataSuratTugas->tujuan_pelaksanaan }}, yang akan dilaksanakan
+                    <span style="font-size: .9rem;">{!! $dataSuratTugas->tujuan_pelaksanaan !!}, yang akan dilaksanakan
                         pada:</span>
                     <div style="line-height: .2;margin-top: 6px">
                         @if ($dataSuratTugas->tanggal_mulai == $dataSuratTugas->tanggal_selesai)
@@ -273,7 +279,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                             {!! $dataSuratTugas->waktu_mulai !!} s.d {!! $dataSuratTugas->waktu_selesai !!}</p>
                         <p>Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                            {{ $dataSuratTugas->tempat_pelaksanaan }}</p>
+                            {!! $dataSuratTugas->tempat_pelaksanaan !!}</p>
                     </div>
                 </div>
             </div>
@@ -316,7 +322,7 @@
 
             <div class="tembusan" style="line-height: .2">
                 <p>Tembusan disampaikan kepada Yth:</p>
-                <p>{{ $dataSuratTugas->tembusan }}</p>
+                <p>{!! $dataSuratTugas->tembusan !!}</p>
             </div>
         </div>
     </div>

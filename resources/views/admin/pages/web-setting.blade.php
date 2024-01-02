@@ -163,7 +163,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="id_instansi">Instansi Anda: </label>
                                                             <div class="input-group">
@@ -229,22 +229,6 @@
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label for="header_surat">Header Surat: </label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <input type="text" class="form-control "
-                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
-                                                                    value="{{ $dataWebSetting->header_surat }}"
-                                                                    id="header_surat" name="header_surat" readonly>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <div class="form-group">
                                                             <label for="kota_user">Kota: </label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
@@ -257,6 +241,25 @@
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" readonly>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="d-flex justify-content-between">
+                                                                <label class="label-form " for="header_surat">Masukkan
+                                                                    Header
+                                                                    Surat:
+                                                                </label>
+                                                                <a type="button" class="btn btn-primary mb-2"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Contoh Header Surat"
+                                                                    data-original-title="Contoh Header Surat"
+                                                                    href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                                    target="_blank"><i
+                                                                        class="bi bi-envelope-arrow-up-fill"
+                                                                        style="font-size: 1.1rem;"></i></a>
+                                                            </div>
+                                                            <textarea class="summernote-simple summernote-disable" name="header_surat" readonly> {{ $dataWebSetting->header_surat }} </textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -372,29 +375,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="header_surat">Header Surat: </label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <input type="text"
-                                                                    class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
-                                                                    value="{{ $dataWebSetting->header_surat }}"
-                                                                    id="header_surat" name="header_surat" required>
-                                                            </div>
-                                                            <span class="text-danger">
-                                                                @error('header_surat')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="kota_user">Kota: </label>
                                                             <div class="input-group">
@@ -416,6 +397,29 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="d-flex justify-content-between">
+                                                        <label class="label-form " for="header_surat">Masukkan Header
+                                                            Surat:
+                                                        </label>
+                                                        <a type="button" class="btn btn-primary mb-2"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Contoh Header Surat"
+                                                            data-original-title="Contoh Header Surat"
+                                                            href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                            target="_blank"><i class="bi bi-envelope-arrow-up-fill"
+                                                                style="font-size: 1.1rem;"></i></a>
+                                                    </div>
+                                                    <textarea class="summernote-simple @error('header_surat') is-invalid @enderror" id="header_surat" name="header_surat"
+                                                        required> {{ $dataWebSetting->header_surat }} </textarea>
+                                                    <span class="text-danger">
+                                                        @error('header_surat')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -581,6 +585,16 @@
 
     {{-- Summernote --}}
     <script>
+        $('#header_surat').summernote({
+            placeholder: 'ex: <br> <div style="text-align: center;"> <b> PEMERINTAHAN PROVINSI BANTEN <br> DINAS PENDIDIKAN DAN KEBUDAYAAN </b> <br> <span>UNIT PELAKSANAAN TEKNIS </span> </div>',
+            height: 120,
+            toolbar: [
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['para', ['ul', 'ol', 'paragraph']],
+            ],
+        });
+
         $('#alamat_instansi').summernote({
             placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
             height: 120,
@@ -601,14 +615,9 @@
             minHeight: 120,
             toolbar: [
                 // [groupName, [list of button]]
-                ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
                 ['fontname', ['fontname']],
-                ['color', ['color']],
                 ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link']],
-                ['view', ['codeview', 'help']],
             ],
         });
 

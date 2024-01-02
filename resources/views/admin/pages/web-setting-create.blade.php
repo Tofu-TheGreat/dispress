@@ -138,28 +138,6 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="label-form" for=" header_surat">Header Surat: </label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input type="text"
-                                                        class="form-control  @error('header_surat') is-invalid @enderror"
-                                                        placeholder="ex: pemerintah provinsi banten Dinas pendidikan dan kebudayaan unit pelaksanaan teknis"
-                                                        value="{{ old('header_surat') }}" id="header_surat"
-                                                        name="header_surat" required>
-                                                </div>
-                                                <span class="text-danger">
-                                                    @error('header_surat')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <div class="form-group">
                                                 <label class="label-form" for=" kota_user">Kota: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -179,7 +157,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label class="label-form" for=" email">Masukkan Email Instansi:
                                                 </label>
@@ -204,10 +182,33 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
+                                                <div class="d-flex justify-content-between">
+                                                    <label class="label-form " for="header_surat">Masukkan Header
+                                                        Surat:
+                                                    </label>
+                                                    <a type="button" class="btn btn-primary mb-2"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="Contoh Header Surat"
+                                                        data-original-title="Contoh Header Surat"
+                                                        href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                        target="_blank"><i class="bi bi-envelope-arrow-up-fill"
+                                                            style="font-size: 1.1rem;"></i></a>
+                                                </div>
+                                                <textarea class="summernote-simple @error('header_surat') is-invalid @enderror" id="header_surat" name="header_surat"
+                                                    required> {{ old('header_surat') }} </textarea>
+                                                <span class="text-danger">
+                                                    @error('header_surat')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
                                                 <label class="label-form" for=" alamat_instansi">Masukkan Alamat
                                                     Instansi:
                                                 </label>
-                                                <textarea class="summernote @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
+                                                <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                                     name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
                                                 <span class="text-danger">
                                                     @error('alamat_instansi')
@@ -243,7 +244,8 @@
                                                     <label class="label-form" for=" default_logo">Set Default Logo
                                                         Instansi:
                                                         (Optional)</label>
-                                                    <small class="d-block">Catatan: masukkan logo dengan format
+                                                    <small class="d-block" style="font-size: .7rem">Catatan: masukkan
+                                                        logo dengan format
                                                         (JPEG, PNG,
                                                         JPG),
                                                         maksimal 10
@@ -302,6 +304,21 @@
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('(9999)-9999-9999');
+
+            $('#header_surat').summernote({
+                placeholder: 'ex: <br> <div style="text-align: center;"> <b> PEMERINTAHAN PROVINSI BANTEN <br> DINAS PENDIDIKAN DAN KEBUDAYAAN </b> <br> <span>UNIT PELAKSANAAN TEKNIS </span> </div>',
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
 
             $('#alamat_instansi').summernote({
                 placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',

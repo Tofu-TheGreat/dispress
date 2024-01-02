@@ -47,7 +47,7 @@
 
         .logo-wrapper {
             width: 95px;
-            padding-top: 25px;
+            padding-top: 17px;
             padding-bottom: 10px;
             padding-right: 5px;
             padding-left: 30px;
@@ -62,20 +62,25 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 15px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
             text-align: center;
-            line-height: .9;
-            margin-top: 15px
+            line-height: .1;
         }
 
 
         .keterangan-instansi .header {
             margin-bottom: 7px !important;
+            margin-top: ;
+        }
+
+        .keterangan-instansi .header p {
+            font-size: 1.1rem;
+            line-height: 10px;
+            margin-bottom: 10px;
             margin-top: 0;
-            font-size: 1.2rem;
+            font-weight: normal;
         }
 
         .keterangan-instansi .nama_instansi {
@@ -168,7 +173,7 @@
                 <div class="keterangan-instansi">
                     @if ($dataWeb->header_surat != null)
                         <h2 style="text-transform: uppercase;" class="header">
-                            {{ $dataWeb->header_surat }}</h2>
+                            {!! $dataWeb->header_surat !!}</h2>
                     @endif
                     <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
                     </h2>
@@ -223,7 +228,7 @@
 
             <div class="tembusan" style="line-height: .2">
                 <p>Tembusan disampaikan kepada Yth:</p>
-                <p>{{ $dataSuratKeluar->tembusan }}</p>
+                <p>{!! $dataSuratKeluar->tembusan !!}</p>
             </div>
         </div>
     </div>

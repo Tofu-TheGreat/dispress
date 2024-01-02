@@ -63,8 +63,13 @@ $(document).ready(function () {
     });
 
     /*----- Navbar Shrink -----*/
+    $(".navbar-toggler").on("click", function () {
+        $(".navbar").addClass("navbar-shrink").removeClass("bg-transparent");
+        $(".navbar-brand").removeClass("d-lg-none");
+    });
+
     $(window).on("scroll", function () {
-        if ($(this).scrollTop() > 70) {
+        if ($(this).scrollTop() > 50) {
             $(".navbar")
                 .addClass("navbar-shrink")
                 .removeClass("bg-transparent");
@@ -87,7 +92,6 @@ $(document).ready(function () {
 
     /*----- Page Scroll -----*/
     $.scrollIt({
-        topOffset: -50,
         scrollTime: 90,
     });
 

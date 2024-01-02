@@ -25,7 +25,7 @@ Global CSS
     --black: #3d4344;
     --black-900: #000000;
     --black-400: #555555;
-    --black-100: #f7f7f7;
+    --black-100: #f5f5f5;
     --black-000: #ffffff;
     --white-900: #000000;
     --black-alpha-100: rgba(0, 0, 0, 0.05);
@@ -350,6 +350,12 @@ Login Section
     padding: 30px;
 }
 
+.login .container .card-login {
+    background-color: var(--black-100);
+    transition: all 0.3s ease-in-out;
+    box-shadow: var(--shadow-black-100);
+}
+
 .login .container .form-login .back-index {
     position: absolute;
     left: 15px;
@@ -386,6 +392,7 @@ Login Section
 .login .form-input label {
     margin-top: 5px;
     font-size: 0.9rem;
+    color: var(--white-900);
 }
 
 .login .form-input input {
@@ -393,10 +400,13 @@ Login Section
     height: 45px;
     border-radius: 10px;
     margin-bottom: 15px;
+    background-color: #f5f5f5d3;
+    box-shadow: var(--shadow-black-100);
 }
 
-.login .form-login .text-register {
+.login .form-login .text-register small {
     margin-left: 10%;
+    color: var(--white-900);
 }
 
 .login .login-text h1 {
@@ -579,11 +589,11 @@ Login Section
         width: 100%;
         margin-bottom: 25px;
     }
-    .login .form-login .text-register {
-        margin-left: 0;
-    }
     .alert-login {
         width: 100%;
+    }
+    .login .form-login .text-register small {
+        margin-left: 0;
     }
     .btn-submit-login {
         width: 100%;

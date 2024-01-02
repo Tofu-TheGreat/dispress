@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>PDF Surat Keluar {{ $dataSuratKeluar->nomor_surat_keluar }} - {{ $dataSuratKeluar->tanggal_surat_keluar }}
+    <title>PDF Surat Tugas {{ $dataSuratTugas->nomor_surat_tugas }} - {{ $dataSuratTugas->tanggal_surat_tugas }}
     </title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
@@ -46,11 +46,11 @@
         }
 
         .logo-wrapper {
-            width: 110px;
-            padding-top: 20px;
+            width: 95px;
+            padding-top: 25px;
             padding-bottom: 10px;
             padding-right: 5px;
-            padding-left: 20px;
+            padding-left: 30px;
             float: left;
         }
 
@@ -62,7 +62,7 @@
 
         .keterangan-instansi {
             width: 470px;
-            padding-top: 20px;
+            padding-top: 15px;
             padding-bottom: 5px;
             padding-left: 10px;
             float: right;
@@ -90,7 +90,7 @@
             border-top: 2px solid black;
         }
 
-        .tanggal-surat-keluar {
+        .tanggal-surat-tugas {
             float: right;
             width: 190px;
             font-size: .9rem;
@@ -101,32 +101,45 @@
             float: left;
         }
 
+        .keterangan-surat {
+            text-align: center;
+        }
+
+        .keterangan-surat h2 {
+            text-decoration: underline solid black 2px;
+            margin-bottom: 1px;
+        }
+
         .keterangan-surat p {
             display: inline-block;
-            margin-top: 5px;
-            margin-bottom: 0;
+            margin-top: -20%;
+            padding-top: 0;
             font-size: .9rem;
         }
 
-        .tujuan-surat {
-            margin-top: 25px;
+        .left-side {
+            width: 100px;
+            float: left;
         }
 
-        .tujuan-surat p {
-            margin-top: 4px;
+        .right-side {
+            width: 530px;
+            float: right;
+        }
+
+        .dasar p {
+            text-align: justify;
+        }
+
+        .pembatas h2 {
+            text-decoration: underline solid black 2px;
             margin-bottom: 0;
-        }
-
-        .tujuan-surat .kepada {
-            font-size: .9rem;
-        }
-
-        .isi-surat {
-            margin-top: 10px;
         }
 
         .ttd {
-            margin-top: 35px;
+            float: right;
+            width: 250px;
+            margin-top: -10px;
         }
 
         .small {
@@ -162,14 +175,14 @@
                     @endif
                 </div>
                 <div class="keterangan-instansi">
-                    @if ($dataSuratKeluar->header_surat_keluar != null)
+                    @if ($dataWeb->header_surat != null)
                         <h2 style="text-transform: uppercase;" class="header">
-                            {{ $dataSuratKeluar->header_surat_keluar }}</h2>
+                            {{ $dataWeb->header_surat }}</h2>
                     @endif
                     <h2 style="text-transform: uppercase" class="nama_instansi"> {{ $dataWeb->instansi->nama_instansi }}
                     </h2>
                     <div class="small">
-                        <span style="display: block;">{{ $dataWeb->instansi->alamat_instansi }}</span>
+                        <span style="display: block;">{!! $dataWeb->instansi->alamat_instansi !!}</span>
                         <span>Telepon : {{ $dataWeb->instansi->nomor_telpon }}</span>
                         <span>Email : {{ $dataWeb->instansi->email }}</span>
                     </div>
@@ -177,44 +190,148 @@
             </div>
         </div>
         <div class="isi-surat-wrappper">
-            <div class="tanggal-surat-keluar">
-                {{ Carbon\Carbon::parse($dataSuratKeluar->tanggal_surat_keluar)->isoFormat('dddd, D MMMM Y') }}
-            </div>
+            {{-- <div class="tanggal-surat-tugas">
+                {{ Carbon\Carbon::parse($dataSuratTugas->tanggal_surat_tugas)->isoFormat('dddd, D MMMM Y') }}
+            </div> --}}
             <div class="keterangan-surat">
-                <p>Nomor &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->nomor_surat_keluar) !!}</p>
-                <p>Sifat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
-                    {!! formatCetak($dataSuratKeluar->sifat_surat_keluar) !!}</p>
-                <p>Lampiran &nbsp;&nbsp;&nbsp;&nbsp;: {{ $dataSuratKeluar->jumlah_lampiran }} Lembar</p>
-                <p>Perihal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {!! formatCetak($dataSuratKeluar->perihal) !!}</p>
+                <h2>SURAT PERINTAH TUGAS</h2>
+                <p>Nomor : {!! $dataSuratTugas->nomor_surat_tugas !!}</p>
             </div>
-            <div class="tujuan-surat">
-                <p>Kepada Yth. </p>
-                <p class="kepada">{!! $dataSuratKeluar->tujuan_surat_keluar !!}</p>
-            </div>
-            <div class="isi-surat">
+
+            <div class="left-side">
                 <p>
-                    {!! $dataSuratKeluar->isi_surat !!}.
+                    Dasar &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                 </p>
             </div>
+
+            <div class="right-side">
+                <div class="dasar">
+                    <p>
+                        {!! $dataSuratTugas->dasar !!}
+                    </p>
+                </div>
+            </div>
+
+            <div class="pembatas">
+                <p style="color: white">======================</p>
+            </div>
+
+            <div>
+                <h3 style="text-align: center; margin-top:-30px; margin-bottom: 5px;">MEMERINTAHKAN</h3>
+            </div>
+
+            <div class="left-side">
+                <p>
+                    Kepada &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                </p>
+            </div>
+
+            <div class="right-side">
+                <div class="dasar" style="line-height: .2; margin-top: 6px">
+                    <div class="penerima-surat-tugas" style="margin-top: 3px">
+                        <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                            {!! $dataSuratTugas->pengirim->nama !!}</p>
+                        <p>NIP
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            :
+                            {!! $dataSuratTugas->pengirim->nip !!}</p>
+                        @if ($dataSuratTugas->pengirim->pangkat == null && $dataSuratTugas->pengirim->golongan == null)
+                            <p>-</p>
+                        @else
+                            <p>Pangkat,Gol &nbsp;&nbsp;&nbsp;: {{ $dataSuratTugas->pengirim->pangkat }},
+                                {{ $dataSuratTugas->pengirim->golongan }}</p>
+                        @endif
+                    </div>
+                    <div class="penerima-surat-tugas" style="margin-top: 3px">
+                        <p>Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                            {!! $dataSuratTugas->pengirim->nama !!}</p>
+                        <p>NIP
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            :
+                            {!! $dataSuratTugas->pengirim->nip !!}</p>
+                        @if ($dataSuratTugas->pengirim->pangkat == null && $dataSuratTugas->pengirim->golongan == null)
+                            <p>-</p>
+                        @else
+                            <p>Pangkat,Gol &nbsp;&nbsp;&nbsp;: {{ $dataSuratTugas->pengirim->pangkat }},
+                                {{ $dataSuratTugas->pengirim->golongan }}</p>
+                        @endif
+                    </div>
+                </div>
+            </div>
+
+            <div class="pembatas" style="width: 100%; margin-top: 10px">
+                <p style="color: white">======================</p>
+            </div>
+
+            <div class="left-side" style="margin-top: -60px;">
+                <p>
+                    Untuk &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                </p>
+            </div>
+
+            <div class="right-side" style="margin-top:16px;">
+                <div class="dasar">
+                    <span style="font-size: .9rem;">{{ $dataSuratTugas->tujuan_pelaksanaan }}, yang akan dilaksanakan
+                        pada:</span>
+                    <div style="line-height: .2;margin-top: 6px">
+                        @if ($dataSuratTugas->tanggal_mulai == $dataSuratTugas->tanggal_selesai)
+                            <p>Hari/Tanggal &nbsp; :
+                                {!! $dataSuratTugas->tanggal_mulai !!}</p>
+                        @else
+                            <p>Hari/Tanggal &nbsp; :
+                                {!! $dataSuratTugas->tanggal_mulai !!} s.d {!! $dataSuratTugas->tanggal_selesai !!}</p>
+                        @endif
+                        <p>Waktu
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                            {!! $dataSuratTugas->waktu_mulai !!} s.d {!! $dataSuratTugas->waktu_selesai !!}</p>
+                        <p>Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                            {{ $dataSuratTugas->pengirim->pangkat }},
+                            {{ $dataSuratTugas->tempat_pelaksanaan }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pembatas" style="width: 100%; margin-top: -40px">
+                <p style="color: white">======================</p>
+            </div>
+
+            <p>
+                Demikian untuk dapat dilaksanakan sebagai mestinya dan membuat laporan.
+            </p>
+
             <div class="ttd">
                 <div class="ttd-disposisi">
                     <div class="tanggal-tdd">
-                        <p class="small">Tangerang, <span>...........................</span>
+                        <p class="small">{{ $dataWeb->kota_user }}, <span>...........................</span>
                             <br>
                             Plt. Kepala {{ $dataWeb->instansi->nama_instansi }}
                         </p>
                         <br>
                         <br>
-                        <br>
-                        <p class="small">
+                        <p class="small" style="margin-bottom: 0">
                             <span class="text-bold" style="text-decoration: underline; text-transform: uppercase;">
                                 {{ $dataWeb->ketua->nama }}
                             </span>
+                            <br>
+                        </p>
+                        <p style="margin-top: 0;font-size: .7rem">
+                            {{ $dataSuratTugas->pengirim->pangkat }},{{ $dataSuratTugas->pengirim->golongan }}
                             <br>
                             NIP. {{ convertToNIP($dataWeb->ketua->nip) }}
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <div class="pembatas" style="width: 100%; margin-top: -70px">
+                <p style="color: white">======================</p>
+            </div>
+
+            <div class="tembusan" style="line-height: .2">
+                <p>Tembusan disampaikan kepada Yth:</p>
+                <p>1. {{ $dataSuratTugas->tembusan }}</p>
+                <p>1. {{ $dataSuratTugas->tembusan }}</p>
+                <p>1. {{ $dataSuratTugas->tembusan }}</p>
             </div>
         </div>
     </div>

@@ -84,7 +84,7 @@
                                     <label for="jumlah_lampiran">Jumlah Lampiran:</label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
@@ -105,7 +105,7 @@
                                     <label for="id_klasifikasi">Nomor Klasifikasi: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
@@ -132,7 +132,7 @@
                                     <label for="nomor_surat_keluar">Nomor Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                     <label for="perihal">Perihal Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-envelope"></i>
                                             </div>
                                         </div>
@@ -176,7 +176,7 @@
                                     </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-calendar3"></i>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                                     <label for="tembusan">Tembusan: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-person-fill-exclamation"></i>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@
                                     <label for="sifat_surat_keluar">Sifat Surat: </label>
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <div class="input-group-text">
+                                            <div class="input-group-text bg-secondary">
                                                 <i class="bi bi-envelope-exclamation-fill"></i>
                                             </div>
                                         </div>

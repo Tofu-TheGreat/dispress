@@ -266,7 +266,7 @@
 .note-editor .note-editing-area .note-editable {
     outline: 0;
     position: relative;
-    z-index: 600;
+    z-index: 499;
 }
 .note-editor .note-editing-area .note-editable sup {
     vertical-align: super;

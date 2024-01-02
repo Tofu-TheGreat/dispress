@@ -91,11 +91,12 @@
                                         {{-- <input type="hidden" name="id_ketua" value="{{ Auth::user()->id_user }}"> --}}
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group ">
-                                                <label for="nama_instansi">Masukkan Nama Instansi: </label>
+                                                <label class="label-form" for=" nama_instansi">Masukkan Nama Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
-                                                            <i class="fas fa-building"></i>
+                                                            <i class="bi bi-building"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
@@ -113,7 +114,9 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12">
                                             <div class="form-group">
-                                                <label for="nomor_telpon">Masukkan Nomor Telepon Instansi: </label>
+                                                <label class="label-form" for=" nomor_telpon">Masukkan Nomor Telepon
+                                                    Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -135,18 +138,18 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label for="header_surat">Header Surat: </label>
+                                                <label class="label-form" for=" header_surat">Header Surat: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text bg-secondary">
-                                                            <i class="bi bi-telephone-fill"></i>
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-envelope-arrow-up-fill"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
                                                         class="form-control  @error('header_surat') is-invalid @enderror"
-                                                        placeholder="ex: 0878-2730-3388"
-                                                        value="{{ old('header_surat') }}"
-                                                        id="header_surat" name="header_surat" required>
+                                                        placeholder="ex: pemerintah provinsi banten Dinas pendidikan dan kebudayaan unit pelaksanaan teknis"
+                                                        value="{{ old('header_surat') }}" id="header_surat"
+                                                        name="header_surat" required>
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('header_surat')
@@ -157,17 +160,16 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label for="kota_user">Kota: </label>
+                                                <label class="label-form" for=" kota_user">Kota: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
-                                                        <div class="input-group-text bg-secondary">
-                                                            <i class="bi bi-telephone-fill"></i>
+                                                        <div class="input-group-text">
+                                                            <i class="bi bi-geo-alt"></i>
                                                         </div>
                                                     </div>
                                                     <input type="text"
                                                         class="form-control  @error('kota_user') is-invalid @enderror"
-                                                        placeholder="ex: 0878-2730-3388"
-                                                        value="{{ old('kota_user') }}"
+                                                        placeholder="ex: Tangerang" value="{{ old('kota_user') }}"
                                                         id="kota_user" name="kota_user" required>
                                                 </div>
                                                 <span class="text-danger">
@@ -179,7 +181,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="email">Masukkan Email Instansi: </label>
+                                                <label class="label-form" for=" email">Masukkan Email Instansi:
+                                                </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
                                                         <div class="input-group-text">
@@ -201,7 +204,9 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="alamat_instansi">Masukkan Alamat Instansi: </label>
+                                                <label class="label-form" for=" alamat_instansi">Masukkan Alamat
+                                                    Instansi:
+                                                </label>
                                                 <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                                     name="alamat_instansi" required> {{ old('alamat_instansi') }} </textarea>
                                                 <span class="text-danger">
@@ -214,7 +219,7 @@
 
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="id_ketua">Ketua Instansi: </label>
+                                                <label class="label-form" for=" id_ketua">Ketua Instansi: </label>
                                                 <div class="input-group">
                                                     <select
                                                         class="filter select2 @error('id_ketua') is-invalid  @enderror "
@@ -235,7 +240,8 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <label for="default_logo">Set Default Logo Instansi:
+                                                    <label class="label-form" for=" default_logo">Set Default Logo
+                                                        Instansi:
                                                         (Optional)</label>
                                                     <small class="d-block">Catatan: masukkan logo dengan format
                                                         (JPEG, PNG,

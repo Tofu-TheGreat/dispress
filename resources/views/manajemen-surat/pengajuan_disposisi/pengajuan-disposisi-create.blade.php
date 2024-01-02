@@ -316,9 +316,36 @@
 
     <script>
         $(document).ready(function() {
+            $('#catatan_pengajuan').summernote({
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+                callbacks: {
+                    onInit: function() {
+                        // Tambahkan placeholder saat inisialisasi
+                        $(this).summernote('pasteHTML',
+                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Tolong untuk di approve</span>'
+                        );
+                    },
+                    onFocus: function() {
+                        // Hapus placeholder saat editor fokus
+                        $(this).find('.placeholder').remove();
+                    },
+                }
+            });
+
             $('.summernote-simple').summernote({
                 dialogsInBody: true,
-                minHeight: 150,
+                minHeight: 120,
                 toolbar: [
                     ['style', ['bold', 'italic', 'underline', 'clear']],
                     ['font', ['strikethrough']],

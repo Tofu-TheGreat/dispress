@@ -59,7 +59,7 @@
                                         <label for="jumlah_lampiran">Masukkan Jumlah Lampiran:</label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
@@ -80,7 +80,7 @@
                                         <label for="id_klasifikasi">Masukkan Nomor Klasifikasi: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
@@ -108,7 +108,7 @@
                                         <label for="nomor_surat_keluar">Masukkan Nomor Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
@@ -130,7 +130,7 @@
                                         <label for="perihal">Masukkan Perihal Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-envelope"></i>
                                                 </div>
                                             </div>
@@ -153,7 +153,7 @@
                                         </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-calendar3"></i>
                                                 </div>
                                             </div>
@@ -172,32 +172,10 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group ">
-                                        <label for="tembusan">Masukkan Tembusan: </label>
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <div class="input-group-text">
-                                                    <i class="bi bi-person-fill-exclamation"></i>
-                                                </div>
-                                            </div>
-                                            <input type="text"
-                                                class="form-control @error('tembusan') is-invalid @enderror"
-                                                placeholder="ex: Sekretaris Dinas"
-                                                value="{{ $editDataSuratKeluar->tembusan }}" id="tembusan"
-                                                name="tembusan" autofocus>
-                                        </div>
-                                        <span class="text-danger">
-                                            @error('tembusan')
-                                                {{ $message }}
-                                            @enderror
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="form-group ">
                                         <label for="sifat_surat_keluar">Masukkan Sifat Surat: </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text">
+                                                <div class="input-group-text bg-secondary">
                                                     <i class="bi bi-envelope-exclamation-fill"></i>
                                                 </div>
                                             </div>
@@ -233,6 +211,18 @@
                                             id="isi_surat" name="isi_surat" required> {{ $editDataSuratKeluar->isi_surat }} </textarea>
                                         <span class="text-danger">
                                             @error('isi_surat')
+                                                {{ $message }}
+                                            @enderror
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label for="tembusan">Masukkan Tembusan (optional): </label>
+                                        <textarea class="summernote @error('tembusan') is-invalid @enderror" placeholder="ex: Perihal rapat paripurna"
+                                            id="tembusan" name="tembusan" required> {{ $editDataSuratKeluar->tembusan }} </textarea>
+                                        <span class="text-danger">
+                                            @error('tembusan')
                                                 {{ $message }}
                                             @enderror
                                         </span>
@@ -311,29 +301,19 @@
     </script>
 
     <script>
-        document.body.addEventListener("click", function(event) {
-                    const element = event.target;
-                    const noteEditable = document.body.querySelectorAll(".note-editing-area");
-
-                    if (element.classList.contains("tombol-hapus")) {
-                        swal({
-                                title: 'Apakah anda yakin?',
-                                text: 'Ingin menghapus data Surat ini!',
-                                icon: 'warning',
-                                buttons: true,
-                                dangerMode: true,
-                            })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal('Data Surat berhasil dihapus!', {
-                                        icon: 'success',
-                                    });
-                                    element.closest('form').submit();
-                                } else {
-                                    swal('Data Surat tidak jadi dihapus!');
-                                }
-                            });
-                    }
+        $('.summernote').summernote({
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
     </script>
 
     <script>

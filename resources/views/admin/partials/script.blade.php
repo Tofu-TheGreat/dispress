@@ -34,6 +34,11 @@
             // Gunakan ekspresi reguler untuk memisahkan nomor telepon ke dalam format yang diinginkan
             return value.replace(/(\d{4})(\d{4})(\d{4})/, '$1-$2-$3');
         });
+
+        $(window).on("load", function() {
+            /*----- Preloader -----*/
+            $(".preloader").fadeOut("slow");
+        });
     });
 </script>
 

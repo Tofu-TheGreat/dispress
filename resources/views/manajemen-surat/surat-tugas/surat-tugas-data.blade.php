@@ -223,8 +223,8 @@
                                                         <div class="position-relative">
                                                             <h4>{{ $data->nomor_surat_tugas }}</h4>
                                                             <small class="text-primary"
-                                                                style="position: absolute; top: 50%;width: max-content;">Pembuat
-                                                                {{ $data->user->nama }}
+                                                                style="position: absolute; top: 50%;width: max-content;">Pengirim
+                                                                {{ $data->pengirim->nama }}
                                                             </small>
                                                         </div>
                                                         <div class="card-header-action btn-group tombol-ajukan">
@@ -237,7 +237,7 @@
                                                         id="mycard-collapse{{ $data->id_surat_tugas }}">
                                                         <div class="card-body card-body-surat position-relative "
                                                             style="min-height: 130px">
-                                                            <p class="w-75"> {!! $data->perihal !!}</p>
+                                                            <p class="w-75"> {!! $data->tujuan_pelaksanaan !!}</p>
                                                             <p class="mt-3" style="font-size: .7rem;">
                                                                 --
                                                                 {{ date('d-F-Y', strtotime($data->tanggal_surat_tugas)) }}
@@ -280,11 +280,11 @@
                                                                 <div>
                                                                     <div class="user-detail-name">
                                                                         <span class="text-primary" href="#">
-                                                                            {{ $data->user->nama }}</span>
+                                                                            {{ $data->pengirim->nama }}</span>
                                                                     </div>
                                                                     <div class="text-job">
                                                                         <small style="max-width: max-content">
-                                                                            {{ currencyPhone($data->user->nomor_telpon) }}
+                                                                            {{ currencyPhone($data->pengirim->nomor_telpon) }}
                                                                         </small>
                                                                     </div>
                                                                 </div>

@@ -345,8 +345,8 @@
                                                             <label for="pangkat">Masukkan Pangkat (optional): </label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
-                                                                    <div class="input-group-text">
-                                                                        <i class="bi bi-person-badge-fill"></i>
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-stack"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
@@ -367,8 +367,8 @@
                                                             <label for="golongan">Masukkan Golongan (optional): </label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
-                                                                    <div class="input-group-text">
-                                                                        <i class="bi bi-person-badge-fill"></i>
+                                                                    <div class="input-group-text bg-secondary">
+                                                                        <i class="bi bi-collection-fill"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
@@ -683,17 +683,20 @@
         </script>
     @endif
 
-    @if (Session::has('error'))
+    @if ($errors->any())
         <script>
             $(document).ready(function() {
-                iziToast.error({
-                    title: 'Error',
-                    message: "{{ Session::get('error') }} Import",
-                    position: 'topRight'
-                })
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif
+
 
     {{-- seweetalert confirmation delete image --}}
     <script>

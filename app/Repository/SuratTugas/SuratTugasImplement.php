@@ -42,11 +42,11 @@ class SuratTugasImplement implements SuratTugasRepository
 
     public function show($id)
     {
-        $this->suratTugas->where('id_surat_tugas', $id)->first();
+        return $this->suratTugas->where('id_surat_tugas', $id)->first();
     }
     public function edit($id)
     {
-        $this->suratTugas->where('id_surat_tugas', $id)->first();
+        return $this->suratTugas->where('id_surat_tugas', $id)->first();
     }
     public function update($id, $data)
     {
@@ -67,7 +67,7 @@ class SuratTugasImplement implements SuratTugasRepository
     }
     public function destroy($id)
     {
-        $this->suratTugas->where('id_surat_tugas', $id)->destroy();
+        $this->suratTugas->where('id_surat_tugas', $id)->delete();
     }
     public function cetakSuratTugas($id)
     {

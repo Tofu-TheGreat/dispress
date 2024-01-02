@@ -172,17 +172,11 @@
                                                                         <i class="bi bi-key-fill"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control capitalize @error('id_instansi') is-invalid @enderror"
+                                                                <input type="text" class="form-control capitalize "
                                                                     placeholder="ex: 213720078171677275"
                                                                     value="{{ $dataWebSetting->instansi->nama_instansi }}"
                                                                     name="id_instansi" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('id_instansi')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -194,17 +188,11 @@
                                                                         <i class="bi bi-person-fill"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control capitalize @error('id_ketua') is-invalid @enderror"
+                                                                <input type="text" class="form-control capitalize "
                                                                     placeholder="ex: Pasya Nada Abinaya"
                                                                     value="{{ $dataWebSetting->ketua->nama }}"
                                                                     id="id_ketua" name="id_ketua" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('id_ketua')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -216,17 +204,11 @@
                                                                         <i class="bi bi-envelope-fill"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control @error('email') is-invalid @enderror"
+                                                                <input type="text" class="form-control "
                                                                     placeholder="ex: contoh@gmail.com"
                                                                     value="{{ $dataWebSetting->instansi->email }}"
                                                                     name="email" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('email')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -238,17 +220,11 @@
                                                                         <i class="bi bi-telephone-fill"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control @error('nomor_telpon') is-invalid @enderror"
+                                                                <input type="text" class="form-control "
                                                                     placeholder="ex: 0878-2730-3388"
                                                                     value="{{ currencyPhone($dataWebSetting->instansi->nomor_telpon) }}"
                                                                     name="nomor_telpon" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('nomor_telpon')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -257,20 +233,14 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                <input type="text" class="form-control "
+                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
                                                                     value="{{ $dataWebSetting->header_surat }}"
                                                                     id="header_surat" name="header_surat" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('header_surat')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
@@ -279,27 +249,20 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-geo-alt"></i>
                                                                     </div>
                                                                 </div>
-                                                                <input type="text"
-                                                                    class="form-control  @error('kota_user') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                <input type="text" class="form-control  "
+                                                                    placeholder="ex: Tangerang"
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" readonly>
                                                             </div>
-                                                            <span class="text-danger">
-                                                                @error('kota_user')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="alamat_instansi">Alamat Instansi: </label>
-                                                            <textarea class="summernote-simple summernote-disable @error('alamat_instansi') is-invalid @enderror"
-                                                                name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
+                                                            <textarea class="summernote-simple summernote-disable" name="alamat_instansi" readonly> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -415,12 +378,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
                                                                     value="{{ $dataWebSetting->header_surat }}"
                                                                     id="header_surat" name="header_surat" required>
                                                             </div>
@@ -437,12 +400,12 @@
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-telephone-fill"></i>
+                                                                        <i class="bi bi-geo-alt"></i>
                                                                     </div>
                                                                 </div>
                                                                 <input type="text"
                                                                     class="form-control  @error('kota_user') is-invalid @enderror"
-                                                                    placeholder="ex: 0878-2730-3388"
+                                                                    placeholder="ex: Tangerang"
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" required>
                                                             </div>
@@ -460,6 +423,11 @@
                                                     <label for="alamat_instansi">Alamat Instansi: </label>
                                                     <textarea class="summernote-simple @error('alamat_instansi') is-invalid @enderror" id="alamat_instansi"
                                                         name="alamat_instansi" required> {{ $dataWebSetting->instansi->alamat_instansi }} </textarea>
+                                                    <span class="text-danger">
+                                                        @error('alamat_instansi')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -597,14 +565,16 @@
         </script>
     @endif
 
-    @if (Session::has('error'))
+    @if ($errors->any())
         <script>
             $(document).ready(function() {
-                iziToast.error({
-                    title: 'Error',
-                    message: "{{ Session::get('error') }} Import",
-                    position: 'topRight'
-                })
+                @foreach ($errors->all() as $error)
+                    iziToast.error({
+                        title: 'Error',
+                        message: "{{ $error }}",
+                        position: 'topRight'
+                    });
+                @endforeach
             });
         </script>
     @endif
@@ -613,12 +583,18 @@
     <script>
         $('.summernote-simple').summernote({
             dialogsInBody: true,
-            minHeight: 150,
+            minHeight: 120,
             toolbar: [
-                ['style', ['bold', 'italic', 'underline', 'clear']],
-                ['font', ['strikethrough']],
-                ['para', ['paragraph']]
-            ]
+                // [groupName, [list of button]]
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
         });
 
         $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);

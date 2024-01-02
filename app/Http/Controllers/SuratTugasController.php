@@ -81,6 +81,8 @@ class SuratTugasController extends Controller
         $detailDataSuratTugas = $this->suratTugasRepository->show($encryptId);
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
+
+        $userGet = $this->suratTugasRepository->getUserInArray($detailDataSuratTugas->id_user_penerima);
         $suratMasukList = Surat::with('instansi')->get();
 
         return view('manajemen-surat.surat-tugas.surat-tugas-detail', [
@@ -91,8 +93,10 @@ class SuratTugasController extends Controller
             'userList' => $userList,
             'suratMasukList' => $suratMasukList,
             'detailDataSuratTugas' => $detailDataSuratTugas,
+            'userGet' => $userGet,
         ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -105,6 +109,7 @@ class SuratTugasController extends Controller
         $editDataSuratTugas = $this->suratTugasRepository->edit($encryptId);
         $klasifikasiList = Klasifikasi::get();
         $userList = User::get();
+        $userGet = $this->suratTugasRepository->getUserInArray($editDataSuratTugas->id_user_penerima);
         $suratMasukList = Surat::with('instansi')->get();
 
         return view('manajemen-surat.surat-tugas.surat-tugas-edit', [
@@ -115,6 +120,7 @@ class SuratTugasController extends Controller
             'userList' => $userList,
             'suratMasukList' => $suratMasukList,
             'editDataSuratTugas' => $editDataSuratTugas,
+            'userGet' => $userGet,
         ]);
     }
 
@@ -143,6 +149,7 @@ class SuratTugasController extends Controller
     {
         $encryptId = Crypt::decryptString($id);
         $dataSuratTugas = SuratTugas::where('id_surat_tugas', $encryptId)->first();
+        $userGet = $this->suratTugasRepository->getUserInArray($dataSuratTugas->id_user_penerima);
         $dataWeb = WebSetting::first();
         // $pdfcetak = $this->disposisiRepository->cetakDisposisi($encryptId);
 
@@ -150,7 +157,7 @@ class SuratTugasController extends Controller
 
         $pdf = PDF::loadView(
             'manajemen-surat.surat-tugas.surat-tugas-cetak',
-            ['dataSuratTugas' => $dataSuratTugas, 'dataWeb' => $dataWeb]
+            ['dataSuratTugas' => $dataSuratTugas, 'dataWeb' => $dataWeb, 'userGet' => $userGet]
         );
 
         // You can save the PDF to a file or return it as a response.
@@ -163,9 +170,32 @@ class SuratTugasController extends Controller
 
     public function filterData(Request $request)
     {
+        $suratTugasList =  $this->suratTugasRepository->filterData($request);
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-data', [
+            'title' => 'Surat Tugas',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'suratTugasList' => $suratTugasList,
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+        ]);
     }
     public function search(Request $request)
     {
-        $this->suratTugasRepository->search($request);
+        $suratTugasList = $this->suratTugasRepository->search($request);
+        $klasifikasiList = Klasifikasi::get();
+        $userList = User::get();
+
+        return view('manajemen-surat.surat-tugas.surat-tugas-data', [
+            'title' => 'Surat Tugas',
+            'active1' => 'surat-keluar',
+            'active' => 'surat-tugas',
+            'suratTugasList' => $suratTugasList,
+            'klasifikasiList' => $klasifikasiList,
+            'userList' => $userList,
+        ]);
     }
 }

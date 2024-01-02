@@ -13,19 +13,13 @@ use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
 
 class SuratTugasExport implements FromCollection, WithHeadings, WithMapping, WithColumnFormatting
 {
-    protected $data;
-
-    public function __construct(SuratTugas $data)
-    {
-        $this->data = $data;
-    }
 
     /**
      * @return \Illuminate\Support\Collection
      */
     public function collection()
     {
-        return collect($this->data);
+        return SuratTugas::all();
     }
 
 
@@ -52,12 +46,40 @@ class SuratTugasExport implements FromCollection, WithHeadings, WithMapping, Wit
      *
      * @return array
      */
+    public function flattenArray($array)
+    {
+        $result = [];
+
+        foreach ($array as $value) {
+            if (is_array($value)) {
+                $result = array_merge($result, $this->flattenArray($value));
+            } else {
+                $result[] = $value;
+            }
+        }
+
+        return $result;
+    }
+
     public function map($row): array
     {
-        $userNames = User::whereIn('id_user', $row->id_user_penerima)->pluck('nama')->toArray();
+        $id_user_penerima = $row->id_user_penerima;
+
+        if (is_string($id_user_penerima)) {
+            $id_user_penerima = json_decode($id_user_penerima, true);
+
+            if (!is_array($id_user_penerima)) {
+                $id_user_penerima = explode(',', $row->id_user_penerima);
+            }
+        }
+
+        // Flatten the array if it's nested
+        $flattenedIds = $this->flattenArray($id_user_penerima);
+
+        $userNames = User::whereIn('id_user', $flattenedIds)->pluck('nama')->toArray();
 
         return [
-            $row->id_klasifikasi,
+            $row->klasifikasi->nomor_klasifikasi,
             $row->nomor_surat_tugas,
             $row->id_user,
             $row->dasar,
@@ -71,6 +93,7 @@ class SuratTugasExport implements FromCollection, WithHeadings, WithMapping, Wit
             $row->tembusan,
         ];
     }
+
 
     /**
      * Format columns

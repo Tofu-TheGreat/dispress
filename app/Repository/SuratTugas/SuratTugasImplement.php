@@ -3,6 +3,7 @@
 namespace App\Repository\SuratTugas;
 
 use App\Models\SuratTugas;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use App\Models\WebSetting;
@@ -22,12 +23,14 @@ class SuratTugasImplement implements SuratTugasRepository
     }
     public function store($data)
     {
+        $idUsersArray = [$data->id_user_penerima];
+        $idUsersJson = json_encode($idUsersArray);
         $this->suratTugas->create([
             'id_klasifikasi' => $data['id_klasifikasi'],
             'nomor_surat_tugas' => $data['nomor_surat_tugas'],
             'id_user' => Auth::user()->id_user,
             'dasar' => $data['dasar'],
-            'id_user_penerima' => $data['id_user_penerima'],
+            'id_user_penerima' => $idUsersJson,
             'tanggal_mulai' => $data['tanggal_mulai'],
             'tanggal_selesai' => $data['tanggal_selesai'],
             'waktu_mulai' => $data['waktu_mulai'],
@@ -48,12 +51,14 @@ class SuratTugasImplement implements SuratTugasRepository
     }
     public function update($id, $data)
     {
+        $idUsersArray = [$data->id_user_penerima];
+        $idUsersJson = json_encode($idUsersArray);
         $this->suratTugas->where('id_surat_tugas', $id)->update([
             'id_klasifikasi' => $data['id_klasifikasi'],
             'nomor_surat_tugas' => $data['nomor_surat_tugas'],
             'id_user' => Auth::user()->id_user,
             'dasar' => $data['dasar'],
-            'id_user_penerima' => $data['id_user_penerima'],
+            'id_user_penerima' => $idUsersJson,
             'tanggal_mulai' => $data['tanggal_mulai'],
             'tanggal_selesai' => $data['tanggal_selesai'],
             'waktu_mulai' => $data['waktu_mulai'],
@@ -83,23 +88,20 @@ class SuratTugasImplement implements SuratTugasRepository
     {
         $query = $this->suratTugas->query();
 
-        // if (isset($data->id_user_penerima) && ($data->id_user_penerima != null)) {
-        //     $query->where('id_user_penerima', $data->id_user_penerima);
-        // }
-        // if (isset($data->id_user) && ($data->id_user != null)) {
-        //     $query->where('id_user', $data->id_user);
-        // }
-        // if (isset($data->id_klasifikasi) && ($data->id_klasifikasi != null)) {
-        //     $query->where('id_klasifikasi', $data->id_klasifikasi);
-        // }
-        // if (
-        //     isset($data->tanggal_surat_awal) &&
-        //     ($data->tanggal_surat_awal != null) &&
-        //     isset($data->tanggal_surat_terakhir) &&
-        //     ($data->tanggal_surat_terakhir != null)
-        // ) {
-        //     $query->whereBetween('tanggal_surat_keluar', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
-        // }
+        if (isset($data->id_user) && ($data->id_user != null)) {
+            $query->where('id_user', $data->id_user);
+        }
+        if (isset($data->id_klasifikasi) && ($data->id_klasifikasi != null)) {
+            $query->where('id_klasifikasi', $data->id_klasifikasi);
+        }
+        if (
+            isset($data->tanggal_surat_awal) &&
+            ($data->tanggal_surat_awal != null) &&
+            isset($data->tanggal_surat_terakhir) &&
+            ($data->tanggal_surat_terakhir != null)
+        ) {
+            $query->whereBetween('created_at', [$data->tanggal_surat_awal, $data->tanggal_surat_terakhir]);
+        }
 
 
         return $query->paginate(6);
@@ -118,12 +120,25 @@ class SuratTugasImplement implements SuratTugasRepository
             ->orWhereHas('klasifikasi', function ($query) use ($data) {
                 $query->where('nama_klasifikasi', 'like', "%" . $data->search . "%");
             })
-            ->orWhereHas('user', function ($query) use ($data) {
+            ->orWhereHas('pengirim', function ($query) use ($data) {
                 $query->where('nama', 'like', "%" . $data->search . "%");
             })
             ->orWhere('dasar', 'like', "%" . $data->search . "%")
             ->orWhere('tempat_pelaksanaan', 'like', "%" . $data->search . "%")
             ->orWhere('tujuan_pelaksanaan', 'like', "%" . $data->search . "%");
         return $search->paginate(6);
+    }
+    public function getUserInArray($id)
+    {
+        if (is_array($id)) {
+            $flattenedIdUsersArray = collect($id)->flatten()->all();
+        } else {
+            $idUsersArray = json_decode($id, true);
+            $flattenedIdUsersArray = collect($idUsersArray)->flatten()->all();
+        }
+
+        $userGet = User::whereIn('id_user', $flattenedIdUsersArray)->get();
+
+        return $userGet;
     }
 }

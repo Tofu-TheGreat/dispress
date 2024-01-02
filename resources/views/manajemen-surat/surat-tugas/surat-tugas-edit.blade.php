@@ -156,7 +156,7 @@
                                                 <option disabled>Pilih Tujuan User</option>
                                                 @foreach ($userList as $data)
                                                     <option value="{{ $data->id_user }}"
-                                                        {{ $editDataSuratTugas->id_user_penerima == $data->id_user ? 'selected' : '' }}>
+                                                        {{ in_array($data->id_user, $userGet->pluck('id_user')->toArray()) ? 'selected' : '' }}>
                                                         {{ $data->nama }} |
                                                         {{ $data->posisiJabatan->nama_posisi_jabatan }}
                                                     </option>
@@ -260,8 +260,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_mulai @error('waktu_mulai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control  waktu_mulai @error('waktu_mulai') is-invalid @enderror"
                                                 placeholder="ex: 10:20 AM" value="{{ $editDataSuratTugas->waktu_mulai }}"
                                                 id="waktu_mulai" name="waktu_mulai" required>
                                         </div>
@@ -274,7 +274,7 @@
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
-                                        <label class="capitalize" for="waktu_selesai">Masukkan Waktu Mulai Tugas:
+                                        <label class="capitalize" for="waktu_selesai">Masukkan Waktu Selesai Tugas:
                                         </label>
                                         <div class="input-group">
                                             <div class="input-group-prepend">
@@ -282,8 +282,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_selesai @error('waktu_selesai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control  waktu_selesai @error('waktu_selesai') is-invalid @enderror"
                                                 placeholder="ex: 12:20 PM"
                                                 value="{{ $editDataSuratTugas->waktu_selesai }}" id="waktu_selesai"
                                                 name="waktu_selesai" required>

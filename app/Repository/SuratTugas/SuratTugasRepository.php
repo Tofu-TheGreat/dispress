@@ -13,4 +13,5 @@ interface SuratTugasRepository
     public function cetakSuratTugas($id);
     public function filterData($data);
     public function search($data);
+    public function getUserInArray($id);
 }

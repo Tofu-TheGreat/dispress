@@ -171,7 +171,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-envelope"></i>
+                                                    <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
                                             <input type="text"
@@ -198,6 +198,8 @@
                                         </span>
                                     </div>
                                 </div>
+
+                                <!-- Formulir untuk kolom 'tanggal_selesai' -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="tanggal_mulai">Masukkan Tanggal Mulai Tugas:
@@ -205,7 +207,7 @@
                                         <div class="input-group">
                                             <div class="input-group-prepend">
                                                 <div class="input-group-text">
-                                                    <i class="bi bi-calendar3"></i>
+                                                    <i class="bi bi-list-ol"></i>
                                                 </div>
                                             </div>
                                             <input type="date"
@@ -220,6 +222,7 @@
                                         </span>
                                     </div>
                                 </div>
+                                <!-- Formulir untuk kolom 'tempat_pelaksanaan' -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="tanggal_selesai">Masukkan Tanggal Mulai Tugas:
@@ -242,6 +245,8 @@
                                         </span>
                                     </div>
                                 </div>
+
+                                <!-- Formulir untuk kolom 'tembusan' -->
                                 <div class="col-sm-12 col-md-6 col-lg-6">
                                     <div class="form-group">
                                         <label class="capitalize" for="waktu_mulai">Masukkan Waktu Mulai Tugas:
@@ -252,8 +257,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_mulai @error('waktu_mulai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control waktu_mulai @error('waktu_mulai') is-invalid @enderror"
                                                 placeholder="ex: 10:20 AM" value="{{ old('waktu_mulai') }}"
                                                 id="waktu_mulai" name="waktu_mulai" required>
                                         </div>
@@ -274,8 +279,8 @@
                                                     <i class="bi bi-clock-fill"></i>
                                                 </div>
                                             </div>
-                                            <input type="text"
-                                                class="form-control timepicker waktu_selesai @error('waktu_selesai') is-invalid @enderror"
+                                            <input type="time"
+                                                class="form-control waktu_selesai @error('waktu_selesai') is-invalid @enderror"
                                                 placeholder="ex: 12:20 PM" value="{{ old('waktu_selesai') }}"
                                                 id="waktu_selesai" name="waktu_selesai" required>
                                         </div>
@@ -298,9 +303,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                <input type="id_user" class="form-control @error('id_user') is-invalid @enderror"
-                                    placeholder="ex: contoh@gmail.com" value="{{ Auth::user()->id_user }}"
-                                    id="id_user" name="id_user" hidden>
+
+
                             </div>
                             <div class="col-12 d-flex justify-content-end">
                                 <div class="row d-flex justify-content-end">

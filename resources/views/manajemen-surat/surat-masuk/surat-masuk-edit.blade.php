@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
 
@@ -278,7 +278,7 @@
     </section>
 @endsection
 @section('script')
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
@@ -323,7 +323,8 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
-            $('#catatan_verifikasi').summernote({
+            $('#isi_surat').summernote({
+                placeholder: 'ex: Perihal undangan rapat',
                 dialogsInBody: true,
                 minHeight: 120,
                 toolbar: [
@@ -338,7 +339,8 @@
                 ],
             });
 
-            $('#isi_surat').summernote({
+            $('#catatan_verifikasi').summernote({
+                placeholder: 'ex: Tolong untuk di verifikasi pa/bu',
                 dialogsInBody: true,
                 minHeight: 120,
                 toolbar: [

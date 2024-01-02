@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
 
@@ -261,7 +261,7 @@
     </section>
 @endsection
 @section('script')
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
@@ -301,7 +301,39 @@
     </script>
 
     <script>
-        $('.summernote').summernote({
+        $('#tujuan_surat_keluar').summernote({
+            placeholder: 'ex: <br> Kepala Sekolah SMKN 3 Tangerang <br> Di Tempat.',
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
+
+        $('#isi_surat').summernote({
+            placeholder: 'ex: <br> Dengan hormat, Kami mengundang Anda untuk menghadiri rapat yang akan diselenggarakan oleh SMKN 4. Mohon konfirmasi kehadiran Anda pada rapat ini. Jika Anda tidak dapat hadir, harap memberitahu kami sebelumnya agar kami dapat mengatur ulang jadwal atau menyediakan materi tambahan jika diperlukan',
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
+
+        $('#tembusan').summernote({
+            placeholder: 'ex: <br> 1. Kepala Sekolah <br> 2. Wakil Kepala Sekolah',
+            tabsize: 2,
             height: 120,
             toolbar: [
                 ['style', ['style']],

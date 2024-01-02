@@ -18,8 +18,8 @@ class PetunjukTeknisController extends Controller
         return view('pages.petunjuk-teknis.petunjuk-registrasi', ['title' => 'Petunjuk Registrasi', 'active' => 'petunjuk-registrasi']);
     }
 
-    public function petunjukDashboard()
+    public function petunjukRole()
     {
-        return view('pages.petunjuk-teknis.petunjuk-dashboard', ['title' => 'Petunjuk Teknis']);
+        return view('pages.petunjuk-teknis.petunjuk-role', ['title' => 'Petunjuk Role', 'active' => 'petunjuk-role']);
     }
 }

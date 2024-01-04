@@ -8,6 +8,7 @@ use App\Models\Surat;
 use App\Models\Disposisi;
 use App\Models\Instansi;
 use App\Models\PosisiJabatan;
+use App\Models\SuratTugas;
 use App\Repository\Dashboard\DashboardRepository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
@@ -80,6 +81,12 @@ class DashboardImplement implements DashboardRepository
             ->get();
     }
     // End get disposisi
+
+    // get surat tugas
+    public function getSuratTugasCount()
+    {
+        return SuratTugas::count();
+    }
 
     // Get Newest data
 
@@ -216,6 +223,30 @@ class DashboardImplement implements DashboardRepository
             'disposisi_count' => array_values($disposisiCounts),
         ];
     }
+
+    public function getSuratTugasFromUser()
+    {
+        $allMonths = [
+            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+        ];
+
+        $suratTugasData = SuratTugas::selectRaw('DATE_FORMAT(created_at, "%M") as month, JSON_UNQUOTE(JSON_EXTRACT(id_user_penerima, "$[0]")) as user, COUNT(*) as count')
+            ->whereJsonContains('id_user_penerima', auth()->user()->id_user)
+            ->groupBy('month', 'user')
+            ->get();
+
+        $suratTugasCounts = [];
+
+        foreach ($allMonths as $month) {
+            $suratTugasCounts[$month] = $suratTugasData->where('month', $month)->sum('count');
+        }
+
+        return [
+            'dates' => $allMonths,
+            'suratTugas_count' => array_values($suratTugasCounts),
+        ];
+    }
+
 
     // end get chart data
 }

@@ -77,8 +77,8 @@
 
         .keterangan-instansi .header p {
             font-size: 1.1rem;
-            line-height: 10px;
-            margin-bottom: 10px;
+            line-height: 11px;
+            margin-bottom: 4px;
             margin-top: 0;
             font-weight: normal;
         }
@@ -278,7 +278,7 @@
                         <p>Waktu
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
                             {!! $dataSuratTugas->waktu_mulai !!} s.d {!! $dataSuratTugas->waktu_selesai !!}</p>
-                        <p>Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
+                        <p style="line-height: 1.1;">Tempat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :
                             {!! $dataSuratTugas->tempat_pelaksanaan !!}</p>
                     </div>
                 </div>

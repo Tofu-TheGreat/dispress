@@ -77,8 +77,8 @@
 
         .keterangan-instansi .header p {
             font-size: 1.1rem;
-            line-height: 10px;
-            margin-bottom: 10px;
+            line-height: 11px;
+            margin-bottom: 4px;
             margin-top: 0;
             font-weight: normal;
         }

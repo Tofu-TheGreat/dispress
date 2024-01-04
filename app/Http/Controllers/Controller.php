@@ -27,6 +27,7 @@ class Controller extends BaseController
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisiCount();
 
         $suratCount = $this->dashboardRepository->getSuratCount();
+        $suratTugasCount = $this->dashboardRepository->getSuratTugasCount();
         $pengajuanCount = $this->dashboardRepository->getPengajuanCount();
 
         $adminCount = $this->dashboardRepository->getAdminCount();
@@ -50,6 +51,7 @@ class Controller extends BaseController
             'active1' => 'dashboard',
             'suratCount' => $suratCount,
             'pengajuanCount' => $pengajuanCount,
+            'suratTugasCount' => $suratTugasCount,
             'adminCount' => $adminCount,
             'officerCount' => $officerCount,
             'staffCount' => $staffCount,
@@ -77,7 +79,7 @@ class Controller extends BaseController
         $suratCount = $this->dashboardRepository->getSuratCount();
         $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
         $disposisiByUser = $this->dashboardRepository->getDisposisiByUser();
-
+        $suratTugasChartData = $this->dashboardRepository->getSuratTugasFromUser();
 
         return view('admin.pages.dashboard-officer', [
             'title' => 'Dashboard',
@@ -91,6 +93,7 @@ class Controller extends BaseController
             'instansiData' => $instansiData,
             'staffData' => $staffData,
             'suratCount' => $suratCount,
+            'suratTugasChartData' => $suratTugasChartData,
             'disposisiCountByUser' => $disposisiCountByUser,
             'disposisiByUser' => $disposisiByUser,
             'getPengajuanByUser' => $getPengajuanByUser,

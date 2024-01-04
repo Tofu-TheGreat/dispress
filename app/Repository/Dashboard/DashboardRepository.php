@@ -27,6 +27,9 @@ interface DashboardRepository
     public function getDisposisiCountByUser();
     public function getDisposisiByUser();
 
+    // surat keluar
+    public function getSuratTugasCount();
+
     // terbaru
     public function getNewestPengajuan();
     public function getNewestDisposisi();
@@ -38,4 +41,5 @@ interface DashboardRepository
     public function getSuratChartData();
     public function getPengajuanUserChartData();
     public function getDisposisiFromUser();
+    public function getSuratTugasFromUser();
 }

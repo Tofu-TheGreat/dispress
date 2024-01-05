@@ -1226,6 +1226,25 @@ body.dark .custom-block-title {
     color: #bba84b;
 }
 
+.custom-block-info {
+    background-color: #d5f7f7;
+    padding: 5px 20px;
+    border-left: 4px solid #009ee7;
+}
+
+body.dark .custom-block-info {
+    background-color: #5d767e;
+    border-left: 4px solid #4b78bb;
+}
+
+.custom-block-info .custom-block-title {
+    color: #00a6e7;
+}
+
+body.dark .custom-block-info .custom-block-title {
+    color: #4b9bbb;
+}
+
 .custom-block-text {
     font-size: 0.8rem;
 }

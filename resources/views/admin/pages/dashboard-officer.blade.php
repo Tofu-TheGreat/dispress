@@ -102,6 +102,18 @@
                         <canvas id="myChartDisposisi" height="158"></canvas>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span data-toggle="tooltip" data-placement="top" title="Ini adalah data surat tugas untuk Anda."
+                            data-original-title="Ini adalah data surat tugas untuk Anda." disabled>
+                            <i class="bi bi-question-circle mr-2 text-primary"></i>
+                        </span>
+                        <h4>Statistik Surat Tugas untuk {{ Auth::user()->nama }}</h4>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="myChartSuratTugas" height="158"></canvas>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4">
                 <div class="card gradient-bottom">
@@ -180,8 +192,7 @@
                                                                 <span class="text-primary" href="#">
                                                                     {{ $dataDisposisi->user->nama }}</span>
                                                             </div>
-                                                            <small
-                                                                style="max-width: max-content; position: absolute; top: 45%;">
+                                                            <small style="max-width: max-content; ">
                                                                 {{ currencyPhone($dataDisposisi->user->nomor_telpon) }}
                                                             </small>
                                                         </div>
@@ -339,6 +350,55 @@
                 datasets: [{
                     label: 'Disposisi',
                     data: {!! json_encode($disposisiUserChart['disposisi_count']) !!},
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(63,82,227,.8)',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
+                    pointBorderWidth: 0,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            // display: false,
+                            drawBorder: false,
+                            color: '#f2f2f2',
+                        },
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 10,
+                            callback: function(value, index, values) {
+                                return value;
+                            }
+                        }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            tickMarkLength: 15,
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+
+    <script>
+        const suratTugasChart = document.getElementById("myChartSuratTugas").getContext('2d');
+        const myChartSuratTugas = new Chart(suratTugasChart, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($suratTugasChartData['dates']) !!},
+                datasets: [{
+                    label: 'SuratTugas',
+                    data: {!! json_encode($suratTugasChartData['suratTugas_count']) !!},
                     borderWidth: 2,
                     backgroundColor: 'rgba(63,82,227,.8)',
                     borderWidth: 0,

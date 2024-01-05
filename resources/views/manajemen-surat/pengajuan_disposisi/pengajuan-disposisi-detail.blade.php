@@ -1,7 +1,7 @@
 @extends('admin.pages.layout')
 
 @section('css')
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -296,7 +296,7 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         // Mendapatkan elemen dengan class tertentu

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}">
 @endsection
@@ -340,7 +340,7 @@
     </section>
 @endsection
 @section('script')
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
@@ -412,7 +412,41 @@
     </script>
 
     <script>
-        $('.summernote').summernote({
+        $('#dasar').summernote({
+            placeholder: 'ex: <br> Surat dari Badan Pengelolaan Keuangan dan Aset Daerah Provinsi Banten, nomor 005/1474/IPKAD 04/2023, tanggal 9 Oktober 2023,perihal: Persediaan Triwulan III Tahun 2023, untuk kepentingan dinas Kepala Sekolah SMKN 1 Tangerang',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
+
+        $('#tempat_pelaksanaan').summernote({
+            placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
+            tabsize: 2,
+            height: 120,
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['color', ['color']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['table', ['table']],
+                ['insert', ['link']],
+                ['view', ['codeview', 'help']],
+            ],
+        });
+
+        $('#tembusan').summernote({
+            placeholder: 'ex: <br> 1. Kepala Sekolah <br> 2. Wakil Kepala Sekolah',
+            tabsize: 2,
             height: 120,
             toolbar: [
                 ['style', ['style']],

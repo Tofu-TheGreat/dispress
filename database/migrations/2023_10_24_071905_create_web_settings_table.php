@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('web_setting', function (Blueprint $table) {
             $table->id('id_web_setting');
-            $table->string('header_surat', 80);
+            $table->text('header_surat');
             $table->string('kota_user', 50);
             $table->unsignedBigInteger('id_instansi');
             $table->foreign('id_instansi')->references('id_instansi')->on('instansi')->onDelete('cascade');

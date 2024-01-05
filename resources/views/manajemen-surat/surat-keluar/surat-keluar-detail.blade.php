@@ -2,7 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
@@ -48,6 +48,8 @@
                                     <i class="bi bi-printer-fill btn-tambah-data"></i>
                                 </button>
                             </a>
+                        @endcan
+                        @can('admin')
                             <a href="{{ route('surat-keluar.edit', Crypt::encryptString($detailDataSuratKeluar->id_surat_keluar)) }}"
                                 class="text-white ml-2">
                                 <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top"
@@ -287,7 +289,7 @@
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         // Mengambil data klasifikasiList dari PHP

@@ -4,7 +4,7 @@
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
 
@@ -264,8 +264,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="catatan_pengajuan">Masukkan Catatan Pengajuan: </label>
-                                            <textarea class="summernote-simple @error('catatan_pengajuan') is-invalid @enderror"
-                                                placeholder="ex: Perihal rapat paripurna" id="catatan_pengajuan" name="catatan_pengajuan" required> {{ old('catatan_pengajuan') }} </textarea>
+                                            <textarea class="summernote-simple @error('catatan_pengajuan') is-invalid @enderror" id="catatan_pengajuan"
+                                                name="catatan_pengajuan" required> {{ old('catatan_pengajuan') }} </textarea>
                                             <span class="text-danger">
                                                 @error('catatan_pengajuan')
                                                     {{ $message }}
@@ -307,7 +307,7 @@
 @endsection
 @section('script')
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/js/filepond.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
@@ -317,6 +317,7 @@
     <script>
         $(document).ready(function() {
             $('#catatan_pengajuan').summernote({
+                placeholder: 'ex: Tolong untuk di approve',
                 dialogsInBody: true,
                 minHeight: 120,
                 toolbar: [
@@ -329,18 +330,6 @@
                     ['insert', ['link']],
                     ['view', ['codeview', 'help']],
                 ],
-                callbacks: {
-                    onInit: function() {
-                        // Tambahkan placeholder saat inisialisasi
-                        $(this).summernote('pasteHTML',
-                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Tolong untuk di approve</span>'
-                        );
-                    },
-                    onFocus: function() {
-                        // Hapus placeholder saat editor fokus
-                        $(this).find('.placeholder').remove();
-                    },
-                }
             });
 
             $('.summernote-simple').summernote({

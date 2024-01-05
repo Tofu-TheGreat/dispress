@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -163,7 +163,7 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="row">
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="id_instansi">Instansi Anda: </label>
                                                             <div class="input-group">
@@ -229,22 +229,6 @@
                                                     </div>
                                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                                         <div class="form-group">
-                                                            <label for="header_surat">Header Surat: </label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <input type="text" class="form-control "
-                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
-                                                                    value="{{ $dataWebSetting->header_surat }}"
-                                                                    id="header_surat" name="header_surat" readonly>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <div class="form-group">
                                                             <label for="kota_user">Kota: </label>
                                                             <div class="input-group">
                                                                 <div class="input-group-prepend">
@@ -257,6 +241,25 @@
                                                                     value="{{ $dataWebSetting->kota_user }}"
                                                                     id="kota_user" name="kota_user" readonly>
                                                             </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <div class="form-group">
+                                                            <div class="d-flex justify-content-between">
+                                                                <label class="label-form " for="header_surat">Masukkan
+                                                                    Header
+                                                                    Surat:
+                                                                </label>
+                                                                <a type="button" class="btn btn-primary mb-2"
+                                                                    data-toggle="tooltip" data-placement="top"
+                                                                    title="Contoh Header Surat"
+                                                                    data-original-title="Contoh Header Surat"
+                                                                    href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                                    target="_blank"><i
+                                                                        class="bi bi-envelope-arrow-up-fill"
+                                                                        style="font-size: 1.1rem;"></i></a>
+                                                            </div>
+                                                            <textarea class="summernote-simple summernote-disable" name="header_surat" readonly> {{ $dataWebSetting->header_surat }} </textarea>
                                                         </div>
                                                     </div>
                                                     <div class="col-12">
@@ -372,29 +375,7 @@
                                                             </span>
                                                         </div>
                                                     </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
-                                                        <div class="form-group">
-                                                            <label for="header_surat">Header Surat: </label>
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text bg-secondary">
-                                                                        <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                                    </div>
-                                                                </div>
-                                                                <input type="text"
-                                                                    class="form-control  @error('header_surat') is-invalid @enderror"
-                                                                    placeholder="ex: Pemerintahan Kota Tangerang"
-                                                                    value="{{ $dataWebSetting->header_surat }}"
-                                                                    id="header_surat" name="header_surat" required>
-                                                            </div>
-                                                            <span class="text-danger">
-                                                                @error('header_surat')
-                                                                    {{ $message }}
-                                                                @enderror
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                                    <div class="col-12">
                                                         <div class="form-group">
                                                             <label for="kota_user">Kota: </label>
                                                             <div class="input-group">
@@ -416,6 +397,29 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div class="d-flex justify-content-between">
+                                                        <label class="label-form " for="header_surat">Masukkan Header
+                                                            Surat:
+                                                        </label>
+                                                        <a type="button" class="btn btn-primary mb-2"
+                                                            data-toggle="tooltip" data-placement="top"
+                                                            title="Contoh Header Surat"
+                                                            data-original-title="Contoh Header Surat"
+                                                            href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                            target="_blank"><i class="bi bi-envelope-arrow-up-fill"
+                                                                style="font-size: 1.1rem;"></i></a>
+                                                    </div>
+                                                    <textarea class="summernote-simple @error('header_surat') is-invalid @enderror" id="header_surat" name="header_surat"
+                                                        required> {{ $dataWebSetting->header_surat }} </textarea>
+                                                    <span class="text-danger">
+                                                        @error('header_surat')
+                                                            {{ $message }}
+                                                        @enderror
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="col-12">
@@ -512,7 +516,7 @@
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
@@ -581,11 +585,20 @@
 
     {{-- Summernote --}}
     <script>
-        $('.summernote-simple').summernote({
-            dialogsInBody: true,
-            minHeight: 120,
+        $('#header_surat').summernote({
+            placeholder: 'ex: <br> <div style="text-align: center;"> <b> PEMERINTAHAN PROVINSI BANTEN <br> DINAS PENDIDIKAN DAN KEBUDAYAAN </b> <br> <span>UNIT PELAKSANAAN TEKNIS </span> </div>',
+            height: 120,
             toolbar: [
-                // [groupName, [list of button]]
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['para', ['ul', 'ol', 'paragraph']],
+            ],
+        });
+
+        $('#alamat_instansi').summernote({
+            placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
+            height: 120,
+            toolbar: [
                 ['style', ['style']],
                 ['font', ['bold', 'underline', 'clear']],
                 ['fontname', ['fontname']],
@@ -594,6 +607,17 @@
                 ['table', ['table']],
                 ['insert', ['link']],
                 ['view', ['codeview', 'help']],
+            ],
+        });
+
+        $('.summernote-simple').summernote({
+            dialogsInBody: true,
+            minHeight: 120,
+            toolbar: [
+                // [groupName, [list of button]]
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['para', ['ul', 'ol', 'paragraph']],
             ],
         });
 

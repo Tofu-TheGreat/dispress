@@ -6,6 +6,7 @@
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -151,7 +152,8 @@
                                         <input type="date"
                                             class="filter form-control tanggal_pengajuan_awal @error('tanggal_pengajuan_awal') is-invalid @enderror"
                                             placeholder="ex: 11/14/2023" value="{{ old('tanggal_pengajuan_awal') }}"
-                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal" style="width: 80%;">
+                                            id="tanggal_pengajuan_awal" name="tanggal_pengajuan_awal"
+                                            style="width: 80%;">
                                     </div>
                                     <span class="text-danger">
                                         @error('tanggal_pengajuan_awal')
@@ -883,6 +885,7 @@
 @endsection
 @section('script')
     {{-- modules --}}
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
@@ -914,9 +917,9 @@
     <script>
         $(document).ready(function() {
             $('#catatan_disposisi').summernote({
+                placeholder: 'ex: Laksanakan Rapat',
                 dialogsInBody: true,
                 minHeight: 120,
-                inheritPlaceholder: true,
                 toolbar: [
                     ['style', ['style']],
                     ['font', ['bold', 'underline', 'clear']],
@@ -927,18 +930,6 @@
                     ['insert', ['link']],
                     ['view', ['codeview', 'help']],
                 ],
-                callbacks: {
-                    onInit: function() {
-                        // Tambahkan placeholder saat inisialisasi
-                        $(this).summernote('pasteHTML',
-                            '<span contenteditable="false" class="placeholder" style="color: gray;">ex: Laksanakan rapat</span>'
-                        );
-                    },
-                    onFocus: function() {
-                        // Hapus placeholder saat editor fokus
-                        $(this).find('.placeholder').remove();
-                    },
-                }
             });
 
             $('.summernote-simple').summernote({

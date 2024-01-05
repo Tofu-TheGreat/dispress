@@ -6,7 +6,7 @@
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets-landing-page/extension/filepond/filepond-plugin-image-preview.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -581,7 +581,7 @@
 @endsection
 @section('script')
     {{-- modules --}}
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('assets/modules/izitoast/js/iziToast.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>x
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
@@ -595,35 +595,20 @@
         $(document).ready(function() {
             $('.phone').inputmask('9999-9999-9999');
 
-            $(document).on("show.bs.modal", '.modal', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                $(this).css("z-index", zIndex);
-                setTimeout(function() {
-                    $(".modal-backdrop").not(".modal-stack").first().css("z-index", zIndex - 1)
-                        .addClass("modal-stack");
-                }, 0);
-            }).on("hidden.bs.modal", '.modal', function(event) {
-                $(".modal:visible").length && $("body").addClass("modal-open");
-            });
-            $(document).on('inserted.bs.tooltip', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                var tooltipId = $(event.target).attr("aria-describedby");
-                $("#" + tooltipId).css("z-index", zIndex);
-            });
-            $(document).on('inserted.bs.popover', function(event) {
-                var zIndex = 100000 + (10 * $(".modal:visible").length);
-                var popoverId = $(event.target).attr("aria-describedby");
-                $("#" + popoverId).css("z-index", zIndex);
-            });
-
             $('.summernote-simple').summernote({
-                dialogsInBody: true,
-                minHeight: 150,
+                placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
+                tabsize: 2,
+                height: 120,
                 toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough']],
-                    ['para', ['paragraph']]
-                ]
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
             });
 
             $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);

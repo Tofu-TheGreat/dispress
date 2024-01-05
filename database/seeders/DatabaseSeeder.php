@@ -70,7 +70,7 @@ class DatabaseSeeder extends Seeder
             'tingkat_jabatan' => '2',
         ]);
 
-        User::factory(7)->create();
+        // User::factory(7)->create();
 
         // Seed User
         User::factory()->create([
@@ -136,7 +136,7 @@ class DatabaseSeeder extends Seeder
             'alamat_instansi' => 'Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
         ]);
 
-        Instansi::factory(15)->create();
+        // Instansi::factory(15)->create();
 
         // websetting
         WebSetting::factory()->create([

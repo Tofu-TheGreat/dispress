@@ -22,7 +22,7 @@
     <!-- aos carousel -->
     <link rel="stylesheet" href="{{ asset('/assets-landing-page/css/aos.css') }}" />
 
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
 
     <link href="{{ asset('assets-landing-page/extension/filepond/filepond.css') }}" rel="stylesheet" />
     <link rel="stylesheet"
@@ -138,28 +138,6 @@
                                         </div>
                                         <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
-                                                <label class="label-form" for=" header_surat">Header Surat: </label>
-                                                <div class="input-group">
-                                                    <div class="input-group-prepend">
-                                                        <div class="input-group-text">
-                                                            <i class="bi bi-envelope-arrow-up-fill"></i>
-                                                        </div>
-                                                    </div>
-                                                    <input type="text"
-                                                        class="form-control  @error('header_surat') is-invalid @enderror"
-                                                        placeholder="ex: pemerintah provinsi banten Dinas pendidikan dan kebudayaan unit pelaksanaan teknis"
-                                                        value="{{ old('header_surat') }}" id="header_surat"
-                                                        name="header_surat" required>
-                                                </div>
-                                                <span class="text-danger">
-                                                    @error('header_surat')
-                                                        {{ $message }}
-                                                    @enderror
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-12 col-md-6 col-lg-6">
-                                            <div class="form-group">
                                                 <label class="label-form" for=" kota_user">Kota: </label>
                                                 <div class="input-group">
                                                     <div class="input-group-prepend">
@@ -179,7 +157,7 @@
                                                 </span>
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
                                             <div class="form-group">
                                                 <label class="label-form" for=" email">Masukkan Email Instansi:
                                                 </label>
@@ -197,6 +175,29 @@
                                                 </div>
                                                 <span class="text-danger">
                                                     @error('email')
+                                                        {{ $message }}
+                                                    @enderror
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div class="d-flex justify-content-between">
+                                                    <label class="label-form " for="header_surat">Masukkan Header
+                                                        Surat:
+                                                    </label>
+                                                    <a type="button" class="btn btn-primary mb-2"
+                                                        data-toggle="tooltip" data-placement="top"
+                                                        title="Contoh Header Surat"
+                                                        data-original-title="Contoh Header Surat"
+                                                        href="{{ asset('assets-landing-page/img/img-petunjuk-teknis/header-surat.jpg') }}"
+                                                        target="_blank"><i class="bi bi-envelope-arrow-up-fill"
+                                                            style="font-size: 1.1rem;"></i></a>
+                                                </div>
+                                                <textarea class="summernote-simple @error('header_surat') is-invalid @enderror" id="header_surat" name="header_surat"
+                                                    required> {{ old('header_surat') }} </textarea>
+                                                <span class="text-danger">
+                                                    @error('header_surat')
                                                         {{ $message }}
                                                     @enderror
                                                 </span>
@@ -243,7 +244,8 @@
                                                     <label class="label-form" for=" default_logo">Set Default Logo
                                                         Instansi:
                                                         (Optional)</label>
-                                                    <small class="d-block">Catatan: masukkan logo dengan format
+                                                    <small class="d-block" style="font-size: .7rem">Catatan: masukkan
+                                                        logo dengan format
                                                         (JPEG, PNG,
                                                         JPG),
                                                         maksimal 10
@@ -297,11 +299,42 @@
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('assets-landing-page/extension/input-mask/jquery.inputmask.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         $(document).ready(function() {
             $('.phone').inputmask('(9999)-9999-9999');
+
+            $('#header_surat').summernote({
+                placeholder: 'ex: <br> <div style="text-align: center;"> <b> PEMERINTAHAN PROVINSI BANTEN <br> DINAS PENDIDIKAN DAN KEBUDAYAAN </b> <br> <span>UNIT PELAKSANAAN TEKNIS </span> </div>',
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
+            $('#alamat_instansi').summernote({
+                placeholder: 'ex: <br> Jl. Veteran No.1A, RT.005/RW.002, Babakan, Kec. Tangerang, Kota Tangerang, Banten 15118',
+                tabsize: 2,
+                height: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
         });
     </script>
 

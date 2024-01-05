@@ -2,7 +2,7 @@
 
 @section('css')
     <link rel="stylesheet" href="{{ asset('assets/modules/izitoast/css/iziToast.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/modules/summernote/summernote-bs4.css') }}">
+    <link href="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/modules/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.css') }}">
 @endsection
@@ -167,7 +167,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="isi_surat">Isi Surat: </label>
-                                            <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                            <textarea class="summernote-simple summernote-disable isi_surat @error('isi_surat') is-invalid @enderror"
                                                 placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                         </div>
                                     </div>
@@ -205,7 +205,8 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
-                                            <textarea class="summernote-simple summernote-disable @error('catatan_verifikasi') is-invalid @enderror"
+                                            <textarea
+                                                class="summernote-simple summernote-disable catatan_verifikasi @error('catatan_verifikasi') is-invalid @enderror"
                                                 placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" required> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
                                         </div>
                                     </div>
@@ -328,7 +329,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="isi_surat">Ringkasan Surat: </label>
-                                    <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                    <textarea class="summernote-simple summernote-disable isi_surat @error('isi_surat') is-invalid @enderror"
                                         placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                     <span class="text-danger">
                                         @error('isi_surat')
@@ -410,7 +411,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label for="catatan_verifikasi">Catatan Verifikasi Surat: </label>
-                                    <textarea class="summernote-simple @error('catatan_verifikasi') is-invalid @enderror"
+                                    <textarea class="summernote-simple catatan_verifikasi @error('catatan_verifikasi') is-invalid @enderror"
                                         placeholder="ex: Perihal rapat paripurna" id="catatan_verifikasi" name="catatan_verifikasi" readonly> {{ $detailDataSurat->catatan_verifikasi }} </textarea>
                                     <span class="text-danger">
                                         @error('catatan_verifikasi')
@@ -603,7 +604,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="isi_surat">Perihal Surat: </label>
-                                <textarea class="summernote-simple summernote-disable @error('isi_surat') is-invalid @enderror"
+                                <textarea class="summernote-simple summernote-disable isi_surat @error('isi_surat') is-invalid @enderror"
                                     placeholder="ex: Perihal rapat paripurna" id="isi_surat" name="isi_surat" readonly> {{ $detailDataSurat->isi_surat }} </textarea>
                                 <span class="text-danger">
                                     @error('isi_surat')
@@ -662,7 +663,7 @@
     <script src="{{ asset('assets/modules/sweetalert/sweetalert.min.js') }}"></script>
     <script src="{{ asset('assets/modules/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
     <script src="{{ asset('assets/modules/select2/dist/js/select2.full.min.js') }}"></script>
-    <script src="{{ asset('assets/modules/summernote/summernote-bs4.js') }}"></script>
+    <script src="{{ asset('assets-landing-page/extension/summernote/summernote-bs4.min.js') }}"></script>
 
     <script>
         // Mengambil data klasifikasiList dari PHP
@@ -713,14 +714,52 @@
 
     <script>
         $(document).ready(function() {
-            $('.summernote-simple').summernote({
+            $('.isi_surat').summernote({
+                placeholder: 'ex: Perihal undangan rapat',
                 dialogsInBody: true,
-                minHeight: 150,
+                minHeight: 120,
                 toolbar: [
-                    ['style', ['bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough']],
-                    ['para', ['paragraph']]
-                ]
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
+            $('.catatan_verifikasi').summernote({
+                placeholder: 'ex: Tolong untuk di verifikasi pa/bu',
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
+            });
+
+            $('#catatan_pengajuan').summernote({
+                placeholder: 'ex: Tolong untuk di approve pa/bu',
+                dialogsInBody: true,
+                minHeight: 120,
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'underline', 'clear']],
+                    ['fontname', ['fontname']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                    ['view', ['codeview', 'help']],
+                ],
             });
 
             $('.summernote-disable').next().find(".note-editable").attr("contenteditable", false);

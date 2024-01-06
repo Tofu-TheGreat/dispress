@@ -44,19 +44,19 @@
         <section class="socmed">
             <div class="container d-flex justify-content-center">
                 <ul>
-                    <a href="https://facebook.com">
+                    <a href="https://facebook.com" target="_blank">
                         <li style="--i: #2808dd; --j: #4461e2">
                             <span class="icon"><i class="bi bi-facebook" aria-label="facebook"></i></span>
                             <span class="text-icon">facebook</span>
                         </li>
                     </a>
-                    <a href="https://twitter.com" target="_blank">
+                    <a href="https://twitter.com/smkn4tangerang" target="_blank">
                         <li style="--i: #373738; --j: #787879">
                             <span class="icon"><i class="bi bi-twitter-x" aria-label="Twitter"></i></span>
                             <span class="text-icon">Twitter</span>
                         </li>
                     </a>
-                    <a href="https://instagram.com">
+                    <a href="https://www.instagram.com/smkn4kotatangerang/" target="_blank">
                         <li style="--i: #dd2a7b; --j: #8134af">
                             <span class="icon"><i class="bi bi-instagram" aria-label="Instagram"></i></span>
                             <span class="text-icon">instagram</span>

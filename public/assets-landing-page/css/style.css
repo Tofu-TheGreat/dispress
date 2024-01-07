@@ -1197,6 +1197,11 @@ body.dark .petunjuk-wrapper {
     color: var(--white-900);
 }
 
+.img-fluid.image-box {
+    border-radius: 10px;
+    border: 1px solid var(--main-to-dark-color);
+}
+
 .title-page-petunjuk {
     color: var(--main-color);
 }

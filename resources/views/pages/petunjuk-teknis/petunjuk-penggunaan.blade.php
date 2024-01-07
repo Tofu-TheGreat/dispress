@@ -31,65 +31,104 @@
                                     <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
                                     <div class="custom-block-warning mb-4">
                                         <p class="custom-block-title mt-1 mb-50">Perhatian</p>
-                                        <p class="custom-block-text">Anda sedang membaca petunjuk teknis Dispress versi
-                                            <b class="bold-main">v.1.0</b> <br>
-                                            Progress Petunjuk teknis ini baru mencakup <b class="bold-main">20%</b>
-                                            dari keseluruhan
-                                            fungsi Dispress
+                                        <p class="custom-block-text">
+                                            Petunjuk penggunaan disini lebih berfokus untuk role admin, jika petunjuk tidak
+                                            ada di UI(tampilan) anda maka itu bukan merupakan kesalahan, karena hak akses
+                                            setiap role berbeda (berada di petunjuk role)
                                         </p>
                                     </div>
                                     <div class="text-center mb-2">
                                         <div class="">
-                                            <img width="90%"
-                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/landing-page-dispress.png') }}"
-                                                class="img-fluid image-box" alt="Foto Tampilan Landing Page">
+                                            <img width="30%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/petunjuk-penggunaan-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan Sidebar">
                                         </div>
-                                        <small class="img-caption-petunjuk">Landing Page Dispress</small>
+                                        <small class="img-caption-petunjuk">Sidebar Dispress</small>
                                     </div>
-                                    <p class="text-page-petunjuk">Dispress (Disposisi Express) adalah Lorem ipsum dolor
-                                        sit amet consectetur,
-                                        adipisicing elit. Maxime adipisci
-                                        deleniti ab assumenda repudiandae fuga distinctio architecto error iste esse.
-                                        Quidem consequuntur tenetur nisi eveniet dolorum officiis ut autem, possimus,
-                                        exercitationem magni quibusdam doloremque ullam molestias, blanditiis voluptates
-                                        consequatur alias! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut
-                                        architecto incidunt dolorum! Ipsa a aspernatur odio reiciendis iste quam quos.
+                                    <p class="text-page-petunjuk">
+                                        Pilih menu <b class="bold-main">Posisi Jabatan</b> di sidebar. <br>
+                                        maka akan tampil halaman <b class="bold-main">Posisi Jabatan</b> yang terdiri dari
+                                        data posisi jabatan dan tombol tombol action untuk mengelola posisi jabatan.
                                     </p>
-                                </section>
-                                <section class="section-petunjuk mt-4" id="pojab" data-scroll-index="0">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-laptop-fill"></i>
-                                        Posisi Jabatan Perangkat</h5>
-                                    <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
-
-                                    <p class="text-justify">Aplikasi Dispress dapat diakses melalui perangkat berikut:
+                                    <h6 class="text-info">Filter Posisi Jabatan</h6>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/filter-pojab.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan Filter Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Filter Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        Filter posisi jabatan berdasarkan tingkat jabatan. disini pengguna harus memilih
+                                        salah satu tingkat jabatan yang ingin ditampilkan, jika sudah memilih maka klik
+                                        tombol <b class="bold-main">Filter data</b> dan jika ingin mereset filter maka klik
+                                        tombol <b class="bold-main">Reset
+                                            Filter</b>.
                                     </p>
-
-                                    <ul class="list-rekomendasi-perangkat">
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Komputer/PC</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Tablet</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Smartphone</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Laptop</li>
-                                        <li><i class="bi bi-patch-check-fill me-2"></i> Perangkat Lainnya</li>
-                                    </ul>
-
-                                    <p>Kami merekomendasikan untuk menggunakan perangkat dengan resolusi layar minimal
-                                        1080p. Dalam mengakses Aplikasi Dispress, perangkat di atas harus terhubung
-                                        dengan Internet menggunakan browser.</p>
-                                </section>
-                                <section class="section-petunjuk mt-4" id="browser" data-scroll-index="1">
-                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-browser-chrome"></i>
-                                        Rekomendasi Browser</h5>
-                                    <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
-
-                                    <p class="text-justify">
-                                        DiGi.Ka. dibuat untuk berjalan optimal sesuai dengan fungsi-fungsinya pada
-                                        peramban Google Chrome. Kami merekomendasikan untuk menggunakan peramban
-                                        tersebut, namun Anda juga dapat menggunakan peramban lainnya seperti Mozilla
-                                        Firefox, Microsoft Edge dan peramban lainnya.
+                                    <h6 class="text-info">Data Posisi Jabatan</h6>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/data-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan Data Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        Data posisi jabatan ditampilkan dari database. data posisi jabatan terdiri kolom
+                                        nama posisi jabatan, deskripsi jabatan, tingkat jabatan, dan action.
                                     </p>
-                                    <p class="text-justify">
-                                        Pengunaan peramban selain daripada yang direkomendasikan, mungkin saja akan
-                                        menyebabkan beberapa fungsi tidak berjalan sesuai dengan semestinya.
+                                    <h6 class="text-info">Action Posisi Jabatan</h6>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/tambah-posjab.png') }}"
+                                                class="img-fluid image-box"
+                                                alt="Foto Tampilan tombol Tambah Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Tombol Tambah Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        Tombol tambah data berada di atas kanan data posisi jabatan. jika ingin menambah
+                                        data posisi jabatan maka klik tombol <b class="bold-main">Tambah</b>. jika di klik
+                                        maka akan muncul modal tambah data.
+                                    </p>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/modal-tambah-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tampilan modal Tambah Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Modal Tambah Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        Isi semua inputan yang ada di form, jika sudah klik tombol <b class="bold-main">Save
+                                            Data. </b>
+                                    </p>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/action-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto Tombol Action Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Tombol Action Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        jika di klik maka akan muncul tombol lain untuk mengelola posisi jabatan. yaitu
+                                        tombol detail, edit, dan delete.
+                                    </p>
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/klik-action-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto klik tombol Action Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Tombol mengelolah Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        jika di klik maka akan muncul tombol lain untuk mengelola posisi jabatan. yaitu
+                                        tombol detail, edit, dan delete.
                                     </p>
                                 </section>
                                 <section class="section-petunjuk mt-4" id="alamat" data-scroll-index="2">
@@ -103,7 +142,8 @@
                                     </p>
                                     <div class="custom-block-warning ">
                                         <p class="custom-block-title mt-1 mb-50">Lanjutkan Petunjuk</p>
-                                        <a class="btn btn-sm btn-success mb-2" href="/petunjuk-teknis/registrasi">Lanjutkan
+                                        <a class="btn btn-sm btn-success mb-2"
+                                            href="/petunjuk-teknis/registrasi">Lanjutkan
                                             <i class="bi bi-arrow-right-circle-fill ms-2"></i></a>
                                         <p class="custom-block-text">Klik untuk melanjutkan membaca petunjuk teknis -
                                             Petunjuk registrasi

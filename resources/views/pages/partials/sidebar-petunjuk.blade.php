@@ -67,7 +67,7 @@
                     Staff</a>
             </li>
             <a class="title-petunjuk mt-2" href="/petunjuk-teknis/penggunaan">
-                <h6 class="">Cara Penggunaan</h6>
+                <h6 class="{{ $active == 'petunjuk-penggunaan' ? 'active' : '' }}">Cara Penggunaan</h6>
             </a>
             <li class="nav-item">
                 <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#posjab"

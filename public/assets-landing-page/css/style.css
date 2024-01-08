@@ -562,11 +562,11 @@ Hero Section
 
 .hero .hero-text img {
     margin: 0 0 30px;
-    width: 60%;
+    width: 45%;
 }
 
 .hero .hero-text h1 {
-    font-size: 2.1rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: var(--tertiary-color);
     margin: 0 0 30px;
@@ -1197,6 +1197,11 @@ body.dark .petunjuk-wrapper {
     color: var(--white-900);
 }
 
+.img-fluid.image-box {
+    border-radius: 10px;
+    border: 1px solid var(--main-to-dark-color);
+}
+
 .title-page-petunjuk {
     color: var(--main-color);
 }
@@ -1224,6 +1229,25 @@ body.dark .custom-block-warning {
 
 body.dark .custom-block-title {
     color: #bba84b;
+}
+
+.custom-block-info {
+    background-color: #d5f7f7;
+    padding: 5px 20px;
+    border-left: 4px solid #009ee7;
+}
+
+body.dark .custom-block-info {
+    background-color: #5d767e;
+    border-left: 4px solid #4b78bb;
+}
+
+.custom-block-info .custom-block-title {
+    color: #00a6e7;
+}
+
+body.dark .custom-block-info .custom-block-title {
+    color: #4b9bbb;
 }
 
 .custom-block-text {

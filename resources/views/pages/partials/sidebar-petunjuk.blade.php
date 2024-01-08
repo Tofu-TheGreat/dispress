@@ -66,13 +66,69 @@
                         class="bi bi-person-fill me-2"></i>
                     Staff</a>
             </li>
-            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/user">
-                <h6 class="">User</h6>
+            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/penggunaan">
+                <h6 class="{{ $active == 'petunjuk-penggunaan' ? 'active' : '' }}">Cara Penggunaan</h6>
             </a>
             <li class="nav-item">
-                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-user#user"
-                    data-bs-target="petunjuk-user#user"><i class="bi bi-person-fill me-2"></i>
-                    User</a>
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#posjab"
+                    data-bs-target="petunjuk-teknis/penggunaan#posjab"><i class="bi bi-person-badge me-2"></i>
+                    Posisi Jabatan</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#users"
+                    data-bs-target="petunjuk-teknis/penggunaan#users"><i class="bi bi-person-circle me-2"></i>
+                    Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#instansi"
+                    data-bs-target="petunjuk-teknis/penggunaan#instansi"><i class="bi bi-building me-2"></i>
+                    Instansi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#noklaf"
+                    data-bs-target="petunjuk-teknis/penggunaan#noklaf"><i class="bi bi-hash me-2"></i>
+                    Nomor Klasifikasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#surmas"
+                    data-bs-target="petunjuk-teknis/penggunaan#surmas"><i class="bi bi-envelope me-2"></i>
+                    Surat Masuk</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#pengajuan"
+                    data-bs-target="petunjuk-teknis/penggunaan#pengajuan"><i
+                        class="bi bi-envelope-arrow-up-fill me-2"></i>
+                    Pengajuan Disposisi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#disposisi"
+                    data-bs-target="petunjuk-teknis/penggunaan#disposisi"><i
+                        class="bi bi-envelope-open-fill me-2"></i>
+                    Disposisi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#surkel"
+                    data-bs-target="petunjuk-teknis/penggunaan#surkel"><i class="bi bi-envelope-plus-fill me-2"></i>
+                    Surat Keluar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-scroll-nav="0" href="/petunjuk-teknis/penggunaan#surtugas"
+                    data-bs-target="petunjuk-teknis/penggunaan#surtugas"><i
+                        class="bi bi-envelope-check-fill me-2"></i>
+                    Surat Tugas</a>
+            </li>
+            <a class="title-petunjuk mt-2" href="/petunjuk-teknis/setting">
+                <h6 class="{{ $active == 'petunjuk-setting' ? 'active' : '' }}">Setting</h6>
+            </a>
+            <li class="nav-item">
+                <a class="nav-link" href="/petunjuk-teknis/setting#profile" data-bs-target="#profile"><i <i
+                        class="bi bi-person-fill-gear me-2"></i>
+                    Profile</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/petunjuk-teknis/setting#webset" data-bs-target="#webset"><i <i
+                        class="bi bi-gear-wide-connected me-2"></i>
+                    Web Setting</a>
             </li>
         </ul>
     </div>

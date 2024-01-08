@@ -105,6 +105,17 @@
                                         <div class="profile-widget-item-label">Disposisi</div>
                                         <div class="profile-widget-item-value">{{ $getDisposisiForUserCount }}</div>
                                     </div>
+                                    <div class="profile-widget-item position-relative">
+                                        <div style="position: absolute; top: 2px; right: 0px;z-index: 9; font-size: .7rem">
+                                            <span data-toggle="tooltip" data-placement="top"
+                                                title="Ini adalah Semua data surat tugas untuk Anda."
+                                                data-original-title="Ini adalah Semua data surat tugas untuk Anda.">
+                                                <i class="bi bi-question-circle mr-2 text-primary"></i>
+                                            </span>
+                                        </div>
+                                        <div class="profile-widget-item-label">Surat Tugas</div>
+                                        <div class="profile-widget-item-value">{{ $getDisposisiForUserCount }}</div>
+                                    </div>
                                 @endcannot
                             </div>
                         </div>
@@ -164,17 +175,17 @@
                     </div>
                     <div class="card card-statistic-1 position-relative">
                         <div style="position: absolute; top: 5px; right: 5px">
-                            <a href="/surat-keluar" data-toggle="tooltip" data-placement="top"
-                                title="Menuju detail surat keluar untuk anda."
-                                data-original-title="Menuju detail surat keluar untuk anda.">
+                            <a href="/surat-tugas" data-toggle="tooltip" data-placement="top"
+                                title="Menuju detail surat tugas untuk anda."
+                                data-original-title="Menuju detail surat tugas untuk anda.">
                                 <i class="bi bi-arrow-right-circle-fill mr-2 text-primary" style="font-size: 1rem;"></i>
                             </a>
                         </div>
                         <div class="card-icon bg-warning position-relative">
                             <div style="position: absolute; top: -33px; left: 5px">
                                 <span data-toggle="tooltip" data-placement="top"
-                                    title="Ini adalah data surat keluar untuk Anda."
-                                    data-original-title="Ini adalah data surat keluar untuk Anda.">
+                                    title="Ini adalah data surat tugas untuk Anda."
+                                    data-original-title="Ini adalah data surat tugas untuk Anda.">
                                     <i class="bi bi-question-circle mr-2 text-white"></i>
                                 </span>
                             </div>
@@ -182,7 +193,7 @@
                         </div>
                         <div class="card-wrap">
                             <div class="card-header">
-                                <h4>Total Surat Keluar untuk {{ auth()->user()->nama }}</h4>
+                                <h4>Total Surat Tugas untuk {{ auth()->user()->nama }}</h4>
                             </div>
                             <div class="card-body">
                                 {{ $getSuratKeluarForUserCount ? $getSuratKeluarForUserCount : 0 }} Data

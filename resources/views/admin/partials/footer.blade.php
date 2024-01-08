@@ -19,22 +19,25 @@
                 <div class="footer-col footer-col-socmed">
                     <h3 class="text-center social-pages">social pages</h3>
                     <ul class="socmed-footer mt-5" data-aos="zoom-in" data-aos-duration="1800">
-                        <a href="https://facebook.com">
+                        <a>
                             <li class="li-icon">
                                 <a class="btn btn-socmed-footer px-4" style="--i: #074fa1; --j: #1b71d3"
                                     type="button"><i class="bi bi-facebook icon-btn-socmed-footer ms-2"></i></a>
                             </li>
                         </a>
-                        <a href="https://twitter.com" target="_blank">
+                        <a>
                             <li class="li-icon">
-                                <a class="btn btn-socmed-footer px-4" style="--i: #373738; --j: #787879"
-                                    type="button"><i class="bi bi-twitter-x icon-btn-socmed-footer ms-2"></i></a>
+                                <a class="btn btn-socmed-footer px-4" href="https://twitter.com/smkn4tangerang"
+                                    target="_blank" style="--i: #373738; --j: #787879" type="button"><i
+                                        class="bi bi-twitter-x icon-btn-socmed-footer ms-2"></i></a>
                             </li>
                         </a>
-                        <a href="https://instagram.com">
+                        <a>
                             <li class="li-icon">
-                                <a class="btn btn-socmed-footer px-4" style="--i: #dd2a7b; --j: #8134af"
-                                    type="button"><i class="bi bi-instagram icon-btn-socmed-footer ms-2"></i></a>
+                                <a class="btn btn-socmed-footer px-4"
+                                    href="https://www.instagram.com/smkn4kotatangerang/" target="_blank"
+                                    style="--i: #dd2a7b; --j: #8134af" type="button"><i
+                                        class="bi bi-instagram icon-btn-socmed-footer ms-2"></i></a>
                             </li>
                         </a>
                     </ul>

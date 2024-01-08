@@ -44,21 +44,21 @@
         <section class="socmed">
             <div class="container d-flex justify-content-center">
                 <ul>
-                    <a href="https://facebook.com">
+                    <a href="https://facebook.com" target="_blank">
                         <li style="--i: #2808dd; --j: #4461e2">
-                            <span class="icon"><i class="bi bi-facebook"></i></span>
+                            <span class="icon"><i class="bi bi-facebook" aria-label="facebook"></i></span>
                             <span class="text-icon">facebook</span>
                         </li>
                     </a>
-                    <a href="https://twitter.com" target="_blank">
+                    <a href="https://twitter.com/smkn4tangerang" target="_blank">
                         <li style="--i: #373738; --j: #787879">
-                            <span class="icon"><i class="bi bi-twitter-x"></i></span>
+                            <span class="icon"><i class="bi bi-twitter-x" aria-label="Twitter"></i></span>
                             <span class="text-icon">Twitter</span>
                         </li>
                     </a>
-                    <a href="https://instagram.com">
+                    <a href="https://www.instagram.com/smkn4kotatangerang/" target="_blank">
                         <li style="--i: #dd2a7b; --j: #8134af">
-                            <span class="icon"><i class="bi bi-instagram"></i></span>
+                            <span class="icon"><i class="bi bi-instagram" aria-label="Instagram"></i></span>
                             <span class="text-icon">instagram</span>
                         </li>
                     </a>
@@ -178,8 +178,8 @@
                 <div class="text-center">
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.5768925963066!2d106.63556391455468!3d-6.187333395520691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f929162547c7%3A0xbbf35137362e584d!2sSMK%20Negeri%204%20Kota%20Tangerang!5e0!3m2!1sid!2sid!4v1677921080826!5m2!1sid!2sid"
-                        width="100%" height="600" style="border: 0" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        width="100%" height="600" style="border: 0; border-radius: 10px" aria-label="Google Maps"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
                     </iframe>
                 </div>
             </div>

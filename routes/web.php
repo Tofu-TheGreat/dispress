@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::get('/petunjuk-teknis', [PetunjukTeknisController::class, 'petunjukTeknis']);
 Route::get('/petunjuk-teknis/registrasi', [PetunjukTeknisController::class, 'petunjukRegistrasi']);
 Route::get('/petunjuk-teknis/role', [PetunjukTeknisController::class, 'petunjukRole']);
+Route::get('/petunjuk-teknis/penggunaan', [PetunjukTeknisController::class, 'petunjukPenggunaan']);
 
 // Manajemen setting
 

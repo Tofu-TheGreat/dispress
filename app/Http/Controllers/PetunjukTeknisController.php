@@ -22,4 +22,9 @@ class PetunjukTeknisController extends Controller
     {
         return view('pages.petunjuk-teknis.petunjuk-role', ['title' => 'Petunjuk Role', 'active' => 'petunjuk-role']);
     }
+
+    public function petunjukPenggunaan()
+    {
+        return view('pages.petunjuk-teknis.petunjuk-penggunaan', ['title' => 'Petunjuk Penggunaan', 'active' => 'petunjuk-penggunaan']);
+    }
 }

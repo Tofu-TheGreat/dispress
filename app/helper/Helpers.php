@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\SuratTugas;
+
 if (!function_exists('currencyPhone')) {
     function currencyPhone($phone)
     {
@@ -275,5 +277,21 @@ if (!function_exists('convertToNIP')) {
         $formattedNIP = $tanggalLahir . ' ' . $tahunMasuk . ' ' . $jenisKelamin . ' ' . $urutan;
 
         return $formattedNIP;
+    }
+}
+
+if (!function_exists('convertJsonIdUserPenerima')) {
+    function convertJsonIdUserPenerima($modelClass, $fieldName)
+    {
+        $value = SuratTugas::select($fieldName)->first()->{$fieldName};
+
+        if (is_array($value)) {
+            $flattenedIdUsersArray = collect($value)->flatten()->all();
+        } else {
+            $idUsersArray = json_decode($value, true);
+            $flattenedIdUsersArray = collect($idUsersArray)->flatten()->all();
+        }
+
+        return $flattenedIdUsersArray;
     }
 }

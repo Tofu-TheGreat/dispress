@@ -29,6 +29,7 @@ interface DashboardRepository
 
     // surat keluar
     public function getSuratTugasCount();
+    public function getNewestSuratTugas();
 
     // terbaru
     public function getNewestPengajuan();

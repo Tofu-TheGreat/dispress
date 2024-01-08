@@ -103,6 +103,13 @@ class DashboardImplement implements DashboardRepository
         return $collections->sortByDesc('created_at');
     }
 
+    public function getNewestSuratTugas()
+    {
+        $collections = SuratTugas::get();
+
+        return $collections->sortByDesc('created_at');
+    }
+
     // End Get newest data
 
     // Get data chart
@@ -143,12 +150,12 @@ class DashboardImplement implements DashboardRepository
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
         ];
 
-        $disposisiData = Disposisi::selectRaw('DATE_FORMAT(tanggal_disposisi, "%M") as date, COUNT(*) as count')
+        $disposisiData = Disposisi::selectRaw('DATE_FORMAT(created_at, "%M") as date, COUNT(*) as count')
             ->where('id_user', auth()->user()->id_user)
             ->groupBy('date')
             ->get();
 
-        $pengajuanData = Pengajuan::selectRaw('DATE_FORMAT(tanggal_terima, "%M") as date, COUNT(*) as count')
+        $pengajuanData = Pengajuan::selectRaw('DATE_FORMAT(created_at, "%M") as date, COUNT(*) as count')
             ->where('id_user', auth()->user()->id_user)
             ->groupBy('date')
             ->get();
@@ -230,10 +237,12 @@ class DashboardImplement implements DashboardRepository
             "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
         ];
 
+        $userId = Auth::user()->id_user;
         $suratTugasData = SuratTugas::selectRaw('DATE_FORMAT(created_at, "%M") as month, JSON_UNQUOTE(JSON_EXTRACT(id_user_penerima, "$[0]")) as user, COUNT(*) as count')
-            ->whereJsonContains('id_user_penerima', auth()->user()->id_user)
+            ->whereRaw("JSON_CONTAINS(JSON_UNQUOTE(JSON_EXTRACT(id_user_penerima, '$[0]')), ?)", ['"' . $userId . '"'])
             ->groupBy('month', 'user')
             ->get();
+
 
         $suratTugasCounts = [];
 
@@ -249,4 +258,6 @@ class DashboardImplement implements DashboardRepository
 
 
     // end get chart data
+
+
 }

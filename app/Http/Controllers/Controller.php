@@ -27,8 +27,10 @@ class Controller extends BaseController
         $alldisposisiCount = $this->dashboardRepository->getAllDisposisiCount();
 
         $suratCount = $this->dashboardRepository->getSuratCount();
-        $suratTugasCount = $this->dashboardRepository->getSuratTugasCount();
         $pengajuanCount = $this->dashboardRepository->getPengajuanCount();
+
+        $suratTugasCount = $this->dashboardRepository->getSuratTugasCount();
+        $newestSuratTugas = $this->dashboardRepository->getNewestSuratTugas();
 
         $adminCount = $this->dashboardRepository->getAdminCount();
         $officerCount = $this->dashboardRepository->getOfficerCount();
@@ -43,6 +45,7 @@ class Controller extends BaseController
         // Retrieve dynamic data for the chart
         $pengajuanChartData = $this->dashboardRepository->getPengajuanChartData();
         $disposisiChartData = $this->dashboardRepository->getDisposisiChartData();
+        $suratTugasChartData = $this->dashboardRepository->getSuratTugasFromUser();
         $pengajuanDisposisiChartData = $this->dashboardRepository->getDisposisiAndPengajuanChartData();
 
         return view('admin.pages.dashboard-admin', [
@@ -61,9 +64,11 @@ class Controller extends BaseController
             'pengajuanDisposisiChartData' => $pengajuanDisposisiChartData,
             'newestPengajuan' => $newestPengajuan,
             'newestDisposisi' => $newestDisposisi,
+            'newestSuratTugas' => $newestSuratTugas,
             'disposisiCountByUser' => $disposisiCountByUser,
             'instansiData' => $instansiData,
             'jabatanData' => $jabatanData,
+            'suratTugasChartData' => $suratTugasChartData,
         ]);
     }
     public function dashboardOfficer()
@@ -105,6 +110,7 @@ class Controller extends BaseController
         $staffData = $this->dashboardRepository->getStaffCount();
         $disposisiCountByUser = $this->dashboardRepository->getDisposisiCountByUser();
         $disposisiByUser = $this->dashboardRepository->getDisposisiByUser();
+        $suratTugasChartData = $this->dashboardRepository->getSuratTugasFromUser();
 
         return view('admin.pages.dashboard-staff', [
             'title' => 'Dashboard',
@@ -114,6 +120,7 @@ class Controller extends BaseController
             'staffData' => $staffData,
             'disposisiCountByUser' => $disposisiCountByUser,
             'disposisiByUser' => $disposisiByUser,
+            'suratTugasChartData' => $suratTugasChartData,
         ]);
     }
 }

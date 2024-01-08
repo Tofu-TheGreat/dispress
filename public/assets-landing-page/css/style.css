@@ -853,6 +853,7 @@ Features Section
 .features {
     display: flex;
     transition: all 0.3s ease-in-out;
+    min-height: 100vh;
 }
 .features .features-carousel {
     justify-content: space-between;

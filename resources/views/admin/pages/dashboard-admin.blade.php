@@ -480,82 +480,101 @@
                             <span class="badge badge-transparent-success mr-2" data-toggle="tooltip" data-placement="top"
                                 title="Ini adalah total data surat tugas untuk Anda."
                                 data-original-title="Ini adalah total data surat tugas untuk Anda.">
-                                {{ $disposisiCountByUser }}
+                                {{ $suratTugasCount }}
                             </span>
                             <a href="/surat-tugas" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                         </div>
                     </div>
                     <div class="card-body" id="top-5-scroll2">
                         <ul class="list-unstyled list-unstyled-border">
-                            {{-- @foreach ($disposisiByUser as $dataDisposisi)
+                            @foreach ($newestSuratTugas as $data)
                                 <li class="media">
                                     <div class="col-12" style="padding: 0">
                                         <div class="card card-primary card-surat shadow-sm">
                                             <div class="card-header d-flex justify-content-between">
                                                 <div class="position-relative">
-                                                    <h4>{{ $dataDisposisi->pengajuan->nomor_agenda }}</h4>
+                                                    <h4>{{ $data->nomor_surat_tugas }}</h4>
+                                                    <small class="text-primary"
+                                                        style="position: absolute; top: 50%;width: max-content;">Pengirim
+                                                        {{ $data->pengirim->nama }}
+                                                    </small>
                                                 </div>
-                                                <div class="card-header-action btn-group">
-                                                    <button class="btn btn-primary mr-1" data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title="Status Disposisi - {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}"
-                                                        data-original-title="Status Disposisi - {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}">
-                                                        <span class="d-flex justify-content-center m-0">
-                                                            {{ convertDisposisiField($dataDisposisi->status_disposisi, 'status') }}
-                                                        </span>
-                                                    </button>
-                                                    <a data-collapse="#mycard-collapse{{ $dataDisposisi->id_pengajuan }}"
+                                                <div class="card-header-action btn-group tombol-ajukan">
+                                                    <a data-collapse="#mycard-collapse{{ $data->id_surat_tugas }}"
                                                         class="btn btn-icon btn-info" href="#"><i
                                                             class="fas fa-minus"></i></a>
                                                 </div>
                                             </div>
-                                            <div class="collapse show"
-                                                id="mycard-collapse{{ $dataDisposisi->id_pengajuan }}">
+                                            <div class="collapse show" id="mycard-collapse{{ $data->id_surat_tugas }}">
                                                 <div class="card-body card-body-surat position-relative "
                                                     style="min-height: 130px">
-                                                    <p class="w-75"> {!! $dataDisposisi->catatan_disposisi !!}</p>
+                                                    <p class="w-75"> {!! $data->tujuan_pelaksanaan !!}</p>
                                                     <p class="mt-3" style="font-size: .7rem;">
                                                         --
-                                                        {{ date('d-F-Y', strtotime($dataDisposisi->tanggal_disposisi)) }}
+                                                        {{ date('d-F-Y', strtotime($data->tanggal_surat_tugas)) }}
                                                         --</p>
-                                                    <a href="{{ route('disposisi.show', Crypt::encryptString($dataDisposisi->id_disposisi)) }}"
-                                                        data-toggle="tooltip" data-placement="top"
-                                                        title="Detail data disposisi"
-                                                        data-original-title="Detail data disposisi"
-                                                        class="btn btn-info has-icon text-white" href=""><i
-                                                            class="bi bi-eye"></i> Detail Data
-                                                    </a>
+                                                    <div class="d-flex flex-column btn-group-action">
+                                                        @can('admin')
+                                                            <a href="{{ route('surat-tugas.show', Crypt::encryptString($data->id_surat_tugas)) }}"
+                                                                data-toggle="tooltip" data-placement="top"
+                                                                title="Detail data surat"
+                                                                data-original-title="Detail data surat"
+                                                                class="btn btn-info has-icon text-white tombol-detail-card"
+                                                                href=""><i class="pl-1  bi bi-eye "></i>
+                                                            </a>
+                                                            <a type="button" data-toggle="tooltip" data-placement="left"
+                                                                title="Edit data surat" data-original-title="Edit data surat"
+                                                                class="btn btn-warning has-icon text-white tombol-edit-card"
+                                                                href="{{ route('surat-tugas.edit', Crypt::encryptString($data->id_surat_tugas)) }}"><i
+                                                                    class="pl-1  bi bi-pencil-square "></i>
+                                                            </a>
+                                                            <form method="POST"
+                                                                action="{{ route('surat-tugas.destroy', Crypt::encryptString($data->id_surat_tugas)) }}"
+                                                                class="tombol-hapus">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="button" data-toggle="tooltip"
+                                                                    data-placement="bottom" title="Hapus data surat"
+                                                                    data-original-title="Hapus data surat"
+                                                                    class="btn btn-danger has-icon text-white tombol-hapus-card tombol-hapus"
+                                                                    href=""><i
+                                                                        class="pl-1  bi bi-trash tombol-hapus"></i>
+                                                                </button>
+                                                            </form>
+                                                        @endcan
+                                                    </div>
+                                                    @cannot('admin')
+                                                        <a href="{{ route('surat-tugas.show', Crypt::encryptString($data->id_surat_tugas)) }}"
+                                                            data-toggle="tooltip" data-placement="right"
+                                                            title="Detail data surat tugas"
+                                                            data-original-title="Detail data surat tugas"
+                                                            class="btn btn-info has-icon text-white mr-1" href=""><i
+                                                                class="bi bi-eye"></i>
+                                                        </a>
+                                                    @endcannot
                                                 </div>
                                                 <div class="card-footer d-flex justify-content-between position-relative">
                                                     <div class="d-flex flex-row ">
-                                                        @if ($dataDisposisi->user->foto_user)
-                                                            <img alt="image"
-                                                                src="{{ asset('image_save/' . $dataDisposisi->user->foto_user) }}"
-                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                class="mr-2 border border-primary">
-                                                        @else
-                                                            <img alt="image"
-                                                                src="{{ asset('assets/img/avatar/avatar-1.png') }}"
-                                                                style="max-width: 45px;max-height: 45px; border-radius: 50%;aspect-ratio: 1/1"
-                                                                class="mr-2">
-                                                        @endif
                                                         <div>
                                                             <div class="user-detail-name">
                                                                 <span class="text-primary" href="#">
-                                                                    {{ $dataDisposisi->user->nama }}</span>
+                                                                    {{ $data->pengirim->nama }}</span>
                                                             </div>
-                                                            <small style="max-width: max-content; ">
-                                                                {{ currencyPhone($dataDisposisi->user->nomor_telpon) }}
-                                                            </small>
+                                                            <div class="text-job">
+                                                                <small style="max-width: max-content">
+                                                                    {{ currencyPhone($data->pengirim->nomor_telpon) }}
+                                                                </small>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="text-center " style="margin-left: 15%;">
-                                                        <a type="button" class="btn btn-danger btn-scan-pdf"
+                                                        <a type="button" class="btn btn-primary btn-scan-pdf"
                                                             data-toggle="tooltip" data-placement="top"
-                                                            title="Preview surat (PDF)"
-                                                            data-original-title="Preview surat (PDF)"
-                                                            href="{{ asset('document_save/' . $dataDisposisi->pengajuan->surat->scan_dokumen) }}"
-                                                            target="_blank" title="Read PDF"><i class="bi bi-file-pdf"
+                                                            title="Cetak surat tugas"
+                                                            data-original-title="Cetak surat tugas"
+                                                            href="{{ route('cetak.surat-tugas', Crypt::encryptString($data->id_surat_tugas)) }}"
+                                                            target="_blank" title="Read PDF"><i
+                                                                class="bi bi-printer-fill"
                                                                 style="font-size: 1.1rem;"></i></a>
                                                     </div>
                                                 </div>
@@ -563,7 +582,7 @@
                                         </div>
                                     </div>
                                 </li>
-                            @endforeach --}}
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -838,10 +857,10 @@
         const myChart2 = new Chart(myChartSurat, {
             type: 'line',
             data: {
-                labels: {!! json_encode($pengajuanDisposisiChartData['dates']) !!},
+                labels: {!! json_encode($suratTugasChartData['dates']) !!},
                 datasets: [{
                     label: 'Surat Tugas',
-                    data: {!! json_encode($pengajuanDisposisiChartData['pengajuan_count']) !!},
+                    data: {!! json_encode($suratTugasChartData['suratTugas_count']) !!},
                     borderWidth: 2,
                     backgroundColor: 'rgba(63,82,227,.8)',
                     borderWidth: 0,

@@ -82,14 +82,15 @@
                 </div>
                 <div class="card">
                     <div class="card-header">
-                        <span data-toggle="tooltip" data-placement="top" title="Ini adalah data surat tugas untuk Anda."
-                            data-original-title="Ini adalah data surat tugas untuk Anda." disabled>
+                        <span data-toggle="tooltip" data-placement="top"
+                            title="Ini adalah data Surat Tugas untuk {{ auth()->user()->nama }}."
+                            data-original-title="Ini adalah data Surat Tugas untuk {{ auth()->user()->nama }}." disabled>
                             <i class="bi bi-question-circle mr-2 text-primary"></i>
                         </span>
-                        <h4>Statistik Surat Tugas untuk {{ Auth::user()->nama }}</h4>
+                        <h4>Statistik surat tugas {{ auth()->user()->nama }}</h4>
                     </div>
                     <div class="card-body">
-                        <canvas id="myChartSuratTugas" height="158"></canvas>
+                        <canvas id="myChart2" height="158"></canvas>
                     </div>
                 </div>
             </div>
@@ -336,6 +337,55 @@
                                 return value;
                             }
                         }
+                    }],
+                    xAxes: [{
+                        gridLines: {
+                            display: false,
+                            tickMarkLength: 15,
+                        }
+                    }]
+                },
+            }
+        });
+    </script>
+    {{-- Chart data Surat Tugas untuk User --}}
+    <script>
+        const myChartSurat = document.getElementById("myChart2").getContext('2d');
+        const myChart2 = new Chart(myChartSurat, {
+            type: 'line',
+            data: {
+                labels: {!! json_encode($suratTugasChartData['dates']) !!},
+                datasets: [{
+                    label: 'Surat Tugas',
+                    data: {!! json_encode($suratTugasChartData['suratTugas_count']) !!},
+                    borderWidth: 2,
+                    backgroundColor: 'rgba(63,82,227,.8)',
+                    borderWidth: 0,
+                    borderColor: 'transparent',
+                    pointBorderWidth: 0,
+                    pointRadius: 3.5,
+                    pointBackgroundColor: 'transparent',
+                    pointHoverBackgroundColor: 'rgba(63,82,227,.8)',
+                }]
+            },
+            options: {
+                legend: {
+                    display: true
+                },
+                scales: {
+                    yAxes: [{
+                        gridLines: {
+                            // display: false,
+                            drawBorder: false,
+                            color: '#f2f2f2',
+                        },
+                        // ticks: {
+                        //     beginAtZero: true,
+                        //     stepSize: 50,
+                        //     callback: function(value, index, values) {
+                        //         return value;
+                        //     }
+                        // }
                     }],
                     xAxes: [{
                         gridLines: {

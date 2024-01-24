@@ -37,6 +37,10 @@
                                             setiap role berbeda (berada di petunjuk role)
                                         </p>
                                     </div>
+                                    <h5 class="title-page-petunjuk mb-0"><i class="bi bi-person-badge"></i>
+                                        Mengelolah Posisi Jabatan</h5>
+                                    <small class="tanggal-page-petunjuk">Last update: 30-December-2023</small>
+
                                     <div class="text-center mb-2">
                                         <div class="">
                                             <img width="30%"
@@ -89,6 +93,7 @@
                                         </div>
                                         <small class="img-caption-petunjuk">Tombol Tambah Data Posisi Jabatan</small>
                                     </div>
+                                    <h6 class="text-info">Tambah Data Posisi Jabatan</h6>
                                     <p class="text-page-petunjuk">
                                         Tombol tambah data berada di atas kanan data posisi jabatan. jika ingin menambah
                                         data posisi jabatan maka klik tombol <b class="bold-main">Tambah</b>. jika di klik
@@ -130,6 +135,55 @@
                                         jika di klik maka akan muncul tombol lain untuk mengelola posisi jabatan. yaitu
                                         tombol detail, edit, dan delete.
                                     </p>
+                                    <h6 class="text-info">Detail Data Posisi Jabatan</h6>
+
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/detail-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto modal detail Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Modal Detail Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        jika di klik tombol detail maka akan muncul modal detail posisi jabatan.
+                                    </p>
+
+                                    <h6 class="text-info">Edit Data Posisi Jabatan</h6>
+
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/edit-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto modal edit Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Modal Edit Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        jika di klik tombol edit maka akan muncul modal edit posisi jabatan. Jika ingin
+                                        mengubah data maka ubah inputan yang ada di form.
+                                    </p>
+                                    <h6 class="text-info">Hapus Data Posisi Jabatan</h6>
+
+                                    <div class="text-center mb-2">
+                                        <div class="">
+                                            <img width="90%"
+                                                src="{{ asset('assets-landing-page/img/img-petunjuk-teknis/hapus-posjab.png') }}"
+                                                class="img-fluid image-box" alt="Foto modal hapus Posisi Jabatan">
+                                        </div>
+                                        <small class="img-caption-petunjuk">Modal Hapus Data Posisi Jabatan</small>
+                                    </div>
+                                    <p class="text-page-petunjuk">
+                                        jika di klik tombol hapus maka akan muncul peringatan hapus posisi jabatan, jika
+                                        anda yakin ingin menghapusnya maka klik tombol oke.
+                                    </p>
+                                    <div class="custom-block-warning mb-4">
+                                        <p class="custom-block-title mt-1 mb-50">Perhatian</p>
+                                        <p class="custom-block-text">
+                                            Jika anda mengklik tombol oke pada hapus posisi jabatan, maka data posisi
+                                            jabatan akan terhapus permanen.
+                                        </p>
+                                    </div>
                                 </section>
                                 <section class="section-petunjuk mt-4" id="alamat" data-scroll-index="2">
                                     <h5 class="title-page-petunjuk mb-0"><i class="bi bi-globe2"></i>
